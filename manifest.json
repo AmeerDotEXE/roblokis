@@ -1,0 +1,23 @@
+{
+  "name": "Roblokis",
+  "version": "2.6.3.2",
+  "manifest_version": 2,
+  "web_accessible_resources": [ "*.js", "*.html", "*.png" ],
+  "content_scripts": [ {
+     "matches": [ "*://*.roblox.com/*" ],
+     "js": [ "js/Main/Load.js" ],
+     "run_at": "document_start"
+  } ],
+  "description": "More Features For Roblox :D",
+  "homepage_url": "https://www.Roblox.com/home?open=roblokis",
+  "icons": {
+    "300": "/images/icons/icon_300x300.png"
+  },
+  "browser_action": {
+    "default_popup": "html/Popup/Popup.html",
+    "default_icon": {
+       "19": "/images/icons/icon_300x300.png"
+    },
+    "default_title": "Roblokis"
+  }
+}
