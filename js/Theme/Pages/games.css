@@ -1,0 +1,515 @@
+#game-detail-page > div.system-feedback {display: none;}
+#Leaderboard-Abp {margin-bottom: 1%;}
+
+/*game photo & button*/
+#game-details-carousel-container {
+    border-radius: 20px;
+    box-shadow: 0 0 8px 1px black;
+    z-index: 10;
+    transition: transform 400ms;
+    transition-timing-function: cubic-bezier(0.25, 1.27, 0.9, 1.01);
+}
+#game-details-carousel-container:hover {
+    transform: var(--rk-basic-animations, scale(1.06) rotate(1deg));
+}
+#game-details-play-button-container > button {
+    background: none;
+    border: 2px solid #fff;
+    box-shadow: 0 0 8px 1px black, inset 0 0 8px 0px black;
+    transition: transform 500ms, border-width 250ms;
+    transition-timing-function: cubic-bezier(0.25, 1.27, 0.9, 1.01);
+}
+#game-details-play-button-container > button:hover {
+    transform: var(--rk-basic-animations, scale(1.08) rotate(-2deg));
+    border-width: var(--rk-basic-animations, 3px);
+}
+
+
+/*section tabs*/
+#horizontal-tabs {
+    background-color: rgb(35, 37, 39, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 0 8px 1px black;
+}
+#horizontal-tabs > li > a {
+    background-color: rgb(35, 37, 39, 0);
+    margin: 0px 10px 5px;
+    transition: all 200ms;
+    transition-timing-function: cubic-bezier(0.25, 1.27, 0.9, 1.01);
+}
+#horizontal-tabs > li > a:hover {
+    box-shadow: var(--rk-basic-animations, inset 0 -36px 0 0 rgb(255, 255, 255, 0.2));
+}
+
+
+/*coloring*/
+div.section.game-about-container > div.section-content > ul.game-stats-container,
+div > .social-link > div.medallion
+{border-color: #fff;}
+
+
+/*game card*/
+div.container-list.games-detail div.game-card-container > a > a {
+    box-shadow: 0 0 6px black, inset 0 0 4px black;
+    transition: transform 400ms;
+    transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
+}
+div.container-list.games-detail div.game-card-container > a:hover > a {
+    transform: var(--rk-basic-animations, scale(1.12) rotate(5deg));
+}
+
+
+
+
+
+/*  Badges      */
+#game-badges-container > game-badges-list > div > ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#game-badges-container > game-badges-list > div > ul > li {
+    transition: all 400ms;
+    transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
+    box-shadow: 0 0 8px 1px black;
+    width: 32%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 6px;
+
+    border-radius: var(--rk-badge-corners-radius, 20px);
+
+    border-color: var(--rk-badge-borders-color);
+    border-style: var(--rk-badge-borders-style);
+    border-width: var(--rk-badge-borders-size);
+
+    background: var(--rk-badge-background);
+    background-size: var(--rk-badge-background-image-size);
+
+}
+/*#game-badges-container > game-badges-list > div > ul:hover > li:not(li:hover) {
+    opacity: 0.5;
+}*/
+#game-badges-container > game-badges-list > div > ul > li:hover {
+    transform: var(--rk-basic-animations, scale(1.2));
+    opacity: var(--rk-basic-animations, 1);
+    z-index: var(--rk-basic-animations, 10);
+}
+
+#game-badges-container > game-badges-list > div > ul > li > div.badge-content {
+    width: 100%;
+    margin-top: 9px;
+    display: flex;
+    flex-direction: column;
+    color: var(--rk-badge-bright-color);
+}
+
+#game-badges-container > game-badges-list > div > ul > li > div.badge-content > div > p {
+    color: var(--rk-badge-dark-color);
+}
+
+#game-badges-container > game-badges-list > div > ul > li > div.badge-content> ul {
+    display: flex;
+    flex-direction: column;
+}
+
+#game-badges-container > game-badges-list > div > ul > li > div.badge-content> ul > li {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+
+#game-badges-container > game-badges-list > div > ul > li > div.badge-content> ul > li.thecut {
+    padding: 6px;
+}
+
+#game-badges-container > game-badges-list > div > ul > li > div.badge-content> ul > li > div.text-label {
+    padding: 0 10px 0 0;
+    color: var(--rk-badge-dark-color);
+}
+
+
+
+
+
+/* Private Servers  */
+#rbx-private-servers > div.section.tab-server-only > ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#rbx-private-servers > div.section.tab-server-only > ul > p.section-content-off,
+#rbx-private-servers > div.rbx-private-server-item-container > p {
+    background-color: transparent;
+}
+
+#rbx-private-servers > div.section.tab-server-only > ul > li {
+    transition: all 400ms;
+    transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
+    box-shadow: 0 0 8px 0px black;
+
+    width: calc(calc(100% / var(--rk-privateserver-column, 5)) - calc(var(--rk-privateserver-gap, 0.3%) * 2));
+    margin: var(--rk-privateserver-gap, 0.3%);
+    color: var(--rk-privateserver-bright-color);
+
+    border-radius: var(--rk-privateserver-corners-radius, 20px);
+
+    border-color: var(--rk-privateserver-borders-color);
+    border-style: var(--rk-privateserver-borders-style);
+    border-width: var(--rk-privateserver-borders-size);
+
+    background: var(--rk-privateserver-background);
+    background-size: var(--rk-privateserver-background-image-size);
+}
+/*#rbx-private-servers > div.section.tab-server-only > ul:hover > li:not(li:hover) {
+    opacity: 0.5;
+}*/
+#rbx-private-servers > div.section.tab-server-only > ul > li:hover {
+    transform: var(--rk-basic-animations, scale(1.2));
+    opacity: var(--rk-basic-animations, 1);
+    z-index: var(--rk-basic-animations, 10);
+}
+
+#rbx-private-servers > div.section.tab-server-only > ul > li > div.rbx-private-server-details > a {
+    margin: 0 0 0 0;
+    color: var(--rk-privateserver-button-color);
+
+
+    border-radius: var(--rk-privateserver-button-corners-radius, 8px);
+
+    border-color: var(--rk-privateserver-button-borders-color, white);
+    border-style: var(--rk-privateserver-button-borders-style, solid);
+    border-width: var(--rk-privateserver-button-borders-size, 1px);
+
+    background: var(--rk-privateserver-button-background, transparent);
+    background-size: var(--rk-privateserver-button-background-image-size);
+}
+
+#rbx-private-servers > div.section.tab-server-only > ul > li > div.stack-header > span {
+    font-size: 14px;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+    white-space: nowrap;
+}
+
+#rbx-private-servers > div.section.tab-server-only > ul > li > div.section-right {
+    float: none;
+    width: auto;
+}
+
+#rbx-private-servers > div.section.tab-server-only > ul > li > div.section-right > span {
+    margin: 0px -10px 6px 0px;
+    top: 8px;
+    width: 34px;
+    height: 34px;
+}
+
+#rbx-private-servers > div.section.tab-server-only > ul > li > div.section-right > span#rk-plr-counter {
+    margin: 0px -8px 6px 0px;
+    display: inline-grid;
+    align-content: center;
+    font-weight: bold;
+    font-size: unset;
+    text-align: center;
+}
+
+#rbx-private-servers > div.section.tab-server-only > ul > li > div.section-left {
+    float: none;
+    border: none;
+    padding: 0;
+    width: auto;
+}
+
+#rbx-private-servers > div.section.tab-server-only > ul > li > div.section-left > div.rbx-private-owner > a.owner-avatar > img {
+    background-color: var(--rk-privateserver-owner-background, #d4d4d4);
+    box-shadow: 0 2px 8px 0 black;
+}
+
+#rbx-private-servers > div.section.tab-server-only > ul > li > div.section-left > div.rbx-private-server-status,
+#rbx-private-servers > div.section.tab-server-only > ul > li > div.section-left > div.rbx-private-owner > a.text-name,
+#rbx-private-servers > div.section.tab-server-only > ul > li > div.section-left > div.rbx-private-server-subscription-alert {
+    display: none;
+}
+
+
+
+
+
+/* Friends Servers  */
+#rbx-friends-game-server-item-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#rbx-friends-game-server-item-container.section-content-off {
+    background-color: transparent;
+}
+
+#rbx-friends-game-server-item-container > li {
+    transition: all 400ms;
+    transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
+    box-shadow: 0 0 8px 0px black;
+
+    width: calc(calc(100% / var(--rk-friendsserver-column, 5)) - calc(var(--rk-friendsserver-gap, 0.3%) * 2));
+    margin: var(--rk-friendsserver-gap, 0.3%);
+
+
+    border-radius: var(--rk-friendsserver-corners-radius, 20px);
+
+    border-color: var(--rk-friendsserver-borders-color);
+    border-style: var(--rk-friendsserver-borders-style);
+    border-width: var(--rk-friendsserver-borders-size);
+
+    background: var(--rk-friendsserver-background);
+    background-size: var(--rk-friendsserver-background-image-size);
+}
+/*#rbx-friends-game-server-item-container:hover > li:not(li:hover) {
+    opacity: 0.5;
+}*/
+#rbx-friends-game-server-item-container > li:hover {
+    transform: var(--rk-basic-animations, scale(1.2));
+    opacity: var(--rk-basic-animations, 1);
+    z-index: var(--rk-basic-animations, 10);
+}
+
+#rbx-friends-game-server-item-container > li > div.rbx-friends-game-server-details > a {
+    margin: 0 0 0 0;
+    color: var(--rk-friendsserver-button-color);
+
+
+    border-radius: var(--rk-friendsserver-button-corners-radius, 8px);
+
+    border-color: var(--rk-friendsserver-button-borders-color, white);
+    border-style: var(--rk-friendsserver-button-borders-style, solid);
+    border-width: var(--rk-friendsserver-button-borders-size, 1px);
+
+    background: var(--rk-friendsserver-button-background, transparent);
+    background-size: var(--rk-friendsserver-button-background-image-size);
+}
+
+#rbx-friends-game-server-item-container > li > div.section-right {
+    float: none;
+    width: auto;
+}
+
+#rbx-friends-game-server-item-container > li > div.section-right > span {
+    margin: 0px -10px 6px 0px;
+    top: 8px;
+    width: 34px;
+    height: 34px;
+}
+
+#rbx-friends-game-server-item-container > li > div.section-right > span#rk-plr-counter {
+    margin: 0px -8px 6px 0px;
+    display: inline-grid;
+    align-content: center;
+    font-weight: bold;
+    font-size: unset;
+    text-align: center;
+}
+
+#rbx-friends-game-server-item-container > li > div.section-left {
+    float: none;
+    border: none;
+    padding: 0;
+    width: auto;
+}
+
+#rbx-friends-game-server-item-container > li > div.section-left > div.rbx-friends-game-server-status {
+    font-size: 90%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: var(--rk-friendsserver-dark-color);
+}
+
+
+
+
+
+/* Small Servers  */
+#rbx-small-game-server-item-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#rbx-small-game-server-item-container.section-content-off {
+    background-color: transparent;
+}
+
+#rbx-small-game-server-item-container > li {
+    transition: all 400ms;
+    transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
+    box-shadow: 0 0 8px 0px black;
+
+    width: calc(calc(100% / var(--rk-smallserver-column, 5)) - calc(var(--rk-smallserver-gap, 0.3%) * 2));
+    margin: var(--rk-smallserver-gap, 0.3%);
+
+
+    border-radius: var(--rk-smallserver-corners-radius, 20px);
+
+    border-color: var(--rk-smallserver-borders-color);
+    border-style: var(--rk-smallserver-borders-style);
+    border-width: var(--rk-smallserver-borders-size);
+
+    background: var(--rk-smallserver-background);
+    background-size: var(--rk-smallserver-background-image-size);
+}
+/*#rbx-small-game-server-item-container:hover > li:not(li:hover) {
+    opacity: 0.5;
+}*/
+#rbx-small-game-server-item-container > li:hover {
+    transform: var(--rk-basic-animations, scale(1.2));
+    opacity: var(--rk-basic-animations, 1);
+    z-index: var(--rk-basic-animations, 10);
+}
+
+#rbx-small-game-server-item-container > li > div.rbx-game-server-details > a {
+    margin: 0 0 0 0;
+    color: var(--rk-smallserver-button-color);
+
+
+    border-radius: var(--rk-smallserver-button-corners-radius, 8px);
+
+    border-color: var(--rk-smallserver-button-borders-color, white);
+    border-style: var(--rk-smallserver-button-borders-style, solid);
+    border-width: var(--rk-smallserver-button-borders-size, 1px);
+
+    background: var(--rk-smallserver-button-background, transparent);
+    background-size: var(--rk-smallserver-button-background-image-size);
+}
+#rbx-small-game-server-item-container > li > div.section-right {
+    float: none;
+    width: auto;
+}
+
+#rbx-small-game-server-item-container > li > div.section-right > span {
+    margin: 0px -8px 6px 0px;
+    top: 8px;
+    width: 34px;
+    height: 34px;
+}
+
+#rbx-small-game-server-item-container > li > div.section-right > span#rk-plr-counter {
+    margin: 0px -8px 6px 0px;
+    display: inline-grid;
+    align-content: center;
+    font-weight: bold;
+    font-size: unset;
+    text-align: center;
+    background-color: lightgray;
+    color: black;
+}
+
+
+
+
+
+/* Public Servers  */
+#rbx-game-server-item-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#rbx-game-server-item-container.section-content-off {
+    background-color: transparent;
+}
+
+#rbx-game-server-item-container > li {
+    transition: all 400ms;
+    transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
+    box-shadow: 0 0 8px 0px black;
+
+    width: calc(calc(100% / var(--rk-publicserver-column, 5)) - calc(var(--rk-publicserver-gap, 0.3%) * 2));
+    margin: var(--rk-publicserver-gap, 0.3%);
+
+
+    border-radius: var(--rk-publicserver-corners-radius, 20px);
+
+    border-color: var(--rk-publicserver-borders-color);
+    border-style: var(--rk-publicserver-borders-style);
+    border-width: var(--rk-publicserver-borders-size);
+
+    background: var(--rk-publicserver-background);
+    background-size: var(--rk-publicserver-background-image-size);
+}
+/*#rbx-game-server-item-container:hover > li:not(li:hover) {
+    opacity: 0.5;
+}*/
+#rbx-game-server-item-container > li:hover {
+    transform: var(--rk-basic-animations, scale(1.2));
+    opacity: var(--rk-basic-animations, 1);
+    z-index: var(--rk-basic-animations, 10);
+}
+
+#rbx-game-server-item-container > li > div.rbx-game-server-details > a {
+    margin: 0 0 0 0;
+    color: var(--rk-publicserver-button-color);
+
+
+    border-radius: var(--rk-publicserver-button-corners-radius, 8px);
+
+    border-color: var(--rk-publicserver-button-borders-color, white);
+    border-style: var(--rk-publicserver-button-borders-style, solid);
+    border-width: var(--rk-publicserver-button-borders-size, 1px);
+
+    background: var(--rk-publicserver-button-background, transparent);
+    background-size: var(--rk-publicserver-button-background-image-size);
+}
+
+#rbx-game-server-item-container > li > div.section-right {
+    float: none;
+    width: auto;
+}
+
+#rbx-game-server-item-container > li > div.section-right > span {
+    margin: 0px -10px 6px 0px;
+    top: 8px;
+    width: 34px;
+    height: 34px;
+}
+
+#rbx-game-server-item-container > li > div.section-right > span#rk-plr-counter {
+    margin: 0px -8px 6px 0px;
+    display: inline-grid;
+    align-content: center;
+    font-weight: bold;
+    font-size: unset;
+    text-align: center;
+}
+
+#rbx-game-server-item-container > li > div.section-left {
+    float: none;
+    border: none;
+    padding: 0;
+    width: auto;
+}
+
+#rbx-game-server-item-container > li > div.section-left > div.rbx-game-server-status {
+    display: none;
+}
+
+
+
+
+
+/* Page Nav  */
+#rbx-running-games > div.rbx-running-games-footer > button,
+#rkpagenav > * {
+    border-radius: var(--rk-pagenav-corners-radius, 8px);
+
+    border-color: var(--rk-pagenav-borders-color, white);
+    border-style: var(--rk-pagenav-borders-style, solid);
+    border-width: var(--rk-pagenav-borders-size, 1px);
+
+    background: var(--rk-pagenav-background, rgb(0 0 0 / 0.4));
+    background-size: var(--rk-pagenav-background-image-size);
+}
+
+#rbx-running-games > div.rbx-running-games-footer > button,
+#rkpagenav > *, #rkpagenav > * > * {
+    color: var(--rk-pagenav-color);
+}

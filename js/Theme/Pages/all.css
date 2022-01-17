@@ -1,0 +1,75 @@
+/*  background  */
+#rbx-body {
+    background: var(--rk-background, rgb(35,37,39));
+    background-size: var(--rk-background-image-size);
+}
+
+
+/*menus*/
+#header,
+#navigation ,
+#footer-container {
+    background: var(--rk-menu-background);
+    background-size: var(--rk-menu-background-image-size);
+
+    box-shadow: 0 0 8px 1px black;
+}
+
+#header {
+    border-radius: 0 0 16px 16px;
+}
+#navigation {
+    border-radius: 20px;
+    height: fit-content;
+    padding-bottom: 5px;
+    margin: 1%;
+}
+#footer-container {
+    border-radius: 60px 60px 0 0;
+}
+
+#navigation > div {height: calc(100% - 60px);}
+#rk-desktopapp:hover > span {color: #f22;}
+
+
+/*content*/
+#container-main > div.content {
+
+    box-shadow: var(--rk-content-box-shadow);
+
+    border-radius: var(--rk-content-corners-radius, 20px);
+
+    border-color: var(--rk-content-borders-color);
+    border-style: var(--rk-content-borders-style);
+    border-width: var(--rk-content-borders-size);
+
+    background: var(--rk-content-background);
+    background-size: var(--rk-content-background-image-size);
+
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 20px;
+    padding: 3% 4%;
+    flex-wrap: wrap;
+    width: fit-content;
+}
+
+/*disable ads*/
+.abp {display: none;}
+
+/*quick join button*/
+a.game-card-link[data-addedjoin="true"] > a.rbx-game-server-join[onclick][data-placeid] {
+    box-shadow: 0 0 6px black, inset 0 0 4px black;
+    transition: transform 400ms;
+    transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
+}
+a.game-card-link[data-addedjoin="true"]:hover > a.rbx-game-server-join[onclick][data-placeid] {
+    transform: var(--rk-basic-animations, scale(1.12) rotate(5deg));
+}
+
+/*shadow for server icons*/
+a.game-card-link[data-addedjoin="true"] > span.thumbnail-2d-container.game-card-thumb-container {
+    box-shadow: 0 2px 8px 0px rgb(0,0,0, 0.6);
+}

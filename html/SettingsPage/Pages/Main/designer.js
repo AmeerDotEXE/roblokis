@@ -1,0 +1,482 @@
+var Designer = Designer || {};
+
+Designer.Selected = {};
+Designer.MaxCustomThemes = 5;
+
+
+Designer.LoadThemesData = async function() {
+	var customthemesholder = await document.$watch("#customthemesholder").$promise();
+	customthemesholder.innerHTML = "";
+
+	var wholedata = Rkis.wholeData || {};
+  wholedata.Designer = wholedata.Designer || {};
+  wholedata.Designer.Theme = wholedata.Designer.Theme || {};
+  wholedata.Designer.Themes = wholedata.Designer.Themes || [];
+
+  document.querySelector("#currentthemeplace").innerText = wholedata.Designer.Theme.isDefaultTheme == false ? wholedata.Designer.Themes[wholedata.Designer.Theme.id] ? wholedata.Designer.Themes[wholedata.Designer.Theme.id].name : "Default Theme" : wholedata.Designer.Theme.name;
+
+	for(var i = 0; i < Designer.MaxCustomThemes; i++) {
+		var theme = wholedata.Designer.Themes[i];
+		if(theme != null) {
+			customthemesholder.innerHTML += `
+				<div class="theme-template">
+		      <div>
+		        <div>${theme.name}</div>
+		        <span>${theme.description}</span>
+		      </div>
+		      <div style="margin-left: auto;"></div>
+		      <button onclick="Designer.ExportTheme(this, '${theme.name}', ${i})" style="background-color: rgb(57 59 184);color: rgb(35 37 39);font-size: 20px;">⤓</button>
+		      <button onclick="Designer.DeleteTheme('${theme.name}', ${i})" style="background-color: rgb(184 59 61);color: rgb(35 37 39);font-weight: 600;">X</button>
+		      <button onclick="Designer.EditTheme(${i})" style="background-color: rgb(57 184 61);color: rgb(35 37 39);">Edit</button>
+		      <button onclick="Designer.SelectThemeButton(this)" data-theme="${theme.name}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(57 59 61);${theme.all == null ? "display: none;" : ""}">Select</button>
+		    </div>`;
+		}
+		else {
+			customthemesholder.innerHTML += `
+				<div class="theme-template">
+		      <div>
+		        <div>Theme Slot ${i + 1}</div>
+		        <span>Empty</span>
+		      </div>
+		      <div style="margin-left: auto;"></div>
+		      <button onclick="Designer.CreateTheme()" style="background-color: rgb(57 59 61);">Create</button>
+		    </div>`;
+		}
+  }
+}
+
+Designer.SaveNewTheme = async function(name, desc, themedata) {
+
+	if(name == null) name = "";
+	if(desc == null) desc = "";
+
+	if(
+			name.length > 24 ||
+			name.length < 3
+		) {
+		return {error: "Name must be between 3 and 24 Characters!"};
+	}
+	else if( desc != "" && (
+			desc.length > 36 ||
+			desc.length < 4
+		) ) {
+		return {error: "Description must be between\n4 and 36 Characters Or Empty!"};
+	}
+
+  var wholedata = Rkis.wholeData || {};
+  wholedata.Designer = wholedata.Designer || {};
+  wholedata.Designer.Themes = wholedata.Designer.Themes || [];
+
+  if(wholedata.Designer.Themes.length >= Designer.MaxCustomThemes) return {error: "All Slots is Used."};
+
+  var existingtheme = wholedata.Designer.Themes.find(x => x.name == name);
+  if (existingtheme != null) return {error: "Name Already Exist."};
+
+  var themetemplate = await fetch(Rkis.fileLocation + "js/Theme/Tamplate.Roblokis")
+  .then(response => response.json())
+  .catch(err => {console.log(err); return {};})
+
+  var thenewtheme = {
+  	name: name,
+  	description: desc
+  };
+
+  if(themedata != null) thenewtheme = jsonConcat(themedata, thenewtheme);
+
+  wholedata.Designer.Themes.push(jsonConcat(themetemplate, thenewtheme));
+
+  localStorage.setItem("Roblokis", JSON.stringify(wholedata));
+  Rkis.wholeData = wholedata;
+
+  return {};
+	
+}
+
+Designer.SelectThemeButton = function(button) {
+	if(button == null) return;
+
+	Designer.Selected.name = button.dataset.theme;
+	Designer.Selected.id = button.dataset.themeid;
+	Designer.Selected.isDefaultTheme = button.dataset.isdefaulttheme != "false";
+
+	var wholedata = Rkis.wholeData || {};
+  wholedata.Designer = wholedata.Designer || {};
+
+  wholedata.Designer.Theme = {...Designer.Selected};
+
+  localStorage.setItem("Roblokis", JSON.stringify(wholedata));
+  Rkis.wholeData = wholedata;
+
+	Designer.LoadThemesData();
+}
+
+Designer.CreateTheme = function() {
+	document.querySelector("#rk-createthemesection").style.display = "flex";
+}
+
+Designer.CreateNewTheme = async function(button) {
+	button.disabled = true;
+	button.style.opacity = "0.5";
+
+	var newthemename = document.querySelector("#newtheme-name");
+	var newthemedesc = document.querySelector("#newtheme-desc");
+	var newthemefile = document.querySelector("#newtheme-file");
+	var errorplace = document.querySelector("#newtheme-error");
+
+	var filetheme = null;
+
+	try{
+		if(newthemefile.files.length > 0) {
+			filetheme = JSON.parse(await newthemefile.files[0].text())
+		}
+	}catch{}
+
+	var themename = newthemename.value;
+	var	themedesc = newthemedesc.value;
+
+	if(filetheme != null) {
+
+		if(themename == "") {
+			themename = filetheme.name;
+		}
+
+		if(themedesc == "") {
+			themedesc = filetheme.description;
+		}
+	}
+
+	var result = await Designer.SaveNewTheme(themename, themedesc, filetheme);
+	if(result.error != null) {
+		errorplace.innerText = result.error;
+
+		button.disabled = false;
+		button.style.opacity = "1";
+
+		return;
+	}
+
+	Designer.LoadThemesData();
+
+	document.querySelector("#rk-createthemesection").style.display = "none";
+	errorplace.innerText = "";
+
+	button.disabled = false;
+	button.style.opacity = "1";
+}
+
+Designer.ExportTheme = function(button, themename, themeId) {
+	button.disabled = true;
+	button.style.opacity = "0.5";
+
+	if(isNaN(themeId)) {
+		button.disabled = false;
+		button.style.opacity = "1";
+		return;
+	}
+
+	var wholedata = Rkis.wholeData || {};
+  wholedata.Designer = wholedata.Designer || {};
+  wholedata.Designer.Themes = wholedata.Designer.Themes || [];
+
+  var theme = wholedata.Designer.Themes[themeId];
+
+  if (theme == null) {
+		button.disabled = false;
+		button.style.opacity = "1";
+		return;
+	}
+
+	makeTextFile(JSON.stringify(theme), themename + ".roblokis");
+
+	button.disabled = false;
+	button.style.opacity = "1";
+}
+
+Designer.DeleteTheme = function(themename, themeId) {
+	document.querySelector("#deletetheme-button").dataset.themeid = themeId;
+	document.querySelector("#deletetheme-themename").innerText = themename;
+	document.querySelector("#rk-deletethemesection").style.display = "flex";
+}
+
+Designer.DeleteTheTheme = function(button) {
+	button.disabled = true;
+	button.style.opacity = "0.5";
+
+	if(button.dataset.themeid == null || button.dataset.themeid == "") {
+		document.querySelector("#rk-deletethemesection").style.display = "none";
+		button.disabled = false;
+		button.style.opacity = "1";
+		return;
+	}
+
+	var themeId = Number(button.dataset.themeid);
+	if(isNaN(themeId)) {
+		document.querySelector("#rk-deletethemesection").style.display = "none";
+		button.disabled = false;
+		button.style.opacity = "1";
+		return;
+	}
+
+	var wholedata = Rkis.wholeData || {};
+  wholedata.Designer = wholedata.Designer || {};
+  wholedata.Designer.Themes = wholedata.Designer.Themes || [];
+
+  if (wholedata.Designer.Themes[themeId] != null)
+  	wholedata.Designer.Themes.splice(themeId, 1);
+
+  localStorage.setItem("Roblokis", JSON.stringify(wholedata));
+  Rkis.wholeData = wholedata;
+
+	Designer.LoadThemesData();
+
+	document.querySelector("#rk-deletethemesection").style.display = "none";
+	button.disabled = false;
+	button.style.opacity = "1";
+}
+
+Designer.EditTheme = function(themeId) {
+	Designer.ThemeEditor.themeId = themeId;
+
+	Designer.ThemeEditor.Load();
+	document.querySelector("#rk-editthemesection").style.display = "flex";
+}
+
+
+
+Designer.ThemeEditor = Designer.ThemeEditor || {};
+
+Designer.ThemeEditor.Save = function() {
+	var wholedata = Rkis.wholeData || {};
+  wholedata.Designer = wholedata.Designer || {};
+  wholedata.Designer.Themes = wholedata.Designer.Themes || [];
+
+  var theme = wholedata.Designer.Themes[Designer.ThemeEditor.themeId];
+  if(theme == null) return;
+
+  document.querySelectorAll(`[data-editthemetabs]`).forEach(tab => {
+		if(tab.dataset.editthemetabs == null || tab.dataset.editthemetabs == "") return;
+		if(theme[tab.dataset.editthemetabs] == null || theme[tab.dataset.editthemetabs].css == null)
+			theme[tab.dataset.editthemetabs] = {css: {}};
+
+		tab.querySelectorAll(`[data-location][data-type]`).forEach(input => {
+			if(input.dataset.location == null || input.dataset.location == "") return;
+
+			var placewithoutdots = input.dataset.location.split(".");
+			var place = theme[tab.dataset.editthemetabs].css;
+			var newplace = theme[tab.dataset.editthemetabs].css;
+			var stringplace = "null";
+
+			for(var i = 0; i < placewithoutdots.length && newplace != null; i++) {
+				newplace = newplace[placewithoutdots[i]];
+			}
+
+			for(var i = 0; i < placewithoutdots.length; i++) {
+				stringplace = stringplace.replace("null" ,`{"${placewithoutdots[i]}":null}`);
+			}
+
+			stringplace = stringplace.replace("null", JSON.stringify(Designer.ThemeEditor.GetTypeValue(input.dataset.type, input.value, newplace)));
+
+			var jsonplace = null;
+
+			try {
+				jsonplace = JSON.parse(stringplace);
+			}
+			catch {}
+
+			theme[tab.dataset.editthemetabs].css = jsonConcat(place, jsonplace);
+		})
+
+
+		if(theme[tab.dataset.editthemetabs] == null || theme[tab.dataset.editthemetabs].css == null)
+			theme[tab.dataset.editthemetabs] = {css: {}};
+
+		tab.querySelectorAll(`[data-location][data-enabled]`).forEach(input => {
+			if(input.dataset.location == null) return;
+
+			if(page.getSwich(input)) return;
+
+			if(theme[tab.dataset.editthemetabs] == null) return;
+
+			var placewithoutdots = input.dataset.location.split(".");
+			var place = theme[tab.dataset.editthemetabs].css;
+			var stringplace = "null";
+
+			for(var i = 0; i < placewithoutdots.length; i++) {
+				stringplace = stringplace.replace("null" ,`{"${placewithoutdots[i]}":null}`);
+			}
+
+			var jsonplace = null;
+
+			try {
+				jsonplace = JSON.parse(stringplace);
+			}
+			catch {}
+
+			theme[tab.dataset.editthemetabs].css = jsonConcat(place, jsonplace);
+		})
+	})
+
+	wholedata.Designer.Themes[Designer.ThemeEditor.themeId] = theme;
+
+  localStorage.setItem("Roblokis", JSON.stringify(wholedata));
+  Rkis.wholeData = wholedata;
+
+	document.querySelector("#rk-editthemesection").style.display = "none";
+}
+
+Designer.ThemeEditor.Load = function() {
+	var wholedata = Rkis.wholeData || {};
+  wholedata.Designer = wholedata.Designer || {};
+  wholedata.Designer.Themes = wholedata.Designer.Themes || [];
+
+  var theme = wholedata.Designer.Themes[Designer.ThemeEditor.themeId];
+  if(theme == null) return;
+
+  document.$triggerCustom("designer-edittheme-loading");
+
+  document.querySelectorAll(`[data-editthemetabs]`).forEach((tab, tabindex, tablist) => {
+		if(tab.dataset.editthemetabs == null || tab.dataset.editthemetabs == "") return;
+		if(theme[tab.dataset.editthemetabs] == null || theme[tab.dataset.editthemetabs].css == null) return;
+
+		tab.querySelectorAll(`[data-location][data-type]`).forEach(input => {
+			if(input.dataset.location == null || input.dataset.location == "") return;
+
+			var placewithoutdots = input.dataset.location.split(".");
+			var place = theme[tab.dataset.editthemetabs].css;
+
+			for(var i = 0; i < placewithoutdots.length && place != null; i++) {
+				place = place[placewithoutdots[i]];
+			}
+
+			if (place == null && input.dataset.type != "corner") {
+				if(input.getAttribute("value") != null) return input.value = input.getAttribute("value");
+				if(input.getAttribute("selected") != null) return input.value = input.getAttribute("selected");
+				return; //make this set value to default
+			}
+
+			input.value = Designer.ThemeEditor.GetValueToType(input.dataset.type, place);
+			//input.$triggerCustom("input");
+		})
+
+		tab.querySelectorAll(`[data-location][data-enabled]`).forEach((input, theindex, thelist) => {
+			if(input.dataset.location == null) return;
+
+			var placewithoutdots = input.dataset.location.split(".");
+			var place = theme[tab.dataset.editthemetabs].css;
+
+			for(var i = 0; i < placewithoutdots.length && place != null; i++) {
+				place = place[placewithoutdots[i]];
+			}
+
+			if(input.dataset.enabled == "switch") page.toggleSwich(input, place != null);
+			//input.$triggerCustom("input");
+		})
+	})
+
+
+  document.$triggerCustom("designer-edittheme-loaded");
+}
+
+Designer.ThemeEditor.GetTypeValue = function(type, value, place) {
+	if(type == null || type == "" || type == "value") return value;
+
+	if(type == "color") return hexToRgb(value);
+	if(type == "color-alpha") return place != null ? rgbTorgba(place, value) : value;
+
+	if(type == "corner" && value == "-1") return null;
+	if(type == "corner") return value + "px";
+
+	if(type == "px") return value + "px";
+	if(type == "percent") return value + "%";
+}
+
+Designer.ThemeEditor.GetValueToType = function(type, value) {
+	if(type == null || type == "" || type == "value") return value;
+
+	if(type == "color") return rgbToHex(rgbaTovar(value).r, rgbaTovar(value).g, rgbaTovar(value).b);
+	if(type == "color-alpha") return rgbaTovar(value).a;
+
+	if(type == "corner" && value == null) return "-1";
+	if(type == "corner") return value.replace("px", "");
+
+	if(type == "px") return value.replace("px", "");
+	if(type == "percent") return value.replace("%", "");
+}
+
+Designer.ThemeEditor.SelectTab = function(tab) {
+	if(tab.dataset.editthemetab == null || tab.dataset.editthemetab == "") return;
+
+	var tabdiv = document.querySelector(`[data-editthemetabs="${tab.dataset.editthemetab}"]`);
+	if(tabdiv == null) return;
+
+	document.querySelectorAll(`[data-editthemetab]`).forEach(tabs => {tabs.classList.remove("active");})
+	document.querySelectorAll(`[data-editthemetabs]`).forEach(tabsdiv => {tabsdiv.style.display = "none";})
+
+	tab.classList.add("active");
+	tabdiv.style.display = "";
+	Designer.ThemeEditor.ActiveTab = tabdiv;
+}
+
+
+
+function hexToRgb(hex) {
+  var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? `rgb(${parseInt(result[1], 16)},${parseInt(result[2], 16)},${parseInt(result[3], 16)})` : null;
+}
+
+function rgbTorgba(rgb, alpha) {
+	var result = rgb.replace("rgb(", "rgba(");
+	if(result.split(",").length > 3) result = result.split(",").slice(0, -1).join(",") + ")";
+  return result.replace(")", `,${alpha}%)`);
+}
+
+function rgbaTovar(rgba) {
+	var vars = rgba.split("(")[1].split(")")[0].split("%")[0].split(",");
+  return {r: Number(vars[0]), g: Number(vars[1]), b: Number(vars[2]), a: Number(vars[3])};
+}
+
+function rgbToHex(r, g, b) {
+  return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
+
+function jsonConcat(o1, o2) {
+  for (var key in o2) {
+ 	  if(o1[key] == null) o1[key] = o2[key];
+ 	  else {
+ 	  	if(o1[key].toString() == "[object Object]" && o2[key] != null && o2[key].toString() == "[object Object]")
+ 	  		jsonConcat(o1[key], o2[key]);
+ 	  	else o1[key] = o2[key];
+ 	  }
+  }
+  return o1;
+}
+
+function makeTextFile(text, filename) {
+	var textFile = null;
+  var data = new Blob([text], {type: 'text/plain'});
+
+  textFile = window.URL.createObjectURL(data);
+
+  var link = document.createElement('a');
+  link.setAttribute('download', filename);
+  link.href = textFile;
+  document.body.appendChild(link);
+
+  window.requestAnimationFrame(function () {
+    var event = new MouseEvent('click');
+    link.dispatchEvent(event);
+    document.body.removeChild(link);
+
+    if (textFile !== null) {
+	    window.URL.revokeObjectURL(textFile);
+	  }
+  });
+};
+
+function onclicked(target, code) {
+	target.addEventListener("click", (e) => {
+		if(e.target == target) code();
+	})
+}
+
+Designer.LoadThemesData();
