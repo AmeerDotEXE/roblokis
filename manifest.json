@@ -1,13 +1,64 @@
 {
   "name": "Roblokis",
-  "version": "2.6.3.2",
+  "version": "3.0.1.1",
   "manifest_version": 2,
-  "web_accessible_resources": [ "*.js", "*.html", "*.png" ],
-  "content_scripts": [ {
+  "options_page": "html/Popup/Popup.html",
+  "web_accessible_resources": [ "*.*" ],
+  "content_scripts": [
+    {
      "matches": [ "*://*.roblox.com/*" ],
-     "js": [ "js/Main/Load.js" ],
+     "js": [
+        "js/Main/Load.js",
+        "js/Main/Utility.js",
+        "js/Main/General.js",
+        "js/Theme/ThemeLoader.js",
+
+        "js/Scripts/Main/QuickGameJoin.js",
+        "js/Scripts/Main/CustomRobux.js",
+        "js/Scripts/Main/CustomName.js",
+        "js/Scripts/Main/DesktopApp.js"
+      ],
      "run_at": "document_start"
-  } ],
+    },
+    {
+     "matches": [ "*://*.roblox.com/users/*" ],
+     "js": [
+        "js/Scripts/FriendsPage/Home/ShowProfileStatus.js",
+        "js/Scripts/FriendsPage/Home/CancelFriendPending.js",
+        "js/Scripts/FriendsPage/Friends/QuickFriendRemove.js",
+        "js/Scripts/Main/LastStats.js" 
+      ],
+     "run_at": "document_start"
+    },
+    {
+     "matches": [ "*://*.roblox.com/games/*" ],
+     "js": [ 
+        "js/Scripts/GamePage/PrivateServers/PrivateServersLink.js",
+        "js/Scripts/GamePage/PrivateServers/AvailPrivateServers.js",
+        "js/Scripts/GamePage/PrivateServers/ShowPrivateServers.js",
+        "js/Scripts/GamePage/FriendServers/FriendsServersText.js",
+        "js/Scripts/GamePage/FriendServers/FriendsServersLink.js",
+        "js/Scripts/GamePage/SmallServers/SmallServer.js",
+        "js/Scripts/GamePage/PublicServers/PublicServersLink.js",
+        "js/Scripts/GamePage/PublicServers/PageNav.js",
+
+        "js/Theme/Pages/games.js"
+       ],
+     "run_at": "document_start"
+    },
+    {
+     "matches": [ "*://*.roblox.com/roblokis*" ],
+     "js": [ 
+        "js/Main/LoadSettingsPage.js"
+       ],
+     "run_at": "document_start"
+    },
+    {
+     "matches": [ "*://*.roblox.com/*" ],
+     "js": [ "js/Main/Loader.js" ],
+     "run_at": "document_start"
+    }
+  ],
   "description": "More Features For Roblox :D",
   "homepage_url": "https://www.Roblox.com/home?open=roblokis",
   "icons": {

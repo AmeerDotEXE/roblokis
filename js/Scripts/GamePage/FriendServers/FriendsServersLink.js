@@ -1,31 +1,32 @@
 var Rkis = Rkis || {};
-Rkis.SFSL = Rkis.SFSL || {};
+Rkis.Scripts = Rkis.Scripts || {};
+Rkis.Scripts.FriendsServersLink = Rkis.Scripts.FriendsServersLink || {};
 
-Rkis.SFSL.setup = function() {
+Rkis.Scripts.FriendsServersLink.setup = function() {
   var weburl = window.location.href;
   if (weburl.includes("/games/")) {
-    document.addEventListener("rkrequested", Rkis.SFSL.firstone);
+    document.addEventListener("rkrequested", Rkis.Scripts.FriendsServersLink.firstone);
   }
 }
 
-Rkis.SFSL.firstone = function(darequest) {
+Rkis.Scripts.FriendsServersLink.firstone = function(darequest) {
 
   if (darequest.detail && darequest.detail.responseURL.includes("roblox.com/games/getfriendsgameinstances") == false) return;
 
   var serverslist = document.querySelectorAll("#rbx-friends-game-server-item-container > li");
   if (serverslist.length <= 0) return;
 
-  serverslist.forEach(Rkis.SFSL.secondone);
+  serverslist.forEach(Rkis.Scripts.FriendsServersLink.secondone);
 }
 
-Rkis.SFSL.secondone = function(serversitm, itmnumber, wholeListofitm) {
+Rkis.Scripts.FriendsServersLink.secondone = function(serversitm, itmnumber, wholeListofitm) {
   if(serversitm == null) return;
 
   var jionBtn = serversitm.querySelector("div.rbx-friends-game-server-details > a.rbx-friends-game-server-join");
-  if(jionBtn.onclick.toString().includes("joinGameInstance")) Rkis.SFSL.thirdone(jionBtn, jionBtn.parentElement);
+  if(jionBtn.getAttribute("onclick").includes("joinGameInstance")) Rkis.Scripts.FriendsServersLink.thirdone(jionBtn, jionBtn.parentElement);
 }
 
-Rkis.SFSL.thirdone = function (sver, prent) {
+Rkis.Scripts.FriendsServersLink.thirdone = function (sver, prent) {
   var serveronclick = sver.getAttribute("onclick");
   var serverid = serveronclick.split('"')[1];
   if(!serverid) return;
@@ -36,15 +37,15 @@ Rkis.SFSL.thirdone = function (sver, prent) {
   var newbtn = document.createElement("a");
   newbtn.setAttribute("class", "btn-control-xs");
   newbtn.id = `flinkbtnid${serverid}`;
-  newbtn.innerHTML = "🔗";
+  newbtn.innerText = "🔗";
 
   sver.setAttribute("style", "width: 80%;margin: 0 0 0 0;");
   newbtn.setAttribute("style", "width: 18%;margin: 0 2% 0 0;");
 
-  var link = `https://${Rkis.SubDomain}.roblox.com/home?placeid=${sver.dataset.placeid}&gameid=${serverid}`;
+  var link = window.location.href.split("?")[0].split("#")[0] + `?placeid=${sver.dataset.placeid}&gameid=${serverid}`;
 
   newbtn.setAttribute("onclick", `Rkis.CopyTextToClip("${link}")`);
   prent.insertBefore(newbtn, sver);
 }
 
-Rkis.SFSL.setup();
+Rkis.Scripts.FriendsServersLink.setup();

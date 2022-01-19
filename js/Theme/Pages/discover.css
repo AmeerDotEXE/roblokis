@@ -19,3 +19,7 @@
 .scroller.prev[role="button"] {
     left: -40px;
 }
+
+#randomGameButton {
+    right: 100px !important;
+}

@@ -8,14 +8,48 @@ var Rkis = window.Rkis || {};
   Rkis.id = chrome.runtime.id;
   Rkis.fileLocation = `chrome-extension://${Rkis.id}/`;
 
-  var scrpt0 = document.createElement("script")
-  scrpt0.innerHTML = `var Rkis = window.Rkis || {};
+  var scrpt = document.createElement("script");
+  scrpt.innerHTML = `
 
-Rkis.id = "${Rkis.id}";
-Rkis.fileLocation = "chrome-extension://${Rkis.id}/";`;
-  document.querySelector("#roblokis-script-holder").append(scrpt0);
+(function() {
 
-  var scrpt = document.createElement("script")
-  scrpt.src = Rkis.fileLocation + "js/Main/Loader.js";
-  document.querySelector("#roblokis-script-holder").append(scrpt);
+  document.addEventListener("rk-to-page", (e) => {
+    if (e.detail == null) return;
+
+    if(e.detail.itm != null && e.detail.itm.length > 0) {
+      e.detail.itm.forEach((itm) => {
+        window[itm.name] = JSON.parse(itm.value, function(key, value) {
+          if (typeof value === "string" &&
+              value.startsWith("/Function(") &&
+              value.endsWith(")/")) {
+            value = value.substring(10, value.length - 2);
+            return (0, eval)("(" + value + ")");
+          }
+          return value;
+        });
+      })
+    }
+    
+    if(e.detail.script != null && e.detail.script != "") {
+      eval(e.detail.script);
+    }
+  });
+
+  var origOpen = XMLHttpRequest.prototype.open;
+  XMLHttpRequest.prototype.open = function() {
+    this.addEventListener('load', () => {
+      var requestevent = new CustomEvent('rkrequested', {
+        detail: this
+      });
+      document.dispatchEvent(requestevent);
+    });
+    origOpen.apply(this, arguments);
+  };
+
+}())
+
+  `;
+  mainholder.append(scrpt);
+  mainholder.remove();
+
 }())

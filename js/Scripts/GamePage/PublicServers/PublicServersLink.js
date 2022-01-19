@@ -34,7 +34,7 @@ Rkis.Scripts.PublicServersLink.secondone = function (sver, prent) {
   var newbtn = document.createElement("a");
   newbtn.setAttribute("class", "btn-control-xs");
   newbtn.id = `linkbtnid${serverid}`;
-  newbtn.innerHTML = "🔗";
+  newbtn.innerText = "🔗";
 
   sver.setAttribute("style", "width: 80%;margin: 0 0 0 0;");
   newbtn.setAttribute("style", "width: 18%;margin: 0 2% 0 0;");

@@ -1,34 +1,33 @@
 var Rkis = Rkis || {};
-Rkis.SPS = Rkis.SPS || {};
+Rkis.Scripts = Rkis.Scripts || {};
+Rkis.Scripts.PrivateServersLink = Rkis.Scripts.PrivateServersLink || {};
 
-Rkis.SPS.running = false;
+Rkis.Scripts.PrivateServersLink.running = false;
 
-Rkis.SPS.setup = function() {
+Rkis.Scripts.PrivateServersLink.setup = function() {
   var weburl = window.location.href;
   if (weburl.includes("/games/")) {
-    document.addEventListener("rkrequested", Rkis.SPS.firstone);
+    document.addEventListener("rkrequested", Rkis.Scripts.PrivateServersLink.firstone);
   }
 }
 
-Rkis.SPS.firstone = async function(darequest) {
+Rkis.Scripts.PrivateServersLink.firstone = async function(darequest) {
 
   if (darequest.detail && darequest.detail.responseURL.includes("roblox.com/private-server/instance-list-json") == false) return;
 
-  if(Rkis.SPS.running == true) return;
-  Rkis.SPS.running = true;
+  if(Rkis.Scripts.PrivateServersLink.running == true) return;
+  Rkis.Scripts.PrivateServersLink.running = true;
 
-  var firstscan = await Rkis.SPS.secondone(Roblox.GameDetail.UniverseId, 1);
-  if(firstscan == null) return;
+  var firstscan = await Rkis.Scripts.PrivateServersLink.secondone(Roblox.GameDetail.UniverseId, 1);
+  if(firstscan == null) return Rkis.Scripts.PrivateServersLink.running = false;
 
   var svers = firstscan.Instances;
   for(var i = 1; i < firstscan.TotalPages; i++) {
-    var scan = await Rkis.SPS.secondone(Roblox.GameDetail.UniverseId, i + 1);
+    var scan = await Rkis.Scripts.PrivateServersLink.secondone(Roblox.GameDetail.UniverseId, i + 1);
     if(scan == null) continue;
 
     svers = svers.concat(scan.Instances);
   }
-
-  console.log(svers);
 
   var servers = document.querySelectorAll("#rbx-private-servers > div.section.tab-server-only > ul > li");
 
@@ -41,22 +40,22 @@ Rkis.SPS.firstone = async function(darequest) {
 
     if (svrId && (jionBtn && jionBtn.onclick) && document.getElementById("privateid" + svrId) === null) {
       jionBtn.setAttribute("id", "privateid" + svrId);
-      Rkis.SPS.thirdone(svrId, svers);
+      Rkis.Scripts.PrivateServersLink.thirdone(svrId, svers);
     }
 
   }
 
-  Rkis.SPS.running = false;
+  Rkis.Scripts.PrivateServersLink.running = false;
 
 }
 
-Rkis.SPS.secondone = async function (uniId, pnum) {
+Rkis.Scripts.PrivateServersLink.secondone = async function (uniId, pnum) {
   return await fetch(`https://${Rkis.SubDomain}.roblox.com/private-server/instance-list-json?universeId=${uniId}&page=${pnum}`)
     .then((Aresponse) => Aresponse.json())
     .catch((err) => null)
 }
 
-Rkis.SPS.thirdone = function(serverid, svers) {
+Rkis.Scripts.PrivateServersLink.thirdone = function(serverid, svers) {
   var sver = document.getElementById("privateid" + serverid);
   if(!sver) return;
   var prent = sver.parentElement;
@@ -82,7 +81,7 @@ Rkis.SPS.thirdone = function(serverid, svers) {
   var newbtn = document.createElement("a");
   newbtn.setAttribute("class", "btn-control-xs");
   newbtn.id = `linkbtnid${serverid}`;
-  newbtn.innerHTML = "🔗";
+  newbtn.innerText = "🔗";
 
   sver.setAttribute("style", "width: 80%;margin: 0 0 0 0;");
   newbtn.setAttribute("style", "width: 18%;margin: 0 2% 0 0;");
@@ -91,4 +90,4 @@ Rkis.SPS.thirdone = function(serverid, svers) {
   prent.insertBefore(newbtn, sver);
 }
 
-Rkis.SPS.setup();
+Rkis.AddRunListener(Rkis.Scripts.PrivateServersLink.setup);

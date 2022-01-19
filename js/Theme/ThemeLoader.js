@@ -26,6 +26,53 @@ Rkis.Designer.GetPageTheme = function() {
 
 Rkis.AddRunListener(async function() {
 
+  let mainStyle = null;
+
+  const addStyle = url => {
+    const cssRule = `@import url("${url}")`;
+    const ruleIndex = mainStyle.insertRule(cssRule, mainStyle.cssRules.length);
+    
+    return mainStyle.cssRules[ruleIndex];
+  }
+
+  const putCSS = (paths) => {
+    if(!mainStyle) {
+      const style = document.createElement("style");
+      style.type = "text/css";
+
+      const parent = document.head || document.documentElement;
+      parent.append(style);
+
+      mainStyle = style.sheet;
+    }
+    
+    paths.forEach((path) => {
+      addStyle(Rkis.fileLocation + path);
+    })
+  }
+
+  if(Rkis.wholeData.UseThemes == false) {
+    putCSS(["js/Theme/Extras/extensions.css"]);
+    Rkis.OnReady(function() {
+      document.body.classList.add("Roblokis-no-theme")
+    });
+    return;
+  }
+
+  var allCssFiles = [
+    {match: ".com/home", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/home.css" ]},
+    {match: ".com/discover", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/discover.css" ]},
+    {match: ".com/users/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/profile.css" ]},
+    {match: ".com/games/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/games.css" ]},
+    {match: ".com/groups/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/groups.css" ]}
+  ];
+
+  allCssFiles.forEach((e) => {
+    if(!window.location.href.toLowerCase().includes(e.match)) return;
+
+    putCSS(e.paths);
+  })
+
   var pagetheme = Rkis.Designer.GetPageTheme();
 
   if(pagetheme.isDefaultTheme == false) {
@@ -221,7 +268,7 @@ Rkis.AddRunListener(async function() {
         var prts = codepart.split("%");
 
         var val = null;
-        if(Rkis.wholeData[prts[1]] == false) val = "disabled";
+        if(Rkis.wholeData[prts[1]] != true) val = "disabled";
 
         if(val != null) {
           fill += prts[0];

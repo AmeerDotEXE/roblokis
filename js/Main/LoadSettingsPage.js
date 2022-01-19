@@ -1,24 +1,26 @@
 var Rkis = Rkis || {};
 
-(async function() {
-  if (window.location.pathname.toLowerCase().startsWith("/roblokis")) {
-    var mainplace = await document.waitSelector("#container-main > div.content");
-    if(mainplace) mainplace.children.forEach((e) => {e.remove();});
+Rkis.AddRunListener(function() {
+  if (window.location.pathname.toLowerCase().startsWith("/roblokis") == false) return;
 
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", Rkis.fileLocation + "html/SettingsPage/SettingsPage.html", false);
-    xmlhttp.send();
+  document.$watch("#container-main > div.content", async (mainplace) => {
+    mainplace.innerHTML = "";
 
-    var xmlhttp2 = new XMLHttpRequest();
-    xmlhttp2.open("GET", Rkis.fileLocation + "html/SettingsPage/SettingsPage.js", false);
-    xmlhttp2.send();
+    var scrpt1 = document.createElement("style");
+    scrpt1.innerHTML = await Rkis.GetTextFromLocalFile("html/SettingsPage/SettingsPage.css");
+    
+    mainplace.innerHTML = await Rkis.GetTextFromLocalFile("html/SettingsPage/SettingsPage.html");
 
-    mainplace.innerHTML = xmlhttp.responseText;
+    mainplace.append(scrpt1);
 
-    var scrpt0 = document.createElement("script")
-    scrpt0.innerHTML = xmlhttp2.responseText;
+    var scrpt0 = document.createElement("script");
+    scrpt0.src = Rkis.fileLocation + "html/SettingsPage/SettingsPage.js";
     mainplace.append(scrpt0);
 
+    document.firstElementChild.innerHTML = `<title>Roblokis Settings Page</title>` + document.firstElementChild.innerHTML;
+
     //eval(xmlhttp2.responseText);
-  }
-}())
+    
+  });
+  
+});

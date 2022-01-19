@@ -1,5 +1,15 @@
 #game-detail-page > div.system-feedback {display: none;}
 #Leaderboard-Abp {margin-bottom: 1%;}
+#recommended-games-container > div {overflow: visible;}
+
+
+/* Btroblox Support */
+#game-detail-page > div.btr-game-main-container.section-content,
+#game-instances,
+#store {
+    background-color: transparent;
+}
+
 
 /*game photo & button*/
 #game-details-carousel-container {
@@ -63,20 +73,17 @@ div.container-list.games-detail div.game-card-container > a:hover > a {
 
 
 /*  Badges      */
-#game-badges-container > game-badges-list > div > ul {
+html:not([data-btr-loaded="true"]) #game-badges-container > game-badges-list > div > ul,
+#game-badges-container > game-badges-list > div > ul.roblokis-badges-loaded {
     display: flex;
     flex-wrap: wrap;
 }
 
-#game-badges-container > game-badges-list > div > ul > li {
-    transition: all 400ms;
-    transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
+html:not([data-btr-loaded="true"]) #game-badges-container > game-badges-list > div > ul > li.badge-row,
+#game-badges-container > game-badges-list > div > ul > li.badge-row {
     box-shadow: 0 0 8px 1px black;
-    width: 32%;
-    display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 6px;
 
     border-radius: var(--rk-badge-corners-radius, 20px);
 
@@ -88,16 +95,26 @@ div.container-list.games-detail div.game-card-container > a:hover > a {
     background-size: var(--rk-badge-background-image-size);
 
 }
+html:not([data-btr-loaded="true"]) #game-badges-container > game-badges-list > div > ul > li.badge-row,
+#game-badges-container > game-badges-list > div > ul.roblokis-badges-loaded > li.badge-row {
+    display: flex;
+    width: calc((100% / 3) - 12px);
+    margin: 6px;
+    transition: all 400ms;
+    transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
+}
 /*#game-badges-container > game-badges-list > div > ul:hover > li:not(li:hover) {
     opacity: 0.5;
 }*/
-#game-badges-container > game-badges-list > div > ul > li:hover {
+html:not([data-btr-loaded="true"]) #game-badges-container > game-badges-list > div > ul > li.badge-row:hover,
+#game-badges-container > game-badges-list > div > ul.roblokis-badges-loaded > li.badge-row:hover {
     transform: var(--rk-basic-animations, scale(1.2));
     opacity: var(--rk-basic-animations, 1);
     z-index: var(--rk-basic-animations, 10);
 }
 
-#game-badges-container > game-badges-list > div > ul > li > div.badge-content {
+html:not([data-btr-loaded="true"]) #game-badges-container > game-badges-list > div > ul > li > div.badge-content,
+#game-badges-container > game-badges-list > div > ul.roblokis-badges-loaded > li > div.badge-content {
     width: 100%;
     margin-top: 9px;
     display: flex;
@@ -105,31 +122,51 @@ div.container-list.games-detail div.game-card-container > a:hover > a {
     color: var(--rk-badge-bright-color);
 }
 
-#game-badges-container > game-badges-list > div > ul > li > div.badge-content > div > p {
+html:not([data-btr-loaded="true"]) #game-badges-container > game-badges-list > div > ul > li > div.badge-content > div > p,
+#game-badges-container > game-badges-list > div > ul.roblokis-badges-loaded > li > div.badge-content > div > p {
     color: var(--rk-badge-dark-color);
+    height: auto;
 }
 
-#game-badges-container > game-badges-list > div > ul > li > div.badge-content> ul {
+html:not([data-btr-loaded="true"]) #game-badges-container > game-badges-list > div > ul > li > div.badge-content> ul,
+#game-badges-container > game-badges-list > div > ul.roblokis-badges-loaded > li > div.badge-content > ul {
     display: flex;
     flex-direction: column;
 }
 
-#game-badges-container > game-badges-list > div > ul > li > div.badge-content> ul > li {
+html:not([data-btr-loaded="true"]) #game-badges-container > game-badges-list > div > ul > li > div.badge-content> ul > li,
+#game-badges-container > game-badges-list > div > ul.roblokis-badges-loaded > li > div.badge-content > ul > li {
     display: flex;
     align-items: center;
-    width: 100%;
+    width: 100% !important;
     justify-content: center;
+    margin-bottom: -5px !important;
+    float: none !important;
 }
 
-#game-badges-container > game-badges-list > div > ul > li > div.badge-content> ul > li.thecut {
+html:not([data-btr-loaded="true"]) #game-badges-container > game-badges-list > div > ul > li > div.badge-content> ul > li.thecut,
+#game-badges-container > game-badges-list > div > ul.roblokis-badges-loaded > li > div.badge-content > ul > li.thecut {
     padding: 6px;
 }
 
-#game-badges-container > game-badges-list > div > ul > li > div.badge-content> ul > li > div.text-label {
+html:not([data-btr-loaded="true"]) #game-badges-container > game-badges-list > div > ul > li > div.badge-content> ul > li > div.text-label,
+#game-badges-container > game-badges-list > div > ul.roblokis-badges-loaded > li > div.badge-content > ul > li > div.text-label {
     padding: 0 10px 0 0;
     color: var(--rk-badge-dark-color);
 }
 
+html:not([data-btr-loaded="true"]) #game-badges-container > game-badges-list > div > ul > li:not(.badge-row),
+#game-badges-container > game-badges-list > div > ul.roblokis-badges-loaded > li:not(.badge-row) {
+    width: 100%;
+}
+
+html[data-btr-loaded="true"] #game-badges-container > game-badges-list > div > ul.roblokis-badges-loaded > li {
+    max-height: fit-content;
+}
+html[data-btr-loaded="true"] #game-badges-container > game-badges-list > div > ul.roblokis-badges-loaded > li > div.badge-content > div,
+html[data-btr-loaded="true"] #game-badges-container > game-badges-list > div > ul.roblokis-badges-loaded > li > div.badge-content > ul {
+    width: auto;
+}
 
 
 
@@ -145,7 +182,7 @@ div.container-list.games-detail div.game-card-container > a:hover > a {
     background-color: transparent;
 }
 
-#rbx-private-servers > div.section.tab-server-only > ul > li {
+#game-instances #rbx-private-servers > div.section.tab-server-only > ul > li {
     transition: all 400ms;
     transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
     box-shadow: 0 0 8px 0px black;
@@ -230,9 +267,34 @@ div.container-list.games-detail div.game-card-container > a:hover > a {
 }
 
 #rbx-private-servers > div.section.tab-server-only > ul > li > div.section-left > div.rbx-private-server-status,
-#rbx-private-servers > div.section.tab-server-only > ul > li > div.section-left > div.rbx-private-owner > a.text-name,
+html:not([data-btr-loaded="true"]) #rbx-private-servers > div.section.tab-server-only > ul > li > div.section-left > div.rbx-private-owner > a.text-name,
 #rbx-private-servers > div.section.tab-server-only > ul > li > div.section-left > div.rbx-private-server-subscription-alert {
     display: none;
+}
+
+
+
+
+/* RoPro Support */
+#rbx-recent-server-box {
+    background-color: transparent;
+}
+
+#game-instances #rbx-recent-server-box > li {
+    box-shadow: 0 0 8px 0px black;
+
+    border-radius: var(--rk-publicserver-corners-radius, 20px) !important;
+
+    border-color: var(--rk-publicserver-borders-color);
+    border-style: var(--rk-publicserver-borders-style);
+    border-width: var(--rk-publicserver-borders-size);
+
+    background: var(--rk-publicserver-background);
+    background-size: var(--rk-publicserver-background-image-size);
+}
+
+#rbx-game-server-item-container > li > div.section-left.rbx-game-server-details > div.ropro-server-info.text-info {
+    display: inline;
 }
 
 
@@ -249,7 +311,7 @@ div.container-list.games-detail div.game-card-container > a:hover > a {
     background-color: transparent;
 }
 
-#rbx-friends-game-server-item-container > li {
+#game-instances #rbx-friends-game-server-item-container > li {
     transition: all 400ms;
     transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
     box-shadow: 0 0 8px 0px black;
@@ -340,7 +402,7 @@ div.container-list.games-detail div.game-card-container > a:hover > a {
     background-color: transparent;
 }
 
-#rbx-small-game-server-item-container > li {
+#game-instances #rbx-small-game-server-item-container > li {
     transition: all 400ms;
     transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
     box-shadow: 0 0 8px 0px black;
@@ -404,6 +466,17 @@ div.container-list.games-detail div.game-card-container > a:hover > a {
     color: black;
 }
 
+#rbx-small-game-server-item-container > li > div.section-left {
+    float: none;
+    border: none;
+    padding: 0;
+    width: auto;
+}
+
+#rbx-small-game-server-item-container > li > div.section-left > div.rbx-game-server-status {
+    display: none;
+}
+
 
 
 
@@ -414,11 +487,12 @@ div.container-list.games-detail div.game-card-container > a:hover > a {
     flex-wrap: wrap;
 }
 
-#rbx-game-server-item-container.section-content-off {
+#rbx-game-server-item-container.section-content-off,
+#rbx-running-games > div.section > div {
     background-color: transparent;
 }
 
-#rbx-game-server-item-container > li {
+#game-instances #rbx-game-server-item-container > li {
     transition: all 400ms;
     transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
     box-shadow: 0 0 8px 0px black;

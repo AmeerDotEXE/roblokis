@@ -2,21 +2,27 @@
    <div id="rkmaintitle" style="text-align: center;font-weight: 800;font-size: 32px;margin: 1%;">Roblokis Settings Page</div>
    <div style="display: flex;justify-content: center;">
       <div class="left-navigation">
-         <div style="text-align: center;margin: 0 10px 8px 10px;border: 3px solid gray;padding: 2px 0;font-weight: 600;border-radius: 20px;">Main</div>
-         <ul id="vertical-menu" class="menu-vertical submenus" role="tablist" style="border-radius: 10px;border-right: 1px solid #b8b8b8;border-bottom: 1px solid #b8b8b8;margin: 0 0 12px 0;">
-            <li class="menu-option ng-scope active" ui-sref="about" href="#!/about" style="border-radius: 10px 0 0 0;"> <a class="rbx-tab-heading"> <span class="font-caption-header ng-binding">About</span> </a> </li>
-            <li class="menu-option ng-scope" ui-sref="all" href="#!/all" style="border-radius: 0 0 0 10px;"> <a class="rbx-tab-heading"> <span class="font-caption-header ng-binding">All</span> </a> </li>
+
+         <div>Main</div>
+         <ul id="vertical-menu" class="menu-vertical submenus" role="tablist">
+            <li class="menu-option active" data-file="Main/About"> <a class="menu-option-content"> <span class="font-caption-header">About</span> </a> </li>
+            <li class="menu-option" data-file="Main/Changelog"> <a class="menu-option-content"> <span class="font-caption-header">Changelog</span> </a> </li>
+            <li class="menu-option" data-file="Main/All"> <a class="menu-option-content"> <span class="font-caption-header">All</span> </a> </li>
+            <li class="menu-option" data-file="Main/Designer"> <a class="menu-option-content"> <span class="font-caption-header">Designer</span> </a> </li>
          </ul>
-         <div style="text-align: center;margin: 0 10px 8px 10px;border: 3px solid gray;padding: 2px 0;font-weight: 600;border-radius: 20px;">Game Page</div>
-         <ul id="vertical-menu" class="menu-vertical submenus" role="tablist" style="border-radius: 10px;border-right: 1px solid #b8b8b8;border-bottom: 1px solid #b8b8b8;margin: 0 0 12px 0;">
-            <li class="menu-option ng-scope" ui-sref="badges" href="#!/badges" style="border-radius: 10px 0 0 0;"> <a class="rbx-tab-heading"> <span class="font-caption-header ng-binding">About</span> </a> </li>
-            <li class="menu-option ng-scope" ui-sref="servers" href="#!/servers" style="border-radius: 0 0 0 10px;"> <a class="rbx-tab-heading"> <span class="font-caption-header ng-binding">Servers</span> </a> </li>
+
+         <div>Game Page</div>
+         <ul id="vertical-menu" class="menu-vertical submenus" role="tablist">
+            <li class="menu-option" data-file="GamePage/Badges"> <a class="menu-option-content"> <span class="font-caption-header">Badges</span> </a> </li>
+            <li class="menu-option" data-file="GamePage/Servers"> <a class="menu-option-content"> <span class="font-caption-header">Servers</span> </a> </li>
          </ul>
-         <div style="text-align: center;margin: 0 10px 8px 10px;border: 3px solid gray;padding: 2px 0;font-weight: 600;border-radius: 20px;">Profiles</div>
-         <ul id="vertical-menu" class="menu-vertical submenus" role="tablist" style="border-radius: 10px;border-right: 1px solid #b8b8b8;border-bottom: 1px solid #b8b8b8;margin: 0 0 12px 0;">
-            <li class="menu-option ng-scope" ui-sref="profilepage" href="#!/profilepage" style="border-radius: 10px 0 0 0;"> <a class="rbx-tab-heading"> <span class="font-caption-header ng-binding">Profile Page</span> </a> </li>
-            <li class="menu-option ng-scope" ui-sref="friendspage" href="#!/friendspage" style="border-radius: 0 0 0 10px;"> <a class="rbx-tab-heading"> <span class="font-caption-header ng-binding">Friends Page</span> </a> </li>
+
+         <div>Profiles</div>
+         <ul id="vertical-menu" class="menu-vertical submenus" role="tablist">
+            <li class="menu-option" data-file="Profiles/ProfilePage"> <a class="menu-option-content"> <span class="font-caption-header">Profile Page</span> </a> </li>
+            <li class="menu-option" data-file="Profiles/FriendsPage"> <a class="menu-option-content"> <span class="font-caption-header">Friends Page</span> </a> </li>
          </ul>
+         
       </div>
       <div id="rkpage" style="margin: 0 0 0 1%;width: 60%;"></div>
    </div>

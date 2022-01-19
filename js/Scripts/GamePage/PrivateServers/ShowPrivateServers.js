@@ -1,16 +1,17 @@
 var Rkis = Rkis || {};
-Rkis.SSPS = Rkis.SSPS || {};
+Rkis.Scripts = Rkis.Scripts || {};
+Rkis.Scripts.ShowPrivateServers = Rkis.Scripts.ShowPrivateServers || {};
 
-Rkis.SSPS.setup = function() {
+Rkis.Scripts.ShowPrivateServers.setup = function() {
   var weburl = window.location.href;
   if (weburl.includes("/games/")) {
-    document.addEventListener("rkrequested", Rkis.SSPS.firstone);
+    document.addEventListener("rkrequested", Rkis.Scripts.ShowPrivateServers.firstone);
   }
 }
 
-Rkis.SSPS.firstone = function(darequest) {
+Rkis.Scripts.ShowPrivateServers.firstone = function(darequest) {
 
-  if (darequest.detail && darequest.detail.responseURL.includes("roblox.com/private-server/instance-list-json") == false) return;
+  if (darequest && darequest.detail && darequest.detail.responseURL.includes("roblox.com/private-server/instance-list-json") == false) return;
 
   var loadmoreBTN = document.querySelector("#rbx-private-servers > div.section.tab-server-only > div.rbx-private-servers-footer > button");
   if (loadmoreBTN) {
@@ -21,4 +22,4 @@ Rkis.SSPS.firstone = function(darequest) {
   }
 }
 
-Rkis.SSPS.setup();
+Rkis.AddRunListener(Rkis.Scripts.ShowPrivateServers.setup);

@@ -1,7 +1,7 @@
 var Designer = Designer || {};
 
 Designer.Selected = {};
-Designer.MaxCustomThemes = 5;
+Designer.MaxCustomThemes = 3;
 
 
 Designer.LoadThemesData = async function() {
@@ -13,22 +13,27 @@ Designer.LoadThemesData = async function() {
   wholedata.Designer.Theme = wholedata.Designer.Theme || {};
   wholedata.Designer.Themes = wholedata.Designer.Themes || [];
 
+	var letterNumber = /^[\s0-9a-zA-Z]+$/g;
+
   document.querySelector("#currentthemeplace").innerText = wholedata.Designer.Theme.isDefaultTheme == false ? wholedata.Designer.Themes[wholedata.Designer.Theme.id] ? wholedata.Designer.Themes[wholedata.Designer.Theme.id].name : "Default Theme" : wholedata.Designer.Theme.name;
 
 	for(var i = 0; i < Designer.MaxCustomThemes; i++) {
 		var theme = wholedata.Designer.Themes[i];
+		//name.match(letterNumber), desc.match(letterNumber)
 		if(theme != null) {
+			var daname = theme.name.match(letterNumber);
+			var dadesc = theme.description.match(letterNumber);
 			customthemesholder.innerHTML += `
 				<div class="theme-template">
 		      <div>
-		        <div>${theme.name}</div>
-		        <span>${theme.description}</span>
+		        <div>${daname ? daname[0] : "Error"}</div>
+		        <span>${dadesc ? dadesc[0] : "Error"}</span>
 		      </div>
 		      <div style="margin-left: auto;"></div>
-		      <button onclick="Designer.ExportTheme(this, '${theme.name}', ${i})" style="background-color: rgb(57 59 184);color: rgb(35 37 39);font-size: 20px;">⤓</button>
-		      <button onclick="Designer.DeleteTheme('${theme.name}', ${i})" style="background-color: rgb(184 59 61);color: rgb(35 37 39);font-weight: 600;">X</button>
+		      <button onclick="Designer.ExportTheme(this, '${daname ? daname[0] : "Error"}', ${i})" style="background-color: rgb(57 59 184);color: rgb(35 37 39);font-size: 20px;">⤓</button>
+		      <button onclick="Designer.DeleteTheme('${daname ? daname[0] : "Error"}', ${i})" style="background-color: rgb(184 59 61);color: rgb(35 37 39);font-weight: 600;">X</button>
 		      <button onclick="Designer.EditTheme(${i})" style="background-color: rgb(57 184 61);color: rgb(35 37 39);">Edit</button>
-		      <button onclick="Designer.SelectThemeButton(this)" data-theme="${theme.name}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(57 59 61);${theme.all == null ? "display: none;" : ""}">Select</button>
+		      <button onclick="Designer.SelectThemeButton(this)" data-theme="${daname ? daname[0] : "Error"}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(57 59 61);${theme.all == null ? "display: none;" : ""}">Select</button>
 		    </div>`;
 		}
 		else {
@@ -56,12 +61,16 @@ Designer.SaveNewTheme = async function(name, desc, themedata) {
 		) {
 		return {error: "Name must be between 3 and 24 Characters!"};
 	}
-	else if( desc != "" && (
+	if( desc != "" && (
 			desc.length > 36 ||
 			desc.length < 4
 		) ) {
 		return {error: "Description must be between\n4 and 36 Characters Or Empty!"};
 	}
+
+	var letterNumber = /^[\s0-9a-zA-Z]+$/g;
+	if(!letterNumber.test(name) || (desc != "" && !letterNumber.test(desc)))
+		return {error: "Only A-Z and 0-9 is Allowed!"};
 
   var wholedata = Rkis.wholeData || {};
   wholedata.Designer = wholedata.Designer || {};

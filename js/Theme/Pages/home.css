@@ -14,6 +14,11 @@ body.dark-theme .avatar .avatar-card-image {background-color: transparent;}
 }
 #home-header div.user-info-container > h1 > a:hover {transform: var(--rk-basic-animations, translate(24%, 0px) scale(1.5));}
 
+#place-list > div > div.game-carousel,
+#people-list-container > div.people-list-container > div > div.section-content.remove-panel.people-list {
+    overflow: visible;
+}
+
 
 div.section-content.people-list div.avatar * {background: none;}
 div.section-content.people-list span.friend-name {text-shadow: 0px 2px 4px black;}
@@ -28,4 +33,8 @@ div.section-content.people-list li.list-item.friend:hover div.avatar,
 div.section-content.people-list li.list-item.friend:hover span.avatar-status {
     transform: var(--rk-basic-animations, scale(1.2));
     z-index: var(--rk-basic-animations, 10);
+}
+
+#holder > div > div {
+    background-color: transparent;
 }

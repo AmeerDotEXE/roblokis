@@ -1,0 +1,17 @@
+#rbx-game-server-item-container > li > div.section-left.rbx-game-server-details > div.ropro-server-info.text-info {
+	display: inline;
+}
+#rbx-game-server-item-container > li > div.section-left.rbx-game-server-details > a.create-server-link {
+	margin: 0;
+}
+
+
+
+#game-badges-container > game-badges-list > div > ul > li > div.badge-content > ul {
+	margin: 0;
+	display: flex;
+    flex-wrap: wrap;
+}
+#game-badges-container > game-badges-list > div > ul > li > div.badge-content > ul > li.thecut {
+	display: none;
+}

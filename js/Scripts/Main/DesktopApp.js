@@ -1,5 +1,4 @@
-if(Rkis.wholeData.DesktopApp != false)
-Rkis.AddRunListener(async function() {
+if(Rkis.wholeData.DesktopApp != false) {
 
   document.$watch("#navigation > div > div.simplebar-wrapper > div.simplebar-mask > div > div > div > ul", (leftpanel) => {
 
@@ -159,4 +158,4 @@ Rkis.AddRunListener(async function() {
 
   })
 
-});
+};

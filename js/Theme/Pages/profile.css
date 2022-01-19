@@ -5,10 +5,21 @@
 #groups-switcher,
 #games-switcher,
 #friends-container > div > div.rbx-tabs-horizontal.rbx-scrollable-tabs-horizontal > ul > li > a,
-#friends-container > div > div.rbx-tabs-horizontal.rbx-scrollable-tabs-horizontal > div > div > div.friends-content.section > ul > li > div > div,
+#friends-container > div > div.rbx-tabs-horizontal.rbx-scrollable-tabs-horizontal > div > div > div.friends-content.section > ul > li > div.avatar-card-container > div,
 #profile-current-wearing-avatar > div.section-content.profile-avatar-left,
 #profile-current-wearing-avatar > div.section-content.profile-avatar-right,
-#lastseentheprofileis {
+#lastseentheprofileis,
+#inventory-container > inventory > div > assets-explorer > div > div > div.menu-vertical-container.category-tabs > ul,
+#inventory-container > inventory > div > div > recommendations > div > div > div,
+
+/* for btroblox */
+#container-main > div.content > div.profile-container > div > div.btr-profile-container > div.btr-profile-left > div.btr-profile-about.profile-about > div.section-content,
+#roblox-badges-container > div.section-content,
+#container-main > div.content > div.profile-container > div > div.btr-profile-container > div.btr-profile-right > div.btr-profile-favorites > div.section-content,
+#container-main > div.content > div.profile-container > div > div.btr-profile-container > div.btr-profile-left > div.btr-profile-playerbadges > div.section-content,
+#container-main > div.content > div.profile-container > div > div.btr-profile-container > div.btr-profile-left > div.btr-profile-groups > div.section-content,
+#btr-injected-inventory,
+#profile-current-wearing-avatar > div.profile-avatar-right.visible {
     border-radius: var(--rk-profile-corners-radius);
 
     border-color: var(--rk-profile-borders-color);
@@ -27,7 +38,9 @@
 #games-switcher > ul > li.switcher-item.slide-item-container.active > div.slide-item-container-left,
 #friends-container > div > div.rbx-tabs-horizontal.rbx-scrollable-tabs-horizontal > ul,
 #friends-container > div > div.rbx-tabs-horizontal.rbx-scrollable-tabs-horizontal > div > div > div.friends-content.section > ul > li > div,
-#profile-current-wearing-avatar > div.section-content.profile-avatar-right > div {
+#profile-current-wearing-avatar > div.section-content.profile-avatar-right > div,
+#profile-current-wearing-avatar > div.profile-avatar-right.visible > div,
+#inventory-container > inventory > div > assets-explorer > div > div > div.tab-content.rbx-tab-content > div > div.item-cards > div {
     background-color: transparent;
 }
 
@@ -56,18 +69,32 @@
     z-index: var(--rk-basic-animations, 1);
 }
 
+#container-main > div.content {
+  max-width: 1338px;
+}
+@media (max-width: 1338px) {
+  #container-main > div.content {
+    max-width: 1154px;
+  }
+}
+@media (max-width: 1154px) {
+  #container-main > div.content {
+    max-width: 970px;
+  }
+}
 
 
 #about > div.container-list.favorite-games-container > ul {
     overflow-y: hidden;
 }
 
-#container-main > div.content > div.profile-container {
-    overflow: hidden;
-    width: 100%;
+#container-main > div.content > div.profile-container,
+#friends-container {
+    min-width: 80%;
 }
 
-#friends-container {
+
+#inventory-container {
     width: 100%;
 }
 
@@ -78,3 +105,4 @@
 #friends-container > div > div.rbx-tabs-horizontal.rbx-scrollable-tabs-horizontal > ul > li {
     margin: 0;
 }
+

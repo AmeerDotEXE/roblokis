@@ -1,5 +1,4 @@
-if (Rkis.wholeData.CustomRobux != null && Rkis.wholeData.CustomRobux != "") 
-Rkis.AddRunListener(function() {
+if (Rkis.wholeData.CustomRobux != null && Rkis.wholeData.CustomRobux != "") {
 
   //set Custom Robux
   document.$watch("#navbar-robux").$then()
@@ -7,9 +6,18 @@ Rkis.AddRunListener(function() {
     rbxplate.id = "nav-custom-robux-amount";
     for (var i = 0; i < 10; i++) {
       rbxplate.innerText = Rkis.wholeData.CustomRobux;
-      await Rkis.delay(200);
+      await Rkis.delay(100);
     }
+
+    document.$watch("#nav-robux-amount", async (rbxplate) => {
+      rbxplate.id = "nav-custom-robux-amount";
+      //for (var i = 0; i < 10; i++) {
+        rbxplate.innerText = Rkis.wholeData.CustomRobux;
+      //  await Rkis.delay(1000);
+      //}
+    })
   })
+
 
   //set popup Robux
   document.$on("click", "#navbar-robux", () => {
@@ -20,4 +28,4 @@ Rkis.AddRunListener(function() {
     }
   })
 
-});
+};
