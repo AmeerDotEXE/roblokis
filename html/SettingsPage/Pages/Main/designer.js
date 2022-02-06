@@ -1,7 +1,7 @@
 var Designer = Designer || {};
 
 Designer.Selected = {};
-Designer.MaxCustomThemes = 3;
+Designer.MaxCustomThemes = 5;
 
 
 Designer.LoadThemesData = async function() {
@@ -15,7 +15,7 @@ Designer.LoadThemesData = async function() {
 
 	var letterNumber = /^[\s0-9a-zA-Z]+$/g;
 
-  document.querySelector("#currentthemeplace").innerText = wholedata.Designer.Theme.isDefaultTheme == false ? wholedata.Designer.Themes[wholedata.Designer.Theme.id] ? wholedata.Designer.Themes[wholedata.Designer.Theme.id].name : "Default Theme" : wholedata.Designer.Theme.name;
+  document.querySelector("#currentthemeplace").innerText = (wholedata.Designer.Theme.isDefaultTheme != true ? (wholedata.Designer.Themes[wholedata.Designer.Theme.id] ? wholedata.Designer.Themes[wholedata.Designer.Theme.id].name : "Default Theme") : wholedata.Designer.Theme.name);
 
 	for(var i = 0; i < Designer.MaxCustomThemes; i++) {
 		var theme = wholedata.Designer.Themes[i];
@@ -23,28 +23,30 @@ Designer.LoadThemesData = async function() {
 		if(theme != null) {
 			var daname = theme.name.match(letterNumber);
 			var dadesc = theme.description.match(letterNumber);
+			if(theme.description == "") dadesc = [""];
+
 			customthemesholder.innerHTML += `
 				<div class="theme-template">
 		      <div>
-		        <div>${daname ? daname[0] : "Error"}</div>
-		        <span>${dadesc ? dadesc[0] : "Error"}</span>
+		        <div>${daname ? daname[0] : Rkis.language["error"]}</div>
+		        <span>${dadesc ? dadesc[0] : Rkis.language["error"]}</span>
 		      </div>
 		      <div style="margin-left: auto;"></div>
-		      <button onclick="Designer.ExportTheme(this, '${daname ? daname[0] : "Error"}', ${i})" style="background-color: rgb(57 59 184);color: rgb(35 37 39);font-size: 20px;">⤓</button>
-		      <button onclick="Designer.DeleteTheme('${daname ? daname[0] : "Error"}', ${i})" style="background-color: rgb(184 59 61);color: rgb(35 37 39);font-weight: 600;">X</button>
-		      <button onclick="Designer.EditTheme(${i})" style="background-color: rgb(57 184 61);color: rgb(35 37 39);">Edit</button>
-		      <button onclick="Designer.SelectThemeButton(this)" data-theme="${daname ? daname[0] : "Error"}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(57 59 61);${theme.all == null ? "display: none;" : ""}">Select</button>
+		      <button onclick="Designer.ExportTheme(this, '${daname ? daname[0] : Rkis.language["error"]}', ${i})" style="background-color: rgb(57 59 184);color: rgb(35 37 39);font-size: 20px;">⤓</button>
+		      <button onclick="Designer.DeleteTheme('${daname ? daname[0] : Rkis.language["error"]}', ${i})" style="background-color: rgb(184 59 61);color: rgb(35 37 39);font-weight: 600;">X</button>
+		      <button onclick="Designer.EditTheme(${i})" style="background-color: rgb(57 184 61);color: rgb(35 37 39);" data-translate="btnEdit">Edit</button>
+		      <button onclick="Designer.SelectThemeButton(this)" data-theme="${daname ? daname[0] : Rkis.language["error"]}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(57 59 61);color: white;${theme.all == null ? "display: none;" : ""}" data-translate="btnSelect">Select</button>
 		    </div>`;
 		}
 		else {
 			customthemesholder.innerHTML += `
 				<div class="theme-template">
 		      <div>
-		        <div>Theme Slot ${i + 1}</div>
-		        <span>Empty</span>
+		        <div>${Rkis.language.get("themeSlotNumber", i + 1)}</div>
+		        <span></span>
 		      </div>
 		      <div style="margin-left: auto;"></div>
-		      <button onclick="Designer.CreateTheme()" style="background-color: rgb(57 59 61);">Create</button>
+		      <button onclick="Designer.CreateTheme()" style="background-color: rgb(57 184 61);color: rgb(35 37 39);" data-translate="btnCreate">Create</button>
 		    </div>`;
 		}
   }
@@ -59,27 +61,25 @@ Designer.SaveNewTheme = async function(name, desc, themedata) {
 			name.length > 24 ||
 			name.length < 3
 		) {
-		return {error: "Name must be between 3 and 24 Characters!"};
+		return {error: Rkis.language["errorNameLength"]};
 	}
-	if( desc != "" && (
-			desc.length > 36 ||
-			desc.length < 4
-		) ) {
-		return {error: "Description must be between\n4 and 36 Characters Or Empty!"};
+	if( desc.length > 36 ) {
+		return {error: Rkis.language["errorDescLength"]};
 	}
 
-	var letterNumber = /^[\s0-9a-zA-Z]+$/g;
-	if(!letterNumber.test(name) || (desc != "" && !letterNumber.test(desc)))
-		return {error: "Only A-Z and 0-9 is Allowed!"};
+	var letterNumber = /^[\s0-9a-zA-Z]+$/;
+	//console.log(!letterNumber.test(name), (desc != "" ? !letterNumber.test(desc) : false));
+	if(!letterNumber.test(name) || (desc != "" ? !letterNumber.test(desc) : false))
+		return {error: Rkis.language["errorAtoZ"]};
 
   var wholedata = Rkis.wholeData || {};
   wholedata.Designer = wholedata.Designer || {};
   wholedata.Designer.Themes = wholedata.Designer.Themes || [];
 
-  if(wholedata.Designer.Themes.length >= Designer.MaxCustomThemes) return {error: "All Slots is Used."};
+  if(wholedata.Designer.Themes.length >= Designer.MaxCustomThemes) return {error: Rkis.language["errorMaxSlots"]};
 
   var existingtheme = wholedata.Designer.Themes.find(x => x.name == name);
-  if (existingtheme != null) return {error: "Name Already Exist."};
+  if (existingtheme != null) return {error: Rkis.language["errorNameExist"]};
 
   var themetemplate = await fetch(Rkis.fileLocation + "js/Theme/Tamplate.Roblokis")
   .then(response => response.json())

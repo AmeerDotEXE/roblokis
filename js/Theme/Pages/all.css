@@ -11,8 +11,6 @@
 #footer-container {
     background: var(--rk-menu-background);
     background-size: var(--rk-menu-background-image-size);
-
-    box-shadow: 0 0 8px 1px black;
 }
 
 #header {
@@ -21,6 +19,8 @@
 #navigation {
     border-radius: 20px;
     height: fit-content;
+    max-height: 90%;
+    overflow-y: auto;
     padding-bottom: 5px;
     margin: 1%;
 }
@@ -61,7 +61,6 @@
 
 /*quick join button*/
 a.game-card-link[data-addedjoin="true"] > a.rbx-game-server-join[onclick][data-placeid] {
-    box-shadow: 0 0 6px black, inset 0 0 4px black;
     transition: transform 400ms;
     transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
 }
@@ -69,7 +68,7 @@ a.game-card-link[data-addedjoin="true"]:hover > a.rbx-game-server-join[onclick][
     transform: var(--rk-basic-animations, scale(1.12) rotate(5deg));
 }
 
-/*shadow for server icons*/
-a.game-card-link[data-addedjoin="true"] > span.thumbnail-2d-container.game-card-thumb-container {
-    box-shadow: 0 2px 8px 0px rgb(0,0,0, 0.6);
+/*remove error backgrounds*/
+#container-main > div.content > div.request-error-page-content > div.default-error-page {
+    background-color: transparent;
 }

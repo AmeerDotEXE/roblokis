@@ -4,7 +4,7 @@ var Rkis = window.Rkis || {};
   
   document.dispatchEvent(new CustomEvent('rk-to-page', {
     detail: {
-      script: "(function() {Rkis.temp.set$(); if(Rkis.RunAllListeners) Rkis.RunAllListeners();}())",
+      script: "(function() { Rkis.temp.set$(); if(Rkis.AllRunListeners) Rkis.AllRunListeners.forEach(fun => {fun();}); }())",
       itm: [
         {
           name: "Rkis",

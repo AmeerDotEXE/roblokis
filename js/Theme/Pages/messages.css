@@ -1,0 +1,18 @@
+/*content*/
+#container-main > div.content {
+    width: 90%;
+}
+
+#private-message {
+    width: 100%;
+}
+
+#private-message > div > ul,
+#private-message > div > ul > li > a,
+
+#MessagesInbox > div,
+#Notifications > div.message-news,
+
+#private-message > div > ui-view > div > div.roblox-message-body > div {
+    background-color: transparent;
+}

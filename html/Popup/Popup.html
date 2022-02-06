@@ -39,12 +39,36 @@
                 border-right: none;
                 font-size: 12px;
             }
+
+            .list {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #update-text {
+                margin-top: 10px;
+                display: none;
+                text-align: center;
+            }
+
+            div {
+                color: white;
+            }
         </style>
 
     </head>
 
     <body id="popup-body">
-        <a href="https://www.Roblox.com/home?open=roblokis" target="_blank">Open Settings Menu</a>
+        <div class="list">
+            <a href="https://www.Roblox.com/discover/?open=roblokis" target="_blank" class="stngs">Open Settings</a>
+            <div id="update-text">
+                <div class="newupdt">There is a New Update!</div>
+                <div class="newupdt1">Please Reinstall the extension.</div>
+            </div>
+        </div>
+        <script src="./Popup.js"></script>
     </body>
+
 
 </html>

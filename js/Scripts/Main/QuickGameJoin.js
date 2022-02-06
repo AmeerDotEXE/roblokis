@@ -5,6 +5,8 @@ if(Rkis.wholeData.QuickGameJoin != false) {
   Rkis.Scripts = Rkis.Scripts || {};
   Rkis.Scripts.QuickGameJoin = Rkis.Scripts.QuickGameJoin || {};
 
+  Rkis.AllRunListeners = Rkis.AllRunListeners || [];
+  Rkis.AllRunListeners.push(() =>{
     document.$watchLoop("a.game-card-link", (elem) => {
       if(elem == null || elem.href == null || elem.dataset.addedjoin == "true") return;
 
@@ -22,11 +24,17 @@ if(Rkis.wholeData.QuickGameJoin != false) {
       elmnt.className = "btn-full-width btn-control-xs rbx-game-server-join";
       elmnt.dataset.placeid = id;
       elmnt.setAttribute("onclick", `Roblox.GameLauncher.joinMultiplayerGame(${elmnt.dataset.placeid})`);
-      elmnt.setAttribute("style", `margin: 8px 0 0 0; display: inline-block;`);
-      elmnt.innerText = "Join";
+      elmnt.setAttribute("style", `margin: 0; display: inline-block;`);
+      elmnt.innerText = Rkis.language["joinButtons"];
 
       var namethingy = elem.$find("div.game-card-name.game-name-title");
       elem.insertBefore(elmnt, namethingy);
+
+      $(elem).on("click", (e) => {
+        if(e.target == elmnt) return false;
+        return true;
+      })
     });
+  });
 
 }

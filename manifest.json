@@ -1,9 +1,26 @@
 {
   "name": "Roblokis",
-  "version": "3.0.1.1",
+  "description": "__MSG_extDesc__",
+  "version": "3.1.0",
+  "default_locale": "en",
   "manifest_version": 2,
   "options_page": "html/Popup/Popup.html",
   "web_accessible_resources": [ "*.*" ],
+  "homepage_url": "https://ameerdotexe.github.io/roblokis/",
+  "icons": {
+    "300": "/images/icons/icon_300x300.png"
+  },
+  "background": {
+    "scripts": [ "js/Main/jquery-3.6.0.min.js", "js/Main/Background.js" ],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_popup": "html/Popup/Popup.html",
+    "default_icon": {
+       "19": "/images/icons/icon_300x300.png"
+    },
+    "default_title": "Roblokis"
+  },
   "content_scripts": [
     {
      "matches": [ "*://*.roblox.com/*" ],
@@ -23,7 +40,6 @@
     {
      "matches": [ "*://*.roblox.com/users/*" ],
      "js": [
-        "js/Scripts/FriendsPage/Home/ShowProfileStatus.js",
         "js/Scripts/FriendsPage/Home/CancelFriendPending.js",
         "js/Scripts/FriendsPage/Friends/QuickFriendRemove.js",
         "js/Scripts/Main/LastStats.js" 
@@ -33,6 +49,8 @@
     {
      "matches": [ "*://*.roblox.com/games/*" ],
      "js": [ 
+        "js/Scripts/Pages/GamePage.js",
+
         "js/Scripts/GamePage/PrivateServers/PrivateServersLink.js",
         "js/Scripts/GamePage/PrivateServers/AvailPrivateServers.js",
         "js/Scripts/GamePage/PrivateServers/ShowPrivateServers.js",
@@ -40,9 +58,7 @@
         "js/Scripts/GamePage/FriendServers/FriendsServersLink.js",
         "js/Scripts/GamePage/SmallServers/SmallServer.js",
         "js/Scripts/GamePage/PublicServers/PublicServersLink.js",
-        "js/Scripts/GamePage/PublicServers/PageNav.js",
-
-        "js/Theme/Pages/games.js"
+        "js/Scripts/GamePage/PublicServers/PageNav.js"
        ],
      "run_at": "document_start"
     },
@@ -58,17 +74,5 @@
      "js": [ "js/Main/Loader.js" ],
      "run_at": "document_start"
     }
-  ],
-  "description": "More Features For Roblox :D",
-  "homepage_url": "https://www.Roblox.com/home?open=roblokis",
-  "icons": {
-    "300": "/images/icons/icon_300x300.png"
-  },
-  "browser_action": {
-    "default_popup": "html/Popup/Popup.html",
-    "default_icon": {
-       "19": "/images/icons/icon_300x300.png"
-    },
-    "default_title": "Roblokis"
-  }
+  ]
 }

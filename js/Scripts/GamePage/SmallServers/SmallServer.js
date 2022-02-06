@@ -14,18 +14,18 @@ Rkis.Scripts.SmallServer.setup = function () {
 
 Rkis.Scripts.SmallServer.firstone = function(darequest) {
 
-  if (darequest.detail && darequest.detail.responseURL.includes("roblox.com/games/getfriendsgameinstances") == false) return;
+  if (darequest.detail && darequest.detail.responseURL.includes("roblox.com/games/getfriendsgameinstances") == false) return; //instead use the public server and use its data as first call
 
   if (Rkis.Scripts.SmallServer.running == false) {
     Rkis.Scripts.SmallServer.running = true;
 
     var smallrunninggames = document.querySelector("#rbx-small-running-games");
-    if (smallrunninggames) smallrunninggames.innerHTML = `<div class="container-header"><h3>Some Small Servers</h3></div><ul id="rbx-small-game-server-item-container" class="section stack-list"><span class="spinner spinner-default"></span></ul>`;
+    if (smallrunninggames) smallrunninggames.innerHTML = `<div class="container-header"><h3>${Rkis.language["smallSection"]}</h3></div><ul id="rbx-small-game-server-item-container" class="section stack-list"><span class="spinner spinner-default"></span></ul>`;
     else {
       smallrunninggames = document.createElement("div");
       smallrunninggames.id = "rbx-small-running-games";
-      smallrunninggames.setAttribute("class", "stack");
-      smallrunninggames.innerHTML = `<div class="container-header"><h3>Some Small Servers</h3></div><ul id="rbx-small-game-server-item-container" class="section stack-list"><span class="spinner spinner-default"></span></ul>`;
+      smallrunninggames.classList.add("stack");
+      smallrunninggames.innerHTML = `<div class="container-header"><h3>${Rkis.language["smallSection"]}</h3></div><ul id="rbx-small-game-server-item-container" class="section stack-list"><span class="spinner spinner-default"></span></ul>`;
       document.querySelector("#game-instances").insertBefore(smallrunninggames, document.querySelector("#rbx-running-games"));
     }
 
@@ -161,36 +161,40 @@ Rkis.Scripts.SmallServer.d = async function() {
   else {
     smallrunninggames = document.createElement("div");
     smallrunninggames.id = "rbx-small-running-games";
-    smallrunninggames.setAttribute("class", "stack");
+    smallrunninggames.classList.add("stack");
     document.querySelector("#game-instances").insertBefore(smallrunninggames, document.querySelector("#rbx-running-games"));
   }
 
   var smalltitle = document.createElement("div");
-  smalltitle.innerHTML = "<h3>Some Small Servers</h3>";
-  smalltitle.setAttribute("class", "container-header");
+  smalltitle.innerHTML = `<h3>${Rkis.language["smallSection"]}</h3>`;
+  smalltitle.classList.add("container-header");
   smallrunninggames.append(smalltitle);
 
   var smallservers = document.createElement("ul");
   smallservers.id = "rbx-small-game-server-item-container";
-  smallservers.setAttribute("class", "section stack-list");
+  smallservers.classList.add("section");
+  smallservers.classList.add("stack-list");
   smallrunninggames.append(smallservers);
 
   for (var i = 0; i < servers.length; i++) {
     if(servers[i].CurrentPlayers.length <= 0) continue;
 
     var smallserver = document.createElement("li");
-    smallserver.setAttribute("class", "stack-row rbx-game-server-item");
+    smallserver.classList.add("stack-row");
+    smallserver.classList.add("rbx-game-server-item");
 
     var smallserverdetails = document.createElement("div");
-    smallserverdetails.setAttribute("class", "section-left rbx-game-server-details");
+    smallserverdetails.classList.add("section-left");
+    smallserverdetails.classList.add("rbx-game-server-details");
     smallserverdetails.innerHTML = `<div class="text-info rbx-game-status rbx-game-server-status">${servers[i].PlayersCapacity}</div>`;
-    if(servers[i].ShowSlowGameMessage) smallserverdetails.innerHTML += '<div class="rbx-game-server-alert"><span class="icon-remove"></span>Slow Server</div>';
-    if(Rkis.wholeData.SmallServerLink != false) smallserverdetails.innerHTML += `<a class="btn-control-xs" style="width: 18%;margin: 0 2% 0 0;" onclick="Rkis.CopyTextToClip('https://${Rkis.SubDomain}.roblox.com/home?placeid=${servers[i].PlaceId}&amp;gameid=${servers[i].Guid}')">🔗</a><a class="btn-full-width btn-control-xs rbx-game-server-join" onclick="Roblox.GameLauncher.joinGameInstance(${servers[i].PlaceId}, '${servers[i].Guid}', null);return false;" style="margin: 0;width: 80%;">Join</a>`;
-    else smallserverdetails.innerHTML += `<a style="margin: 0;" class="btn-full-width btn-control-xs rbx-game-server-join" onclick="Roblox.GameLauncher.joinGameInstance(${servers[i].PlaceId}, '${servers[i].Guid}');">Join</a>`;
+    if(servers[i].ShowSlowGameMessage) smallserverdetails.innerHTML += `<div class="rbx-game-server-alert"><span class="icon-remove"></span>${Rkis.language["slowServer"]}</div>`;
+    if(Rkis.wholeData.SmallServerLink != false) smallserverdetails.innerHTML += `<a class="btn-control-xs" style="width: 18%;margin: 0 2% 0 0;" onclick="Rkis.CopyText('https://${Rkis.SubDomain}.roblox.com/home?placeid=${servers[i].PlaceId}&amp;gameid=${servers[i].Guid}')">🔗</a><a class="btn-full-width btn-control-xs rbx-game-server-join" onclick="Roblox.GameLauncher.joinGameInstance(${servers[i].PlaceId}, '${servers[i].Guid}', null);return false;" style="margin: 0;width: 80%;">${Rkis.language["joinButtons"]}</a>`;
+    else smallserverdetails.innerHTML += `<a style="margin: 0;" class="btn-full-width btn-control-xs rbx-game-server-join" onclick="Roblox.GameLauncher.joinGameInstance(${servers[i].PlaceId}, '${servers[i].Guid}');">${Rkis.language["joinButtons"]}</a>`;
     smallserver.append(smallserverdetails);
 
     var smallserverplayers = document.createElement("div");
-    smallserverplayers.setAttribute("class", "section-right rbx-game-server-players");
+    smallserverplayers.classList.add("section-right");
+    smallserverplayers.classList.add("rbx-game-server-players");
 
     if(Rkis.wholeData.UseThemes != false) {
       var smallservercount = document.createElement("span");
@@ -214,4 +218,5 @@ Rkis.Scripts.SmallServer.d = async function() {
   Rkis.Scripts.SmallServer.running = false;
 }
 
-Rkis.AddRunListener(Rkis.Scripts.SmallServer.setup);
+Rkis.AllRunListeners = Rkis.AllRunListeners || [];
+Rkis.AllRunListeners.push(Rkis.Scripts.SmallServer.setup);

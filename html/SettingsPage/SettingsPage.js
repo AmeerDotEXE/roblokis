@@ -18,14 +18,18 @@ page.setup = function() {
 }
 
 page.open = async function(pagetoopen, bypass) {
-  var currentactivetab = document.querySelector("#vertical-menu > li.menu-option.active");
-  if(bypass != true && currentactivetab.dataset.file == pagetoopen) return;
+  if(document.querySelector(`[data-file="${pagetoopen}"]`) == null) return "404";
 
-  window.location.replace(window.location.href.split("#")[0] + "#!/" + pagetoopen);
-  currentactivetab.setAttribute("class", "menu-option");
-  document.querySelector(`[data-file="${pagetoopen}"]`).className = "menu-option active";
+  var currentactivetab = document.querySelector("#vertical-menu > li.menu-option.active");
+  if(bypass != true && currentactivetab.dataset.file == pagetoopen) return; //already on the page
+
+  window.location.replace(window.location.href.split("#")[0] + "#!/" + pagetoopen); //change link
+  currentactivetab.classList.remove("active"); //change tab
+
+  document.querySelector(`[data-file="${pagetoopen}"]`).classList.add("active"); //make tab active
+
   var daplacetoload = document.querySelector("#rkpage");
-  if(daplacetoload == null) return;
+  if(daplacetoload == null) return Rkis.ErrorToast("SP32");
   try {
     daplacetoload.innerHTML = await Rkis.GetTextFromLocalFile(`html/SettingsPage/Pages/${pagetoopen}.html`);
     var scrpt0 = document.createElement("script");
@@ -40,40 +44,27 @@ page.toggleSwich = function(swich, stat) {
   if(!swich) return null;
 
   if (stat == null) {
-    var daclass = swich.getAttribute("class");
-    if (daclass && daclass.endsWith(" on")) {swich.setAttribute("class", daclass.slice(0, -2) + "off"); return false;}
-    else if (daclass && daclass.endsWith(" off")) {swich.setAttribute("class", daclass.slice(0, -3) + "on"); return true;}
+    if (swich.classList.contains("on")) {swich.classList.remove("on"); swich.classList.add("off"); return false;}
+    else if (swich.classList.contains("off")) {swich.classList.remove("off"); swich.classList.add("on"); return true;}
   }
   else {
-    var daclass = swich.getAttribute("class");
-    if (daclass && daclass.endsWith(" off") && stat) {swich.setAttribute("class", daclass.slice(0, -3) + "on"); return true;}
-    else if (daclass && daclass.endsWith(" on") && !stat) {swich.setAttribute("class", daclass.slice(0, -2) + "off"); return false;}
+    swich.classList.remove("on");
+    swich.classList.remove("off");
+    swich.classList.add(stat ? "on" : "off");
+
+    return stat
   }
+
+  return null;
 }
 
 page.getSwich = function(swich) {
   if(!swich) return null;
 
-  var daclass = swich.getAttribute("class");
-  if (daclass && daclass.endsWith(" on")) return true;
-  else if (daclass && daclass.endsWith(" off")) return false;
+  if (swich.classList.contains("on")) return true;
+  else if (swich.classList.contains("off")) return false;
 
   return null;
-}
-
-page.toggleDisable = function(swich, stat) {
-  if(!swich) return null;
-
-  if (stat == null) {
-    var daclass = swich.style.opacity;
-    if (daclass == "") {swich.style.opacity = "0.5"; return true;}
-    else {swich.style.opacity = ""; return false;}
-  }
-  else {
-    var daclass = swich.style.opacity;
-    if (daclass == "" && stat == true) {swich.style.opacity = "0.5"; return true;}
-    else if (daclass != "" && stat == false) {swich.style.opacity = ""; return false;}
-  }
 }
 
 page.save = function(button) {
@@ -94,22 +85,21 @@ page.save = function(button) {
   localStorage.setItem("Roblokis", JSON.stringify(wholedata));
   Rkis.wholeData = wholedata;
 
-  button.innerText = "Saved";
-  setTimeout((btn) => {btn.innerText = "Save";}, 1000, button);
+  button.innerText = Rkis.language["btnSaved"];
+  setTimeout((btn) => {btn.innerText = Rkis.language["btnSave"];}, 1000, button);
 }
 
 page.E = "A";
 page.Sports = "It's in the Game";
 
-(function() {
-  if (window.location.hash.includes("#!/")) {
-    page.open(window.location.hash.split("#!/")[1], true);
-  }
-  else {
-    page.open(document.querySelector("#vertical-menu > li.menu-option.active").dataset.file, true);
+page.start = async function() {
+  if(await page.open(document.querySelector("#vertical-menu > li.menu-option.active").dataset.file, true) == "404") {
+    page.open(document.querySelector("#vertical-menu > li.menu-option").dataset.file, true);
   }
 
   document.querySelectorAll("#vertical-menu > li.menu-option").forEach((e) => {
     e.addEventListener("click", () => {page.open(e.dataset.file);});
   });
-}())
+};
+
+page.start();

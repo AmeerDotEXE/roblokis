@@ -5,27 +5,10 @@ if(Rkis.wholeData.QuickRemove != false) {
   Rkis.Scripts = Rkis.Scripts || {};
   Rkis.Scripts.QuickFriendRemove = Rkis.Scripts.QuickFriendRemove || {};
 
-  Rkis.AddRunListener(async function() {
-    await document.$watch("#container-main").$promise();
-    var weburl = window.location.href;
-
-    if(weburl.includes(`users`) == false) return;
-
-    if (weburl.includes(`users${Roblox.CurrentUser.userId ? `/${Roblox.CurrentUser.userId}` : ``}/friends`) ||
-        weburl.includes(`users/friends`)) {
-
-      document.$watch("#friends", (btn) => {
-        btn.addEventListener("click", Rkis.Scripts.QuickFriendRemove.setup);
-      });
-      Rkis.Scripts.QuickFriendRemove.setup();
-
-    }
-  })
-
   Rkis.Scripts.QuickFriendRemove.unFriend = function(btn, theid) {
     if(document.$find("#rbx-body > meta") == null) {
       btn.remove();
-      Rkis.Toast("<span style='color:#f00;font-size:17px;'>Error: </span>Couldn't UnFriend");
+      Rkis.ErrorToast(`QFR11`);
       return;
     }
 
@@ -61,7 +44,8 @@ if(Rkis.wholeData.QuickRemove != false) {
         deletebutton.setAttribute("style", "float: right; width: 24px; height: 24px; text-align: center; border: 2px dashed red; color: red; border-radius: 50%; font-size: 14px; background-color: transparent;");
         deletebutton.setAttribute("onmouseover", "this.style.backgroundColor='rgb(255,255,255,0.1)';this.style.border='2px solid red';");
         deletebutton.setAttribute("onmouseout", "this.style.backgroundColor='transparent';this.style.border='2px dashed red';");
-        deletebutton.setAttribute("ondblclick", `Rkis.Scripts.QuickFriendRemove.unFriend(this, "${e.id}")`);
+        //deletebutton.setAttribute("ondblclick", `Rkis.Scripts.QuickFriendRemove.unFriend(this, "${e.id}")`);
+        deletebutton.addEventListener("dblclick", () => {Rkis.Scripts.QuickFriendRemove.unFriend(this, ""+e.id)})
         deletebutton.innerText = "-";
 
         placetoadd.insertBefore(deletebutton, placetoadd.firstChild);
@@ -71,5 +55,23 @@ if(Rkis.wholeData.QuickRemove != false) {
     })
 
   }
+
+  Rkis.Scripts.QuickFriendRemove.first = async function() {
+    await document.$watch("#container-main").$promise();
+    var weburl = window.location.href;
+
+    if (weburl.includes(`users${Roblox.CurrentUser.userId ? `/${Roblox.CurrentUser.userId}` : ``}/friends`) ||
+        weburl.includes(`users/friends`)) {
+
+      document.$watch("#friends", (btn) => {
+        btn.addEventListener("click", Rkis.Scripts.QuickFriendRemove.setup);
+      });
+      Rkis.Scripts.QuickFriendRemove.setup();
+
+    }
+  }
+
+  Rkis.AllRunListeners = Rkis.AllRunListeners || [];
+  Rkis.AllRunListeners.push(Rkis.Scripts.QuickFriendRemove.first);
 
 }

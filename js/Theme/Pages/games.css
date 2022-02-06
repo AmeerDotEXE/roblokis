@@ -14,7 +14,6 @@
 /*game photo & button*/
 #game-details-carousel-container {
     border-radius: 20px;
-    box-shadow: 0 0 8px 1px black;
     z-index: 10;
     transition: transform 400ms;
     transition-timing-function: cubic-bezier(0.25, 1.27, 0.9, 1.01);
@@ -22,10 +21,11 @@
 #game-details-carousel-container:hover {
     transform: var(--rk-basic-animations, scale(1.06) rotate(1deg));
 }
-#game-details-play-button-container > button {
+.dark-theme #game-details-play-button-container > button {
     background: none;
     border: 2px solid #fff;
-    box-shadow: 0 0 8px 1px black, inset 0 0 8px 0px black;
+}
+#game-details-play-button-container > button {
     transition: transform 500ms, border-width 250ms;
     transition-timing-function: cubic-bezier(0.25, 1.27, 0.9, 1.01);
 }
@@ -39,7 +39,6 @@
 #horizontal-tabs {
     background-color: rgb(35, 37, 39, 0.3);
     border-radius: 10px;
-    box-shadow: 0 0 8px 1px black;
 }
 #horizontal-tabs > li > a {
     background-color: rgb(35, 37, 39, 0);
@@ -47,10 +46,6 @@
     transition: all 200ms;
     transition-timing-function: cubic-bezier(0.25, 1.27, 0.9, 1.01);
 }
-#horizontal-tabs > li > a:hover {
-    box-shadow: var(--rk-basic-animations, inset 0 -36px 0 0 rgb(255, 255, 255, 0.2));
-}
-
 
 /*coloring*/
 div.section.game-about-container > div.section-content > ul.game-stats-container,
@@ -60,7 +55,6 @@ div > .social-link > div.medallion
 
 /*game card*/
 div.container-list.games-detail div.game-card-container > a > a {
-    box-shadow: 0 0 6px black, inset 0 0 4px black;
     transition: transform 400ms;
     transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
 }
@@ -81,7 +75,6 @@ html:not([data-btr-loaded="true"]) #game-badges-container > game-badges-list > d
 
 html:not([data-btr-loaded="true"]) #game-badges-container > game-badges-list > div > ul > li.badge-row,
 #game-badges-container > game-badges-list > div > ul > li.badge-row {
-    box-shadow: 0 0 8px 1px black;
     flex-direction: column;
     align-items: center;
 
@@ -125,7 +118,14 @@ html:not([data-btr-loaded="true"]) #game-badges-container > game-badges-list > d
 html:not([data-btr-loaded="true"]) #game-badges-container > game-badges-list > div > ul > li > div.badge-content > div > p,
 #game-badges-container > game-badges-list > div > ul.roblokis-badges-loaded > li > div.badge-content > div > p {
     color: var(--rk-badge-dark-color);
+}
+
+html[data-btr-loaded="true"] #game-badges-container > game-badges-list > div > ul:not(.roblokis-badges-loaded) > li > div.badge-content > div > p {
     height: auto;
+}
+
+html[data-btr-loaded="true"] #game-badges-container > game-badges-list > div > ul:not(.roblokis-badges-loaded) > li > div.badge-image > a > thumbnail-2d > span {
+    background-color: transparent;
 }
 
 html:not([data-btr-loaded="true"]) #game-badges-container > game-badges-list > div > ul > li > div.badge-content> ul,
@@ -171,6 +171,13 @@ html[data-btr-loaded="true"] #game-badges-container > game-badges-list > div > u
 
 
 
+#game-instances > div.section-content-off {
+    background-color: transparent;
+}
+
+
+
+
 /* Private Servers  */
 #rbx-private-servers > div.section.tab-server-only > ul {
     display: flex;
@@ -185,7 +192,6 @@ html[data-btr-loaded="true"] #game-badges-container > game-badges-list > div > u
 #game-instances #rbx-private-servers > div.section.tab-server-only > ul > li {
     transition: all 400ms;
     transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
-    box-shadow: 0 0 8px 0px black;
 
     width: calc(calc(100% / var(--rk-privateserver-column, 5)) - calc(var(--rk-privateserver-gap, 0.3%) * 2));
     margin: var(--rk-privateserver-gap, 0.3%);
@@ -263,7 +269,6 @@ html[data-btr-loaded="true"] #game-badges-container > game-badges-list > div > u
 
 #rbx-private-servers > div.section.tab-server-only > ul > li > div.section-left > div.rbx-private-owner > a.owner-avatar > img {
     background-color: var(--rk-privateserver-owner-background, #d4d4d4);
-    box-shadow: 0 2px 8px 0 black;
 }
 
 #rbx-private-servers > div.section.tab-server-only > ul > li > div.section-left > div.rbx-private-server-status,
@@ -281,8 +286,6 @@ html:not([data-btr-loaded="true"]) #rbx-private-servers > div.section.tab-server
 }
 
 #game-instances #rbx-recent-server-box > li {
-    box-shadow: 0 0 8px 0px black;
-
     border-radius: var(--rk-publicserver-corners-radius, 20px) !important;
 
     border-color: var(--rk-publicserver-borders-color);
@@ -314,7 +317,6 @@ html:not([data-btr-loaded="true"]) #rbx-private-servers > div.section.tab-server
 #game-instances #rbx-friends-game-server-item-container > li {
     transition: all 400ms;
     transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
-    box-shadow: 0 0 8px 0px black;
 
     width: calc(calc(100% / var(--rk-friendsserver-column, 5)) - calc(var(--rk-friendsserver-gap, 0.3%) * 2));
     margin: var(--rk-friendsserver-gap, 0.3%);
@@ -405,7 +407,6 @@ html:not([data-btr-loaded="true"]) #rbx-private-servers > div.section.tab-server
 #game-instances #rbx-small-game-server-item-container > li {
     transition: all 400ms;
     transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
-    box-shadow: 0 0 8px 0px black;
 
     width: calc(calc(100% / var(--rk-smallserver-column, 5)) - calc(var(--rk-smallserver-gap, 0.3%) * 2));
     margin: var(--rk-smallserver-gap, 0.3%);
@@ -495,7 +496,6 @@ html:not([data-btr-loaded="true"]) #rbx-private-servers > div.section.tab-server
 #game-instances #rbx-game-server-item-container > li {
     transition: all 400ms;
     transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
-    box-shadow: 0 0 8px 0px black;
 
     width: calc(calc(100% / var(--rk-publicserver-column, 5)) - calc(var(--rk-publicserver-gap, 0.3%) * 2));
     margin: var(--rk-publicserver-gap, 0.3%);

@@ -7,12 +7,6 @@ if(Rkis.wholeData.PageNav != false) {
 
   Rkis.Scripts.PageNav.running = false;
 
-  Rkis.AddRunListener(function() {
-    if (Rkis.pageName == "game") {
-      Rkis.Scripts.PageNav.firstone();
-    }
-  })
-
   Rkis.Scripts.PageNav.firstone = async function() {
 
     var result = await Rkis.fetch("GET", `https://${Rkis.SubDomain}.roblox.com/games/getgameinstancesjson?placeId=${Rkis.GameId}&startIndex=1`, true);
@@ -22,7 +16,7 @@ if(Rkis.wholeData.PageNav != false) {
     if(buttonplace == null) return;
     buttonplace.remove();
     
-    document.$find("#rbx-running-games").innerHTML += `<div class="rbx-running-games-footer"><button type="button" class="btn-control-sm btn-full-width rbx-running-games-load-more">Load More</button></div>`;
+    document.$find("#rbx-running-games").innerHTML += `<div class="rbx-running-games-footer"><button type="button" class="btn-control-sm btn-full-width rbx-running-games-load-more">${Rkis.language["loadMore"]}</button></div>`;
     buttonplace = document.$find("#rbx-running-games > div.rbx-running-games-footer");
 
 
@@ -32,7 +26,7 @@ if(Rkis.wholeData.PageNav != false) {
       <button type="button" class="btn-control-sm btn-full-width rbx-running-games-load-more" style="margin: 0 4px;" onclick="Rkis.Scripts.PageNav.back()">&lt;</button>
       <span class="btn-control-sm btn-full-width rbx-running-games-load-more" style="margin: 0 4px;width: 200%;display: flex;align-self: center;align-items: center;">
         <input type="textfield" style="border: none;width: 42%;text-align: right;" class="btn-control-sm rbx-running-games-load-more" id="rkpagenavnum" value="1" placeholder="Page" onchange="Rkis.Scripts.PageNav.getpage(this.value)">
-        Of ${Math.round(result.TotalCollectionSize / 10)}</span>
+        / ${Math.round(result.TotalCollectionSize / 10)}</span>
       <button type="button" class="btn-control-sm btn-full-width rbx-running-games-load-more" style="margin: 0 4px;" onclick="Rkis.Scripts.PageNav.next()">&gt;</button>
       <button type="button" class="btn-control-sm btn-full-width rbx-running-games-load-more" style="margin: 0 4px;" onclick="Rkis.Scripts.PageNav.last()">&gt;|</button>
     </div>`;
@@ -118,8 +112,8 @@ if(Rkis.wholeData.PageNav != false) {
         <div class="section-header"><div class="link-menu rbx-game-server-menu"></div></div>
         <div class="section-left rbx-game-server-details">
           <div class="text-info rbx-game-status rbx-game-server-status">${server.PlayersCapacity}</div>
-          <div class="rbx-game-server-alert${server.ShowSlowGameMessage == true ? "" : " hidden"}"><span class="icon-remove"></span>Slow Server</div>
-          <a class="btn-full-width btn-control-xs rbx-game-server-join" href="#" data-placeid="${server.PlaceId}" onclick="${server.JoinScript.split("\"").join("&quot;")}">Join</a>
+          <div class="rbx-game-server-alert${server.ShowSlowGameMessage == true ? "" : " hidden"}"><span class="icon-remove"></span>${Rkis.language["slowServer"]}</div>
+          <a class="btn-full-width btn-control-xs rbx-game-server-join" href="#" data-placeid="${server.PlaceId}" onclick="${server.JoinScript.split("\"").join("&quot;")}">${Rkis.language["joinButtons"]}</a>
         </div>
         <div class="section-right rbx-game-server-players">`;
 
@@ -141,5 +135,7 @@ if(Rkis.wholeData.PageNav != false) {
     if(Rkis.Scripts.PublicServersLink != null) Rkis.Scripts.PublicServersLink.firstone(null);
 
   }
+
+  Rkis.Scripts.PageNav.firstone();
 
 }

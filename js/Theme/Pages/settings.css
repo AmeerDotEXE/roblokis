@@ -1,0 +1,19 @@
+/*content*/
+#container-main > div.content {
+    width: 90%;
+}
+
+#user-account {
+    width: 100%;
+}
+
+#vertical-menu,
+#vertical-menu > li.menu-option > a,
+
+#settings-container > div.tab-content.rbx-tab-content > div[ui-view] > div > two-step-verification > div > div:not(.container-header) > div,
+#settings-container > div.tab-content.rbx-tab-content > div[ui-view] > div > div.section > div.section-content,
+#settings-container > div.tab-content.rbx-tab-content > div[ui-view] > div.section > div.section-content,
+#settings-container > div.tab-content.rbx-tab-content > div[ui-view] > div > div > div.section > div.section-content,
+#settings-container > div.tab-content.rbx-tab-content > div[ui-view] > div > div:not(.container-header) > div.section-content {
+    background-color: transparent;
+}

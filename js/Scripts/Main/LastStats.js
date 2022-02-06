@@ -3,17 +3,10 @@ var Rkis = Rkis || {};
 if(Rkis.wholeData.LastStats != false) {
 
   Rkis.Scripts = Rkis.Scripts || {};
-  Rkis.Scripts.LastStats = Rkis.Scripts.LastStats || {};
 
-  Rkis.AddRunListener(function() {
-    if (Rkis.pageName == "users") {
-      Rkis.OnReady(Rkis.Scripts.LastStats.firstone);
-    } 
-  });
+  Rkis.Scripts.LastStats = async function() {
 
-  Rkis.Scripts.LastStats.firstone = async function(darequest) {
-
-    var id = window.location.href.split("/users/")[1].split("/")[0];
+    var id = Rkis.UserId;
     if (id == null) return;
 
     var result = await fetch("https://presence.roblox.com/v1/presence/users", {
@@ -29,15 +22,11 @@ if(Rkis.wholeData.LastStats != false) {
     if(result != null && result.userPresences != null) result = result.userPresences;
     if(result != null && result.length > 0) result = result[0];
 
-    var statusholder = await document.$watch("#profile-statistics-container").$promise();
+    var statusholder = await document.$watch("#profile-statistics-container > .section.profile-statistics").$promise();
     if(statusholder == null) return;
 
     var oldthingytodelete = document.querySelector("#lastseentheprofileis");
     if(oldthingytodelete != null) oldthingytodelete.remove();
-
-    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-    ];
 
     var onlinestats = null;
     var onlineseen = null;
@@ -49,15 +38,24 @@ if(Rkis.wholeData.LastStats != false) {
       if(result.placeId != null) onlinestats = `<a class="text-lead" href="${window.location.origin}/games/refer?PlaceId=${result.placeId}" style="text-decoration: underline;">${result.lastLocation}</a>`;
       else onlinestats = `<p class="text-lead">${result.lastLocation}</p>`;
 
-      if(result.placeId != null && result.gameId != null) onlinegame = `<li class="profile-stat" style="display: grid;justify-items: center;"><p class="text-label">Last Game</p> <p class="text-lead" onclick="Roblox.GameLauncher.joinGameInstance(${result.placeId}, '${result.gameId}')" style="width: fit-content;background-color: #00b06f;border-radius: 10px;padding: 0 20%;cursor: pointer;align-self: center;">Join</p> </li>`;
+      if(result.placeId != null && result.gameId != null) onlinegame = `<li class="profile-stat" style="display: grid;justify-items: center;"><p class="text-label">${Rkis.language["lastGame"]}</p> <p class="text-lead" onclick="Roblox.GameLauncher.joinGameInstance(${result.placeId}, '${result.gameId}')" style="width: fit-content;background-color: #00b06f;border-radius: 10px;padding: 0 20%;cursor: pointer;align-self: center;">${Rkis.language["joinButtons"]}</p> </li>`;
 
       onlineseen = `<p class="text-lead"
-      title="Seen on ${award.getMonth() + 1}/${award.getDate()}/${award.getFullYear()}, ${award.getHours()}:${award.getMinutes()}:${award.getSeconds()}">${award.$since(new Date(), false, true)}</p>`;
+      title="${Rkis.language.get("lastSeenLong", award.$format("MM/DD/YYYY, hh:mm"))}">${award.$since(new Date(), false, true)}</p>`;
     }
 
-    statusholder.innerHTML += `<div id="lastseentheprofileis" class="section-content" style="margin: 10px;display: grid;"><ul class="profile-stats-container" style="display: flex;">
-      <li class="profile-stat"><p class="text-label">Last Seen</p> ${onlineseen || `<p class="text-lead">Unknown</p>`} </li>
-      <li class="profile-stat"><p class="text-label">Last Place</p> ${onlinestats || `<p class="text-lead">Unknown</p>`} </li>${onlinegame || ""}</ul></div>`;
-  }
+    var status = document.createElement("div");
+    status.id = "lastseentheprofileis";
+    status.classList.add("section-content");
+    status.setAttribute("style", "margin: 10px;display: grid;");
+    status.innerHTML = `<ul class="profile-stats-container" style="display: flex;">
+      <li class="profile-stat"><p class="text-label">${Rkis.language["lastSeen"]}</p> ${onlineseen || `<p class="text-lead">Unknown</p>`} </li>
+      <li class="profile-stat"><p class="text-label">${Rkis.language["lastPlace"]}</p> ${onlinestats || `<p class="text-lead">Unknown</p>`} </li>${onlinegame || ""}</ul>`;
+
+    statusholder.insertBefore(status, statusholder.children[1]);
+
+  };
+
+  Rkis.Scripts.LastStats();
 
 }

@@ -1,25 +1,21 @@
 var Rkis = Rkis || {};
-Rkis.Scripts = Rkis.Scripts || {};
-Rkis.Scripts.ShowPrivateServers = Rkis.Scripts.ShowPrivateServers || {};
 
-Rkis.Scripts.ShowPrivateServers.setup = function() {
-  var weburl = window.location.href;
-  if (weburl.includes("/games/")) {
-    document.addEventListener("rkrequested", Rkis.Scripts.ShowPrivateServers.firstone);
-  }
-}
+if(Rkis.wholeData.ShowPrivateServers != false) {
 
-Rkis.Scripts.ShowPrivateServers.firstone = function(darequest) {
+  Rkis.Scripts = Rkis.Scripts || {};
+  Rkis.Scripts.ShowPrivateServers = Rkis.Scripts.ShowPrivateServers || {};
 
-  if (darequest && darequest.detail && darequest.detail.responseURL.includes("roblox.com/private-server/instance-list-json") == false) return;
+  Rkis.Scripts.ShowPrivateServers.firstone = function() {
 
-  var loadmoreBTN = document.querySelector("#rbx-private-servers > div.section.tab-server-only > div.rbx-private-servers-footer > button");
-  if (loadmoreBTN) {
-    if (loadmoreBTN.getAttribute("class").includes("hidden") == false) {
-      loadmoreBTN.click();
+    var loadmoreBTN = document.querySelector("#rbx-private-servers > div.section.tab-server-only > div.rbx-private-servers-footer > button");
+    if (loadmoreBTN) {
+      if (loadmoreBTN.getAttribute("class").includes("hidden") == false) {
+        loadmoreBTN.click();
+      }
+      else return;
     }
-    else return;
   }
-}
 
-Rkis.AddRunListener(Rkis.Scripts.ShowPrivateServers.setup);
+  document.addEventListener("rkrequested-private", Rkis.Scripts.ShowPrivateServers.firstone);
+
+}

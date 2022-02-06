@@ -61,6 +61,7 @@
 #friends-container > div > div.rbx-tabs-horizontal.rbx-scrollable-tabs-horizontal > div > div > div.friends-content.section > ul > li {
     transition: transform 400ms;
     transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
+    position: relative;
 }
 
 #friends-container > div > div.rbx-tabs-horizontal.rbx-scrollable-tabs-horizontal > div > div > div.friends-content.section > ul > li:hover {

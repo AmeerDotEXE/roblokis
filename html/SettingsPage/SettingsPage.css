@@ -71,7 +71,7 @@ span.rk-button {
 
 #rkpage > button.main-save-button:hover,
 #pageloadplace > button.main-save-button:hover {
-    background-color: #444;
+    background-color: rgb(128 128 128 / 40%);
     border: 2px solid lime;
 }
 
@@ -90,7 +90,7 @@ span.rk-button {
 
 .default-theme-template,
 .theme-template {
-    background-color: rgb(35, 37, 39);
+    background-color: rgb(17.5, 18.5, 19.5, 0.4);
     border-radius: 20px;
     padding: calc(1% + 5px) calc(2% + 10px);
     display: flex;
@@ -111,6 +111,7 @@ span.rk-button {
 
 .default-theme-template > button {
     background-color: rgb(57 59 61);
+    color: white;
 }
 
 .default-theme-template > div > div,
@@ -132,6 +133,11 @@ span.rk-button {
 #rk-deletethemesection .rk-popup,
 #rk-createthemesection .rk-popup {
     padding: calc(0.5% + 10px) calc(3% + 10px) calc(1% + 10px);
+}
+
+#rk-deletethemesection .rk-popup > div > button#deletetheme-button {
+    background-color: rgb(184 59 61);
+    color: rgb(35 37 39);
 }
 
 #rk-createthemesection .rk-popup > input:not([type="file"]) {
@@ -157,6 +163,14 @@ span.rk-button {
     font-size: 14px;
 }
 
+.light-theme #rk-createthemesection .rk-popup > label {
+    background: rgba(0,0,0,.1);
+    border-top: 2px solid rgba(0,0,0,.1);
+    border-left: 2px solid rgba(0,0,0,.1);
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    border-right: 1px solid rgba(0,0,0,.1);
+}
+
 #rk-deletethemesection .rk-popup > div.info,
 #rk-createthemesection .rk-popup > div.info {
     margin-bottom: 10px;
@@ -168,4 +182,19 @@ span.rk-button {
 #rk-createthemesection .rk-popup > div > button {
     background-color: rgb(57 59 61);
     border: 0;
+}
+
+#rk-createthemesection .rk-popup > div > button.rk-createbtn {
+    background-color: rgb(57 184 61);
+    color: rgb(35 37 39);
+}
+
+#rk-createthemesection > div.rk-popup > div:not(.info) > button:not(.rk-createbtn),
+#rk-deletethemesection > div.rk-popup > div:not(.info) > button:not(#deletetheme-button),
+#deletetheme-themename {
+    color: white;
+}
+
+.light-theme #deletetheme-themename {
+    color: black;
 }

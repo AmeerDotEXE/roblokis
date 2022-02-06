@@ -8,15 +8,8 @@ Rkis.Designer.GetPageTheme = function() {
   wholedata.Designer.Theme = wholedata.Designer.Theme || {};
   wholedata.Designer.Themes = wholedata.Designer.Themes || [];
 
-  if (wholedata.Designer.Theme.id == null) return {
-    isDefaultTheme: true,
-    themeId: 0
-  };
-
-  if (wholedata.Designer.Theme.isDefaultTheme == false && wholedata.Designer.Themes.length - 1 < wholedata.Designer.Theme.id) return {
-    isDefaultTheme: true,
-    themeId: 0
-  };
+  if (wholedata.Designer.Theme.id == null) return null;
+  if (wholedata.Designer.Theme.isDefaultTheme == false && wholedata.Designer.Themes.length - 1 < wholedata.Designer.Theme.id) return null;
 
   return {
     isDefaultTheme: wholedata.Designer.Theme.isDefaultTheme,
@@ -24,7 +17,7 @@ Rkis.Designer.GetPageTheme = function() {
   };
 }
 
-Rkis.AddRunListener(async function() {
+Rkis.Designer.SetupTheme = async function() {
 
   let mainStyle = null;
 
@@ -51,11 +44,12 @@ Rkis.AddRunListener(async function() {
     })
   }
 
+  if(Rkis.wholeData.ExtraShadows == true)
+    putCSS(["js/Theme/Pages/shadows.css"]);
+
   if(Rkis.wholeData.UseThemes == false) {
     putCSS(["js/Theme/Extras/extensions.css"]);
-    Rkis.OnReady(function() {
-      document.body.classList.add("Roblokis-no-theme")
-    });
+    document.$watch("body", (e) => {e.classList.add("Roblokis-no-theme")});
     return;
   }
 
@@ -64,7 +58,16 @@ Rkis.AddRunListener(async function() {
     {match: ".com/discover", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/discover.css" ]},
     {match: ".com/users/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/profile.css" ]},
     {match: ".com/games/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/games.css" ]},
-    {match: ".com/groups/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/groups.css" ]}
+    {match: ".com/groups/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/groups.css" ]},
+    
+    {match: ".com/catalog", paths: [ "js/Theme/Pages/all.css" ]},
+    {match: ".com/upgrades/", paths: [ "js/Theme/Pages/all.css" ]},
+
+    {match: ".com/transactions", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/transactions.css" ]},
+    {match: ".com/trades", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/trades.css" ]},
+    {match: ".com/my/messages", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/messages.css" ]},
+    {match: ".com/my/avatar", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/avatar.css" ]},
+    {match: ".com/my/account", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/settings.css" ]}
   ];
 
   allCssFiles.forEach((e) => {
@@ -75,20 +78,43 @@ Rkis.AddRunListener(async function() {
 
   var pagetheme = Rkis.Designer.GetPageTheme();
 
-  if(pagetheme.isDefaultTheme == false) {
+  if(pagetheme == null) {
+    document.$watch("body", (bodyElement) => {
+      if(bodyElement.classList.contains("light-theme") == Rkis.wholeData.isUsingLightTheme) return;
+
+      Rkis.wholeData.isUsingLightTheme = bodyElement.classList.contains("light-theme");
+      localStorage.setItem("Roblokis", JSON.stringify(Rkis.wholeData));
+      Rkis.Designer.SetupTheme();
+      
+    });
+
+    if(Rkis.wholeData.isUsingLightTheme == true) {
+      await fetch(Rkis.fileLocation + "js/Theme/DefaultLight.Roblokis")
+      .then(response => response.json())
+      .then(theme => {Rkis.Designer.currentTheme = theme;})
+      .catch(err => {console.log(err);})
+    }
+    else {
+      await fetch(Rkis.fileLocation + "js/Theme/DefaultDark.Roblokis")
+      .then(response => response.json())
+      .then(theme => {Rkis.Designer.currentTheme = theme;})
+      .catch(err => {console.log(err);})
+    }
+  }
+  else if(pagetheme.isDefaultTheme == false) {
     //load custom theme
     Rkis.Designer.currentTheme = Rkis.wholeData.Designer.Themes[pagetheme.themeId];
   }
   else {
     if(pagetheme.themeId == 1) {
       //load other theme
-      await fetch(Rkis.fileLocation + "js/Theme/Default.Roblokis")
+      await fetch(Rkis.fileLocation + "js/Theme/DefaultLight.Roblokis")
       .then(response => response.json())
       .then(theme => {Rkis.Designer.currentTheme = theme;})
       .catch(err => {console.log(err);})
     }
     else {
-      await fetch(Rkis.fileLocation + "js/Theme/Default.Roblokis")
+      await fetch(Rkis.fileLocation + "js/Theme/DefaultDark.Roblokis")
       .then(response => response.json())
       .then(theme => {Rkis.Designer.currentTheme = theme;})
       .catch(err => {console.log(err);})
@@ -288,7 +314,9 @@ Rkis.AddRunListener(async function() {
 
     var styl = document.createElement("style");
     styl.innerHTML = tamplate2;
-    document.head.append(styl);
+    document.$watch("head", (e) => { e.append(styl); });
 
   }
-})
+}
+
+Rkis.Designer.SetupTheme();

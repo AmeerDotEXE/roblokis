@@ -1,29 +1,24 @@
 var Rkis = Rkis || {};
-Rkis.Scripts = Rkis.Scripts || {};
-Rkis.Scripts.AvailPrivateServers = Rkis.Scripts.AvailPrivateServers || {};
 
-Rkis.Scripts.AvailPrivateServers.setup = function() {
-  if(Rkis.wholeData != null && Rkis.wholeData.AvailPrivateServers == false) return;
-  var weburl = window.location.href;
-  if (weburl.includes("/games/")) {
-    document.addEventListener("rkrequested", Rkis.Scripts.AvailPrivateServers.firstone);
-  }
-}
+if(Rkis.wholeData != null && Rkis.wholeData.AvailPrivateServers != false) {
 
-Rkis.Scripts.AvailPrivateServers.firstone = function(darequest) {
+  Rkis.Scripts = Rkis.Scripts || {};
+  Rkis.Scripts.AvailPrivateServers = Rkis.Scripts.AvailPrivateServers || {};
 
-  if (darequest.detail && darequest.detail.responseURL.includes("roblox.com/private-server/instance-list-json") == false) return;
+  Rkis.Scripts.AvailPrivateServers.firstone = function() {
 
-  var servers = document.querySelectorAll("#rbx-private-servers > div.section.tab-server-only > ul > li");
+    var servers = document.querySelectorAll("#rbx-private-servers > div.section.tab-server-only > ul > li");
 
-  for (var i = 0; i < servers.length; i++) {
-    var jionBtn = servers[i].querySelector('div.rbx-private-server-details > a.rbx-private-server-join');
+    for (var i = 0; i < servers.length; i++) {
+      var jionBtn = servers[i].querySelector('div.rbx-private-server-details > a.rbx-private-server-join');
 
-    if (jionBtn == null || jionBtn.getAttribute("onclick") == null) {
-      servers[i].remove();
+      if (jionBtn == null || jionBtn.getAttribute("onclick") == null) {
+        servers[i].remove();
+      }
+
     }
-
   }
-}
 
-Rkis.Scripts.AvailPrivateServers.setup();
+  document.addEventListener("rkrequested-private", Rkis.Scripts.AvailPrivateServers.firstone);
+
+}

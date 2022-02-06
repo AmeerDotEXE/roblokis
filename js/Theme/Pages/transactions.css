@@ -1,0 +1,12 @@
+/*content*/
+#container-main > div.content {
+    width: 90%;
+}
+
+#transactions-page-container {
+    width: 100%;
+}
+
+#transactions-page-container > div > div.summary > table {
+    background-color: transparent;
+}
