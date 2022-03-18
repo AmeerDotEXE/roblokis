@@ -1,6 +1,9 @@
 var Rkis = Rkis || {};
 Rkis.temp = Rkis.temp || {};
 
+//add auto listener adder on element selector
+//listener then the elemend has changed
+
 
 Rkis.temp.set$ = () => {
 

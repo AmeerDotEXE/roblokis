@@ -72,3 +72,23 @@ a.game-card-link[data-addedjoin="true"]:hover > a.rbx-game-server-join[onclick][
 #container-main > div.content > div.request-error-page-content > div.default-error-page {
     background-color: transparent;
 }
+
+#navigation::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  margin: 20px 0;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(0,0,0,0.4); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(0,0,0,0.8); 
+}

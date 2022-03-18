@@ -48,7 +48,6 @@ if(Rkis.wholeData.Badges != false && Rkis.pageName == "game") {
     var badgessection = await document.$watch("#game-badges-container > game-badges-list > div > ul").$promise();
     if(badgessection == null) return console.log("didn't find badge place");
     badgessection.innerHTML = "";
-    badgessection.classList.add("roblokis-badges-loaded");
 
     for (var x = 0; x < 2; x++) {
 
@@ -83,8 +82,8 @@ if(Rkis.wholeData.Badges != false && Rkis.pageName == "game") {
 
         if(badgeimg && badgeimg.imageUrl) mainelement.innerHTML = `<div class="badge-image"> <a href="${window.location.origin}/badges/${badge.id}/${badge.name}"> <img src="${badgeimg.imageUrl}"></a> </div>`;
         mainelement.innerHTML += `<div class="badge-content"> <div class="badge-data-container">
-          <div class="font-header-2 badge-name">${badge.displayName.match(/^[\s0-9a-zA-Z]+$/g) ? badge.displayName.match(/^[\s0-9a-zA-Z]+$/g)[0] : "No Badge Name"}</div>
-          <p class="para-overflow">${badge.displayDescription.match(/^[\s0-9a-zA-Z]+$/g) ? badge.displayDescription.match(/^[\s0-9a-zA-Z]+$/g)[0] : "No Description."}</p> </div> <ul class="badge-stats-container"> <li> <div class="text-label">Rarity</div>
+          <div class="font-header-2 badge-name">${badge.displayName || "No Badge Name"}</div>
+          <p class="para-overflow">${badge.displayDescription || "No Description."}</p> </div> <ul> <li> <div class="text-label">Rarity</div>
           <div class="font-header-2 badge-stats-info">${Math.floor(badge.statistics.winRatePercentage * 1000) / 10}%</div> </li> <li> <div class="text-label">Won Yesterday</div>
           <div class="font-header-2 badge-stats-info">${badge.statistics.pastDayAwardedCount}</div> </li> <li> <div class="text-label">Won Ever</div> 
           <div class="font-header-2 badge-stats-info">${badge.statistics.awardedCount}</div> </li>
@@ -105,7 +104,7 @@ if(Rkis.wholeData.Badges != false && Rkis.pageName == "game") {
 
 }
 
-if(Rkis.wholeData.UseThemes != false && Rkis.pageName == "game") {
+if(Rkis.pageName == "game") {
 
   Rkis.Scripts.PrivateServersView = Rkis.Scripts.PrivateServersView || {};
 
@@ -140,9 +139,7 @@ if(Rkis.wholeData.UseThemes != false && Rkis.pageName == "game") {
 
       var stylee = "";
 
-      var playercount = document.$find("#about > div.section.game-about-container > div.section-content.remove-panel > ul > li:nth-child(6) > p.text-lead.font-caption-body");
-      if(playercount == null) playercount = $r("#game-detail-page > div.btr-game-main-container.section-content > div.remove-panel.btr-description > ul > li:nth-child(6) > p.text-lead.font-caption-body");
-
+      var playercount = document.$find("#about > div.section.game-about-container > div.section-content.remove-panel > ul > li:nth-child(6) > p.text-lead.font-caption-body.wait-for-i18n-format-render");
       if (playercount && parseInt(playercount.innerText) <= players.length) stylee = "background-color: darkred;color: white;";
       else if (playercount && (parseInt(playercount.innerText) / 2) <= players.length) stylee = "background-color: orangered;color: white;";
       else stylee = "background-color: lightgray;color: black;";
@@ -159,7 +156,7 @@ if(Rkis.wholeData.UseThemes != false && Rkis.pageName == "game") {
 
 }
 
-if(Rkis.wholeData.UseThemes != false && Rkis.pageName == "game") {
+if(Rkis.pageName == "game") {
 
   Rkis.Scripts.FriendsServersView = Rkis.Scripts.FriendsServersView || {};
 
@@ -189,9 +186,7 @@ if(Rkis.wholeData.UseThemes != false && Rkis.pageName == "game") {
 
       var stylee = "";
 
-      var playercount = document.$find("#about > div.section.game-about-container > div.section-content.remove-panel > ul > li:nth-child(6) > p.text-lead.font-caption-body");
-      if(playercount == null) playercount = $r("#game-detail-page > div.btr-game-main-container.section-content > div.remove-panel.btr-description > ul > li:nth-child(6) > p.text-lead.font-caption-body");
-
+      var playercount = document.$find("#about > div.section.game-about-container > div.section-content.remove-panel > ul > li:nth-child(6) > p.text-lead.font-caption-body.wait-for-i18n-format-render");
       if (playercount && parseInt(playercount.innerText) <= players.length) stylee += "background-color: darkred;color: white;";
       else if (playercount && (parseInt(playercount.innerText) / 2) <= players.length) stylee += "background-color: orangered;color: white;";
       else stylee += "background-color: lightgray;color: black;";
@@ -214,7 +209,7 @@ if(Rkis.wholeData.UseThemes != false && Rkis.pageName == "game") {
 
 }
 
-if(Rkis.wholeData.UseThemes != false && Rkis.pageName == "game") {
+if(Rkis.pageName == "game") {
 
   Rkis.Scripts.PublicServersView = Rkis.Scripts.PublicServersView || {};
 
@@ -244,9 +239,7 @@ if(Rkis.wholeData.UseThemes != false && Rkis.pageName == "game") {
 
       var stylee = "";
 
-      var playercount = document.$find("#about > div.section.game-about-container > div.section-content.remove-panel > ul > li:nth-child(6) > p.text-lead.font-caption-body");
-      if(playercount == null) playercount = $r("#game-detail-page > div.btr-game-main-container.section-content > div.remove-panel.btr-description > ul > li:nth-child(6) > p.text-lead.font-caption-body");
-
+      var playercount = document.$find("#about > div.section.game-about-container > div.section-content.remove-panel > ul > li:nth-child(6) > p.text-lead.font-caption-body.wait-for-i18n-format-render");
       if (playercount && parseInt(playercount.innerText) <= players.length) stylee += "background-color: darkred;color: white;";
       else if (playercount && (parseInt(playercount.innerText) / 2) <= players.length) stylee += "background-color: orangered;color: white;";
       else stylee += "background-color: lightgray;color: black;";

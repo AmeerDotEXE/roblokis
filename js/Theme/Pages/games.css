@@ -1,6 +1,5 @@
 #game-detail-page > div.system-feedback {display: none;}
 #Leaderboard-Abp {margin-bottom: 1%;}
-#recommended-games-container > div {overflow: visible;}
 
 
 /* Btroblox Support */
@@ -256,8 +255,14 @@ html[data-btr-loaded="true"] #game-badges-container > game-badges-list > div > u
     display: inline-grid;
     align-content: center;
     font-weight: bold;
-    font-size: unset;
+    font-size: 16px;
+    word-break: break-all;
+    z-index: 1000;
     text-align: center;
+}
+
+.max-players-text #rbx-private-servers > div.section.tab-server-only > ul > li > div.section-right > span#rk-plr-counter {
+    font-size: 10px;
 }
 
 #rbx-private-servers > div.section.tab-server-only > ul > li > div.section-left {
@@ -372,8 +377,14 @@ html:not([data-btr-loaded="true"]) #rbx-private-servers > div.section.tab-server
     display: inline-grid;
     align-content: center;
     font-weight: bold;
-    font-size: unset;
+    font-size: 16px;
+    word-break: break-all;
+    z-index: 1000;
     text-align: center;
+}
+
+.max-players-text #rbx-friends-game-server-item-container > li > div.section-right > span#rk-plr-counter {
+    font-size: 10px;
 }
 
 #rbx-friends-game-server-item-container > li > div.section-left {
@@ -461,10 +472,16 @@ html:not([data-btr-loaded="true"]) #rbx-private-servers > div.section.tab-server
     display: inline-grid;
     align-content: center;
     font-weight: bold;
-    font-size: unset;
+    font-size: 16px;
+    word-break: break-all;
+    z-index: 1000;
     text-align: center;
     background-color: lightgray;
     color: black;
+}
+
+.max-players-text #rbx-small-game-server-item-container > li > div.section-right > span#rk-plr-counter {
+    font-size: 10px;
 }
 
 #rbx-small-game-server-item-container > li > div.section-left {
@@ -551,8 +568,14 @@ html:not([data-btr-loaded="true"]) #rbx-private-servers > div.section.tab-server
     display: inline-grid;
     align-content: center;
     font-weight: bold;
-    font-size: unset;
+    font-size: 16px;
+    word-break: break-all;
+    z-index: 1000;
     text-align: center;
+}
+
+.max-players-text #rbx-game-server-item-container > li > div.section-right > span#rk-plr-counter {
+    font-size: 10px;
 }
 
 #rbx-game-server-item-container > li > div.section-left {
@@ -562,8 +585,120 @@ html:not([data-btr-loaded="true"]) #rbx-private-servers > div.section.tab-server
     width: auto;
 }
 
-#rbx-game-server-item-container > li > div.section-left > div.rbx-game-server-status {
+#rbx-game-server-item-container > li > div.section-left > div.rbx-game-server-status,
+#rbx-game-server-item-container.pagenav > li:not(.pagenav) {
     display: none;
+}
+
+
+
+/* Filtered Servers  */
+#rbx-filtered-game-server-item-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#rbx-filtered-game-server-item-container.section-content-off {
+    background-color: transparent;
+}
+
+#game-instances #rbx-filtered-game-server-item-container > li {
+    transition: all 400ms;
+    transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
+
+    width: calc(calc(100% / var(--rk-filteredserver-column, 5)) - calc(var(--rk-filteredserver-gap, 0.3%) * 2));
+    margin: var(--rk-filteredserver-gap, 0.3%);
+
+
+    border-radius: var(--rk-filteredserver-corners-radius, 20px);
+
+    border-color: var(--rk-filteredserver-borders-color);
+    border-style: var(--rk-filteredserver-borders-style);
+    border-width: var(--rk-filteredserver-borders-size);
+
+    background: var(--rk-filteredserver-background);
+    background-size: var(--rk-filteredserver-background-image-size);
+}
+/*#rbx-filtered-game-server-item-container:hover > li:not(li:hover) {
+    opacity: 0.5;
+}*/
+#rbx-filtered-game-server-item-container > li:hover {
+    transform: var(--rk-basic-animations, scale(1.2));
+    opacity: var(--rk-basic-animations, 1);
+    z-index: var(--rk-basic-animations, 10);
+}
+
+#rbx-filtered-game-server-item-container > li > div.rbx-game-server-details > a {
+    margin: 0 0 0 0;
+    color: var(--rk-filteredserver-button-color);
+
+
+    border-radius: var(--rk-filteredserver-button-corners-radius, 8px);
+
+    border-color: var(--rk-filteredserver-button-borders-color, white);
+    border-style: var(--rk-filteredserver-button-borders-style, solid);
+    border-width: var(--rk-filteredserver-button-borders-size, 1px);
+
+    background: var(--rk-filteredserver-button-background, transparent);
+    background-size: var(--rk-filteredserver-button-background-image-size);
+}
+#rbx-filtered-game-server-item-container > li > div.section-right {
+    float: none;
+    width: auto;
+}
+
+#rbx-filtered-game-server-item-container > li > div.section-right > span {
+    margin: 0px -8px 6px 0px;
+    top: 8px;
+    width: 34px;
+    height: 34px;
+}
+
+#rbx-filtered-game-server-item-container > li > div.section-right > span#rk-plr-counter {
+    margin: 0px -8px 6px 0px;
+    display: inline-grid;
+    align-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    word-break: break-all;
+    z-index: 1000;
+    text-align: center;
+    background-color: lightgray;
+    color: black;
+}
+
+.max-players-text #rbx-filtered-game-server-item-container > li > div.section-right > span#rk-plr-counter {
+    font-size: 10px;
+}
+
+#rbx-filtered-game-server-item-container > li > div.section-left {
+    float: none;
+    border: none;
+    padding: 0;
+    width: auto;
+}
+
+#rbx-filtered-game-server-item-container > li > div.section-left > div.rbx-game-server-status {
+    display: none;
+}
+
+.filtered-servers-buttons {
+    user-select: none;
+    border: 1px solid #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 500;
+    height: auto;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    padding: 7px;
+    font-size: 16px;
+    line-height: 100%;
+    float: right;
+    background-color: transparent;
+    border-radius: 8px;
+    margin: 0 2px;
 }
 
 

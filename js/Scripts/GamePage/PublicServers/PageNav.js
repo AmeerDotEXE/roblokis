@@ -35,7 +35,15 @@ if(Rkis.wholeData.PageNav != false) {
       mainbtn.addEventListener("click", () => {Rkis.Scripts.PageNav.next(true);})
     })
 
-    Rkis.Scripts.PageNav.getpage(1);
+    document.$watch("#rbx-game-server-item-container", (publicsection) => {
+      publicsection.classList.add("pagenav");
+      Rkis.Scripts.PageNav.getpage(1);
+    })
+
+    document.$watch("#rbx-game-server-item-container > li", () => {
+      Rkis.Scripts.PageNav.getpage(1);
+    })
+
   }
 
 
@@ -108,7 +116,7 @@ if(Rkis.wholeData.PageNav != false) {
       var fullcode = "";
 
       fullcode += `
-      <li class="stack-row rbx-game-server-item" data-gameid="${server.Guid}">
+      <li class="stack-row rbx-game-server-item pagenav" data-gameid="${server.Guid}">
         <div class="section-header"><div class="link-menu rbx-game-server-menu"></div></div>
         <div class="section-left rbx-game-server-details">
           <div class="text-info rbx-game-status rbx-game-server-status">${server.PlayersCapacity}</div>

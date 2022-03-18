@@ -28,7 +28,10 @@ Rkis.Designer.SetupTheme = async function() {
     return mainStyle.cssRules[ruleIndex];
   }
 
-  const putCSS = (paths) => {
+  Rkis.Designer.addCSS = (paths) => {
+    if(window.ContextScript != true) return console.error("Not Context Script");
+    if(typeof paths == "string") paths = [...paths];
+
     if(!mainStyle) {
       const style = document.createElement("style");
       style.type = "text/css";
@@ -44,12 +47,14 @@ Rkis.Designer.SetupTheme = async function() {
     })
   }
 
+  var putCSS = Rkis.Designer.addCSS; //shorter form
+
   if(Rkis.wholeData.ExtraShadows == true)
     putCSS(["js/Theme/Pages/shadows.css"]);
 
   if(Rkis.wholeData.UseThemes == false) {
     putCSS(["js/Theme/Extras/extensions.css"]);
-    document.$watch("body", (e) => {e.classList.add("Roblokis-no-theme")});
+    document.$watch("body", (e) => {e.classList.add("Roblokis-no-themes")});
     return;
   }
 
@@ -59,6 +64,7 @@ Rkis.Designer.SetupTheme = async function() {
     {match: ".com/users/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/profile.css" ]},
     {match: ".com/games/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/games.css" ]},
     {match: ".com/groups/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/groups.css" ]},
+    {match: ".com/roblokis", paths: [ "html/SettingsPage/SettingsPage.css" ]},
     
     {match: ".com/catalog", paths: [ "js/Theme/Pages/all.css" ]},
     {match: ".com/upgrades/", paths: [ "js/Theme/Pages/all.css" ]},
@@ -208,7 +214,7 @@ Rkis.Designer.SetupTheme = async function() {
       var completecode = "";
 
       if(n[0].includes("|server|")) {
-        var alltheelements = ["publicserver","smallserver","friendsserver","privateserver"];
+        var alltheelements = ["filteredserver","publicserver","smallserver","friendsserver","privateserver"];
 
         alltheelements.forEach((element, elementnumber) => {
           completecode += n[0].split("|server|").join(element);

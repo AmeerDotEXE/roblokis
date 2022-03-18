@@ -1,7 +1,7 @@
 {
   "name": "Roblokis",
   "description": "__MSG_extDesc__",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "default_locale": "en",
   "manifest_version": 2,
   "options_page": "html/Popup/Popup.html",
@@ -12,7 +12,7 @@
   },
   "background": {
     "scripts": [ "js/Main/jquery-3.6.0.min.js", "js/Main/Background.js" ],
-    "persistent": false
+    "persistent": true
   },
   "browser_action": {
     "default_popup": "html/Popup/Popup.html",
@@ -58,7 +58,9 @@
         "js/Scripts/GamePage/FriendServers/FriendsServersLink.js",
         "js/Scripts/GamePage/SmallServers/SmallServer.js",
         "js/Scripts/GamePage/PublicServers/PublicServersLink.js",
-        "js/Scripts/GamePage/PublicServers/PageNav.js"
+        "js/Scripts/GamePage/PublicServers/PageNav.js",
+        "js/Scripts/GamePage/FilteredServers/FilteredServer.js",
+        "js/Scripts/GamePage/FilteredServers/PageNav.js"
        ],
      "run_at": "document_start"
     },

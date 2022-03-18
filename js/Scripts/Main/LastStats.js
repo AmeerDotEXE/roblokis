@@ -9,7 +9,25 @@ if(Rkis.wholeData.LastStats != false) {
     var id = Rkis.UserId;
     if (id == null) return;
 
-    var result = await fetch("https://presence.roblox.com/v1/presence/users", {
+    function getPresences(url, json) {
+      return new Promise(resolve => {
+        chrome.runtime.sendMessage({about: "postURLRequest", url: url, jsonData: json}, 
+          function(data) {
+              resolve(data)
+          })
+      })
+    }
+
+    function getData(url) {
+      return new Promise(resolve => {
+        chrome.runtime.sendMessage({about: "getURLRequest", url: url}, 
+          function(data) {
+              resolve(data)
+          })
+      })
+    }
+
+    var result = await getData(`https://api.roblox.com/users/${id}/onlinestatus/`);/*fetch("https://presence.roblox.com/v1/presence/users", {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -20,7 +38,7 @@ if(Rkis.wholeData.LastStats != false) {
     .then((response) => response.json())
     .catch(() => {return null;});
     if(result != null && result.userPresences != null) result = result.userPresences;
-    if(result != null && result.length > 0) result = result[0];
+    if(result != null && result.length > 0) result = result[0];*/
 
     var statusholder = await document.$watch("#profile-statistics-container > .section.profile-statistics").$promise();
     if(statusholder == null) return;
@@ -33,12 +51,12 @@ if(Rkis.wholeData.LastStats != false) {
     var onlinegame = null;
 
     if(result != null) {
-      var award = new Date(result.lastOnline);
+      var award = new Date(result.LastOnline);//small start letters
 
-      if(result.placeId != null) onlinestats = `<a class="text-lead" href="${window.location.origin}/games/refer?PlaceId=${result.placeId}" style="text-decoration: underline;">${result.lastLocation}</a>`;
-      else onlinestats = `<p class="text-lead">${result.lastLocation}</p>`;
+      if(result.PlaceId != null) onlinestats = `<a class="text-lead" href="${window.location.origin}/games/refer?PlaceId=${result.PlaceId}" style="text-decoration: underline;">${result.LastLocation}</a>`;
+      else onlinestats = `<p class="text-lead">${result.LastLocation}</p>`;
 
-      if(result.placeId != null && result.gameId != null) onlinegame = `<li class="profile-stat" style="display: grid;justify-items: center;"><p class="text-label">${Rkis.language["lastGame"]}</p> <p class="text-lead" onclick="Roblox.GameLauncher.joinGameInstance(${result.placeId}, '${result.gameId}')" style="width: fit-content;background-color: #00b06f;border-radius: 10px;padding: 0 20%;cursor: pointer;align-self: center;">${Rkis.language["joinButtons"]}</p> </li>`;
+      if(result.PlaceId != null && result.gameId != null) onlinegame = `<li class="profile-stat" style="display: grid;justify-items: center;"><p class="text-label">${Rkis.language["lastGame"]}</p> <p class="text-lead" onclick="Roblox.GameLauncher.joinGameInstance(${result.PlaceId}, '${result.GameId}')" style="width: fit-content;background-color: #00b06f;border-radius: 10px;padding: 0 20%;cursor: pointer;align-self: center;">${Rkis.language["joinButtons"]}</p> </li>`;
 
       onlineseen = `<p class="text-lead"
       title="${Rkis.language.get("lastSeenLong", award.$format("MM/DD/YYYY, hh:mm"))}">${award.$since(new Date(), false, true)}</p>`;

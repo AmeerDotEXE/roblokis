@@ -10,11 +10,11 @@ if (Rkis.wholeData.CustomRobux != null && Rkis.wholeData.CustomRobux != "") {
     }
 
     document.$watch("#nav-robux-amount", async (rbxplate) => {
-      rbxplate.id = "nav-custom-robux-amount";
-      //for (var i = 0; i < 10; i++) {
+      for (var i = 0; i < 10; i++) {
+        rbxplate.id = "nav-custom-robux-amount";
         rbxplate.innerText = Rkis.wholeData.CustomRobux;
-      //  await Rkis.delay(1000);
-      //}
+        await Rkis.delay(1000);
+      }
     })
   })
 

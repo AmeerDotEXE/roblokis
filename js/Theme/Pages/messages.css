@@ -13,6 +13,7 @@
 #MessagesInbox > div,
 #Notifications > div.message-news,
 
-#private-message > div > ui-view > div > div.roblox-message-body > div {
+#private-message > div > ui-view > div > div.roblox-message-body > div,
+#private-message > div > ui-view > div > div.roblox-message-body > div > div.message-reply {
     background-color: transparent;
 }

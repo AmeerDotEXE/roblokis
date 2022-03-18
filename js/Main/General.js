@@ -1,5 +1,6 @@
 var Rkis = Rkis || {};
 
+
 if(window.location.href.includes("/games/")) {
   Rkis.GameId = window.location.href.split("/games/")[1].split("/")[0];
   Rkis.pageName = "game";
@@ -26,7 +27,7 @@ Rkis.codeLoader = {save: {}, load: {}};
 Rkis.AllRunListeners = Rkis.AllRunListeners || [];
 /* Copy Paste if needed
 Rkis.AllRunListeners = Rkis.AllRunListeners || [];
-Rkis.AllRunListeners.push(() =>{}));
+Rkis.AllRunListeners.push(() =>{});
 */
 
 (function() {
@@ -169,6 +170,7 @@ Rkis.AllRunListeners.push(() =>{}));
   l("joinPrivateServer");
   l("JoinPublicServer");
 }());
+
 
 //onload
 Rkis.OnReady = function (func) {
@@ -360,10 +362,10 @@ Rkis.AllRunListeners.push(() => {
   if(stng == null) return;
 
   stng.addEventListener("click", async () => {
-    if(stng.getAttribute("aria-describedby") != null) return;
+    if(stng.getAttribute("aria-describedby") != null || document.querySelector("#settings-popover-menu .roblokis-settings-button") != null) return;
 
     var rkisbtn = document.createElement("li");
-    rkisbtn.innerHTML = `<a class="rbx-menu-item" href="https://${Rkis.SubDomain}.roblox.com/roblokis" style="color: rgb(255,64,64);">Roblokis</a>`;
+    rkisbtn.innerHTML = `<a class="rbx-menu-item roblokis-settings-button" href="https://${Rkis.SubDomain}.roblox.com/roblokis" style="color: rgb(255,64,64);">Roblokis</a>`;
 
     var doc = await document.$watch("#settings-popover-menu").$promise();
     if(doc == null) return;

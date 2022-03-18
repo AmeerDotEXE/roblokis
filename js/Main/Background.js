@@ -44,42 +44,112 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         break;
       case "getPublicServerPageCache":
         async function getPublicServerPageCache() {
-          var pagenum = ((request.PageNum || 1) - 1) * (request.ServerNum || 10);
-          var servers = [];
-
-          if(gamesCache[request.GameId] == null || gamesCache[request.GameId].servers.publicServers.length <= 0 || reploadingpublicservers == true) await refreshPublicServersCache(request.GameId);
-          var game = gamesCache[request.GameId] || null;
-          if(game == null) return sendResponse(null);
-
-          for(var i = pagenum; i < game.servers.publicServers.length && i < pagenum + (request.ServerNum || 10); i++) {
-            servers.push(game.servers.publicServers[i]);
-          }
-
-          sendResponse({servers: servers, pages: game.servers.publicServers.length});
+          sendResponse(await getPublicServersPage(request.GameId, request.PageNum, request.ServerNum));
         }
         getPublicServerPageCache();
         break;
       case "getSmallServerCache":
         async function getSmallServerCache() {
-          var servers = [];
-
-          if(gamesCache[request.GameId] == null || gamesCache[request.GameId].servers.publicServers.length <= 0 || reploadingpublicservers == true) await refreshPublicServersCache(request.GameId);
-          var game = gamesCache[request.GameId] || null;
-          if(game == null) return sendResponse(null);
-
-          for(var i = game.servers.publicServers.length - 1; i >= 0 && i > (game.servers.publicServers.length - 1) - (request.ServerNum || 10); i--) {
-            servers.push(game.servers.publicServers[i]);
-          }
-
-          sendResponse(servers);
+          sendResponse(await getSmallServersPage(request.GameId, request.PageNum, request.ServerNum));
         }
         getSmallServerCache();
+        break;
+      case "getLowPingServerCache":
+        async function getLowPingServerCache() {
+          sendResponse(await getLowPingServersPage(request.GameId, request.PageNum, request.ServerNum));
+        }
+        getLowPingServerCache();
+        break;
+    }
+  }
+  else {
+    switch(request.about) {
+      case "getURLRequest":
+        if(request.url != null) {
+          $.ajax({
+            url: request.url,
+            type: "GET",
+            success: function(data) {
+              sendResponse(data);
+            }
+          })//thanks stackoverflow xD
+        } else {sendResponse(null);}
+        break;
+      case "postURLRequest":
+        if(request.url != null && request.jsonData != null) {
+          $.ajax({
+            url: request.url,
+            type: "POST",
+            data: request.jsonData,
+            success: function(data) {
+              sendResponse(data);
+            }
+          })//thanks stackoverflow xD
+        } else {sendResponse(null);}
         break;
     }
   }
 
   return true;
 });
+
+
+async function getPublicServersPage(GameId, PageNum = 1, serversInPage = 10) {
+  var pagenum = ((PageNum || 1) - 1) * (serversInPage || 10);
+  var servers = [];
+
+  if(gamesCache[GameId] == null || gamesCache[GameId].servers.publicServers.length <= 0 || reploadingpublicservers == true) await refreshPublicServersCache(GameId);
+  var game = gamesCache[GameId] || null;
+  if(game == null) return sendResponse(null);
+
+  var all_servers = [...game.servers.publicServers];
+
+  for(var i = pagenum; i < all_servers.length && i < pagenum + (serversInPage || 10); i++) {
+    servers.push(all_servers[i]);
+  }
+
+  return {servers: servers, pages: game.servers.publicServers.length, currentPage: PageNum, serversPerPage: serversInPage};
+}
+
+async function getSmallServersPage(GameId, PageNum = 1, serversInPage = 10) {
+  var pagenum = ((PageNum || 1) - 1) * (serversInPage || 10);
+  var servers = [];
+
+  if(gamesCache[GameId] == null || gamesCache[GameId].servers.publicServers.length <= 0 || reploadingpublicservers == true) await refreshPublicServersCache(GameId);
+  var game = gamesCache[GameId] || null;
+  if(game == null) return sendResponse(null);
+
+  var all_servers = [...game.servers.publicServers];
+  all_servers = all_servers.reverse();
+
+  for(var i = pagenum; i < all_servers.length && i < pagenum + (serversInPage || 10); i++) {
+    servers.push(all_servers[i]);
+  }
+
+  //for(var i = (all_servers.length - 1) - pagenum; i >= 0 && i > ((all_servers.length - 1) - pagenum) - (serversInPage || 10); i--) {
+  //  servers.push(all_servers[i]);
+  //}
+
+  return {servers: servers, pages: game.servers.publicServers.length, currentPage: PageNum, serversPerPage: serversInPage};
+}
+
+async function getLowPingServersPage(GameId, PageNum = 1, serversInPage = 10) {
+  var pagenum = ((PageNum || 1) - 1) * (serversInPage || 10);
+  var servers = [];
+
+  if(gamesCache[GameId] == null || gamesCache[GameId].servers.publicServers.length <= 0 || reploadingpublicservers == true) await refreshPublicServersCache(GameId);
+  var game = gamesCache[GameId] || null;
+  if(game == null) return sendResponse(null);
+
+  var all_servers = [...game.servers.publicServers];
+  all_servers = all_servers.sort(function(a, b){return a.Ping-b.Ping});
+
+  for(var i = pagenum; i < all_servers.length && i < pagenum + (serversInPage || 10); i++) {
+    servers.push(all_servers[i]);
+  }
+
+  return {servers: servers, pages: game.servers.publicServers.length, currentPage: PageNum, serversPerPage: serversInPage};
+}
 
 
 async function refreshPublicServersCache(GameId) {
@@ -104,12 +174,14 @@ async function refreshPublicServersCache(GameId) {
             for (j = 0; j < data.Collection.length; j++) {
               if(data.Collection[j].CurrentPlayers.length > 0 && data.Collection[j].Ping > 0) gamesCache[GameId].servers.publicServers[PageIndex + j] = data.Collection[j];
             }
-            foundpage();
+            return foundpage();
           }).fail(function(){
             if(retry <= 0) return foundpage();
 
-            getPageServers(PageIndex, retry - 1);
             console.log(`page ${PageIndex / 10} failed`);
+            getPageServers(PageIndex, retry - 1)
+            .then(() => {foundpage()})
+            .catch(() => {foundpage()})
           });
         });
       }
@@ -120,7 +192,7 @@ async function refreshPublicServersCache(GameId) {
 
       Promise.all(waitinglist).then(() => {
         var beforeemptyservers = gamesCache[GameId].servers.publicServers.length;
-        gamesCache[GameId].servers.publicServers = gamesCache[GameId].servers.publicServers.filter(svr => svr != null);
+        gamesCache[GameId].servers.publicServers = gamesCache[GameId].servers.publicServers.filter((svr, svri, svrs) => svr != null && svri == svrs.findIndex((t) => (t != null && t.Guid == svr.Guid)));
         console.log("Got "+gamesCache[GameId].servers.publicServers.length+" + "+(beforeemptyservers-gamesCache[GameId].servers.publicServers.length)+" Public Servers for "+GameId);
         reploadingpublicservers = false;
         publicserversloaded.forEach((e) => {e()})

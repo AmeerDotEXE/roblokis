@@ -1,6 +1,11 @@
 var Rkis = window.Rkis || {};
 
 (function() {
+  window.ContextScript = true;
+
+  var manifestData = chrome.runtime.getManifest();
+  Rkis.version = manifestData.version;
+
   var mainholder = document.createElement("div");
   mainholder.id = 'roblokis-script-holder';
   document.firstElementChild.append(mainholder);

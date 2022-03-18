@@ -14,6 +14,18 @@ if(Rkis.pageName == "game") {
 
 	Rkis.Scripts = Rkis.Scripts || {};
 
+	if(Rkis.wholeData.ShowMaxPlayers != false) {
+		document.$watch("#game-instances", (e) => {
+
+			document.$watch("div.remove-panel > ul.game-stats-container > li:nth-child(6) > p.text-lead.font-caption-body:not(.invisible)", (playercount) => {
+				if(!(playercount != null && isNaN(parseInt(playercount.innerText)) != true && parseInt(playercount.innerText) < 10)) {
+					e.classList.add("max-players-text");
+		        }
+			})
+
+	    })
+	}
+
 	if(Rkis.wholeData.Badges != false) {
 
 	  Rkis.Scripts.BadgesView = Rkis.Scripts.BadgesView || {};
@@ -154,7 +166,7 @@ if(Rkis.pageName == "game") {
 	      else stylee = "background-color: lightgray;color: black;";
 
 	      counter.setAttribute("style", stylee);
-	      counter.innerText = players.length;
+	      counter.innerText = players.length + (Rkis.wholeData.ShowMaxPlayers != false ? "/"+(playercount.innerText || "?") : "");
 	      counter.id = "rk-plr-counter";
 
 	      rightsection.insertBefore(counter, rightsection.firstChild);
@@ -195,7 +207,7 @@ if(Rkis.pageName == "game") {
 	      else stylee += "background-color: lightgray;color: black;";
 
 	      counter.setAttribute("style", stylee);
-	      counter.innerText = players.length;
+	      counter.innerText = players.length + (Rkis.wholeData.ShowMaxPlayers != false ? "/"+(playercount.innerText || "?") : "");
 	      counter.id = "rk-plr-counter";
 
 	      rightsection.insertBefore(counter, rightsection.firstChild);
@@ -242,7 +254,7 @@ if(Rkis.pageName == "game") {
 	      else stylee += "background-color: lightgray;color: black;";
 
 	      counter.setAttribute("style", stylee);
-	      counter.innerText = players.length;
+	      counter.innerText = players.length + (Rkis.wholeData.ShowMaxPlayers != false ? "/"+(playercount.innerText || "?") : "");
 	      counter.id = "rk-plr-counter";
 
 	      rightsection.insertBefore(counter, rightsection.firstChild);
