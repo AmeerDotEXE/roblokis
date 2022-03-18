@@ -1,7 +1,7 @@
 var page = page || {};
 
 (function() {
-  var smallserver = document.querySelector("#rkpage > div:nth-child(1) > select");
+  var smallserver = document.querySelector("#rkpage > div.serversselector > select");
   smallserver.value = "";
 
   smallserver.addEventListener("change", async () => {

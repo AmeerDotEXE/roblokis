@@ -87,7 +87,9 @@ Designer.SaveNewTheme = async function(name, desc, themedata) {
 
   var thenewtheme = {
   	name: name,
-  	description: desc
+  	description: desc,
+  	start_version: Rkis.version,
+  	current_version: Rkis.version
   };
 
   if(themedata != null) thenewtheme = jsonConcat(themedata, thenewtheme);
@@ -324,6 +326,8 @@ Designer.ThemeEditor.Save = function() {
 			theme[tab.dataset.editthemetabs].css = jsonConcat(place, jsonplace);
 		})
 	})
+
+	theme.current_version = Rkis.version;
 
 	wholedata.Designer.Themes[Designer.ThemeEditor.themeId] = theme;
 

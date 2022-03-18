@@ -2,16 +2,27 @@ var page = page || {};
 
 page.setup = function() {
   var wholedata = Rkis.wholeData || {};
+
+  document.querySelectorAll("button.main-save-button").forEach((e) => {
+    if(e.dataset.listening != null) return;
+    e.dataset.listening = "true";
+    
+    e.addEventListener("click", () => {page.save(e);});
+  });
   
-  var buttons = document.querySelectorAll(".rk-button");
-  buttons.forEach((e) => {
+  document.querySelectorAll(".rk-button").forEach((e) => {
+    if(e.dataset.listening != null) return;
+    e.dataset.listening = "true";
+
     e.addEventListener("click", () => {page.toggleSwich(e);});
     if(e.dataset.file == null || wholedata[e.dataset.file] == null) return;
     page.toggleSwich(e, wholedata[e.dataset.file]);
   });
 
-  var textfields = document.querySelectorAll(".rk-textfield");
-  textfields.forEach((e) => {
+  document.querySelectorAll(".rk-textfield").forEach((e) => {
+    if(e.dataset.listening != null) return;
+    e.dataset.listening = "true";
+
     if(e.dataset.file == null || wholedata[e.dataset.file] == null) return;
     e.value = wholedata[e.dataset.file];
   });
@@ -93,6 +104,7 @@ page.E = "A";
 page.Sports = "It's in the Game";
 
 page.start = async function() {
+  await document.$watch("#rkmainpage").$promise()
   if(await page.open(document.querySelector("#vertical-menu > li.menu-option.active").dataset.file, true) == "404") {
     page.open(document.querySelector("#vertical-menu > li.menu-option").dataset.file, true);
   }

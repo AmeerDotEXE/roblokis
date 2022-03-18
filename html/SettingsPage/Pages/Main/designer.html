@@ -1,5 +1,6 @@
+
 <h3><span data-translate="categoryMain">Main</span> &gt; <span data-translate="tabDesigner">Themes</span></h3>
-<button class="main-save-button" onclick="page.save(this)" data-translate="btnSave">Save</button>
+<button class="main-save-button" data-translate="btnSave">Save</button>
 
 <div id="rk-themesection">
 
@@ -1960,6 +1961,65 @@
                         <div class="designer-section" style="margin-bottom: 20px;transition: all 400ms;position: relative;overflow: hidden;min-width: 240px;">
 
                            <div style="margin: 10px 0;text-align: center;">
+                              <div class="bright" style="font-weight: 600;" data-translate="themePreviewDefault">Default Server Preview</div>
+                           </div>
+
+                           <div class="recreate-servers selectable dark" onclick="showthelem(this,event)">
+                              <loadcode code="editelement">
+
+                                 <loadcode code="editcorners" data-location="defaultserver" data-title="Server " data-togglebtn="on" data-toggle="off"></loadcode>
+
+                                 <loadcode code="editbackground" data-location="defaultserver.background" data-title="Server " data-togglebtn="on" data-toggle="off"></loadcode>
+
+                                 <loadcode code="editborders" data-location="defaultserver" data-title="Server " data-togglebtn="on" data-toggle="off"></loadcode>
+
+
+                                 <div class="section-left rbx-private-server-details group designer-section" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 10px;border-radius: 20px;margin-bottom: 20px;min-width: 220px;" onclick="showthelem(this,event)">
+                                    <loadcode code="editelement">
+
+                                       <loadcode code="editcorners" data-location="defaultserver.button" data-title="Button "  data-togglebtn="on" data-toggle="off"></loadcode>
+
+
+                                       <loadcode code="editbackground" data-title="Button " data-location="defaultserver.button.background" data-togglebtn="on" data-toggle="off"></loadcode>
+
+
+                                       <loadcode code="editborders" data-location="defaultserver.button" data-title="Button " data-togglebtn="on" data-toggle="off"></loadcode>
+
+                                       <loadcode code="loadedits"></loadcode>
+                                    </loadcode>
+
+                                    <a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
+                                    <a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
+                                 </div>
+
+                                 <loadcode code="loadedits"></loadcode>
+                              </loadcode>
+
+                              <div class="section-left rbx-private-server-details" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 0px;">
+
+                                 <div class="rbx-private-server-alert recreate-text-size">
+                                     <span class="icon-remove"></span>
+                                     <span data-translate="slowServer">Slow Server</span>
+                                 </div>
+
+                                 <a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
+                                 <a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
+                              </div>
+
+                              <div class="section-right rbx-friends-game-server-players" style="float: none;width: 99%;">
+                                 <span class="avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image recreate-text-size" style="background-color: lightgrey;color: black;" id="rk-plr-counter">3</span>
+
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link" title="Some Person"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                              </div>
+                           </div>
+
+                        </div>
+
+                        <div class="designer-section" style="margin-bottom: 20px;transition: all 400ms;position: relative;overflow: hidden;min-width: 240px;">
+
+                           <div style="margin: 10px 0;text-align: center;">
                               <div class="bright" style="font-weight: 600;" data-translate="themePreviewPrivate">Private Server Preview</div>
                            </div>
 
@@ -2147,65 +2207,6 @@
                         <div class="designer-section" style="margin-bottom: 20px;transition: all 400ms;position: relative;overflow: hidden;min-width: 240px;">
 
                            <div style="margin: 10px 0;text-align: center;">
-                              <div class="bright" style="font-weight: 600;" data-translate="themePreviewDefault">Default Server Preview</div>
-                           </div>
-
-                           <div class="recreate-servers selectable dark" onclick="showthelem(this,event)">
-                              <loadcode code="editelement">
-
-                                 <loadcode code="editcorners" data-location="defaultserver" data-title="Server " data-togglebtn="on" data-toggle="off"></loadcode>
-
-                                 <loadcode code="editbackground" data-location="defaultserver.background" data-title="Server " data-togglebtn="on" data-toggle="off"></loadcode>
-
-                                 <loadcode code="editborders" data-location="defaultserver" data-title="Server " data-togglebtn="on" data-toggle="off"></loadcode>
-
-
-                                 <div class="section-left rbx-private-server-details group designer-section" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 10px;border-radius: 20px;margin-bottom: 20px;min-width: 220px;" onclick="showthelem(this,event)">
-                                    <loadcode code="editelement">
-
-                                       <loadcode code="editcorners" data-location="defaultserver.button" data-title="Button "  data-togglebtn="on" data-toggle="off"></loadcode>
-
-
-                                       <loadcode code="editbackground" data-title="Button " data-location="defaultserver.button.background" data-togglebtn="on" data-toggle="off"></loadcode>
-
-
-                                       <loadcode code="editborders" data-location="defaultserver.button" data-title="Button " data-togglebtn="on" data-toggle="off"></loadcode>
-
-                                       <loadcode code="loadedits"></loadcode>
-                                    </loadcode>
-
-                                    <a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
-                                    <a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
-                                 </div>
-
-                                 <loadcode code="loadedits"></loadcode>
-                              </loadcode>
-
-                              <div class="section-left rbx-private-server-details" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 0px;">
-
-                                 <div class="rbx-private-server-alert recreate-text-size">
-                                     <span class="icon-remove"></span>
-                                     <span data-translate="slowServer">Slow Server</span>
-                                 </div>
-
-                                 <a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
-                                 <a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
-                              </div>
-
-                              <div class="section-right rbx-friends-game-server-players" style="float: none;width: 99%;">
-                                 <span class="avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image recreate-text-size" style="background-color: lightgrey;color: black;" id="rk-plr-counter">3</span>
-
-                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link" title="Some Person"><img class="avatar-card-image"></a></span>
-                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-                              </div>
-                           </div>
-
-                        </div>
-
-                        <div class="designer-section" style="margin-bottom: 20px;transition: all 400ms;position: relative;overflow: hidden;min-width: 240px;">
-
-                           <div style="margin: 10px 0;text-align: center;">
                               <div class="bright" style="font-weight: 600;" data-translate="themePreviewSmall">Small Server Preview</div>
                            </div>
 
@@ -2349,6 +2350,86 @@
 
                                  <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link" title="Some Person"><img class="avatar-card-image"></a></span>
                                  <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                              </div>
+                           </div>
+
+                        </div>
+
+                        <div class="designer-section" style="margin-bottom: 20px;transition: all 400ms;position: relative;overflow: hidden;min-width: 240px;">
+
+                           <div style="margin: 10px 0;text-align: center;">
+                              <div class="bright" style="font-weight: 600;" data-translate="themePreviewSmall">Filtered Server Preview</div>
+                           </div>
+
+                           <div class="recreate-servers selectable dark" onclick="showthelem(this,event)">
+                              <loadcode code="editelement">
+
+                                 <div class="section-content">
+                                    <div style="display: flex;justify-content: space-between;align-items: center;">
+                                       <h4 style="width: fit-content;" data-translate="themeSvrStng">Servers Settings</h4>
+                                    </div>
+
+                                    <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin: 0 5px 5px 0px;" data-translate="themeSvrPerRow">Servers Per Row:</span><input type="range" value="5" data-location="filteredserver.column" data-type="value" class="form-control input-field" max="8"></div>
+
+                                    <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin: 0 5px 0px 0px;" data-translate="themeSvrGap">Servers Gap:</span><input type="range" value="0.3" step="0.1" data-location="filteredserver.gap" data-type="percent" class="form-control input-field" max="2"></div>
+                                 </div>
+
+
+                                 <loadcode code="editcorners" data-location="filteredserver" data-togglebtn="on" data-toggle="off" data-title="Server "></loadcode>
+
+
+                                 <loadcode code="editbackground" data-title="Server " data-location="filteredserver.background" data-togglebtn="on" data-toggle="off"></loadcode>
+
+
+                                 <loadcode code="editborders" data-location="filteredserver" data-togglebtn="on" data-toggle="off" data-title="Server "></loadcode>
+
+
+                                 <div class="section-left rbx-private-server-details group designer-section" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 10px;border-radius: 20px;margin-bottom: 20px;min-width: 220px;" onclick="showthelem(this,event)">
+                                    <loadcode code="editelement">
+                                       <div class="section-content" style="min-width: 200px;">
+                                          <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;" data-translate="themeTextColor">Text Color:</span><input type="color" value="#ffffff" data-location="filteredserver.button.color" data-type="color" class="form-control input-field"></div>
+                                       </div>
+
+
+                                       <loadcode code="editcorners" data-location="filteredserver.button" data-togglebtn="on" data-toggle="off" data-title="Button "></loadcode>
+
+
+                                       <loadcode code="editbackground" data-title="Button " data-location="filteredserver.button.background" data-togglebtn="on" data-toggle="off"></loadcode>
+
+
+                                       <loadcode code="editborders" data-location="filteredserver.button" data-togglebtn="on" data-toggle="off" data-title="Button "></loadcode>
+
+                                       <loadcode code="loadedits"></loadcode>
+                                    </loadcode>
+
+                                    <a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
+                                    <a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
+                                 </div>
+
+                                 <loadcode code="loadedits"></loadcode>
+                              </loadcode>
+
+                              <div class="section-left rbx-private-server-details" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 0px;">
+
+                                 <div class="rbx-private-server-alert recreate-text-size">
+                                     <span class="icon-remove"></span>
+                                     <span data-translate="slowServer">Slow Server</span>
+                                 </div>
+
+                                 <a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
+                                 <a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
+                              </div>
+
+                              <div class="section-right rbx-friends-game-server-players" style="float: none;width: 99%;">
+                                 <span class="avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image recreate-text-size" style="background-color: orangered;color: white;" id="rk-plr-counter">7</span>
+
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link" title="Some Person"><img class="avatar-card-image"></a></span>
                                  <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
                                  <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
                                  <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
