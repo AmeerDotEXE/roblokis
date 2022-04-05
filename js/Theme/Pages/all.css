@@ -68,6 +68,43 @@ a.game-card-link[data-addedjoin="true"]:hover > a.rbx-game-server-join[onclick][
     transform: var(--rk-basic-animations, scale(1.12) rotate(5deg));
 }
 
+
+a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r0.rbx-game-server-join[onclick][data-placeid] {
+    transform: var(--rk-basic-animations, scale(1.12) rotate(0deg));
+}
+
+a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r1.rbx-game-server-join[onclick][data-placeid] {
+    transform: var(--rk-basic-animations, scale(1.12) rotate(3deg));
+}
+a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r2.rbx-game-server-join[onclick][data-placeid] {
+    transform: var(--rk-basic-animations, scale(1.12) rotate(6deg));
+}
+a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r3.rbx-game-server-join[onclick][data-placeid] {
+    transform: var(--rk-basic-animations, scale(1.12) rotate(9deg));
+}
+a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r4.rbx-game-server-join[onclick][data-placeid] {
+    transform: var(--rk-basic-animations, scale(1.12) rotate(12deg));
+}
+a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r5.rbx-game-server-join[onclick][data-placeid] {
+    transform: var(--rk-basic-animations, scale(1.12) rotate(15deg));
+}
+
+a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r-1.rbx-game-server-join[onclick][data-placeid] {
+    transform: var(--rk-basic-animations, scale(1.12) rotate(-3deg));
+}
+a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r-2.rbx-game-server-join[onclick][data-placeid] {
+    transform: var(--rk-basic-animations, scale(1.12) rotate(-6deg));
+}
+a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r-3.rbx-game-server-join[onclick][data-placeid] {
+    transform: var(--rk-basic-animations, scale(1.12) rotate(-9deg));
+}
+a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r-4.rbx-game-server-join[onclick][data-placeid] {
+    transform: var(--rk-basic-animations, scale(1.12) rotate(-12deg));
+}
+a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r-5.rbx-game-server-join[onclick][data-placeid] {
+    transform: var(--rk-basic-animations, scale(1.12) rotate(-15deg));
+}
+
 /*remove error backgrounds*/
 #container-main > div.content > div.request-error-page-content > div.default-error-page {
     background-color: transparent;

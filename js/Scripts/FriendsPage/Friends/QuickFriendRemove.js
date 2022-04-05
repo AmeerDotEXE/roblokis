@@ -26,7 +26,7 @@ if(Rkis.wholeData.QuickRemove != false) {
         if(daitm) daitm.remove();
       }
     })
-    .catch(() => {})
+    .catch((err) => { console.error(err); Rkis.ErrorToast("Couldn't UnFriend the Person"); })
   }
 
   Rkis.Scripts.QuickFriendRemove.setup = function() {
@@ -60,7 +60,9 @@ if(Rkis.wholeData.QuickRemove != false) {
     await document.$watch("#container-main").$promise();
     var weburl = window.location.href;
 
-    if (weburl.includes(`users${Roblox.CurrentUser.userId ? `/${Roblox.CurrentUser.userId}` : ``}/friends`) ||
+    var robloxuserid = document.$find("head > meta[data-userid]", (e) => { return e.dataset.userid; })
+
+    if (weburl.includes(`users${robloxuserid ? `/${robloxuserid}` : ``}/friends`) ||
         weburl.includes(`users/friends`)) {
 
       document.$watch("#friends", (btn) => {
@@ -71,7 +73,6 @@ if(Rkis.wholeData.QuickRemove != false) {
     }
   }
 
-  Rkis.AllRunListeners = Rkis.AllRunListeners || [];
-  Rkis.AllRunListeners.push(Rkis.Scripts.QuickFriendRemove.first);
+  Rkis.Scripts.QuickFriendRemove.first();
 
 }

@@ -1,6 +1,6 @@
 var Rkis = Rkis || {};
 
-if(Rkis.wholeData.PrivateServersLink != false) {
+if(Rkis.wholeData.PrivateServersLink != false && false) {
 
   Rkis.Scripts = Rkis.Scripts || {};
   Rkis.Scripts.PrivateServersLink = Rkis.Scripts.PrivateServersLink || {};
@@ -25,14 +25,14 @@ if(Rkis.wholeData.PrivateServersLink != false) {
       svers = svers.concat(scan.Instances);
     }
 
-    var servers = document.querySelectorAll("#rbx-private-servers > div.section.tab-server-only > ul > li");
+    var servers = document.querySelectorAll("#rbx-private-running-games > ul > li");
 
     for (var i = 0; i < servers.length; i++) {
       var svrId = servers[i].dataset.serverId;
       var uniId = servers[i].dataset.universeid;
-      var jionBtn = servers[i].querySelector('div.rbx-private-server-details > a.rbx-private-server-join');
+      var jionBtn = servers[i].querySelector('div.rbx-private-game-server-details > span > button.rbx-private-game-server-join');
 
-      if(!jionBtn.getAttribute("style")) jionBtn.setAttribute("style", "margin: 0 0 0 0;");
+      if(jionBtn != null && !jionBtn.getAttribute("style")) jionBtn.setAttribute("style", "margin: 0 0 0 0;");
 
       if (svrId && (jionBtn && jionBtn.onclick) && document.getElementById("privateid" + svrId) === null) {
         jionBtn.setAttribute("id", "privateid" + svrId);
@@ -86,7 +86,6 @@ if(Rkis.wholeData.PrivateServersLink != false) {
     prent.insertBefore(newbtn, sver);
   }
 
-  Rkis.AllRunListeners = Rkis.AllRunListeners || [];
-  Rkis.AllRunListeners.push(() => {document.addEventListener("rkrequested", Rkis.Scripts.PrivateServersLink.firstone)});
+  document.addEventListener("rkrequested", Rkis.Scripts.PrivateServersLink.firstone);
 
 }

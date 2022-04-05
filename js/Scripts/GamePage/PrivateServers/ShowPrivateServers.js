@@ -2,20 +2,13 @@ var Rkis = Rkis || {};
 
 if(Rkis.wholeData.ShowPrivateServers != false) {
 
-  Rkis.Scripts = Rkis.Scripts || {};
-  Rkis.Scripts.ShowPrivateServers = Rkis.Scripts.ShowPrivateServers || {};
-
-  Rkis.Scripts.ShowPrivateServers.firstone = function() {
-
-    var loadmoreBTN = document.querySelector("#rbx-private-servers > div.section.tab-server-only > div.rbx-private-servers-footer > button");
-    if (loadmoreBTN) {
-      if (loadmoreBTN.getAttribute("class").includes("hidden") == false) {
+  document.$watchLoop("#rbx-private-running-games > div.rbx-private-running-games-footer > button", async (loadmoreBTN) => {
+    while(document.contains(loadmoreBTN)) {
+      if (loadmoreBTN.getAttribute("disabled") == null) {
         loadmoreBTN.click();
       }
-      else return;
+      await Rkis.delay(200);
     }
-  }
-
-  document.addEventListener("rkrequested-private", Rkis.Scripts.ShowPrivateServers.firstone);
+  })
 
 }

@@ -1,80 +1,75 @@
 {
-  "name": "Roblokis",
-  "description": "__MSG_extDesc__",
-  "version": "3.1.1",
-  "default_locale": "en",
-  "manifest_version": 2,
-  "options_page": "html/Popup/Popup.html",
-  "web_accessible_resources": [ "*.*" ],
-  "homepage_url": "https://ameerdotexe.github.io/roblokis/",
-  "icons": {
-    "300": "/images/icons/icon_300x300.png"
-  },
-  "background": {
-    "scripts": [ "js/Main/jquery-3.6.0.min.js", "js/Main/Background.js" ],
-    "persistent": true
-  },
-  "browser_action": {
-    "default_popup": "html/Popup/Popup.html",
-    "default_icon": {
-       "19": "/images/icons/icon_300x300.png"
+    "name": "Roblokis",
+    "description": "__MSG_extDesc__",
+    "version": "3.1.2.1",
+    "default_locale": "en",
+    "manifest_version": 2,
+    "options_page": "html/Popup/Popup.html",
+    "web_accessible_resources": [ "*.*" ],
+    "homepage_url": "https://ameerdotexe.github.io/roblokis/",
+    "icons": {
+        "300": "/images/icons/icon_300x300.png"
     },
-    "default_title": "Roblokis"
-  },
-  "content_scripts": [
-    {
-     "matches": [ "*://*.roblox.com/*" ],
-     "js": [
-        "js/Main/Load.js",
-        "js/Main/Utility.js",
-        "js/Main/General.js",
-        "js/Theme/ThemeLoader.js",
+    "background": {
+        "scripts": [ "js/Main/jquery-3.6.0.min.js", "js/Main/Background.js" ],
+        "persistent": true
+    },
+    "browser_action": {
+        "default_popup": "html/Popup/Popup.html",
+        "default_icon": {
+            "19": "/images/icons/icon_300x300.png"
+        },
+        "default_title": "Roblokis"
+    },
+    "content_scripts": [
+        {
+            "matches": [ "*://*.roblox.com/*" ],
+            "js": [
+                "js/Main/Utility.js",
+                "js/Main/General.js",
+                "js/Theme/ThemeLoader.js",
 
-        "js/Scripts/Main/QuickGameJoin.js",
-        "js/Scripts/Main/CustomRobux.js",
-        "js/Scripts/Main/CustomName.js",
-        "js/Scripts/Main/DesktopApp.js"
-      ],
-     "run_at": "document_start"
-    },
-    {
-     "matches": [ "*://*.roblox.com/users/*" ],
-     "js": [
-        "js/Scripts/FriendsPage/Home/CancelFriendPending.js",
-        "js/Scripts/FriendsPage/Friends/QuickFriendRemove.js",
-        "js/Scripts/Main/LastStats.js" 
-      ],
-     "run_at": "document_start"
-    },
-    {
-     "matches": [ "*://*.roblox.com/games/*" ],
-     "js": [ 
-        "js/Scripts/Pages/GamePage.js",
+                "js/Scripts/Main/QuickGameJoin.js",
+                "js/Scripts/Main/CustomRobux.js",
+                "js/Scripts/Main/CustomName.js",
+                "js/Scripts/Main/DesktopApp.js"
+            ],
+            "run_at": "document_start"
+        },
+        {
+            "matches": [ "*://*.roblox.com/users/*" ],
+            "js": [
+                "js/Scripts/FriendsPage/Home/CancelFriendPending.js",
+                "js/Scripts/FriendsPage/Friends/QuickFriendRemove.js",
+                "js/Scripts/Main/LastStats.js" 
+            ],
+            "run_at": "document_start"
+        },
+        {
+            "matches": [ "*://*.roblox.com/games/*" ],
+            "js": [ 
+                "js/Scripts/Pages/GamePage.js",
 
-        "js/Scripts/GamePage/PrivateServers/PrivateServersLink.js",
-        "js/Scripts/GamePage/PrivateServers/AvailPrivateServers.js",
-        "js/Scripts/GamePage/PrivateServers/ShowPrivateServers.js",
-        "js/Scripts/GamePage/FriendServers/FriendsServersText.js",
-        "js/Scripts/GamePage/FriendServers/FriendsServersLink.js",
-        "js/Scripts/GamePage/SmallServers/SmallServer.js",
-        "js/Scripts/GamePage/PublicServers/PublicServersLink.js",
-        "js/Scripts/GamePage/PublicServers/PageNav.js",
-        "js/Scripts/GamePage/FilteredServers/FilteredServer.js",
-        "js/Scripts/GamePage/FilteredServers/PageNav.js"
-       ],
-     "run_at": "document_start"
-    },
-    {
-     "matches": [ "*://*.roblox.com/roblokis*" ],
-     "js": [ 
-        "js/Main/LoadSettingsPage.js"
-       ],
-     "run_at": "document_start"
-    },
-    {
-     "matches": [ "*://*.roblox.com/*" ],
-     "js": [ "js/Main/Loader.js" ],
-     "run_at": "document_start"
-    }
-  ]
+                "js/Scripts/GamePage/PrivateServers/AvailPrivateServers.js",
+                "js/Scripts/GamePage/PrivateServers/ShowPrivateServers.js",
+                "js/Scripts/GamePage/SmallServers/SmallServer.js",
+                "js/Scripts/GamePage/PublicServers/PageNav.js",
+                "js/Scripts/GamePage/FilteredServers/FilteredServer.js",
+                "js/Scripts/GamePage/FilteredServers/PageNav.js"
+            ],
+            "run_at": "document_start"
+        },
+        {
+            "matches": [ "*://*.roblox.com/roblokis*" ],
+            "js": [ 
+                "html/SettingsPage/SettingsPage.js",
+                "html/SettingsPage/Pages/Main/Designer.js",
+                "html/SettingsPage/Pages/GamePage/servers.js"
+            ],
+            "css": [
+                "html/SettingsPage/SettingsPage.css"
+            ],
+            "run_at": "document_start"
+        }
+    ]
 }

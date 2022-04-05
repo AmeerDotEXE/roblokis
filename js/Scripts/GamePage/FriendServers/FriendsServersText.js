@@ -1,6 +1,6 @@
 var Rkis = Rkis || {};
 
-if(Rkis.wholeData.FriendsServersText != false) {
+if(Rkis.wholeData.FriendsServersText != false && false) {
 
   Rkis.Scripts = Rkis.Scripts || {};
   Rkis.Scripts.FriendsServersText = Rkis.Scripts.FriendsServersText || {};
@@ -16,11 +16,11 @@ if(Rkis.wholeData.FriendsServersText != false) {
   Rkis.Scripts.FriendsServersText.secondone = function(serversitm, itmnumber, wholeListofitm) {
     if(serversitm == null) return;
 
-    var jionBtn = serversitm.querySelector("div.rbx-friends-game-server-details > a.rbx-friends-game-server-join");
+    var jionBtn = serversitm.querySelector("div.rbx-friends-game-server-details > span > button.rbx-friends-game-server-join");
     if(jionBtn.getAttribute("onclick").includes("joinPrivateGame")) jionBtn.innerText = Rkis.language["joinPrivateServer"];
     else if(jionBtn.getAttribute("onclick").includes("joinGameInstance")) jionBtn.innerText = Rkis.language["JoinPublicServer"];
   }
 
-  document.addEventListener("rkrequested-friends", Rkis.Scripts.FriendsServersText.firstone);
+  //document.addEventListener("rkrequested-friends", Rkis.Scripts.FriendsServersText.firstone);
 
 }

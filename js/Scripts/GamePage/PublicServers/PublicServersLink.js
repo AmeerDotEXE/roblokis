@@ -1,6 +1,6 @@
 var Rkis = Rkis || {};
 
-if(Rkis.wholeData.PublicServersLink != false) {
+if(Rkis.wholeData.PublicServersLink != false && false) {
 
   Rkis.Scripts = Rkis.Scripts || {};
   Rkis.Scripts.PublicServersLink = Rkis.Scripts.PublicServersLink || {};

@@ -1,14 +1,25 @@
 var Rkis = Rkis || {};
-Rkis.temp = Rkis.temp || {};
 
 //add auto listener adder on element selector
 //listener then the elemend has changed
 
+(() => {
+	Rkis.Execute = function(fn, ...args) {
+		var foo = new Function(fn.split("(")[1].split(")")[0].split(","), "try{"+fn.slice(fn.indexOf("{") + 1, -1)+"}catch(err){console.error(err);}");
+		foo(args[0]);
+	}
+	Rkis.RunFunction = function(fn, ...args) {
+		const script = document.createElement("script");
+		script.async = true;
+		script.type = "text/javascript";
+		script.textContent = `(${fn})(${JSON.stringify(args).slice(1, -1)})`;
+		document.documentElement.prepend(script);
+	}
+})();
 
-Rkis.temp.set$ = () => {
-
+Setup$rObject = function() {
 	$r = (() => {
-		let $
+		let $ = {};
 		
 		const Months = [
 			"January", "February", "March", "April", "May", "June",
@@ -28,7 +39,7 @@ Rkis.temp.set$ = () => {
 			"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"
 		];
 
-		//set how many zeros
+		/*set how many zeros*/
 		function FixedNumber(num, len) {
 			const str = String(num);
 			const amt = len - str.length;
@@ -36,14 +47,14 @@ Rkis.temp.set$ = () => {
 			return amt > 0 ? "0".repeat(amt) + str : str;
 		}
 		
-		//assigning multiple functions
+		/*assigning multiple functions*/
 		function Assign(stuff, data) { stuff.forEach(constructor => { Object.assign(constructor.prototype, data); }) }
 		
-		let DTF; //for time format (PM, AM)
+		let DTF; /*for time format (PM, AM)*/
 		
 		if (self.document) {
-			$ = function(selector) { return $.find(document, selector); } // $(selector) == $.find(document, selector)
-			$.all = function(selector) { return $.findAll(document, selector); } // $.all(selector) == $.findall(document, selector)
+			$ = function(selector) { return $.find(document, selector); } /* $(selector) == $.find(document, selector)*/
+			$.all = function(selector) { return $.findAll(document, selector); }; /* $.all(selector) == $.findall(document, selector)*/
 			
 			const Observers = new WeakMap();
 
@@ -74,7 +85,7 @@ Rkis.temp.set$ = () => {
 
 						const matches = target.$findAll(selector);
 
-						for (let index = 0, len = matches.length; index < len; index++) {
+						for (let index = 0; index < matches.length; index++) {
 							const match = matches[index];
 
 							if (!this.checked.has(match)) {
@@ -87,7 +98,7 @@ Rkis.temp.set$ = () => {
 							}
 						}
 					}
-				}
+				};
 
 				item.execute();
 
@@ -120,14 +131,9 @@ Rkis.temp.set$ = () => {
 						__proto__: watchProto
 					}
 				},
-		
-				$watchAll(...args) {
-					this.targetPromise.then(target => { target.$watchAll(...args); })
-					return this;
-				},
 				
 				$watchLoop(...args) {
-					this.targetPromise.then(target => { target.$watchLoop(...args); })
+					this.targetPromise.then(target => { target.$watchLoop(...args); });
 					return this;
 				},
 		
@@ -138,7 +144,7 @@ Rkis.temp.set$ = () => {
 						
 						parent: this,
 						__proto__: watchProto
-					}
+					};
 		
 					if (callback) nxt.targetPromise.then(callback);
 					return nxt;
@@ -152,7 +158,7 @@ Rkis.temp.set$ = () => {
 				$promise() {
 					return (this.finishPromise || this.targetPromise);
 				}
-			}
+			};
 		
 			function handleMuts(muts, self) {
 				const listeners = self.listeners;
@@ -177,15 +183,19 @@ Rkis.temp.set$ = () => {
 			}
 			
 			Object.assign($, {
+				each(list, fn) { 
+					Array.prototype.forEach.call(list, fn);
+				},
+
 				ready(fn) {
-					if (document.readyState !== "loading")
+					if (document.readyState != "loading")
 						fn();
 					else
 						document.addEventListener("DOMContentLoaded", fn, { once: true });
 				},
 
 				watch(target, selectors, filter, callback) {
-					if (typeof callback !== "function") {
+					if (typeof callback != "function") {
 						callback = filter;
 						filter = null;
 					}
@@ -198,7 +208,7 @@ Rkis.temp.set$ = () => {
 
 					let finishPromise;
 
-					//const promises = selectors.map(selector => addWatch(target, selector, filter));
+					/*const promises = selectors.map(selector => addWatch(target, selector, filter));*/
 					const promises = selectors.map(selector => new Promise(resolve => addWatch(target, selector, filter, resolve)));
 
 					finishPromise = Promise.all(promises).then(elems => {
@@ -208,7 +218,7 @@ Rkis.temp.set$ = () => {
 						}
 		
 						return elems[0];
-					})
+					});
 
 					return {
 						targetPromise: Promise.resolve(target),
@@ -219,7 +229,7 @@ Rkis.temp.set$ = () => {
 				
 				watchLoop(target, selector, filter, callback) {
 
-				  if (typeof callback !== "function") {
+				  if (typeof callback != "function") {
 						callback = filter;
 						filter = null;
 					}
@@ -228,73 +238,77 @@ Rkis.temp.set$ = () => {
 						target = target.documentElement;
 					}
 
-				  const item = {
-		  			checked: new WeakSet(),
-				  	firstSearch: false,
-				  	stopped: false,
+				  	const item = {
+			  			checked: new WeakSet(),
+					  	firstSearch: false,
+					  	stopped: false,
 
-				  	resolve(node) {
-              if (callback) {
+					  	resolve(node) {
+	          				if (callback) {
 								try { callback(node, () => this.stopped = true); }
 								catch(ex) { console.error(ex); }
 							}
-		  			},
+			  			},
 
-			  		execute() {
-					  	if (!this.firstSearch) {
-						  	const elem = target.$find(selector);
-						  	if (!elem) return;
+				  		execute() {
+						  	if (!this.firstSearch) {
+							  	const elem = target.$find(selector);
+							  	if (!elem) return;
 
-						  	this.firstSearch = true;
-							  this.checked.add(elem);
+							  	this.firstSearch = true;
+								  this.checked.add(elem);
 
-						  	if (!filter || filter(elem)) {
-							  	item.resolve(elem);
-							  	if (item.stopped) return;
-		  					}
-					  	}
+							  	if (!filter || filter(elem)) {
+								  	item.resolve(elem);
+								  	if (item.stopped) return;
+			  					}
+						  	}
 
-					  	const matches = target.$findAll(selector);
+						  	const matches = target.$findAll(selector);
 
-					  	for (let index = 0, len = matches.length; index < len; index++) {
-						  	const match = matches[index];
+						  	for (let index = 0; index < matches.length; index++) {
+							  	const match = matches[index];
 
-					  		if (!this.checked.has(match)) {
-						  		this.checked.add(match);
+						  		if (!this.checked.has(match)) {
+							  		this.checked.add(match);
 
-								  if (!filter || filter(match)) {
-								  	this.resolve(match);
-								  	if (this.stopped) return;
-					  			}
+									  if (!filter || filter(match)) {
+									  	this.resolve(match);
+									  	if (this.stopped) return;
+						  			}
+						  		}
 					  		}
+					  	}
+			  		};
+
+				  	item.execute();
+
+		  			if (!item.stopped) {
+		  				let observer = Observers.get(target);
+
+			  			if (!observer) {
+				  			observer = new MutationObserver(handleMuts);
+					  		Observers.set(target, observer);
+
+				  			observer.listeners = [];
+		  					observer.target = target;
+
+				  			observer.observe(target, { childList: true, subtree: true });
 				  		}
+
+					  	observer.listeners.push(item);
 				  	}
-		  		}
-
-			  	item.execute();
-
-	  			if (!item.stopped) {
-	  				let observer = Observers.get(target);
-
-		  			if (!observer) {
-			  			observer = new MutationObserver(handleMuts);
-				  		Observers.set(target, observer);
-
-			  			observer.listeners = [];
-	  					observer.target = target;
-
-			  			observer.observe(target, { childList: true, subtree: true });
-			  		}
-
-				  	observer.listeners.push(item);
-			  	}
 				},
 
-				find(self, selector) {
-					return self.querySelector(selector.replace(/(^|,)\s*(?=>)/g, "$&:scope"));
+				find(self, selector, callback) {
+					let result = self.querySelector(selector.replace(/(^|,)\s*(?=>)/g, "$&:scope"));
+					if (callback != null && result != null) return callback(result);
+					return result;
 				},
-				findAll(self, selector) {
-					return self.querySelectorAll(selector.replace(/(^|,)\s*(?=>)/g, "$&:scope"));
+				findAll(self, selector, callback) {
+					let result = self.querySelectorAll(selector.replace(/(^|,)\s*(?=>)/g, "$&:scope"));
+					if (callback != null && result != null && result.length > 0) Array.prototype.forEach.call(result, callback);
+					return result;
 				},
 
 				on(self, events, selector, callback, config) {
@@ -319,7 +333,7 @@ Rkis.temp.set$ = () => {
 							event.stopImmediatePropagation = function() {
 								immediateStop = true;
 								return fn.call(this);
-							}
+							};
 
 							const path = event.composedPath();
 							const maxIndex = path.indexOf(self);
@@ -336,7 +350,7 @@ Rkis.temp.set$ = () => {
 							}
 
 							delete event.stopImmediatePropagation;
-						}
+						};
 
 						const listener = {
 							selector, callback,
@@ -345,7 +359,7 @@ Rkis.temp.set$ = () => {
 
 						listeners.push(listener);
 						self.addEventListener(...listener.params);
-					})
+					});
 
 					return self
 				},
@@ -353,26 +367,30 @@ Rkis.temp.set$ = () => {
 					self.dispatchEvent(new CustomEvent(type, { detail }));
 					return self;
 				}
-			})
+			});
 			
 			Assign([self.EventTarget, EventTarget], {
 				$on(...args) { return $.on(this, ...args); },
 				$triggerCustom(...args) { return $.triggerCustom(this, ...args); }
-			})
+			});
 
 			Assign([self.Element, Element, self.Document, Document, self.DocumentFragment, DocumentFragment], {
+				$each(...args) { return $.each(this.children, ...args); },
 				$find(...args) { return $.find(this, ...args); },
 				$findAll(...args) { return $.findAll(this, ...args); },
 				$watch(...args) { return $.watch(this, ...args); },
 				$watchLoop(...args) { return $.watchLoop(this, ...args); }
-			})
+			});
+
+			Assign([self.NodeList, NodeList], {
+				$each(...args) { return $.each(this, ...args); }
+			});
 		}
 		else {
 			$ = {};
 		}
 
 		Object.assign($, {
-			
 			dateFormat(date, format) {
 				if (typeof date == "string") {
 					date = new Date(date);
@@ -380,23 +398,23 @@ Rkis.temp.set$ = () => {
 
 				return format.replace(/a|A|Z|T|S(SS)?|ss?|mm?|HH?|hh?|D{1,4}|M{1,4}|YY(YY)?|'([^']|'')*'/g, str => {
 					switch(str[0]) {
-						case "'": return str.slice(1, -1).replace(/''/g, "'")
-						case "a": return date.getHours() < 12 ? "am" : "pm"
-						case "A": return date.getHours() < 12 ? "AM" : "PM"
-						case "Z": return (("+" + -date.getTimezoneOffset() / 60).replace(/^\D?(\D)/, "$1").replace(/^(.)(.)$/, "$10$2") + "00")
+						case "'": return str.slice(1, -1).replace(/''/g, "'");
+						case "a": return date.getHours() < 12 ? "am" : "pm";
+						case "A": return date.getHours() < 12 ? "AM" : "PM";
+						case "Z": return (("+" + -date.getTimezoneOffset() / 60).replace(/^\D?(\D)/, "$1").replace(/^(.)(.)$/, "$10$2") + "00");
 						case "T":
-							if (!DTF) { DTF = new Intl.DateTimeFormat("en-us", { timeZoneName: "short" }) }
-							return DTF.format(date).split(" ")[1]
-						case "Y": return ("" + date.getFullYear()).slice(-str.length)
-						case "M": return str.length > 2 ? Months[date.getMonth()].slice(0, str.length > 3 ? 9 : 3) : FixedNumber(date.getMonth() + 1, str.length)
+							if (!DTF) { DTF = new Intl.DateTimeFormat("en-us", { timeZoneName: "short" }); }
+							return DTF.format(date).split(" ")[1];
+						case "Y": return ("" + date.getFullYear()).slice(-str.length);
+						case "M": return str.length > 2 ? Months[date.getMonth()].slice(0, str.length > 3 ? 9 : 3) : FixedNumber(date.getMonth() + 1, str.length);
 						case "D": return str.length > 2 ? Days[date.getDay()].slice(0, str.length > 3 ? 9 : 3)
-							: str.length == 2 ? FixedNumber(date.getDate(), 2) : date.getDate()
-						case "H": return FixedNumber(date.getHours(), str.length)
-						case "h": return FixedNumber(date.getHours() % 12 || 12, str.length)
-						case "m": return FixedNumber(date.getMinutes(), str.length)
-						case "s": return FixedNumber(date.getSeconds(), str.length)
-						case "S": return FixedNumber(date.getMilliseconds(), str.length)
-						default: return ""
+							: str.length == 2 ? FixedNumber(date.getDate(), 2) : date.getDate();
+						case "H": return FixedNumber(date.getHours(), str.length);
+						case "h": return FixedNumber(date.getHours() % 12 || 12, str.length);
+						case "m": return FixedNumber(date.getMinutes(), str.length);
+						case "s": return FixedNumber(date.getSeconds(), str.length);
+						case "S": return FixedNumber(date.getMilliseconds(), str.length);
+						default: return "";
 					}
 				})
 			},
@@ -443,16 +461,15 @@ Rkis.temp.set$ = () => {
 				const s = Math.floor(since);
 				return Math.floor(s) + (short ? " sec" : " second" + (Math.floor(s) == 1 ? "" : "s")) + " ago";
 			}
-		})
+		});
 
 		Assign([self.Date, Date], {
 			$format(...args) { return $.dateFormat(this, ...args); },
 			$since(...args) { return $.dateSince(this, ...args); }
-		})
+		});
 		
 		return $;
 	})();
-
 };
 
-Rkis.temp.set$();
+Setup$rObject();

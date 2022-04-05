@@ -64,7 +64,6 @@ Rkis.Designer.SetupTheme = async function() {
     {match: ".com/users/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/profile.css" ]},
     {match: ".com/games/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/games.css" ]},
     {match: ".com/groups/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/groups.css" ]},
-    {match: ".com/roblokis", paths: [ "html/SettingsPage/SettingsPage.css" ]},
     
     {match: ".com/catalog", paths: [ "js/Theme/Pages/all.css" ]},
     {match: ".com/upgrades/", paths: [ "js/Theme/Pages/all.css" ]},

@@ -32,10 +32,10 @@ Designer.LoadThemesData = async function() {
 		        <span>${dadesc ? dadesc[0] : Rkis.language["error"]}</span>
 		      </div>
 		      <div style="margin-left: auto;"></div>
-		      <button onclick="Designer.ExportTheme(this, '${daname ? daname[0] : Rkis.language["error"]}', ${i})" style="background-color: rgb(57 59 184);color: rgb(35 37 39);font-size: 20px;">⤓</button>
-		      <button onclick="Designer.DeleteTheme('${daname ? daname[0] : Rkis.language["error"]}', ${i})" style="background-color: rgb(184 59 61);color: rgb(35 37 39);font-weight: 600;">X</button>
-		      <button onclick="Designer.EditTheme(${i})" style="background-color: rgb(57 184 61);color: rgb(35 37 39);" data-translate="btnEdit">Edit</button>
-		      <button onclick="Designer.SelectThemeButton(this)" data-theme="${daname ? daname[0] : Rkis.language["error"]}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(57 59 61);color: white;${theme.all == null ? "display: none;" : ""}" data-translate="btnSelect">Select</button>
+		      <button class="designer-btn export" data-theme="${daname ? daname[0] : Rkis.language["error"]}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(57 59 184);color: rgb(35 37 39);font-size: 20px;">⤓</button>
+		      <button class="designer-btn delete" data-theme="${daname ? daname[0] : Rkis.language["error"]}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(184 59 61);color: rgb(35 37 39);font-weight: 600;">X</button>
+		      <button class="designer-btn edit" data-theme="${daname ? daname[0] : Rkis.language["error"]}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(57 184 61);color: rgb(35 37 39);" data-translate="btnEdit">Edit</button>
+		      <button class="designer-btn select" data-theme="${daname ? daname[0] : Rkis.language["error"]}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(57 59 61);color: white;${theme.all == null ? "display: none;" : ""}" data-translate="btnSelect">Select</button>
 		    </div>`;
 		}
 		else {
@@ -46,7 +46,7 @@ Designer.LoadThemesData = async function() {
 		        <span></span>
 		      </div>
 		      <div style="margin-left: auto;"></div>
-		      <button onclick="Designer.CreateTheme()" style="background-color: rgb(57 184 61);color: rgb(35 37 39);" data-translate="btnCreate">Create</button>
+		      <button class="designer-btn create" style="background-color: rgb(57 184 61);color: rgb(35 37 39);" data-translate="btnCreate">Create</button>
 		    </div>`;
 		}
   }
@@ -492,4 +492,53 @@ function onclicked(target, code) {
 	})
 }
 
-Designer.LoadThemesData();
+//Designer.LoadThemesData();
+document.$watch("#rkpage .main .designer", (e) => { e.$on("script", () => {Designer.LoadThemesData();}) })
+
+document.$watchLoop("#rkpage .main .designer .designer-btn", (e) => {
+	var i = e.dataset.themeid;
+	if(isNaN(Number(i)) == false) i = Number(i);
+	var daname = e.dataset.theme;
+
+	if(e.classList.contains("export")) {
+		e.$on("click", () => {
+			Designer.ExportTheme(e, daname, i);
+		})
+	} else if(e.classList.contains("delete")) {
+		e.$on("click", () => {
+			Designer.DeleteTheme(daname, i);
+		})
+	} else if(e.classList.contains("edit")) {
+		e.$on("click", () => {
+			Designer.EditTheme(i);
+		})
+	} else if(e.classList.contains("select")) {
+		e.$on("click", () => {
+			Designer.SelectThemeButton(e);
+		})
+	} else if(e.classList.contains("create")) {
+		e.$on("click", () => {
+			Designer.CreateTheme();
+		})
+	} else if(e.classList.contains("createthetheme")) {
+		e.$on("click", () => {
+			Designer.CreateNewTheme(e);
+		})
+	} else if(e.classList.contains("deletethetheme")) {
+		e.$on("click", () => {
+			Designer.DeleteTheTheme(e);
+		})
+	} else if(e.classList.contains("editorsave")) {
+		e.$on("click", () => {
+			Designer.ThemeEditor.Save();
+		})
+	} else if(e.classList.contains("editortab")) {
+		e.$on("click", () => {
+			Designer.ThemeEditor.SelectTab(e);
+		})
+	} else if(e.classList.contains("showthelem")) {
+		e.$on("click", (a) => {
+			showthelem(e, a);
+		})
+	}
+})

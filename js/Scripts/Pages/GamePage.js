@@ -14,6 +14,14 @@ if(Rkis.pageName == "game") {
 
 	Rkis.Scripts = Rkis.Scripts || {};
 
+	document.$watchLoop(`[class$="'"]`, (e) => {
+		var broken_class = e.classList[e.classList.length - 1];
+		var fixed_class = broken_class.slice(0, -1);
+
+		e.classList.remove(broken_class);
+		e.classList.add(fixed_class);
+	})
+
 	if(Rkis.wholeData.ShowMaxPlayers != false) {
 		document.$watch("#game-instances", (e) => {
 
@@ -23,18 +31,20 @@ if(Rkis.pageName == "game") {
 		        }
 			})
 
-	    })
+    })
 	}
 
 	if(Rkis.wholeData.Badges != false) {
 
 	  Rkis.Scripts.BadgesView = Rkis.Scripts.BadgesView || {};
 
-	  Rkis.Scripts.BadgesView.firstone = async function(darequest) {
+	  Rkis.Scripts.BadgesView.firstone = async function() {
 
-	    if (darequest && darequest.detail && darequest.detail.responseURL.startsWith("https://badges.roblox.com/v1/universes") == false) return;
+	  	var universe = document.$find("#game-detail-meta-data", (e) => { return e.dataset.universeId; });
+	  	if(universe == null) return;
 
-	    var results = JSON.parse(darequest.detail.response);
+	    var results = await fetch(`https://badges.roblox.com/v1/universes/${universe}/badges?cursor=&limit=100&sortOrder=Asc`)
+	    	.then(res => res.json());
 	    if(results == null) return;
 	    
 	    var secondloop = false;
@@ -51,7 +61,7 @@ if(Rkis.pageName == "game") {
 	      }
 
 	    if(Rkis.wholeData.Designer == null || Rkis.wholeData.Designer.wholeData == null || Rkis.wholeData.Designer.wholeData["BadgesAwarded"] != false) {
-	      awardedBadges = await fetch(`https://badges.roblox.com/v1/users/${window.Roblox.CurrentUser.userId}/badges/awarded-dates?badgeIds=${idsforbadges}`)
+	      awardedBadges = await fetch(`https://badges.roblox.com/v1/users/${document.$find("head > meta[data-userid]", (e) => { return e.dataset.userid; })}/badges/awarded-dates?badgeIds=${idsforbadges}`)
 	      .then((response) => response.json())
 	      .catch(() => {return null;});
 	    }
@@ -67,7 +77,7 @@ if(Rkis.pageName == "game") {
 	    .catch(() => {return null;});
 
 	    var badgessection = await document.$watch("#game-badges-container > game-badges-list > div > ul").$promise();
-	    if(badgessection == null) return console.log("didn't find badge place");
+	    if(badgessection == null) return console.error("didn't find badge place");
 	    badgessection.innerHTML = "";
 	    badgessection.classList.add("roblokis-badges-loaded");
 
@@ -124,8 +134,7 @@ if(Rkis.pageName == "game") {
 	    }
 	  }
 
-	  Rkis.AllRunListeners = Rkis.AllRunListeners || [];
-	  Rkis.AllRunListeners.push(() => {document.addEventListener("rkrequested", Rkis.Scripts.BadgesView.firstone)});
+	  document.addEventListener("rkrequested-badge", Rkis.Scripts.BadgesView.firstone);
 
 	}
 
@@ -133,25 +142,22 @@ if(Rkis.pageName == "game") {
 
 	  Rkis.Scripts.PrivateServersView = Rkis.Scripts.PrivateServersView || {};
 
-	  Rkis.Scripts.PrivateServersView.firstone = function() {
 
-	    var serverslistitm = document.$find("#rbx-private-servers > div.section.tab-server-only > ul");
-	    if (serverslistitm == null) return;
+    document.$watch("#rbx-private-game-server-item-container", () => {
+	    document.$watchLoop("#rbx-private-game-server-item-container > li", (serverslist) => {
+		    Rkis.Scripts.PrivateServersView.secondone(serverslist);
+			})
+	  })
 
-	    var serverslist = document.$findAll("#rbx-private-servers > div.section.tab-server-only > ul > li");
-	    if (serverslist.length <= 0) return;
-
-	    serverslist.forEach(Rkis.Scripts.PrivateServersView.secondone);
-	  }
-
-	  Rkis.Scripts.PrivateServersView.secondone = function(serversitm, itmnumber, wholeListofitm) {
-	    serversitm.$find("div.stack-header > span").setAttribute("title", serversitm.$find("div.stack-header > span").innerText);
+	  Rkis.Scripts.PrivateServersView.secondone = function(serversitm) {
+	  	var serverNameElement = serversitm.$find("div.section-header > span");
+	    if(serverNameElement != null) serverNameElement.setAttribute("title", serverNameElement.innerText);
 
 	    var rightsection = serversitm.$find("div.section-right");
 	    if (!rightsection) return;
 	    if(rightsection.$find("span#rk-plr-counter")) return;
 
-	    var players = rightsection.$findAll("span");
+	    var players = serversitm.$findAll("div.section-right > span");
 	    if(players.length >= 1) {
 	      var counter = document.createElement("span");
 	      counter.setAttribute("class", "avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image");
@@ -173,26 +179,23 @@ if(Rkis.pageName == "game") {
 	    }
 	  }
 
-	  document.addEventListener("rkrequested-private", Rkis.Scripts.PrivateServersView.firstone);
-
 	  ////////////
 
 	  Rkis.Scripts.FriendsServersView = Rkis.Scripts.FriendsServersView || {};
 
-	  Rkis.Scripts.FriendsServersView.firstone = function() {
 
-	    var serverslist = document.$findAll("#rbx-friends-game-server-item-container > li");
-	    if (serverslist.length <= 0) return;
+	  document.$watch("#rbx-friends-game-server-item-container", () => {
+	    document.$watchLoop("#rbx-friends-game-server-item-container > li", (serverslist) => {
+		    Rkis.Scripts.FriendsServersView.secondone(serverslist);
+			})
+	  })
 
-	    serverslist.forEach(Rkis.Scripts.FriendsServersView.secondone);
-	  }
-
-	  Rkis.Scripts.FriendsServersView.secondone = function(serversitm, itmnumber, wholeListofitm) {
+	  Rkis.Scripts.FriendsServersView.secondone = function(serversitm) {
 	    var rightsection = serversitm.$find("div.section-right");
 	    if (!rightsection) return;
 	    if(rightsection.$find("span#rk-plr-counter")) return;
 
-	    var players = rightsection.$findAll("span");
+	    var players = serversitm.$findAll("div.section-right > span");
 	    if(players.length >= 1) {
 	      var counter = document.createElement("span");
 	      counter.setAttribute("class", "avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image");
@@ -220,26 +223,23 @@ if(Rkis.pageName == "game") {
 	    leftsection.$find("div.rbx-friends-game-server-status").setAttribute("title", leftsection.$find("div.rbx-friends-game-server-status").innerText);
 	  }
 
-	  document.addEventListener("rkrequested-friends", Rkis.Scripts.FriendsServersView.firstone);
-
 	  ////////////
 
 	  Rkis.Scripts.PublicServersView = Rkis.Scripts.PublicServersView || {};
 
-	  Rkis.Scripts.PublicServersView.firstone = function() {
 
-	    var serverslist = document.$findAll("#rbx-game-server-item-container > li");
-	    if (serverslist.length <= 0) return;
+	  document.$watch("#rbx-game-server-item-container", () => {
+	    document.$watchLoop("#rbx-game-server-item-container > li", (serverslist) => {
+		    Rkis.Scripts.PublicServersView.secondone(serverslist);
+			})
+	  })
 
-	    serverslist.forEach(Rkis.Scripts.PublicServersView.secondone);
-	  }
-
-	  Rkis.Scripts.PublicServersView.secondone = function(serversitm, itmnumber, wholeListofitm) {
+	  Rkis.Scripts.PublicServersView.secondone = function(serversitm) {
 	    var rightsection = serversitm.$find("div.section-right");
 	    if (!rightsection) return;
 	    if(rightsection.$find("span#rk-plr-counter")) return;
 
-	    var players = rightsection.$findAll("span");
+	    var players = serversitm.$findAll("div.section-right > span");
 	    if(players.length >= 1) {
 	      var counter = document.createElement("span");
 	      counter.setAttribute("class", "avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image");
@@ -260,8 +260,6 @@ if(Rkis.pageName == "game") {
 	      rightsection.insertBefore(counter, rightsection.firstChild);
 	    }
 	  }
-
-	  document.addEventListener("rkrequested-public", Rkis.Scripts.PublicServersView.firstone);
 
 	}
 

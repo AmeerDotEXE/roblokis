@@ -15,9 +15,73 @@ span.rk-button {
     float: right;margin: -1px 0 0 0;
 }
 
+.dark-theme .rk-button.on {
+    background-color: #00b06f;
+}
+.dark-theme .rk-button {
+    background-color: #656668;
+    color: #bdbebe;
+}
+.rk-button.on {
+    background-color: #02b757;
+}
+.rk-button {
+    background-color: #b8b8b8;
+    border-radius: 12px;
+    color: #fff;
+    display: inline-block;
+    height: 24px;
+    width: 40px;
+    padding: 2px;
+    position: relative;
+    border: 0;
+}
+.rk-button.on .toggle-flip {
+    left: auto;
+    right: 2px;
+}
+.rk-button .toggle-flip {
+    background-color: #fff;
+    border-radius: 10px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 2px;
+    right: auto;
+    left: 2px;
+}
+.rk-button.on .toggle-on {
+    display: inline;
+}
+.rk-button .toggle-off, .rk-button .toggle-on {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.rk-button .toggle-on {
+    display: none;
+}
+.rk-button.on .toggle-off {
+    display: none;
+}
+.rk-button .toggle-off {
+    display: inline;
+}
+.rk-button .toggle-off, .rk-button .toggle-on {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 
 
 /* Loader / Page */
+
+#rkpage .tabcontent:not(.active) {
+    display: none;
+}
 
 .left-navigation > div {
     text-align: center;
@@ -47,9 +111,9 @@ span.rk-button {
     border-radius: 0 0 0 10px;
 }
 
-#rkpage > h3,
-#pageloadplace > h3,
-#rk-themesection > h3 {
+#rkpage h3,
+#pageloadplace h3,
+#rk-themesection h3 {
     width: fit-content;
     border: 1px solid #b8b8b8;
     border-radius: 20px;
@@ -57,8 +121,8 @@ span.rk-button {
     margin: 0 0 10px 0;
 }
 
-#rkpage > button.main-save-button,
-#pageloadplace > button.main-save-button {
+#rkpage button.main-save-button,
+#pageloadplace button.main-save-button {
     float: right;
     color: lime;
     background-color: transparent;
@@ -69,10 +133,14 @@ span.rk-button {
     margin: -40px 0px 10px;
 }
 
-#rkpage > button.main-save-button:hover,
-#pageloadplace > button.main-save-button:hover {
+#rkpage button.main-save-button:hover,
+#pageloadplace button.main-save-button:hover {
     background-color: rgb(128 128 128 / 40%);
     border: 2px solid lime;
+}
+
+.serversection:not(.active) {
+    display: none;
 }
 
 

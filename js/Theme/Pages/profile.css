@@ -57,6 +57,16 @@
     transform: scale(99%,1);
 }
 
+#inventory-container > inventory > div > assets-explorer > div > div > div.menu-vertical-container.category-tabs > ul > li:first-child {
+    border-radius: var(--rk-profile-corners-radius);
+    border-bottom-left-radius: 0px;
+}
+
+#inventory-container > inventory > div > assets-explorer > div > div > div.menu-vertical-container.category-tabs > ul > li:last-child {
+    border-radius: var(--rk-profile-corners-radius);
+    border-top-left-radius: 0px;
+}
+
 
 #friends-container > div > div.rbx-tabs-horizontal.rbx-scrollable-tabs-horizontal > div > div > div.friends-content.section > ul > li {
     transition: transform 400ms;

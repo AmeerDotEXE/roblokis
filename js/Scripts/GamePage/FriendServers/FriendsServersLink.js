@@ -1,6 +1,6 @@
 var Rkis = Rkis || {};
 
-if(Rkis.wholeData.FriendsServersLink != false) {
+if(Rkis.wholeData.FriendsServersLink != false && false) {
 
   Rkis.Scripts = Rkis.Scripts || {};
   Rkis.Scripts.FriendsServersLink = Rkis.Scripts.FriendsServersLink || {};
@@ -16,7 +16,7 @@ if(Rkis.wholeData.FriendsServersLink != false) {
   Rkis.Scripts.FriendsServersLink.secondone = function(serversitm, itmnumber, wholeListofitm) {
     if(serversitm == null) return;
 
-    var jionBtn = serversitm.querySelector("div.rbx-friends-game-server-details > a.rbx-friends-game-server-join");
+    var jionBtn = serversitm.querySelector("div.rbx-friends-game-server-details > span > button.rbx-friends-game-server-join");
     if(jionBtn.getAttribute("onclick").includes("joinGameInstance")) Rkis.Scripts.FriendsServersLink.thirdone(jionBtn, jionBtn.parentElement);
   }
 
@@ -42,6 +42,6 @@ if(Rkis.wholeData.FriendsServersLink != false) {
     prent.insertBefore(newbtn, sver);
   }
 
-  document.addEventListener("rkrequested-friends", Rkis.Scripts.FriendsServersLink.firstone);
+  //document.addEventListener("rkrequested-friends", Rkis.Scripts.FriendsServersLink.firstone);
 
 }

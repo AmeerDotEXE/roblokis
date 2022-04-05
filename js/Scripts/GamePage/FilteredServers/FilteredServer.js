@@ -1,6 +1,6 @@
 var Rkis = Rkis || {};
 
-if(Rkis.wholeData.FilteredServer != false) {
+if(Rkis.wholeData.FilteredServer == true) {
 
   Rkis.Scripts = Rkis.Scripts || {};
   Rkis.Scripts.FilteredServer = Rkis.Scripts.FilteredServer || {};

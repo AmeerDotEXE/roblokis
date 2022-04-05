@@ -139,8 +139,8 @@ if(Rkis.wholeData.PageNav != false) {
     }
 
     Rkis.Scripts.PageNav.running = false;
-    if(Rkis.Scripts.PublicServersView != null) Rkis.Scripts.PublicServersView.firstone(null);
-    if(Rkis.Scripts.PublicServersLink != null) Rkis.Scripts.PublicServersLink.firstone(null);
+    //if(Rkis.Scripts.PublicServersView != null) Rkis.Scripts.PublicServersView.firstone(null);
+    //if(Rkis.Scripts.PublicServersLink != null) Rkis.Scripts.PublicServersLink.firstone(null);
 
   }
 

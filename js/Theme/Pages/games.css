@@ -173,22 +173,28 @@ html[data-btr-loaded="true"] #game-badges-container > game-badges-list > div > u
 #game-instances > div.section-content-off {
     background-color: transparent;
 }
+div.section-content-off {
+    background-color: transparent;
+}
 
 
 
 
 /* Private Servers  */
-#rbx-private-servers > div.section.tab-server-only > ul {
+#rbx-private-running-games > div.section-content-off {
+    background-color: transparent;
+}
+#rbx-private-running-games > ul {
     display: flex;
     flex-wrap: wrap;
 }
 
-#rbx-private-servers > div.section.tab-server-only > ul > p.section-content-off,
+#rbx-private-running-games > ul > p.section-content-off,
 #rbx-private-servers > div.rbx-private-server-item-container > p {
     background-color: transparent;
 }
 
-#game-instances #rbx-private-servers > div.section.tab-server-only > ul > li {
+#game-instances #rbx-private-running-games > ul > li {
     transition: all 400ms;
     transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
 
@@ -205,16 +211,16 @@ html[data-btr-loaded="true"] #game-badges-container > game-badges-list > div > u
     background: var(--rk-privateserver-background);
     background-size: var(--rk-privateserver-background-image-size);
 }
-/*#rbx-private-servers > div.section.tab-server-only > ul:hover > li:not(li:hover) {
+/*#rbx-private-running-games > ul:hover > li:not(li:hover) {
     opacity: 0.5;
 }*/
-#rbx-private-servers > div.section.tab-server-only > ul > li:hover {
+#rbx-private-running-games > ul > li:hover {
     transform: var(--rk-basic-animations, scale(1.2));
     opacity: var(--rk-basic-animations, 1);
     z-index: var(--rk-basic-animations, 10);
 }
 
-#rbx-private-servers > div.section.tab-server-only > ul > li > div.rbx-private-server-details > a {
+#rbx-private-running-games > ul > li > div.rbx-private-game-server-details > span > button {
     margin: 0 0 0 0;
     color: var(--rk-privateserver-button-color);
 
@@ -229,7 +235,7 @@ html[data-btr-loaded="true"] #game-badges-container > game-badges-list > div > u
     background-size: var(--rk-privateserver-button-background-image-size);
 }
 
-#rbx-private-servers > div.section.tab-server-only > ul > li > div.stack-header > span {
+#rbx-private-running-games > ul > li > div.section-header > span {
     font-size: 14px;
     display: inline-block;
     text-overflow: ellipsis;
@@ -238,19 +244,19 @@ html[data-btr-loaded="true"] #game-badges-container > game-badges-list > div > u
     white-space: nowrap;
 }
 
-#rbx-private-servers > div.section.tab-server-only > ul > li > div.section-right {
+#rbx-private-running-games > ul > li > div.section-right {
     float: none;
     width: auto;
 }
 
-#rbx-private-servers > div.section.tab-server-only > ul > li > div.section-right > span {
+#rbx-private-running-games > ul > li > div.section-right > span {
     margin: 0px -10px 6px 0px;
     top: 8px;
     width: 34px;
     height: 34px;
 }
 
-#rbx-private-servers > div.section.tab-server-only > ul > li > div.section-right > span#rk-plr-counter {
+#rbx-private-running-games > ul > li > div.section-right > span#rk-plr-counter {
     margin: 0px -8px 6px 0px;
     display: inline-grid;
     align-content: center;
@@ -261,24 +267,24 @@ html[data-btr-loaded="true"] #game-badges-container > game-badges-list > div > u
     text-align: center;
 }
 
-.max-players-text #rbx-private-servers > div.section.tab-server-only > ul > li > div.section-right > span#rk-plr-counter {
+.max-players-text #rbx-private-running-games > ul > li > div.section-right > span#rk-plr-counter {
     font-size: 10px;
 }
 
-#rbx-private-servers > div.section.tab-server-only > ul > li > div.section-left {
+#rbx-private-running-games > ul > li > div.section-left {
     float: none;
     border: none;
     padding: 0;
     width: auto;
 }
 
-#rbx-private-servers > div.section.tab-server-only > ul > li > div.section-left > div.rbx-private-owner > a.owner-avatar > img {
+#rbx-private-running-games > ul > li > div.section-left > div.rbx-private-owner > a.owner-avatar > img {
     background-color: var(--rk-privateserver-owner-background, #d4d4d4);
 }
 
-#rbx-private-servers > div.section.tab-server-only > ul > li > div.section-left > div.rbx-private-server-status,
-html:not([data-btr-loaded="true"]) #rbx-private-servers > div.section.tab-server-only > ul > li > div.section-left > div.rbx-private-owner > a.text-name,
-#rbx-private-servers > div.section.tab-server-only > ul > li > div.section-left > div.rbx-private-server-subscription-alert {
+#rbx-private-running-games > ul > li > div.section-left > div.rbx-private-server-status,
+html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.section-left > div.rbx-private-owner > a.text-name,
+#rbx-private-running-games > ul > li > div.section-left > div.rbx-private-server-subscription-alert {
     display: none;
 }
 
@@ -310,6 +316,9 @@ html:not([data-btr-loaded="true"]) #rbx-private-servers > div.section.tab-server
 
 
 /* Friends Servers  */
+#rbx-friends-running-games  > div.section-content-off {
+    background-color: transparent;
+}
 #rbx-friends-game-server-item-container {
     display: flex;
     flex-wrap: wrap;
@@ -345,7 +354,7 @@ html:not([data-btr-loaded="true"]) #rbx-private-servers > div.section.tab-server
     z-index: var(--rk-basic-animations, 10);
 }
 
-#rbx-friends-game-server-item-container > li > div.rbx-friends-game-server-details > a {
+#rbx-friends-game-server-item-container > li > div.rbx-friends-game-server-details > span > button {
     margin: 0 0 0 0;
     color: var(--rk-friendsserver-button-color);
 
@@ -406,6 +415,9 @@ html:not([data-btr-loaded="true"]) #rbx-private-servers > div.section.tab-server
 
 
 /* Small Servers  */
+#rbx-small-running-games  > div.section-content-off {
+    background-color: transparent;
+}
 #rbx-small-game-server-item-container {
     display: flex;
     flex-wrap: wrap;
@@ -441,7 +453,7 @@ html:not([data-btr-loaded="true"]) #rbx-private-servers > div.section.tab-server
     z-index: var(--rk-basic-animations, 10);
 }
 
-#rbx-small-game-server-item-container > li > div.rbx-game-server-details > a {
+#rbx-small-game-server-item-container > li > div.rbx-game-server-details > span > button {
     margin: 0 0 0 0;
     color: var(--rk-smallserver-button-color);
 
@@ -500,6 +512,9 @@ html:not([data-btr-loaded="true"]) #rbx-private-servers > div.section.tab-server
 
 
 /* Public Servers  */
+#rbx-running-games  > div.section-content-off {
+    background-color: transparent;
+}
 #rbx-game-server-item-container {
     display: flex;
     flex-wrap: wrap;
@@ -536,7 +551,7 @@ html:not([data-btr-loaded="true"]) #rbx-private-servers > div.section.tab-server
     z-index: var(--rk-basic-animations, 10);
 }
 
-#rbx-game-server-item-container > li > div.rbx-game-server-details > a {
+#rbx-game-server-item-container > li > div.rbx-game-server-details > span > button {
     margin: 0 0 0 0;
     color: var(--rk-publicserver-button-color);
 
@@ -593,6 +608,9 @@ html:not([data-btr-loaded="true"]) #rbx-private-servers > div.section.tab-server
 
 
 /* Filtered Servers  */
+#rbx-filtered-running-games  > div.section-content-off {
+    background-color: transparent;
+}
 #rbx-filtered-game-server-item-container {
     display: flex;
     flex-wrap: wrap;
@@ -628,6 +646,7 @@ html:not([data-btr-loaded="true"]) #rbx-private-servers > div.section.tab-server
     z-index: var(--rk-basic-animations, 10);
 }
 
+#rbx-filtered-game-server-item-container > li > div.rbx-game-server-details > span > button,
 #rbx-filtered-game-server-item-container > li > div.rbx-game-server-details > a {
     margin: 0 0 0 0;
     color: var(--rk-filteredserver-button-color);

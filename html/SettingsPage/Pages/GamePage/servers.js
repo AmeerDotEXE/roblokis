@@ -1,15 +1,18 @@
 var page = page || {};
 
-(function() {
-  var smallserver = document.querySelector("#rkpage > div.serversselector > select");
-  smallserver.value = "";
+document.$watch("#rkpage .gamepage .servers", (e) => { e.$on("script", () => {
+  var selection = e.querySelector(".serversselector select");
+  if(selection == null) return;
 
-  smallserver.addEventListener("change", async () => {
-    try {
-      await $("#pageloadplace").load(Rkis.fileLocation + `html/SettingsPage/Pages/GamePage/Servers/${smallserver.value}.html`);
-      await $.getScript(Rkis.fileLocation + `html/SettingsPage/Pages/GamePage/Servers/${smallserver.value}.js`);
-    }catch{}
-    page.setup();
+  var holder = e.querySelector("#pageloadplace");
+  if(holder == null) return;
+
+  if(selection.dataset.listening == "true") return;
+  selection.dataset.listening = "true";
+
+  selection.value = "";
+  selection.$on("change", async () => {
+    holder.$findAll(".serversection", (e) => { e.classList.remove("active"); });
+    holder.$find(".serversection." + selection.value, (e) => { e.classList.add("active"); });
   });
-
-}())
+}) })

@@ -9,15 +9,10 @@ if(Rkis.wholeData.SmallServer != false) {
   Rkis.Scripts.SmallServer.serversfound = [];
 
   Rkis.Scripts.SmallServer.setup = function () {
-    var weburl = window.location.href;
-    if (weburl.includes("/games/")) {
-      document.addEventListener("rkrequested", Rkis.Scripts.SmallServer.firstone);
-    }
+    document.addEventListener("rkrequested-friends", Rkis.Scripts.SmallServer.firstone);
   }
 
-  Rkis.Scripts.SmallServer.firstone = function(darequest) {
-
-    if (darequest.detail && darequest.detail.responseURL.includes("roblox.com/games/getfriendsgameinstances") == false) return; //instead use the public server and use its data as first call
+  Rkis.Scripts.SmallServer.firstone = function() {
 
     if (Rkis.Scripts.SmallServer.running == false) {
       Rkis.Scripts.SmallServer.running = true;
@@ -29,7 +24,7 @@ if(Rkis.wholeData.SmallServer != false) {
         smallrunninggames.id = "rbx-small-running-games";
         smallrunninggames.classList.add("stack");
         smallrunninggames.innerHTML = `<div class="container-header"><h3 data-translate="smallSection">Some Small Servers</h3></div><ul id="rbx-small-game-server-item-container" class="section stack-list"><span class="spinner spinner-default"></span></ul>`;
-        document.querySelector("#game-instances").insertBefore(smallrunninggames, document.querySelector("#rbx-running-games"));
+        document.querySelector("#running-game-instances-container").insertBefore(smallrunninggames, document.querySelector("#rbx-running-games"));
       }
 
       var placeId = Rkis.GameId;
@@ -156,7 +151,7 @@ if(Rkis.wholeData.SmallServer != false) {
     if(servers.length <= 0) return;
     //servers = servers.reverse();
 
-    var gameinstances = document.querySelector("#game-instances");
+    var gameinstances = document.querySelector("#running-game-instances-container");
     if(!gameinstances) return;
 
     var smallrunninggames = document.querySelector("#rbx-small-running-games");
@@ -165,7 +160,7 @@ if(Rkis.wholeData.SmallServer != false) {
       smallrunninggames = document.createElement("div");
       smallrunninggames.id = "rbx-small-running-games";
       smallrunninggames.classList.add("stack");
-      document.querySelector("#game-instances").insertBefore(smallrunninggames, document.querySelector("#rbx-running-games"));
+      document.querySelector("#running-game-instances-container").insertBefore(smallrunninggames, document.querySelector("#rbx-running-games"));
     }
 
     var smalltitle = document.createElement("div");
@@ -221,7 +216,6 @@ if(Rkis.wholeData.SmallServer != false) {
     Rkis.Scripts.SmallServer.running = false;
   }
 
-  Rkis.AllRunListeners = Rkis.AllRunListeners || [];
-  Rkis.AllRunListeners.push(Rkis.Scripts.SmallServer.setup);
+  Rkis.Scripts.SmallServer.setup();
   
 }

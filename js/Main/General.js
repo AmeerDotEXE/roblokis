@@ -1,6 +1,28 @@
 var Rkis = Rkis || {};
 
 
+window.ContextScript = true;
+
+var manifestData = chrome.runtime.getManifest();
+Rkis.version = manifestData.version;
+
+Rkis.id = chrome.runtime.id;
+Rkis.fileLocation = `chrome-extension://${Rkis.id}/`;
+
+Rkis.RunFunction(() => {
+  var origOpen = XMLHttpRequest.prototype.open;
+  XMLHttpRequest.prototype.open = function() {
+    this.addEventListener('load', () => {
+      var requestevent = new CustomEvent('rkrequested', {
+        detail: this
+      });
+      document.dispatchEvent(requestevent);
+    });
+    origOpen.apply(this, arguments);
+  };
+});
+
+
 if(window.location.href.includes("/games/")) {
   Rkis.GameId = window.location.href.split("/games/")[1].split("/")[0];
   Rkis.pageName = "game";
@@ -23,12 +45,9 @@ Rkis.wholeData = {...wholedata};
 Rkis.SubDomain = (window.location.hostname.startsWith("web") == true ? "web" : "www");
 Rkis.codeLoader = {save: {}, load: {}};
 
-//on rkis loaded run these
-Rkis.AllRunListeners = Rkis.AllRunListeners || [];
-/* Copy Paste if needed
-Rkis.AllRunListeners = Rkis.AllRunListeners || [];
-Rkis.AllRunListeners.push(() =>{});
-*/
+(() => {
+  Rkis.RunFunction(Setup$rObject);
+})();
 
 (function() {
   Rkis.language = Rkis.language || {};
@@ -82,27 +101,24 @@ Rkis.AllRunListeners.push(() =>{});
     })
     .catch((err) => {console.error("Rkis", err)})
 
-    Rkis.AllRunListeners = Rkis.AllRunListeners || [];
-    Rkis.AllRunListeners.push(() => {
-      fetch(Rkis.fileLocation + `_locales/${Rkis.languageCode}/messages.json`)
-      .then((res) => res.json())
-      .then((text) => {
-        if(text == null || text == {}) return;
-        var allCodes = text;
+    fetch(Rkis.fileLocation + `_locales/${Rkis.languageCode}/messages.json`)
+    .then((res) => res.json())
+    .then((text) => {
+      if(text == null || text == {}) return;
+      var allCodes = text;
 
-        for (code in allCodes) {
-          Rkis.language[code] = allCodes[code].message || Rkis.language[code];
+      for (code in allCodes) {
+        Rkis.language[code] = allCodes[code].message || Rkis.language[code];
 
-          Rkis.language[code].split("$").forEach((e, i) => {
-            if(i == 0) return Rkis.language[code] = e;
+        Rkis.language[code].split("$").forEach((e, i) => {
+          if(i == 0) return Rkis.language[code] = e;
 
-            if((i / 2).toString().includes(".")) Rkis.language[code] += `$${Math.floor(i / 2) + 1}$`;
-            else Rkis.language[code] += e;
-          })
-        }
-      })
-      .catch((err) => {console.error("Rkis", err)})
-    });
+          if((i / 2).toString().includes(".")) Rkis.language[code] += `$${Math.floor(i / 2) + 1}$`;
+          else Rkis.language[code] += e;
+        })
+      }
+    })
+    .catch((err) => {console.error("Rkis", err)})
   }
 
   //Rkis.language[""] = chrome.i18n.getMessage("");
@@ -187,69 +203,72 @@ Rkis.delay = function delay(ms) {
   });
 }
 
-Rkis.AllRunListeners = Rkis.AllRunListeners || [];
-Rkis.AllRunListeners.push(() => {
-  document.$watchLoop("savecode", (e) => {
-    var name = e.getAttribute("code");
-    if(name == null || name == "") return;
-    Rkis.codeLoader.save[name] = e.innerHTML;
+document.$watchLoop("savecode", (e) => {
+  var name = e.getAttribute("code");
+  if(name == null || name == "") return;
+  Rkis.codeLoader.save[name] = e.innerHTML;
 
-    if(Rkis.codeLoader.load[name] != null) {
-      Rkis.codeLoader.load[name].forEach((a) => {
-        eval(`(function(element){${Rkis.codeLoader.save[name]}})`)(a)
-      })
+  if(Rkis.codeLoader.load[name] != null) {
+    Rkis.codeLoader.load[name].forEach((a) => {
+      Rkis.Execute(`function(element){${Rkis.codeLoader.save[name]}}`, a)
+    })
+  }
+});
+
+document.$watchLoop("loadcode", (e) => {
+  var name = e.getAttribute("code");
+  var cod = e.getAttribute("run");
+  if(name != null && name != "") {
+
+    if(Rkis.codeLoader.save[name] == null) {
+      if(Rkis.codeLoader.load[name] == null) Rkis.codeLoader.load[name] = [];
+
+      Rkis.codeLoader.load[name].push(e);
+      return;
     }
-  })
 
-  document.$watchLoop("loadcode", (e) => {
-    var name = e.getAttribute("code");
-    var cod = e.getAttribute("run");
-    if(name != null && name != "") {
+    try{
+      Rkis.Execute(`function(element){ ${Rkis.codeLoader.save[name]} }`, e)
+    }catch(err){console.error("Roblokis Error",{fun:Rkis.codeLoader.save[name]},err)}
+  } else if(cod != null && cod != "") {
+    try{
+      Rkis.Execute(`function(element){ ${cod} }`, e)
+    }catch(err){console.error("Roblokis Error",{fun: cod},err)}
+  }
+});
 
-      if(Rkis.codeLoader.save[name] == null) {
-        if(Rkis.codeLoader.load[name] == null) Rkis.codeLoader.load[name] = [];
-
-        Rkis.codeLoader.load[name].push(e);
-        return;
-      }
-
-      try{
-        eval(`(function(element){ ${Rkis.codeLoader.save[name]} })`)(e)
-      }catch(err){console.error("Roblokis Error",err)}
-    } else if(cod != null && cod != "") {
-      try{
-        eval(`(function(element){ ${cod} })`)(e)
-      }catch(err){console.error("Roblokis Error",err)}
-    }
-  })
-})
-
-Rkis.AllRunListeners = Rkis.AllRunListeners || [];
-Rkis.AllRunListeners.push(() => {
+Rkis.RunFunction(() => {
   document.addEventListener("rkrequested", (darequest) => {
-    if (darequest.detail && darequest.detail.responseURL.includes("roblox.com/private-server/instance-list-json") == true) {
+    if (darequest && darequest.detail && darequest.detail.responseURL.includes("servers/VIP") == true) {
       var requestevent = new CustomEvent('rkrequested-private', {
         detail: null
       });
       document.dispatchEvent(requestevent);
       return;
     }
-    if (darequest.detail && darequest.detail.responseURL.includes("roblox.com/games/getfriendsgameinstances") == true) {
+    if (darequest && darequest.detail && darequest.detail.responseURL.includes("servers/Friend") == true) {
       var requestevent = new CustomEvent('rkrequested-friends', {
         detail: null
       });
       document.dispatchEvent(requestevent);
       return;
     }
-    if (darequest && darequest.detail && darequest.detail.responseURL.includes("roblox.com/games/getgameinstancesjson") == true) {
+    if (darequest && darequest.detail && darequest.detail.responseURL.includes("servers/Public") == true) {
       var requestevent = new CustomEvent('rkrequested-public', {
         detail: null
       });
       document.dispatchEvent(requestevent);
       return;
     }
-  }
-)});
+    if (darequest && darequest.detail && darequest.detail.responseURL.includes("badges.roblox.com/v1/universes") == true) {
+      var requestevent = new CustomEvent('rkrequested-badge', {
+        detail: null
+      });
+      document.dispatchEvent(requestevent);
+      return;
+    }
+  });
+});
 
 //copy function
 Rkis.CopyText = function (text) {
@@ -326,29 +345,27 @@ Rkis.ErrorToast = function (text, ms) {
 
 
 //open public roblox game
-Rkis.AllRunListeners = Rkis.AllRunListeners || [];
-Rkis.AllRunListeners.push(() => {Rkis.OnReady(function(){
-  var weburl = window.location.href;
-  if (weburl.includes("placeid=") && weburl.includes("gameid=")) {
+Rkis.OnReady(function(){
+  Rkis.RunFunction(function(){
+    var weburl = window.location.href;
+    if (weburl.includes("placeid=") && weburl.includes("gameid=")) {
 
-    var placeid = weburl.split("placeid=")[1].split("&")[0];
-    var gameid = weburl.split("gameid=")[1].split("&")[0];
+      var placeid = weburl.split("placeid=")[1].split("&")[0];
+      var gameid = weburl.split("gameid=")[1].split("&")[0];
 
-    if (placeid && gameid) Roblox.GameLauncher.joinGameInstance(parseInt(placeid), gameid);
+      if (placeid && gameid) Roblox.GameLauncher.joinGameInstance(parseInt(placeid), gameid);
 
-  }
-})});
-
-
-Rkis.AllRunListeners = Rkis.AllRunListeners || [];
-Rkis.AllRunListeners.push(() => {
-  if(Rkis.ToastHolder == null || Rkis.ToastHolder == {}) {
-    Rkis.ToastHolder = document.createElement("div");
-    Rkis.ToastHolder.id = "rk-toastholder";
-    Rkis.ToastHolder.style = "opacity: 0;min-width: 250px;background-color: #333;color: #fff;text-align: center;padding: 16px;position: fixed;z-index: 1;left: 50%;transform: translate(-50%, 0);bottom: 0px;font-size: 17px;border-radius: 20px;box-shadow: black 0 0 16px;transition: all 200ms ease-in-out;pointer-events: none;"
-    document.firstElementChild.appendChild(Rkis.ToastHolder);
-  }
+    }
+  });
 });
+
+
+if(Rkis.ToastHolder == null || Rkis.ToastHolder == {}) {
+  Rkis.ToastHolder = document.createElement("div");
+  Rkis.ToastHolder.id = "rk-toastholder";
+  Rkis.ToastHolder.style = "opacity: 0;min-width: 250px;background-color: #333;color: #fff;text-align: center;padding: 16px;position: fixed;z-index: 1;left: 50%;transform: translate(-50%, 0);bottom: 0px;font-size: 17px;border-radius: 20px;box-shadow: black 0 0 16px;transition: all 200ms ease-in-out;pointer-events: none;";
+  document.firstElementChild.appendChild(Rkis.ToastHolder);
+}
 
 (function(){
   var weburl = window.location.href;
@@ -362,15 +379,25 @@ Rkis.AllRunListeners.push(() => {
   if(stng == null) return;
 
   stng.addEventListener("click", async () => {
-    if(stng.getAttribute("aria-describedby") != null || document.querySelector("#settings-popover-menu .roblokis-settings-button") != null) return;
+    if(stng.getAttribute("aria-describedby") != null) return;
 
     var rkisbtn = document.createElement("li");
     rkisbtn.innerHTML = `<a class="rbx-menu-item roblokis-settings-button" href="https://${Rkis.SubDomain}.roblox.com/roblokis" style="color: rgb(255,64,64);">Roblokis</a>`;
 
     var doc = await document.$watch("#settings-popover-menu").$promise();
-    if(doc == null) return;
+    if(doc == null || doc.querySelector(".roblokis-settings-button") != null) return;
     doc.insertBefore(rkisbtn, doc.firstElementChild);
   })
 }());
+
+function getRndInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
+
+//random button angle generator
+document.$watchLoop('a.game-card-link[data-addedjoin="true"] > a.rbx-game-server-join[onclick][data-placeid]', (e) => {
+  var num = getRndInteger(-5, 5);
+  e.classList.add("rk-btn-r" + num);
+})
 
 document.$watch("body", (e) => {e.classList.add("Roblokis-installed")});
