@@ -11,22 +11,6 @@ async function getThemesList() {
 	themesList.forEach(x => elementsList.append(createThemeCard(x)));
 }
 
-/*{
-    "name": "Roblox re-imagination",
-    "link": {
-        "dark": "...",
-        "light": "..."
-    },
-    "animated": false,
-    "author": "MQ317",
-    "images": [
-        "https://cdn.discordapp.com/attachments/932287289202204712/1046783276016226414/image.png",
-        "https://cdn.discordapp.com/attachments/932287289202204712/1046783277152882730/image.png"
-    ],
-    "contact": {
-        "discord": "MQ317#7294"
-    }
-}*/
 function createThemeCard(theme) {
 	var card = document.createElement("div");
 
@@ -35,7 +19,7 @@ function createThemeCard(theme) {
 	card.innerHTML += `<div class="header">${theme.name}</div>`;
 	card.innerHTML += `<img src="${theme.images[0]}">`;
 
-	card.innerHTML += `<div class="media lower-third">
+	if (theme.contact && theme.contact.discord) card.innerHTML += `<div class="media lower-third">
 		<img src="../../images/media/discord.png">
 		<span class="button small discord-color">${theme.contact.discord}</span>
 	</div>`;
