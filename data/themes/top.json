@@ -14,5 +14,49 @@
 	"contact": {
 		"discord": "MQ317#7294"
 	}
+},
+{
+	"name": "Relaxing Theme",
+	"link": {
+		"file": "https://ameerdotexe.github.io/roblokis/data/themes/top/relaxing/Relax.roblokis"
+	},
+	"animated": false,
+	"author": "MindOfRobloxian",
+	"images": [
+		"https://ameerdotexe.github.io/roblokis/data/themes/top/relaxing/profilepreview.png",
+		"https://ameerdotexe.github.io/roblokis/data/themes/top/relaxing/homepreview.png",
+		"https://ameerdotexe.github.io/roblokis/data/themes/top/relaxing/gamepreview.png"
+	],
+	"contact": {
+		"discord": "MindOfRobloxian#9417"
+	}
+},
+{
+	"name": "Welcoming City",
+	"link": {
+		"file": "https://ameerdotexe.github.io/roblokis/data/themes/top/welcomingcity/City.roblokis"
+	},
+	"animated": true,
+	"author": "Mush_Skeleton",
+	"images": [
+		"https://ameerdotexe.github.io/roblokis/data/themes/top/welcomingcity/profilepreview.png"
+	],
+	"contact": {
+		"discord": "Mush_Skeleton#9787"
+	}
+},
+{
+	"name": "Starfall",
+	"link": {
+		"file": "https://ameerdotexe.github.io/roblokis/data/themes/top/starfall/Starfall.roblokis"
+	},
+	"animated": true,
+	"author": "Monarchvy",
+	"images": [
+		"https://ameerdotexe.github.io/roblokis/data/themes/top/starfall/profilepreview.png"
+	],
+	"contact": {
+		"discord": "Monarchvy#7728"
+	}
 }
 ]
