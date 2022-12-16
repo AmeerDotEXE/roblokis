@@ -1,0 +1,84 @@
+body {
+	margin: 0px;
+	padding: 2rem;
+
+	background-color: #151a30;
+	background: -webkit-linear-gradient(45deg, #151a30 0%, #222b45 90%);
+	background: linear-gradient(45deg, #151a30 0%, #222b45 90%);
+
+	--light: #8f9bb3;
+	--dark: #151a30;
+
+	--gap: 1rem;
+}
+
+a, span, div {
+	color: var(--light);
+	font-size: 1.5rem;
+	font-weight: 600;
+	font-family: sans-serif;
+	letter-spacing: 0.05rem;
+	cursor: default;
+}
+a.big, span.big, div.big { font-size: 2rem; }
+a.small, span.small, div.small { font-size: 1rem; }
+.red { --light: #FF0000;text }
+.green { --light: #6FBF2A; }
+.orange { --light: #F95822; }
+.discord-color { --light: #5865F2;}
+
+.box {
+	margin: 1rem;
+	margin-bottom: 2.5rem;
+	padding: .75rem;
+	border-radius: 1rem;
+	border: .25rem solid var(--light);
+}
+
+.flex, .button, .media { display: flex; gap: var(--gap, 1rem); }
+.flex.space-around { justify-content: space-around; }
+.flex.wrap { flex-wrap: wrap; }
+.flex.center-v { align-items: center; }
+.flex.center-h { justify-content: center; }
+.flex.fill > * { width: 100%; }
+
+.button {
+	border-radius: 1rem;
+	padding: .1rem .3rem;
+	justify-content: center;
+	color: var(--dark);
+	background-color: var(--light);
+	text-decoration: none;
+}
+.button:hover { filter: brightness(1.2); }
+.button.border { border-width: .15rem; border-style: solid; background-color: transparent; color: var(--light); }
+.button > img { height: 1.5rem; }
+.button.big { padding: .3rem .5rem; }
+.button.big.border { border-width: .2rem; }
+.button.big > img { height: 2rem; }
+.button.narrow { width: -moz-fit-content; width: fit-content; }
+
+.card {
+	width: calc(50% - (var(--gap, 1rem) * 2) - .5rem);
+	padding: 0 var(--gap, 1rem);
+	border-radius: 1rem;
+	overflow: hidden;
+	box-shadow: 0 0 4px black, inset 0 0 2px black;
+	height: fit-content;
+}
+.card:hover { box-shadow: 0 0 6px black, inset 0 0 2px black; }
+.card > img { width: calc(100% + (var(--gap, 1rem) * 2)); margin: 0 -1rem; }
+.card > .header { margin: .5rem 0; }
+.card > .lower-third { margin: -2rem 0 .5rem; }
+.card > .footer { margin: 1rem 0 .5rem; }
+.card .hover-button { margin: -2.75rem 0 .5rem; opacity: 0; pointer-events: none; transition: all ease-out .25s; }
+.card:hover .hover-button { margin: 1rem 0 .5rem; opacity: 1; pointer-events: all; }
+
+.media { --gap: .5rem; align-items: center; }
+.media > img { height: 1.5rem; }
+
+
+
+#top-themes-list {
+	max-width: max(60%, 60rem);
+}
