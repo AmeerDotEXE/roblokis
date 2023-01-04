@@ -1,9 +1,12 @@
 
 # Roblokis
-This is the source code of the Google Chrome extension Roblokis!
+This is the source code of the Chrome extension Roblokis!
 
 Roblokis is ONLY available on chrome web store please avoid any copies that aren't mine
 https://chrome.google.com/webstore/detail/roblokis/olofnhaecbnacbmgcknhcnacnffepkij
+
+You can find many details about Roblokis in
+https://ameerdotexe.github.io/roblokis/
 
 ## Installation
 if your new to extension devolopment then let me guide you
