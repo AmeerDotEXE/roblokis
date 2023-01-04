@@ -1,0 +1,88 @@
+{
+    "manifest_version": 3,
+    "version": "4.0.0.7",
+	"version_name": "Pre-Release v4",
+
+	"author": "Ameer!",
+    "name": "Roblokis",
+    "description": "__MSG_extDesc__",
+    "default_locale": "en",
+
+    "options_page": "html/Popup/Popup.html",
+    "homepage_url": "https://ameerdotexe.github.io/roblokis/",
+	"incognito": "split",
+
+	"host_permissions": [
+		"https://*/*.png",
+		"https://*/*.jpg",
+		"https://*/*.jpeg",
+		"https://*/*.gif",
+		"https://*/*.webp",
+		"https://*/*.svg",
+		"https://*/*.bmp"
+	],
+	
+    "background": {
+        "service_worker": "Background.js"
+    },
+
+    "web_accessible_resources": [ {
+        "resources": ["*.*"],
+        "matches": ["*://*.roblox.com/*"],
+        "extension_ids": []
+    } ],
+    "icons": {
+        "300": "/images/icons/icon_300x300.png"
+    },
+    "action": {
+        "default_popup": "html/Popup/Popup.html",
+        "default_icon": {
+            "300": "/images/icons/icon_300x300.png"
+        },
+        "default_title": "Roblokis"
+    },
+    "content_scripts": [
+        {
+            "matches": [ "*://*.roblox.com/*" ],
+            "js": [
+                "js/Main/Utility.js",
+                "js/Main/General.js",
+                "js/Theme/ThemeLoader.js",
+
+                "js/Scripts/AllPages.js"
+            ],
+            "run_at": "document_start"
+        },
+        {
+            "matches": [ "*://*.roblox.com/users/*" ],
+            "js": [
+                "js/Scripts/FriendsPage/Home/CancelFriendPending.js",
+                "js/Scripts/FriendsPage/Friends/QuickFriendRemove.js",
+                "js/Scripts/Main/LastStats.js" 
+            ],
+            "run_at": "document_start"
+        },
+        {
+            "matches": [ "*://*.roblox.com/games/*" ],
+            "js": [ 
+                "js/Scripts/GamePage.js",
+
+                "js/Scripts/GamePage/PrivateServers/AvailPrivateServers.js",
+                "js/Scripts/GamePage/PrivateServers/ShowPrivateServers.js"
+            ],
+            "run_at": "document_start"
+        },
+        {
+            "matches": [ "*://*.roblox.com/roblokis*" ],
+            "js": [ 
+                "html/SettingsPage/SettingsPage.js",
+                "html/SettingsPage/Pages/Main/designer.js",
+                "html/SettingsPage/Pages/GamePage/servers.js"
+            ],
+            "css": [
+                "html/SettingsPage/SettingsPage.css"
+            ],
+            "run_at": "document_start"
+        }
+    ]
+}

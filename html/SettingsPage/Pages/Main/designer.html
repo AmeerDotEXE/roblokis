@@ -1,0 +1,2575 @@
+<h3><span data-translate="categoryMain">Main</span> &gt; <span data-translate="tabDesigner">Themes</span></h3>
+<button class="main-save-button" data-translate="btnSave">Save</button>
+
+<div id="rk-themesection">
+
+   <div style="display: flex;flex-direction: column;text-align: center;background-color: rgb(114, 118, 122, 0.4);border-radius: 20px;padding: 1% 4%;box-shadow: 0 0 8px rgb(114, 118, 122, 0.4);margin: 9px 0;"><span style="color: white;" data-translate="themeSelected">Selected Theme</span><span id="currentthemeplace" class="text-description" data-translate="themeNotLoad">Not Loaded</span></div>
+
+
+   <div class="section-content">
+      <span class="text-lead" data-translate="sectionUThemes">Use Themes.</span>
+      <span class="rk-button btn-toggle receiver-destination-type-toggle on" data-file="UseThemes">
+         <span class="toggle-flip"></span>
+         <span class="toggle-on"></span>
+         <span class="toggle-off"></span>
+      </span>
+      <div class="rbx-divider" style="margin: 12px;"></div>
+      <span class="text-description" data-translate="sectionUThemes1">Disabling this will disable Styles and Themes!</span>
+   </div>
+
+   <div class="section-content">
+      <span class="text-lead" data-translate="sectionAAnim">Allow animations?</span>
+      <span class="rk-button btn-toggle receiver-destination-type-toggle off" data-file="BasicAnim">
+         <span class="toggle-flip"></span>
+         <span class="toggle-on"></span>
+         <span class="toggle-off"></span>
+      </span>
+      <div class="rbx-divider" style="margin: 12px;"></div>
+      <span class="text-description" data-translate="sectionAAnim1">Some pages might have some animation effects. (Requires Themes Option)</span>
+   </div>
+
+   <div class="section-content">
+      <span class="text-lead" data-translate="sectionExtraS">Extra Shadows.</span>
+      <span class="rk-button btn-toggle receiver-destination-type-toggle off" data-file="ExtraShadows">
+         <span class="toggle-flip"></span>
+         <span class="toggle-on"></span>
+         <span class="toggle-off"></span>
+      </span>
+      <div class="rbx-divider" style="margin: 12px;"></div>
+      <span class="text-description" data-translate="sectionExtraS1">Adds a shadow effect under or around some elements.</span>
+   </div>
+
+
+   <div class="section-content">
+      <span style="font-weight: 700;" data-translate="themeDefaultSection">Default Themes:</span>
+      <span class="text-description" data-translate="themeDefaultSection1">Comes with the extension...</span>
+      <div class="rbx-divider" style="margin: 12px;"></div>
+
+      <div class="default-theme-template">
+         <div>
+            <div>Default Dark Theme</div>
+            <span>Simple Design made to match default roblox.</span>
+         </div>
+         <div style="margin-left: auto;"></div>
+         <button data-theme="Default Dark Theme" data-themeid="0" data-isdefaulttheme="true" onclick="Designer.SelectThemeButton(this)" data-translate="btnSelect">Select</button>
+      </div>
+
+      <div class="default-theme-template">
+         <div>
+            <div>Default Light Theme</div>
+            <span>Simple Design made to match default roblox.</span>
+         </div>
+         <div style="margin-left: auto;"></div>
+         <button data-theme="Default Light Theme" data-themeid="1" data-isdefaulttheme="true" onclick="Designer.SelectThemeButton(this)" data-translate="btnSelect">Select</button>
+      </div>
+
+      <div class="rbx-divider" style="margin: 12px 0 0 0;"></div>
+   </div>
+
+
+
+   <div class="section-content">
+      <span style="font-weight: 700;" data-translate="themeCustomSection">Custom Themes:</span>
+      <span class="text-description" data-translate="themeCustomSection1">You use or create your own themes...</span>
+      <div class="rbx-divider" style="margin: 12px;"></div>
+
+      <div id="customthemesholder">
+      </div>
+
+      <div class="rbx-divider" style="margin: 12px 0 0 0;"></div>
+   </div>
+
+</div>
+
+
+
+<div id="rk-createthemesection" class="rk-popup-holder" style="z-index: 10000;">
+   <div class="rk-popup">
+      <h3 data-translate="themeNewTitle">New Theme</h3>
+      <input id="newtheme-name" placeholder="Name" data-translate="themeName">
+      <input id="newtheme-desc" placeholder="Description (Optional)" style="margin-bottom: 20px;" data-translate="themeDescription">
+      <input type="file" id="newtheme-file" accept=".roblokis" oninput="if(this.files.length > 0) document.querySelector('#newtheme-filename').innerText = this.files[0].name; else document.querySelector('#newtheme-filename').innerText = Rkis.language['themeImport']" hidden>
+      <label id="newtheme-filename" for="newtheme-file" data-translate="themeImport">Import Theme (Optional)</label>
+      <div id="newtheme-error" class="info" style="font-size: 12px;"></div>
+      <div>
+         <button onclick="document.querySelector('#rk-createthemesection').style.display = 'none';" data-translate="btnCancel">Cancel</button>
+         <button onclick="Designer.CreateNewTheme(this);" class="rk-createbtn" data-translate="btnCreate">Create</button>
+      </div>
+   </div>
+</div>
+
+
+
+<div id="rk-deletethemesection" class="rk-popup-holder" style="z-index: 5000;">
+   <div class="rk-popup">
+      <h3 data-translate="themeDeleteTitle">Delete Theme</h3>
+      <div class="info">
+         <span data-translate="themeDeleteText">Are You Sure on Deleting </span>
+         <span id="deletetheme-themename"></span>
+      </div>
+      <div>
+         <button onclick="document.querySelector('#rk-deletethemesection').style.display = 'none';" data-translate="btnCancel">Cancel</button>
+         <button id="deletetheme-button" data-themeid="" onclick="Designer.DeleteTheTheme(this);" data-translate="btnDelete">Delete</button>
+      </div>
+   </div>
+</div>
+
+
+
+<div id="rk-editthemesection" class="rk-popup-holder" style="z-index: 1000;">
+   <div class="rk-popup" style="width: 85%;height: 100%;padding: calc(4% + 10px) calc(3% + 10px);overflow: auto;flex-direction: column;justify-content: flex-start;">
+
+      <div style="display: flex;justify-content: space-evenly;margin-bottom: 10px;">
+
+         <button onclick="document.querySelector('#rk-editthemesection').style.display = 'none';" style="background-color: rgb(57 59 61);color: white;border: 0;border-radius: 10px;margin: 0 2px;" data-translate="btnCancel">Close</button>
+
+         <button onclick="Designer.ThemeEditor.Save();" style="background-color: rgb(57 184 61);border: 0;border-radius: 10px;margin: 0 2px;" data-translate="btnSave">Save</button>
+
+      </div>
+
+      <div style="display: flex;">
+         
+         <ul class="menu-vertical submenus" role="tablist" style="border-radius: 10px;border-right: 1px solid #b8b8b8;border-bottom: 1px solid #b8b8b8;margin: 0 10px 12px 0;display: flex;width: fit-content;">
+            
+            <li onclick="Designer.ThemeEditor.SelectTab(this);" data-editthemetab="all" class="menu-option active" style="border-radius: 10px;"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabAll">All</span> </a> </li>
+
+         </ul>
+
+            
+         <ul class="menu-vertical submenus" role="tablist" style="border-radius: 10px;border-right: 1px solid #b8b8b8;border-bottom: 1px solid #b8b8b8;margin: 0 10px 12px 0;display: flex;width: fit-content;">
+
+            <li onclick="Designer.ThemeEditor.SelectTab(this);" data-editthemetab="home" class="menu-option" style="border-radius: 0 0 0 10px;"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabHome">Home</span> </a> </li>
+
+            <li onclick="Designer.ThemeEditor.SelectTab(this);" data-editthemetab="users" class="menu-option" style="border-radius: 0 0 0 0;"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabUsers">Users</span> </a> </li>
+
+            <li onclick="Designer.ThemeEditor.SelectTab(this);" data-editthemetab="groups" class="menu-option" style="border-radius: 0 0 0 0;"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabGroups">Groups</span> </a> </li>
+
+            <li onclick="Designer.ThemeEditor.SelectTab(this);" data-editthemetab="game" class="menu-option" style="border-radius: 0 0 10px 0;"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabGame">Game</span> </a> </li>
+
+         </ul>
+
+      </div>
+
+      <div class="rbx-divider" style="padding: 1px 20%;margin-bottom: 10px;"></div>
+
+      <div class="section-content">
+         <div style="display: flex;">
+            <input id="themeedit-resulution" value="1280x720" placeholder="Size x Size" class="form-control input-field" style="border-radius: 8px;" data-translate="screenLength">
+            <select id="themeedit-percent">
+               <option value="150">150%</option>
+               <option value="125">125%</option>
+               <option value="100">100%</option>
+               <option value="75">75%</option>
+               <option value="50" selected>50%</option>
+            </select>
+         </div>
+      </div>
+
+      <div>
+
+
+         <style>
+
+            /*Preview*/
+            .group:hover > *:not(loadcode):not(.inner-group) {
+               background-color: rgba(0, 255, 0, 0.2);
+            }
+
+            .group:hover > .dark {
+               background-color: rgba(0, 128, 0, 0.4);
+            }
+
+            .group:hover > .inner-group > *:not(loadcode) {
+               background-color: rgba(0, 255, 0, 0.2);
+            }
+
+            .group:hover > .inner-group > .dark {
+               background-color: rgba(0, 128, 0, 0.4);
+            }
+
+            .selectable:hover {
+               background-color: rgba(0, 255, 0, 0.2);
+            }
+
+            .selectable.dark:hover {
+               background-color: rgba(0, 128, 0, 0.4);
+            }
+
+            .recreate-background {
+               width: 100%;
+               height: 100%;
+               position: absolute;
+            }
+
+            .recreate-content {
+               background-color: rgba(0, 0, 0, 0.4);
+               top: calc(60px * var(--editor-size-percent));
+               left: 10%;
+               height: calc(100% - calc(263px * var(--editor-size-percent)));
+               width: 80%;
+               position: absolute;
+               border-radius: calc(20px * var(--editor-size-percent));
+            }
+
+            .recreate-menus {
+               width: 100%;
+               height: 100%;
+            }
+
+            .recreate-menus > *:not(loadcode) {
+               background-color: rgba(0,0,0,0.4);
+               position: absolute;
+            }
+
+            .recreate-topmenu {
+               width: 100%;
+               height: calc(40px * var(--editor-size-percent));
+               border-radius: 0 0 calc(16px * var(--editor-size-percent)) calc(16px * var(--editor-size-percent));
+            }
+
+            .recreate-rightmenu {
+               width: calc(175px * var(--editor-size-percent));
+               height: 80%;
+               border-radius: calc(20px * var(--editor-size-percent));
+               margin: 1%;
+               top: calc(40px * var(--editor-size-percent));
+            }
+
+            .recreate-bottommenu {
+               border-radius: calc(60px * var(--editor-size-percent)) calc(60px * var(--editor-size-percent)) 0px 0px;
+               width: 100%;
+               height: calc(173px * var(--editor-size-percent));
+               bottom: 0px;
+            }
+
+            .recreate-badge {
+               background-color: rgba(0, 0, 0, 0.4);
+               width: 80%;
+               left: 10%;
+               height: fit-content;
+               position: relative;
+               margin-bottom: 20px;
+               border-radius: calc(20px * 2 * var(--editor-size-percent));
+
+               display: flex;
+               flex-direction: column;
+               align-items: center;
+               padding: calc(12px * 2 * var(--editor-size-percent));
+            }
+
+            .badge-content-data > li {
+               display: flex;
+               gap: 4%;
+               justify-content: center;
+            }
+
+            .recreate-servers {
+               background-color: rgba(0, 0, 0, 0.4);
+               width: 80%;
+               left: 10%;
+               position: relative;
+               margin-bottom: 20px;
+               border-radius: calc(20px * 2 * var(--editor-size-percent));
+               padding: calc(12px * 2 * var(--editor-size-percent));
+            }
+
+            .recreate-servers .section-right .avatar {
+               top: 8px;
+               width: calc(34px * 2 * var(--editor-size-percent));
+               height: calc(34px * 2 * var(--editor-size-percent));
+               display: inline-block;
+               margin: 0px -10px 6px 0px;
+            }
+
+            .recreate-servers .section-right #rk-plr-counter.avatar {
+               display: inline-grid;
+               align-content: center;
+               font-weight: bold;
+               text-align: center;
+               margin: 0px -8px 6px 0px;
+            }
+
+            .recreate-loadmore {
+               padding: 2%;
+               position: relative;
+            }
+
+            .recreate-profile {
+               padding: 2%;
+               position: relative;
+               margin: 0 4% 4%;
+               display: grid;
+            }
+
+            #profile-header-more {
+               position: absolute;
+               top: 0;
+               right: 6px;
+            }
+
+            div.recreate-profile > div.profile-header-top > div.profile-avatar-image {
+               position: relative;
+               margin-right: calc(12px * 2 * var(--editor-size-percent));
+               width: calc(128px * 2 * var(--editor-size-percent));
+               height: calc(128px * 2 * var(--editor-size-percent));
+               float: left;
+            }
+
+            div.recreate-profile > div.profile-header-top > div.header-caption {
+               width: calc(100% - 128px - 24px * 2 * var(--editor-size-percent));
+               height: calc(128px * 2 * var(--editor-size-percent));
+               position: relative;
+               float: left;
+               display: flex;
+               justify-content: space-between;
+               flex-direction: column;
+            }
+
+            div.recreate-profile > div.profile-header-top > div.header-caption > div.header-details {
+               position: relative;
+               float: left;
+               display: flex;
+               align-items: center;
+               justify-content: space-between;
+               min-height: 35px;
+            }
+
+            div.recreate-profile > div.profile-header-top > div.header-caption > div.header-details > ul.details-info > li {
+               float: left;
+               display: flex;
+               align-items: center;
+               flex-direction: row-reverse;
+               padding-right: 15px;
+            }
+
+            .recreate-group {
+               padding: 2%;
+               position: relative;
+               margin: 0 4% 4%;
+               display: grid;
+            }
+
+            div.group-header .group-caption {
+               width: calc(100% - 156px * 2 * var(--editor-size-percent));
+               position: relative;
+               float: left;
+               height: calc(128px * 2 * var(--editor-size-percent));
+               display: flex;
+               justify-content: space-between;
+               flex-direction: column;
+            }
+
+            div.group-header .group-caption .group-name {
+               max-width: 100%;
+               padding: 0;
+            }
+
+            div.group-header .group-caption .group-info {
+               width: 100%;
+               position: relative;
+               float: left;
+               display: flex;
+               align-items: center;
+               justify-content: space-between;
+               min-height: calc(35px * 2 * var(--editor-size-percent));
+            }
+
+            .group-header .group-caption .group-info .group-stats li {
+               float: left;
+               display: flex;
+               align-items: center;
+               padding-right: calc(15px * 2 * var(--editor-size-percent));
+            }
+
+            .group-header .group-caption .group-info .group-stats li .font-header-2 {
+               margin-right: calc(6px * 2 * var(--editor-size-percent));
+            }
+
+            .text-overflow {
+               overflow: hidden;
+               text-overflow: ellipsis;
+               white-space: nowrap;
+            }
+
+            .group-menu {
+               position: absolute;
+               top: 0;
+               right: calc(6px * 2 * var(--editor-size-percent));
+             }
+
+            p.recreate-text-size,
+            div.recreate-text-size,
+            .recreate-profile .recreate-text-size,
+            .recreate-text-size {
+               font-size: calc(16px * 2 * var(--editor-size-percent));
+            }
+
+            p.recreate-12px-text-size,
+            div.recreate-12px-text-size,
+            .recreate-profile  .recreate-12px-text-size,
+            .recreate-12px-text-size {
+               font-size: calc(12px * 2 * var(--editor-size-percent));
+            }
+
+            .stack-header span.recreate-14px-text-size,
+            div.recreate-14px-text-size,
+            .recreate-14px-text-size {
+               font-size: calc(175% * var(--editor-size-percent));
+            }
+
+            p.recreate-90p-text-size,
+            div.recreate-90p-text-size,
+            .recreate-90p-text-size {
+               font-size: calc(90% * 2 * var(--editor-size-percent));
+            }
+
+            [data-editthemetabs] input:not([type="radio"]),
+            [data-editthemetabs] select {
+               margin: 0 3px 0 3px;
+               border-radius: 8px;
+               width: calc(100% - 80px);
+            }
+
+            [data-editthemetabs] input:not([type="color"]),
+            [data-editthemetabs] select {
+               height: auto;
+            }
+
+            [data-editthemetabs] select {
+               background-color: rgba(0,0,0,.7);
+               border-color: hsla(0,0%,100%,.2);
+               color: #bdbebe;
+               padding: 5px 12px;
+            }
+
+            .light-theme [data-editthemetabs] select {
+               background-color: white;
+               border-color: rgb(96 97 98 / 20%);
+               color: rgb(96 97 98);
+            }
+
+            #themeedit-percent {
+               border-radius: 8px;
+               background-color: rgba(0,0,0,.7);
+               border-color: hsla(0,0%,100%,.2);
+               color: #bdbebe;
+               padding: 5px 12px;
+            }
+
+            .light-theme #themeedit-percent {
+               background-color: white;
+               border-color: rgb(96 97 98 / 20%);
+               color: rgb(96 97 98);
+            }
+
+            /*Tab Selection*/
+            #rk-editthemesection .menu-option:hover {
+               box-shadow: inset 0px -3px 0 0 #656668;
+            }
+
+            #rk-editthemesection .menu-option.active {
+               box-shadow: inset 0px -3px 0 0 #fff;
+            }
+
+            #rk-editthemesection .menu-option-content {
+               padding: 9px;
+            }
+
+            .rk-popup-holder {
+               display: none;
+               position: fixed;
+               top: 0px;
+               left: 0px;
+               right: 0;
+               bottom: 0;
+               font-size: 16px;
+               font-weight: 300;
+               align-items: center;
+               justify-content: center;
+               flex-direction: column;
+               flex-wrap: wrap;
+               pointer-events: all;
+               background-color: rgb(0 0 0 / 40%);
+               width: 100%;
+               height: 100%;
+               padding: 4%;
+            }
+
+            .rk-popup {
+               display: flex;
+               flex-direction: column;
+               width: fit-content;
+               height: fit-content;
+               background: rgb(35 37 39);
+               box-shadow: 0 0 20px 2px black;
+               border-radius: 20px;
+               overscroll-behavior: contain;
+               pointer-events: all;
+               position: relative;
+               align-items: center;
+               justify-content: center;
+            }
+
+            .light-theme .rk-popup {
+               background-color: rgb(242, 244, 245);
+               box-shadow: 0 0 20px 2px white;
+            }
+
+            .designer-section {
+               background-color: rgb(70 74 78);
+            }
+
+            .light-theme .designer-section {
+               background-color: rgb(212 212 212);
+            }
+
+            /*test*/
+            [data-editthemetabs] {
+               display: flex;
+               flex-direction: column;
+               align-items: center;
+            }
+
+            /*Section Selection*/
+            .accordion__input:checked ~ .accordion__label {
+               color: rgba(255, 255, 255, 0.8);
+            }
+
+            .accordion__content {
+               animation: fadeout 400ms ease-in-out;
+               opacity: 0;
+               display: none;
+               background-color: rgb(35, 37, 39);
+               border-radius: 20px;
+               padding: 10px;
+               margin-top: 10px;
+            }
+
+            .accordion__input:checked ~ .accordion__content {
+               animation: fadein 400ms ease-in-out;
+               opacity: 1;
+               display: block;
+            }
+
+            @keyframes fadein {
+               from {
+                  opacity: 0;
+               }
+               to {
+                  opacity: 1;
+               }
+            }
+
+            @keyframes fadeout {
+               from {
+                  opacity: 1;
+               }
+               to {
+                  opacity: 0;
+               }
+            }
+         </style>
+
+         <!-- 
+            Elements to Copy
+         -->
+
+         <div style="display: none;">
+            <loadcode run='
+               showthelem = function(elem, click) {
+                  if(click.target.tagName != "LOADCODE") {
+                     document.$triggerCustom("openedit", elem.firstElementChild)
+                     elem.firstElementChild.style.display = "flex";
+                  }
+               }
+
+               hidethelem = function(elem, click) {
+                  if(click.target == elem) {
+                     document.$triggerCustom("closeedit", elem.parentElement)
+                     elem.style.display = "none";
+                  }
+               }
+
+               clearelemstyle = function(eto) {
+                  eto.style.background = "";
+                  eto.style.borderRadius = "";
+                  eto.style.border = "";
+               }
+
+               CreateStyleformto = function(efrom, eto) {
+
+                  document.addEventListener("closeedit", function(event) {
+                     if (efrom != event.detail) return;
+                     run();
+                  })
+
+                  document.addEventListener("openedit", function(event) {
+                     event.detail.children.forEach(x => {if(x == efrom.parentElement) run();})
+                  })
+
+                  function run() {
+                     var updatedtheme = {};
+                     var ismainsystem = efrom.classList.contains("mainpreview");
+
+                     var settingelements = efrom.querySelectorAll(`[data-location][data-type]`);
+                     for (var stnnum = 0; stnnum < settingelements.length; stnnum++) {
+                        var input = settingelements[stnnum];
+                        if(input.dataset.location == null || input.dataset.location == "") continue;
+
+                        var placewithoutdots = input.dataset.location.split(".");
+                        var place = updatedtheme;
+                        var newplace = updatedtheme;
+                        var stringplace = "null";
+
+                        for(var i = 0; i < placewithoutdots.length && newplace != null; i++) {
+                           if(ismainsystem == false && i == 0 && placewithoutdots[i] != "background") continue;
+                           newplace = newplace[placewithoutdots[i]];
+                        }
+
+                        for(var i = 0; i < placewithoutdots.length; i++) {
+                           if(ismainsystem == false && i == 0 && placewithoutdots[i] != "background") continue;
+                           stringplace = stringplace.replace("null" ,`{"${placewithoutdots[i]}":null}`);
+                        }
+
+                        stringplace = stringplace.replace("null", JSON.stringify(Designer.ThemeEditor.GetTypeValue(input.dataset.type, input.value, newplace)));
+
+                        var jsonplace = null;
+
+                        try {
+                           jsonplace = JSON.parse(stringplace);
+                        }
+                        catch {}
+
+                        updatedtheme = jsonConcat(place, jsonplace);
+                     }
+
+                     var settingswitchs = efrom.querySelectorAll(`[data-location][data-enabled]`);
+                     for (var stnnum = 0; stnnum < settingswitchs.length; stnnum++) {
+                        var input = settingswitchs[stnnum];
+                        if(input.dataset.location == null) continue;
+
+                        if(page.getSwich(input)) continue;
+
+                        if(updatedtheme == null) continue;
+
+                        var placewithoutdots = input.dataset.location.split(".");
+                        var place = updatedtheme;
+                        var stringplace = "null";
+
+                        for(var i = 0; i < placewithoutdots.length; i++) {
+                           if(ismainsystem == false && i == 0 && placewithoutdots[i] != "background") continue;
+                           stringplace = stringplace.replace("null" ,`{"${placewithoutdots[i]}":null}`);
+                        }
+
+                        var jsonplace = null;
+
+                        try {
+                           jsonplace = JSON.parse(stringplace);
+                        }
+                        catch {}
+
+                        updatedtheme = jsonConcat(place, jsonplace);
+                     }
+
+                     if(ismainsystem && efrom.dataset.type == "server") {
+                        var newlst = {...updatedtheme.friendsserver};
+                        newlst = jsonConcat(newlst, updatedtheme.privateserver);
+                        newlst = jsonConcat(newlst, updatedtheme.defaultserver);
+                        updatedtheme = newlst;
+                     }
+
+                     function loasd(repet, elmsin, drctelm) {
+                        for (var elm in elmsin) {
+                           var selctd = {...elmsin};
+                           var itmstoedit = [drctelm];
+
+                           if(elm != "background" && elm != "corners" && elm != "borders" && elm != "colors" && elm != "color" && repet == true) {
+                              if(drctelm.dataset.inside != null && drctelm.dataset.inside.includes(elm)) {
+                                 selctd = selctd[elm];
+                                 loasd(false, selctd, drctelm);
+                                 continue;
+                              } else {
+                                 itmstoedit = [];
+                                 drctelm.querySelectorAll("[data-inside]").forEach(e => {
+                                    if(e.dataset.inside.includes(elm)) itmstoedit.push(e);
+                                 })
+
+                                 selctd = selctd[elm];
+
+                                 itmstoedit.forEach(e => {loasd(false, selctd, e);})
+                                 continue;
+                              }
+                           }
+
+                           itmstoedit.forEach(elmnt => {
+                              if(elmnt == null) return;
+
+                              if(elm == "background") {
+                                 if(selctd[elm] != null) {
+                                    var bg = selctd.background;
+                                    if(bg.color != null) {
+                                       elmnt.style.backgroundColor = bg.color;
+                                    }
+
+                                    if(bg.image != null) {
+                                       var img = bg.image;
+
+                                       if(img.link != null && img.link != "")
+                                          elmnt.style.backgroundImage = `url(${img.link})`;
+
+                                       if(img.attachment != null)
+                                          elmnt.style.backgroundAttachment = img.attachment;
+
+                                       if(img.size != null)
+                                          elmnt.style.backgroundSize = img.size;
+
+                                       if(img.repeat != null)
+                                          elmnt.style.backgroundRepeat = img.repeat;
+                                    }
+                                 }
+                                 else {
+                                    elmnt.style.background = "";
+                                 }
+                              }
+
+                              if(elm == "corners") {
+                                 if(selctd[elm] != null) {
+                                    var cr = selctd.corners;
+                                    if(cr.all != null && cr.all.radius != null)
+                                       elmnt.style.borderRadius = `calc(${cr.all.radius} * 2 * var(--editor-size-percent))`;
+
+                                    if(cr["bottom-left"] != null && cr["bottom-left"].radius != null)
+                                       elmnt.style.borderBottomLeftRadius = cr["bottom-left"].radius;
+
+                                    if(cr["bottom-right"] != null && cr["bottom-right"].radius != null)
+                                       elmnt.style.borderBottomRightRadius = cr["bottom-right"].radius;
+
+                                    if(cr["top-left"] != null && cr["top-left"].radius != null)
+                                       elmnt.style.borderTopLeftRadius = cr["top-left"].radius;
+
+                                    if(cr["top-right"] != null && cr["top-right"].radius != null)
+                                       elmnt.style.borderTopRightRadius = cr["top-right"].radius;
+                                 }
+                                 else {
+                                    elmnt.style.borderRadius = "";
+                                 }
+                              }
+
+                              if(elm == "borders") {
+                                 if(selctd[elm] != null) {
+                                    var br = selctd.borders;
+                                    if(br.all != null) elmnt.style.border = `${br.all.size} ${br.all.style} ${br.all.color}`;
+                                    else elmnt.style.border = "";
+                                    
+                                    if(br.bottom != null) elmnt.style.borderBottom = `${br.bottom.size} ${br.bottom.style} ${br.bottom.color}`;
+                                    else if(br.all == null) elmnt.style.borderBottom = "";
+
+                                    if(br.left != null) elmnt.style.borderLeft = `${br.left.size} ${br.left.style} ${br.left.color}`;
+                                    else if(br.all == null) elmnt.style.borderLeft = "";
+
+                                    if(br.right != null) elmnt.style.borderRight = `${br.right.size} ${br.right.style} ${br.right.color}`;
+                                    else if(br.all == null) elmnt.style.borderRight = "";
+
+                                    if(br.top != null) elmnt.style.borderTop = `${br.top.size} ${br.top.style} ${br.top.color}`;
+                                    else if(br.all == null) elmnt.style.borderTop = "";
+                                 }
+                                 else {
+                                    elmnt.style.border = "";
+                                 }
+                              }
+
+                              if(elm == "colors") {
+                                 if(selctd[elm] != null) {
+                                    var cl = selctd.colors;
+
+                                    for (var clr in cl) {
+                                       elmnt.querySelectorAll(".colors."+clr).forEach((e) => {e.style.color = cl[clr]})
+                                    }
+                                 }
+                                 else {
+                                    elmnt.querySelectorAll(".colors").forEach((e) => {e.style.color = ""})
+                                    elmnt.querySelectorAll(".colors.dark").forEach((e) => {e.style.color = "#bdbebe"})
+                                 }
+                              }
+
+                              if(elm == "color") {
+                                 if(elmnt.classList.contains("color")) {
+                                    if(selctd[elm] != null) {
+                                       elmnt.style.color = selctd.color;
+                                    }
+                                    else {
+                                       elmnt.style.color = "";
+                                       if(elmnt.classList.contains("dark")) elmnt.style.color = "#bdbebe";
+                                    }
+                                 } else {
+                                    if(selctd[elm] != null) {
+                                       elmnt.querySelectorAll(".color").forEach((e) => {e.style.color = selctd.color})
+                                    }
+                                    else {
+                                       elmnt.querySelectorAll(".color").forEach((e) => {e.style.color = ""})
+                                       elmnt.querySelectorAll(".color.dark").forEach((e) => {e.style.color = "#bdbebe"})
+                                    }
+                                 }
+                              }
+                           })
+                        }
+                     }
+                     loasd(true, updatedtheme, eto);
+
+                     //console.log(updatedtheme);
+                  }
+
+                  run();
+                  
+               }
+            '></loadcode>
+
+            <savecode code="editbackground">
+               var loc = element.dataset.location;
+               if(loc == null || loc == "") return;
+
+               var togglebtn = (element.dataset.togglebtn == "on" ? "" : 'style="display: none;"');
+
+               element.innerHTML += `
+               <div class="section-content">
+                  <div style="display: flex;justify-content: space-between;align-items: center;">
+                     <h4 style="width: fit-content;" data-translate="themeBackground">${element.dataset.title || Rkis.language["themeBackground"]}</h4>
+                     <span data-location="${loc}" data-enabled="switch" onclick="page.toggleSwich(this)" class="rk-button btn-toggle receiver-destination-type-toggle ${element.dataset.toggle || 'on'}" ${togglebtn}>
+                        <span class="toggle-flip"></span>
+                        <span class="toggle-on"></span>
+                        <span class="toggle-off"></span>
+                     </span>
+                  </div>
+
+
+                  <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin-right: 5px;" data-translate="themeColor">Color:</span><input type="color" value="#232527" data-location="${loc}.color" data-type="color" class="form-control input-field"></div>
+
+                  <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin-right: 5px;" data-translate="themeAlpha">Alpha:</span><input type="range" value="100" step="10" data-location="${loc}.color" data-type="color-alpha" class="form-control input-field"></div>
+
+
+                  <div class="rbx-divider" style="margin: 12px;"></div>
+
+
+                  <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin-right: 5px;" data-translate="themeLink">Link:</span><input type="url" value="" data-location="${loc}.image.link" data-type="value" class="form-control input-field"></div>
+
+                  <div style="display: flex;align-items: center;justify-content: space-between;">
+                     <span data-translate="themeSize">Size:</span>
+                     <select selected="contain" data-location="${loc}.image.size" data-type="value">
+                        <option value="contain" data-translate="themeFillX">Fill X</option>
+                        <option value="cover" data-translate="themeFillY">Fill Y</option>
+                        <option value="auto" data-translate="themeAuto">Auto</option>
+                     </select>
+                  </div>
+
+                  <div style="display: flex;align-items: center;justify-content: space-between;">
+                     <span data-translate="themeRepeatT">Repeat:</span>
+                     <select selected="round" data-location="${loc}.image.repeat" data-type="value">
+                        <option value="round" data-translate="themeRound">Round</option>
+                        <option value="repeat" data-translate="themeRepeat">Repeat</option>
+                        <option value="space" data-translate="themeSpace">Space</option>
+                        <option value="no-repeat" data-translate="themeNoRepeat">No Repeat</option>
+                     </select>
+                  </div>
+
+                  <div style="display: flex;align-items: center;justify-content: space-between;">
+                     <span data-translate="themeScroll">Scroll:</span>
+                     <select selected="fixed" data-location="${loc}.image.attachment" data-type="value">
+                        <option value="fixed" data-translate="themeEnabled">Enabled</option>
+                        <option value="scroll" data-translate="themeDisabled">Disabled</option>
+                     </select>
+                  </div>
+
+               </div>`;</savecode>
+            <savecode code="editcorners">
+               var loc = element.dataset.location;
+               if(loc == null || loc == "") return;
+
+               var togglebtn = (element.dataset.togglebtn == "on" ? "" : 'style="display: none;"');
+
+               element.innerHTML += `
+               <div class="section-content">
+                  <div style="display: flex;justify-content: space-between;align-items: center;">
+                     <h4 style="width: fit-content;margin-right: 10px;" data-translate="themeCorners">${element.dataset.title || Rkis.language["themeCorners"]}</h4>
+                     <span data-location="${loc}.corners" data-enabled="switch" onclick="page.toggleSwich(this)" class="rk-button btn-toggle receiver-destination-type-toggle ${element.dataset.toggle || 'on'}" ${togglebtn}>
+                        <span class="toggle-flip"></span>
+                        <span class="toggle-on"></span>
+                        <span class="toggle-off"></span>
+                     </span>
+                  </div>
+
+                  <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin-right: 5px;" data-translate="themeAllCorners">All Corners:</span><input type="range" value="0" data-location="${loc}.corners.all.radius" data-type="corner" class="form-control input-field" max="20" min="0"></div>
+
+                  <div class="rbx-divider" style="margin: 12px;"></div>
+
+                  <div class="text-lead"><div style="text-align: center;" data-translate="themeTLCorner">Top-Left Corner</div><input type="range" value="-1" data-location="${loc}.corners.top-left.radius" data-type="corner" class="form-control input-field" max="20" min="-1" style="width: calc(100% - 20px);margin: 10px;"></div>
+
+                  <div class="text-lead"><div style="text-align: center;" data-translate="themeTRCorner">Top-Right Corner</div><input type="range" value="-1" data-location="${loc}.corners.top-right.radius" data-type="corner" class="form-control input-field" max="20" min="-1" style="width: calc(100% - 20px);margin: 10px;"></div>
+
+                  <div class="text-lead"><div style="text-align: center;" data-translate="themeBRCorner">Bottom-Right Corner</div><input type="range" value="-1" data-location="${loc}.corners.bottom-right.radius" data-type="corner" class="form-control input-field" max="20" min="-1" style="width: calc(100% - 20px);margin: 10px;"></div>
+
+                  <div class="text-lead"><div style="text-align: center;" data-translate="themeBLCorner">Bottom-Left Corner</div><input type="range" value="-1" data-location="${loc}.corners.bottom-left.radius" data-type="corner" class="form-control input-field" max="20" min="-1" style="width: calc(100% - 20px);margin: 10px;"></div>
+
+               </div>`;</savecode>
+            <savecode code="editborders">
+               var loc = element.dataset.location;
+               if(loc == null || loc == "") return;
+
+               var togglebtn = (element.dataset.togglebtn == "on" ? "" : 'style="display: none;"');
+
+               element.innerHTML += `
+               <div class="section-content" style="min-width: 260px;">
+                  <div style="display: flex;justify-content: space-between;align-items: center;">
+                     <h4 style="width: fit-content;" data-translate="themeBorders">${element.dataset.title || Rkis.language["themeBorders"]}</h4>
+                     <span data-location="${loc}.borders.all" data-enabled="switch" onclick="page.toggleSwich(this)" class="rk-button btn-toggle receiver-destination-type-toggle ${element.dataset.toggle || 'on'}" ${togglebtn}>
+                     <span class="toggle-flip"></span>
+                     <span class="toggle-on"></span>
+                     <span class="toggle-off"></span>
+                     </span>
+                  </div>
+                  <div>
+                     <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span data-translate="themeWidth">Width:</span><input type="range" value="0" data-location="${loc}.borders.all.size" data-type="px" class="form-control input-field" max="10"></div>
+                     <div style="display: flex;align-items: center;justify-content: space-between;">
+                        <span data-translate="themeStyle">Style:</span>
+                        <select selected="solid" data-location="${loc}.borders.all.style" data-type="value">
+                           <option value="solid" data-translate="themeSolid">Solid</option>
+                           <option value="double" data-translate="themeDouble">Double</option>
+                           <option value="dashed" data-translate="themeDashed">Dashed</option>
+                           <option value="dotted" data-translate="themeDotted">Dotted</option>
+                           <option value="inset" data-translate="themeInset">Inset</option>
+                           <option value="outset" data-translate="themeOutset">Outset</option>
+                           <option value="groove" data-translate="themeGroove">Groove</option>
+                           <option value="ridge" data-translate="themeRidge">Ridge</option>
+                        </select>
+                     </div>
+                     <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span data-translate="themeColor">Color:</span><input type="color" value="#ffffff" data-location="${loc}.borders.all.color" data-type="color" class="form-control input-field"></div>
+                     <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span data-translate="themeAlpha">Alpha:</span><input type="range" value="100" step="10" data-location="${loc}.borders.all.color" data-type="color-alpha" class="form-control input-field"></div>
+                  </div>
+                  <div class="rbx-divider" style="margin: 12px;"></div>
+
+                  <div style="border-radius: 10px;margin-bottom: 6px;" class="text-lead">
+                     <input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
+                     <label class="accordion__label" style="font-weight: 400;" data-translate="themeTBorder">Top Border</label>
+
+                     <span data-location="${loc}.borders.top" data-enabled="switch" onclick="page.toggleSwich(this)" class="rk-button btn-toggle receiver-destination-type-toggle off" style="float: right;">
+                        <span class="toggle-flip"></span>
+                        <span class="toggle-on"></span>
+                        <span class="toggle-off"></span>
+                     </span>
+                     <div class="accordion__content">
+                        <div>
+                           <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span data-translate="themeWidth">Width:</span><input type="range" value="0" data-location="${loc}.borders.top.size" data-type="px" class="form-control input-field" max="10"></div>
+                           <div style="display: flex;align-items: center;justify-content: space-between;">
+                              <span data-translate="themeStyle">Style:</span>
+                              <select selected="solid" data-location="${loc}.borders.top.style" data-type="value">
+                                 <option value="solid" data-translate="themeSolid">Solid</option>
+                                 <option value="double" data-translate="themeDouble">Double</option>
+                                 <option value="dashed" data-translate="themeDashed">Dashed</option>
+                                 <option value="dotted" data-translate="themeDotted">Dotted</option>
+                                 <option value="inset" data-translate="themeInset">Inset</option>
+                                 <option value="outset" data-translate="themeOutset">Outset</option>
+                                 <option value="groove" data-translate="themeGroove">Groove</option>
+                                 <option value="ridge" data-translate="themeRidge">Ridge</option>
+                              </select>
+                           </div>
+                           <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span data-translate="themeColor">Color:</span><input type="color" value="#ffffff" data-location="${loc}.borders.top.color" data-type="color" class="form-control input-field"></div>
+                           <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span data-translate="themeAlpha">Alpha:</span><input type="range" value="100" step="10" data-location="${loc}.borders.top.color" data-type="color-alpha" class="form-control input-field"></div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div style="border-radius: 10px;margin-bottom: 6px;" class="text-lead">
+                     <input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
+                     <label class="accordion__label" style="font-weight: 400;" data-translate="themeLBorder">Left Border</label>
+
+                     <span data-location="${loc}.borders.left" data-enabled="switch" onclick="page.toggleSwich(this)" class="rk-button btn-toggle receiver-destination-type-toggle off" style="float: right;">
+                        <span class="toggle-flip"></span>
+                        <span class="toggle-on"></span>
+                        <span class="toggle-off"></span>
+                     </span>
+                     <div class="accordion__content">
+                        <div>
+                           <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span data-translate="themeWidth">Width:</span><input type="range" value="0" data-location="${loc}.borders.left.size" data-type="px" class="form-control input-field" max="10"></div>
+                           <div style="display: flex;align-items: center;justify-content: space-between;">
+                              <span data-translate="themeStyle">Style:</span>
+                              <select selected="solid" data-location="${loc}.borders.left.style" data-type="value">
+                                 <option value="solid" data-translate="themeSolid">Solid</option>
+                                 <option value="double" data-translate="themeDouble">Double</option>
+                                 <option value="dashed" data-translate="themeDashed">Dashed</option>
+                                 <option value="dotted" data-translate="themeDotted">Dotted</option>
+                                 <option value="inset" data-translate="themeInset">Inset</option>
+                                 <option value="outset" data-translate="themeOutset">Outset</option>
+                                 <option value="groove" data-translate="themeGroove">Groove</option>
+                                 <option value="ridge" data-translate="themeRidge">Ridge</option>
+                              </select>
+                           </div>
+                           <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span data-translate="themeColor">Color:</span><input type="color" value="#ffffff" data-location="${loc}.borders.left.color" data-type="color" class="form-control input-field"></div>
+                           <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span data-translate="themeAlpha">Alpha:</span><input type="range" value="100" step="10" data-location="${loc}.borders.left.color" data-type="color-alpha" class="form-control input-field"></div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div style="border-radius: 10px;margin-bottom: 6px;" class="text-lead">
+                     <input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
+                     <label class="accordion__label" style="font-weight: 400;" data-translate="themeBBorder">Bottom Border</label>
+
+                     <span data-location="${loc}.borders.bottom" data-enabled="switch" onclick="page.toggleSwich(this)" class="rk-button btn-toggle receiver-destination-type-toggle off" style="float: right;">
+                        <span class="toggle-flip"></span>
+                        <span class="toggle-on"></span>
+                        <span class="toggle-off"></span>
+                     </span>
+                     <div class="accordion__content">
+                        <div>
+                           <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span data-translate="themeWidth">Width:</span><input type="range" value="0" data-location="${loc}.borders.bottom.size" data-type="px" class="form-control input-field" max="10"></div>
+                           <div style="display: flex;align-items: center;justify-content: space-between;">
+                              <span data-translate="themeStyle">Style:</span>
+                              <select selected="solid" data-location="${loc}.borders.bottom.style" data-type="value">
+                                 <option value="solid" data-translate="themeSolid">Solid</option>
+                                 <option value="double" data-translate="themeDouble">Double</option>
+                                 <option value="dashed" data-translate="themeDashed">Dashed</option>
+                                 <option value="dotted" data-translate="themeDotted">Dotted</option>
+                                 <option value="inset" data-translate="themeInset">Inset</option>
+                                 <option value="outset" data-translate="themeOutset">Outset</option>
+                                 <option value="groove" data-translate="themeGroove">Groove</option>
+                                 <option value="ridge" data-translate="themeRidge">Ridge</option>
+                              </select>
+                           </div>
+                           <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span data-translate="themeColor">Color:</span><input type="color" value="#ffffff" data-location="${loc}.borders.bottom.color" data-type="color" class="form-control input-field"></div>
+                           <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span data-translate="themeAlpha">Alpha:</span><input type="range" value="100" step="10" data-location="${loc}.borders.bottom.color" data-type="color-alpha" class="form-control input-field"></div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div style="border-radius: 10px;margin-bottom: 6px;" class="text-lead">
+                     <input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
+                     <label class="accordion__label" style="font-weight: 400;" data-translate="themeRBorder">Right Border</label>
+
+                     <span data-location="${loc}.borders.right" data-enabled="switch" onclick="page.toggleSwich(this)" class="rk-button btn-toggle receiver-destination-type-toggle off" style="float: right;">
+                        <span class="toggle-flip"></span>
+                        <span class="toggle-on"></span>
+                        <span class="toggle-off"></span>
+                     </span>
+                     <div class="accordion__content">
+                        <div>
+                           <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span data-translate="themeWidth">Width:</span><input type="range" value="0" data-location="${loc}.borders.right.size" data-type="px" class="form-control input-field" max="10"></div>
+                           <div style="display: flex;align-items: center;justify-content: space-between;">
+                              <span data-translate="themeStyle">Style:</span>
+                              <select selected="solid" data-location="${loc}.borders.right.style" data-type="value">
+                                 <option value="solid" data-translate="themeSolid">Solid</option>
+                                 <option value="double" data-translate="themeDouble">Double</option>
+                                 <option value="dashed" data-translate="themeDashed">Dashed</option>
+                                 <option value="dotted" data-translate="themeDotted">Dotted</option>
+                                 <option value="inset" data-translate="themeInset">Inset</option>
+                                 <option value="outset" data-translate="themeOutset">Outset</option>
+                                 <option value="groove" data-translate="themeGroove">Groove</option>
+                                 <option value="ridge" data-translate="themeRidge">Ridge</option>
+                              </select>
+                           </div>
+                           <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span data-translate="themeColor">Color:</span><input type="color" value="#ffffff" data-location="${loc}.borders.right.color" data-type="color" class="form-control input-field"></div>
+                           <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span data-translate="themeAlpha">Alpha:</span><input type="range" value="100" step="10" data-location="${loc}.borders.right.color" data-type="color-alpha" class="form-control input-field"></div>
+                        </div>
+                     </div>
+                  </div>
+
+               </div>`;</savecode>
+            <savecode code="editsectioncheckbox">
+               var id = element.dataset.id;
+               if(id == null || id == "") return;
+
+               element.innerHTML = `
+               <div class="section-content">
+                  <input type="checkbox" class="accordion__input" id="${id}sectioncheckbox" style="display: none;">
+                  <label for="${id}sectioncheckbox" class="accordion__label" style="text-align: center;font-weight: 600;font-size: calc(20px + 10%);display: block;" data-translate="themeSection">${element.dataset.title || Rkis.language["themeSection"]}</label>
+                  <div class="accordion__content">
+
+                     ${element.innerHTML}
+
+                  </div>
+               </div>`;</savecode>
+
+            <savecode code="editelement">
+
+               //onclick="hidethelem(this,event)" class="rk-popup-holder" style="z-index: 999;"
+               element.addEventListener("click", function(e) {hidethelem(element,e)})
+               element.classList.add("rk-popup-holder");
+               element.style.zIndex = "999";</savecode>
+            <savecode code="loadedits">
+               var editgroupingfunc = function(grb) {
+                  grb.children.forEach(function(e) {
+                     if (e.tagName == "LOADCODE") return;
+                     if (e.classList.contains("inner-group")) return editgroupingfunc(e);
+                     if(grb.classList.contains("inner-group")) grb = grb.parentElement;
+
+                     document.addEventListener("designer-edittheme-loading", function() {
+                        if(document.contains(e) == false) return;
+                        clearelemstyle(e);
+                     })
+                     document.addEventListener("designer-edittheme-loaded", function() {
+                        if(document.contains(e) == false) return;
+                        CreateStyleformto(grb, e);
+                     })
+                  })
+               }
+
+               var parent = element.parentElement.parentElement;
+               if(parent.classList.contains("group")) {
+                  editgroupingfunc(parent);
+               }
+               else {
+                  document.addEventListener("designer-edittheme-loading", function() {
+                     if(document.contains(parent) == false) return;
+                     clearelemstyle(parent);
+                  })
+                  document.addEventListener("designer-edittheme-loaded", function() {
+                     if(document.contains(parent) == false) return;
+                     CreateStyleformto(parent, parent);
+                  })
+               }</savecode>
+         </div>
+
+
+
+         <!--
+            Sections,
+         -->
+         
+         <div data-editthemetabs="all">
+
+
+            <div style="background-color: #fff;transition: all 400ms;position: relative;">
+               <loadcode run='
+                  var size = document.querySelector("#themeedit-resulution");
+                  if(size == null) return;
+
+                  var parent = element.parentElement;
+                  var percent = 100;
+
+                  parent.style.setProperty("--editor-size-percent", percent / 100);
+
+                  var percentdiv = document.querySelector("#themeedit-percent");
+                  if(percentdiv != null) {
+                     percent = Number(percentdiv.value);
+                     parent.style.setProperty("--editor-size-percent", percent / 100);
+                     percentdiv.addEventListener("input", () => {
+                        percent = Number(percentdiv.value);
+                        parent.style.setProperty("--editor-size-percent", percent / 100);
+                     })
+                  }
+
+                  editwindow();
+
+                  size.addEventListener("input", editwindow);
+
+                  function editwindow() {
+                     var sizes = size.value.split(" ").join("").split("x");
+                     if(sizes[1] == null) sizes[1] = 200
+                     sizes.forEach((e,i) => {
+                        e = e.split(".")[0];
+                        if(isNaN(Number(e)) == false) {
+                           var num = Number(e);
+                           if(num < 200) num = 200;
+                           if(num > 5000) num = 5000;
+                           sizes[i] = num
+                        }
+                        else sizes[i] = 200;
+                     })
+
+                     parent.style.width = `calc(${sizes[0]}px * var(--editor-size-percent))`;
+                     parent.style.height = `calc(${sizes[1]}px * var(--editor-size-percent))`;
+                  }
+
+                  element.remove();
+               '></loadcode>
+
+
+               <div class="recreate-background selectable" onclick="showthelem(this,event)">
+                  <loadcode code="editelement">
+                     <loadcode code="editbackground" data-location="background"></loadcode>
+                     <loadcode code="loadedits"></loadcode>
+                  </loadcode>
+               </div>
+
+               <div class="recreate-content selectable dark"  onclick="showthelem(this,event)">
+                  <loadcode code="editelement">
+
+                     <div class="section-content" style="border-radius: 20px;border-right: 1px solid #b8b8b8;border-bottom: 1px solid #b8b8b8;">
+                        <div style="display: flex;align-items: center;justify-content: space-between;">
+                           <span data-translate="themeShadow">Shadow:</span>
+                           <select selected="" data-location="content.shadow" data-type="value">
+                              <option value="" data-translate="themeEnabled">Enabled</option>
+                              <option value="disabled" data-translate="themeDisabled">Disabled</option>
+                           </select>
+                        </div>
+                     </div>
+
+                     <loadcode code="editbackground" data-location="content.background" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
+                     <loadcode code="editcorners" data-location="content" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
+                     <loadcode code="editborders" data-location="content" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
+
+                     <loadcode code="loadedits"></loadcode>
+                  </loadcode>
+               </div>
+
+               <div class="recreate-menus group" onclick="showthelem(this,event)">
+                  <loadcode code="editelement">
+                     <loadcode code="editbackground" data-location="menu.background" data-title="Menus "></loadcode>
+                     <loadcode code="loadedits"></loadcode>
+                  </loadcode>
+
+                  <div class="recreate-topmenu dark"></div>
+                  <div class="recreate-bottommenu dark"></div>
+                  <div class="recreate-rightmenu dark"></div>
+               </div>
+
+
+            </div>
+
+
+         </div>
+
+
+
+         <div data-editthemetabs="home" style="display: none;">
+
+
+            <div style="background-color: #fff;margin-bottom: 20px;transition: all 400ms;position: relative;">
+               <loadcode run='
+                  var size = document.querySelector("#themeedit-resulution");
+                  if(size == null) return;
+
+                  var parent = element.parentElement;
+                  var percent = 100;
+
+                  parent.style.setProperty("--editor-size-percent", percent / 100);
+
+                  var percentdiv = document.querySelector("#themeedit-percent");
+                  if(percentdiv != null) {
+                     percent = Number(percentdiv.value);
+                     parent.style.setProperty("--editor-size-percent", percent / 100);
+                     percentdiv.addEventListener("input", () => {
+                        percent = Number(percentdiv.value);
+                        parent.style.setProperty("--editor-size-percent", percent / 100);
+                     })
+                  }
+
+                  editwindow();
+
+                  size.addEventListener("input", editwindow);
+
+                  function editwindow() {
+                     var sizes = size.value.split(" ").join("").split("x");
+                     if(sizes[1] == null) sizes[1] = 200
+                     sizes.forEach((e,i) => {
+                        e = e.split(".")[0];
+                        if(isNaN(Number(e)) == false) {
+                           var num = Number(e);
+                           if(num < 200) num = 200;
+                           if(num > 5000) num = 5000;
+                           sizes[i] = num
+                        }
+                        else sizes[i] = 200;
+                     })
+
+                     parent.style.width = `calc(${sizes[0]}px * var(--editor-size-percent))`;
+                     parent.style.height = `calc(${sizes[1]}px * var(--editor-size-percent))`;
+                  }
+
+                  element.remove();
+               '></loadcode>
+
+
+               <div class="recreate-background selectable" onclick="showthelem(this,event)">
+                  <loadcode code="editelement">
+                     <loadcode code="editbackground" data-location="background" data-togglebtn="on" data-toggle="off"></loadcode>
+                     <loadcode code="loadedits"></loadcode>
+                  </loadcode>
+               </div>
+
+               <div class="recreate-content selectable dark"  onclick="showthelem(this,event)">
+                  <loadcode code="editelement">
+
+                     <div class="section-content" style="border-radius: 20px;border-right: 1px solid #b8b8b8;border-bottom: 1px solid #b8b8b8;">
+                        <div style="display: flex;align-items: center;justify-content: space-between;">
+                           <span data-translate="themeShadow">Shadow:</span>
+                           <select selected="" data-location="content.shadow" data-type="value">
+                              <option value="" data-translate="themeEnabled">Enabled</option>
+                              <option value="disabled" data-translate="themeDisabled">Disabled</option>
+                           </select>
+                        </div>
+                     </div>
+
+                     <loadcode code="editbackground" data-location="content.background" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
+                     <loadcode code="editcorners" data-location="content" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
+                     <loadcode code="editborders" data-location="content" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
+
+                     <loadcode code="loadedits"></loadcode>
+                  </loadcode>
+               </div>
+
+               <div class="recreate-menus group" onclick="showthelem(this,event)">
+                  <loadcode code="editelement">
+                     <loadcode code="editbackground" data-location="menu.background" data-title="Menus " data-togglebtn="on" data-toggle="off"></loadcode>
+                     <loadcode code="loadedits"></loadcode>
+                  </loadcode>
+
+                  <div class="recreate-topmenu dark"></div>
+                  <div class="recreate-bottommenu dark"></div>
+                  <div class="recreate-rightmenu dark"></div>
+               </div>
+
+
+            </div>
+
+
+         </div>
+
+
+
+         <div data-editthemetabs="users" style="display: none;">
+
+
+            <div style="background-color: #fff;margin-bottom: 20px;transition: all 400ms;position: relative;">
+               <loadcode run='
+                  var size = document.querySelector("#themeedit-resulution");
+                  if(size == null) return;
+
+                  var parent = element.parentElement;
+                  var percent = 100;
+
+                  parent.style.setProperty("--editor-size-percent", percent / 100);
+
+                  var percentdiv = document.querySelector("#themeedit-percent");
+                  if(percentdiv != null) {
+                     percent = Number(percentdiv.value);
+                     parent.style.setProperty("--editor-size-percent", percent / 100);
+                     percentdiv.addEventListener("input", () => {
+                        percent = Number(percentdiv.value);
+                        parent.style.setProperty("--editor-size-percent", percent / 100);
+                     })
+                  }
+
+                  editwindow();
+
+                  size.addEventListener("input", editwindow);
+
+                  function editwindow() {
+                     var sizes = size.value.split(" ").join("").split("x");
+                     if(sizes[1] == null) sizes[1] = 200
+                     sizes.forEach((e,i) => {
+                        e = e.split(".")[0];
+                        if(isNaN(Number(e)) == false) {
+                           var num = Number(e);
+                           if(num < 200) num = 200;
+                           if(num > 5000) num = 5000;
+                           sizes[i] = num
+                        }
+                        else sizes[i] = 200;
+                     })
+
+                     parent.style.width = `calc(${sizes[0]}px * var(--editor-size-percent))`;
+                     parent.style.height = `calc(${sizes[1]}px * var(--editor-size-percent))`;
+                  }
+
+                  element.remove();
+               '></loadcode>
+
+
+               <div class="recreate-background selectable" onclick="showthelem(this,event)">
+                  <loadcode code="editelement">
+                     <loadcode code="editbackground" data-location="background" data-togglebtn="on" data-toggle="off"></loadcode>
+                     <loadcode code="loadedits"></loadcode>
+                  </loadcode>
+               </div>
+
+               <div class="recreate-content selectable dark" onclick="showthelem(this,event)">
+                  <loadcode code="editelement">
+
+                     <div class="section-content" style="border-radius: 20px;border-right: 1px solid #b8b8b8;border-bottom: 1px solid #b8b8b8;">
+                        <div style="display: flex;align-items: center;justify-content: space-between;">
+                           <span data-translate="themeShadow">Shadow:</span>
+                           <select selected="" data-location="content.shadow" data-type="value">
+                              <option value="" data-translate="themeEnabled">Enabled</option>
+                              <option value="disabled" data-translate="themeDisabled">Disabled</option>
+                           </select>
+                        </div>
+                     </div>
+
+                     <loadcode code="editbackground" data-location="content.background" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
+                     <loadcode code="editcorners" data-location="content" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
+                     <loadcode code="editborders" data-location="content" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
+
+                     <loadcode code="loadedits"></loadcode>
+                  </loadcode>
+               </div>
+
+               <div class="recreate-menus group" onclick="showthelem(this,event)">
+                  <loadcode code="editelement">
+                     <loadcode code="editbackground" data-location="menu.background" data-title="Menus " data-togglebtn="on" data-toggle="off"></loadcode>
+                     <loadcode code="loadedits"></loadcode>
+                  </loadcode>
+
+                  <div class="recreate-topmenu dark"></div>
+                  <div class="recreate-bottommenu dark"></div>
+                  <div class="recreate-rightmenu dark"></div>
+               </div>
+
+
+            </div>
+
+
+
+            <div class="designer-section" style="margin-bottom: 20px;transition: all 400ms;position: relative;">
+               <loadcode run='
+                  var size = document.querySelector("#themeedit-resulution");
+                  if(size == null) return;
+
+                  var parent = element.parentElement;
+                  var percent = 100;
+
+                  parent.style.setProperty("--editor-size-percent", percent / 100);
+
+                  var percentdiv = document.querySelector("#themeedit-percent");
+                  if(percentdiv != null) {
+                     percent = Number(percentdiv.value);
+                     parent.style.setProperty("--editor-size-percent", percent / 100);
+                     percentdiv.addEventListener("input", () => {
+                        percent = Number(percentdiv.value);
+                        parent.style.setProperty("--editor-size-percent", percent / 100);
+                     })
+                  }
+
+                  editwindow();
+
+                  size.addEventListener("input", editwindow);
+
+                  function editwindow() {
+                     var sizes = size.value.split(" ").join("").split("x");
+                     if(sizes[1] == null) sizes[1] = 200
+                     sizes.forEach((e,i) => {
+                        e = e.split(".")[0];
+                        if(isNaN(Number(e)) == false) {
+                           var num = Number(e);
+                           if(num < 200) num = 200;
+                           if(num > 5000) num = 5000;
+                           sizes[i] = num
+                        }
+                        else sizes[i] = 200;
+                     })
+
+                     parent.style.width = `calc(${sizes[0]}px * var(--editor-size-percent))`;
+                     parent.style.height = `fit-content`;
+                  }
+
+                  element.remove();
+               '></loadcode>
+
+               <div style="margin: 10px 0;text-align: center;">
+                  <div class="colors bright" style="font-weight: 600;" data-translate="themePreviewProfile">Profile Example Preview</div>
+               </div>
+
+               <div class="recreate-profile profile-header-content" onclick="showthelem(this,event)">
+                  <loadcode code="editelement">
+
+                     <loadcode code="editbackground" data-location="profile.background" data-togglebtn="on" data-toggle="off" data-title="Profile "></loadcode>
+                     <loadcode code="editcorners" data-location="profile" data-togglebtn="on" data-toggle="off" data-title="Profile "></loadcode>
+                     <loadcode code="editborders" data-location="profile" data-togglebtn="on" data-toggle="off" data-title="Profile "></loadcode>
+
+                     <loadcode code="loadedits"></loadcode>
+                  </loadcode>
+
+                  <div class="profile-header-top">
+                     <div class="avatar avatar-headshot-lg card-plain profile-avatar-image">
+                        <span class="avatar-card-link avatar-image-link" style="background-color: #d4d4d4;"></span>
+                     </div>
+                     <div class="header-caption">
+                        <div class="header-names">
+                           <div class="header-title" style="display: flex;align-items: center;">
+                              <h2 class="profile-name text-overflow" style="padding: 0;display: inline-block;margin: 0 12px 0 0;float: left;font-size: calc(32px * 2 * var(--editor-size-percent));">Roblox</h2>
+                           </div>
+                           <div class="recreate-12px-text-size profile-display-name font-caption-body text text-overflow">@Roblox</div>
+                        </div>
+                        <div class="header-details">
+                           <ul class="details-info" style="display: flex;">
+                                <li>
+                                    <div class="recreate-12px-text-size text-label font-caption-header" data-translate="themeFriends">Friends</div>
+                                    <a class="text-name"><span class="recreate-text-size font-header-2" style="margin-right: 6px;" title="0">0</span></a>
+                                </li>
+                                <li>
+                                    <div class="recreate-12px-text-size text-label font-caption-header" data-translate="themeFollowers">Followers</div>
+                                    <a class="text-name"><span class="recreate-text-size font-header-2" style="margin-right: 6px;" title="999">999</span></a>
+                                </li>
+                                <li>
+                                    <div class="recreate-12px-text-size text-label font-caption-header" data-translate="themeFollowing">Following</div>
+                                    <a class="text-name"><span class="recreate-text-size font-header-2" style="margin-right: 6px;" title="0">0</span></a>
+                                </li>
+                           </ul>
+                           <ul class="details-actions desktop-action" style="display: block;">
+                              <li class="btn-messages" style="float: right;padding-right: 15px;">
+                                  <button class="recreate-text-size btn-control-md" data-translate="themeMessage">Message</button>
+                              </li>
+                          </ul>
+                        </div>
+                     </div>
+                  </div>
+                  <div id="profile-header-more" class="profile-header-more" ng-show="profileHeaderLayout.isMoreBtnVisible">
+                    <a id="popover-link" class="rbx-menu-item" data-toggle="popover"><span class="icon-more"></span></a>
+                  </div>
+
+               </div>
+
+            </div>
+
+
+         </div>
+
+
+
+         <div data-editthemetabs="groups" style="display: none;">
+
+
+            <div style="background-color: #fff;margin-bottom: 20px;transition: all 400ms;position: relative;">
+               <loadcode run='
+                  var size = document.querySelector("#themeedit-resulution");
+                  if(size == null) return;
+
+                  var parent = element.parentElement;
+                  var percent = 100;
+
+                  parent.style.setProperty("--editor-size-percent", percent / 100);
+
+                  var percentdiv = document.querySelector("#themeedit-percent");
+                  if(percentdiv != null) {
+                     percent = Number(percentdiv.value);
+                     parent.style.setProperty("--editor-size-percent", percent / 100);
+                     percentdiv.addEventListener("input", () => {
+                        percent = Number(percentdiv.value);
+                        parent.style.setProperty("--editor-size-percent", percent / 100);
+                     })
+                  }
+
+                  editwindow();
+
+                  size.addEventListener("input", editwindow);
+
+                  function editwindow() {
+                     var sizes = size.value.split(" ").join("").split("x");
+                     if(sizes[1] == null) sizes[1] = 200
+                     sizes.forEach((e,i) => {
+                        e = e.split(".")[0];
+                        if(isNaN(Number(e)) == false) {
+                           var num = Number(e);
+                           if(num < 200) num = 200;
+                           if(num > 5000) num = 5000;
+                           sizes[i] = num
+                        }
+                        else sizes[i] = 200;
+                     })
+
+                     parent.style.width = `calc(${sizes[0]}px * var(--editor-size-percent))`;
+                     parent.style.height = `calc(${sizes[1]}px * var(--editor-size-percent))`;
+                  }
+
+                  element.remove();
+               '></loadcode>
+
+
+               <div class="recreate-background selectable" onclick="showthelem(this,event)">
+                  <loadcode code="editelement">
+                     <loadcode code="editbackground" data-location="background" data-togglebtn="on" data-toggle="off"></loadcode>
+                     <loadcode code="loadedits"></loadcode>
+                  </loadcode>
+               </div>
+
+               <div class="recreate-content selectable dark" onclick="showthelem(this,event)">
+                  <loadcode code="editelement">
+
+                     <div class="section-content" style="border-radius: 20px;border-right: 1px solid #b8b8b8;border-bottom: 1px solid #b8b8b8;">
+                        <div style="display: flex;align-items: center;justify-content: space-between;">
+                           <span data-translate="themeShadow">Shadow:</span>
+                           <select selected="" data-location="content.shadow" data-type="value">
+                              <option value="" data-translate="themeEnabled">Enabled</option>
+                              <option value="disabled" data-translate="themeDisabled">Disabled</option>
+                           </select>
+                        </div>
+                     </div>
+
+                     <loadcode code="editbackground" data-location="content.background" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
+                     <loadcode code="editcorners" data-location="content" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
+                     <loadcode code="editborders" data-location="content" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
+
+                     <loadcode code="loadedits"></loadcode>
+                  </loadcode>
+               </div>
+
+               <div class="recreate-menus group" onclick="showthelem(this,event)">
+                  <loadcode code="editelement">
+                     <loadcode code="editbackground" data-location="menu.background" data-title="Menus " data-togglebtn="on" data-toggle="off"></loadcode>
+                     <loadcode code="loadedits"></loadcode>
+                  </loadcode>
+
+                  <div class="recreate-topmenu dark"></div>
+                  <div class="recreate-bottommenu dark"></div>
+                  <div class="recreate-rightmenu dark"></div>
+               </div>
+
+
+            </div>
+
+
+
+            <div class="designer-section" style="margin-bottom: 20px;transition: all 400ms;position: relative;">
+               <loadcode run='
+                  var size = document.querySelector("#themeedit-resulution");
+                  if(size == null) return;
+
+                  var parent = element.parentElement;
+                  var percent = 100;
+
+                  parent.style.setProperty("--editor-size-percent", percent / 100);
+
+                  var percentdiv = document.querySelector("#themeedit-percent");
+                  if(percentdiv != null) {
+                     percent = Number(percentdiv.value);
+                     parent.style.setProperty("--editor-size-percent", percent / 100);
+                     percentdiv.addEventListener("input", () => {
+                        percent = Number(percentdiv.value);
+                        parent.style.setProperty("--editor-size-percent", percent / 100);
+                     })
+                  }
+
+                  editwindow();
+
+                  size.addEventListener("input", editwindow);
+
+                  function editwindow() {
+                     var sizes = size.value.split(" ").join("").split("x");
+                     if(sizes[1] == null) sizes[1] = 200
+                     sizes.forEach((e,i) => {
+                        e = e.split(".")[0];
+                        if(isNaN(Number(e)) == false) {
+                           var num = Number(e);
+                           if(num < 200) num = 200;
+                           if(num > 5000) num = 5000;
+                           sizes[i] = num
+                        }
+                        else sizes[i] = 200;
+                     })
+
+                     parent.style.width = `calc(${sizes[0]}px * var(--editor-size-percent))`;
+                     parent.style.height = `fit-content`;
+                  }
+
+                  element.remove();
+               '></loadcode>
+
+               <div style="margin: 10px 0;text-align: center;">
+                  <div class="colors bright" style="font-weight: 600;" data-translate="themePreviewGroup">Group Example Preview</div>
+               </div>
+
+               <div class="recreate-group" onclick="showthelem(this,event)">
+                  <loadcode code="editelement">
+
+                     <loadcode code="editbackground" data-location="group.background" data-togglebtn="on" data-toggle="off" data-title="Group "></loadcode>
+                     <loadcode code="editcorners" data-location="group" data-togglebtn="on" data-toggle="off" data-title="Group "></loadcode>
+                     <loadcode code="editborders" data-location="group" data-togglebtn="on" data-toggle="off" data-title="Group "></loadcode>
+
+                     <loadcode code="loadedits"></loadcode>
+                  </loadcode>
+
+                  <div class="group-header">
+                     <div class="group-image" style="width: calc(256px * var(--editor-size-percent));margin-right: calc(24px * var(--editor-size-percent)); float: left;">
+                        <div style="width: calc(256px * var(--editor-size-percent)); height: calc(256px * var(--editor-size-percent)); background-color: gray; display: inline-block; border-radius: calc(16px * var(--editor-size-percent)); float: left;"></div>
+                     </div>
+                     <div class="group-caption">
+                        <div class="group-title">
+                           <h1 class="group-name text-overflow" style="font-size: calc(64px * var(--editor-size-percent));">Roblox</h1>
+                           <div class="group-owner text font-caption-body">
+                              <span class="recreate-12px-text-size" data-translate="themeGroupBy">By</span> <a class="text-link recreate-12px-text-size">Roblox</a>
+                           </div>
+                        </div>
+                        <div class="group-info">
+                           <ul class="group-stats" style="display: flex;max-width: 100%;">
+                              <li class="group-members">
+                                 <span class="font-header-2 recreate-text-size" title="0000000">0</span>
+                                 <div class="text-label font-caption-header recreate-12px-text-size" data-translate="themeMembers">Members</div>
+                              </li>
+                              <li class="group-rank text-overflow">
+                                 <span class="text-overflow font-header-2 recreate-text-size" title="-">-</span>
+                                 <div class="text-label font-caption-header recreate-12px-text-size" data-translate="themeRank">Rank</div>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="group-menu"> <a tabindex="0" class="rbx-menu-item" popover-placement="bottom-right" popover-trigger="'outsideClick'" uib-popover-template="'group-menu-popover'"> <span class="icon-more"></span> </a> </div>
+                  </div>
+
+               </div>
+
+            </div>
+
+
+         </div>
+
+
+
+         <div data-editthemetabs="game" style="display: none;">
+
+
+            <div style="background-color: #fff;margin-bottom: 20px;transition: all 400ms;position: relative;">
+               <loadcode run='
+                  var size = document.querySelector("#themeedit-resulution");
+                  if(size == null) return;
+
+                  var parent = element.parentElement;
+                  var percent = 100;
+
+                  parent.style.setProperty("--editor-size-percent", percent / 100);
+
+                  var percentdiv = document.querySelector("#themeedit-percent");
+                  if(percentdiv != null) {
+                     percent = Number(percentdiv.value);
+                     parent.style.setProperty("--editor-size-percent", percent / 100);
+                     percentdiv.addEventListener("input", () => {
+                        percent = Number(percentdiv.value);
+                        parent.style.setProperty("--editor-size-percent", percent / 100);
+                     })
+                  }
+
+                  editwindow();
+
+                  size.addEventListener("input", editwindow);
+
+                  function editwindow() {
+                     var sizes = size.value.split(" ").join("").split("x");
+                     if(sizes[1] == null) sizes[1] = 200
+                     sizes.forEach((e,i) => {
+                        e = e.split(".")[0];
+                        if(isNaN(Number(e)) == false) {
+                           var num = Number(e);
+                           if(num < 200) num = 200;
+                           if(num > 5000) num = 5000;
+                           sizes[i] = num
+                        }
+                        else sizes[i] = 200;
+                     })
+
+                     parent.style.width = `calc(${sizes[0]}px * var(--editor-size-percent))`;
+                     parent.style.height = `calc(${sizes[1]}px * var(--editor-size-percent))`;
+                  }
+
+                  element.remove();
+               '></loadcode>
+
+
+               <div class="recreate-background selectable" onclick="showthelem(this,event)">
+                  <loadcode code="editelement">
+                     <loadcode code="editbackground" data-location="background" data-togglebtn="on" data-toggle="off"></loadcode>
+                     <loadcode code="loadedits"></loadcode>
+                  </loadcode>
+               </div>
+
+               <div class="recreate-content selectable dark"  onclick="showthelem(this,event)">
+                  <loadcode code="editelement">
+
+                     <div class="section-content" style="border-radius: 20px;border-right: 1px solid #b8b8b8;border-bottom: 1px solid #b8b8b8;">
+                        <div style="display: flex;align-items: center;justify-content: space-between;">
+                           <span data-translate="themeShadow">Shadow:</span>
+                           <select selected="" data-location="content.shadow" data-type="value">
+                              <option value="" data-translate="themeEnabled">Enabled</option>
+                              <option value="disabled" data-translate="themeDisabled">Disabled</option>
+                           </select>
+                        </div>
+                     </div>
+
+                     <loadcode code="editbackground" data-location="content.background" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
+                     <loadcode code="editcorners" data-location="content" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
+                     <loadcode code="editborders" data-location="content" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
+
+                     <loadcode code="loadedits"></loadcode>
+                  </loadcode>
+               </div>
+
+               <div class="recreate-menus group" onclick="showthelem(this,event)">
+                  <loadcode code="editelement">
+                     <loadcode code="editbackground" data-location="menu.background" data-title="Menus " data-togglebtn="on" data-toggle="off"></loadcode>
+                     <loadcode code="loadedits"></loadcode>
+                  </loadcode>
+
+                  <div class="recreate-topmenu dark"></div>
+                  <div class="recreate-bottommenu dark"></div>
+                  <div class="recreate-rightmenu dark"></div>
+               </div>
+
+            </div>
+
+
+            <div class="designer-section" style="display: flex;margin-bottom: 20px;">
+               <div class="designer-section" style="transition: all 400ms;position: relative;overflow: hidden;">
+                  <loadcode run='
+                     var size = document.querySelector("#themeedit-resulution");
+                     if(size == null) return;
+
+                     var parent = element.parentElement;
+                     var percent = 100;
+
+                     parent.style.setProperty("--editor-size-percent", percent / 100);
+
+                     var percentdiv = document.querySelector("#themeedit-percent");
+                     if(percentdiv != null) {
+                        percent = Number(percentdiv.value);
+                        parent.style.setProperty("--editor-size-percent", percent / 100);
+                        percentdiv.addEventListener("input", () => {
+                           percent = Number(percentdiv.value);
+                           parent.style.setProperty("--editor-size-percent", percent / 100);
+                        })
+                     }
+
+                     editwindow();
+
+                     size.addEventListener("input", editwindow);
+
+                     function editwindow() {
+                        var sizes = size.value.split(" ").join("").split("x");
+                        if(sizes[1] == null) sizes[1] = 200
+                        sizes.forEach((e,i) => {
+                           e = e.split(".")[0];
+                           if(isNaN(Number(e)) == false) {
+                              var num = Number(e);
+                              if(num < 200) num = 200;
+                              if(num > 5000) num = 5000;
+                              sizes[i] = num
+                           }
+                           else sizes[i] = 200;
+                        })
+
+                        parent.style.width = `calc(${sizes[0]}px * var(--editor-size-percent) * 0.5)`;
+                        parent.style.height = `fit-content`;
+                     }
+
+                     element.remove();
+                  '></loadcode>
+
+                  <div style="margin: 10px 0;text-align: center;">
+                     <div class="colors bright" style="font-weight: 600;" data-translate="themePreviewBadge">Badge Example Preview</div>
+                  </div>
+
+                  <div class="recreate-badge selectable dark" onclick="showthelem(this,event)">
+                     <loadcode code="editelement">
+
+                        <div class="section-content" style="min-width: 280px;">
+                           <div style="display: flex;justify-content: space-between;align-items: center;">
+                              <h4 style="width: fit-content;" data-translate="themeTxtColor">Text Color</h4>
+                              <span data-location="badge.colors" data-enabled="switch" class="rk-button btn-toggle receiver-destination-type-toggle on">
+                                 <span class="toggle-flip"></span>
+                                 <span class="toggle-on"></span>
+                                 <span class="toggle-off"></span>
+                              </span>
+                           </div>
+
+                           <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;" data-translate="themeBrtColor">Bright Color:</span><input type="color" value="#ffffff" data-location="badge.colors.bright" data-type="value" class="form-control input-field"></div>
+                           
+                           <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;" data-translate="themeDrkColor">Dark Color:</span><input type="color" value="#bdbebe" data-location="badge.colors.dark" data-type="value" class="form-control input-field"></div>
+
+                        </div>
+
+                        <loadcode code="editcorners" data-location="badge" data-togglebtn="on" data-toggle="off" data-title="Badge "></loadcode>
+                        <loadcode code="editbackground" data-title="Badge " data-location="badge.background" data-togglebtn="on" data-toggle="off"></loadcode>
+                        <loadcode code="editborders" data-location="badge" data-togglebtn="on" data-toggle="off" data-title="Badge "></loadcode>
+
+                        <loadcode code="loadedits"></loadcode>
+                     </loadcode>
+
+                     <div style="width: calc(150px * 1.5 * var(--editor-size-percent));height: calc(150px * 1.5 * var(--editor-size-percent));background-color: #d4d4d4;border-radius: 50%;"></div>
+
+                     <div style="margin-top: calc(9px * var(--editor-size-percent));">
+                        <div style="padding: 0 calc(12px * var(--editor-size-percent));">
+                           <div class="colors bright recreate-text-size" data-translate="themeNameBadge">Installed Roblokis!</div>
+                           <p class="colors dark recreate-text-size" data-translate="themeDescBadge">Owners of this badge have Roblokis installed.</p>
+                        </div>
+                        <ul class="badge-content-data">
+                           <li> <div class="colors dark recreate-text-size" data-translate="badgeRare">Rarity</div>
+                              <div class="colors bright recreate-text-size">20.0%</div> </li>
+                           <li> <div class="colors dark recreate-text-size" data-translate="badgeLastWon">Won Yesterday</div>
+                              <div class="colors bright recreate-text-size">100</div> </li>
+                           <li> <div class="colors dark recreate-text-size" data-translate="badgeWon">Won Ever</div> 
+                              <div class="colors bright recreate-text-size">101</div></li>
+                           <li class="thecut"></li>
+                           <li> <div class="colors dark recreate-text-size" data-translate="badgeCreatedShort">Created</div> 
+                              <div class="colors bright recreate-text-size" data-translate="themeTimeAgo">Time ago</div> </li>
+                           <li> <div class="colors dark recreate-text-size" data-translate="badgeUpdatedShort">Updated</div> 
+                              <div class="colors bright recreate-text-size" data-translate="themeTimeAgo">Time ago</div> </li>
+                           <li> <div class="colors dark recreate-text-size" data-translate="badgeAchievedShort">Achieved</div> 
+                              <div class="colors bright recreate-text-size" data-translate="themeTimeAgo">Time ago</div> </li>
+                        </ul>
+                     </div>
+                  </div>
+
+               </div>
+
+               <div class="designer-section" style="transition: all 400ms;position: relative;overflow: hidden;">
+                  <loadcode run='
+                     var size = document.querySelector("#themeedit-resulution");
+                     if(size == null) return;
+
+                     var parent = element.parentElement;
+                     var percent = 100;
+
+                     parent.style.setProperty("--editor-size-percent", percent / 100);
+
+                     var percentdiv = document.querySelector("#themeedit-percent");
+                     if(percentdiv != null) {
+                        percent = Number(percentdiv.value);
+                        parent.style.setProperty("--editor-size-percent", percent / 100);
+                        percentdiv.addEventListener("input", () => {
+                           percent = Number(percentdiv.value);
+                           parent.style.setProperty("--editor-size-percent", percent / 100);
+                        })
+                     }
+
+                     editwindow();
+
+                     size.addEventListener("input", editwindow);
+
+                     function editwindow() {
+                        var sizes = size.value.split(" ").join("").split("x");
+                        if(sizes[1] == null) sizes[1] = 200
+                        sizes.forEach((e,i) => {
+                           e = e.split(".")[0];
+                           if(isNaN(Number(e)) == false) {
+                              var num = Number(e);
+                              if(num < 200) num = 200;
+                              if(num > 5000) num = 5000;
+                              sizes[i] = num
+                           }
+                           else sizes[i] = 200;
+                        })
+
+                        parent.style.width = `calc(${sizes[0]}px * var(--editor-size-percent) * 0.4)`;
+                        parent.style.height = `fit-content`;
+                     }
+
+                     element.remove();
+                  '></loadcode>
+
+                  <div style="margin: 10px 0;text-align: center;">
+                     <div class="bright" style="font-weight: 600;" data-translate="themePreviewServer">Servers Example Preview</div>
+                  </div>
+
+                  <div class="recreate-servers mainpreview selectable dark" data-type="server" onclick="showthelem(this,event)">
+                     <loadcode code="editelement">
+
+                        <div class="designer-section" style="margin-bottom: 20px;transition: all 400ms;position: relative;overflow: hidden;min-width: 240px;">
+
+                           <div style="margin: 10px 0;text-align: center;">
+                              <div class="bright" style="font-weight: 600;" data-translate="themePreviewDefault">Default Server Preview</div>
+                           </div>
+
+                           <div class="recreate-servers selectable dark" onclick="showthelem(this,event)">
+                              <loadcode code="editelement">
+
+                                 <loadcode code="editcorners" data-location="defaultserver" data-title="Server " data-togglebtn="on" data-toggle="off"></loadcode>
+
+                                 <loadcode code="editbackground" data-location="defaultserver.background" data-title="Server " data-togglebtn="on" data-toggle="off"></loadcode>
+
+                                 <loadcode code="editborders" data-location="defaultserver" data-title="Server " data-togglebtn="on" data-toggle="off"></loadcode>
+
+
+                                 <div class="section-left rbx-private-server-details group designer-section" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 10px;border-radius: 20px;margin-bottom: 20px;min-width: 220px;" onclick="showthelem(this,event)">
+                                    <loadcode code="editelement">
+
+                                       <loadcode code="editcorners" data-location="defaultserver.button" data-title="Button "  data-togglebtn="on" data-toggle="off"></loadcode>
+
+
+                                       <loadcode code="editbackground" data-title="Button " data-location="defaultserver.button.background" data-togglebtn="on" data-toggle="off"></loadcode>
+
+
+                                       <loadcode code="editborders" data-location="defaultserver.button" data-title="Button " data-togglebtn="on" data-toggle="off"></loadcode>
+
+                                       <loadcode code="loadedits"></loadcode>
+                                    </loadcode>
+
+                                    <a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
+                                    <a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
+                                 </div>
+
+                                 <loadcode code="loadedits"></loadcode>
+                              </loadcode>
+
+                              <div class="section-left rbx-private-server-details" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 0px;">
+
+                                 <div class="rbx-private-server-alert recreate-text-size">
+                                     <span class="icon-remove"></span>
+                                     <span data-translate="slowServer">Slow Server</span>
+                                 </div>
+
+                                 <a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
+                                 <a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
+                              </div>
+
+                              <div class="section-right rbx-friends-game-server-players" style="float: none;width: 99%;">
+                                 <span class="avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image recreate-text-size" style="background-color: lightgrey;color: black;" id="rk-plr-counter">3</span>
+
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link" title="Some Person"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                              </div>
+                           </div>
+
+                        </div>
+
+                        <div class="designer-section" style="margin-bottom: 20px;transition: all 400ms;position: relative;overflow: hidden;min-width: 240px;">
+
+                           <div style="margin: 10px 0;text-align: center;">
+                              <div class="bright" style="font-weight: 600;" data-translate="themePreviewPrivate">Private Server Preview</div>
+                           </div>
+
+                           <div class="recreate-servers selectable dark" onclick="showthelem(this,event)">
+                              <loadcode code="editelement">
+
+                                 <div class="section-content">
+                                    <div style="display: flex;justify-content: space-between;align-items: center;">
+                                       <h4 style="width: fit-content;" data-translate="themeSvrStng">Servers Settings</h4>
+                                    </div>
+
+                                    <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin: 0 5px 5px 0px;" data-translate="themeSvrPerRow">Servers Per Row:</span><input type="range" value="5" data-location="privateserver.column" data-type="value" class="form-control input-field" max="8"></div>
+
+                                    <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin: 0 5px 0px 0px;" data-translate="themeSvrGap">Servers Gap:</span><input type="range" value="0.3" step="0.1" data-location="privateserver.gap" data-type="percent" class="form-control input-field" max="2"></div>
+
+                                    <div class="rbx-divider" style="margin: 12px;"></div>
+
+                                    <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;" data-translate="themeTextColor">Text Color:</span><input type="color" value="#ffffff" data-location="privateserver.color" data-type="color" class="form-control input-field"></div>
+
+                                    <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;" data-translate="themeOwnBG">Owner Background:</span><input type="color" value="#d4d4d4" data-location="privateserver.owner.background.color" data-type="color" class="form-control input-field"></div>
+                                    
+                                    <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin: 5px 5px 0px 0px;" data-translate="themeOwnBGAlp">Owner Bg Alpha:</span><input type="range" value="100" step="10" data-location="privateserver.owner.background.color" data-type="color-alpha" class="form-control input-field"></div>
+                                 </div>
+
+
+                                 <loadcode code="editcorners" data-location="privateserver" data-togglebtn="on" data-toggle="off" data-title="Server "></loadcode>
+
+
+                                 <loadcode code="editbackground" data-title="Server " data-location="privateserver.background" data-togglebtn="on" data-toggle="off"></loadcode>
+
+
+                                 <loadcode code="editborders" data-location="privateserver" data-togglebtn="on" data-toggle="off" data-title="Server "></loadcode>
+
+
+                                 <div class="section-left rbx-private-server-details group designer-section" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 10px;border-radius: 20px;margin-bottom: 20px;min-width: 220px;" onclick="showthelem(this,event)">
+                                    <loadcode code="editelement">
+
+                                       <div class="section-content" style="min-width: 200px;">
+                                          <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;" data-translate="themeTextColor">Text Color:</span><input type="color" value="#ffffff" data-location="privateserver.button.color" data-type="color" class="form-control input-field"></div>
+                                       </div>
+
+
+                                       <loadcode code="editcorners" data-location="privateserver.button" data-togglebtn="on" data-toggle="off" data-title="Button "></loadcode>
+
+
+                                       <loadcode code="editbackground" data-title="Button " data-location="privateserver.button.background" data-togglebtn="on" data-toggle="off"></loadcode>
+
+
+                                       <loadcode code="editborders" data-location="privateserver.button" data-togglebtn="on" data-toggle="off" data-title="Button "></loadcode>
+
+                                       <loadcode code="loadedits"></loadcode>
+                                    </loadcode>
+
+                                    <a class="btn-full-width btn-control-xs rbx-private-server-renew recreate-12px-text-size color dark" data-inside="button" style="margin: 0;">Renew</a>
+                                    <a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
+                                    <a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
+                                 </div>
+
+                                 <loadcode code="loadedits"></loadcode>
+                              </loadcode>
+
+                              <div class="stack-header">
+                                 <span class="font-bold recreate-14px-text-size color bright" title="A Private Server" style="display: inline-block;text-overflow: ellipsis;width: 100%;white-space: nowrap;overflow: hidden;">A Private Server</span>
+                                 <div class="link-menu rbx-private-server-menu"></div>
+                              </div>
+
+                              <div class="section-left rbx-private-server-details" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 0px;">
+
+                                 <div class="rbx-private-owner">
+                                    <a class="avatar avatar-card-fullbody owner-avatar" title="Some Person" style="display: block;margin: 6px auto;width: calc(90px * 2 * var(--editor-size-percent));height: calc(90px * 2 * var(--editor-size-percent));background-color: #d4d4d4;" data-inside="owner"></a>
+                                 </div>
+
+                                 <div class="rbx-private-server-alert recreate-text-size">
+                                     <span class="icon-remove"></span>
+                                     <span data-translate="slowServer">Slow Server</span>
+                                 </div>
+
+                                 <div class="rbx-private-server-inactive recreate-text-size">
+                                     <span class="icon-remove"></span>
+                                     <span data-translate="themePrvSvrInac">Inactive.</span>
+                                 </div>
+
+                                 <a class="btn-full-width btn-control-xs rbx-private-server-renew recreate-12px-text-size color dark" data-inside="button" style="margin: 0;" data-translate="themePrvSvrRenu">Renew</a>
+                                 <a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
+                                 <a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
+                              </div>
+
+                              <div class="section-right rbx-friends-game-server-players" style="float: none;width: 99%;">
+                                 <span class="avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image recreate-text-size" style="background-color: lightgrey;color: black;" id="rk-plr-counter">4</span>
+
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link" title="Some Person"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                              </div>
+                           </div>
+
+                        </div>
+
+                        <div class="designer-section" style="margin-bottom: 20px;transition: all 400ms;position: relative;overflow: hidden;min-width: 240px;">
+
+                           <div style="margin: 10px 0;text-align: center;">
+                              <div class="bright" style="font-weight: 600;" data-translate="themePreviewFriends">Friends Server Preview</div>
+                           </div>
+
+                           <div class="recreate-servers selectable dark" onclick="showthelem(this,event)">
+                              <loadcode code="editelement">
+
+                                 <div class="section-content">
+                                    <div style="display: flex;justify-content: space-between;align-items: center;">
+                                       <h4 style="width: fit-content;" data-translate="themeSvrStng">Servers Settings</h4>
+                                    </div>
+
+                                    <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin: 0 5px 5px 0px;" data-translate="themeSvrPerRow">Servers Per Row:</span><input type="range" value="5" data-location="friendsserver.column" data-type="value" class="form-control input-field" max="8"></div>
+
+                                    <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin: 0 5px 0px 0px;" data-translate="themeSvrGap">Servers Gap:</span><input type="range" value="0.3" step="0.1" data-location="friendsserver.gap" data-type="percent" class="form-control input-field" max="2"></div>
+
+                                    <div class="rbx-divider" style="margin: 12px;"></div>
+
+                                    <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;" data-translate="themeTextColor">Text Color:</span><input type="color" value="#ffffff" data-location="friendsserver.color" data-type="color" class="form-control input-field"></div>
+                                 </div>
+
+
+                                 <loadcode code="editcorners" data-location="friendsserver" data-togglebtn="on" data-toggle="off" data-title="Server "></loadcode>
+
+
+                                 <loadcode code="editbackground" data-title="Server " data-location="friendsserver.background" data-togglebtn="on" data-toggle="off"></loadcode>
+
+
+                                 <loadcode code="editborders" data-location="friendsserver" data-togglebtn="on" data-toggle="off" data-title="Server "></loadcode>
+
+
+                                 <div class="section-left rbx-private-server-details group designer-section" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 10px;border-radius: 20px;margin-bottom: 20px;min-width: 220px;" onclick="showthelem(this,event)">
+                                    <loadcode code="editelement">
+
+                                       <div class="section-content" style="min-width: 200px;">
+                                          <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;" data-translate="themeTextColor">Text Color:</span><input type="color" value="#ffffff" data-location="friendsserver.button.color" data-type="color" class="form-control input-field"></div>
+                                       </div>
+
+
+                                       <loadcode code="editcorners" data-location="friendsserver.button" data-togglebtn="on" data-toggle="off" data-title="Button "></loadcode>
+
+
+                                       <loadcode code="editbackground" data-title="Button " data-location="friendsserver.button.background" data-togglebtn="on" data-toggle="off"></loadcode>
+
+
+                                       <loadcode code="editborders" data-location="friendsserver.button" data-togglebtn="on" data-toggle="off" data-title="Button "></loadcode>
+
+                                       <loadcode code="loadedits"></loadcode>
+                                    </loadcode>
+                                    
+                                    <a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
+                                    <a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="JoinPublicServer">Join Public Server</a>
+                                 </div>
+
+                                 <loadcode code="loadedits"></loadcode>
+                              </loadcode>
+
+                              <div class="section-left rbx-private-server-details" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 0px;">
+
+                                 <div class="text-info rbx-game-status rbx-friends-game-server-status recreate-90p-text-size color dark" style="text-overflow: ellipsis;overflow: hidden;" data-translate="themeFrnSvrPlr">Friends in this server: Roblox</div>
+
+                                 <div class="rbx-private-server-alert recreate-text-size">
+                                     <span class="icon-remove"></span>
+                                     <span data-translate="slowServer">Slow Server</span>
+                                 </div>
+
+                                 <a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
+                                 <a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="JoinPublicServer">Join Public Server</a>
+                              </div>
+
+                              <div class="section-right rbx-friends-game-server-players" style="float: none;width: 99%;">
+                                 <span class="avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image recreate-text-size" style="background-color: orangered;color: white;" id="rk-plr-counter">5</span>
+
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link" title="Some Person"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                              </div>
+                           </div>
+
+                        </div>
+
+                        <div class="designer-section" style="margin-bottom: 20px;transition: all 400ms;position: relative;overflow: hidden;min-width: 240px;">
+
+                           <div style="margin: 10px 0;text-align: center;">
+                              <div class="bright" style="font-weight: 600;" data-translate="themePreviewSmall">Small Server Preview</div>
+                           </div>
+
+                           <div class="recreate-servers selectable dark" onclick="showthelem(this,event)">
+                              <loadcode code="editelement">
+
+                                 <div class="section-content">
+                                    <div style="display: flex;justify-content: space-between;align-items: center;">
+                                       <h4 style="width: fit-content;" data-translate="themeSvrStng">Servers Settings</h4>
+                                    </div>
+
+                                    <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin: 0 5px 5px 0px;" data-translate="themeSvrPerRow">Servers Per Row:</span><input type="range" value="5" data-location="smallserver.column" data-type="value" class="form-control input-field" max="8"></div>
+
+                                    <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin: 0 5px 0px 0px;" data-translate="themeSvrGap">Servers Gap:</span><input type="range" value="0.3" step="0.1" data-location="smallserver.gap" data-type="percent" class="form-control input-field" max="2"></div>
+                                 </div>
+
+
+                                 <loadcode code="editcorners" data-location="smallserver" data-togglebtn="on" data-toggle="off" data-title="Server "></loadcode>
+
+
+                                 <loadcode code="editbackground" data-title="Server " data-location="smallserver.background" data-togglebtn="on" data-toggle="off"></loadcode>
+
+
+                                 <loadcode code="editborders" data-location="smallserver" data-togglebtn="on" data-toggle="off" data-title="Server "></loadcode>
+
+
+                                 <div class="section-left rbx-private-server-details group designer-section" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 10px;border-radius: 20px;margin-bottom: 20px;min-width: 220px;" onclick="showthelem(this,event)">
+                                    <loadcode code="editelement">
+                                       <div class="section-content" style="min-width: 200px;">
+                                          <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;" data-translate="themeTextColor">Text Color:</span><input type="color" value="#ffffff" data-location="smallserver.button.color" data-type="color" class="form-control input-field"></div>
+                                       </div>
+
+
+                                       <loadcode code="editcorners" data-location="smallserver.button" data-togglebtn="on" data-toggle="off" data-title="Button "></loadcode>
+
+
+                                       <loadcode code="editbackground" data-title="Button " data-location="smallserver.button.background" data-togglebtn="on" data-toggle="off"></loadcode>
+
+
+                                       <loadcode code="editborders" data-location="smallserver.button" data-togglebtn="on" data-toggle="off" data-title="Button "></loadcode>
+
+                                       <loadcode code="loadedits"></loadcode>
+                                    </loadcode>
+
+                                    <a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
+                                    <a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
+                                 </div>
+
+                                 <loadcode code="loadedits"></loadcode>
+                              </loadcode>
+
+                              <div class="section-left rbx-private-server-details" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 0px;">
+
+                                 <div class="rbx-private-server-alert recreate-text-size">
+                                     <span class="icon-remove"></span>
+                                     <span data-translate="slowServer">Slow Server</span>
+                                 </div>
+
+                                 <a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
+                                 <a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
+                              </div>
+
+                              <div class="section-right rbx-friends-game-server-players" style="float: none;width: 99%;">
+                                 <span class="avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image recreate-text-size" style="background-color: lightgrey;color: black;" id="rk-plr-counter">2</span>
+
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link" title="Some Person"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                              </div>
+                           </div>
+
+                        </div>
+
+                        <div class="designer-section" style="margin-bottom: 20px;transition: all 400ms;position: relative;overflow: hidden;min-width: 240px;">
+
+                           <div style="margin: 10px 0;text-align: center;">
+                              <div class="bright" style="font-weight: 600;" data-translate="themePreviewPublic">Public Server Preview</div>
+                           </div>
+
+                           <div class="recreate-servers selectable dark" onclick="showthelem(this,event)">
+                              <loadcode code="editelement">
+
+                                 <div class="section-content">
+                                    <div style="display: flex;justify-content: space-between;align-items: center;">
+                                       <h4 style="width: fit-content;" data-translate="themeSvrStng">Servers Settings</h4>
+                                    </div>
+
+                                    <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin: 0 5px 5px 0px;" data-translate="themeSvrPerRow">Servers Per Row:</span><input type="range" value="5" data-location="publicserver.column" data-type="value" class="form-control input-field" max="8"></div>
+
+                                    <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin: 0 5px 0px 0px;" data-translate="themeSvrGap">Servers Gap:</span><input type="range" value="0.3" step="0.1" data-location="publicserver.gap" data-type="percent" class="form-control input-field" max="2"></div>
+                                 </div>
+
+
+                                 <loadcode code="editcorners" data-location="publicserver" data-togglebtn="on" data-toggle="off" data-title="Server "></loadcode>
+
+
+                                 <loadcode code="editbackground" data-title="Server " data-location="publicserver.background" data-togglebtn="on" data-toggle="off"></loadcode>
+
+
+                                 <loadcode code="editborders" data-location="publicserver" data-togglebtn="on" data-toggle="off" data-title="Server "></loadcode>
+
+
+                                 <div class="rbx-private-server-details group designer-section" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 10px;border-radius: 20px;margin-bottom: 20px;min-width: 220px;" onclick="showthelem(this,event)">
+                                    <loadcode code="editelement">
+
+                                          <div class="section-content" style="min-width: 200px;">
+                                             <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;" data-translate="themeTextColor">Text Color:</span><input type="color" value="#ffffff" data-location="publicserver.button.color" data-type="color" class="form-control input-field"></div>
+                                          </div>
+
+
+                                          <loadcode code="editcorners" data-location="publicserver.button" data-togglebtn="on" data-toggle="off" data-title="Button "></loadcode>
+
+
+                                          <loadcode code="editbackground" data-title="Button " data-location="publicserver.button.background" data-togglebtn="on" data-toggle="off"></loadcode>
+
+
+                                          <loadcode code="editborders" data-location="publicserver.button" data-togglebtn="on" data-toggle="off" data-title="Button "></loadcode>
+
+                                          <loadcode code="loadedits"></loadcode>
+                                       </loadcode>
+
+                                    <a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
+                                    <a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
+                                 </div>
+
+                                 <loadcode code="loadedits"></loadcode>
+                              </loadcode>
+                              
+                              <div class="section-left rbx-private-server-details" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 0px;">
+
+                                 <div class="rbx-private-server-alert recreate-text-size">
+                                     <span class="icon-remove"></span>
+                                     <span data-translate="slowServer">Slow Server</span>
+                                 </div>
+
+                                 <a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
+                                 <a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
+                              </div>
+
+                              <div class="section-right rbx-friends-game-server-players" style="float: none;width: 99%;">
+                                 <span class="avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image recreate-text-size" style="background-color: darkred;color: white;" id="rk-plr-counter">8</span>
+
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link" title="Some Person"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                              </div>
+                           </div>
+
+                        </div>
+
+                        <div class="designer-section" style="margin-bottom: 20px;transition: all 400ms;position: relative;overflow: hidden;min-width: 240px;">
+
+                           <div style="margin: 10px 0;text-align: center;">
+                              <div class="bright" style="font-weight: 600;" data-translate="themePreviewSmall">Filtered Server Preview</div>
+                           </div>
+
+                           <div class="recreate-servers selectable dark" onclick="showthelem(this,event)">
+                              <loadcode code="editelement">
+
+                                 <div class="section-content">
+                                    <div style="display: flex;justify-content: space-between;align-items: center;">
+                                       <h4 style="width: fit-content;" data-translate="themeSvrStng">Servers Settings</h4>
+                                    </div>
+
+                                    <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin: 0 5px 5px 0px;" data-translate="themeSvrPerRow">Servers Per Row:</span><input type="range" value="5" data-location="filteredserver.column" data-type="value" class="form-control input-field" max="8"></div>
+
+                                    <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin: 0 5px 0px 0px;" data-translate="themeSvrGap">Servers Gap:</span><input type="range" value="0.3" step="0.1" data-location="filteredserver.gap" data-type="percent" class="form-control input-field" max="2"></div>
+                                 </div>
+
+
+                                 <loadcode code="editcorners" data-location="filteredserver" data-togglebtn="on" data-toggle="off" data-title="Server "></loadcode>
+
+
+                                 <loadcode code="editbackground" data-title="Server " data-location="filteredserver.background" data-togglebtn="on" data-toggle="off"></loadcode>
+
+
+                                 <loadcode code="editborders" data-location="filteredserver" data-togglebtn="on" data-toggle="off" data-title="Server "></loadcode>
+
+
+                                 <div class="section-left rbx-private-server-details group designer-section" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 10px;border-radius: 20px;margin-bottom: 20px;min-width: 220px;" onclick="showthelem(this,event)">
+                                    <loadcode code="editelement">
+                                       <div class="section-content" style="min-width: 200px;">
+                                          <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;" data-translate="themeTextColor">Text Color:</span><input type="color" value="#ffffff" data-location="filteredserver.button.color" data-type="color" class="form-control input-field"></div>
+                                       </div>
+
+
+                                       <loadcode code="editcorners" data-location="filteredserver.button" data-togglebtn="on" data-toggle="off" data-title="Button "></loadcode>
+
+
+                                       <loadcode code="editbackground" data-title="Button " data-location="filteredserver.button.background" data-togglebtn="on" data-toggle="off"></loadcode>
+
+
+                                       <loadcode code="editborders" data-location="filteredserver.button" data-togglebtn="on" data-toggle="off" data-title="Button "></loadcode>
+
+                                       <loadcode code="loadedits"></loadcode>
+                                    </loadcode>
+
+                                    <a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
+                                    <a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
+                                 </div>
+
+                                 <loadcode code="loadedits"></loadcode>
+                              </loadcode>
+
+                              <div class="section-left rbx-private-server-details" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 0px;">
+
+                                 <div class="rbx-private-server-alert recreate-text-size">
+                                     <span class="icon-remove"></span>
+                                     <span data-translate="slowServer">Slow Server</span>
+                                 </div>
+
+                                 <a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
+                                 <a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
+                              </div>
+
+                              <div class="section-right rbx-friends-game-server-players" style="float: none;width: 99%;">
+                                 <span class="avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image recreate-text-size" style="background-color: orangered;color: white;" id="rk-plr-counter">7</span>
+
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link" title="Some Person"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                                 <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                              </div>
+                           </div>
+
+                        </div>
+
+                        <loadcode code="loadedits"></loadcode>
+                     </loadcode>
+
+                     <div class="stack-header">
+                        <span class="font-bold recreate-14px-text-size color bright" title="Roblokis Hangout" style="display: inline-block;text-overflow: ellipsis;width: 100%;white-space: nowrap;overflow: hidden;" data-translate="themePrvSvr">Roblokis Hangout</span>
+                        <div class="link-menu rbx-private-server-menu"></div>
+                     </div>
+
+                     <div class="section-left rbx-private-server-details" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 0px;">
+
+                        <div class="rbx-private-owner">
+                           <a class="avatar avatar-card-fullbody owner-avatar" title="Some Person" style="display: block;margin: 6px auto;width: calc(90px * 2 * var(--editor-size-percent));height: calc(90px * 2 * var(--editor-size-percent));background-color: #d4d4d4;" data-inside="owner"></a>
+                        </div>
+
+                        <div class="rbx-private-server-alert recreate-text-size">
+                            <span class="icon-remove"></span>
+                            <span data-translate="slowServer">Slow Server</span>
+                        </div>
+
+                        <a class="btn-full-width btn-control-xs rbx-private-server-renew recreate-12px-text-size color dark" data-inside="button" style="margin: 0;" data-translate="themePrvSvrRenu">Renew</a>
+                        <a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
+                        <a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;", data-translate="joinButtons">Join</a>
+                     </div>
+
+                     <div class="section-right rbx-friends-game-server-players" style="float: none;width: 99%;">
+                        <span class="avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image recreate-text-size" style="background-color: darkred;color: white;" id="rk-plr-counter">16</span>
+
+                        <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                        <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                        <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                        <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                        <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                        <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                        <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                        <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                        <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                        <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                        <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                        <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                        <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                        <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                        <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                        <span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
+                     </div>
+                  </div>
+
+               </div>
+            </div>
+
+
+            <div class="designer-section" style="margin-bottom: 20px;transition: all 400ms;position: relative;">
+               <loadcode run='
+                  var size = document.querySelector("#themeedit-resulution");
+                  if(size == null) return;
+
+                  var parent = element.parentElement;
+                  var percent = 100;
+
+                  parent.style.setProperty("--editor-size-percent", percent / 100);
+
+                  var percentdiv = document.querySelector("#themeedit-percent");
+                  if(percentdiv != null) {
+                     percent = Number(percentdiv.value);
+                     parent.style.setProperty("--editor-size-percent", percent / 100);
+                     percentdiv.addEventListener("input", () => {
+                        percent = Number(percentdiv.value);
+                        parent.style.setProperty("--editor-size-percent", percent / 100);
+                     })
+                  }
+
+                  editwindow();
+
+                  size.addEventListener("input", editwindow);
+
+                  function editwindow() {
+                     var sizes = size.value.split(" ").join("").split("x");
+                     if(sizes[1] == null) sizes[1] = 200
+                     sizes.forEach((e,i) => {
+                        e = e.split(".")[0];
+                        if(isNaN(Number(e)) == false) {
+                           var num = Number(e);
+                           if(num < 200) num = 200;
+                           if(num > 5000) num = 5000;
+                           sizes[i] = num
+                        }
+                        else sizes[i] = 200;
+                     })
+
+                     parent.style.width = `calc(${sizes[0]}px * var(--editor-size-percent))`;
+                     parent.style.height = `fit-content`;
+                  }
+
+                  element.remove();
+               '></loadcode>
+
+
+               <div class="recreate-loadmore group" onclick="showthelem(this,event)">
+                  <loadcode code="editelement">
+
+                     <div class="section-content" style="min-width: 200px;">
+                        <div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;" data-translate="themeTextColor">Text Color:</span><input type="color" value="#ffffff" data-location="pagenav.color" data-type="color" class="form-control input-field"></div>
+                     </div>
+
+                     <loadcode code="editcorners" data-location="pagenav" data-togglebtn="on" data-toggle="off" data-title="Navigator "></loadcode>
+                     <loadcode code="editbackground" data-title="Navigator " data-location="pagenav.background" data-togglebtn="on" data-toggle="off"></loadcode>
+                     <loadcode code="editborders" data-location="pagenav" data-togglebtn="on" data-toggle="off" data-title="Navigator "></loadcode>
+
+                     <loadcode code="loadedits"></loadcode>
+                  </loadcode>
+
+                  <button type="button" class="btn-control-sm btn-full-width rbx-running-games-load-more recreate-text-size color" data-translate="loadMore">Load More</button>
+
+                  <div class="inner-group" id="rkpagenav" style="margin: 12px 20% 0;display: flex;height: calc(30px * 2 * var(--editor-size-percent));" data-page="1" data-max="326">
+                     <button type="button" class="btn-control-sm btn-full-width rbx-running-games-load-more recreate-text-size color" style="margin: 0 4px;">|&lt;</button>
+                     <button type="button" class="btn-control-sm btn-full-width rbx-running-games-load-more recreate-text-size color" style="margin: 0 4px;">&lt;</button>
+
+                     <span class="btn-control-sm btn-full-width rbx-running-games-load-more recreate-text-size color" style="margin: 0 4px;width: 200%;display: flex;align-self: center;align-items: center;height: 120%;justify-content: center;">2 / 64</span>
+
+                     <button type="button" class="btn-control-sm btn-full-width rbx-running-games-load-more recreate-text-size color" style="margin: 0 4px;">&gt;</button>
+                     <button type="button" class="btn-control-sm btn-full-width rbx-running-games-load-more recreate-text-size color" style="margin: 0 4px;">&gt;|</button>
+                  </div>
+               </div>
+
+            </div>
+
+
+         </div>
+
+
+
+      </div>
+   </div>
+</div>

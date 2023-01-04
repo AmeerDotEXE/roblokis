@@ -1,0 +1,21 @@
+#container-main > div.content {
+    width: 90%;
+}
+
+#avatar-container {
+    width: 100%;
+}
+
+#horizontal-tabs,
+#avatar-container > div > div > div.right-panel.six-column > div.right-wrapper-placeholder.right-wrapper-placeholder-six-column > div:before,
+
+#avatar-container div.rbx-tabs-horizontal.rbx-tabs-horizontal-six-column > ul#horizontal-tabs > li.rbx-tab.six-tab > a,
+#clothing > recommendations > div > div > div.recommendations-container,
+
+#avatar-items-container > div.section-content-off {
+    background-color: transparent;
+}
+
+#recent-items-container > div.items-list.avatar-item-list > ul > li {
+	width: fit-content;
+}

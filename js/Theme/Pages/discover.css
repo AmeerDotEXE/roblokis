@@ -1,0 +1,26 @@
+/*content*/
+#container-main > div.content {
+    width: 90%;
+}
+
+#games-carousel-page,
+#games-search-page {
+    width: 100%;
+}
+
+.horizontal-scroller .scroller[role="button"] {
+    border-radius: 8px;
+    opacity: 0.8;
+}
+
+.scroller.next[role="button"] {
+    right: -40px;
+}
+
+.scroller.prev[role="button"] {
+    left: -40px;
+}
+
+#randomGameButton {
+    right: 100px !important;
+}

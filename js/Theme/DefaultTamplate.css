@@ -1,0 +1,93 @@
+:root {
+
+    --rk-basic-animations: %BasicAnim%;
+
+    --rk-background: $background.color# url($background.image.link#) /*>$background.image.|IMG|#<*/;
+    --rk-background-image-size: $background.image.size#;
+
+
+--loopstart: 0;
+    --rk-|fullpack|-corners-radius: /*>$|fullpack|.corners.|CORNER|.radius/|fullpack|.corners.all.radius#<*/;
+
+    --rk-|fullpack|-borders-size: /*>$|fullpack|.borders.|SIDE|.size/|fullpack|.borders.all.size&0px#<*/;
+    --rk-|fullpack|-borders-color: /*>$|fullpack|.borders.|SIDE|.color/|fullpack|.borders.all.color&white#<*/;
+    --rk-|fullpack|-borders-style: /*>$|fullpack|.borders.|SIDE|.style/|fullpack|.borders.all.style&solid#<*/;
+
+    --rk-|fullpack|-background: $|fullpack|.background.color# url($|fullpack|.background.image.link#) /*>$|fullpack|.background.image.|IMG|#<*/;
+    --rk-|fullpack|-background-image-size: $|fullpack|.background.image.size#;
+--loopend: 0;
+
+
+--loopstart: 0;
+/*  |server| Servers      */
+
+    --rk-|server|-column: $|server|.column/defaultserver.column#;
+    --rk-|server|-gap: $|server|.gap/defaultserver.gap#;
+
+    
+    --rk-|server|-corners-radius: /*>$|server|.corners.|CORNER|.radius/|server|.corners.all.radius/defaultserver.corners.|CORNER|.radius/defaultserver.corners.all.radius#<*/;
+
+    --rk-|server|-background: $|server|.background.color/defaultserver.background.color# url($|server|.background.image.link/defaultserver.background.image.link#) /*>$|server|.background.image.|IMG|/defaultserver.background.image.|IMG|#<*/;
+    --rk-|server|-background-image-size: $|server|.background.image.size/defaultserver.background.image.size#;
+
+    --rk-|server|-borders-size: /*>$|server|.borders.|SIDE|.size/|server|.borders.all.size/defaultserver.borders.|SIDE|.size/defaultserver.borders.all.size&0px#<*/;
+    --rk-|server|-borders-color: /*>$|server|.borders.|SIDE|.color/|server|.borders.all.color/defaultserver.borders.|SIDE|.color/defaultserver.borders.all.color&white#<*/;
+    --rk-|server|-borders-style: /*>$|server|.borders.|SIDE|.style/|server|.borders.all.style/defaultserver.borders.|SIDE|.style/defaultserver.borders.all.style&solid#<*/;
+--loopend: 0;
+
+
+--loopstart: 0;
+/*  |server| Servers Button      */
+
+    --rk-|server|-button-color: $|server|.button.color#;
+
+    
+    --rk-|server|-button-corners-radius: /*>$|server|.button.corners.|CORNER|.radius/|server|.button.corners.all.radius/defaultserver.button.corners.|CORNER|.radius/defaultserver.button.corners.all.radius#<*/;
+
+    --rk-|server|-button-background: $|server|.button.background.color/defaultserver.button.background.color# url($|server|.button.background.image.link/defaultserver.button.background.image.link#) /*>$|server|.button.background.image.|IMG|/defaultserver.button.background.image.|IMG|#<*/;
+    --rk-|server|-button-background-image-size: $|server|.button.background.image.size/defaultserver.button.background.image.size#;
+
+    --rk-|server|-button-borders-size: /*>$|server|.button.borders.|SIDE|.size/|server|.button.borders.all.size/defaultserver.button.borders.|SIDE|.size/defaultserver.button.borders.all.size&0px#<*/;
+    --rk-|server|-button-borders-color: /*>$|server|.button.borders.|SIDE|.color/|server|.button.borders.all.color/defaultserver.button.borders.|SIDE|.color/defaultserver.button.borders.all.color&white#<*/;
+    --rk-|server|-button-borders-style: /*>$|server|.button.borders.|SIDE|.style/|server|.button.borders.all.style/defaultserver.button.borders.|SIDE|.style/defaultserver.button.borders.all.style&solid#<*/;
+--loopend: 0;
+
+
+/*  Menu    */
+
+    --rk-menu-background: $menu.background.color# url($menu.background.image.link#) /*>$menu.background.image.|IMG|#<*/;
+    --rk-menu-background-image-size: $menu.background.image.size#;
+
+
+/*  Content     */
+
+    --rk-content-box-shadow: $content.shadow#black 0px 0px 8px 2px;
+
+
+
+/*	Badges		*/
+
+    --rk-badge-bright-color: $badge.colors.bright#;
+    --rk-badge-dark-color: $badge.colors.dark#;
+
+
+
+/*	Private Servers		*/
+
+    --rk-privateserver-owner-background: $privateserver.owner.background.color#;
+    --rk-privateserver-bright-color: $privateserver.color#;
+
+
+
+/*	Friends Servers		*/
+
+    --rk-friendsserver-dark-color: $friendsserver.color#;
+
+
+
+/*	Page Nav	*/
+
+    --rk-pagenav-color: $pagenav.color#;
+
+
+}

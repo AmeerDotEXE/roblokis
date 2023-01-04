@@ -1,0 +1,868 @@
+{
+    "extDesc": {
+        "message": "Ciri dan Gaya Tersuai Untuk Roblox.",
+        "description": "Extension description."
+    },
+    "extUpdate": {
+        "message": "Terdapat Kemas Kini Baru!",
+        "description": "Text shows then clicking on Extension icon. text will show then the extension is not up-to-date. this will be under 'Open Settings Menu' button"
+    },
+    "extUpdate1": {
+        "message": "Sila Pasang Semula Roblokis.",
+        "description": "Text shows then clicking on Extension icon. text will show then the extension is not up-to-date. this will be under the new update text"
+    },
+    "refresh": {
+        "message": "Segarkan semula",
+        "description": "Text shows on a button at filtered servers on game page"
+    },
+    "LowPingSvrs": {
+        "message": "Pelayan Ping Rendah",
+        "description": "Text shows on a button at filtered servers on game page"
+    },
+    "sectionMPN": {
+        "message": "Bilangan Pemain Maksimum.",
+        "description": "Text shows on Roblokis settings page. text for a section"
+    },
+    "sectionMPN1": {
+        "message": "Menunjukkan nombor pemain Maksimum di sebelah nombor pemain yang tersedia.",
+        "description": "Text shows on Roblokis settings page. text for a section"
+    },
+    "serversFiltered": {
+        "message": "Pelayan Ditapis",
+        "description": "Text shows in roblokis settings. text for a Section Selection"
+    },
+    "sectionFSS": {
+        "message": "Bahagian Pelayan Ditapis.",
+        "description": "Text shows on Roblokis settings page. text for a section"
+    },
+    "sectionFSS1": {
+        "message": "Bahagian baharu dengan pilihan pengisihan.",
+        "description": "Text shows on Roblokis settings page. text for a section"
+    },
+    "experimental": {
+        "message": "(PERCUBAAN)",
+        "description": "Text shows on Roblokis settings page. text for a section"
+    },
+    "sectionLSite": {
+        "message": "Bahasa tapak Roblox.",
+        "description": "Text shows on Roblokis settings page. text for a section"
+    },
+    "sectionLSite1": {
+        "message": "Mengehadkan Bahasa Roblokis kepada Bahasa Tapak Roblox.",
+        "description": "Text shows on Roblokis settings page. text for a section"
+    },
+      "sectionExtraS": {
+        "message": "Bayang-bayang Tambahan.",
+        "description": "Text shows on Roblokis settings page. text for a section"
+    },
+      "sectionExtraS1": {
+        "message": "Menambah kesan bayang-bayang di bawah atau sekitar beberapa elemen.",
+        "description": "Text shows on Roblokis settings page. text for a section"
+    },
+    "credits": {
+        "message": "Kredit",
+        "description": "Text shows on Roblokis settings page. include your name for credits, you deseve it"
+    },
+    "creditsTranslate": {
+        "message": "Terjemahan Oleh Terjemahan Google",
+        "description": "Text shows on Roblokis settings page. include your name for credits, you deseve it"
+    },
+    "openSettingsMenu": {
+        "message": "Buka Menu Tetapan",
+        "description": "Text shows then you click on the extension. clicking it will open settings menu"
+    },
+    "errorCode": {
+        "message": "Kod salah:",
+        "description": "Error occured and error code will be next to it. Example: QFR11"
+    },
+    "error": {
+        "message": "ralat",
+        "description": "Error occured."
+    },
+    "errorNameLength": {
+        "message": "Nama mestilah antara 3 dan 24 Aksara!",
+        "description": "the user input should be in a specific range"
+    },
+    "errorDescLength": {
+        "message": "Panjang Penerangan Maksimum ialah 36 Aksara!",
+        "description": "the user input should be in a specific range"
+    },
+    "errorAtoZ": {
+        "message": "Hanya A-Z dan 0-9 Dibenarkan!",
+        "description": "the user input should be in a specific letters"
+    },
+    "errorMaxSlots": {
+        "message": "Semua Slot Digunakan.",
+        "description": "User doesn't have enough space for themes"
+    },
+    "errorNameExist": {
+        "message": "Nama Sudah Wujud.",
+        "description": "Theme name already exist"
+    },
+    "btnEdit": {
+        "message": "Sunting",
+        "description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will open edit menu for the themes"
+    },
+    "btnSelect": {
+        "message": "Pilih",
+        "description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will select the theme"
+    },
+    "btnCreate": {
+        "message": "Buat",
+        "description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will create a theme"
+    },
+    "btnCancel": {
+        "message": "Batal",
+        "description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will cancel your action"
+    },
+    "btnDelete": {
+        "message": "Padam",
+        "description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will delete your theme"
+    },
+    "btnSaved": {
+        "message": "Disimpan",
+        "description": "Text shows in roblokis settings. Shows then settings are saved"
+    },
+    "btnSave": {
+        "message": "Jimat",
+        "description": "Text shows in roblokis settings. Shows on a button to save settings"
+    },
+    "copyTextSuccess": {
+        "message": "Teks disalin berjaya",
+        "description": "Text shows then copying links/text. Copying text was successful"
+    },
+    "copyTextUnseccuss": {
+        "message": "Teks yang disalin tidak berjaya",
+        "description": "Text shows then copying links/text. Copying text was unsuccessful"
+    },
+    "cantCopyText": {
+        "message": "Op, tidak dapat menyalin",
+        "description": "Text shows then copying links/text. Couldn't copy text"
+    },
+    "settingsPageTitle": {
+        "message": "Halaman Tetapan Roblokis",
+        "description": "Text shows on settings page. Page title"
+    },
+    "categoryMain": {
+        "message": "Utama",
+        "description": "Text shows in roblokis settings. text for a catagory"
+    },
+    "categoryGamePage": {
+        "message": "Halaman Permainan",
+        "description": "Text shows in roblokis settings. text for a catagory"
+    },
+    "categoryProfiles": {
+        "message": "Profil",
+        "description": "Text shows in roblokis settings. text for a catagory"
+    },
+    "tabAll": {
+        "message": "Semua",
+        "description": "Text shows in roblokis settings. text for a tab"
+    },
+    "tabAbout": {
+        "message": "Tentang",
+        "description": "Text shows in roblokis settings. text for a tab"
+    },
+    "tabChangelog": {
+        "message": "Changelog",
+        "description": "Text shows in roblokis settings. text for a tab"
+    },
+    "tabDesigner": {
+        "message": "Pereka bentuk",
+        "description": "Text shows in roblokis settings. text for a tab"
+    },
+    "tabBadges": {
+        "message": "Lencana",
+        "description": "Text shows in roblokis settings. text for a tab"
+    },
+    "tabServers": {
+        "message": "Pelayan",
+        "description": "Text shows in roblokis settings. text for a tab"
+    },
+    "tabProfilePage": {
+        "message": "Halaman Profil",
+        "description": "Text shows in roblokis settings. text for a tab"
+    },
+    "tabFriendsPage": {
+        "message": "Halaman Rakan",
+        "description": "Text shows in roblokis settings. text for a tab"
+    },
+    "tabHome": {
+        "message": "Rumah",
+        "description": "Text shows in roblokis settings. text for a tab"
+    },
+    "tabUsers": {
+        "message": "Pengguna",
+        "description": "Text shows in roblokis settings. text for a tab"
+    },
+    "tabGroups": {
+        "message": "Kumpulan",
+        "description": "Text shows in roblokis settings. text for a tab"
+    },
+    "tabGame": {
+        "message": "Permainan",
+        "description": "Text shows in roblokis settings. text for a tab"
+    },
+    "chooseSection": {
+        "message": "Pilih Bahagian:",
+        "description": "Text shows in roblokis settings. text for a Section Selection"
+    },
+    "chooseSelect": {
+        "message": "Klik untuk Pilih",
+        "description": "Text shows in roblokis settings. text for a Section Selection"
+    },
+    "serversPrivate": {
+        "message": "Pelayan Persendirian",
+        "description": "Text shows in roblokis settings. text for a Section Selection"
+    },
+    "serversFriends": {
+        "message": "Pelayan Kawan",
+        "description": "Text shows in roblokis settings. text for a Section Selection"
+    },
+    "serversSmall": {
+        "message": "Pelayan Kecil",
+        "description": "Text shows in roblokis settings. text for a Section Selection"
+    },
+    "serversPublic": {
+        "message": "Pelayan Awam",
+        "description": "Text shows in roblokis settings. text for a Section Selection"
+    },
+    "sectionSLink": {
+        "message": "NOTA: Berkongsi pautan tidak akan berfungsi melainkan orang itu juga mempunyai sambungan ini!",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionSLB": {
+        "message": "Butang Pautan Pelayan.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionSLB1": {
+        "message": "Menunjukkan butang pautan di sebelah butang sertai dan memberikan pautan sertai pelayan.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionWhatRkis": {
+        "message": "Apa itu Roblokis?",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionWhatRkis1": {
+        "message": "Roblokis ialah sambungan pelayar yang dibuat oleh Ameer! untuk menjadikan roblox lebih mudah digunakan dan lebih mudah diakses.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionWhatRkis2": {
+        "message": "Klik di sini untuk tapak roblokis dan dasar privasi.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionHelpNeed": {
+        "message": "Tolong!",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionHelpNeed1": {
+        "message": "jika sambungan mempunyai masalah anda boleh menghubungi saya di discord:",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionHelpNeed2": {
+        "message": "atau mesej saya di Roblox (Ameer_Khalid):",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionFeatures": {
+        "message": "Ciri-ciri:",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionFeatures1": {
+        "message": "Stuff Roblokis Boleh buat",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionQRB": {
+        "message": "Butang Alih Keluar Pantas.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionQRB1": {
+        "message": "Butang kecil untuk mengalih keluar rakan lebih cepat.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionQRB2": {
+        "message": "NOTA: Anda perlu mengklik dua kali butang untuk mengalih keluar rakan!",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionLS": {
+        "message": "Status Terakhir.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionLS1": {
+        "message": "Menunjukkan Aktiviti Terakhir Pemain pada Halaman Profilnya.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionCP": {
+        "message": "Batal Belum Selesai.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionCP1": {
+        "message": "Menunjukkan Butang \"Batal Belum Selesai\" dan bukannya \"Belum selesai\".",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionCBV": {
+        "message": "Lihat & Muatkan Lencana Baharu semua.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionCBV1": {
+        "message": "Menunjukkan reka bentuk Gaya baharu oleh Ameer! memuatkan 100 lencana pertama secara automatik.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionCBH": {
+        "message": "Tunjukkan Lencana Tersembunyi.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionCBH1": {
+        "message": "Menunjukkan Lencana Tersembunyi/Dilumpuhkan! (Muat Semua Pilihan Diperlukan)",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionRJB": {
+        "message": "Namakan semula Butang Sertai.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionRJB1": {
+        "message": "Menamakan semula butang sertai kepada \"Sertai Pelayan Peribadi\" atau \"Sertai Pelayan Awam\" mengikut pelayan.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionSPN": {
+        "message": "Nav. Halaman Pelayan",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionSPN1": {
+        "message": "Menunjukkan Nav. butang di bawah butang \"Muat Lagi\".",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "SectionSSS": {
+        "message": "Bahagian Pelayan Kecil.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "SectionSSS1": {
+        "message": "Bahagian baharu menunjukkan pelayan dengan beberapa pemain.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionALM": {
+        "message": "Muatkan Automatik Lagi.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionALM1": {
+        "message": "Secara automatik klik memuatkan lebih banyak daripada pelayan menyegarkan semula.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionASO": {
+        "message": "Pelayan Tersedia Sahaja.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionASO1": {
+        "message": "Mengalih keluar semua pelayan yang tidak tersedia atau semua pelayan tanpa butang sertai.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionCRT": {
+        "message": "Teks Robux Tersuai:",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionCRT1": {
+        "message": "Ini menggantikan teks robux kanan atas pada semua tapak roblox.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionCNT": {
+        "message": "Teks Nama Tersuai:",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionCNT1": {
+        "message": "Ini menggantikan teks nama pengguna sebelah kanan atas pada semua tapak roblox.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionUThemes": {
+        "message": "Gunakan Tema.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionUThemes1": {
+        "message": "Melumpuhkan ini akan melumpuhkan Gaya dan Tema!",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionAAnim": {
+        "message": "Benarkan animasi?",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionAAnim1": {
+        "message": "Sesetengah halaman mungkin mempunyai beberapa kesan animasi. (Memerlukan Pilihan Tema)",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionQJB": {
+        "message": "Butang Sertai Cepat.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionQJB1": {
+        "message": "Menambah butang sertai di bawah setiap permainan di hame dan temui halaman.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionDApp": {
+        "message": "Apl Desktop.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "sectionDApp1": {
+        "message": "Mendayakan reka bentuk apl desktop oleh Roblox.",
+        "description": "Text shows in roblokis settings. text for a Section"
+    },
+    "themeSlotNumber": {
+        "message": "Slot Tema $num$",
+        "description": "Text Shows on Roblokis Settings at Designer Tab. the placeholder is the number of the empty slot",
+        "placeholders": {
+            "num": {
+                "content": "$1",
+                "example": "3"
+            }
+        }
+    },
+    "themeSelected": {
+        "message": "Tema yang Dipilih",
+        "description": "Text shows in Roblokis Settings at Designer Tab. Under it will be the selected themes"
+    },
+    "themeNotLoad": {
+        "message": "Tidak Dimuatkan",
+        "description": "Text shows in Roblokis Settings at Designer Tab. shows then the designer tab is loading"
+    },
+    "themeDefaultSection": {
+        "message": "Tema Lalai:",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for a section"
+    },
+    "themeDefaultSection1": {
+        "message": "Didatangkan dengan sambungan...",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for a section"
+    },
+    "themeCustomSection": {
+        "message": "Tema Tersuai:",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for a section"
+    },
+    "themeCustomSection1": {
+        "message": "Anda menggunakan atau mencipta tema anda sendiri...",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for a section"
+    },
+    "themeNewTitle": {
+        "message": "Tema Baharu",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for a new theme creation"
+    },
+    "themeName": {
+        "message": "nama",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for a new theme creation"
+    },
+    "themeDescription": {
+        "message": "Penerangan (pilihan)",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for a new theme creation"
+    },
+    "themeImport": {
+        "message": "Import Tema (Pilihan)",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for a new theme creation"
+    },
+    "themeDeleteTitle": {
+        "message": "Padamkan Tema",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for a theme Deletion"
+    },
+    "themeDeleteText": {
+        "message": "Adakah Anda Pasti Memadam",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for a theme Deletion"
+    },
+    "themeBackground": {
+        "message": "Latar belakang",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeCorners": {
+        "message": "Sudut",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeAllCorners": {
+        "message": "Semua Sudut:",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeTLCorner": {
+        "message": "Sudut Kiri Atas",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeTRCorner": {
+        "message": "Sudut Kanan Atas",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeBLCorner": {
+        "message": "Sudut Kiri Bawah",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeBRCorner": {
+        "message": "Sudut Kanan Bawah",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeColor": {
+        "message": "Warna:",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeAlpha": {
+        "message": "Alfa:",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeLink": {
+        "message": "pautan:",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeSize": {
+        "message": "sisi:",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeFillX": {
+        "message": "Isi X",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeFillY": {
+        "message": "Isi Y",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeAuto": {
+        "message": "Auto",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeRepeat": {
+        "message": "ulang",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeNoRepeat": {
+        "message": "Tiada Ulangan",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeRepeatT": {
+        "message": "Ulang:",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeRound": {
+        "message": "Bulat",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeSpace": {
+        "message": "angkasa lepas",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeScroll": {
+        "message": "Tatal:",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeEnabled": {
+        "message": "Didayakan",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeDisabled": {
+        "message": "Dilumpuhkan",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeBorders": {
+        "message": "Sempadan",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeWidth": {
+        "message": "lebar:",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeStyle": {
+        "message": "gaya:",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeSolid": {
+        "message": "Padat",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeDouble": {
+        "message": "berganda",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeDashed": {
+        "message": "putus-putus",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeDotted": {
+        "message": "Bertitik",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeInset": {
+        "message": "Inset",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeOutset": {
+        "message": "Mula-mula",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeGroove": {
+        "message": "alur",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeRidge": {
+        "message": "rabung",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeTBorder": {
+        "message": "Sempadan Atas",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeRBorder": {
+        "message": "Sempadan Kanan",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeBBorder": {
+        "message": "Sempadan Bawah",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeLBorder": {
+        "message": "Sempadan Kiri",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeSection": {
+        "message": "Bahagian",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeShadow": {
+        "message": "bayang:",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themePreviewProfile": {
+        "message": "Pratonton Contoh Profil",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeFriends": {
+        "message": "Kawan-kawan",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeFollowers": {
+        "message": "Pengikut",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeFollowing": {
+        "message": "Mengikuti",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeMessage": {
+        "message": "Mesej",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themePreviewGroup": {
+        "message": "Pratonton Contoh Kumpulan",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeGroupBy": {
+        "message": "Oleh",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (next to it will be server creator name)"
+    },
+    "themeMembers": {
+        "message": "ahli",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeRank": {
+        "message": "pangkat",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themePreviewBadge": {
+        "message": "Pratonton Contoh Lencana",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeNameBadge": {
+        "message": "Roblokis Dipasang",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (you can make this whatever you want)"
+    },
+    "themeDescBadge": {
+        "message": "Pemilik lencana ini telah memasang Roblokis",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (you can make this whatever you want)"
+    },
+    "themeTxtColor": {
+        "message": "Warna Teks",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeTextColor": {
+        "message": "Warna Teks:",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeBrtColor": {
+        "message": "Warna terang:",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeDrkColor": {
+        "message": "Warna Gelap:",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeTimeAgo": {
+        "message": "Masa lalu",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themePreviewServer": {
+        "message": "Pratonton Contoh Pelayan",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themePrvSvr": {
+        "message": "Roblokis Hangouts",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (you can make this whatever you want)"
+    },
+    "themePrvSvrRenu": {
+        "message": "memperbaharui",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (you can make this whatever you want)"
+    },
+    "themePreviewDefault": {
+        "message": "Pratonton Pelayan Lalai",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themePreviewPrivate": {
+        "message": "Pratonton Pelayan Peribadi",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themePreviewPublic": {
+        "message": "Pratonton Pelayan Awam",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themePreviewSmall": {
+        "message": "Pratonton Pelayan Kecil",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themePreviewFriends": {
+        "message": "Pratonton Pelayan Rakan",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeSvrStng": {
+        "message": "Tetapan Pelayan",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeSvrPerRow": {
+        "message": "Pelayan Setiap Baris:",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeSvrGap": {
+        "message": "Jurang Pelayan:",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeOwnBG": {
+        "message": "Latar Belakang Pemilik:",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeOwnBGAlp": {
+        "message": "Pemilik Bg Alpha:",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themePrvSvrInac": {
+        "message": "Tidak aktif.",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "themeFrnSvrPlr": {
+        "message": "Rakan dalam pelayan ini: Roblox",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "screenLength": {
+        "message": "Saiz x Saiz",
+        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+    },
+    "badgeNoDescription": {
+        "message": "Tiada Perihalan Lencana",
+        "description": "Text shows on game badges. badge doesn't have a description"
+    },
+    "badgeNoName": {
+        "message": "Tiada Nama Lencana",
+        "description": "Text shows on game badges. badge doesn't have a name"
+    },
+    "badgeRare": {
+        "message": "Jarang",
+        "description": "Text shows on game badges. how rare is this badge to get"
+    },
+    "badgeLastWon": {
+        "message": "Menang Semalam",
+        "description": "Text shows on game badges. how many players got this badge from yesterday"
+    },
+    "badgeWon": {
+        "message": "Menang Pernah",
+        "description": "Text shows on game badges. how many players have this badge"
+    },
+    "badgeAchievedShort": {
+        "message": "Tercapai",
+        "description": "Text shows on game badges. Next to it will be the date of when the player got the badge"
+    },
+    "badgeAchievedLong": {
+        "message": "Dicapai pada $longdate$",
+        "description": "Text shows then you hover over game badges. a longer date will be showen in the placeholder",
+        "placeholders": {
+            "longdate": {
+                "content": "$1",
+                "example": "Jul 21, 2018 | 01:04 PM (GMT+3)"
+            }
+        }
+    },
+    "badgeCreatedShort": {
+        "message": "Dicipta",
+        "description": "Text shows on game badges. Next to it will be the date of when the badge was created"
+    },
+    "badgeCreatedLong": {
+        "message": "Dibuat pada $longdate$",
+        "description": "Text shows then you hover over game badges. a longer date will be showen in the placeholder",
+        "placeholders": {
+            "longdate": {
+                "content": "$1",
+                "example": "Jul 21, 2018 | 01:04 PM (GMT+3)"
+            }
+        }
+    },
+    "badgeUpdatedShort": {
+        "message": "dikemas kini",
+        "description": "Text shows on game badges. Next to it will be the date of when the badge got updated"
+    },
+    "badgeUpdatedLong": {
+        "message": "Kemas Kini Terakhir pada $longdate$",
+        "description": "Text shows then you hover over game badges. a longer date will be showen in the placeholder",
+        "placeholders": {
+            "longdate": {
+                "content": "$1",
+                "example": "Jul 21, 2018 | 01:04 PM (GMT+3)"
+            }
+        }
+    },
+    "joinButtons": {
+        "message": "Sertai",
+        "description": "Text shows on games/servers button. clicking it would join your roblox game"
+    },
+    "cancelRequest": {
+        "message": "Batalkan permintaan",
+        "description": "Text shows on profile at'Pending' button. cancels a friend request"
+    },
+    "canceledRequest": {
+        "message": "Dibatalkan",
+        "description": "Text shows on profile at'Pending' button. canceled the friend request"
+    },
+    "lastGame": {
+        "message": "Permainan terakhir",
+        "description": "Text shows on profiles. under it will be the game join button"
+    },
+    "lastPlace": {
+        "message": "Tempat Terakhir",
+        "description": "Text shows on profiles. under it will be the last game name"
+    },
+    "lastSeen": {
+        "message": "Kali terakhir dilihat",
+        "description": "Text shows on profiles. under it will be the last date player was seen"
+    },
+    "lastSeenLong": {
+        "message": "Terakhir Dilihat pada $longdate$",
+        "description": "Text shows then you hover over last seen text in profile page. a longer date will be showen in the placeholder",
+        "placeholders": {
+            "longdate": {
+                "content": "$1",
+                "example": "Jul 21, 2018 | 01:04 PM (GMT+3)"
+            }
+        }
+    },
+    "smallSection": {
+        "message": "Beberapa Pelayan Kecil",
+        "description": "Text shows on game servers. the small servers section name"
+    },
+    "slowServer": {
+        "message": "Pelayan Lambat",
+        "description": "Text shows on servers. only shows then the server is slow"
+    },
+    "loadMore": {
+        "message": "Tambah lagi",
+        "description": "Text shows on game servers section. clicking it will load more servers"
+    },
+    "joinPrivateServer": {
+        "message": "Sertai Pelayan Peribadi",
+        "description": "Text shows on friends servers. text shows when your friend is in a private server"
+    },
+    "JoinPublicServer": {
+        "message": "Sertai Pelayan Awam",
+        "description": "Text shows on friends servers. text shows when your friend is in a public server"
+    }
+}

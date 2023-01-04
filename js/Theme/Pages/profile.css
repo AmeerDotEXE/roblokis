@@ -1,0 +1,119 @@
+#container-main > div.content > div.profile-container > div > div.section.profile-header > div,
+#horizontal-tabs > li > a,
+#profile-statistics-container > div > div.section-content,
+#about > div.section.layer.profile-collections,
+#groups-switcher,
+#games-switcher,
+#friends-container > div > div.rbx-tabs-horizontal.rbx-scrollable-tabs-horizontal > ul > li > a,
+#friends-container > div > div.rbx-tabs-horizontal.rbx-scrollable-tabs-horizontal > div > div > div.friends-content.section > ul > li > div.avatar-card-container > div,
+#profile-current-wearing-avatar > div.section-content.profile-avatar-left,
+#profile-current-wearing-avatar > div.section-content.profile-avatar-right,
+#lastseentheprofileis,
+#inventory-container > inventory > div > assets-explorer > div > div > div.menu-vertical-container.category-tabs > ul,
+#inventory-container > inventory > div > div > recommendations > div > div > div,
+
+/* for btroblox */
+#container-main > div.content > div.profile-container > div > div.btr-profile-container > div.btr-profile-left > div.btr-profile-about.profile-about > div.section-content,
+#roblox-badges-container > div.section-content,
+#container-main > div.content > div.profile-container > div > div.btr-profile-container > div.btr-profile-right > div.btr-profile-favorites > div.section-content,
+#container-main > div.content > div.profile-container > div > div.btr-profile-container > div.btr-profile-left > div.btr-profile-playerbadges > div.section-content,
+#container-main > div.content > div.profile-container > div > div.btr-profile-container > div.btr-profile-left > div.btr-profile-groups > div.section-content,
+#btr-injected-inventory,
+#profile-current-wearing-avatar > div.profile-avatar-right.visible {
+    border-radius: var(--rk-profile-corners-radius);
+
+    border-color: var(--rk-profile-borders-color);
+    border-style: var(--rk-profile-borders-style);
+    border-width: var(--rk-profile-borders-size);
+
+    background: var(--rk-profile-background, transparent);
+    background-size: var(--rk-profile-background-image-size);
+}
+
+#horizontal-tabs,
+#player-badges-container > div.section-content.remove-panel > ul > li > a > span.thumbnail-2d-container,
+#groups-switcher > ul > li.switcher-item.slide-item-container.active > div.slide-item-container-right,
+#groups-switcher > ul > li.switcher-item.slide-item-container.active > div.slide-item-container-left,
+#games-switcher > ul > li.switcher-item.slide-item-container.active > div.slide-item-container-right,
+#games-switcher > ul > li.switcher-item.slide-item-container.active > div.slide-item-container-left,
+#friends-container > div > div.rbx-tabs-horizontal.rbx-scrollable-tabs-horizontal > ul,
+#friends-container > div > div.rbx-tabs-horizontal.rbx-scrollable-tabs-horizontal > div > div > div.friends-content.section > ul > li > div,
+#profile-current-wearing-avatar > div.section-content.profile-avatar-right > div,
+#profile-current-wearing-avatar > div.profile-avatar-right.visible > div,
+#inventory-container > inventory > div > assets-explorer > div > div > div.tab-content.rbx-tab-content > div > div.item-cards > div {
+    background-color: transparent;
+}
+
+
+#horizontal-tabs > li > a,
+#groups-switcher > ul > li.switcher-item.slide-item-container.active > div.slide-item-container-right,
+#groups-switcher > ul > li.switcher-item.slide-item-container.active > div.slide-item-container-left,
+#games-switcher > ul > li.switcher-item.slide-item-container.active > div.slide-item-container-right,
+#games-switcher > ul > li.switcher-item.slide-item-container.active > div.slide-item-container-left,
+#friends-container > div > div.rbx-tabs-horizontal.rbx-scrollable-tabs-horizontal > ul > li,
+#friends-container > div > div.rbx-tabs-horizontal.rbx-scrollable-tabs-horizontal > div > div > div.friends-content.section > ul > li > div > div,
+#profile-current-wearing-avatar > div.section-content.profile-avatar-left,
+#profile-current-wearing-avatar > div.section-content.profile-avatar-right {
+    transform: scale(99%,1);
+}
+
+#inventory-container > inventory > div > assets-explorer > div > div > div.menu-vertical-container.category-tabs > ul > li:first-child {
+    border-radius: var(--rk-profile-corners-radius);
+    border-bottom-left-radius: 0px;
+}
+
+#inventory-container > inventory > div > assets-explorer > div > div > div.menu-vertical-container.category-tabs > ul > li:last-child {
+    border-radius: var(--rk-profile-corners-radius);
+    border-top-left-radius: 0px;
+}
+
+
+#friends-container > div > div.rbx-tabs-horizontal.rbx-scrollable-tabs-horizontal > div > div > div.friends-content.section > ul > li {
+    transition: transform 400ms;
+    transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
+    position: relative;
+}
+
+#friends-container > div > div.rbx-tabs-horizontal.rbx-scrollable-tabs-horizontal > div > div > div.friends-content.section > ul > li:hover {
+    transform: var(--rk-basic-animations, scale(1.2));
+    opacity: var(--rk-basic-animations, 1);
+    z-index: var(--rk-basic-animations, 1);
+}
+
+#container-main > div.content {
+  max-width: 1338px;
+}
+@media (max-width: 1338px) {
+  #container-main > div.content {
+    max-width: 1154px;
+  }
+}
+@media (max-width: 1154px) {
+  #container-main > div.content {
+    max-width: 970px;
+  }
+}
+
+
+#about > div.container-list.favorite-games-container > ul {
+    overflow-y: hidden;
+}
+
+#container-main > div.content > div.profile-container,
+#friends-container {
+    min-width: 80%;
+}
+
+
+#inventory-container {
+    width: 100%;
+}
+
+#container-main > div.content {
+    width: auto;
+}
+
+#friends-container > div > div.rbx-tabs-horizontal.rbx-scrollable-tabs-horizontal > ul > li {
+    margin: 0;
+}
+

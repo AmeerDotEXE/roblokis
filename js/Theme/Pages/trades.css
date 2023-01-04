@@ -1,0 +1,12 @@
+/*content*/
+#container-main > div.content {
+    width: 90%;
+}
+
+#trades-container {
+    width: 100%;
+}
+
+#trade-row-scroll-container > div.simplebar-wrapper > div.simplebar-mask > div > div > div > div.container-empty {
+    background-color: transparent;
+}
