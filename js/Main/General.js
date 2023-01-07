@@ -1,9 +1,12 @@
+"use strict";
 var Rkis = Rkis || {};
+
+//To Do: wrap this whole file in 1 function
 
 
 window.ContextScript = true;
 
-var manifestData = chrome.runtime.getManifest();
+let manifestData = chrome.runtime.getManifest();
 Rkis.version = manifestData.version;
 
 Rkis.id = chrome.runtime.id;
@@ -27,7 +30,7 @@ else if(window.location.href.includes("/groups/")) {
 else if(window.location.href.includes("/home")) Rkis.pageName = "home";
 else Rkis.pageName = "all";
 
-var wholedata = localStorage.getItem("Roblokis");
+let wholedata = localStorage.getItem("Roblokis");
 if(wholedata) wholedata = JSON.parse(wholedata) || {};
 
 Rkis.wholeData = {...wholedata};
@@ -63,7 +66,7 @@ Rkis.codeLoader = {save: {}, load: {}};
 		if (setting == null) return null;
 		if (typeof setting == "string") setting = Rkis.wholeData[setting];
 		if (setting == null || typeof setting.type != "string") return null;
-		var value = setting.value;
+		let value = setting.value;
 		if (value == null) return null;
 
 		switch (setting.type) {
@@ -78,19 +81,19 @@ Rkis.codeLoader = {save: {}, load: {}};
 	Rkis.GetSettingDetails = function (details) {
 		if (details == null) return null;
 
-		var code = details.default;
+		let code = details.default;
 		if (details[Rkis.languageCode] != null) code = Rkis.languageCode;
 
 		return details[code];
 	}
 	Rkis.IsSettingEnabled = function(setting, defaultSetting) {
-		var rksetting = setting;
+		let rksetting = setting;
 		if (typeof setting == "string") rksetting = Rkis.wholeData[setting];
 
 		if (defaultSetting != null) {
 			if (rksetting && rksetting.id == null) {
 				if (typeof setting == "string") {
-					var valueObject = {};
+					let valueObject = {};
 
 					if (typeof rksetting == "boolean") valueObject.switch = Rkis.wholeData[setting];
 					else if (typeof rksetting == "string") valueObject.text = Rkis.wholeData[setting];
@@ -108,7 +111,9 @@ Rkis.codeLoader = {save: {}, load: {}};
 			}
 		} else if (rksetting.id == null) Rkis.ErrorToast("Unregistered Feature: " + setting);
 
-		var value = Rkis.GetSettingValue(rksetting);
+		if (setting.options && setting.options.disabled == true) return false;
+
+		let value = Rkis.GetSettingValue(rksetting);
 
 		if (value == null || value == "" || value == false) { return false; }
 		return true;
@@ -128,12 +133,12 @@ Rkis.codeLoader = {save: {}, load: {}};
 	return Rkis.language[msg].split("$1$").join(txt1).split("$2$").join(txt2).split("$3$").join(txt3).split("$4$").join(txt4).split("$5$").join(txt5).split("$6$").join(txt6).split("$7$").join(txt7).split("$8$").join(txt8).split("$9$").join(txt9);
   }
 
-  var allCodes = {};
+  let allCodes = {};
 
   document.$watchLoop("[data-translate]", (e) => {
-    var place = e.dataset.translate;
+    let place = e.dataset.translate;
     if(place == null || place == "") return;
-	var valueText;
+	let valueText;
 
     if(Rkis.language[place] != null && Rkis.language[place] != "") {
 		valueText = Rkis.language[place];
@@ -185,7 +190,7 @@ Rkis.codeLoader = {save: {}, load: {}};
     .then((rawtext) => {
       if(rawtext == null || rawtext == "") return;
 
-      var text = null;
+      let text = null;
 
       try { text = JSON.parse(rawtext); }
       catch { console.trace("Rkis | Couldn't Convert Data.", Rkis.fileLocation + `_locales/${Rkis.languageCode}/messages.json`, rawtext); text = null; }
@@ -193,7 +198,7 @@ Rkis.codeLoader = {save: {}, load: {}};
       if(text == null || text == {}) return;
       allCodes = text;
 
-      for (code in allCodes) {
+      for (var code in allCodes) {
         Rkis.language[code] = allCodes[code].message || Rkis.language[code];
           
         Rkis.language[code].split("$").forEach((e, i) => {
@@ -208,7 +213,7 @@ Rkis.codeLoader = {save: {}, load: {}};
   }
 
   //Rkis.language[""] = chrome.i18n.getMessage("");
-  l = (msg) => {
+  let l = (msg) => {
     if(Rkis.language[msg] != null && Rkis.language[msg] != "") return;
 	Rkis.languageCode = chrome.i18n.getUILanguage();
 
@@ -276,24 +281,25 @@ Rkis.codeLoader = {save: {}, load: {}};
   l("JoinPublicServer");
 }());
 
+(() => {
+	//onload
+	Rkis.OnReady = function (func) {
+		document.addEventListener("readystatechange", function() {
+		if(document.readyState != "complete") return;
+		func();
+		});
+	};
 
-//onload
-Rkis.OnReady = function (func) {
-  document.addEventListener("readystatechange", function() {
-    if(document.readyState != "complete") return;
-    func();
-  });
-};
-
-//delay
-Rkis.delay = function delay(ms) {
-  return new Promise(resolve => {
-    setTimeout(function() { return resolve(); }, ms);
-  });
-}
+	//delay
+	Rkis.delay = function delay(ms) {
+		return new Promise(resolve => {
+		setTimeout(function() { return resolve(); }, ms);
+		});
+	}
+})();
 
 document.$watchLoop("loadcode", (e) => {
-  var name = e.getAttribute("code");
+  let name = e.getAttribute("code");
   if (name == null || name == "") return Rkis.ErrorToast("G206");
   if (name.startsWith("edit") || name == "setupsize" || name == "loadedits" || name == "settingload") return;
 
@@ -302,7 +308,7 @@ document.$watchLoop("loadcode", (e) => {
 
 //copy function
 Rkis.CopyText = function (text) {
-  var textArea = document.createElement("textarea");
+  let textArea = document.createElement("textarea");
 
   textArea.value = text;
   textArea.style.top = "0";
@@ -314,8 +320,8 @@ Rkis.CopyText = function (text) {
   textArea.select();
 
   try {
-    var successful = document.execCommand("copy");
-    var msg = successful ? Rkis.language["copyTextSuccess"] : Rkis.language["copyTextUnseccuss"];
+    let successful = document.execCommand("copy");
+    let msg = successful ? Rkis.language["copyTextSuccess"] : Rkis.language["copyTextUnseccuss"];
     Rkis.Toast(msg);
   } catch (err) {
     Rkis.Toast(Rkis.language["cantCopyText"], err);
@@ -326,7 +332,7 @@ Rkis.CopyText = function (text) {
 
 Rkis.GetTextFromLocalFile = function(filelocation) {
   return new Promise(resolve => {
-    var xmlhttp = new XMLHttpRequest();
+    let xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", Rkis.fileLocation + filelocation, false);
     xmlhttp.send();
 
@@ -368,27 +374,51 @@ if(Rkis.ToastHolder == null || Rkis.ToastHolder == {}) {
 }
 
 (function(){
-  var weburl = window.location.href;
+  let weburl = window.location.href;
   if (weburl.includes("open=roblokis")) {
     window.location.replace(weburl.split("roblox.com/")[0] + "roblox.com/roblokis");
   }
 }());
 
 (async function() {
-  var stng = await document.$watch("#navbar-settings").$promise();
+  let stng = await document.$watch("#navbar-settings").$promise();
   if(stng == null) return;
 
   stng.addEventListener("click", async () => {
     if(stng.getAttribute("aria-describedby") != null) return;
 
-    var rkisbtn = document.createElement("li");
+    let rkisbtn = document.createElement("li");
     rkisbtn.innerHTML = `<a class="rbx-menu-item roblokis-settings-button" href="https://${Rkis.SubDomain}.roblox.com/roblokis" style="color: rgb(255,64,64);">Roblokis</a>`;
 
-    var doc = await document.$watch("#settings-popover-menu").$promise();
+    let doc = await document.$watch("#settings-popover-menu").$promise();
     if(doc == null || doc.querySelector(".roblokis-settings-button") != null) return;
     doc.insertBefore(rkisbtn, doc.firstElementChild);
   })
 }());
+
+(async function() {
+	//Get default settings
+	let defaultSettings = await fetch(`https://ameerdotexe.github.io/roblokis/data/settings/default.json`)
+	.then(res => res.json()).catch(() => null);
+	if (defaultSettings == null) return;
+
+	//Modify defaults without changing user's settings
+	for (let settingName in defaultSettings) {
+		let setting = defaultSettings[settingName];
+		if (setting == null || typeof setting != "object" || setting.id == null) continue;
+
+		if (Rkis.wholeData[settingName] == null) {
+			Rkis.wholeData[settingName] = setting;
+			continue;
+		}
+
+		Rkis.wholeData[settingName].options = setting.options;
+		Rkis.wholeData[settingName].details = setting.details;
+	}
+
+	//Save Modified Settings
+	localStorage.setItem("Roblokis", JSON.stringify(Rkis.wholeData));
+})();
 
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
@@ -399,7 +429,7 @@ document.$watch("body", (e) => {e.classList.add("Roblokis-installed")});
 
 // CSS Functionality
 document.$watchLoop(".rk-page-tab", (e) => {
-	var tabs = e.$findAll(".rk-tab");
+	let tabs = e.$findAll(".rk-tab");
 
 	tabs.forEach((tab) => {
 		if (tab.dataset.listening == "1") return;

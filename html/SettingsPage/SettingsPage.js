@@ -95,6 +95,7 @@ page.save = function (button) {
 		if (e.dataset.file == null) return;
 
 		var setting = wholedata[e.dataset.file];
+		if (setting.options && setting.options.disabled == true) return;
 		wholedata[e.dataset.file].value[setting.type] = e.value;
 	});
 
@@ -103,6 +104,7 @@ page.save = function (button) {
 		if (e.dataset.file == null) return;
 		
 		var setting = wholedata[e.dataset.file];
+		if (setting.options && setting.options.disabled == true) return;
 		wholedata[e.dataset.file].value[setting.type] = page.getSwich(e);
 	});
 
@@ -155,7 +157,7 @@ page.start = async function () {
 
 		var setting = wholedata[e.dataset.file];
 
-		if (e.dataset.file == null || setting == null) return;
+		if (e.dataset.file == null || setting == null || (setting.options && setting.options.disabled == true)) return;
 		e.value = setting.value[setting.type];
 	});
 
@@ -166,7 +168,7 @@ page.start = async function () {
 		var setting = wholedata[e.dataset.file];
 
 		e.addEventListener("click", () => { page.toggleSwich(e); });
-		if (e.dataset.file == null || setting == null) return;
+		if (e.dataset.file == null || setting == null || (setting.options && setting.options.disabled == true)) return;
 		page.toggleSwich(e, setting.value[setting.type]);
 	});
 };
@@ -186,6 +188,12 @@ document.$watchLoop("loadcode", (element) => {
 			var setting = Rkis.wholeData[settingId];
 			if (setting == null || typeof setting.type != "string") return;
 
+			let canEdit = true;
+			if (setting.options) {
+				if (setting.options.hidden == true) return;
+				setting.options.disabled == true && (canEdit = false);
+			}
+
 			var details = Rkis.GetSettingDetails(setting.details);
 			var trDetails = setting.details.translate || {};
 
@@ -194,7 +202,7 @@ document.$watchLoop("loadcode", (element) => {
 				"text": 
 					`<div class="section-content">
 						<span class="text-lead" data-translate="${trDetails.name || ""}">${details.name || "Error: SP146"}</span>
-						<input class="rk-input-string rk-textfield form-control input-field" placeholder="Leave empty for default" data-file="${setting.id}">
+						<input class="rk-input-string rk-textfield form-control input-field" placeholder="Leave empty for default" data-file="${setting.id}"${setting.options && setting.options.disabled == true ? " hidden" : ""}>
 						<div class="rbx-divider" style="margin: 12px;"></div>
 						<span class="text-description" data-translate="${trDetails.description || ""}">${details.description || "Error: SP149"}</span>
 						<div style="color: red;" class="text-description" data-translate="${trDetails.note || ""}">${details.note || ""}</div>
@@ -202,7 +210,7 @@ document.$watchLoop("loadcode", (element) => {
 				"switch": 
 					`<div class="section-content">
 						<span class="text-lead" data-translate="${trDetails.name || ""}">${details.name || "Error: SP154"}</span>
-						<span class="rk-input-bool rk-button receiver-destination-type-toggle on" data-file="${setting.id}">
+						<span class="rk-input-bool rk-button receiver-destination-type-toggle on" data-file="${setting.id}"${setting.options && setting.options.disabled == true ? " hidden" : ""}>
 							<span class="toggle-flip"></span>
 							<span class="toggle-on"></span>
 							<span class="toggle-off"></span>
@@ -1185,23 +1193,6 @@ document.$watch("#container-main > div.content", async (mainplace) => {
 							</div>
 
 						</div>
-
-
-
-						<!--div id="rk-createthemesection-old" class="rk-popup-holder" style="z-index: 10000;">
-							<div class="rk-popup">
-									<h3 data-translate="themeNewTitle">New Theme</h3>
-									<input id="newtheme-name" placeholder="Name" data-translate="themeName">
-									<input id="newtheme-desc" placeholder="Description (Optional)" style="margin-bottom: 20px;" data-translate="themeDescription">
-									<input type="file" id="newtheme-file" accept=".roblokis" oninput="if(this.files.length > 0) document.querySelector('#newtheme-filename').innerText = this.files[0].name; else document.querySelector('#newtheme-filename').innerText = '${Rkis.language['themeImport']}'" hidden>
-									<label id="newtheme-filename" for="newtheme-file" data-translate="themeImport">Import Theme (Optional)</label>
-									<div id="newtheme-error" class="info" style="font-size: 12px;"></div>
-									<div>
-										<button onclick="document.querySelector('#rk-createthemesection').style.display = 'none';" data-translate="btnCancel">Cancel</button>
-										<button class="designer-btn createthetheme" class="rk-createbtn" data-translate="btnCreate">Create</button>
-									</div>
-							</div>
-						</div-->
 
 						
 						<div id="rk-createthemesection" class="rk-popup-holder" style="z-index: 10000;">

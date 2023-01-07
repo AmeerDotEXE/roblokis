@@ -774,7 +774,7 @@ if(Rkis.pageName == "game") {
 				else stylee += "background-color: lightgray;color: black;";
 
 				counter.setAttribute("style", stylee);
-				counter.innerText = players.length + (Rkis.IsSettingEnabled(ShowMaxPlayers) ? "/"+(playercount.innerText || "?") : "");
+				counter.innerText = players.length + (Rkis.IsSettingEnabled("ShowMaxPlayers") ? "/"+(playercount.innerText || "?") : "");
 				counter.id = "rk-plr-counter";
 
 				rightsection.insertBefore(counter, rightsection.firstChild);
