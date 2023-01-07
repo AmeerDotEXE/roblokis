@@ -1,0 +1,354 @@
+{
+	"SiteLanguage": {
+		"id": "SiteLanguage",
+		"type": "switch",
+		"value": {
+			"switch": true
+		},
+		"details": {
+			"default": "en",
+			"translate": {
+				"name": "sectionLSite",
+				"description": "sectionLSite1"
+			},
+			"en": {
+				"name": "Use Roblox language",
+				"description": "Limits Roblokis Language to Roblox Site Language."
+			}
+		}
+	},
+	"ExtraShadows": {
+		"id": "ExtraShadows",
+		"type": "switch",
+		"value": {
+			"switch": true
+		},
+		"details": {
+			"default": "en",
+			"translate": {
+				"name": "sectionExtraS",
+				"description": "sectionExtraS1"
+			},
+			"en": {
+				"name": "Extra Shadows",
+				"description": "Adds a shadow effect under or around some elements."
+			}
+		}
+	},
+	"UseThemes": {
+		"id": "UseThemes",
+		"type": "switch",
+		"value": {
+			"switch": true
+		},
+		"details": {
+			"default": "en",
+			"translate": {
+				"name": "sectionUThemes",
+				"description": "sectionUThemes1"
+			},
+			"en": {
+				"name": "Use Themes",
+				"description": "Disabling this will disable Styles and Themes!"
+			}
+		}
+	},
+	"CustomName": {
+		"id": "CustomName",
+		"type": "text",
+		"value": {
+			"text": ""
+		},
+		"details": {
+			"default": "en",
+			"translate": {
+				"name": "sectionCNT",
+				"description": "sectionCNT1"
+			},
+			"en": {
+				"name": "Custom Name Text",
+				"description": "This replaces the top right username text on all roblox sites.",
+				"note": ""
+			}
+		}
+	},
+	"CustomRobux": {
+		"id": "CustomRobux",
+		"type": "text",
+		"value": {
+			"text": ""
+		},
+		"details": {
+			"default": "en",
+			"translate": {
+				"name": "sectionCRT",
+				"description": "sectionCRT1"
+			},
+			"en": {
+				"name": "Custom Robux Text",
+				"description": "This replaces the top right robux text on all roblox sites.",
+				"note": "This won't get you free Robux!"
+			}
+		}
+	},
+	"QuickGameJoin": {
+		"id": "QuickGameJoin",
+		"type": "switch",
+		"value": {
+			"switch": true
+		},
+		"details": {
+			"default": "en",
+			"translate": {
+				"name": "sectionQJB",
+				"description": "sectionQJB1"
+			},
+			"en": {
+				"name": "Quick Join Button",
+				"description": "Adds a join button under every game on game and discover pages."
+			}
+		}
+	},
+	"DesktopApp": {
+		"id": "DesktopApp",
+		"type": "switch",
+		"value": {
+			"switch": true
+		},
+		"details": {
+			"default": "en",
+			"translate": {
+				"name": "sectionDApp",
+				"description": "sectionDApp1"
+			},
+			"en": {
+				"name": "Desktop App",
+				"description": "Enables the desktop app design by Roblox. (Access from Menu)"
+			}
+		}
+	},
+	"CancelPending": {
+		"id": "CancelPending",
+		"type": "switch",
+		"value": {
+			"switch": true
+		},
+		"details": {
+			"default": "en",
+			"translate": {
+				"name": "sectionCP",
+				"description": "sectionCP1"
+			},
+			"en": {
+				"name": "Cancel Pending",
+				"description": "Shows a \"Cancel Pending\" Button instead of \"Pending\"."
+			}
+		}
+	},
+	"QuickRemove": {
+		"id": "QuickRemove",
+		"type": "switch",
+		"value": {
+			"switch": true
+		},
+		"details": {
+			"default": "en",
+			"translate": {
+				"name": "sectionQRB",
+				"description": "sectionQRB1",
+				"note": "sectionQRB2"
+			},
+			"en": {
+				"name": "Quick Remove Button",
+				"description": "Small button to remove friends faster.",
+				"note": "You have to double click the button to remove friends!"
+			}
+		}
+	},
+	"LastStats": {
+		"id": "LastStats",
+		"type": "switch",
+		"value": {
+			"switch": true
+		},
+		"details": {
+			"default": "en",
+			"translate": {
+				"name": "sectionLS",
+				"description": "sectionLS1"
+			},
+			"en": {
+				"name": "Last Status",
+				"description": "Shows Player's Last Activity on his Profile Page."
+			}
+		}
+	},
+	"SmallServer": {
+		"id": "SmallServer",
+		"type": "switch",
+		"value": {
+			"switch": true
+		},
+		"details": {
+			"default": "en",
+			"translate": {
+				"name": "SectionSSS",
+				"description": "SectionSSS1"
+			},
+			"en": {
+				"name": "Small Servers Section",
+				"description": "A new section show servers with few players."
+			}
+		}
+	},
+	"PageNav": {
+		"id": "PageNav",
+		"type": "switch",
+		"value": {
+			"switch": true
+		},
+		"details": {
+			"default": "en",
+			"translate": {
+				"name": "sectionSPN",
+				"description": "sectionSPN1"
+			},
+			"en": {
+				"name": "Server Page Nav",
+				"description": "Shows Nav. buttons under \"Load More\" button."
+			}
+		}
+	},
+	"PublicServersLink": {
+		"id": "PublicServersLink",
+		"type": "switch",
+		"value": {
+			"switch": true
+		},
+		"details": {
+			"default": "en",
+			"translate": {
+				"name": "sectionSLB",
+				"description": "sectionSLB1",
+				"note": "sectionSLink"
+			},
+			"en": {
+				"name": "Server Link Button",
+				"description": "Shows a link button next to the join button and gives server's join link.",
+				"note": "NOTE: Sharing the link won't work unless the person also have this extension!"
+			}
+		}
+	},
+	"ShowMaxPlayers": {
+		"id": "ShowMaxPlayers",
+		"type": "switch",
+		"value": {
+			"switch": true
+		},
+		"details": {
+			"default": "en",
+			"translate": {
+				"name": "sectionMPN",
+				"description": "sectionMPN1"
+			},
+			"en": {
+				"name": "Maximum Players Number",
+				"description": "Shows Maximum players number next to the available players number."
+			}
+		}
+	},
+	"Badges": {
+		"id": "Badges",
+		"type": "switch",
+		"value": {
+			"switch": true
+		},
+		"details": {
+			"default": "en",
+			"translate": {
+				"name": "sectionCBV",
+				"description": "sectionCBV1"
+			},
+			"en": {
+				"name": "New Badges Look & Load all",
+				"description": "Shows the new Style design by Ameer!\nloads first 100 badges automatically."
+			}
+		}
+	},
+	"AvailPrivateServers": {
+		"id": "AvailPrivateServers",
+		"type": "switch",
+		"value": {
+			"switch": false
+		},
+		"details": {
+			"default": "en",
+			"translate": {
+				"name": "sectionASO",
+				"description": "sectionASO1"
+			},
+			"en": {
+				"name": "Available Servers Only",
+				"description": "Removes all unavailable servers or all servers without a join button."
+			}
+		}
+	},
+	"ShowPrivateServers": {
+		"id": "ShowPrivateServers",
+		"type": "switch",
+		"disabled": true,
+		"hidden": true,
+		"value": {
+			"switch": true
+		},
+		"details": {
+			"default": "en",
+			"translate": {
+				"name": "sectionALM",
+				"description": "sectionALM1"
+			},
+			"en": {
+				"name": "Automatic Load More",
+				"description": "Automatically clicks load more then the servers refresh."
+			}
+		}
+	},
+	"SmallServerLink": {
+		"id": "SmallServerLink",
+		"type": "switch",
+		"value": {
+			"switch": true
+		},
+		"details": {
+			"default": "en",
+			"translate": {
+				"name": "sectionSLB",
+				"description": "sectionSLB1",
+				"note": "sectionSLink"
+			},
+			"en": {
+				"name": "Server Link Button",
+				"description": "Shows a link button next to the join button and gives server's join link.",
+				"note": "NOTE: Sharing the link won't work unless the person also have this extension!"
+			}
+		}
+	},
+	"BadgesHidden": {
+		"id": "BadgesHidden",
+		"type": "switch",
+		"value": {
+			"switch": true
+		},
+		"details": {
+			"default": "en",
+			"translate": {
+				"name": "sectionCBH",
+				"description": "sectionCBH1"
+			},
+			"en": {
+				"name": "Show Hidden Badges",
+				"description": "Shows the Hidden/Disabled Badges! (Load All Option is Required)"
+			}
+		}
+	}
+}
