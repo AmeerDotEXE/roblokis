@@ -296,8 +296,10 @@
 	"ShowPrivateServers": {
 		"id": "ShowPrivateServers",
 		"type": "switch",
-		"disabled": true,
-		"hidden": true,
+		"options": {
+			"disabled": true,
+			"hidden": true
+		},
 		"value": {
 			"switch": true
 		},
