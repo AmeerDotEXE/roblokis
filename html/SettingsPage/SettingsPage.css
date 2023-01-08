@@ -302,6 +302,11 @@ span.rk-button {
     color: black;
 }
 
+.rk-popup > .rk-popup-content > [data-nav-tab] > * {
+	border-radius: 10px;
+	overflow: hidden;
+}
+
 .rk-page-tab,
 .rk-tab-pages {
 	width: 100%;
@@ -332,6 +337,14 @@ span.rk-button {
 	display: none;
 }
 
+[data-nav-tab]:not(.active) {
+	display: none;
+}
+
+[data-nav-tab] *:has(> [code="setupsize"]) {
+	width: 100%;
+	height: clamp(10rem, 100%, 30rem);
+}
 
 
 
@@ -369,3 +382,4 @@ span.rk-button {
 	align-items: center;
 	justify-content: center;
 }
+

@@ -179,7 +179,7 @@ Rkis.codeLoader = {save: {}, load: {}};
 		}
 	}
 })) {
-    Rkis.robloxCode = localStorage.getItem("RobloxLocaleCode");
+    Rkis.robloxCode = localStorage.getItem("RobloxLocaleCode") || "en";
     Rkis.roblokisCodes = {"pt": "pt_BR"};
 
     Rkis.languageCode = Rkis.robloxCode.split("_")[0];
@@ -428,21 +428,35 @@ document.$watch("body", (e) => {e.classList.add("Roblokis-installed")});
 
 
 // CSS Functionality
-document.$watchLoop(".rk-page-tab", (e) => {
-	let tabs = e.$findAll(".rk-tab");
+document.$watchLoop(".rk-tab", (tab) => {
+	if (tab.dataset.listening == "1") return;
+	tab.dataset.listening = "1";
+	
+	const e = tab.closest(`*:has(.rk-tabs)`);
 
-	tabs.forEach((tab) => {
-		if (tab.dataset.listening == "1") return;
-		tab.dataset.listening = "1";
+	tab.addEventListener("click", () => {
+		if (tab.classList.contains("is-active")) return;
 
-		tab.addEventListener("click", () => {
-			if (tab.classList.contains("is-active")) return;
+		e.$findAll(".rk-tab.is-active", (offtab) => {offtab.classList.remove("is-active");});
+		tab.classList.add("is-active");
 
-			e.$findAll(".rk-tab.is-active", (offtab) => {offtab.classList.remove("is-active");});
-			tab.classList.add("is-active");
+		e.$findAll(".rk-tab-page.is-active", (page) => {page.classList.remove("is-active");});
+		e.$find(`.rk-tab-page[tab="${tab.getAttribute("page")}"]`, (page) => {page.classList.add("is-active");});
+	});
+});
+document.$watchLoop("[data-nav-page]", (tab) => {
+	if (tab.dataset.listening == "1") return;
+	tab.dataset.listening = "1";
 
-			e.$findAll(".rk-tab-page.is-active", (page) => {page.classList.remove("is-active");});
-			e.$find(`.rk-tab-page[tab="${tab.getAttribute("page")}"]`, (page) => {page.classList.add("is-active");});
-		});
+	const e = tab.closest(`*:has([data-nav-tab])`);
+
+	tab.addEventListener("click", () => {
+		if (tab.classList.contains("active")) return;
+
+		e.$findAll(".active[data-nav-page]", (offtab) => {offtab.classList.remove("active");});
+		tab.classList.add("active");
+
+		e.$findAll(".active[data-nav-tab]", (page) => {page.classList.remove("active");});
+		e.$find(`[data-nav-tab="${tab.dataset.navPage}"]`, (page) => {page.classList.add("active");});
 	});
 });
