@@ -429,6 +429,7 @@ document.$watch("body", (e) => {e.classList.add("Roblokis-installed")});
 
 // CSS Functionality
 document.$watchLoop(".rk-tab", (tab) => {
+	if (tab.getAttribute("page") == null) return;
 	if (tab.dataset.listening == "1") return;
 	tab.dataset.listening = "1";
 	

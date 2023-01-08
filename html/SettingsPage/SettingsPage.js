@@ -1216,7 +1216,7 @@ document.$watch("#container-main > div.content", async (mainplace) => {
 											<div class="rk-tab" page="emptytheme">Empty</div>
 											<div class="rk-tab is-active" page="imagetheme">Image</div>
 											<div class="rk-tab" page="importtheme">Import</div>
-											<div class="rk-tab" page="browsethemes" hidden>Browse</div>
+											<a class="rk-tab" href="https://ameerdotexe.github.io/roblokis/themes/top/" target="_blank">Browse</a>
 										</div>
 										<div class="rk-tab-pages">
 											<div class="rk-tab-page" tab="emptytheme">
@@ -1241,13 +1241,6 @@ document.$watch("#container-main > div.content", async (mainplace) => {
 											<div class="rk-tab-page" tab="importtheme">
 												<input type="file" id="newtheme-file" accept=".roblokis" oninput="if(this.files.length > 0) this.parentElement.querySelector('label').innerText = this.files[0].name; else this.parentElement.querySelector('label').innerText = '${Rkis.language['themeImport']}'" hidden>
 												<label id="newtheme-filename" for="newtheme-file" data-translate="themeImport">Import Theme</label>
-												<div id="newtheme-error" class="info" style="font-size: 12px;"></div>
-												<div>
-													<button onclick="document.querySelector('#rk-createthemesection').style.display = 'none';" data-translate="btnCancel">Cancel</button>
-													<button class="designer-btn createthetheme rk-createbtn" data-translate="btnCreate">Create</button>
-												</div>
-											</div>
-											<div class="rk-tab-page" tab="browsethemes">
 												<div id="newtheme-error" class="info" style="font-size: 12px;"></div>
 												<div>
 													<button onclick="document.querySelector('#rk-createthemesection').style.display = 'none';" data-translate="btnCancel">Cancel</button>

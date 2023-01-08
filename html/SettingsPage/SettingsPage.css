@@ -319,7 +319,7 @@ span.rk-button {
 	justify-content: center;
 	align-items: center;
 }
-.rk-tab {
+.rk-tabs .rk-tab {
 	color: grey;
 	cursor: pointer;
 	box-shadow: 0 1px;
