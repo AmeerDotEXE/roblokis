@@ -613,7 +613,7 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
 
 #rbx-game-server-item-container li div.player-thumbnails-container {
     float: none;
-    width: auto;
+    width: 100%;
 }
 
 #rbx-game-server-item-container li div.player-thumbnails-container > span {

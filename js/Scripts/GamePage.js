@@ -477,11 +477,14 @@ if(Rkis.pageName == "game") {
 					.then(response => response.json())
 					.then(list => {
 						if (list.data == null) return null;
-						list.data.forEach((e) => {
-							var elem = document.querySelector(`img[data-thumbnailrequestid="${e.requestId}"]`);
-							if (elem == null) return;
+						list.data.forEach((e, ei) => {
+							var elems = document.querySelectorAll(`img[data-thumbnailrequestid="${e.requestId}"]`);
+							if (elems == null) return;
 
-							elem.src = e.imageUrl;
+							elems.forEach((elem) => {
+								elem.src = e.imageUrl
+								elem.removeAttribute("data-thumbnailrequestid");
+							});
 						})
 					})
 					.catch()
