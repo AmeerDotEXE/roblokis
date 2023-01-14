@@ -411,21 +411,20 @@ if(Rkis.pageName == "game") {
 				if(more != true) holder.innerHTML = "";
 				var thumbnailsToFetch = [];
 
+				let ROBLOX_ICON_LIMIT = 5;
+				let useLimit = Rkis.IsSettingDisabled("UseThemes");
+
 				for (var i = 0; i < data.length; i++) {
 					var server = data[i];
 
 					var fullcode = "";
 
 					fullcode += `
-					<li class="stack-row rbx-game-server-item pagenav" data-gameid="${server.id}">
-						<div class="section-header"><div class="link-menu rbx-game-server-menu"></div></div>
-						<div class="section-left rbx-game-server-details">
-							<div class="text-info rbx-game-status rbx-game-server-status">${server.maxPlayers}</div>
-							<a class="btn-full-width btn-control-xs rbx-game-server-join" href="#" data-placeid="${Rkis.GameId}" onclick="Roblox.GameLauncher.joinGameInstance(${Rkis.GameId}, '${server.id}');">${Rkis.language["joinButtons"]}</a>
-						</div>
-						<div class="section-right rbx-game-server-players">`;
+					<li class="rbx-game-server-item col-md-3 col-sm-4 col-xs-6 pagenav" data-gameid="${server.id}">
+						<div class="card-item">
+							<div class="player-thumbnails-container">`;
 
-					for (var o = 0; o < server.playerTokens.length; o++) {
+					for (var o = 0; o < server.playerTokens.length && (useLimit == false || o < ROBLOX_ICON_LIMIT); o++) {
 						var thumbnail = {
 							requestId: "0:" + server.playerTokens[o] + ":AvatarHeadshot:150x150:png:regular",
 							type: "AvatarHeadShot",
@@ -436,16 +435,31 @@ if(Rkis.pageName == "game") {
 						};
 
 						fullcode += `
-						<span class="avatar avatar-headshot-sm player-avatar">
-							<a class="avatar-card-link">
-								<img class="avatar-card-image" data-thumbnailrequestid="${thumbnail.requestId}">
-							</a>
+						<span class="avatar avatar-headshot-md player-avatar">
+							<span class="thumbnail-2d-container avatar-card-image">
+								<img class="" data-thumbnailrequestid="${thumbnail.requestId}" alt="" title="">
+							</span>
 						</span>`;
 
 						thumbnailsToFetch.push(thumbnail);
 					}
 
-					fullcode += `</div></li>`;
+					if (useLimit && server.playing > ROBLOX_ICON_LIMIT)
+						fullcode += `<span class="avatar avatar-headshot-md player-avatar hidden-players-placeholder">+${server.playing - ROBLOX_ICON_LIMIT}</span>`;
+
+					fullcode += `
+							</div>
+							<div class="rbx-game-server-details game-server-details">
+								<div class="text-info rbx-game-status rbx-game-server-status text-overflow">${server.playing} / ${server.maxPlayers}</div>
+								<div class="server-player-count-gauge border">
+									<div class="gauge-inner-bar border" style="width: ${Math.floor((server.playing / server.maxPlayers) * 100)}%;"></div>
+								</div>
+								<span data-placeid="${Rkis.GameId}">
+									<button type="button" class="btn-full-width btn-control-xs rbx-game-server-join game-server-join-btn btn-primary-md btn-min-width" onclick="Roblox.GameLauncher.joinGameInstance(${Rkis.GameId}, '${server.id}');">${Rkis.language["joinButtons"]}</button>
+								</span>
+							</div>
+						</div>
+					</li>`;
 					holder.innerHTML += fullcode;
 				}
 
@@ -698,6 +712,38 @@ if(Rkis.pageName == "game") {
 
 	if(Rkis.wholeData.UseThemes != false) {
 
+		Rkis.Scripts.ServerPlayerCounterLoader = function(serversitm) {
+			var rightsection = serversitm.$find("div.player-thumbnails-container");
+			if (!rightsection) return;
+			if(rightsection.$find("span#rk-plr-counter")) return;
+
+			var players = serversitm.$findAll("div.player-thumbnails-container > span:not(.hidden-players-placeholder)");
+			if(players.length < 1) return;
+			
+			let hiddenPlayers = serversitm.$find("div.player-thumbnails-container > span.hidden-players-placeholder");
+			let totalPlayerCount = players.length;
+			if (hiddenPlayers != null) totalPlayerCount += Number(hiddenPlayers.innerText);
+			
+			var counter = document.createElement("span");
+			counter.setAttribute("class", "avatar avatar-headshot-md player-avatar avatar-card-link avatar-card-image");
+
+			var stylee = "";
+
+			var playercount = document.$find("#about > div.section.game-about-container > div.section-content.remove-panel > ul > li:nth-child(6) > p.text-lead.font-caption-body");
+			if(playercount == null) playercount = $r("#game-detail-page > div.btr-game-main-container.section-content > div.remove-panel.btr-description > ul > li:nth-child(6) > p.text-lead.font-caption-body");
+
+			if (playercount && parseInt(playercount.innerText) <= totalPlayerCount) stylee += "background-color: darkred;color: white;";
+			else if (playercount && (parseInt(playercount.innerText) / 2) <= totalPlayerCount) stylee += "background-color: orangered;color: white;";
+			else stylee += "background-color: lightgray;color: black;";
+
+			counter.setAttribute("style", stylee);
+			counter.innerText = totalPlayerCount + (Rkis.IsSettingEnabled("ShowMaxPlayers") ? "/"+(playercount.innerText || "?") : "");
+			counter.id = "rk-plr-counter";
+
+			rightsection.insertBefore(counter, rightsection.firstChild);
+		}
+
+
 		Rkis.Scripts.PrivateServersView = Rkis.Scripts.PrivateServersView || {};
 
 
@@ -717,30 +763,7 @@ if(Rkis.pageName == "game") {
 				serverAvatarElement.removeAttribute("title")
 			});
 
-			var rightsection = serversitm.$find("div.player-thumbnails-container");
-			if (!rightsection) return;
-			if (rightsection.$find("span#rk-plr-counter")) return;
-
-			var players = serversitm.$findAll("div.player-thumbnails-container > span");
-			if (players.length >= 1) {
-				var counter = document.createElement("span");
-				counter.setAttribute("class", "avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image");
-
-				var stylee = "";
-
-				var playercount = document.$find("#about > div.section.game-about-container > div.section-content.remove-panel > ul > li:nth-child(6) > p.text-lead.font-caption-body");
-				if(playercount == null) playercount = $r("#game-detail-page > div.btr-game-main-container.section-content > div.remove-panel.btr-description > ul > li:nth-child(6) > p.text-lead.font-caption-body");
-
-				if (playercount && parseInt(playercount.innerText) <= players.length) stylee = "background-color: darkred;color: white;";
-				else if (playercount && (parseInt(playercount.innerText) / 2) <= players.length) stylee = "background-color: orangered;color: white;";
-				else stylee = "background-color: lightgray;color: black;";
-
-				counter.setAttribute("style", stylee);
-				counter.innerText = players.length + (Rkis.IsSettingEnabled("ShowMaxPlayers") ? "/"+(playercount.innerText || "?") : "");
-				counter.id = "rk-plr-counter";
-
-				rightsection.insertBefore(counter, rightsection.firstChild);
-			}
+			Rkis.Scripts.ServerPlayerCounterLoader(serversitm);
 		}
 
 		////////////
@@ -755,30 +778,8 @@ if(Rkis.pageName == "game") {
 		})
 
 		Rkis.Scripts.FriendsServersView.secondone = function(serversitm) {
-			var rightsection = serversitm.$find("div.player-thumbnails-container");
-			if (!rightsection) return;
-			if(rightsection.$find("span#rk-plr-counter")) return;
 
-			var players = serversitm.$findAll("div.player-thumbnails-container > span");
-			if(players.length >= 1) {
-				var counter = document.createElement("span");
-				counter.setAttribute("class", "avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image");
-
-				var stylee = "";
-
-				var playercount = document.$find("#about > div.section.game-about-container > div.section-content.remove-panel > ul > li:nth-child(6) > p.text-lead.font-caption-body");
-				if(playercount == null) playercount = $r("#game-detail-page > div.btr-game-main-container.section-content > div.remove-panel.btr-description > ul > li:nth-child(6) > p.text-lead.font-caption-body");
-
-				if (playercount && parseInt(playercount.innerText) <= players.length) stylee += "background-color: darkred;color: white;";
-				else if (playercount && (parseInt(playercount.innerText) / 2) <= players.length) stylee += "background-color: orangered;color: white;";
-				else stylee += "background-color: lightgray;color: black;";
-
-				counter.setAttribute("style", stylee);
-				counter.innerText = players.length + (Rkis.IsSettingEnabled("ShowMaxPlayers") ? "/"+(playercount.innerText || "?") : "");
-				counter.id = "rk-plr-counter";
-
-				rightsection.insertBefore(counter, rightsection.firstChild);
-			}
+			Rkis.Scripts.ServerPlayerCounterLoader(serversitm);
 
 			var leftsection = serversitm.$find("div.game-server-details");
 			if (leftsection == null) return;
@@ -798,30 +799,7 @@ if(Rkis.pageName == "game") {
 		})
 
 		Rkis.Scripts.PublicServersView.secondone = function(serversitm) {
-			var rightsection = serversitm.$find("div.section-right");
-			if (!rightsection) return;
-			if(rightsection.$find("span#rk-plr-counter")) return;
-
-			var players = serversitm.$findAll("div.section-right > span");
-			if(players.length >= 1) {
-				var counter = document.createElement("span");
-				counter.setAttribute("class", "avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image");
-
-				var stylee = "";
-
-				var playercount = document.$find("#about > div.section.game-about-container > div.section-content.remove-panel > ul > li:nth-child(6) > p.text-lead.font-caption-body");
-				if(playercount == null) playercount = $r("#game-detail-page > div.btr-game-main-container.section-content > div.remove-panel.btr-description > ul > li:nth-child(6) > p.text-lead.font-caption-body");
-
-				if (playercount && parseInt(playercount.innerText) <= players.length) stylee += "background-color: darkred;color: white;";
-				else if (playercount && (parseInt(playercount.innerText) / 2) <= players.length) stylee += "background-color: orangered;color: white;";
-				else stylee += "background-color: lightgray;color: black;";
-
-				counter.setAttribute("style", stylee);
-				counter.innerText = players.length + (Rkis.IsSettingEnabled("ShowMaxPlayers") ? "/"+(playercount.innerText || "?") : "");
-				counter.id = "rk-plr-counter";
-
-				rightsection.insertBefore(counter, rightsection.firstChild);
-			}
+			Rkis.Scripts.ServerPlayerCounterLoader(serversitm);
 		}
 
 	}

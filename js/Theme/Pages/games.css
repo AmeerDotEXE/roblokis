@@ -322,7 +322,7 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
     background-size: var(--rk-publicserver-background-image-size);
 }
 
-#rbx-game-server-item-container > li > div.rbx-game-server-details > div.ropro-server-info.text-info {
+#rbx-game-server-item-container li div.rbx-game-server-details div.ropro-server-info.text-info {
     display: inline;
 }
 
@@ -555,7 +555,19 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
     background-color: transparent;
 }
 
-#game-instances #rbx-game-server-item-container > li {
+#rbx-running-games > div.section-content-off,
+#rbx-running-games > ul > p.section-content-off,
+#game-instances #rbx-game-server-item-container li > div.card-item {
+    background-color: transparent;
+}
+
+#game-instances #rbx-game-server-item-container li > div.card-item {
+    padding: 0 !important;
+    min-height: 0 !important;
+    flex-direction: column-reverse;
+}
+
+#game-instances #rbx-game-server-item-container li {
     transition: all 400ms;
     transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
 
@@ -577,16 +589,14 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
 /*#rbx-game-server-item-container:hover > li:not(li:hover) {
     opacity: 0.5;
 }*/
-#rbx-game-server-item-container > li:hover {
+#rbx-game-server-item-container li:hover {
     transform: var(--rk-basic-animations, scale(1.2));
     opacity: var(--rk-basic-animations, 1);
     z-index: var(--rk-basic-animations, 10);
 }
 
-#rbx-game-server-item-container > li > div.game-server-details > span > button,
-#rbx-game-server-item-container > li > div.game-server-details > a,
-#rbx-game-server-item-container > li > div.rbx-game-server-details > span > button,
-#rbx-game-server-item-container > li > div.rbx-game-server-details > a {
+#rbx-game-server-item-container li div.game-server-details > span > button,
+#rbx-game-server-item-container li div.rbx-game-server-details > span > button {
     margin-top: 0 !important;
     color: var(--rk-publicserver-button-color);
 
@@ -601,19 +611,19 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
     background-size: var(--rk-publicserver-button-background-image-size);
 }
 
-#rbx-game-server-item-container > li > div.section-right {
+#rbx-game-server-item-container li div.player-thumbnails-container {
     float: none;
     width: auto;
 }
 
-#rbx-game-server-item-container > li > div.section-right > span {
+#rbx-game-server-item-container li div.player-thumbnails-container > span {
     margin: 0px -10px 6px 0px;
     top: 8px;
     width: 34px;
     height: 34px;
 }
 
-#rbx-game-server-item-container > li > div.section-right > span#rk-plr-counter {
+#rbx-game-server-item-container li div.player-thumbnails-container > span#rk-plr-counter {
     margin: 0px -8px 6px 0px;
     display: inline-grid;
     align-content: center;
@@ -624,20 +634,20 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
     text-align: center;
 }
 
-.max-players-text #rbx-game-server-item-container > li > div.section-right > span#rk-plr-counter {
+.max-players-text #rbx-game-server-item-container li div.player-thumbnails-container > span#rk-plr-counter {
     font-size: 10px;
 }
 
-#rbx-game-server-item-container > li > div.game-server-details,
-#rbx-game-server-item-container > li > div.rbx-game-server-details {
+#rbx-game-server-item-container li div.game-server-details,
+#rbx-game-server-item-container li div.rbx-game-server-details {
     float: none;
     border: none;
     padding: 0;
     width: auto;
 }
 
-#rbx-game-server-item-container > li > div.game-server-details > div.rbx-game-server-status,
-#rbx-game-server-item-container > li > div.rbx-game-server-details > div.rbx-game-server-status,
+#rbx-game-server-item-container li div.game-server-details > div.rbx-game-server-status,
+#rbx-game-server-item-container li div.rbx-game-server-details > div.rbx-game-server-status,
 #rbx-game-server-item-container.pagenav > li:not(.pagenav) {
     display: none;
 }
