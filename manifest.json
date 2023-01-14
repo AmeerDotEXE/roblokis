@@ -47,35 +47,21 @@
             "js": [
                 "js/Main/Utility.js",
                 "js/Main/General.js",
-                "js/Theme/ThemeLoader.js"
+                "js/Theme/ThemeLoader.js",
+
+				"js/Pages/all.js"
             ],
             "run_at": "document_start"
         },
-		{
-            "matches": [ "*://*.roblox.com/*" ],
-            "js": [
-                "js/Scripts/AllPages.js"
-            ],
-            "run_at": "document_end"
-        },
         {
             "matches": [ "*://*.roblox.com/users/*" ],
-            "js": [
-                "js/Scripts/FriendsPage/Home/CancelFriendPending.js",
-                "js/Scripts/FriendsPage/Friends/QuickFriendRemove.js",
-                "js/Scripts/Main/LastStats.js" 
-            ],
-            "run_at": "document_end"
+            "js": [ "js/Pages/user.js" ],
+            "run_at": "document_start"
         },
         {
             "matches": [ "*://*.roblox.com/games/*" ],
-            "js": [ 
-                "js/Scripts/GamePage.js",
-
-                "js/Scripts/GamePage/PrivateServers/AvailPrivateServers.js",
-                "js/Scripts/GamePage/PrivateServers/ShowPrivateServers.js"
-            ],
-            "run_at": "document_end"
+            "js": [ "js/Pages/game.js" ],
+            "run_at": "document_start"
         },
         {
             "matches": [ "*://*.roblox.com/roblokis*" ],
@@ -87,7 +73,7 @@
             "css": [
                 "html/SettingsPage/SettingsPage.css"
             ],
-            "run_at": "document_end"
+            "run_at": "document_start"
         }
     ]
 }

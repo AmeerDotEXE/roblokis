@@ -86,7 +86,9 @@ Rkis.codeLoader = {save: {}, load: {}};
 
 		return details[code];
 	}
-	Rkis.IsSettingEnabled = function(setting, defaultSetting) {
+	Rkis.IsSettingEnabled = function(setting, defaultSetting, callback) {
+		if (typeof defaultSetting == "function") [callback, defaultSetting] = [defaultSetting, null];
+
 		let rksetting = setting;
 		if (typeof setting == "string") rksetting = Rkis.wholeData[setting];
 
@@ -114,12 +116,14 @@ Rkis.codeLoader = {save: {}, load: {}};
 		if (setting.options && setting.options.disabled == true) return false;
 
 		let value = Rkis.GetSettingValue(rksetting);
+		let result = true;
 
-		if (value == null || value == "" || value == false) { return false; }
-		return true;
+		if (value == null || value == "" || value == false) { result = false; }
+		if (result && callback != null) return callback.apply();
+		return result;
 	}
-	Rkis.IsSettingDisabled = function(setting, defaultSetting) {
-		return Rkis.IsSettingEnabled(setting, defaultSetting) == false;
+	Rkis.IsSettingDisabled = function(setting, defaultSetting, callback) {
+		return Rkis.IsSettingEnabled(setting, defaultSetting, callback) == false;
 	}
 })();
 
@@ -425,6 +429,8 @@ function getRndInteger(min, max) {
 }
 
 document.$watch("body", (e) => {e.classList.add("Roblokis-installed")});
+Rkis.generalLoaded = true;
+document.$triggerCustom("rk-general-loaded");
 
 
 // CSS Functionality

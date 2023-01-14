@@ -1,8 +1,16 @@
+"use strict";
 var Rkis = Rkis || {};
+Rkis.page = Rkis.page || {};
 
+Rkis.page.game = () => {
+	if (Rkis.generalLoaded != true) {
+		document.addEventListener("rk-general-loaded", () => {
+			Rkis.page.game();
+		}, {once: true});
+		return;
+	}
 
-
-if(Rkis.pageName == "game") {
+	if(Rkis.pageName != "game") return;
 
 	Rkis.Scripts = Rkis.Scripts || {};
 
@@ -713,6 +721,62 @@ if(Rkis.pageName == "game") {
 
 	}
 
+	if(Rkis.IsSettingEnabled("AvailPrivateServers", {
+		id: "AvailPrivateServers",
+		type: "switch",
+		value: { switch: false },
+		details: {
+			default: "en",
+			translate: {
+				name: "sectionASO",
+				description: "sectionASO1"
+			},
+			"en": {
+				name: "Available Servers Only",
+				description: "Removes all unavailable servers or all servers without a join button.",
+			}
+		}
+	})) {
+	
+	  document.$watchLoop("#rbx-private-running-games > ul > li", (server) => {
+		var jionBtn = server.querySelector('div.rbx-private-game-server-details > span > button.rbx-private-game-server-join');
+	
+		if (jionBtn == null) {
+		  server.style = "display: none !important;";
+		}
+	
+	  })
+	
+	}
+
+	if(Rkis.IsSettingEnabled("ShowPrivateServers", {
+		id: "ShowPrivateServers",
+		type: "switch",
+		value: { switch: true },
+		details: {
+			default: "en",
+			translate: {
+				name: "sectionALM",
+				description: "sectionALM1"
+			},
+			"en": {
+				name: "Automatic Load More",
+				description: "Automatically clicks load more then the servers refresh.",
+			}
+		}
+	})) {
+	
+	  document.$watchLoop("#rbx-private-running-games > div.rbx-private-running-games-footer > button", async (loadmoreBTN) => {
+		while(document.contains(loadmoreBTN)) {
+		  if (loadmoreBTN.getAttribute("disabled") == null) {
+			loadmoreBTN.click();
+		  }
+		  await Rkis.delay(200);
+		}
+	  })
+	
+	}
+
 	if(Rkis.wholeData.UseThemes != false) {
 
 		Rkis.Scripts.ServerPlayerCounterLoader = function(serversitm) {
@@ -809,11 +873,8 @@ if(Rkis.pageName == "game") {
 
 
 
-	function isWholeNumber(num) {
-	 	num = num * 1000000;
-	 	num = num.toString();
-
-	 	if (num.endsWith("000000")) return true;
-	 	return false;
-	}
+	return {};
+	
 }
+
+Rkis.page.game();

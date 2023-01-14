@@ -554,118 +554,130 @@ function onclicked(target, code) {
 	})
 }
 
-//Designer.LoadThemesData();
-document.$watch("#rkpage .main .designer", (e) => { e.$on("script", () => {Designer.LoadThemesData();}) })
 
-document.$watchLoop("#rkpage .main .designer .designer-btn", (e) => {
-	var i = e.dataset.themeid;
-	if(isNaN(Number(i)) == false) i = Number(i);
-	var daname = e.dataset.theme;
-
-	if(e.classList.contains("export")) {
-		e.$on("click", () => {
-			Designer.ExportTheme(e, daname, i);
-		})
-	} else if(e.classList.contains("delete")) {
-		e.$on("click", () => {
-			Designer.DeleteTheme(daname, i);
-		})
-	} else if(e.classList.contains("edit")) {
-		e.$on("click", () => {
-			Designer.EditTheme(i);
-		})
-	} else if(e.classList.contains("select")) {
-		e.$on("click", () => {
-			Designer.SelectThemeButton(e);
-		})
-	} else if(e.classList.contains("create")) {
-		e.$on("click", () => {
-			Designer.CreateTheme();
-		})
-	} else if(e.classList.contains("createthetheme")) {
-		e.$on("click", () => {
-			Designer.CreateNewTheme(e);
-		})
-	} else if(e.classList.contains("deletethetheme")) {
-		e.$on("click", () => {
-			Designer.DeleteTheTheme(e);
-		})
-	} else if(e.classList.contains("editorsave")) {
-		e.$on("click", () => {
-			Designer.ThemeEditor.Save();
-		})
-	} else if(e.classList.contains("editortab")) {
-		e.$on("click", () => {
-			Designer.ThemeEditor.SelectTab(e);
-		})
-	} else if(e.classList.contains("showthelem")) {
-		e.$on("click", (a) => {
-			//console.log(e,a)
-			if(a.target.tagName != "LOADCODE") {
-				document.$triggerCustom("openedit", e.firstElementChild)
-				e.firstElementChild.style.display = "flex";
-			}
-		})
+Designer.waitingForGeneral = function() {
+	if (Rkis.generalLoaded != true) {
+		document.addEventListener("rk-general-loaded", () => {
+			Rkis.page.game();
+		}, {once: true});
+		return;
 	}
-})
+	
+	//Designer.LoadThemesData();
+	document.$watch("#rkpage .main .designer", (e) => { e.$on("script", () => {Designer.LoadThemesData();}) })
 
-document.$watchLoop("#rkpage .main .designer [data-designer-func]", (e) => {
-	var i = e.dataset.themeid;
-	if(isNaN(Number(i)) == false) i = Number(i);
-	var daname = e.dataset.theme;
+	document.$watchLoop("#rkpage .main .designer .designer-btn", (e) => {
+		var i = e.dataset.themeid;
+		if(isNaN(Number(i)) == false) i = Number(i);
+		var daname = e.dataset.theme;
 
-	switch (e.dataset.designerFunc.toLowerCase()) {
-		default: return Rkis.ErrorToast("D618");
-		case "editorsave":
+		if(e.classList.contains("export")) {
+			e.$on("click", () => {
+				Designer.ExportTheme(e, daname, i);
+			})
+		} else if(e.classList.contains("delete")) {
+			e.$on("click", () => {
+				Designer.DeleteTheme(daname, i);
+			})
+		} else if(e.classList.contains("edit")) {
+			e.$on("click", () => {
+				Designer.EditTheme(i);
+			})
+		} else if(e.classList.contains("select")) {
+			e.$on("click", () => {
+				Designer.SelectThemeButton(e);
+			})
+		} else if(e.classList.contains("create")) {
+			e.$on("click", () => {
+				Designer.CreateTheme();
+			})
+		} else if(e.classList.contains("createthetheme")) {
+			e.$on("click", () => {
+				Designer.CreateNewTheme(e);
+			})
+		} else if(e.classList.contains("deletethetheme")) {
+			e.$on("click", () => {
+				Designer.DeleteTheTheme(e);
+			})
+		} else if(e.classList.contains("editorsave")) {
 			e.$on("click", () => {
 				Designer.ThemeEditor.Save();
 			})
-			break;
-	}
+		} else if(e.classList.contains("editortab")) {
+			e.$on("click", () => {
+				Designer.ThemeEditor.SelectTab(e);
+			})
+		} else if(e.classList.contains("showthelem")) {
+			e.$on("click", (a) => {
+				//console.log(e,a)
+				if(a.target.tagName != "LOADCODE") {
+					document.$triggerCustom("openedit", e.firstElementChild)
+					e.firstElementChild.style.display = "flex";
+				}
+			})
+		}
+	})
 
-	if(e.classList.contains("export")) {
-		e.$on("click", () => {
-			Designer.ExportTheme(e, daname, i);
-		})
-	} else if(e.classList.contains("delete")) {
-		e.$on("click", () => {
-			Designer.DeleteTheme(daname, i);
-		})
-	} else if(e.classList.contains("edit")) {
-		e.$on("click", () => {
-			Designer.EditTheme(i);
-		})
-	} else if(e.classList.contains("select")) {
-		e.$on("click", () => {
-			Designer.SelectThemeButton(e);
-		})
-	} else if(e.classList.contains("create")) {
-		e.$on("click", () => {
-			Designer.CreateTheme();
-		})
-	} else if(e.classList.contains("createthetheme")) {
-		e.$on("click", () => {
-			Designer.CreateNewTheme(e);
-		})
-	} else if(e.classList.contains("deletethetheme")) {
-		e.$on("click", () => {
-			Designer.DeleteTheTheme(e);
-		})
-	} else if(e.classList.contains("editorsave")) {
-		e.$on("click", () => {
-			Designer.ThemeEditor.Save();
-		})
-	} else if(e.classList.contains("editortab")) {
-		e.$on("click", () => {
-			Designer.ThemeEditor.SelectTab(e);
-		})
-	} else if(e.classList.contains("showthelem")) {
-		e.$on("click", (a) => {
-			//console.log(e,a)
-			if(a.target.tagName != "LOADCODE") {
-				document.$triggerCustom("openedit", e.firstElementChild)
-				e.firstElementChild.style.display = "flex";
-			}
-		})
-	}
-})
+	document.$watchLoop("#rkpage .main .designer [data-designer-func]", (e) => {
+		var i = e.dataset.themeid;
+		if(isNaN(Number(i)) == false) i = Number(i);
+		var daname = e.dataset.theme;
+
+		switch (e.dataset.designerFunc.toLowerCase()) {
+			default: return Rkis.ErrorToast("D618");
+			case "editorsave":
+				e.$on("click", () => {
+					Designer.ThemeEditor.Save();
+				})
+				break;
+		}
+
+		if(e.classList.contains("export")) {
+			e.$on("click", () => {
+				Designer.ExportTheme(e, daname, i);
+			})
+		} else if(e.classList.contains("delete")) {
+			e.$on("click", () => {
+				Designer.DeleteTheme(daname, i);
+			})
+		} else if(e.classList.contains("edit")) {
+			e.$on("click", () => {
+				Designer.EditTheme(i);
+			})
+		} else if(e.classList.contains("select")) {
+			e.$on("click", () => {
+				Designer.SelectThemeButton(e);
+			})
+		} else if(e.classList.contains("create")) {
+			e.$on("click", () => {
+				Designer.CreateTheme();
+			})
+		} else if(e.classList.contains("createthetheme")) {
+			e.$on("click", () => {
+				Designer.CreateNewTheme(e);
+			})
+		} else if(e.classList.contains("deletethetheme")) {
+			e.$on("click", () => {
+				Designer.DeleteTheTheme(e);
+			})
+		} else if(e.classList.contains("editorsave")) {
+			e.$on("click", () => {
+				Designer.ThemeEditor.Save();
+			})
+		} else if(e.classList.contains("editortab")) {
+			e.$on("click", () => {
+				Designer.ThemeEditor.SelectTab(e);
+			})
+		} else if(e.classList.contains("showthelem")) {
+			e.$on("click", (a) => {
+				//console.log(e,a)
+				if(a.target.tagName != "LOADCODE") {
+					document.$triggerCustom("openedit", e.firstElementChild)
+					e.firstElementChild.style.display = "flex";
+				}
+			})
+		}
+	})
+}
+
+Designer.waitingForGeneral();
