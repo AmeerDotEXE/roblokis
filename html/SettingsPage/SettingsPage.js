@@ -962,86 +962,15 @@ page.settingsWaitingForGeneral = function() {
 										</tr>
 									</thead>
 									<tbody>
+										${Object.values(Rkis.wholeData)
+										.filter((setting) => setting != null && typeof setting == "object" && setting.id != null)
+										.filter((setting) => setting.options && !setting.options.disabled && !setting.options.hidden && setting.options.main == true)
+										.map((setting) => (`
 										<tr>
 											<td></td>
-											<td class="text-lead">Custom Robux/Name</td>
-											<td class="text-description">you can change the text of Robux/Username on the top right corner to anything you want.</td>
-										</tr>
-										<tr>
-											<td></td>
-											<td class="text-lead">Quick Join Buttons</td>
-											<td class="text-description">on home and discover pages there will be a join button under every game.</td>
-										</tr>
-										<tr>
-											<td></td>
-											<td class="text-lead">Desktop App</td>
-											<td class="text-description">on the left navigator there is a new button that opens Roblox's App for Desktop.</td>
-										</tr>
-										<tr>
-											<td></td>
-											<td class="text-lead">New Design</td>
-											<td class="text-description">On some pages it will show you the site with a new design.</td>
-										</tr>
-										<tr>
-											<td></td>
-											<td class="text-lead">Design Editor</td>
-											<td class="text-description">On the Designer tab, you can create your own design.</td>
-										</tr>
-										<tr>
-											<td></td>
-											<td class="text-lead">Show Hidden Badges</td>
-											<td class="text-description">On the game details page it will show you badges that are disabled/hidden.</td>
-										</tr>
-										<tr>
-											<td></td>
-											<td class="text-lead">New Style</td>
-											<td class="text-description">On the game servers page, Servers will have a new style.</td>
-										</tr>
-										<tr>
-											<td></td>
-											<td class="text-lead">Small Server Section</td>
-											<td class="text-description">On the game details page on servers there will be a new section called "Some Small Servers" there will be servers with few members in it.</td>
-										</tr>
-										<tr hidden>
-											<td></td>
-											<td class="text-lead">Copy Servers Link</td>
-											<td class="text-description">On the game details pages on servers it will show a link button next to join buttons.<br>That button will give you server's link and you can paste it as url to join the server.</td>
-										</tr>
-										<tr>
-											<td></td>
-											<td class="text-lead">Automatic Load More</td>
-											<td class="text-description">On the game details pages on servers it will click load more for private servers.</td>
-										</tr>
-										<tr>
-											<td></td>
-											<td class="text-lead">Available Servers Only</td>
-											<td class="text-description">On the game details pages on servers it will ONLY show private servers with a join button.</td>
-										</tr>
-										<tr hidden>
-											<td></td>
-											<td class="text-lead">Rename Join button</td>
-											<td class="text-description">On the game details pages on servers it change text of friends servers join button to either "Join Public Server" or "Join Private Server".</td>
-										</tr>
-										<tr>
-											<td></td>
-											<td class="text-lead">Server Page Navigator</td>
-											<td class="text-description">On the game details pages on servers it will show navigation buttons under Load More button on Public Servers Section.</td>
-										</tr>
-										<tr>
-											<td></td>
-											<td class="text-lead">Quick Friend Remover</td>
-											<td class="text-description">On the friends page on friends tap it will show a button to remove friends faster.</td>
-										</tr>
-										<tr>
-											<td></td>
-											<td class="text-lead">Last Player Status</td>
-											<td class="text-description">On any profile page, it will show you players last activity.</td>
-										</tr>
-										<tr>
-											<td></td>
-											<td class="text-lead">Cancel Friend Request</td>
-											<td class="text-description">On any profile page; if you sent a friend request to someone, you can cancel it bu the same button.</td>
-										</tr>
+											<td class="text-lead" data-translate="${setting.details.translate.name}">${setting.details[setting.details.default].name}</td>
+											<td class="text-description" data-translate="${setting.details.translate.description}">${setting.details[setting.details.default].description}</td>
+										</tr>`)).join("")}
 									</tbody>
 								</table>
 								<div class="rbx-divider" style="margin: 12px 0 0 0;"></div>
