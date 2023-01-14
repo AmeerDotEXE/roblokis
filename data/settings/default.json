@@ -55,6 +55,9 @@
 	},
 	"CustomName": {
 		"id": "CustomName",
+		"options": {
+			"main": true
+		},
 		"type": "text",
 		"value": {
 			"text": ""
@@ -74,6 +77,9 @@
 	},
 	"CustomRobux": {
 		"id": "CustomRobux",
+		"options": {
+			"main": true
+		},
 		"type": "text",
 		"value": {
 			"text": ""
@@ -93,6 +99,9 @@
 	},
 	"QuickGameJoin": {
 		"id": "QuickGameJoin",
+		"options": {
+			"main": true
+		},
 		"type": "switch",
 		"value": {
 			"switch": true
@@ -111,6 +120,9 @@
 	},
 	"DesktopApp": {
 		"id": "DesktopApp",
+		"options": {
+			"main": true
+		},
 		"type": "switch",
 		"value": {
 			"switch": true
@@ -129,6 +141,9 @@
 	},
 	"CancelPending": {
 		"id": "CancelPending",
+		"options": {
+			"main": true
+		},
 		"type": "switch",
 		"value": {
 			"switch": true
@@ -147,6 +162,9 @@
 	},
 	"QuickRemove": {
 		"id": "QuickRemove",
+		"options": {
+			"main": true
+		},
 		"type": "switch",
 		"value": {
 			"switch": true
@@ -167,6 +185,9 @@
 	},
 	"LastStats": {
 		"id": "LastStats",
+		"options": {
+			"main": true
+		},
 		"type": "switch",
 		"value": {
 			"switch": true
@@ -185,6 +206,9 @@
 	},
 	"SmallServer": {
 		"id": "SmallServer",
+		"options": {
+			"main": true
+		},
 		"type": "switch",
 		"value": {
 			"switch": true
@@ -203,6 +227,9 @@
 	},
 	"PageNav": {
 		"id": "PageNav",
+		"options": {
+			"main": true
+		},
 		"type": "switch",
 		"value": {
 			"switch": true
@@ -221,6 +248,9 @@
 	},
 	"PublicServersLink": {
 		"id": "PublicServersLink",
+		"options": {
+			"main": true
+		},
 		"type": "switch",
 		"value": {
 			"switch": true
@@ -259,6 +289,9 @@
 	},
 	"Badges": {
 		"id": "Badges",
+		"options": {
+			"main": true
+		},
 		"type": "switch",
 		"value": {
 			"switch": true
@@ -277,6 +310,9 @@
 	},
 	"AvailPrivateServers": {
 		"id": "AvailPrivateServers",
+		"options": {
+			"main": true
+		},
 		"type": "switch",
 		"value": {
 			"switch": false
@@ -295,11 +331,12 @@
 	},
 	"ShowPrivateServers": {
 		"id": "ShowPrivateServers",
-		"type": "switch",
 		"options": {
+			"main": true,
 			"disabled": true,
 			"hidden": true
 		},
+		"type": "switch",
 		"value": {
 			"switch": true
 		},
@@ -337,6 +374,9 @@
 	},
 	"BadgesHidden": {
 		"id": "BadgesHidden",
+		"options": {
+			"main": true
+		},
 		"type": "switch",
 		"value": {
 			"switch": true
