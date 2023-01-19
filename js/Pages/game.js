@@ -93,8 +93,8 @@ Rkis.page.game = () => {
 					}
 				})
 				.catch(err => {
-					console.trace(`[Roblokis Error]`, err);
-					Rkis.ErrorToast("GP74 (Couldn't get Servers)");
+					console.error(`[Roblokis Error]`, err);
+					console.error("GP74 (Couldn't get Servers)");
 				})
 			}
 

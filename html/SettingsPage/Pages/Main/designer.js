@@ -92,7 +92,7 @@ Designer.SaveNewTheme = async function(name, desc, themedata) {
 
 	var themetemplate = await fetch(Rkis.fileLocation + "js/Theme/Tamplate.Roblokis")
 	.then(response => response.json())
-	.catch(err => {console.log(err); return {};})
+	.catch(err => {console.error(err); return {};})
 
 	var thenewtheme = {
 		name: name,
@@ -558,7 +558,7 @@ function onclicked(target, code) {
 Designer.waitingForGeneral = function() {
 	if (Rkis.generalLoaded != true) {
 		document.addEventListener("rk-general-loaded", () => {
-			Rkis.page.game();
+			Designer.waitingForGeneral();
 		}, {once: true});
 		return;
 	}
@@ -624,7 +624,7 @@ Designer.waitingForGeneral = function() {
 		var daname = e.dataset.theme;
 
 		switch (e.dataset.designerFunc.toLowerCase()) {
-			default: return Rkis.ErrorToast("D618");
+			default: return console.error("D618");
 			case "editorsave":
 				e.$on("click", () => {
 					Designer.ThemeEditor.Save();

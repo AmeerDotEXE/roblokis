@@ -1,31 +1,14 @@
 var Rkis = Rkis || {};
 
-(function() {
-	Rkis.InjectFile = function(src) {
-	    const script = document.createElement('script');
-	    script.src = src;
-	    script.onload = function() {
-	        //console.log("script injected");
-	        this.remove();
-	    };
-	    (document.head || document.documentElement).appendChild(script);
-	}
-	Rkis.Execute = function(fn, ...args) {
-		var foo = new Function(fn.split("(")[1].split(")")[0].split(","), "try{"+fn.slice(fn.indexOf("{") + 1, -1)+"}catch(err){console.error(err);}");
-		foo(args[0]);
-	}
-	Rkis.InjectFunction = function(fn, nonce, ...args) {
-		//console.log(fn);
-		if(nonce == null) return console.error("Rkis | nonce isn't provided, won't run script for safety!!");
-		const script = document.createElement("script");
-		script.async = true;
-		script.type = "text/javascript";
-		script.nonce = nonce;
-		script.textContent = `(${fn})(${JSON.stringify(args).slice(1, -1)})`;
-		document.documentElement.prepend(script);
-		script.remove();
-	}
-})();
+Rkis.InjectFile = function(src) {
+	const script = document.createElement('script');
+	script.src = src;
+	script.onload = function() {
+		//console.log("script injected");
+		this.remove();
+	};
+	(document.head || document.documentElement).appendChild(script);
+};
 
 //add listener then the elemend has changed
 $r = (() => {
@@ -224,7 +207,7 @@ $r = (() => {
 				finishPromise = Promise.all(promises).then(elems => {
 					if (callback) {
 						try { callback(...elems); }
-						catch(ex) { console.error(ex); }
+						catch(ex) { console.error(selectors, ex); }
 					}
 	
 					return elems[0];
@@ -256,7 +239,7 @@ $r = (() => {
 				  	resolve(node) {
           				if (callback) {
 							try { callback(node, () => this.stopped = true); }
-							catch(ex) { console.error(ex); }
+							catch(ex) { console.error(selector, ex); }
 						}
 		  			},
 
@@ -482,6 +465,7 @@ $r = (() => {
 	return $;
 })();
 
+//Unfinished
 converter = (() => {
 	let cv = {};
 

@@ -28,6 +28,13 @@ Rkis.Designer.GetPageTheme = function() {
 
 Rkis.Designer.SetupTheme = async function() {
 
+	if (Rkis.generalLoaded != true) {
+		document.addEventListener("rk-general-loaded", () => {
+			Rkis.Designer.SetupTheme();
+		}, {once: true});
+		return;
+	}
+
 	let mainStyle = null;
 
 	const addStyle = url => {
@@ -138,13 +145,13 @@ Rkis.Designer.SetupTheme = async function() {
 			await fetch(Rkis.fileLocation + "js/Theme/DefaultLight.Roblokis")
 			.then(response => response.json())
 			.then(theme => {Rkis.Designer.currentTheme = theme;})
-			.catch(err => {console.log(err);})
+			.catch(err => {console.error(err);})
 		}
 		else {
 			await fetch(Rkis.fileLocation + "js/Theme/DefaultDark.Roblokis")
 			.then(response => response.json())
 			.then(theme => {Rkis.Designer.currentTheme = theme;})
-			.catch(err => {console.log(err);})
+			.catch(err => {console.error(err);})
 		}
 	}
 	else if(pagetheme.isDefaultTheme == false) {
@@ -157,13 +164,13 @@ Rkis.Designer.SetupTheme = async function() {
 			await fetch(Rkis.fileLocation + "js/Theme/DefaultLight.Roblokis")
 			.then(response => response.json())
 			.then(theme => {Rkis.Designer.currentTheme = theme;})
-			.catch(err => {console.log(err);})
+			.catch(err => {console.error(err);})
 		}
 		else {
 			await fetch(Rkis.fileLocation + "js/Theme/DefaultDark.Roblokis")
 			.then(response => response.json())
 			.then(theme => {Rkis.Designer.currentTheme = theme;})
-			.catch(err => {console.log(err);})
+			.catch(err => {console.error(err);})
 		}
 	}
 	

@@ -3,7 +3,7 @@ var page = page || {};
 page.serversDropDown = function() {
 	if (Rkis.generalLoaded != true) {
 		document.addEventListener("rk-general-loaded", () => {
-			Rkis.page.game();
+			page.serversDropDown();
 		}, {once: true});
 		return;
 	}

@@ -32,7 +32,7 @@ page.open = async function (pagetoopen, bypass) {
 	document.querySelector(`[data-file="${pagetoopen}"]`).classList.add("active"); //make tab active
 
 	var daplacetoload = $r("#rkpage ." + pagetoopen.toLowerCase().split(" ").join("-").split("/").join(" ."));
-	if (daplacetoload == null) return Rkis.ErrorToast("SP42");
+	if (daplacetoload == null) return console.error("SP42");
 	try {
 		document.$findAll(".tabcontent").forEach((e) => {
 			e.classList.remove("active")
@@ -43,7 +43,7 @@ page.open = async function (pagetoopen, bypass) {
 		//var scrpt0 = document.createElement("script");
 		//scrpt0.src = Rkis.fileLocation + `html/SettingsPage/Pages/${pagetoopen}.js`;
 		//daplacetoload.append(scrpt0);
-		//eval(`(function() {`+await Rkis.GetTextFromLocalFile(`html/SettingsPage/Pages/${pagetoopen}.js`)+`}())`);
+		//eval(`(function() {`+await Rkis.GetTextFromLocalFile(`html/SettingsPage/Pages/${pagetoopen}.js`)+`})()`);
 	} catch { }
 	page.setup();
 }
@@ -176,7 +176,7 @@ page.start = async function () {
 page.settingsWaitingForGeneral = function() {
 	if (Rkis.generalLoaded != true) {
 		document.addEventListener("rk-general-loaded", () => {
-			Rkis.page.game();
+			page.settingsWaitingForGeneral();
 		}, {once: true});
 		return;
 	}
@@ -184,11 +184,11 @@ page.settingsWaitingForGeneral = function() {
 	//auto load feature names and description in about tab
 	document.$watchLoop("loadcode", (element) => {
 		var name = element.getAttribute("code");
-		if (name == null || name == "") return Rkis.ErrorToast("SP127");
+		if (name == null || name == "") return console.error("SP127");
 
 		switch (name.toLowerCase()) {
 			default:
-				return console.trace(`Rkis | loadcode error` + name);
+				return console.error(`Rkis | loadcode error` + name);
 			case "settingload":
 				var settingId = element.dataset.id;
 

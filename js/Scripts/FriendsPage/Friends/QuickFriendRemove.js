@@ -25,7 +25,7 @@ if(Rkis.IsSettingEnabled("QuickRemove", {
   Rkis.Scripts.QuickFriendRemove.unFriend = function(btn, theid) {
     if(document.$find("#rbx-body > meta") == null) {
       btn.remove();
-      Rkis.ErrorToast(`QFR11`);
+      console.error(`QFR11`);
       return;
     }
 
@@ -43,7 +43,7 @@ if(Rkis.IsSettingEnabled("QuickRemove", {
         if(daitm) daitm.remove();
       }
     })
-    .catch((err) => { console.error(err); Rkis.ErrorToast("Couldn't UnFriend the Person"); })
+    .catch((err) => { console.error(err); console.error("Couldn't UnFriend the Person"); })
   }
 
   Rkis.Scripts.QuickFriendRemove.setup = function() {

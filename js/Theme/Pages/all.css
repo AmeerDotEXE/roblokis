@@ -124,11 +124,24 @@ a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r-5.rbx-game-server-joi
   background: rgb(0,0,0,0.4); 
   border-radius: 10px;
 }
-
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(0,0,0,0.8); 
 }
+
+table.table.table-striped {
+	border-radius: 10px;
+}
+.dark-theme table.table.table-striped {
+	background: hsl(210deg 5% 15% / 30%);
+}
+.light-theme table.table.table-striped {
+	background: hsl(200deg 13% 95% / 30%);
+}
+
+table.table.table-striped>tbody>tr:nth-child(2n)>td, table.table.table-striped>tbody>tr:nth-child(2n)>th {
+	background:rgba(0,0,0,0);
+}
+
 
 
 
