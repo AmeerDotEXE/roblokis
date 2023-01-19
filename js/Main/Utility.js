@@ -9,6 +9,24 @@ Rkis.InjectFile = function(src) {
 	};
 	(document.head || document.documentElement).appendChild(script);
 };
+Rkis.IS_DEV = chrome.runtime.getManifest().update_url == null;
+
+console.log = (function(old) {
+    return function(...args) {
+        return old("[%cRoblokis%c]", "color:red", "color:white", ...args)
+    }
+})(console.log);
+
+console.error = (function(old) {
+    return function(...args) {
+        return old("[Roblokis Error]", ...args.map(x => {
+			if (Rkis.IS_DEV == true) return x;
+			if (typeof x == "object") return JSON.stringify(x);
+			if (typeof x == "function") return x.toString();
+			return x;
+		}))
+    }
+})(console.error);
 
 //add listener then the elemend has changed
 $r = (() => {

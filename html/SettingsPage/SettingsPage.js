@@ -1,3 +1,4 @@
+"use strict";
 var page = page || {};
 
 function FetchImage(url, quick) {
@@ -514,14 +515,14 @@ page.settingsWaitingForGeneral = function() {
 				</div>`;
 				break;
 			case "loadedits":
-				clearelemstyle = function (eto) {
+				function clearelemstyle(eto) {
 					eto.style.background = "";
 					eto.style.backgroundImage = "";
 					eto.style.borderRadius = "";
 					eto.style.border = "";
 				}
 
-				CreateStyleformto = function (efrom, eto) {
+				function CreateStyleformto(efrom, eto) {
 
 					document.addEventListener("closeedit", function (event) {
 						if (efrom != event.detail) return;

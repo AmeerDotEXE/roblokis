@@ -1,3 +1,4 @@
+"use strict";
 var Rkis = Rkis || {};
 Rkis.Designer = Rkis.Designer || {};
 

@@ -1,3 +1,4 @@
+"use strict";
 var page = page || {};
 
 page.serversDropDown = function() {

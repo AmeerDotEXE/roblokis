@@ -1,15 +1,131 @@
 "use strict";
-var Rkis = Rkis || {};
+var Rkis = {
+	...Rkis,
+	...{
+		SubDomain: (window.location.hostname.startsWith("web") == true ? "web" : "www"),
+		id: chrome.runtime.id,
+		manifest: chrome.runtime.getManifest(),
 
-//To Do: wrap this whole file in 1 function
-
+		GetSettingValue(setting) {
+			if (setting == null) return null;
+			if (typeof setting == "string") setting = Rkis.wholeData[setting];
+			if (setting == null || typeof setting.type != "string") return null;
+			let value = setting.value;
+			if (value == null) return null;
+		
+			switch (setting.type) {
+				default:
+					return null;
+				case "switch":
+					return value.switch;
+				case "text":
+					return value.text || "";
+			}
+		},
+		GetSettingDetails(details) {
+			if (details == null) return null;
+		
+			let code = details.default;
+			if (details[Rkis.languageCode] != null) code = Rkis.languageCode;
+		
+			return details[code];
+		},
+		IsSettingEnabled(setting, defaultSetting, callback) {
+			if (typeof defaultSetting == "function") [callback, defaultSetting] = [defaultSetting, null];
+		
+			let rksetting = setting;
+			if (typeof setting == "string") rksetting = Rkis.wholeData[setting];
+			if (rksetting == null) {
+				console.error("Missing Setting:", setting);
+				return;
+			}
+		
+			if (defaultSetting != null) {
+				if (rksetting && rksetting.id == null) {
+					if (typeof setting == "string") {
+						let valueObject = {};
+		
+						if (typeof rksetting == "boolean") valueObject.switch = Rkis.wholeData[setting];
+						else if (typeof rksetting == "string") valueObject.text = Rkis.wholeData[setting];
+		
+						if (valueObject == {}) Rkis.wholeData[setting] = { ...defaultSetting };
+						else Rkis.wholeData[setting] = { ...defaultSetting, ...{ value: valueObject } };
+					}
+					rksetting = Rkis.wholeData[setting];
+					localStorage.setItem("Roblokis", JSON.stringify(Rkis.wholeData));
+				}
+				if (Rkis.wholeData[setting] != null) Rkis.wholeData[setting].details = defaultSetting.details;
+				if (Rkis.wholeData[setting] == null) {
+					Rkis.wholeData[setting] = { ...defaultSetting };
+					(() => { localStorage.setItem("Roblokis", JSON.stringify(Rkis.wholeData)); })();
+				}
+			} else if (rksetting.id == null) console.error("Unregistered Feature: " + setting);
+		
+			if (setting.options && setting.options.disabled == true) return false;
+		
+			let value = Rkis.GetSettingValue(rksetting);
+			let result = true;
+		
+			if (value == null || value == "" || value == false) { result = false; }
+			if (result && callback != null) return callback.apply();
+			return result;
+		},
+		IsSettingDisabled(setting, defaultSetting, callback) {
+			return Rkis.IsSettingEnabled(setting, defaultSetting, callback) == false;
+		},
+		delay(ms) {
+			return new Promise(resolve => {
+				setTimeout(function () { return resolve(); }, ms);
+			});
+		},
+		CopyText(text) {
+			let textArea = document.createElement("textarea");
+		
+			textArea.value = text;
+			textArea.style.top = "0";
+			textArea.style.left = "0";
+			textArea.style.position = "fixed";
+		
+			document.firstElementChild.appendChild(textArea);
+			textArea.focus();
+			textArea.select();
+		
+			try {
+				let successful = document.execCommand("copy");
+				let msg = successful ? Rkis.language["copyTextSuccess"] : Rkis.language["copyTextUnseccuss"];
+				Rkis.Toast(msg);
+			} catch (err) {
+				Rkis.Toast(Rkis.language["cantCopyText"], err);
+			}
+		
+			document.firstElementChild.removeChild(textArea);
+		},
+		GetTextFromLocalFile(filelocation) {
+			return new Promise(resolve => {
+				let xmlhttp = new XMLHttpRequest();
+				xmlhttp.open("GET", Rkis.fileLocation + filelocation, false);
+				xmlhttp.send();
+		
+				resolve(xmlhttp.responseText);
+			})
+		},
+		Toast(text, ms) {
+			if (Rkis.ToastHolder == null) {
+				alert(text);
+				return;
+			}
+		
+			Rkis.ToastHolder.innerText = text;
+			Rkis.ToastHolder.style.opacity = "1";
+			Rkis.ToastHolder.style.bottom = "30px";
+			setTimeout(() => { Rkis.ToastHolder.style.opacity = "0"; Rkis.ToastHolder.style.bottom = "0px"; }, ms || 4000)
+		}
+	}
+};
 
 window.ContextScript = true;
 
-let manifestData = chrome.runtime.getManifest();
-Rkis.version = manifestData.version;
-
-Rkis.id = chrome.runtime.id;
+Rkis.version = Rkis.manifest.version;
 Rkis.fileLocation = `chrome-extension://${Rkis.id}/`;
 
 //Rkis.InjectFile(Rkis.fileLocation + "js/Main/Utility.js");
@@ -34,7 +150,6 @@ let wholedata = localStorage.getItem("Roblokis");
 if (wholedata) wholedata = JSON.parse(wholedata) || {};
 
 Rkis.wholeData = { ...wholedata };
-Rkis.SubDomain = (window.location.hostname.startsWith("web") == true ? "web" : "www");
 
 
 /*//		Settings Structure
@@ -61,73 +176,6 @@ Rkis.SubDomain = (window.location.hostname.startsWith("web") == true ? "web" : "
 	}
 }
 */
-Rkis.GetSettingValue = function (setting) {
-	if (setting == null) return null;
-	if (typeof setting == "string") setting = Rkis.wholeData[setting];
-	if (setting == null || typeof setting.type != "string") return null;
-	let value = setting.value;
-	if (value == null) return null;
-
-	switch (setting.type) {
-		default:
-			return null;
-		case "switch":
-			return value.switch;
-		case "text":
-			return value.text || "";
-	}
-};
-Rkis.GetSettingDetails = function (details) {
-	if (details == null) return null;
-
-	let code = details.default;
-	if (details[Rkis.languageCode] != null) code = Rkis.languageCode;
-
-	return details[code];
-};
-Rkis.IsSettingEnabled = function (setting, defaultSetting, callback) {
-	if (typeof defaultSetting == "function") [callback, defaultSetting] = [defaultSetting, null];
-
-	let rksetting = setting;
-	if (typeof setting == "string") rksetting = Rkis.wholeData[setting];
-	if (rksetting == null) {
-		console.error("Missing Setting:", setting);
-		return;
-	}
-
-	if (defaultSetting != null) {
-		if (rksetting && rksetting.id == null) {
-			if (typeof setting == "string") {
-				let valueObject = {};
-
-				if (typeof rksetting == "boolean") valueObject.switch = Rkis.wholeData[setting];
-				else if (typeof rksetting == "string") valueObject.text = Rkis.wholeData[setting];
-
-				if (valueObject == {}) Rkis.wholeData[setting] = { ...defaultSetting };
-				else Rkis.wholeData[setting] = { ...defaultSetting, ...{ value: valueObject } };
-			}
-			rksetting = Rkis.wholeData[setting];
-			localStorage.setItem("Roblokis", JSON.stringify(Rkis.wholeData));
-		}
-		if (Rkis.wholeData[setting] != null) Rkis.wholeData[setting].details = defaultSetting.details;
-		if (Rkis.wholeData[setting] == null) {
-			Rkis.wholeData[setting] = { ...defaultSetting };
-			(() => { localStorage.setItem("Roblokis", JSON.stringify(Rkis.wholeData)); })();
-		}
-	} else if (rksetting.id == null) console.error("Unregistered Feature: " + setting);
-
-	if (setting.options && setting.options.disabled == true) return false;
-
-	let value = Rkis.GetSettingValue(rksetting);
-	let result = true;
-
-	if (value == null || value == "" || value == false) { result = false; }
-	if (result && callback != null) return callback.apply();
-	return result;
-};
-Rkis.IsSettingDisabled = function (setting, defaultSetting, callback) {
-	return Rkis.IsSettingEnabled(setting, defaultSetting, callback) == false;
-};
 
 (function () {
 	Rkis.language = Rkis.language || {};
@@ -286,63 +334,6 @@ Rkis.IsSettingDisabled = function (setting, defaultSetting, callback) {
 	l("joinPrivateServer");
 	l("JoinPublicServer");
 })();
-
-//delay
-Rkis.delay = function (ms) {
-	return new Promise(resolve => {
-		setTimeout(function () { return resolve(); }, ms);
-	});
-}
-
-//copy function
-Rkis.CopyText = function (text) {
-	let textArea = document.createElement("textarea");
-
-	textArea.value = text;
-	textArea.style.top = "0";
-	textArea.style.left = "0";
-	textArea.style.position = "fixed";
-
-	document.firstElementChild.appendChild(textArea);
-	textArea.focus();
-	textArea.select();
-
-	try {
-		let successful = document.execCommand("copy");
-		let msg = successful ? Rkis.language["copyTextSuccess"] : Rkis.language["copyTextUnseccuss"];
-		Rkis.Toast(msg);
-	} catch (err) {
-		Rkis.Toast(Rkis.language["cantCopyText"], err);
-	}
-
-	document.firstElementChild.removeChild(textArea);
-}
-
-Rkis.GetTextFromLocalFile = function (filelocation) {
-	return new Promise(resolve => {
-		let xmlhttp = new XMLHttpRequest();
-		xmlhttp.open("GET", Rkis.fileLocation + filelocation, false);
-		xmlhttp.send();
-
-		resolve(xmlhttp.responseText);
-	})
-}
-
-Rkis.Toast = function (text, ms) {
-	if (Rkis.ToastHolder == null) {
-		alert(text);
-		return;
-	}
-
-	Rkis.ToastHolder.innerText = text;
-	Rkis.ToastHolder.style.opacity = "1";
-	Rkis.ToastHolder.style.bottom = "30px";
-	setTimeout(() => { Rkis.ToastHolder.style.opacity = "0"; Rkis.ToastHolder.style.bottom = "0px"; }, ms || 4000)
-}
-
-console.error = function (text, ms) {
-	console.error(text);
-}
 
 
 if (Rkis.ToastHolder == null || Rkis.ToastHolder == {}) {
