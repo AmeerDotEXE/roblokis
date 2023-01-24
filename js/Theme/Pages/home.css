@@ -1,14 +1,14 @@
 /*shadows*/
 #home-header a.avatar {
-    transition: all 400ms;
-    transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
+	transition: all 400ms;
+	transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
 }
 #home-header a.avatar:hover {transform: var(--rk-basic-animations, scale(1.2));}
 body.dark-theme .avatar .avatar-card-image {background-color: transparent;}
 
 #home-header div.user-info-container > h1 > a {
-    transition: all 400ms;
-    transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
+	transition: all 400ms;
+	transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
 }
 #home-header div.user-info-container > h1 > a:hover {transform: var(--rk-basic-animations, translate(24%, 0px) scale(1.5));}
 
@@ -16,15 +16,15 @@ div.section-content.people-list div.avatar * {background: none;}
 
 div.section-content.people-list li.list-item.friend div.avatar,
 div.section-content.people-list li.list-item.friend span.avatar-status {
-    transition: all 400ms;
-    transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
+	transition: all 400ms;
+	transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
 }
 div.section-content.people-list li.list-item.friend:hover div.avatar,
 div.section-content.people-list li.list-item.friend:hover span.avatar-status {
-    transform: var(--rk-basic-animations, scale(1.2));
-    z-index: var(--rk-basic-animations, 10);
+	transform: var(--rk-basic-animations, scale(1.2));
+	z-index: var(--rk-basic-animations, 10);
 }
 
 #holder > div > div {
-    background-color: transparent;
+	background-color: transparent;
 }

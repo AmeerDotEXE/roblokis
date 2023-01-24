@@ -1,7 +1,7 @@
 /*  background  */
 #rbx-body {
-    background: var(--rk-background, rgb(35,37,39));
-    background-size: var(--rk-background-image-size);
+	background: var(--rk-background, rgb(35,37,39));
+	background-size: var(--rk-background-image-size);
 }
 
 
@@ -9,23 +9,23 @@
 #header,
 #navigation ,
 #footer-container {
-    background: var(--rk-menu-background);
-    background-size: var(--rk-menu-background-image-size);
+	background: var(--rk-menu-background);
+	background-size: var(--rk-menu-background-image-size);
 }
 
 #header {
-    border-radius: 0 0 16px 16px;
+	border-radius: 0 0 16px 16px;
 }
 #navigation {
-    border-radius: 20px;
-    height: fit-content;
-    max-height: 90%;
-    overflow-y: auto;
-    padding-bottom: 5px;
-    margin: 1%;
+	border-radius: 20px;
+	height: fit-content;
+	max-height: 90%;
+	overflow-y: auto;
+	padding-bottom: 5px;
+	margin: 1%;
 }
 #footer-container {
-    border-radius: 60px 60px 0 0;
+	border-radius: 60px 60px 0 0;
 }
 
 #navigation > div {height: calc(100% - 60px);}
@@ -35,25 +35,25 @@
 /*content*/
 #container-main > div.content {
 
-    box-shadow: var(--rk-content-box-shadow);
+	box-shadow: var(--rk-content-box-shadow);
 
-    border-radius: var(--rk-content-corners-radius, 20px);
+	border-radius: var(--rk-content-corners-radius, 20px);
 
-    border-color: var(--rk-content-borders-color);
-    border-style: var(--rk-content-borders-style);
-    border-width: var(--rk-content-borders-size);
+	border-color: var(--rk-content-borders-color);
+	border-style: var(--rk-content-borders-style);
+	border-width: var(--rk-content-borders-size);
 
-    background: var(--rk-content-background);
-    background-size: var(--rk-content-background-image-size);
+	background: var(--rk-content-background);
+	background-size: var(--rk-content-background-image-size);
 
 
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    margin-top: 20px;
-    padding: 3% 4%;
-    flex-wrap: wrap;
-    width: fit-content;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	margin-top: 20px;
+	padding: 3% 4%;
+	flex-wrap: wrap;
+	width: fit-content;
 }
 
 /*disable ads*/
@@ -61,53 +61,53 @@
 
 /*quick join button*/
 a.game-card-link[data-addedjoin="true"] > a.rbx-game-server-join[onclick][data-placeid] {
-    transition: transform 400ms;
-    transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
+	transition: transform 400ms;
+	transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
 }
 a.game-card-link[data-addedjoin="true"]:hover > a.rbx-game-server-join[onclick][data-placeid] {
-    transform: var(--rk-basic-animations, scale(1.12) rotate(5deg));
+	transform: var(--rk-basic-animations, scale(1.12) rotate(5deg));
 }
 
 
 a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r0.rbx-game-server-join[onclick][data-placeid] {
-    transform: var(--rk-basic-animations, scale(1.12) rotate(0deg));
+	transform: var(--rk-basic-animations, scale(1.12) rotate(0deg));
 }
 
 a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r1.rbx-game-server-join[onclick][data-placeid] {
-    transform: var(--rk-basic-animations, scale(1.12) rotate(3deg));
+	transform: var(--rk-basic-animations, scale(1.12) rotate(3deg));
 }
 a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r2.rbx-game-server-join[onclick][data-placeid] {
-    transform: var(--rk-basic-animations, scale(1.12) rotate(6deg));
+	transform: var(--rk-basic-animations, scale(1.12) rotate(6deg));
 }
 a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r3.rbx-game-server-join[onclick][data-placeid] {
-    transform: var(--rk-basic-animations, scale(1.12) rotate(9deg));
+	transform: var(--rk-basic-animations, scale(1.12) rotate(9deg));
 }
 a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r4.rbx-game-server-join[onclick][data-placeid] {
-    transform: var(--rk-basic-animations, scale(1.12) rotate(12deg));
+	transform: var(--rk-basic-animations, scale(1.12) rotate(12deg));
 }
 a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r5.rbx-game-server-join[onclick][data-placeid] {
-    transform: var(--rk-basic-animations, scale(1.12) rotate(15deg));
+	transform: var(--rk-basic-animations, scale(1.12) rotate(15deg));
 }
 
 a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r-1.rbx-game-server-join[onclick][data-placeid] {
-    transform: var(--rk-basic-animations, scale(1.12) rotate(-3deg));
+	transform: var(--rk-basic-animations, scale(1.12) rotate(-3deg));
 }
 a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r-2.rbx-game-server-join[onclick][data-placeid] {
-    transform: var(--rk-basic-animations, scale(1.12) rotate(-6deg));
+	transform: var(--rk-basic-animations, scale(1.12) rotate(-6deg));
 }
 a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r-3.rbx-game-server-join[onclick][data-placeid] {
-    transform: var(--rk-basic-animations, scale(1.12) rotate(-9deg));
+	transform: var(--rk-basic-animations, scale(1.12) rotate(-9deg));
 }
 a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r-4.rbx-game-server-join[onclick][data-placeid] {
-    transform: var(--rk-basic-animations, scale(1.12) rotate(-12deg));
+	transform: var(--rk-basic-animations, scale(1.12) rotate(-12deg));
 }
 a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r-5.rbx-game-server-join[onclick][data-placeid] {
-    transform: var(--rk-basic-animations, scale(1.12) rotate(-15deg));
+	transform: var(--rk-basic-animations, scale(1.12) rotate(-15deg));
 }
 
 /*remove error backgrounds*/
 #container-main > div.content > div.request-error-page-content > div.default-error-page {
-    background-color: transparent;
+	background-color: transparent;
 }
 
 #navigation::-webkit-scrollbar {
@@ -149,9 +149,9 @@ table.table.table-striped>tbody>tr:nth-child(2n)>td, table.table.table-striped>t
 
 /* Popup System */
 .ps-background {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
 }

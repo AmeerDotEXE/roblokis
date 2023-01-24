@@ -1,868 +1,868 @@
 {
-    "extDesc": {
-        "message": "Пользовательские функции и стили для Roblox.",
-        "description": "Extension description."
-    },
-    "extUpdate": {
-        "message": "Есть новое обновление!",
-        "description": "Text shows then clicking on Extension icon. text will show then the extension is not up-to-date. this will be under 'Open Settings Menu' button"
-    },
-    "sectionLSite": {
-        "message": "Языки сайта Роблокс.",
-        "description": "Text shows on Roblokis settings page. text for a section"
-    },
-    "refresh": {
-        "message": "Обновить",
-        "description": "Text shows on a button at filtered servers on game page"
-    },
-    "LowPingSvrs": {
-        "message": "Серверы с низким пингом",
-        "description": "Text shows on a button at filtered servers on game page"
-    },
-    "sectionMPN": {
-        "message": "Максимальное количество игроков.",
-        "description": "Text shows on Roblokis settings page. text for a section"
-    },
-    "sectionMPN1": {
-        "message": "Показывает максимальное количество игроков рядом с доступным количеством игроков.",
-        "description": "Text shows on Roblokis settings page. text for a section"
-    },
-    "serversFiltered": {
-        "message": "Отфильтрованные серверы",
-        "description": "Text shows in roblokis settings. text for a Section Selection"
-    },
-    "sectionFSS": {
-        "message": "Раздел «Отфильтрованные серверы».",
-        "description": "Text shows on Roblokis settings page. text for a section"
-    },
-    "sectionFSS1": {
-        "message": "Новый раздел с параметрами сортировки.",
-        "description": "Text shows on Roblokis settings page. text for a section"
-    },
-    "experimental": {
-        "message": "(ЭКСПЕРИМЕНТАЛЬНЫЙ)",
-        "description": "Text shows on Roblokis settings page. text for a section"
-    },
-    "sectionLSite1": {
-        "message": "Ограничивает язык Roblokis языком сайта Roblox.",
-        "description": "Text shows on Roblokis settings page. text for a section"
-    },
-      "sectionExtraS": {
-        "message": "Дополнительные тени.",
-        "description": "Text shows on Roblokis settings page. text for a section"
-    },
-      "sectionExtraS1": {
-        "message": "Добавляет эффект тени под или вокруг некоторых элементов.",
-        "description": "Text shows on Roblokis settings page. text for a section"
-    },
-    "extUpdate1": {
-        "message": "Пожалуйста, переустановите Роблокис.",
-        "description": "Text shows then clicking on Extension icon. text will show then the extension is not up-to-date. this will be under the new update text"
-    },
-    "credits": {
-        "message": "Кредиты",
-        "description": "Text shows on Roblokis settings page. include your name for credits, you deseve it"
-    },
-    "creditsTranslate": {
-        "message": "Перевод Google Translate",
-        "description": "Text shows on Roblokis settings page. include your name for credits, you deseve it"
-    },
-    "openSettingsMenu": {
-        "message": "Открыть меню настроек",
-        "description": "Text shows then you click on the extension. clicking it will open settings menu"
-    },
-    "errorCode": {
-        "message": "Код ошибки:",
-        "description": "Error occured and error code will be next to it. Example: QFR11"
-    },
-    "error": {
-        "message": "Ошибка",
-        "description": "Error occured."
-    },
-    "errorNameLength": {
-        "message": "Имя должно содержать от 3 до 24 символов!",
-        "description": "the user input should be in a specific range"
-    },
-    "errorDescLength": {
-        "message": "Максимальная длина описания — 36 символов!",
-        "description": "the user input should be in a specific range"
-    },
-    "errorAtoZ": {
-        "message": "Разрешены только A-Z и 0-9!",
-        "description": "the user input should be in a specific letters"
-    },
-    "errorMaxSlots": {
-        "message": "Все слоты используются.",
-        "description": "User doesn't have enough space for themes"
-    },
-    "errorNameExist": {
-        "message": "Имя уже существует.",
-        "description": "Theme name already exist"
-    },
-    "btnEdit": {
-        "message": "Редактировать",
-        "description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will open edit menu for the themes"
-    },
-    "btnSelect": {
-        "message": "Выбирать",
-        "description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will select the theme"
-    },
-    "btnCreate": {
-        "message": "Создавать",
-        "description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will create a theme"
-    },
-    "btnCancel": {
-        "message": "Отмена",
-        "description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will cancel your action"
-    },
-    "btnDelete": {
-        "message": "Удалить",
-        "description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will delete your theme"
-    },
-    "btnSaved": {
-        "message": "Сохранено",
-        "description": "Text shows in roblokis settings. Shows then settings are saved"
-    },
-    "btnSave": {
-        "message": "Сохранять",
-        "description": "Text shows in roblokis settings. Shows on a button to save settings"
-    },
-    "copyTextSuccess": {
-        "message": "Текст скопирован успешно",
-        "description": "Text shows then copying links/text. Copying text was successful"
-    },
-    "copyTextUnseccuss": {
-        "message": "Текст скопирован неудачно",
-        "description": "Text shows then copying links/text. Copying text was unsuccessful"
-    },
-    "cantCopyText": {
-        "message": "Упс, не удалось скопировать",
-        "description": "Text shows then copying links/text. Couldn't copy text"
-    },
-    "settingsPageTitle": {
-        "message": "Страница настроек Роблокиса",
-        "description": "Text shows on settings page. Page title"
-    },
-    "categoryMain": {
-        "message": "Главный",
-        "description": "Text shows in roblokis settings. text for a catagory"
-    },
-    "categoryGamePage": {
-        "message": "Страница игры",
-        "description": "Text shows in roblokis settings. text for a catagory"
-    },
-    "categoryProfiles": {
-        "message": "Профили",
-        "description": "Text shows in roblokis settings. text for a catagory"
-    },
-    "tabAll": {
-        "message": "Все",
-        "description": "Text shows in roblokis settings. text for a tab"
-    },
-    "tabAbout": {
-        "message": "О",
-        "description": "Text shows in roblokis settings. text for a tab"
-    },
-    "tabChangelog": {
-        "message": "Список изменений",
-        "description": "Text shows in roblokis settings. text for a tab"
-    },
-    "tabDesigner": {
-        "message": "Дизайнер",
-        "description": "Text shows in roblokis settings. text for a tab"
-    },
-    "tabBadges": {
-        "message": "Значки",
-        "description": "Text shows in roblokis settings. text for a tab"
-    },
-    "tabServers": {
-        "message": "Серверы",
-        "description": "Text shows in roblokis settings. text for a tab"
-    },
-    "tabProfilePage": {
-        "message": "Страница профиля",
-        "description": "Text shows in roblokis settings. text for a tab"
-    },
-    "tabFriendsPage": {
-        "message": "Страница друзей",
-        "description": "Text shows in roblokis settings. text for a tab"
-    },
-    "tabHome": {
-        "message": "Домой",
-        "description": "Text shows in roblokis settings. text for a tab"
-    },
-    "tabUsers": {
-        "message": "Пользователи",
-        "description": "Text shows in roblokis settings. text for a tab"
-    },
-    "tabGroups": {
-        "message": "Группы",
-        "description": "Text shows in roblokis settings. text for a tab"
-    },
-    "tabGame": {
-        "message": "Игра",
-        "description": "Text shows in roblokis settings. text for a tab"
-    },
-    "chooseSection": {
-        "message": "Выберите раздел:",
-        "description": "Text shows in roblokis settings. text for a Section Selection"
-    },
-    "chooseSelect": {
-        "message": "Нажмите, чтобы выбрать",
-        "description": "Text shows in roblokis settings. text for a Section Selection"
-    },
-    "serversPrivate": {
-        "message": "Частный сервер",
-        "description": "Text shows in roblokis settings. text for a Section Selection"
-    },
-    "serversFriends": {
-        "message": "Серверы друзей",
-        "description": "Text shows in roblokis settings. text for a Section Selection"
-    },
-    "serversSmall": {
-        "message": "Маленькие серверы",
-        "description": "Text shows in roblokis settings. text for a Section Selection"
-    },
-    "serversPublic": {
-        "message": "Публичные серверы",
-        "description": "Text shows in roblokis settings. text for a Section Selection"
-    },
-    "sectionSLink": {
-        "message": "ПРИМЕЧАНИЕ. Поделиться ссылкой не получится, если у человека нет этого расширения!",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionSLB": {
-        "message": "Кнопка ссылки на сервер.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionSLB1": {
-        "message": "Показывает кнопку ссылки рядом с кнопкой присоединения и предоставляет ссылку для присоединения к серверу.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionWhatRkis": {
-        "message": "Что такое Роблокис?",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionWhatRkis1": {
-        "message": "Roblokis — это расширение для браузера, созданное Ameer! чтобы сделать roblox проще в использовании и доступнее.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionWhatRkis2": {
-        "message": "Щелкните здесь, чтобы ознакомиться с сайтом roblokis и политикой конфиденциальности.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionHelpNeed": {
-        "message": "Помощь!",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionHelpNeed1": {
-        "message": "если у расширения есть проблемы, вы можете связаться со мной в разногласиях:",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionHelpNeed2": {
-        "message": "или напишите мне в Roblox (Ameer_Khalid):",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionFeatures": {
-        "message": "Функции:",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionFeatures1": {
-        "message": "Что может сделать Роблокис",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionQRB": {
-        "message": "Кнопка быстрого удаления.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionQRB1": {
-        "message": "Маленькая кнопка для быстрого удаления друзей.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionQRB2": {
-        "message": "ПРИМЕЧАНИЕ. Чтобы удалить друзей, необходимо дважды щелкнуть кнопку!",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionLS": {
-        "message": "Последний статус.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionLS1": {
-        "message": "Показывает последнюю активность игрока на странице его профиля.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionCP": {
-        "message": "Отмена в ожидании.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionCP1": {
-        "message": "Показывает кнопку «Отменить ожидание» вместо «Ожидание».",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionCBV": {
-        "message": "Новые значки Посмотреть и загрузить все.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionCBV1": {
-        "message": "Показывает новый дизайн Style от Ameer! автоматически загружает первые 100 значков.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionCBH": {
-        "message": "Показать скрытые значки.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionCBH1": {
-        "message": "Показывает скрытые/отключенные значки! (Требуется опция Загрузить все)",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionRJB": {
-        "message": "Кнопка «Переименовать».",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionRJB1": {
-        "message": "Переименовывает кнопку присоединения в «Присоединиться к частному серверу» или «Присоединиться к публичному серверу» в зависимости от сервера.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionSPN": {
-        "message": "Навигация по странице сервера.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionSPN1": {
-        "message": "Показывает нав. кнопки под кнопкой «Загрузить еще».",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "SectionSSS": {
-        "message": "Раздел малых серверов.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "SectionSSS1": {
-        "message": "Новый раздел показывает серверы с небольшим количеством игроков.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionALM": {
-        "message": "Автоматическая загрузка большего.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionALM1": {
-        "message": "Автоматически клики загружаются чаще, чем обновляются серверы.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionASO": {
-        "message": "Только доступные серверы.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionASO1": {
-        "message": "Удаляет все недоступные серверы или все серверы без кнопки присоединения.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionCRT": {
-        "message": "Пользовательский текст Robux:",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionCRT1": {
-        "message": "Это заменяет верхний правый текст robux на всех сайтах roblox.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionCNT": {
-        "message": "Пользовательский текст имени:",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionCNT1": {
-        "message": "Это заменяет верхний правый текст имени пользователя на всех сайтах roblox.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionUThemes": {
-        "message": "Используйте темы.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionUThemes1": {
-        "message": "Отключение этого отключит стили и темы!",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionAAnim": {
-        "message": "Разрешить анимацию?",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionAAnim1": {
-        "message": "Некоторые страницы могут иметь анимационные эффекты. (Требуется опция Темы)",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionQJB": {
-        "message": "Кнопка быстрого подключения.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionQJB1": {
-        "message": "Добавляет кнопку «Присоединиться» под каждой игрой на страницах «Hame» и «Discover».",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionDApp": {
-        "message": "Настольное приложение.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionDApp1": {
-        "message": "Включает дизайн настольного приложения от Roblox.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "themeSlotNumber": {
-        "message": "Тематический слот $num$",
-        "description": "Text Shows on Roblokis Settings at Designer Tab. the placeholder is the number of the empty slot",
-        "placeholders": {
-            "num": {
-                "content": "$1",
-                "example": "3"
-            }
-        }
-    },
-    "themeSelected": {
-        "message": "Выбранная тема",
-        "description": "Text shows in Roblokis Settings at Designer Tab. Under it will be the selected themes"
-    },
-    "themeNotLoad": {
-        "message": "Не загружен",
-        "description": "Text shows in Roblokis Settings at Designer Tab. shows then the designer tab is loading"
-    },
-    "themeDefaultSection": {
-        "message": "Темы по умолчанию:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for a section"
-    },
-    "themeDefaultSection1": {
-        "message": "Поставляется с расширением...",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for a section"
-    },
-    "themeCustomSection": {
-        "message": "Пользовательские темы:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for a section"
-    },
-    "themeCustomSection1": {
-        "message": "Вы используете или создаете свои собственные темы...",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for a section"
-    },
-    "themeNewTitle": {
-        "message": "Новая тема",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for a new theme creation"
-    },
-    "themeName": {
-        "message": "Имя",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for a new theme creation"
-    },
-    "themeDescription": {
-        "message": "Описание (необязательно)",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for a new theme creation"
-    },
-    "themeImport": {
-        "message": "Импорт темы (необязательно)",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for a new theme creation"
-    },
-    "themeDeleteTitle": {
-        "message": "Удалить тему",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for a theme Deletion"
-    },
-    "themeDeleteText": {
-        "message": "Вы уверены в удалении",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for a theme Deletion"
-    },
-    "themeBackground": {
-        "message": "Задний план",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeCorners": {
-        "message": "Углы",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeAllCorners": {
-        "message": "Все углы:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeTLCorner": {
-        "message": "Верхний левый угол",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeTRCorner": {
-        "message": "В правом верхнем углу",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeBLCorner": {
-        "message": "Нижний левый угол",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeBRCorner": {
-        "message": "Правый нижний угол",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeColor": {
-        "message": "Цвет:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeAlpha": {
-        "message": "Альфа:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeLink": {
-        "message": "Ссылка на сайт:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeSize": {
-        "message": "Боковая сторона:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeFillX": {
-        "message": "Заполнить X",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeFillY": {
-        "message": "Заполнить Y",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeAuto": {
-        "message": "Авто",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeRepeat": {
-        "message": "Повторение",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeNoRepeat": {
-        "message": "Нет повтора",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeRepeatT": {
-        "message": "Повторение:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeRound": {
-        "message": "Круглый",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeSpace": {
-        "message": "Космос",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeScroll": {
-        "message": "Прокрутка:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeEnabled": {
-        "message": "Включено",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeDisabled": {
-        "message": "Неполноценный",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeBorders": {
-        "message": "Границы",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeWidth": {
-        "message": "Ширина:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeStyle": {
-        "message": "Стиль:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeSolid": {
-        "message": "Твердый",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeDouble": {
-        "message": "Двойной",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeDashed": {
-        "message": "Пунктирная",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeDotted": {
-        "message": "Пунктирный",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeInset": {
-        "message": "Вставка",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeOutset": {
-        "message": "Начало",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeGroove": {
-        "message": "Канавка",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeRidge": {
-        "message": "хребет",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeTBorder": {
-        "message": "Верхняя граница",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeRBorder": {
-        "message": "Правая граница",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeBBorder": {
-        "message": "Нижняя граница",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeLBorder": {
-        "message": "Левая граница",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeSection": {
-        "message": "Раздел",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeShadow": {
-        "message": "Тень:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themePreviewProfile": {
-        "message": "Предварительный просмотр примера профиля",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeFriends": {
-        "message": "Друзья",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeFollowers": {
-        "message": "Последователи",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeFollowing": {
-        "message": "Следующий",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeMessage": {
-        "message": "Сообщение",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themePreviewGroup": {
-        "message": "Предварительный просмотр примера группы",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeGroupBy": {
-        "message": "От",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (next to it will be server creator name)"
-    },
-    "themeMembers": {
-        "message": "Члены",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeRank": {
-        "message": "Классифицировать",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themePreviewBadge": {
-        "message": "Предварительный просмотр примера значка",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeNameBadge": {
-        "message": "Роблоки установлены",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (you can make this whatever you want)"
-    },
-    "themeDescBadge": {
-        "message": "У владельцев этого значка установлен Roblokis",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (you can make this whatever you want)"
-    },
-    "themeTxtColor": {
-        "message": "Цвет текста",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeTextColor": {
-        "message": "Цвет текста:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeBrtColor": {
-        "message": "Яркий цвет:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeDrkColor": {
-        "message": "Темный цвет:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeTimeAgo": {
-        "message": "Давно",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themePreviewServer": {
-        "message": "Предварительный просмотр примера серверов",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themePrvSvr": {
-        "message": "Видеовстреча Роблокиса",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (you can make this whatever you want)"
-    },
-    "themePrvSvrRenu": {
-        "message": "Продлить",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (you can make this whatever you want)"
-    },
-    "themePreviewDefault": {
-        "message": "Предварительный просмотр сервера по умолчанию",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themePreviewPrivate": {
-        "message": "Предварительный просмотр частного сервера",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themePreviewPublic": {
-        "message": "Предварительный просмотр общедоступного сервера",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themePreviewSmall": {
-        "message": "Предварительный просмотр небольшого сервера",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themePreviewFriends": {
-        "message": "Предварительный просмотр сервера друзей",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeSvrStng": {
-        "message": "Настройки серверов",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeSvrPerRow": {
-        "message": "Серверов в строке:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeSvrGap": {
-        "message": "Разрыв серверов:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeOwnBG": {
-        "message": "Фон владельца:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeOwnBGAlp": {
-        "message": "Владелец БГ Альфа:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themePrvSvrInac": {
-        "message": "Неактивный.",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeFrnSvrPlr": {
-        "message": "Друзья на этом сервере: Roblox",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "screenLength": {
-        "message": "Размер х Размер",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "badgeNoDescription": {
-        "message": "Описание значка отсутствует",
-        "description": "Text shows on game badges. badge doesn't have a description"
-    },
-    "badgeNoName": {
-        "message": "Нет имени значка",
-        "description": "Text shows on game badges. badge doesn't have a name"
-    },
-    "badgeRare": {
-        "message": "редкость",
-        "description": "Text shows on game badges. how rare is this badge to get"
-    },
-    "badgeLastWon": {
-        "message": "Выиграл вчера",
-        "description": "Text shows on game badges. how many players got this badge from yesterday"
-    },
-    "badgeWon": {
-        "message": "Выиграл когда-либо",
-        "description": "Text shows on game badges. how many players have this badge"
-    },
-    "badgeAchievedShort": {
-        "message": "Достигнуто",
-        "description": "Text shows on game badges. Next to it will be the date of when the player got the badge"
-    },
-    "badgeAchievedLong": {
-        "message": "Достигнуто $longdate$",
-        "description": "Text shows then you hover over game badges. a longer date will be showen in the placeholder",
-        "placeholders": {
-            "longdate": {
-                "content": "$1",
-                "example": "Jul 21, 2018 | 01:04 PM (GMT+3)"
-            }
-        }
-    },
-    "badgeCreatedShort": {
-        "message": "Созданный",
-        "description": "Text shows on game badges. Next to it will be the date of when the badge was created"
-    },
-    "badgeCreatedLong": {
-        "message": "Создано $longdate$",
-        "description": "Text shows then you hover over game badges. a longer date will be showen in the placeholder",
-        "placeholders": {
-            "longdate": {
-                "content": "$1",
-                "example": "Jul 21, 2018 | 01:04 PM (GMT+3)"
-            }
-        }
-    },
-    "badgeUpdatedShort": {
-        "message": "Обновлено",
-        "description": "Text shows on game badges. Next to it will be the date of when the badge got updated"
-    },
-    "badgeUpdatedLong": {
-        "message": "Последнее обновление: $longdate$",
-        "description": "Text shows then you hover over game badges. a longer date will be showen in the placeholder",
-        "placeholders": {
-            "longdate": {
-                "content": "$1",
-                "example": "Jul 21, 2018 | 01:04 PM (GMT+3)"
-            }
-        }
-    },
-    "joinButtons": {
-        "message": "Присоединиться",
-        "description": "Text shows on games/servers button. clicking it would join your roblox game"
-    },
-    "cancelRequest": {
-        "message": "Отменить запрос",
-        "description": "Text shows on profile at'Pending' button. cancels a friend request"
-    },
-    "canceledRequest": {
-        "message": "Отменено",
-        "description": "Text shows on profile at'Pending' button. canceled the friend request"
-    },
-    "lastGame": {
-        "message": "Последняя игра",
-        "description": "Text shows on profiles. under it will be the game join button"
-    },
-    "lastPlace": {
-        "message": "Последнее место",
-        "description": "Text shows on profiles. under it will be the last game name"
-    },
-    "lastSeen": {
-        "message": "Последнее посещение",
-        "description": "Text shows on profiles. under it will be the last date player was seen"
-    },
-    "lastSeenLong": {
-        "message": "Последнее посещение: $longdate$",
-        "description": "Text shows then you hover over last seen text in profile page. a longer date will be showen in the placeholder",
-        "placeholders": {
-            "longdate": {
-                "content": "$1",
-                "example": "Jul 21, 2018 | 01:04 PM (GMT+3)"
-            }
-        }
-    },
-    "smallSection": {
-        "message": "Некоторые маленькие серверы",
-        "description": "Text shows on game servers. the small servers section name"
-    },
-    "slowServer": {
-        "message": "Медленный сервер",
-        "description": "Text shows on servers. only shows then the server is slow"
-    },
-    "loadMore": {
-        "message": "Загрузи больше",
-        "description": "Text shows on game servers section. clicking it will load more servers"
-    },
-    "joinPrivateServer": {
-        "message": "Присоединиться к частному серверу",
-        "description": "Text shows on friends servers. text shows when your friend is in a private server"
-    },
-    "JoinPublicServer": {
-        "message": "Присоединяйтесь к общедоступному серверу",
-        "description": "Text shows on friends servers. text shows when your friend is in a public server"
-    }
+	"extDesc": {
+		"message": "Пользовательские функции и стили для Roblox.",
+		"description": "Extension description."
+	},
+	"extUpdate": {
+		"message": "Есть новое обновление!",
+		"description": "Text shows then clicking on Extension icon. text will show then the extension is not up-to-date. this will be under 'Open Settings Menu' button"
+	},
+	"sectionLSite": {
+		"message": "Языки сайта Роблокс.",
+		"description": "Text shows on Roblokis settings page. text for a section"
+	},
+	"refresh": {
+		"message": "Обновить",
+		"description": "Text shows on a button at filtered servers on game page"
+	},
+	"LowPingSvrs": {
+		"message": "Серверы с низким пингом",
+		"description": "Text shows on a button at filtered servers on game page"
+	},
+	"sectionMPN": {
+		"message": "Максимальное количество игроков.",
+		"description": "Text shows on Roblokis settings page. text for a section"
+	},
+	"sectionMPN1": {
+		"message": "Показывает максимальное количество игроков рядом с доступным количеством игроков.",
+		"description": "Text shows on Roblokis settings page. text for a section"
+	},
+	"serversFiltered": {
+		"message": "Отфильтрованные серверы",
+		"description": "Text shows in roblokis settings. text for a Section Selection"
+	},
+	"sectionFSS": {
+		"message": "Раздел «Отфильтрованные серверы».",
+		"description": "Text shows on Roblokis settings page. text for a section"
+	},
+	"sectionFSS1": {
+		"message": "Новый раздел с параметрами сортировки.",
+		"description": "Text shows on Roblokis settings page. text for a section"
+	},
+	"experimental": {
+		"message": "(ЭКСПЕРИМЕНТАЛЬНЫЙ)",
+		"description": "Text shows on Roblokis settings page. text for a section"
+	},
+	"sectionLSite1": {
+		"message": "Ограничивает язык Roblokis языком сайта Roblox.",
+		"description": "Text shows on Roblokis settings page. text for a section"
+	},
+	"sectionExtraS": {
+		"message": "Дополнительные тени.",
+		"description": "Text shows on Roblokis settings page. text for a section"
+	},
+	"sectionExtraS1": {
+		"message": "Добавляет эффект тени под или вокруг некоторых элементов.",
+		"description": "Text shows on Roblokis settings page. text for a section"
+	},
+	"extUpdate1": {
+		"message": "Пожалуйста, переустановите Роблокис.",
+		"description": "Text shows then clicking on Extension icon. text will show then the extension is not up-to-date. this will be under the new update text"
+	},
+	"credits": {
+		"message": "Кредиты",
+		"description": "Text shows on Roblokis settings page. include your name for credits, you deseve it"
+	},
+	"creditsTranslate": {
+		"message": "Перевод Google Translate",
+		"description": "Text shows on Roblokis settings page. include your name for credits, you deseve it"
+	},
+	"openSettingsMenu": {
+		"message": "Открыть меню настроек",
+		"description": "Text shows then you click on the extension. clicking it will open settings menu"
+	},
+	"errorCode": {
+		"message": "Код ошибки:",
+		"description": "Error occured and error code will be next to it. Example: QFR11"
+	},
+	"error": {
+		"message": "Ошибка",
+		"description": "Error occured."
+	},
+	"errorNameLength": {
+		"message": "Имя должно содержать от 3 до 24 символов!",
+		"description": "the user input should be in a specific range"
+	},
+	"errorDescLength": {
+		"message": "Максимальная длина описания — 36 символов!",
+		"description": "the user input should be in a specific range"
+	},
+	"errorAtoZ": {
+		"message": "Разрешены только A-Z и 0-9!",
+		"description": "the user input should be in a specific letters"
+	},
+	"errorMaxSlots": {
+		"message": "Все слоты используются.",
+		"description": "User doesn't have enough space for themes"
+	},
+	"errorNameExist": {
+		"message": "Имя уже существует.",
+		"description": "Theme name already exist"
+	},
+	"btnEdit": {
+		"message": "Редактировать",
+		"description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will open edit menu for the themes"
+	},
+	"btnSelect": {
+		"message": "Выбирать",
+		"description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will select the theme"
+	},
+	"btnCreate": {
+		"message": "Создавать",
+		"description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will create a theme"
+	},
+	"btnCancel": {
+		"message": "Отмена",
+		"description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will cancel your action"
+	},
+	"btnDelete": {
+		"message": "Удалить",
+		"description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will delete your theme"
+	},
+	"btnSaved": {
+		"message": "Сохранено",
+		"description": "Text shows in roblokis settings. Shows then settings are saved"
+	},
+	"btnSave": {
+		"message": "Сохранять",
+		"description": "Text shows in roblokis settings. Shows on a button to save settings"
+	},
+	"copyTextSuccess": {
+		"message": "Текст скопирован успешно",
+		"description": "Text shows then copying links/text. Copying text was successful"
+	},
+	"copyTextUnseccuss": {
+		"message": "Текст скопирован неудачно",
+		"description": "Text shows then copying links/text. Copying text was unsuccessful"
+	},
+	"cantCopyText": {
+		"message": "Упс, не удалось скопировать",
+		"description": "Text shows then copying links/text. Couldn't copy text"
+	},
+	"settingsPageTitle": {
+		"message": "Страница настроек Роблокиса",
+		"description": "Text shows on settings page. Page title"
+	},
+	"categoryMain": {
+		"message": "Главный",
+		"description": "Text shows in roblokis settings. text for a catagory"
+	},
+	"categoryGamePage": {
+		"message": "Страница игры",
+		"description": "Text shows in roblokis settings. text for a catagory"
+	},
+	"categoryProfiles": {
+		"message": "Профили",
+		"description": "Text shows in roblokis settings. text for a catagory"
+	},
+	"tabAll": {
+		"message": "Все",
+		"description": "Text shows in roblokis settings. text for a tab"
+	},
+	"tabAbout": {
+		"message": "О",
+		"description": "Text shows in roblokis settings. text for a tab"
+	},
+	"tabChangelog": {
+		"message": "Список изменений",
+		"description": "Text shows in roblokis settings. text for a tab"
+	},
+	"tabDesigner": {
+		"message": "Дизайнер",
+		"description": "Text shows in roblokis settings. text for a tab"
+	},
+	"tabBadges": {
+		"message": "Значки",
+		"description": "Text shows in roblokis settings. text for a tab"
+	},
+	"tabServers": {
+		"message": "Серверы",
+		"description": "Text shows in roblokis settings. text for a tab"
+	},
+	"tabProfilePage": {
+		"message": "Страница профиля",
+		"description": "Text shows in roblokis settings. text for a tab"
+	},
+	"tabFriendsPage": {
+		"message": "Страница друзей",
+		"description": "Text shows in roblokis settings. text for a tab"
+	},
+	"tabHome": {
+		"message": "Домой",
+		"description": "Text shows in roblokis settings. text for a tab"
+	},
+	"tabUsers": {
+		"message": "Пользователи",
+		"description": "Text shows in roblokis settings. text for a tab"
+	},
+	"tabGroups": {
+		"message": "Группы",
+		"description": "Text shows in roblokis settings. text for a tab"
+	},
+	"tabGame": {
+		"message": "Игра",
+		"description": "Text shows in roblokis settings. text for a tab"
+	},
+	"chooseSection": {
+		"message": "Выберите раздел:",
+		"description": "Text shows in roblokis settings. text for a Section Selection"
+	},
+	"chooseSelect": {
+		"message": "Нажмите, чтобы выбрать",
+		"description": "Text shows in roblokis settings. text for a Section Selection"
+	},
+	"serversPrivate": {
+		"message": "Частный сервер",
+		"description": "Text shows in roblokis settings. text for a Section Selection"
+	},
+	"serversFriends": {
+		"message": "Серверы друзей",
+		"description": "Text shows in roblokis settings. text for a Section Selection"
+	},
+	"serversSmall": {
+		"message": "Маленькие серверы",
+		"description": "Text shows in roblokis settings. text for a Section Selection"
+	},
+	"serversPublic": {
+		"message": "Публичные серверы",
+		"description": "Text shows in roblokis settings. text for a Section Selection"
+	},
+	"sectionSLink": {
+		"message": "ПРИМЕЧАНИЕ. Поделиться ссылкой не получится, если у человека нет этого расширения!",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionSLB": {
+		"message": "Кнопка ссылки на сервер.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionSLB1": {
+		"message": "Показывает кнопку ссылки рядом с кнопкой присоединения и предоставляет ссылку для присоединения к серверу.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionWhatRkis": {
+		"message": "Что такое Роблокис?",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionWhatRkis1": {
+		"message": "Roblokis — это расширение для браузера, созданное Ameer! чтобы сделать roblox проще в использовании и доступнее.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionWhatRkis2": {
+		"message": "Щелкните здесь, чтобы ознакомиться с сайтом roblokis и политикой конфиденциальности.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionHelpNeed": {
+		"message": "Помощь!",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionHelpNeed1": {
+		"message": "если у расширения есть проблемы, вы можете связаться со мной в разногласиях:",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionHelpNeed2": {
+		"message": "или напишите мне в Roblox (Ameer_Khalid):",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionFeatures": {
+		"message": "Функции:",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionFeatures1": {
+		"message": "Что может сделать Роблокис",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionQRB": {
+		"message": "Кнопка быстрого удаления.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionQRB1": {
+		"message": "Маленькая кнопка для быстрого удаления друзей.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionQRB2": {
+		"message": "ПРИМЕЧАНИЕ. Чтобы удалить друзей, необходимо дважды щелкнуть кнопку!",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionLS": {
+		"message": "Последний статус.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionLS1": {
+		"message": "Показывает последнюю активность игрока на странице его профиля.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionCP": {
+		"message": "Отмена в ожидании.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionCP1": {
+		"message": "Показывает кнопку «Отменить ожидание» вместо «Ожидание».",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionCBV": {
+		"message": "Новые значки Посмотреть и загрузить все.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionCBV1": {
+		"message": "Показывает новый дизайн Style от Ameer! автоматически загружает первые 100 значков.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionCBH": {
+		"message": "Показать скрытые значки.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionCBH1": {
+		"message": "Показывает скрытые/отключенные значки! (Требуется опция Загрузить все)",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionRJB": {
+		"message": "Кнопка «Переименовать».",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionRJB1": {
+		"message": "Переименовывает кнопку присоединения в «Присоединиться к частному серверу» или «Присоединиться к публичному серверу» в зависимости от сервера.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionSPN": {
+		"message": "Навигация по странице сервера.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionSPN1": {
+		"message": "Показывает нав. кнопки под кнопкой «Загрузить еще».",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"SectionSSS": {
+		"message": "Раздел малых серверов.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"SectionSSS1": {
+		"message": "Новый раздел показывает серверы с небольшим количеством игроков.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionALM": {
+		"message": "Автоматическая загрузка большего.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionALM1": {
+		"message": "Автоматически клики загружаются чаще, чем обновляются серверы.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionASO": {
+		"message": "Только доступные серверы.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionASO1": {
+		"message": "Удаляет все недоступные серверы или все серверы без кнопки присоединения.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionCRT": {
+		"message": "Пользовательский текст Robux:",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionCRT1": {
+		"message": "Это заменяет верхний правый текст robux на всех сайтах roblox.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionCNT": {
+		"message": "Пользовательский текст имени:",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionCNT1": {
+		"message": "Это заменяет верхний правый текст имени пользователя на всех сайтах roblox.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionUThemes": {
+		"message": "Используйте темы.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionUThemes1": {
+		"message": "Отключение этого отключит стили и темы!",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionAAnim": {
+		"message": "Разрешить анимацию?",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionAAnim1": {
+		"message": "Некоторые страницы могут иметь анимационные эффекты. (Требуется опция Темы)",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionQJB": {
+		"message": "Кнопка быстрого подключения.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionQJB1": {
+		"message": "Добавляет кнопку «Присоединиться» под каждой игрой на страницах «Hame» и «Discover».",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionDApp": {
+		"message": "Настольное приложение.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionDApp1": {
+		"message": "Включает дизайн настольного приложения от Roblox.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"themeSlotNumber": {
+		"message": "Тематический слот $num$",
+		"description": "Text Shows on Roblokis Settings at Designer Tab. the placeholder is the number of the empty slot",
+		"placeholders": {
+			"num": {
+				"content": "$1",
+				"example": "3"
+			}
+		}
+	},
+	"themeSelected": {
+		"message": "Выбранная тема",
+		"description": "Text shows in Roblokis Settings at Designer Tab. Under it will be the selected themes"
+	},
+	"themeNotLoad": {
+		"message": "Не загружен",
+		"description": "Text shows in Roblokis Settings at Designer Tab. shows then the designer tab is loading"
+	},
+	"themeDefaultSection": {
+		"message": "Темы по умолчанию:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for a section"
+	},
+	"themeDefaultSection1": {
+		"message": "Поставляется с расширением...",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for a section"
+	},
+	"themeCustomSection": {
+		"message": "Пользовательские темы:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for a section"
+	},
+	"themeCustomSection1": {
+		"message": "Вы используете или создаете свои собственные темы...",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for a section"
+	},
+	"themeNewTitle": {
+		"message": "Новая тема",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for a new theme creation"
+	},
+	"themeName": {
+		"message": "Имя",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for a new theme creation"
+	},
+	"themeDescription": {
+		"message": "Описание (необязательно)",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for a new theme creation"
+	},
+	"themeImport": {
+		"message": "Импорт темы (необязательно)",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for a new theme creation"
+	},
+	"themeDeleteTitle": {
+		"message": "Удалить тему",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for a theme Deletion"
+	},
+	"themeDeleteText": {
+		"message": "Вы уверены в удалении",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for a theme Deletion"
+	},
+	"themeBackground": {
+		"message": "Задний план",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeCorners": {
+		"message": "Углы",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeAllCorners": {
+		"message": "Все углы:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeTLCorner": {
+		"message": "Верхний левый угол",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeTRCorner": {
+		"message": "В правом верхнем углу",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeBLCorner": {
+		"message": "Нижний левый угол",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeBRCorner": {
+		"message": "Правый нижний угол",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeColor": {
+		"message": "Цвет:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeAlpha": {
+		"message": "Альфа:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeLink": {
+		"message": "Ссылка на сайт:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeSize": {
+		"message": "Боковая сторона:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeFillX": {
+		"message": "Заполнить X",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeFillY": {
+		"message": "Заполнить Y",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeAuto": {
+		"message": "Авто",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeRepeat": {
+		"message": "Повторение",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeNoRepeat": {
+		"message": "Нет повтора",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeRepeatT": {
+		"message": "Повторение:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeRound": {
+		"message": "Круглый",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeSpace": {
+		"message": "Космос",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeScroll": {
+		"message": "Прокрутка:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeEnabled": {
+		"message": "Включено",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeDisabled": {
+		"message": "Неполноценный",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeBorders": {
+		"message": "Границы",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeWidth": {
+		"message": "Ширина:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeStyle": {
+		"message": "Стиль:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeSolid": {
+		"message": "Твердый",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeDouble": {
+		"message": "Двойной",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeDashed": {
+		"message": "Пунктирная",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeDotted": {
+		"message": "Пунктирный",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeInset": {
+		"message": "Вставка",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeOutset": {
+		"message": "Начало",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeGroove": {
+		"message": "Канавка",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeRidge": {
+		"message": "хребет",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeTBorder": {
+		"message": "Верхняя граница",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeRBorder": {
+		"message": "Правая граница",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeBBorder": {
+		"message": "Нижняя граница",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeLBorder": {
+		"message": "Левая граница",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeSection": {
+		"message": "Раздел",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeShadow": {
+		"message": "Тень:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePreviewProfile": {
+		"message": "Предварительный просмотр примера профиля",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeFriends": {
+		"message": "Друзья",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeFollowers": {
+		"message": "Последователи",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeFollowing": {
+		"message": "Следующий",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeMessage": {
+		"message": "Сообщение",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePreviewGroup": {
+		"message": "Предварительный просмотр примера группы",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeGroupBy": {
+		"message": "От",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (next to it will be server creator name)"
+	},
+	"themeMembers": {
+		"message": "Члены",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeRank": {
+		"message": "Классифицировать",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePreviewBadge": {
+		"message": "Предварительный просмотр примера значка",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeNameBadge": {
+		"message": "Роблоки установлены",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (you can make this whatever you want)"
+	},
+	"themeDescBadge": {
+		"message": "У владельцев этого значка установлен Roblokis",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (you can make this whatever you want)"
+	},
+	"themeTxtColor": {
+		"message": "Цвет текста",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeTextColor": {
+		"message": "Цвет текста:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeBrtColor": {
+		"message": "Яркий цвет:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeDrkColor": {
+		"message": "Темный цвет:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeTimeAgo": {
+		"message": "Давно",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePreviewServer": {
+		"message": "Предварительный просмотр примера серверов",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePrvSvr": {
+		"message": "Видеовстреча Роблокиса",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (you can make this whatever you want)"
+	},
+	"themePrvSvrRenu": {
+		"message": "Продлить",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (you can make this whatever you want)"
+	},
+	"themePreviewDefault": {
+		"message": "Предварительный просмотр сервера по умолчанию",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePreviewPrivate": {
+		"message": "Предварительный просмотр частного сервера",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePreviewPublic": {
+		"message": "Предварительный просмотр общедоступного сервера",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePreviewSmall": {
+		"message": "Предварительный просмотр небольшого сервера",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePreviewFriends": {
+		"message": "Предварительный просмотр сервера друзей",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeSvrStng": {
+		"message": "Настройки серверов",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeSvrPerRow": {
+		"message": "Серверов в строке:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeSvrGap": {
+		"message": "Разрыв серверов:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeOwnBG": {
+		"message": "Фон владельца:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeOwnBGAlp": {
+		"message": "Владелец БГ Альфа:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePrvSvrInac": {
+		"message": "Неактивный.",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeFrnSvrPlr": {
+		"message": "Друзья на этом сервере: Roblox",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"screenLength": {
+		"message": "Размер х Размер",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"badgeNoDescription": {
+		"message": "Описание значка отсутствует",
+		"description": "Text shows on game badges. badge doesn't have a description"
+	},
+	"badgeNoName": {
+		"message": "Нет имени значка",
+		"description": "Text shows on game badges. badge doesn't have a name"
+	},
+	"badgeRare": {
+		"message": "редкость",
+		"description": "Text shows on game badges. how rare is this badge to get"
+	},
+	"badgeLastWon": {
+		"message": "Выиграл вчера",
+		"description": "Text shows on game badges. how many players got this badge from yesterday"
+	},
+	"badgeWon": {
+		"message": "Выиграл когда-либо",
+		"description": "Text shows on game badges. how many players have this badge"
+	},
+	"badgeAchievedShort": {
+		"message": "Достигнуто",
+		"description": "Text shows on game badges. Next to it will be the date of when the player got the badge"
+	},
+	"badgeAchievedLong": {
+		"message": "Достигнуто $longdate$",
+		"description": "Text shows then you hover over game badges. a longer date will be showen in the placeholder",
+		"placeholders": {
+			"longdate": {
+				"content": "$1",
+				"example": "Jul 21, 2018 | 01:04 PM (GMT+3)"
+			}
+		}
+	},
+	"badgeCreatedShort": {
+		"message": "Созданный",
+		"description": "Text shows on game badges. Next to it will be the date of when the badge was created"
+	},
+	"badgeCreatedLong": {
+		"message": "Создано $longdate$",
+		"description": "Text shows then you hover over game badges. a longer date will be showen in the placeholder",
+		"placeholders": {
+			"longdate": {
+				"content": "$1",
+				"example": "Jul 21, 2018 | 01:04 PM (GMT+3)"
+			}
+		}
+	},
+	"badgeUpdatedShort": {
+		"message": "Обновлено",
+		"description": "Text shows on game badges. Next to it will be the date of when the badge got updated"
+	},
+	"badgeUpdatedLong": {
+		"message": "Последнее обновление: $longdate$",
+		"description": "Text shows then you hover over game badges. a longer date will be showen in the placeholder",
+		"placeholders": {
+			"longdate": {
+				"content": "$1",
+				"example": "Jul 21, 2018 | 01:04 PM (GMT+3)"
+			}
+		}
+	},
+	"joinButtons": {
+		"message": "Присоединиться",
+		"description": "Text shows on games/servers button. clicking it would join your roblox game"
+	},
+	"cancelRequest": {
+		"message": "Отменить запрос",
+		"description": "Text shows on profile at'Pending' button. cancels a friend request"
+	},
+	"canceledRequest": {
+		"message": "Отменено",
+		"description": "Text shows on profile at'Pending' button. canceled the friend request"
+	},
+	"lastGame": {
+		"message": "Последняя игра",
+		"description": "Text shows on profiles. under it will be the game join button"
+	},
+	"lastPlace": {
+		"message": "Последнее место",
+		"description": "Text shows on profiles. under it will be the last game name"
+	},
+	"lastSeen": {
+		"message": "Последнее посещение",
+		"description": "Text shows on profiles. under it will be the last date player was seen"
+	},
+	"lastSeenLong": {
+		"message": "Последнее посещение: $longdate$",
+		"description": "Text shows then you hover over last seen text in profile page. a longer date will be showen in the placeholder",
+		"placeholders": {
+			"longdate": {
+				"content": "$1",
+				"example": "Jul 21, 2018 | 01:04 PM (GMT+3)"
+			}
+		}
+	},
+	"smallSection": {
+		"message": "Некоторые маленькие серверы",
+		"description": "Text shows on game servers. the small servers section name"
+	},
+	"slowServer": {
+		"message": "Медленный сервер",
+		"description": "Text shows on servers. only shows then the server is slow"
+	},
+	"loadMore": {
+		"message": "Загрузи больше",
+		"description": "Text shows on game servers section. clicking it will load more servers"
+	},
+	"joinPrivateServer": {
+		"message": "Присоединиться к частному серверу",
+		"description": "Text shows on friends servers. text shows when your friend is in a private server"
+	},
+	"JoinPublicServer": {
+		"message": "Присоединяйтесь к общедоступному серверу",
+		"description": "Text shows on friends servers. text shows when your friend is in a public server"
+	}
 }

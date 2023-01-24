@@ -6,44 +6,44 @@
 #game-detail-page > div.btr-game-main-container.section-content,
 #game-instances,
 #store {
-    background-color: transparent;
+	background-color: transparent;
 }
 
 
 /*game photo & button*/
 #game-details-carousel-container {
-    border-radius: 20px;
-    z-index: 10;
-    transition: transform 400ms;
-    transition-timing-function: cubic-bezier(0.25, 1.27, 0.9, 1.01);
+	border-radius: 20px;
+	z-index: 10;
+	transition: transform 400ms;
+	transition-timing-function: cubic-bezier(0.25, 1.27, 0.9, 1.01);
 }
 #game-details-carousel-container:hover {
-    transform: var(--rk-basic-animations, scale(1.06) rotate(1deg));
+	transform: var(--rk-basic-animations, scale(1.06) rotate(1deg));
 }
 .dark-theme #game-details-play-button-container > button {
-    background: none;
-    border: 2px solid #fff;
+	background: none;
+	border: 2px solid #fff;
 }
 #game-details-play-button-container > button {
-    transition: transform 500ms, border-width 250ms;
-    transition-timing-function: cubic-bezier(0.25, 1.27, 0.9, 1.01);
+	transition: transform 500ms, border-width 250ms;
+	transition-timing-function: cubic-bezier(0.25, 1.27, 0.9, 1.01);
 }
 #game-details-play-button-container > button:hover {
-    transform: var(--rk-basic-animations, scale(1.08) rotate(-2deg));
-    border-width: var(--rk-basic-animations, 3px);
+	transform: var(--rk-basic-animations, scale(1.08) rotate(-2deg));
+	border-width: var(--rk-basic-animations, 3px);
 }
 
 
 /*section tabs*/
 #horizontal-tabs {
-    background-color: rgb(35, 37, 39, 0.3);
-    border-radius: 10px;
+	background-color: rgb(35, 37, 39, 0.3);
+	border-radius: 10px;
 }
 #horizontal-tabs > li > a {
-    background-color: rgb(35, 37, 39, 0);
-    margin: 0px 10px 5px;
-    transition: all 200ms;
-    transition-timing-function: cubic-bezier(0.25, 1.27, 0.9, 1.01);
+	background-color: rgb(35, 37, 39, 0);
+	margin: 0px 10px 5px;
+	transition: all 200ms;
+	transition-timing-function: cubic-bezier(0.25, 1.27, 0.9, 1.01);
 }
 
 /*coloring*/
@@ -54,127 +54,127 @@ div > .social-link > div.medallion
 
 /*game card*/
 div.container-list.games-detail div.game-card-container > a > a {
-    transition: transform 400ms;
-    transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
+	transition: transform 400ms;
+	transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
 }
 div.container-list.games-detail div.game-card-container > a:hover > a {
-    transform: var(--rk-basic-animations, scale(1.12) rotate(5deg));
+	transform: var(--rk-basic-animations, scale(1.12) rotate(5deg));
 }
 
 
 
 
 
-/*  Badges      */
+/*  Badges	  */
 #game-badges-container > game-badges-list > div:not(.btr-badges-container) > ul,
 #game-badges-container > game-badges-list > div > ul.roblokis-badges-loaded {
-    display: flex;
-    flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 #game-badges-container > game-badges-list > div:not(.btr-badges-container) > ul > li.badge-row,
 #game-badges-container > game-badges-list > div > ul > li.badge-row {
-    flex-direction: column;
-    align-items: center;
+	flex-direction: column;
+	align-items: center;
 
-    border-radius: var(--rk-badge-corners-radius, 20px);
+	border-radius: var(--rk-badge-corners-radius, 20px);
 
-    border-color: var(--rk-badge-borders-color);
-    border-style: var(--rk-badge-borders-style);
-    border-width: var(--rk-badge-borders-size);
+	border-color: var(--rk-badge-borders-color);
+	border-style: var(--rk-badge-borders-style);
+	border-width: var(--rk-badge-borders-size);
 
-    background: var(--rk-badge-background);
-    background-size: var(--rk-badge-background-image-size);
+	background: var(--rk-badge-background);
+	background-size: var(--rk-badge-background-image-size);
 
 }
 #game-badges-container > game-badges-list > div:not(.btr-badges-container) > ul > li.badge-row,
 #game-badges-container > game-badges-list > div > ul.roblokis-badges-loaded > li.badge-row {
-    display: flex;
-    width: calc((100% / 3) - 12px);
-    margin: 6px;
-    transition: all 400ms;
-    transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
+	display: flex;
+	width: calc((100% / 3) - 12px);
+	margin: 6px;
+	transition: all 400ms;
+	transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
 }
 /*#game-badges-container > game-badges-list > div > ul:hover > li:not(li:hover) {
-    opacity: 0.5;
+	opacity: 0.5;
 }*/
 #game-badges-container > game-badges-list > div:not(.btr-badges-container) > ul > li.badge-row:hover,
 #game-badges-container > game-badges-list > div > ul.roblokis-badges-loaded > li.badge-row:hover {
-    transform: var(--rk-basic-animations, scale(1.2));
-    opacity: var(--rk-basic-animations, 1);
-    z-index: var(--rk-basic-animations, 10);
+	transform: var(--rk-basic-animations, scale(1.2));
+	opacity: var(--rk-basic-animations, 1);
+	z-index: var(--rk-basic-animations, 10);
 }
 
 #game-badges-container > game-badges-list > div:not(.btr-badges-container) > ul > li > div.badge-content,
 #game-badges-container > game-badges-list > div > ul.roblokis-badges-loaded > li > div.badge-content {
-    width: 100%;
-    margin-top: 9px;
-    display: flex;
-    flex-direction: column;
-    color: var(--rk-badge-bright-color);
+	width: 100%;
+	margin-top: 9px;
+	display: flex;
+	flex-direction: column;
+	color: var(--rk-badge-bright-color);
 }
 
 #game-badges-container > game-badges-list > div:not(.btr-badges-container) > ul > li > div.badge-content > div > p,
 #game-badges-container > game-badges-list > div > ul.roblokis-badges-loaded > li > div.badge-content > div > p {
-    color: var(--rk-badge-dark-color);
+	color: var(--rk-badge-dark-color);
 }
 
 #game-badges-container > game-badges-list > div.btr-badges-container > ul:not(.roblokis-badges-loaded) > li > div.badge-content > div > p {
-    height: auto;
+	height: auto;
 }
 
 #game-badges-container > game-badges-list > div.btr-badges-container > ul:not(.roblokis-badges-loaded) > li > div.badge-image > a > thumbnail-2d > span {
-    background-color: transparent;
+	background-color: transparent;
 }
 
 #game-badges-container > game-badges-list > div:not(.btr-badges-container) > ul > li > div.badge-content> ul,
 #game-badges-container > game-badges-list > div > ul.roblokis-badges-loaded > li > div.badge-content > ul {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 #game-badges-container > game-badges-list > div:not(.btr-badges-container) > ul > li > div.badge-content> ul > li,
 #game-badges-container > game-badges-list > div > ul.roblokis-badges-loaded > li > div.badge-content > ul > li {
-    display: flex;
-    align-items: center;
-    width: 100% !important;
-    justify-content: center;
-    margin-bottom: -5px !important;
-    float: none !important;
+	display: flex;
+	align-items: center;
+	width: 100% !important;
+	justify-content: center;
+	margin-bottom: -5px !important;
+	float: none !important;
 }
 
 #game-badges-container > game-badges-list > div:not(.btr-badges-container) > ul > li > div.badge-content> ul > li.thecut,
 #game-badges-container > game-badges-list > div > ul.roblokis-badges-loaded > li > div.badge-content > ul > li.thecut {
-    padding: 6px;
+	padding: 6px;
 }
 
 #game-badges-container > game-badges-list > div:not(.btr-badges-container) > ul > li > div.badge-content> ul > li > div.text-label,
 #game-badges-container > game-badges-list > div > ul.roblokis-badges-loaded > li > div.badge-content > ul > li > div.text-label {
-    padding: 0 10px 0 0;
-    color: var(--rk-badge-dark-color);
+	padding: 0 10px 0 0;
+	color: var(--rk-badge-dark-color);
 }
 
 #game-badges-container > game-badges-list > div:not(.btr-badges-container) > ul > li:not(.badge-row),
 #game-badges-container > game-badges-list > div > ul.roblokis-badges-loaded > li:not(.badge-row) {
-    width: 100%;
+	width: 100%;
 }
 
 #game-badges-container > game-badges-list > div.btr-badges-container > ul.roblokis-badges-loaded > li {
-    max-height: fit-content;
+	max-height: fit-content;
 }
 #game-badges-container > game-badges-list > div.btr-badges-container > ul.roblokis-badges-loaded > li > div.badge-content > div,
 #game-badges-container > game-badges-list > div.btr-badges-container > ul.roblokis-badges-loaded > li > div.badge-content > ul {
-    width: auto;
+	width: auto;
 }
 
 
 
 
 #game-instances > div.section-content-off {
-    background-color: transparent;
+	background-color: transparent;
 }
 div.section-content-off {
-    background-color: transparent;
+	background-color: transparent;
 }
 
 
@@ -182,125 +182,125 @@ div.section-content-off {
 
 /* Private Servers  */
 #rbx-private-running-games {
-    overflow: visible;
+	overflow: visible;
 }
 #rbx-private-running-games > ul {
-    display: flex;
-    flex-wrap: wrap;
-    row-gap: 0px;
-    column-gap: 0px;
+	display: flex;
+	flex-wrap: wrap;
+	row-gap: 0px;
+	column-gap: 0px;
 }
 
 #rbx-private-running-games > div.section-content-off,
 #rbx-private-running-games > ul > p.section-content-off,
 #rbx-private-servers > div.rbx-private-server-item-container > p,
 #game-instances #rbx-private-running-games > ul > li > div.card-item {
-    background-color: transparent;
+	background-color: transparent;
 }
 
 #game-instances #rbx-private-running-games > ul > li > div.card-item {
-    padding: 0 !important;
-    min-height: 0 !important;
-    flex-direction: column-reverse;
+	padding: 0 !important;
+	min-height: 0 !important;
+	flex-direction: column-reverse;
 }
 
 #game-instances #rbx-private-running-games > ul > li {
-    display: flex;
-    flex-direction: column-reverse;
-    transition: all 400ms;
-    transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
+	display: flex;
+	flex-direction: column-reverse;
+	transition: all 400ms;
+	transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
 
-    max-width: calc(calc(100% / var(--rk-privateserver-column, 5)) - calc(var(--rk-privateserver-gap, 0.3%) * 2));
-    margin: var(--rk-privateserver-gap, 0.3%);
-    color: var(--rk-privateserver-bright-color);
+	max-width: calc(calc(100% / var(--rk-privateserver-column, 5)) - calc(var(--rk-privateserver-gap, 0.3%) * 2));
+	margin: var(--rk-privateserver-gap, 0.3%);
+	color: var(--rk-privateserver-bright-color);
 
-    border-radius: var(--rk-privateserver-corners-radius, 20px);
+	border-radius: var(--rk-privateserver-corners-radius, 20px);
 
-    border-color: var(--rk-privateserver-borders-color);
-    border-style: var(--rk-privateserver-borders-style);
-    border-width: var(--rk-privateserver-borders-size);
+	border-color: var(--rk-privateserver-borders-color);
+	border-style: var(--rk-privateserver-borders-style);
+	border-width: var(--rk-privateserver-borders-size);
 
-    background: var(--rk-privateserver-background);
-    background-size: var(--rk-privateserver-background-image-size);
+	background: var(--rk-privateserver-background);
+	background-size: var(--rk-privateserver-background-image-size);
 }
 /*#rbx-private-running-games > ul:hover > li:not(li:hover) {
-    opacity: 0.5;
+	opacity: 0.5;
 }*/
 #rbx-private-running-games > ul > li:hover {
-    transform: var(--rk-basic-animations, scale(1.2));
-    opacity: var(--rk-basic-animations, 1);
-    z-index: var(--rk-basic-animations, 10);
+	transform: var(--rk-basic-animations, scale(1.2));
+	opacity: var(--rk-basic-animations, 1);
+	z-index: var(--rk-basic-animations, 10);
 }
 
 #rbx-private-running-games > ul > li > div.card-item > div.rbx-private-game-server-details > span > button,
 #rbx-private-running-games > ul > li > div.card-item > div.rbx-private-game-server-details > a {
-    margin-top: 0 !important;
-    color: var(--rk-privateserver-button-color);
+	margin-top: 0 !important;
+	color: var(--rk-privateserver-button-color);
 
 
-    border-radius: var(--rk-privateserver-button-corners-radius, 8px);
+	border-radius: var(--rk-privateserver-button-corners-radius, 8px);
 
-    border-color: var(--rk-privateserver-button-borders-color, white);
-    border-style: var(--rk-privateserver-button-borders-style, solid);
-    border-width: var(--rk-privateserver-button-borders-size, 1px);
+	border-color: var(--rk-privateserver-button-borders-color, white);
+	border-style: var(--rk-privateserver-button-borders-style, solid);
+	border-width: var(--rk-privateserver-button-borders-size, 1px);
 
-    background: var(--rk-privateserver-button-background, transparent);
-    background-size: var(--rk-privateserver-button-background-image-size);
+	background: var(--rk-privateserver-button-background, transparent);
+	background-size: var(--rk-privateserver-button-background-image-size);
 }
 
 #rbx-private-running-games > ul > li > div.card-item > div.rbx-private-game-server-details > div.section-header > span {
-    font-size: 14px;
-    display: inline-block;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    width: 100%;
-    white-space: nowrap;
+	font-size: 14px;
+	display: inline-block;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	width: 100%;
+	white-space: nowrap;
 }
 
 #rbx-private-running-games > ul > li > div.card-item > div.player-thumbnails-container {
-    float: none;
-    width: auto;
+	float: none;
+	width: auto;
 }
 
 #rbx-private-running-games > ul > li > div.card-item > div.player-thumbnails-container > span {
-    margin: 0px -10px 6px 0px;
-    top: 8px;
-    width: 34px;
-    height: 34px;
+	margin: 0px -10px 6px 0px;
+	top: 8px;
+	width: 34px;
+	height: 34px;
 }
 
 #rbx-private-running-games > ul > li > div.card-item > div.player-thumbnails-container > span#rk-plr-counter {
-    margin: 0px -8px 6px 0px;
-    display: inline-grid;
-    align-content: center;
-    font-weight: bold;
-    font-size: 16px;
-    word-break: break-all;
-    z-index: 1;
-    text-align: center;
+	margin: 0px -8px 6px 0px;
+	display: inline-grid;
+	align-content: center;
+	font-weight: bold;
+	font-size: 16px;
+	word-break: break-all;
+	z-index: 1;
+	text-align: center;
 }
 
 .max-players-text #rbx-private-running-games > ul > li > div.card-item > div.player-thumbnails-container > span#rk-plr-counter {
-    font-size: 10px;
+	font-size: 10px;
 }
 
 #rbx-private-running-games > ul > li > div.card-item > div.rbx-private-game-server-details {
-    float: none;
-    border: none;
-    padding: 0;
-    width: auto;
-    margin-right: 0px;
-    min-width: 0px;
+	float: none;
+	border: none;
+	padding: 0;
+	width: auto;
+	margin-right: 0px;
+	min-width: 0px;
 }
 
 #rbx-private-running-games > ul > li > div.card-item > div.rbx-private-game-server-details > div.rbx-private-owner > a.owner-avatar > img {
-    background-color: var(--rk-privateserver-owner-background, #d4d4d4);
+	background-color: var(--rk-privateserver-owner-background, #d4d4d4);
 }
 
 #rbx-private-running-games > ul > li > div.card-item > div.rbx-private-game-server-details > div.rbx-private-game-server-status,
 html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.card-item > div.rbx-private-game-server-details > div.rbx-private-owner > a.text-name,
 #rbx-private-running-games > ul > li > div.card-item > div.rbx-private-game-server-details > div.rbx-private-server-subscription-alert {
-    display: none;
+	display: none;
 }
 
 
@@ -308,22 +308,22 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
 
 /* RoPro Support */
 #rbx-recent-server-box {
-    background-color: transparent;
+	background-color: transparent;
 }
 
 #game-instances #rbx-recent-server-box > li {
-    border-radius: var(--rk-publicserver-corners-radius, 20px) !important;
+	border-radius: var(--rk-publicserver-corners-radius, 20px) !important;
 
-    border-color: var(--rk-publicserver-borders-color);
-    border-style: var(--rk-publicserver-borders-style);
-    border-width: var(--rk-publicserver-borders-size);
+	border-color: var(--rk-publicserver-borders-color);
+	border-style: var(--rk-publicserver-borders-style);
+	border-width: var(--rk-publicserver-borders-size);
 
-    background: var(--rk-publicserver-background);
-    background-size: var(--rk-publicserver-background-image-size);
+	background: var(--rk-publicserver-background);
+	background-size: var(--rk-publicserver-background-image-size);
 }
 
 #rbx-game-server-item-container li div.rbx-game-server-details div.ropro-server-info.text-info {
-    display: inline;
+	display: inline;
 }
 
 
@@ -332,106 +332,106 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
 
 /* Friends Servers  */
 #rbx-friends-running-games #rbx-friends-game-server-item-container {
-    display: flex;
-    flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 #rbx-friends-running-games  > div.section-content-off,
 #rbx-friends-game-server-item-container.section-content-off,
 #game-instances #rbx-friends-game-server-item-container > li > div.card-item {
-    background-color: transparent;
+	background-color: transparent;
 }
 
 #game-instances #rbx-friends-game-server-item-container > li > div.card-item {
-    padding: 0 !important;
-    min-height: 0 !important;
-    flex-direction: column-reverse;
+	padding: 0 !important;
+	min-height: 0 !important;
+	flex-direction: column-reverse;
 }
 
 #game-instances #rbx-friends-game-server-item-container > li {
-    transition: all 400ms;
-    transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
+	transition: all 400ms;
+	transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
 
-    width: calc(calc(100% / var(--rk-friendsserver-column, 5)) - calc(var(--rk-friendsserver-gap, 0.3%) * 2));
-    margin: var(--rk-friendsserver-gap, 0.3%);
+	width: calc(calc(100% / var(--rk-friendsserver-column, 5)) - calc(var(--rk-friendsserver-gap, 0.3%) * 2));
+	margin: var(--rk-friendsserver-gap, 0.3%);
 
 
-    border-radius: var(--rk-friendsserver-corners-radius, 20px);
+	border-radius: var(--rk-friendsserver-corners-radius, 20px);
 
-    border-color: var(--rk-friendsserver-borders-color);
-    border-style: var(--rk-friendsserver-borders-style);
-    border-width: var(--rk-friendsserver-borders-size);
+	border-color: var(--rk-friendsserver-borders-color);
+	border-style: var(--rk-friendsserver-borders-style);
+	border-width: var(--rk-friendsserver-borders-size);
 
-    background: var(--rk-friendsserver-background);
-    background-size: var(--rk-friendsserver-background-image-size);
+	background: var(--rk-friendsserver-background);
+	background-size: var(--rk-friendsserver-background-image-size);
 }
 /*#rbx-friends-game-server-item-container:hover > li:not(li:hover) {
-    opacity: 0.5;
+	opacity: 0.5;
 }*/
 #rbx-friends-game-server-item-container > li:hover {
-    transform: var(--rk-basic-animations, scale(1.2));
-    opacity: var(--rk-basic-animations, 1);
-    z-index: var(--rk-basic-animations, 10);
+	transform: var(--rk-basic-animations, scale(1.2));
+	opacity: var(--rk-basic-animations, 1);
+	z-index: var(--rk-basic-animations, 10);
 }
 
 #rbx-friends-game-server-item-container > li > div.card-item > div.rbx-friends-game-server-details > span > button,
 #rbx-friends-game-server-item-container > li > div.card-item > div.rbx-friends-game-server-details > a {
-    margin-top: 0 !important;
-    color: var(--rk-friendsserver-button-color);
+	margin-top: 0 !important;
+	color: var(--rk-friendsserver-button-color);
 
 
-    border-radius: var(--rk-friendsserver-button-corners-radius, 8px);
+	border-radius: var(--rk-friendsserver-button-corners-radius, 8px);
 
-    border-color: var(--rk-friendsserver-button-borders-color, white);
-    border-style: var(--rk-friendsserver-button-borders-style, solid);
-    border-width: var(--rk-friendsserver-button-borders-size, 1px);
+	border-color: var(--rk-friendsserver-button-borders-color, white);
+	border-style: var(--rk-friendsserver-button-borders-style, solid);
+	border-width: var(--rk-friendsserver-button-borders-size, 1px);
 
-    background: var(--rk-friendsserver-button-background, transparent);
-    background-size: var(--rk-friendsserver-button-background-image-size);
+	background: var(--rk-friendsserver-button-background, transparent);
+	background-size: var(--rk-friendsserver-button-background-image-size);
 }
 
 #rbx-friends-game-server-item-container > li > div.card-item > div.player-thumbnails-container {
-    float: none;
-    width: auto;
-    align-self: flex-start;
+	float: none;
+	width: auto;
+	align-self: flex-start;
 }
 
 #rbx-friends-game-server-item-container > li > div.card-item > div.player-thumbnails-container > span {
-    margin: 0px -10px 6px 0px;
-    top: 8px;
-    width: 34px;
-    height: 34px;
+	margin: 0px -10px 6px 0px;
+	top: 8px;
+	width: 34px;
+	height: 34px;
 }
 
 #rbx-friends-game-server-item-container > li > div.card-item > div.player-thumbnails-container > span#rk-plr-counter {
-    margin: 0px -8px 6px 0px;
-    display: inline-grid;
-    align-content: center;
-    font-weight: bold;
-    font-size: 16px;
-    word-break: break-all;
-    z-index: 1;
-    text-align: center;
+	margin: 0px -8px 6px 0px;
+	display: inline-grid;
+	align-content: center;
+	font-weight: bold;
+	font-size: 16px;
+	word-break: break-all;
+	z-index: 1;
+	text-align: center;
 }
 
 .max-players-text #rbx-friends-game-server-item-container > li > div.card-item > div.player-thumbnails-container > span#rk-plr-counter {
-    font-size: 10px;
+	font-size: 10px;
 }
 
 #rbx-friends-game-server-item-container > li > div.card-item > div.game-server-details,
 #rbx-friends-game-server-item-container > li > div.card-item > div.rbx-game-server-details {
-    float: none;
-    border: none;
-    padding: 0;
-    width: auto;
+	float: none;
+	border: none;
+	padding: 0;
+	width: auto;
 }
 
 #rbx-friends-game-server-item-container > li > div.card-item > div.game-server-details > div.rbx-friends-game-server-status,
 #rbx-friends-game-server-item-container > li > div.card-item > div.rbx-game-server-details > div.rbx-friends-game-server-status {
-    font-size: 90%;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    color: var(--rk-friendsserver-dark-color);
+	font-size: 90%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	color: var(--rk-friendsserver-dark-color);
 }
 
 
@@ -440,98 +440,98 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
 
 /* Small Servers  */
 #rbx-small-running-games  > div.section-content-off {
-    background-color: transparent;
+	background-color: transparent;
 }
 #rbx-small-game-server-item-container {
-    display: flex;
-    flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 #rbx-small-game-server-item-container.section-content-off {
-    background-color: transparent;
+	background-color: transparent;
 }
 
 #game-instances #rbx-small-game-server-item-container > li {
-    transition: all 400ms;
-    transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
+	transition: all 400ms;
+	transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
 
-    width: calc(calc(100% / var(--rk-smallserver-column, 5)) - calc(var(--rk-smallserver-gap, 0.3%) * 2));
-    margin: var(--rk-smallserver-gap, 0.3%);
+	width: calc(calc(100% / var(--rk-smallserver-column, 5)) - calc(var(--rk-smallserver-gap, 0.3%) * 2));
+	margin: var(--rk-smallserver-gap, 0.3%);
 
 
-    border-radius: var(--rk-smallserver-corners-radius, 20px);
+	border-radius: var(--rk-smallserver-corners-radius, 20px);
 
-    border-color: var(--rk-smallserver-borders-color);
-    border-style: var(--rk-smallserver-borders-style);
-    border-width: var(--rk-smallserver-borders-size);
+	border-color: var(--rk-smallserver-borders-color);
+	border-style: var(--rk-smallserver-borders-style);
+	border-width: var(--rk-smallserver-borders-size);
 
-    background: var(--rk-smallserver-background);
-    background-size: var(--rk-smallserver-background-image-size);
+	background: var(--rk-smallserver-background);
+	background-size: var(--rk-smallserver-background-image-size);
 }
 /*#rbx-small-game-server-item-container:hover > li:not(li:hover) {
-    opacity: 0.5;
+	opacity: 0.5;
 }*/
 #rbx-small-game-server-item-container > li:hover {
-    transform: var(--rk-basic-animations, scale(1.2));
-    opacity: var(--rk-basic-animations, 1);
-    z-index: var(--rk-basic-animations, 10);
+	transform: var(--rk-basic-animations, scale(1.2));
+	opacity: var(--rk-basic-animations, 1);
+	z-index: var(--rk-basic-animations, 10);
 }
 
 #rbx-small-game-server-item-container > li > div.rbx-game-server-details > span > button,
 #rbx-small-game-server-item-container > li > div.rbx-game-server-details > a {
-    margin-top: 0 !important;
-    color: var(--rk-smallserver-button-color);
+	margin-top: 0 !important;
+	color: var(--rk-smallserver-button-color);
 
 
-    border-radius: var(--rk-smallserver-button-corners-radius, 8px);
+	border-radius: var(--rk-smallserver-button-corners-radius, 8px);
 
-    border-color: var(--rk-smallserver-button-borders-color, white);
-    border-style: var(--rk-smallserver-button-borders-style, solid);
-    border-width: var(--rk-smallserver-button-borders-size, 1px);
+	border-color: var(--rk-smallserver-button-borders-color, white);
+	border-style: var(--rk-smallserver-button-borders-style, solid);
+	border-width: var(--rk-smallserver-button-borders-size, 1px);
 
-    background: var(--rk-smallserver-button-background, transparent);
-    background-size: var(--rk-smallserver-button-background-image-size);
+	background: var(--rk-smallserver-button-background, transparent);
+	background-size: var(--rk-smallserver-button-background-image-size);
 }
 #rbx-small-game-server-item-container > li > div.section-right {
-    float: none;
-    width: auto;
+	float: none;
+	width: auto;
 }
 
 #rbx-small-game-server-item-container > li > div.section-right > span {
-    margin: 0px -8px 6px 0px;
-    top: 8px;
-    width: 34px;
-    height: 34px;
+	margin: 0px -8px 6px 0px;
+	top: 8px;
+	width: 34px;
+	height: 34px;
 }
 
 #rbx-small-game-server-item-container > li > div.section-right > span#rk-plr-counter {
-    margin: 0px -8px 6px 0px;
-    display: inline-grid;
-    align-content: center;
-    font-weight: bold;
-    font-size: 16px;
-    word-break: break-all;
-    z-index: 1;
-    text-align: center;
-    background-color: lightgray;
-    color: black;
+	margin: 0px -8px 6px 0px;
+	display: inline-grid;
+	align-content: center;
+	font-weight: bold;
+	font-size: 16px;
+	word-break: break-all;
+	z-index: 1;
+	text-align: center;
+	background-color: lightgray;
+	color: black;
 }
 
 .max-players-text #rbx-small-game-server-item-container > li > div.section-right > span#rk-plr-counter {
-    font-size: 10px;
+	font-size: 10px;
 }
 
 #rbx-small-game-server-item-container > li > div.game-server-details,
 #rbx-small-game-server-item-container > li > div.rbx-game-server-details {
-    float: none;
-    border: none;
-    padding: 0;
-    width: auto;
+	float: none;
+	border: none;
+	padding: 0;
+	width: auto;
 }
 
 #rbx-small-game-server-item-container > li > div.game-server-details > div.rbx-game-server-status,
 #rbx-small-game-server-item-container > li > div.rbx-game-server-details > div.rbx-game-server-status {
-    display: none;
+	display: none;
 }
 
 
@@ -540,231 +540,231 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
 
 /* Public Servers  */
 #rbx-running-games > div.container-header > div.server-list-options {
-    display: none;
+	display: none;
 }
 #rbx-running-games  > div.section-content-off {
-    background-color: transparent;
+	background-color: transparent;
 }
 #rbx-running-games #rbx-game-server-item-container {
-    display: flex;
-    flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 #rbx-game-server-item-container.section-content-off,
 #rbx-running-games > div.section > div {
-    background-color: transparent;
+	background-color: transparent;
 }
 
 #rbx-running-games > div.section-content-off,
 #rbx-running-games > ul > p.section-content-off,
 #game-instances #rbx-game-server-item-container li > div.card-item {
-    background-color: transparent;
+	background-color: transparent;
 }
 
 #game-instances #rbx-game-server-item-container li > div.card-item {
-    padding: 0 !important;
-    min-height: 0 !important;
-    flex-direction: column-reverse;
+	padding: 0 !important;
+	min-height: 0 !important;
+	flex-direction: column-reverse;
 }
 
 #game-instances #rbx-game-server-item-container li {
-    transition: all 400ms;
-    transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
+	transition: all 400ms;
+	transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
 
-    display: list-item;
-    width: calc(calc(100% / var(--rk-publicserver-column, 5)) - calc(var(--rk-publicserver-gap, 0.3%) * 2));
-    margin: var(--rk-publicserver-gap, 0.3%);
-    padding: 1%;
+	display: list-item;
+	width: calc(calc(100% / var(--rk-publicserver-column, 5)) - calc(var(--rk-publicserver-gap, 0.3%) * 2));
+	margin: var(--rk-publicserver-gap, 0.3%);
+	padding: 1%;
 
 
-    border-radius: var(--rk-publicserver-corners-radius, 20px);
+	border-radius: var(--rk-publicserver-corners-radius, 20px);
 
-    border-color: var(--rk-publicserver-borders-color);
-    border-style: var(--rk-publicserver-borders-style);
-    border-width: var(--rk-publicserver-borders-size);
+	border-color: var(--rk-publicserver-borders-color);
+	border-style: var(--rk-publicserver-borders-style);
+	border-width: var(--rk-publicserver-borders-size);
 
-    background: var(--rk-publicserver-background);
-    background-size: var(--rk-publicserver-background-image-size);
+	background: var(--rk-publicserver-background);
+	background-size: var(--rk-publicserver-background-image-size);
 }
 /*#rbx-game-server-item-container:hover > li:not(li:hover) {
-    opacity: 0.5;
+	opacity: 0.5;
 }*/
 #rbx-game-server-item-container li:hover {
-    transform: var(--rk-basic-animations, scale(1.2));
-    opacity: var(--rk-basic-animations, 1);
-    z-index: var(--rk-basic-animations, 10);
+	transform: var(--rk-basic-animations, scale(1.2));
+	opacity: var(--rk-basic-animations, 1);
+	z-index: var(--rk-basic-animations, 10);
 }
 
 #rbx-game-server-item-container li div.game-server-details > span > button,
 #rbx-game-server-item-container li div.rbx-game-server-details > span > button {
-    margin-top: 0 !important;
-    color: var(--rk-publicserver-button-color);
+	margin-top: 0 !important;
+	color: var(--rk-publicserver-button-color);
 
 
-    border-radius: var(--rk-publicserver-button-corners-radius, 8px);
+	border-radius: var(--rk-publicserver-button-corners-radius, 8px);
 
-    border-color: var(--rk-publicserver-button-borders-color, white);
-    border-style: var(--rk-publicserver-button-borders-style, solid);
-    border-width: var(--rk-publicserver-button-borders-size, 1px);
+	border-color: var(--rk-publicserver-button-borders-color, white);
+	border-style: var(--rk-publicserver-button-borders-style, solid);
+	border-width: var(--rk-publicserver-button-borders-size, 1px);
 
-    background: var(--rk-publicserver-button-background, transparent);
-    background-size: var(--rk-publicserver-button-background-image-size);
+	background: var(--rk-publicserver-button-background, transparent);
+	background-size: var(--rk-publicserver-button-background-image-size);
 }
 
 #rbx-game-server-item-container li div.player-thumbnails-container {
-    float: none;
-    width: 100%;
+	float: none;
+	width: 100%;
 }
 
 #rbx-game-server-item-container li div.player-thumbnails-container > span {
-    margin: 0px -10px 6px 0px;
-    top: 8px;
-    width: 34px;
-    height: 34px;
+	margin: 0px -10px 6px 0px;
+	top: 8px;
+	width: 34px;
+	height: 34px;
 }
 
 #rbx-game-server-item-container li div.player-thumbnails-container > span#rk-plr-counter {
-    margin: 0px -8px 6px 0px;
-    display: inline-grid;
-    align-content: center;
-    font-weight: bold;
-    font-size: 16px;
-    word-break: break-all;
-    z-index: 1;
-    text-align: center;
+	margin: 0px -8px 6px 0px;
+	display: inline-grid;
+	align-content: center;
+	font-weight: bold;
+	font-size: 16px;
+	word-break: break-all;
+	z-index: 1;
+	text-align: center;
 }
 
 .max-players-text #rbx-game-server-item-container li div.player-thumbnails-container > span#rk-plr-counter {
-    font-size: 10px;
+	font-size: 10px;
 }
 
 #rbx-game-server-item-container li div.game-server-details,
 #rbx-game-server-item-container li div.rbx-game-server-details {
-    float: none;
-    border: none;
-    padding: 0;
-    width: auto;
+	float: none;
+	border: none;
+	padding: 0;
+	width: auto;
 }
 
 #rbx-game-server-item-container li div.game-server-details > div.rbx-game-server-status,
 #rbx-game-server-item-container li div.rbx-game-server-details > div.rbx-game-server-status,
 #rbx-game-server-item-container.pagenav > li:not(.pagenav) {
-    display: none;
+	display: none;
 }
 
 
 
 /* Filtered Servers  */
 #rbx-filtered-running-games  > div.section-content-off {
-    background-color: transparent;
+	background-color: transparent;
 }
 #rbx-filtered-game-server-item-container {
-    display: flex;
-    flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 #rbx-filtered-game-server-item-container.section-content-off {
-    background-color: transparent;
+	background-color: transparent;
 }
 
 #game-instances #rbx-filtered-game-server-item-container > li {
-    transition: all 400ms;
-    transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
+	transition: all 400ms;
+	transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
 
-    width: calc(calc(100% / var(--rk-filteredserver-column, 5)) - calc(var(--rk-filteredserver-gap, 0.3%) * 2));
-    margin: var(--rk-filteredserver-gap, 0.3%);
+	width: calc(calc(100% / var(--rk-filteredserver-column, 5)) - calc(var(--rk-filteredserver-gap, 0.3%) * 2));
+	margin: var(--rk-filteredserver-gap, 0.3%);
 
 
-    border-radius: var(--rk-filteredserver-corners-radius, 20px);
+	border-radius: var(--rk-filteredserver-corners-radius, 20px);
 
-    border-color: var(--rk-filteredserver-borders-color);
-    border-style: var(--rk-filteredserver-borders-style);
-    border-width: var(--rk-filteredserver-borders-size);
+	border-color: var(--rk-filteredserver-borders-color);
+	border-style: var(--rk-filteredserver-borders-style);
+	border-width: var(--rk-filteredserver-borders-size);
 
-    background: var(--rk-filteredserver-background);
-    background-size: var(--rk-filteredserver-background-image-size);
+	background: var(--rk-filteredserver-background);
+	background-size: var(--rk-filteredserver-background-image-size);
 }
 /*#rbx-filtered-game-server-item-container:hover > li:not(li:hover) {
-    opacity: 0.5;
+	opacity: 0.5;
 }*/
 #rbx-filtered-game-server-item-container > li:hover {
-    transform: var(--rk-basic-animations, scale(1.2));
-    opacity: var(--rk-basic-animations, 1);
-    z-index: var(--rk-basic-animations, 10);
+	transform: var(--rk-basic-animations, scale(1.2));
+	opacity: var(--rk-basic-animations, 1);
+	z-index: var(--rk-basic-animations, 10);
 }
 
 #rbx-filtered-game-server-item-container > li > div.rbx-game-server-details > span > button,
 #rbx-filtered-game-server-item-container > li > div.rbx-game-server-details > a {
-    margin-top: 0 !important;
-    color: var(--rk-filteredserver-button-color);
+	margin-top: 0 !important;
+	color: var(--rk-filteredserver-button-color);
 
 
-    border-radius: var(--rk-filteredserver-button-corners-radius, 8px);
+	border-radius: var(--rk-filteredserver-button-corners-radius, 8px);
 
-    border-color: var(--rk-filteredserver-button-borders-color, white);
-    border-style: var(--rk-filteredserver-button-borders-style, solid);
-    border-width: var(--rk-filteredserver-button-borders-size, 1px);
+	border-color: var(--rk-filteredserver-button-borders-color, white);
+	border-style: var(--rk-filteredserver-button-borders-style, solid);
+	border-width: var(--rk-filteredserver-button-borders-size, 1px);
 
-    background: var(--rk-filteredserver-button-background, transparent);
-    background-size: var(--rk-filteredserver-button-background-image-size);
+	background: var(--rk-filteredserver-button-background, transparent);
+	background-size: var(--rk-filteredserver-button-background-image-size);
 }
 #rbx-filtered-game-server-item-container > li > div.section-right {
-    float: none;
-    width: auto;
+	float: none;
+	width: auto;
 }
 
 #rbx-filtered-game-server-item-container > li > div.section-right > span {
-    margin: 0px -8px 6px 0px;
-    top: 8px;
-    width: 34px;
-    height: 34px;
+	margin: 0px -8px 6px 0px;
+	top: 8px;
+	width: 34px;
+	height: 34px;
 }
 
 #rbx-filtered-game-server-item-container > li > div.section-right > span#rk-plr-counter {
-    margin: 0px -8px 6px 0px;
-    display: inline-grid;
-    align-content: center;
-    font-weight: bold;
-    font-size: 16px;
-    word-break: break-all;
-    z-index: 1;
-    text-align: center;
-    background-color: lightgray;
-    color: black;
+	margin: 0px -8px 6px 0px;
+	display: inline-grid;
+	align-content: center;
+	font-weight: bold;
+	font-size: 16px;
+	word-break: break-all;
+	z-index: 1;
+	text-align: center;
+	background-color: lightgray;
+	color: black;
 }
 
 .max-players-text #rbx-filtered-game-server-item-container > li > div.section-right > span#rk-plr-counter {
-    font-size: 10px;
+	font-size: 10px;
 }
 
 #rbx-filtered-game-server-item-container > li > div.section-left {
-    float: none;
-    border: none;
-    padding: 0;
-    width: auto;
+	float: none;
+	border: none;
+	padding: 0;
+	width: auto;
 }
 
 #rbx-filtered-game-server-item-container > li > div.section-left > div.rbx-game-server-status {
-    display: none;
+	display: none;
 }
 
 .filtered-servers-buttons {
-    user-select: none;
-    border: 1px solid #fff;
-    cursor: pointer;
-    /* display: inline-block; */
-    font-weight: 500;
-    height: auto;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    padding: 7px;
-    font-size: 16px;
-    line-height: 100%;
-    float: right;
-    background-color: transparent;
-    border-radius: 8px;
-    margin: 0 2px;
+	user-select: none;
+	border: 1px solid #fff;
+	cursor: pointer;
+	/* display: inline-block; */
+	font-weight: 500;
+	height: auto;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	padding: 7px;
+	font-size: 16px;
+	line-height: 100%;
+	float: right;
+	background-color: transparent;
+	border-radius: 8px;
+	margin: 0 2px;
 }
 
 
@@ -778,14 +778,14 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
 #rbx-small-running-games > button,
 #rbx-private-running-games > div > button,
 #rkpagenav > * {
-    border-radius: var(--rk-pagenav-corners-radius, 8px);
+	border-radius: var(--rk-pagenav-corners-radius, 8px);
 
-    border-color: var(--rk-pagenav-borders-color, white);
-    border-style: var(--rk-pagenav-borders-style, solid);
-    border-width: var(--rk-pagenav-borders-size, 1px);
+	border-color: var(--rk-pagenav-borders-color, white);
+	border-style: var(--rk-pagenav-borders-style, solid);
+	border-width: var(--rk-pagenav-borders-size, 1px);
 
-    background: var(--rk-pagenav-background, rgb(0 0 0 / 0.4));
-    background-size: var(--rk-pagenav-background-image-size);
+	background: var(--rk-pagenav-background, rgb(0 0 0 / 0.4));
+	background-size: var(--rk-pagenav-background-image-size);
 }
 
 #rbx-running-games > div.rbx-running-games-footer > button,
@@ -795,5 +795,5 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
 #rbx-small-running-games > button,
 #rbx-private-running-games > div > button,
 #rkpagenav > *, #rkpagenav > * > * {
-    color: var(--rk-pagenav-color);
+	color: var(--rk-pagenav-color);
 }

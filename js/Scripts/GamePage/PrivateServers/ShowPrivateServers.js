@@ -1,6 +1,6 @@
 var Rkis = Rkis || {};
 
-if(Rkis.IsSettingEnabled("ShowPrivateServers", {
+if (Rkis.IsSettingEnabled("ShowPrivateServers", {
 	id: "ShowPrivateServers",
 	type: "switch",
 	value: { switch: true },
@@ -17,13 +17,13 @@ if(Rkis.IsSettingEnabled("ShowPrivateServers", {
 	}
 })) {
 
-  document.$watchLoop("#rbx-private-running-games > div.rbx-private-running-games-footer > button", async (loadmoreBTN) => {
-    while(document.contains(loadmoreBTN)) {
-      if (loadmoreBTN.getAttribute("disabled") == null) {
-        loadmoreBTN.click();
-      }
-      await Rkis.delay(200);
-    }
-  })
+	document.$watchLoop("#rbx-private-running-games > div.rbx-private-running-games-footer > button", async (loadmoreBTN) => {
+		while (document.contains(loadmoreBTN)) {
+			if (loadmoreBTN.getAttribute("disabled") == null) {
+				loadmoreBTN.click();
+			}
+			await Rkis.delay(200);
+		}
+	})
 
 }

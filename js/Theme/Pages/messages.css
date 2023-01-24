@@ -1,10 +1,10 @@
 /*content*/
 #container-main > div.content {
-    width: 90%;
+	width: 90%;
 }
 
 #private-message {
-    width: 100%;
+	width: 100%;
 }
 
 #private-message > div > ul,
@@ -15,5 +15,5 @@
 
 #private-message > div > ui-view > div > div.roblox-message-body > div,
 #private-message > div > ui-view > div > div.roblox-message-body > div > div.message-reply {
-    background-color: transparent;
+	background-color: transparent;
 }

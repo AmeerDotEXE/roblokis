@@ -12,20 +12,20 @@ Rkis.InjectFile = function(src) {
 Rkis.IS_DEV = chrome.runtime.getManifest().update_url == null;
 
 console.log = (function(old) {
-    return function(...args) {
-        return old("[%cRoblokis%c]", "color:red", "color:white", ...args)
-    }
+	return function(...args) {
+		return old("[%cRoblokis%c]", "color:red", "color:white", ...args)
+	}
 })(console.log);
 
 console.error = (function(old) {
-    return function(...args) {
-        return old("[Roblokis Error]", ...args.map(x => {
+	return function(...args) {
+		return old("[Roblokis Error]", ...args.map(x => {
 			if (Rkis.IS_DEV == true) return x;
 			if (typeof x == "object") return JSON.stringify(x);
 			if (typeof x == "function") return x.toString();
 			return x;
 		}))
-    }
+	}
 })(console.error);
 
 //add listener then the elemend has changed
@@ -147,6 +147,11 @@ $r = (() => {
 				this.targetPromise.then(target => { target.$watchLoop(...args); });
 				return this;
 			},
+			
+			$watchData(...args) {
+				this.targetPromise.then(target => { target.$watchData(...args); });
+				return this;
+			},
 	
 			$then(callback) {
 				const nxt = {
@@ -179,7 +184,7 @@ $r = (() => {
 				const item = listeners[index];
 	
 				if (!item.stopped)
-					item.execute();
+					item.execute(muts);
 	
 				if (item.stopped) 
 					listeners.splice(index, 1);
@@ -237,10 +242,9 @@ $r = (() => {
 					__proto__: watchProto
 				}
 			},
-			
 			watchLoop(target, selector, filter, callback) {
 
-			  if (typeof callback != "function") {
+				if (typeof callback != "function") {
 					callback = filter;
 					filter = null;
 				}
@@ -249,66 +253,100 @@ $r = (() => {
 					target = target.documentElement;
 				}
 
-			  	const item = {
-		  			checked: new WeakSet(),
-				  	firstSearch: false,
-				  	stopped: false,
+				const item = {
+					checked: new WeakSet(),
+					stopped: false,
 
-				  	resolve(node) {
-          				if (callback) {
+					resolve(node) {
+						if (callback) {
 							try { callback(node, () => this.stopped = true); }
 							catch(ex) { console.error(selector, ex); }
 						}
-		  			},
+					},
 
-			  		execute() {
-					  	if (!this.firstSearch) {
-						  	const elem = target.$find(selector);
-						  	if (!elem) return;
+					execute() {
+						const matches = target.$findAll(selector);
 
-						  	this.firstSearch = true;
-							  this.checked.add(elem);
+						for (let index = 0; index < matches.length; index++) {
+							const match = matches[index];
 
-						  	if (!filter || filter(elem)) {
-							  	item.resolve(elem);
-							  	if (item.stopped) return;
-		  					}
-					  	}
+							if (!this.checked.has(match)) {
+								this.checked.add(match);
 
-					  	const matches = target.$findAll(selector);
+								if (!filter || filter(match)) {
+									this.resolve(match);
+									if (this.stopped) return;
+								}
+							}
+						}
+					}
+				};
 
-					  	for (let index = 0; index < matches.length; index++) {
-						  	const match = matches[index];
+				item.execute();
 
-					  		if (!this.checked.has(match)) {
-						  		this.checked.add(match);
+				if (!item.stopped) {
+					let observer = Observers.get(target);
 
-								  if (!filter || filter(match)) {
-								  	this.resolve(match);
-								  	if (this.stopped) return;
-					  			}
-					  		}
-				  		}
-				  	}
-		  		};
+					if (!observer) {
+						observer = new MutationObserver(handleMuts);
+						Observers.set(target, observer);
 
-			  	item.execute();
+						observer.listeners = [];
+						observer.target = target;
 
-	  			if (!item.stopped) {
-	  				let observer = Observers.get(target);
+						observer.observe(target, { childList: true, subtree: true });
+					}
 
-		  			if (!observer) {
-			  			observer = new MutationObserver(handleMuts);
-				  		Observers.set(target, observer);
+					observer.listeners.push(item);
+				}
+			},
+			watchData(target, filter, callback) {
 
-			  			observer.listeners = [];
-	  					observer.target = target;
+				if (typeof callback != "function") {
+					callback = filter;
+					filter = null;
+				}
 
-			  			observer.observe(target, { childList: true, subtree: true });
-			  		}
+				if ((target instanceof Document) || (target instanceof DocumentFragment)) {
+					target = target.documentElement;
+				}
 
-				  	observer.listeners.push(item);
-			  	}
+				const item = {
+					checked: new WeakSet(),
+					stopped: false,
+
+					resolve(node) {
+						if (callback) {
+							try { callback(node, () => this.stopped = true); }
+							catch(ex) { console.error(ex); }
+						}
+					},
+
+					execute() {
+						if (!filter || filter(target)) {
+							this.resolve(target);
+							if (this.stopped) return;
+						}
+					}
+				};
+
+				item.execute();
+
+				if (!item.stopped) {
+					let observer = Observers.get(target);
+
+					if (!observer) {
+						observer = new MutationObserver(handleMuts);
+						Observers.set(target, observer);
+
+						observer.listeners = [];
+						observer.target = target;
+
+						observer.observe(target, { characterData: true, attributes: true, subtree: true });
+					}
+
+					observer.listeners.push(item);
+				}
 			},
 
 			find(self, selector, callback) {
@@ -391,14 +429,14 @@ $r = (() => {
 			$find(...args) { return $.find(this, ...args); },
 			$findAll(...args) { return $.findAll(this, ...args); },
 			$watch(...args) { return $.watch(this, ...args); },
-			$watchLoop(...args) { return $.watchLoop(this, ...args); }
+			$watchLoop(...args) { return $.watchLoop(this, ...args); },
+			$watchData(...args) { return $.watchData(this, ...args); }
 		});
 
 		Assign([self.NodeList, NodeList], {
 			$each(...args) { return $.each(this, ...args); }
 		});
-	}
-	else {
+	} else {
 		$ = {};
 	}
 

@@ -1,6 +1,6 @@
 var Rkis = Rkis || {};
 
-if(Rkis.IsSettingEnabled("AvailPrivateServers", {
+if (Rkis.IsSettingEnabled("AvailPrivateServers", {
 	id: "AvailPrivateServers",
 	type: "switch",
 	value: { switch: false },
@@ -17,13 +17,13 @@ if(Rkis.IsSettingEnabled("AvailPrivateServers", {
 	}
 })) {
 
-  document.$watchLoop("#rbx-private-running-games > ul > li", (server) => {
-    var jionBtn = server.querySelector('div.rbx-private-game-server-details > span > button.rbx-private-game-server-join');
+	document.$watchLoop("#rbx-private-running-games > ul > li", (server) => {
+		var jionBtn = server.querySelector('div.rbx-private-game-server-details > span > button.rbx-private-game-server-join');
 
-    if (jionBtn == null) {
-      server.style = "display: none !important;";
-    }
+		if (jionBtn == null) {
+			server.style = "display: none !important;";
+		}
 
-  })
+	})
 
 }

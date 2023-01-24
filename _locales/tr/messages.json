@@ -1,868 +1,868 @@
 {
-    "extDesc": {
-        "message": "Roblox İçin Özel Özellikler ve Stiller.",
-        "description": "Extension description."
-    },
-    "extUpdate": {
-        "message": "Yeni Bir Güncelleme var!",
-        "description": "Text shows then clicking on Extension icon. text will show then the extension is not up-to-date. this will be under 'Open Settings Menu' button"
-    },
-    "extUpdate1": {
-        "message": "Lütfen Roblokis'i Yeniden Yükleyin.",
-        "description": "Text shows then clicking on Extension icon. text will show then the extension is not up-to-date. this will be under the new update text"
-    },
-    "refresh": {
-        "message": "Yenile",
-        "description": "Text shows on a button at filtered servers on game page"
-    },
-    "LowPingSvrs": {
-        "message": "Düşük Ping Sunucuları",
-        "description": "Text shows on a button at filtered servers on game page"
-    },
-    "sectionMPN": {
-        "message": "Maksimum Oyuncu Sayısı.",
-        "description": "Text shows on Roblokis settings page. text for a section"
-    },
-    "sectionMPN1": {
-        "message": "Mevcut oyuncu sayısının yanında Maksimum oyuncu sayısını gösterir.",
-        "description": "Text shows on Roblokis settings page. text for a section"
-    },
-    "serversFiltered": {
-        "message": "Filtrelenmiş Sunucular",
-        "description": "Text shows in roblokis settings. text for a Section Selection"
-    },
-    "sectionFSS": {
-        "message": "Filtrelenmiş Sunucular Bölümü.",
-        "description": "Text shows on Roblokis settings page. text for a section"
-    },
-    "sectionFSS1": {
-        "message": "Sıralama seçenekleriyle yeni bir bölüm.",
-        "description": "Text shows on Roblokis settings page. text for a section"
-    },
-    "experimental": {
-        "message": "(DENEYSEL)",
-        "description": "Text shows on Roblokis settings page. text for a section"
-    },
-    "sectionLSite": {
-        "message": "Roblox site dilleri.",
-        "description": "Text shows on Roblokis settings page. text for a section"
-    },
-    "sectionLSite1": {
-        "message": "Roblokis Dilini Roblox Site Diliyle Sınırlar.",
-        "description": "Text shows on Roblokis settings page. text for a section"
-    },
-      "sectionExtraS": {
-        "message": "Ekstra Gölgeler.",
-        "description": "Text shows on Roblokis settings page. text for a section"
-    },
-      "sectionExtraS1": {
-        "message": "Bazı öğelerin altına veya çevresine gölge efekti ekler.",
-        "description": "Text shows on Roblokis settings page. text for a section"
-    },
-    "credits": {
-        "message": "Kredi",
-        "description": "Text shows on Roblokis settings page. include your name for credits, you deseve it"
-    },
-    "creditsTranslate": {
-        "message": "Google Çeviri ile Çeviri",
-        "description": "Text shows on Roblokis settings page. include your name for credits, you deseve it"
-    },
-    "openSettingsMenu": {
-        "message": "Ayarlar Menüsünü Aç",
-        "description": "Text shows then you click on the extension. clicking it will open settings menu"
-    },
-    "errorCode": {
-        "message": "Hata kodu:",
-        "description": "Error occured and error code will be next to it. Example: QFR11"
-    },
-    "error": {
-        "message": "Hata",
-        "description": "Error occured."
-    },
-    "errorNameLength": {
-        "message": "İsim 3 ile 24 Karakter arasında olmalıdır!",
-        "description": "the user input should be in a specific range"
-    },
-    "errorDescLength": {
-        "message": "Maksimum Açıklama uzunluğu 36 Karakterdir!",
-        "description": "the user input should be in a specific range"
-    },
-    "errorAtoZ": {
-        "message": "Yalnızca A-Z ve 0-9'a İzin Verilir!",
-        "description": "the user input should be in a specific letters"
-    },
-    "errorMaxSlots": {
-        "message": "Tüm Slotlar Kullanılır.",
-        "description": "User doesn't have enough space for themes"
-    },
-    "errorNameExist": {
-        "message": "Ad Zaten Var.",
-        "description": "Theme name already exist"
-    },
-    "btnEdit": {
-        "message": "Düzenlemek",
-        "description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will open edit menu for the themes"
-    },
-    "btnSelect": {
-        "message": "Seçme",
-        "description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will select the theme"
-    },
-    "btnCreate": {
-        "message": "Yaratmak",
-        "description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will create a theme"
-    },
-    "btnCancel": {
-        "message": "İptal etmek",
-        "description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will cancel your action"
-    },
-    "btnDelete": {
-        "message": "Silmek",
-        "description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will delete your theme"
-    },
-    "btnSaved": {
-        "message": "kaydedildi",
-        "description": "Text shows in roblokis settings. Shows then settings are saved"
-    },
-    "btnSave": {
-        "message": "Kayıt etmek",
-        "description": "Text shows in roblokis settings. Shows on a button to save settings"
-    },
-    "copyTextSuccess": {
-        "message": "Metin başarıyla kopyalandı",
-        "description": "Text shows then copying links/text. Copying text was successful"
-    },
-    "copyTextUnseccuss": {
-        "message": "Kopyalanan metin başarısız oldu",
-        "description": "Text shows then copying links/text. Copying text was unsuccessful"
-    },
-    "cantCopyText": {
-        "message": "Hata, kopyalanamadı",
-        "description": "Text shows then copying links/text. Couldn't copy text"
-    },
-    "settingsPageTitle": {
-        "message": "Roblokis Ayarları Sayfası",
-        "description": "Text shows on settings page. Page title"
-    },
-    "categoryMain": {
-        "message": "Ana",
-        "description": "Text shows in roblokis settings. text for a catagory"
-    },
-    "categoryGamePage": {
-        "message": "Oyun Sayfası",
-        "description": "Text shows in roblokis settings. text for a catagory"
-    },
-    "categoryProfiles": {
-        "message": "profiller",
-        "description": "Text shows in roblokis settings. text for a catagory"
-    },
-    "tabAll": {
-        "message": "Herşey",
-        "description": "Text shows in roblokis settings. text for a tab"
-    },
-    "tabAbout": {
-        "message": "Hakkında",
-        "description": "Text shows in roblokis settings. text for a tab"
-    },
-    "tabChangelog": {
-        "message": "değişiklik günlüğü",
-        "description": "Text shows in roblokis settings. text for a tab"
-    },
-    "tabDesigner": {
-        "message": "tasarımcı",
-        "description": "Text shows in roblokis settings. text for a tab"
-    },
-    "tabBadges": {
-        "message": "Rozetler",
-        "description": "Text shows in roblokis settings. text for a tab"
-    },
-    "tabServers": {
-        "message": "sunucular",
-        "description": "Text shows in roblokis settings. text for a tab"
-    },
-    "tabProfilePage": {
-        "message": "Profil sayfası",
-        "description": "Text shows in roblokis settings. text for a tab"
-    },
-    "tabFriendsPage": {
-        "message": "Arkadaşlar Sayfası",
-        "description": "Text shows in roblokis settings. text for a tab"
-    },
-    "tabHome": {
-        "message": "Ev",
-        "description": "Text shows in roblokis settings. text for a tab"
-    },
-    "tabUsers": {
-        "message": "Kullanıcılar",
-        "description": "Text shows in roblokis settings. text for a tab"
-    },
-    "tabGroups": {
-        "message": "Gruplar",
-        "description": "Text shows in roblokis settings. text for a tab"
-    },
-    "tabGame": {
-        "message": "oyun",
-        "description": "Text shows in roblokis settings. text for a tab"
-    },
-    "chooseSection": {
-        "message": "Bölüm Seçin:",
-        "description": "Text shows in roblokis settings. text for a Section Selection"
-    },
-    "chooseSelect": {
-        "message": "Seçmek için tıkla",
-        "description": "Text shows in roblokis settings. text for a Section Selection"
-    },
-    "serversPrivate": {
-        "message": "Özel sunucu",
-        "description": "Text shows in roblokis settings. text for a Section Selection"
-    },
-    "serversFriends": {
-        "message": "Arkadaşlar Sunucular",
-        "description": "Text shows in roblokis settings. text for a Section Selection"
-    },
-    "serversSmall": {
-        "message": "Küçük Sunucular",
-        "description": "Text shows in roblokis settings. text for a Section Selection"
-    },
-    "serversPublic": {
-        "message": "Genel Sunucular",
-        "description": "Text shows in roblokis settings. text for a Section Selection"
-    },
-    "sectionSLink": {
-        "message": "NOT: Kişide bu uzantıya sahip olmadıkça, bağlantıyı paylaşmak işe yaramaz!",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionSLB": {
-        "message": "Sunucu Bağlantı Düğmesi.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionSLB1": {
-        "message": "Katıl düğmesinin yanında bir bağlantı düğmesi gösterir ve sunucunun katılma bağlantısını verir.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionWhatRkis": {
-        "message": "Robloki nedir?",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionWhatRkis1": {
-        "message": "Roblokis, Ameer tarafından yapılmış bir broswer uzantısıdır! roblox'un kullanımını daha kolay ve daha erişilebilir hale getirmek için.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionWhatRkis2": {
-        "message": "roblokis sitesi ve gizlilik politikası için tıklayınız.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionHelpNeed": {
-        "message": "Yardım!",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionHelpNeed1": {
-        "message": "Uzantıda sorun varsa benimle discord üzerinden iletişime geçebilirsiniz:",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionHelpNeed2": {
-        "message": "veya bana Roblox'tan mesaj at (Ameer_Khalid):",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionFeatures": {
-        "message": "Özellikleri:",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionFeatures1": {
-        "message": "Roblokis'in Yapabileceği Şeyler",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionQRB": {
-        "message": "Hızlı Kaldır Düğmesi.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionQRB1": {
-        "message": "Arkadaşları daha hızlı kaldırmak için küçük düğme.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionQRB2": {
-        "message": "NOT: Arkadaşlarınızı kaldırmak için butona çift tıklamanız gerekmektedir!",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionLS": {
-        "message": "Son durumu.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionLS1": {
-        "message": "Oyuncunun Profil Sayfasındaki Son Aktivitesini gösterir.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionCP": {
-        "message": "Beklemede İptal Et.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionCP1": {
-        "message": "\"Beklemede\" yerine \"Beklemede İptal Et\" Düğmesini gösterir.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionCBV": {
-        "message": "Yeni Rozetler Bak ve Hepsini Yükle.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionCBV1": {
-        "message": "Ameer'in yeni Stil tasarımını gösterir! ilk 100 rozeti otomatik olarak yükler.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionCBH": {
-        "message": "Gizli Rozetleri Göster.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionCBH1": {
-        "message": "Gizli/Engelli Rozetlerini Gösterir! (Tümünü Yükle Seçeneği Gereklidir)",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionRJB": {
-        "message": "Katıl Düğmesini Yeniden Adlandır.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionRJB1": {
-        "message": "Katıl düğmesini sunucuya göre \"Özel Sunucuya Katıl\" veya \"Genel Sunucuya Katıl\" olarak yeniden adlandırır.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionSPN": {
-        "message": "Sunucu Sayfası Gezin.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionSPN1": {
-        "message": "Nav gösterir. \"Daha Fazla Yükle\" düğmesinin altındaki düğmeler.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "SectionSSS": {
-        "message": "Küçük Sunucular Bölümü.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "SectionSSS1": {
-        "message": "Yeni bir bölüm, az sayıda oyuncuya sahip sunucuları gösterir.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionALM": {
-        "message": "Otomatik Daha Fazla Yükle.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionALM1": {
-        "message": "Otomatik olarak tıklamalar, sunucuların yenilenmesinden daha fazlasını yükler.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionASO": {
-        "message": "Yalnızca Mevcut Sunucular.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionASO1": {
-        "message": "Kullanılamayan tüm sunucuları veya tüm sunucuları katılma düğmesi olmadan kaldırır.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionCRT": {
-        "message": "Özel Robux Metni:",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionCRT1": {
-        "message": "Bu, tüm roblox sitelerinde sağ üstteki robux metninin yerini alır.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionCNT": {
-        "message": "Özel Ad Metni:",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionCNT1": {
-        "message": "Bu, tüm roblox sitelerinde sağ üst kullanıcı adı metninin yerini alır.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionUThemes": {
-        "message": "Temaları Kullanın.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionUThemes1": {
-        "message": "Bunu devre dışı bırakmak, Stilleri ve Temaları devre dışı bırakır!",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionAAnim": {
-        "message": "Animasyonlara izin verilsin mi?",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionAAnim1": {
-        "message": "Bazı sayfalarda bazı animasyon efektleri olabilir. (Temalar Seçeneği gerektirir)",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionQJB": {
-        "message": "Hızlı Katıl Düğmesi.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionQJB1": {
-        "message": "Hame ve keşfet sayfalarında her oyunun altına bir katıl düğmesi ekler.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionDApp": {
-        "message": "Masaüstü uygulaması.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "sectionDApp1": {
-        "message": "Roblox tarafından masaüstü uygulaması tasarımını etkinleştirir.",
-        "description": "Text shows in roblokis settings. text for a Section"
-    },
-    "themeSlotNumber": {
-        "message": "Tema Yuvası $num$",
-        "description": "Text Shows on Roblokis Settings at Designer Tab. the placeholder is the number of the empty slot",
-        "placeholders": {
-            "num": {
-                "content": "$1",
-                "example": "3"
-            }
-        }
-    },
-    "themeSelected": {
-        "message": "Seçilen Tema",
-        "description": "Text shows in Roblokis Settings at Designer Tab. Under it will be the selected themes"
-    },
-    "themeNotLoad": {
-        "message": "Yüklü değil",
-        "description": "Text shows in Roblokis Settings at Designer Tab. shows then the designer tab is loading"
-    },
-    "themeDefaultSection": {
-        "message": "Varsayılan Temalar:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for a section"
-    },
-    "themeDefaultSection1": {
-        "message": "Uzantı ile birlikte gelir...",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for a section"
-    },
-    "themeCustomSection": {
-        "message": "Özel Temalar:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for a section"
-    },
-    "themeCustomSection1": {
-        "message": "Kendi temalarınızı kullanın veya yaratın...",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for a section"
-    },
-    "themeNewTitle": {
-        "message": "Yeni Tema",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for a new theme creation"
-    },
-    "themeName": {
-        "message": "İsim",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for a new theme creation"
-    },
-    "themeDescription": {
-        "message": "Açıklama (isteğe bağlı)",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for a new theme creation"
-    },
-    "themeImport": {
-        "message": "Temayı İçe Aktar (Opsiyonel)",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for a new theme creation"
-    },
-    "themeDeleteTitle": {
-        "message": "Temayı Sil",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for a theme Deletion"
-    },
-    "themeDeleteText": {
-        "message": "Silmekten Emin misin",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for a theme Deletion"
-    },
-    "themeBackground": {
-        "message": "Arka plan",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeCorners": {
-        "message": "köşeler",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeAllCorners": {
-        "message": "Tüm Köşeler:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeTLCorner": {
-        "message": "Sol üst köşe",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeTRCorner": {
-        "message": "Sağ üst köşe",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeBLCorner": {
-        "message": "Sol alt köşe",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeBRCorner": {
-        "message": "Sağ Alt Köşe",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeColor": {
-        "message": "Renk:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeAlpha": {
-        "message": "Alfa:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeLink": {
-        "message": "Bağlantı:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeSize": {
-        "message": "Taraf:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeFillX": {
-        "message": "X'i doldurun",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeFillY": {
-        "message": "Y'yi doldurun",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeAuto": {
-        "message": "Oto",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeRepeat": {
-        "message": "Tekrarlamak",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeNoRepeat": {
-        "message": "Tekrar Yok",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeRepeatT": {
-        "message": "Tekrarlamak:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeRound": {
-        "message": "Yuvarlak",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeSpace": {
-        "message": "Uzay",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeScroll": {
-        "message": "Taslak:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeEnabled": {
-        "message": "Etkinleştirilmiş",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeDisabled": {
-        "message": "Engelli",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeBorders": {
-        "message": "Sınırlar",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeWidth": {
-        "message": "Genişlik:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeStyle": {
-        "message": "stil:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeSolid": {
-        "message": "Sağlam",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeDouble": {
-        "message": "Çift",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeDashed": {
-        "message": "kesikli",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeDotted": {
-        "message": "Noktalı",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeInset": {
-        "message": "iç metin",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeOutset": {
-        "message": "Başlangıç",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeGroove": {
-        "message": "oluk",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeRidge": {
-        "message": "çıkıntı",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeTBorder": {
-        "message": "Üst Kenarlık",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeRBorder": {
-        "message": "Sağ Kenarlık",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeBBorder": {
-        "message": "Alt sınır",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeLBorder": {
-        "message": "Sol Kenarlık",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeSection": {
-        "message": "Bölüm",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeShadow": {
-        "message": "Gölge:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themePreviewProfile": {
-        "message": "Profil Örneği Önizlemesi",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeFriends": {
-        "message": "Arkadaşlar",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeFollowers": {
-        "message": "Takipçiler",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeFollowing": {
-        "message": "Takip etme",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeMessage": {
-        "message": "İleti",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themePreviewGroup": {
-        "message": "Grup Örneği Önizlemesi",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeGroupBy": {
-        "message": "İle",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (next to it will be server creator name)"
-    },
-    "themeMembers": {
-        "message": "Üyeler",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeRank": {
-        "message": "Rütbe",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themePreviewBadge": {
-        "message": "Rozet Örneği Önizlemesi",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeNameBadge": {
-        "message": "Roblokiler Yüklendi",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (you can make this whatever you want)"
-    },
-    "themeDescBadge": {
-        "message": "Bu rozetin sahipleri Roblokis'i yükledi",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (you can make this whatever you want)"
-    },
-    "themeTxtColor": {
-        "message": "Metin Rengi",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeTextColor": {
-        "message": "Metin Rengi:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeBrtColor": {
-        "message": "Parlak renk:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeDrkColor": {
-        "message": "Koyu renk:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeTimeAgo": {
-        "message": "Zaman önce",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themePreviewServer": {
-        "message": "Sunucular Örnek Önizlemesi",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themePrvSvr": {
-        "message": "Roblokis Hangout'u",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (you can make this whatever you want)"
-    },
-    "themePrvSvrRenu": {
-        "message": "Yenile",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (you can make this whatever you want)"
-    },
-    "themePreviewDefault": {
-        "message": "Varsayılan Sunucu Önizlemesi",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themePreviewPrivate": {
-        "message": "Özel Sunucu Önizlemesi",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themePreviewPublic": {
-        "message": "Genel Sunucu Önizlemesi",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themePreviewSmall": {
-        "message": "Küçük Sunucu Önizlemesi",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themePreviewFriends": {
-        "message": "Arkadaşlar Sunucu Önizlemesi",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeSvrStng": {
-        "message": "Sunucu Ayarları",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeSvrPerRow": {
-        "message": "Satır Başına Sunucu Sayısı:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeSvrGap": {
-        "message": "Sunucu Boşluğu:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeOwnBG": {
-        "message": "Sahip Geçmişi:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeOwnBGAlp": {
-        "message": "Sahibi Bg Alfa:",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themePrvSvrInac": {
-        "message": "Etkin değil.",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "themeFrnSvrPlr": {
-        "message": "Bu sunucudaki arkadaşlar: Roblox",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "screenLength": {
-        "message": "Boyut x Boyut",
-        "description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
-    },
-    "badgeNoDescription": {
-        "message": "Rozet Açıklaması Yok",
-        "description": "Text shows on game badges. badge doesn't have a description"
-    },
-    "badgeNoName": {
-        "message": "Rozet Adı Yok",
-        "description": "Text shows on game badges. badge doesn't have a name"
-    },
-    "badgeRare": {
-        "message": "Nadirlik",
-        "description": "Text shows on game badges. how rare is this badge to get"
-    },
-    "badgeLastWon": {
-        "message": "Dün kazandı",
-        "description": "Text shows on game badges. how many players got this badge from yesterday"
-    },
-    "badgeWon": {
-        "message": "hiç kazandı",
-        "description": "Text shows on game badges. how many players have this badge"
-    },
-    "badgeAchievedShort": {
-        "message": "ulaşıldı",
-        "description": "Text shows on game badges. Next to it will be the date of when the player got the badge"
-    },
-    "badgeAchievedLong": {
-        "message": "$longdate$ tarihinde elde edildi",
-        "description": "Text shows then you hover over game badges. a longer date will be showen in the placeholder",
-        "placeholders": {
-            "longdate": {
-                "content": "$1",
-                "example": "Jul 21, 2018 | 01:04 PM (GMT+3)"
-            }
-        }
-    },
-    "badgeCreatedShort": {
-        "message": "oluşturuldu",
-        "description": "Text shows on game badges. Next to it will be the date of when the badge was created"
-    },
-    "badgeCreatedLong": {
-        "message": "$longdate$ tarihinde oluşturuldu",
-        "description": "Text shows then you hover over game badges. a longer date will be showen in the placeholder",
-        "placeholders": {
-            "longdate": {
-                "content": "$1",
-                "example": "Jul 21, 2018 | 01:04 PM (GMT+3)"
-            }
-        }
-    },
-    "badgeUpdatedShort": {
-        "message": "Güncellenmiş",
-        "description": "Text shows on game badges. Next to it will be the date of when the badge got updated"
-    },
-    "badgeUpdatedLong": {
-        "message": "Son Güncelleme: $longdate$",
-        "description": "Text shows then you hover over game badges. a longer date will be showen in the placeholder",
-        "placeholders": {
-            "longdate": {
-                "content": "$1",
-                "example": "Jul 21, 2018 | 01:04 PM (GMT+3)"
-            }
-        }
-    },
-    "joinButtons": {
-        "message": "Katılmak",
-        "description": "Text shows on games/servers button. clicking it would join your roblox game"
-    },
-    "cancelRequest": {
-        "message": "İsteği iptal et",
-        "description": "Text shows on profile at'Pending' button. cancels a friend request"
-    },
-    "canceledRequest": {
-        "message": "İptal edildi",
-        "description": "Text shows on profile at'Pending' button. canceled the friend request"
-    },
-    "lastGame": {
-        "message": "Son Oyun",
-        "description": "Text shows on profiles. under it will be the game join button"
-    },
-    "lastPlace": {
-        "message": "Son yer",
-        "description": "Text shows on profiles. under it will be the last game name"
-    },
-    "lastSeen": {
-        "message": "Son görülen",
-        "description": "Text shows on profiles. under it will be the last date player was seen"
-    },
-    "lastSeenLong": {
-        "message": "Son Görülme Tarihi $longdate$",
-        "description": "Text shows then you hover over last seen text in profile page. a longer date will be showen in the placeholder",
-        "placeholders": {
-            "longdate": {
-                "content": "$1",
-                "example": "Jul 21, 2018 | 01:04 PM (GMT+3)"
-            }
-        }
-    },
-    "smallSection": {
-        "message": "Bazı Küçük Sunucular",
-        "description": "Text shows on game servers. the small servers section name"
-    },
-    "slowServer": {
-        "message": "Yavaş Sunucu",
-        "description": "Text shows on servers. only shows then the server is slow"
-    },
-    "loadMore": {
-        "message": "Daha fazla yükle",
-        "description": "Text shows on game servers section. clicking it will load more servers"
-    },
-    "joinPrivateServer": {
-        "message": "Özel Sunucuya Katılın",
-        "description": "Text shows on friends servers. text shows when your friend is in a private server"
-    },
-    "JoinPublicServer": {
-        "message": "Genel Sunucuya Katılın",
-        "description": "Text shows on friends servers. text shows when your friend is in a public server"
-    }
+	"extDesc": {
+		"message": "Roblox İçin Özel Özellikler ve Stiller.",
+		"description": "Extension description."
+	},
+	"extUpdate": {
+		"message": "Yeni Bir Güncelleme var!",
+		"description": "Text shows then clicking on Extension icon. text will show then the extension is not up-to-date. this will be under 'Open Settings Menu' button"
+	},
+	"extUpdate1": {
+		"message": "Lütfen Roblokis'i Yeniden Yükleyin.",
+		"description": "Text shows then clicking on Extension icon. text will show then the extension is not up-to-date. this will be under the new update text"
+	},
+	"refresh": {
+		"message": "Yenile",
+		"description": "Text shows on a button at filtered servers on game page"
+	},
+	"LowPingSvrs": {
+		"message": "Düşük Ping Sunucuları",
+		"description": "Text shows on a button at filtered servers on game page"
+	},
+	"sectionMPN": {
+		"message": "Maksimum Oyuncu Sayısı.",
+		"description": "Text shows on Roblokis settings page. text for a section"
+	},
+	"sectionMPN1": {
+		"message": "Mevcut oyuncu sayısının yanında Maksimum oyuncu sayısını gösterir.",
+		"description": "Text shows on Roblokis settings page. text for a section"
+	},
+	"serversFiltered": {
+		"message": "Filtrelenmiş Sunucular",
+		"description": "Text shows in roblokis settings. text for a Section Selection"
+	},
+	"sectionFSS": {
+		"message": "Filtrelenmiş Sunucular Bölümü.",
+		"description": "Text shows on Roblokis settings page. text for a section"
+	},
+	"sectionFSS1": {
+		"message": "Sıralama seçenekleriyle yeni bir bölüm.",
+		"description": "Text shows on Roblokis settings page. text for a section"
+	},
+	"experimental": {
+		"message": "(DENEYSEL)",
+		"description": "Text shows on Roblokis settings page. text for a section"
+	},
+	"sectionLSite": {
+		"message": "Roblox site dilleri.",
+		"description": "Text shows on Roblokis settings page. text for a section"
+	},
+	"sectionLSite1": {
+		"message": "Roblokis Dilini Roblox Site Diliyle Sınırlar.",
+		"description": "Text shows on Roblokis settings page. text for a section"
+	},
+	"sectionExtraS": {
+		"message": "Ekstra Gölgeler.",
+		"description": "Text shows on Roblokis settings page. text for a section"
+	},
+	"sectionExtraS1": {
+		"message": "Bazı öğelerin altına veya çevresine gölge efekti ekler.",
+		"description": "Text shows on Roblokis settings page. text for a section"
+	},
+	"credits": {
+		"message": "Kredi",
+		"description": "Text shows on Roblokis settings page. include your name for credits, you deseve it"
+	},
+	"creditsTranslate": {
+		"message": "Google Çeviri ile Çeviri",
+		"description": "Text shows on Roblokis settings page. include your name for credits, you deseve it"
+	},
+	"openSettingsMenu": {
+		"message": "Ayarlar Menüsünü Aç",
+		"description": "Text shows then you click on the extension. clicking it will open settings menu"
+	},
+	"errorCode": {
+		"message": "Hata kodu:",
+		"description": "Error occured and error code will be next to it. Example: QFR11"
+	},
+	"error": {
+		"message": "Hata",
+		"description": "Error occured."
+	},
+	"errorNameLength": {
+		"message": "İsim 3 ile 24 Karakter arasında olmalıdır!",
+		"description": "the user input should be in a specific range"
+	},
+	"errorDescLength": {
+		"message": "Maksimum Açıklama uzunluğu 36 Karakterdir!",
+		"description": "the user input should be in a specific range"
+	},
+	"errorAtoZ": {
+		"message": "Yalnızca A-Z ve 0-9'a İzin Verilir!",
+		"description": "the user input should be in a specific letters"
+	},
+	"errorMaxSlots": {
+		"message": "Tüm Slotlar Kullanılır.",
+		"description": "User doesn't have enough space for themes"
+	},
+	"errorNameExist": {
+		"message": "Ad Zaten Var.",
+		"description": "Theme name already exist"
+	},
+	"btnEdit": {
+		"message": "Düzenlemek",
+		"description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will open edit menu for the themes"
+	},
+	"btnSelect": {
+		"message": "Seçme",
+		"description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will select the theme"
+	},
+	"btnCreate": {
+		"message": "Yaratmak",
+		"description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will create a theme"
+	},
+	"btnCancel": {
+		"message": "İptal etmek",
+		"description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will cancel your action"
+	},
+	"btnDelete": {
+		"message": "Silmek",
+		"description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will delete your theme"
+	},
+	"btnSaved": {
+		"message": "kaydedildi",
+		"description": "Text shows in roblokis settings. Shows then settings are saved"
+	},
+	"btnSave": {
+		"message": "Kayıt etmek",
+		"description": "Text shows in roblokis settings. Shows on a button to save settings"
+	},
+	"copyTextSuccess": {
+		"message": "Metin başarıyla kopyalandı",
+		"description": "Text shows then copying links/text. Copying text was successful"
+	},
+	"copyTextUnseccuss": {
+		"message": "Kopyalanan metin başarısız oldu",
+		"description": "Text shows then copying links/text. Copying text was unsuccessful"
+	},
+	"cantCopyText": {
+		"message": "Hata, kopyalanamadı",
+		"description": "Text shows then copying links/text. Couldn't copy text"
+	},
+	"settingsPageTitle": {
+		"message": "Roblokis Ayarları Sayfası",
+		"description": "Text shows on settings page. Page title"
+	},
+	"categoryMain": {
+		"message": "Ana",
+		"description": "Text shows in roblokis settings. text for a catagory"
+	},
+	"categoryGamePage": {
+		"message": "Oyun Sayfası",
+		"description": "Text shows in roblokis settings. text for a catagory"
+	},
+	"categoryProfiles": {
+		"message": "profiller",
+		"description": "Text shows in roblokis settings. text for a catagory"
+	},
+	"tabAll": {
+		"message": "Herşey",
+		"description": "Text shows in roblokis settings. text for a tab"
+	},
+	"tabAbout": {
+		"message": "Hakkında",
+		"description": "Text shows in roblokis settings. text for a tab"
+	},
+	"tabChangelog": {
+		"message": "değişiklik günlüğü",
+		"description": "Text shows in roblokis settings. text for a tab"
+	},
+	"tabDesigner": {
+		"message": "tasarımcı",
+		"description": "Text shows in roblokis settings. text for a tab"
+	},
+	"tabBadges": {
+		"message": "Rozetler",
+		"description": "Text shows in roblokis settings. text for a tab"
+	},
+	"tabServers": {
+		"message": "sunucular",
+		"description": "Text shows in roblokis settings. text for a tab"
+	},
+	"tabProfilePage": {
+		"message": "Profil sayfası",
+		"description": "Text shows in roblokis settings. text for a tab"
+	},
+	"tabFriendsPage": {
+		"message": "Arkadaşlar Sayfası",
+		"description": "Text shows in roblokis settings. text for a tab"
+	},
+	"tabHome": {
+		"message": "Ev",
+		"description": "Text shows in roblokis settings. text for a tab"
+	},
+	"tabUsers": {
+		"message": "Kullanıcılar",
+		"description": "Text shows in roblokis settings. text for a tab"
+	},
+	"tabGroups": {
+		"message": "Gruplar",
+		"description": "Text shows in roblokis settings. text for a tab"
+	},
+	"tabGame": {
+		"message": "oyun",
+		"description": "Text shows in roblokis settings. text for a tab"
+	},
+	"chooseSection": {
+		"message": "Bölüm Seçin:",
+		"description": "Text shows in roblokis settings. text for a Section Selection"
+	},
+	"chooseSelect": {
+		"message": "Seçmek için tıkla",
+		"description": "Text shows in roblokis settings. text for a Section Selection"
+	},
+	"serversPrivate": {
+		"message": "Özel sunucu",
+		"description": "Text shows in roblokis settings. text for a Section Selection"
+	},
+	"serversFriends": {
+		"message": "Arkadaşlar Sunucular",
+		"description": "Text shows in roblokis settings. text for a Section Selection"
+	},
+	"serversSmall": {
+		"message": "Küçük Sunucular",
+		"description": "Text shows in roblokis settings. text for a Section Selection"
+	},
+	"serversPublic": {
+		"message": "Genel Sunucular",
+		"description": "Text shows in roblokis settings. text for a Section Selection"
+	},
+	"sectionSLink": {
+		"message": "NOT: Kişide bu uzantıya sahip olmadıkça, bağlantıyı paylaşmak işe yaramaz!",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionSLB": {
+		"message": "Sunucu Bağlantı Düğmesi.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionSLB1": {
+		"message": "Katıl düğmesinin yanında bir bağlantı düğmesi gösterir ve sunucunun katılma bağlantısını verir.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionWhatRkis": {
+		"message": "Robloki nedir?",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionWhatRkis1": {
+		"message": "Roblokis, Ameer tarafından yapılmış bir broswer uzantısıdır! roblox'un kullanımını daha kolay ve daha erişilebilir hale getirmek için.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionWhatRkis2": {
+		"message": "roblokis sitesi ve gizlilik politikası için tıklayınız.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionHelpNeed": {
+		"message": "Yardım!",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionHelpNeed1": {
+		"message": "Uzantıda sorun varsa benimle discord üzerinden iletişime geçebilirsiniz:",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionHelpNeed2": {
+		"message": "veya bana Roblox'tan mesaj at (Ameer_Khalid):",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionFeatures": {
+		"message": "Özellikleri:",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionFeatures1": {
+		"message": "Roblokis'in Yapabileceği Şeyler",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionQRB": {
+		"message": "Hızlı Kaldır Düğmesi.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionQRB1": {
+		"message": "Arkadaşları daha hızlı kaldırmak için küçük düğme.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionQRB2": {
+		"message": "NOT: Arkadaşlarınızı kaldırmak için butona çift tıklamanız gerekmektedir!",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionLS": {
+		"message": "Son durumu.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionLS1": {
+		"message": "Oyuncunun Profil Sayfasındaki Son Aktivitesini gösterir.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionCP": {
+		"message": "Beklemede İptal Et.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionCP1": {
+		"message": "\"Beklemede\" yerine \"Beklemede İptal Et\" Düğmesini gösterir.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionCBV": {
+		"message": "Yeni Rozetler Bak ve Hepsini Yükle.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionCBV1": {
+		"message": "Ameer'in yeni Stil tasarımını gösterir! ilk 100 rozeti otomatik olarak yükler.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionCBH": {
+		"message": "Gizli Rozetleri Göster.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionCBH1": {
+		"message": "Gizli/Engelli Rozetlerini Gösterir! (Tümünü Yükle Seçeneği Gereklidir)",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionRJB": {
+		"message": "Katıl Düğmesini Yeniden Adlandır.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionRJB1": {
+		"message": "Katıl düğmesini sunucuya göre \"Özel Sunucuya Katıl\" veya \"Genel Sunucuya Katıl\" olarak yeniden adlandırır.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionSPN": {
+		"message": "Sunucu Sayfası Gezin.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionSPN1": {
+		"message": "Nav gösterir. \"Daha Fazla Yükle\" düğmesinin altındaki düğmeler.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"SectionSSS": {
+		"message": "Küçük Sunucular Bölümü.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"SectionSSS1": {
+		"message": "Yeni bir bölüm, az sayıda oyuncuya sahip sunucuları gösterir.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionALM": {
+		"message": "Otomatik Daha Fazla Yükle.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionALM1": {
+		"message": "Otomatik olarak tıklamalar, sunucuların yenilenmesinden daha fazlasını yükler.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionASO": {
+		"message": "Yalnızca Mevcut Sunucular.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionASO1": {
+		"message": "Kullanılamayan tüm sunucuları veya tüm sunucuları katılma düğmesi olmadan kaldırır.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionCRT": {
+		"message": "Özel Robux Metni:",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionCRT1": {
+		"message": "Bu, tüm roblox sitelerinde sağ üstteki robux metninin yerini alır.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionCNT": {
+		"message": "Özel Ad Metni:",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionCNT1": {
+		"message": "Bu, tüm roblox sitelerinde sağ üst kullanıcı adı metninin yerini alır.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionUThemes": {
+		"message": "Temaları Kullanın.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionUThemes1": {
+		"message": "Bunu devre dışı bırakmak, Stilleri ve Temaları devre dışı bırakır!",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionAAnim": {
+		"message": "Animasyonlara izin verilsin mi?",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionAAnim1": {
+		"message": "Bazı sayfalarda bazı animasyon efektleri olabilir. (Temalar Seçeneği gerektirir)",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionQJB": {
+		"message": "Hızlı Katıl Düğmesi.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionQJB1": {
+		"message": "Hame ve keşfet sayfalarında her oyunun altına bir katıl düğmesi ekler.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionDApp": {
+		"message": "Masaüstü uygulaması.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"sectionDApp1": {
+		"message": "Roblox tarafından masaüstü uygulaması tasarımını etkinleştirir.",
+		"description": "Text shows in roblokis settings. text for a Section"
+	},
+	"themeSlotNumber": {
+		"message": "Tema Yuvası $num$",
+		"description": "Text Shows on Roblokis Settings at Designer Tab. the placeholder is the number of the empty slot",
+		"placeholders": {
+			"num": {
+				"content": "$1",
+				"example": "3"
+			}
+		}
+	},
+	"themeSelected": {
+		"message": "Seçilen Tema",
+		"description": "Text shows in Roblokis Settings at Designer Tab. Under it will be the selected themes"
+	},
+	"themeNotLoad": {
+		"message": "Yüklü değil",
+		"description": "Text shows in Roblokis Settings at Designer Tab. shows then the designer tab is loading"
+	},
+	"themeDefaultSection": {
+		"message": "Varsayılan Temalar:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for a section"
+	},
+	"themeDefaultSection1": {
+		"message": "Uzantı ile birlikte gelir...",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for a section"
+	},
+	"themeCustomSection": {
+		"message": "Özel Temalar:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for a section"
+	},
+	"themeCustomSection1": {
+		"message": "Kendi temalarınızı kullanın veya yaratın...",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for a section"
+	},
+	"themeNewTitle": {
+		"message": "Yeni Tema",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for a new theme creation"
+	},
+	"themeName": {
+		"message": "İsim",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for a new theme creation"
+	},
+	"themeDescription": {
+		"message": "Açıklama (isteğe bağlı)",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for a new theme creation"
+	},
+	"themeImport": {
+		"message": "Temayı İçe Aktar (Opsiyonel)",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for a new theme creation"
+	},
+	"themeDeleteTitle": {
+		"message": "Temayı Sil",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for a theme Deletion"
+	},
+	"themeDeleteText": {
+		"message": "Silmekten Emin misin",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for a theme Deletion"
+	},
+	"themeBackground": {
+		"message": "Arka plan",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeCorners": {
+		"message": "köşeler",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeAllCorners": {
+		"message": "Tüm Köşeler:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeTLCorner": {
+		"message": "Sol üst köşe",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeTRCorner": {
+		"message": "Sağ üst köşe",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeBLCorner": {
+		"message": "Sol alt köşe",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeBRCorner": {
+		"message": "Sağ Alt Köşe",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeColor": {
+		"message": "Renk:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeAlpha": {
+		"message": "Alfa:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeLink": {
+		"message": "Bağlantı:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeSize": {
+		"message": "Taraf:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeFillX": {
+		"message": "X'i doldurun",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeFillY": {
+		"message": "Y'yi doldurun",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeAuto": {
+		"message": "Oto",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeRepeat": {
+		"message": "Tekrarlamak",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeNoRepeat": {
+		"message": "Tekrar Yok",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeRepeatT": {
+		"message": "Tekrarlamak:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeRound": {
+		"message": "Yuvarlak",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeSpace": {
+		"message": "Uzay",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeScroll": {
+		"message": "Taslak:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeEnabled": {
+		"message": "Etkinleştirilmiş",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeDisabled": {
+		"message": "Engelli",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeBorders": {
+		"message": "Sınırlar",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeWidth": {
+		"message": "Genişlik:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeStyle": {
+		"message": "stil:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeSolid": {
+		"message": "Sağlam",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeDouble": {
+		"message": "Çift",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeDashed": {
+		"message": "kesikli",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeDotted": {
+		"message": "Noktalı",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeInset": {
+		"message": "iç metin",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeOutset": {
+		"message": "Başlangıç",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeGroove": {
+		"message": "oluk",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeRidge": {
+		"message": "çıkıntı",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeTBorder": {
+		"message": "Üst Kenarlık",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeRBorder": {
+		"message": "Sağ Kenarlık",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeBBorder": {
+		"message": "Alt sınır",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeLBorder": {
+		"message": "Sol Kenarlık",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeSection": {
+		"message": "Bölüm",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeShadow": {
+		"message": "Gölge:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePreviewProfile": {
+		"message": "Profil Örneği Önizlemesi",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeFriends": {
+		"message": "Arkadaşlar",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeFollowers": {
+		"message": "Takipçiler",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeFollowing": {
+		"message": "Takip etme",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeMessage": {
+		"message": "İleti",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePreviewGroup": {
+		"message": "Grup Örneği Önizlemesi",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeGroupBy": {
+		"message": "İle",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (next to it will be server creator name)"
+	},
+	"themeMembers": {
+		"message": "Üyeler",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeRank": {
+		"message": "Rütbe",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePreviewBadge": {
+		"message": "Rozet Örneği Önizlemesi",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeNameBadge": {
+		"message": "Roblokiler Yüklendi",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (you can make this whatever you want)"
+	},
+	"themeDescBadge": {
+		"message": "Bu rozetin sahipleri Roblokis'i yükledi",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (you can make this whatever you want)"
+	},
+	"themeTxtColor": {
+		"message": "Metin Rengi",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeTextColor": {
+		"message": "Metin Rengi:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeBrtColor": {
+		"message": "Parlak renk:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeDrkColor": {
+		"message": "Koyu renk:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeTimeAgo": {
+		"message": "Zaman önce",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePreviewServer": {
+		"message": "Sunucular Örnek Önizlemesi",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePrvSvr": {
+		"message": "Roblokis Hangout'u",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (you can make this whatever you want)"
+	},
+	"themePrvSvrRenu": {
+		"message": "Yenile",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (you can make this whatever you want)"
+	},
+	"themePreviewDefault": {
+		"message": "Varsayılan Sunucu Önizlemesi",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePreviewPrivate": {
+		"message": "Özel Sunucu Önizlemesi",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePreviewPublic": {
+		"message": "Genel Sunucu Önizlemesi",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePreviewSmall": {
+		"message": "Küçük Sunucu Önizlemesi",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePreviewFriends": {
+		"message": "Arkadaşlar Sunucu Önizlemesi",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeSvrStng": {
+		"message": "Sunucu Ayarları",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeSvrPerRow": {
+		"message": "Satır Başına Sunucu Sayısı:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeSvrGap": {
+		"message": "Sunucu Boşluğu:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeOwnBG": {
+		"message": "Sahip Geçmişi:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeOwnBGAlp": {
+		"message": "Sahibi Bg Alfa:",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePrvSvrInac": {
+		"message": "Etkin değil.",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeFrnSvrPlr": {
+		"message": "Bu sunucudaki arkadaşlar: Roblox",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"screenLength": {
+		"message": "Boyut x Boyut",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"badgeNoDescription": {
+		"message": "Rozet Açıklaması Yok",
+		"description": "Text shows on game badges. badge doesn't have a description"
+	},
+	"badgeNoName": {
+		"message": "Rozet Adı Yok",
+		"description": "Text shows on game badges. badge doesn't have a name"
+	},
+	"badgeRare": {
+		"message": "Nadirlik",
+		"description": "Text shows on game badges. how rare is this badge to get"
+	},
+	"badgeLastWon": {
+		"message": "Dün kazandı",
+		"description": "Text shows on game badges. how many players got this badge from yesterday"
+	},
+	"badgeWon": {
+		"message": "hiç kazandı",
+		"description": "Text shows on game badges. how many players have this badge"
+	},
+	"badgeAchievedShort": {
+		"message": "ulaşıldı",
+		"description": "Text shows on game badges. Next to it will be the date of when the player got the badge"
+	},
+	"badgeAchievedLong": {
+		"message": "$longdate$ tarihinde elde edildi",
+		"description": "Text shows then you hover over game badges. a longer date will be showen in the placeholder",
+		"placeholders": {
+			"longdate": {
+				"content": "$1",
+				"example": "Jul 21, 2018 | 01:04 PM (GMT+3)"
+			}
+		}
+	},
+	"badgeCreatedShort": {
+		"message": "oluşturuldu",
+		"description": "Text shows on game badges. Next to it will be the date of when the badge was created"
+	},
+	"badgeCreatedLong": {
+		"message": "$longdate$ tarihinde oluşturuldu",
+		"description": "Text shows then you hover over game badges. a longer date will be showen in the placeholder",
+		"placeholders": {
+			"longdate": {
+				"content": "$1",
+				"example": "Jul 21, 2018 | 01:04 PM (GMT+3)"
+			}
+		}
+	},
+	"badgeUpdatedShort": {
+		"message": "Güncellenmiş",
+		"description": "Text shows on game badges. Next to it will be the date of when the badge got updated"
+	},
+	"badgeUpdatedLong": {
+		"message": "Son Güncelleme: $longdate$",
+		"description": "Text shows then you hover over game badges. a longer date will be showen in the placeholder",
+		"placeholders": {
+			"longdate": {
+				"content": "$1",
+				"example": "Jul 21, 2018 | 01:04 PM (GMT+3)"
+			}
+		}
+	},
+	"joinButtons": {
+		"message": "Katılmak",
+		"description": "Text shows on games/servers button. clicking it would join your roblox game"
+	},
+	"cancelRequest": {
+		"message": "İsteği iptal et",
+		"description": "Text shows on profile at'Pending' button. cancels a friend request"
+	},
+	"canceledRequest": {
+		"message": "İptal edildi",
+		"description": "Text shows on profile at'Pending' button. canceled the friend request"
+	},
+	"lastGame": {
+		"message": "Son Oyun",
+		"description": "Text shows on profiles. under it will be the game join button"
+	},
+	"lastPlace": {
+		"message": "Son yer",
+		"description": "Text shows on profiles. under it will be the last game name"
+	},
+	"lastSeen": {
+		"message": "Son görülen",
+		"description": "Text shows on profiles. under it will be the last date player was seen"
+	},
+	"lastSeenLong": {
+		"message": "Son Görülme Tarihi $longdate$",
+		"description": "Text shows then you hover over last seen text in profile page. a longer date will be showen in the placeholder",
+		"placeholders": {
+			"longdate": {
+				"content": "$1",
+				"example": "Jul 21, 2018 | 01:04 PM (GMT+3)"
+			}
+		}
+	},
+	"smallSection": {
+		"message": "Bazı Küçük Sunucular",
+		"description": "Text shows on game servers. the small servers section name"
+	},
+	"slowServer": {
+		"message": "Yavaş Sunucu",
+		"description": "Text shows on servers. only shows then the server is slow"
+	},
+	"loadMore": {
+		"message": "Daha fazla yükle",
+		"description": "Text shows on game servers section. clicking it will load more servers"
+	},
+	"joinPrivateServer": {
+		"message": "Özel Sunucuya Katılın",
+		"description": "Text shows on friends servers. text shows when your friend is in a private server"
+	},
+	"JoinPublicServer": {
+		"message": "Genel Sunucuya Katılın",
+		"description": "Text shows on friends servers. text shows when your friend is in a public server"
+	}
 }

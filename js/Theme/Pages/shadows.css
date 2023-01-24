@@ -1,25 +1,25 @@
 #header,
 #navigation ,
 #footer-container {
-    box-shadow: 0 0 8px 1px black;
+	box-shadow: 0 0 8px 1px black;
 }
 
 /* Join Buttons */
 a.game-card-link[data-addedjoin="true"] > a.rbx-game-server-join[onclick][data-placeid] {
-    box-shadow: 0 0 6px black, inset 0 0 4px black;
+	box-shadow: 0 0 6px black, inset 0 0 4px black;
 }
 
 /*shadow for server icons*/
 a.game-card-link[data-addedjoin="true"] > span.thumbnail-2d-container.game-card-thumb-container {
-    box-shadow: 0 2px 8px 0px rgb(0,0,0, 0.6);
+	box-shadow: 0 2px 8px 0px rgb(0,0,0, 0.6);
 }
 
 /* home */
 #home-header a.avatar {
-    box-shadow: 0 2px 16px 1px black;
+	box-shadow: 0 2px 16px 1px black;
 }
 #home-header div.user-info-container > h1 > a {
-    text-shadow: 0 4px 4px black;
+	text-shadow: 0 4px 4px black;
 }
 div.section-content.people-list span.friend-name {text-shadow: 0px 2px 4px black;}
 
@@ -27,52 +27,52 @@ div.section-content.people-list li.list-item.friend div.avatar {box-shadow: 0px 
 
 /* games */
 #game-details-carousel-container {
-    box-shadow: 0 0 8px 1px black;
+	box-shadow: 0 0 8px 1px black;
 }
 
 #game-details-play-button-container > button {
-    box-shadow: 0 0 8px 1px black, inset 0 0 8px 0px black;
+	box-shadow: 0 0 8px 1px black, inset 0 0 8px 0px black;
 }
 
 #game-detail-page > div.rbx-tabs-horizontal > ul#horizontal-tabs {
-    box-shadow: 0 0 8px 1px black;
+	box-shadow: 0 0 8px 1px black;
 }
 #game-detail-page > div.rbx-tabs-horizontal > ul#horizontal-tabs > li > a:hover {
-    box-shadow: var(--rk-basic-animations, inset 0 -36px 0 0 rgb(255, 255, 255, 0.2));
+	box-shadow: var(--rk-basic-animations, inset 0 -36px 0 0 rgb(255, 255, 255, 0.2));
 }
 
 
 /*game card*/
 div.container-list.games-detail div.game-card-container > a > a {
-    box-shadow: 0 0 6px black, inset 0 0 4px black;
+	box-shadow: 0 0 6px black, inset 0 0 4px black;
 }
 
 html:not([data-btr-loaded="true"]) #game-badges-container > game-badges-list > div > ul > li.badge-row,
 #game-badges-container > game-badges-list > div > ul > li.badge-row {
-    box-shadow: 0 0 8px 1px black;
+	box-shadow: 0 0 8px 1px black;
 }
 
 #game-instances #rbx-private-servers > div.section.tab-server-only > ul > li {
-    box-shadow: 0 0 8px 0px black;
+	box-shadow: 0 0 8px 0px black;
 }
 
 #rbx-private-servers > div.section.tab-server-only > ul > li > div.section-left > div.rbx-private-owner > a.owner-avatar > img {
-    box-shadow: 0 2px 8px 0 black;
+	box-shadow: 0 2px 8px 0 black;
 }
 
 #game-instances #rbx-recent-server-box > li {
-    box-shadow: 0 0 8px 0px black;
+	box-shadow: 0 0 8px 0px black;
 }
 
 
 #game-instances #rbx-friends-game-server-item-container > li {
-    box-shadow: 0 0 8px 0px black;
+	box-shadow: 0 0 8px 0px black;
 }
 
 #game-instances #rbx-small-game-server-item-container > li {
-    box-shadow: 0 0 8px 0px black;
+	box-shadow: 0 0 8px 0px black;
 }
 
 #game-instances #rbx-game-server-item-container > li {
-    box-shadow: 0 0 8px 0px black;
+	box-shadow: 0 0 8px 0px black;
 }

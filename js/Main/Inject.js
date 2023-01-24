@@ -1,25 +1,25 @@
 //open public roblox game
-(function() {
-    document.addEventListener("readystatechange", function() {
-        if(document.readyState != "complete") return;
-        
-        var weburl = window.location.href;
-        if (weburl.includes("placeid=") && weburl.includes("gameid=")) {
+(function () {
+	document.addEventListener("readystatechange", function () {
+		if (document.readyState != "complete") return;
 
-            var placeid = weburl.split("placeid=")[1].split("&")[0];
-            var gameid = weburl.split("gameid=")[1].split("&")[0];
+		var weburl = window.location.href;
+		if (weburl.includes("placeid=") && weburl.includes("gameid=")) {
 
-            if (placeid && gameid) Roblox.GameLauncher.joinGameInstance(parseInt(placeid), gameid);
+			var placeid = weburl.split("placeid=")[1].split("&")[0];
+			var gameid = weburl.split("gameid=")[1].split("&")[0];
 
-        }
-      });
+			if (placeid && gameid) Roblox.GameLauncher.joinGameInstance(parseInt(placeid), gameid);
+
+		}
+	});
 })();
 
 //listen for requests
 //will be replaced!!!
-(function() {
+(function () {
 	var origOpen = XMLHttpRequest.prototype.open;
-	XMLHttpRequest.prototype.open = function() {
+	XMLHttpRequest.prototype.open = function () {
 		this.addEventListener('load', () => {
 			var requestevent = new CustomEvent('rkrequested', {
 				detail: this
@@ -36,7 +36,7 @@
 })();
 
 //don't redirect when clicked on Quick Join Button
-(function() {
+(function () {
 	document.addEventListener("rk-quickgamejoin", (event) => {
 		var id = event.detail.buttonid;
 		if (id == null || id == "") return;
@@ -46,18 +46,18 @@
 		var joinbtn = button.querySelector("a.rk-quickgamejoin");
 
 		button.addEventListener("click", (e) => {
-			if(e.target == joinbtn) { e.preventDefault(); return false; }
+			if (e.target == joinbtn) { e.preventDefault(); return false; }
 			return true;
 		})
 	});
 
-    //backup of old method
-    /*document.$watchLoop(`a.game-card-link[data-addedjoin="true"`, (button) => {
-        var joinbtn = button.querySelector("a.rk-quickgamejoin");
+	//backup of old method
+	/*document.$watchLoop(`a.game-card-link[data-addedjoin="true"`, (button) => {
+		var joinbtn = button.querySelector("a.rk-quickgamejoin");
 
-        button.addEventListener("click", (e) => {
-            if(e.target == joinbtn) { e.preventDefault(); return false; }
-            return true;
-        })
-    });*/
+		button.addEventListener("click", (e) => {
+				if(e.target == joinbtn) { e.preventDefault(); return false; }
+				return true;
+		})
+	});*/
 })();

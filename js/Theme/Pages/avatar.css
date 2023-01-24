@@ -1,9 +1,9 @@
 #container-main > div.content {
-    width: 90%;
+	width: 90%;
 }
 
 #avatar-container {
-    width: 100%;
+	width: 100%;
 }
 
 #horizontal-tabs,
@@ -13,7 +13,7 @@
 #clothing > recommendations > div > div > div.recommendations-container,
 
 #avatar-items-container > div.section-content-off {
-    background-color: transparent;
+	background-color: transparent;
 }
 
 #recent-items-container > div.items-list.avatar-item-list > ul > li {

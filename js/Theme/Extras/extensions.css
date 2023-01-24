@@ -10,7 +10,7 @@
 #game-badges-container > game-badges-list > div > ul > li > div.badge-content > ul {
 	margin: 0;
 	display: flex;
-    flex-wrap: wrap;
+	flex-wrap: wrap;
 }
 #game-badges-container > game-badges-list > div > ul > li > div.badge-content > ul > li.thecut {
 	display: none;

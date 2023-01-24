@@ -59,20 +59,11 @@ Rkis.page.all = () => {
 			//use listener of element change then added
 			document.$watch("#navbar-robux").$then()
 			.$watch("#nav-robux-amount", async (rbxplate) => {
-				rbxplate.id = "nav-custom-robux-amount";
-				for (var i = 0; i < 10; i++) {
-					rbxplate.innerText = Rkis.GetSettingValue("CustomRobux");
-					await Rkis.delay(100);
-				}
-
-				document.$watch("#nav-robux-amount", async (rbxplate) => {
-					for (var i = 0; i < 10; i++) {
-						rbxplate.id = "nav-custom-robux-amount";
-						rbxplate.innerText = Rkis.GetSettingValue("CustomRobux");
-						await Rkis.delay(1000);
-					}
-				})
-			})
+				rbxplate.$watchData((element) => element.innerText != Rkis.GetSettingValue("CustomRobux"), (element) => {
+					element.id = "nav-custom-robux-amount";
+					element.innerText = Rkis.GetSettingValue("CustomRobux");
+				});
+			});
 
 
 			//set popup Robux
