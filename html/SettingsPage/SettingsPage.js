@@ -904,7 +904,8 @@ page.settingsWaitingForGeneral = function() {
 							<li class="menu-option active" data-file="Main/About"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabAbout">About</span> </a> </li>
 							<li class="menu-option" data-file="Main/Changelog"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabChangelog">Changelog</span> </a> </li>
 							<li class="menu-option" data-file="Main/All"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabAll">All</span> </a> </li>
-							<li class="menu-option" data-file="Main/Designer"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabDesigner">Designer</span> </a> </li>
+							<li class="menu-option" data-file="Main/Design"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabDesign">Design</span> </a> </li>
+							<li class="menu-option" data-file="Main/Themes"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabThemes">Themes</span> </a> </li>
 					</ul>
 
 					<div data-translate="categoryGamePage">Game Page</div>
@@ -1076,9 +1077,30 @@ page.settingsWaitingForGeneral = function() {
 								</ul>	
 							</div>
 						</div>
-						<div class="tabcontent designer">
-							<h3><span data-translate="categoryMain">Main</span> &gt; <span data-translate="tabDesigner">Themes</span></h3>
+						<div class="tabcontent design">
+							<h3><span data-translate="categoryMain">Main</span> &gt; <span data-translate="tabDesign">Design</span></h3>
 							<button class="main-save-button" data-translate="btnSave">Save</button>
+
+							<span class="text-description" data-translate="NoSettingReason">No Settings? Visit the page mentioned in this Tab's name</span>
+							<div class="rbx-divider" style="margin: 12px;"></div>
+
+							<loadcode code="settingload" data-id="UseThemes"></loadcode>
+
+							<div class="section-content">
+									<span class="text-lead" data-translate="sectionAAnim">Allow animations?</span>
+									<span class="rk-button receiver-destination-type-toggle off" data-file="BasicAnim">
+										<span class="toggle-flip"></span>
+										<span class="toggle-on"></span>
+										<span class="toggle-off"></span>
+									</span>
+									<div class="rbx-divider" style="margin: 12px;"></div>
+									<span class="text-description" data-translate="sectionAAnim1">Some pages might have some animation effects. (Requires Themes Option)</span>
+							</div>
+
+							<loadcode code="settingload" data-id="ExtraShadows"></loadcode>
+						</div>
+						<div class="tabcontent themes">
+							<h3><span data-translate="categoryMain">Main</span> &gt; <span data-translate="tabThemes">Themes</span></h3>
 
 							<span class="text-description" data-translate="NoSettingReason">No Settings? Visit the page mentioned in this Tab's name</span>
 							<div class="rbx-divider" style="margin: 12px;"></div>
@@ -1086,23 +1108,6 @@ page.settingsWaitingForGeneral = function() {
 							<div id="rk-themesection">
 
 								<div style="display: flex;flex-direction: column;text-align: center;background-color: rgb(114, 118, 122, 0.4);border-radius: 20px;padding: 1% 4%;box-shadow: 0 0 8px rgb(114, 118, 122, 0.4);margin: 9px 0;"><span style="color: white;" data-translate="themeSelected">Selected Theme</span><span id="currentthemeplace" class="text-description" data-translate="themeNotLoad">Not Loaded</span></div>
-
-
-								<loadcode code="settingload" data-id="UseThemes"></loadcode>
-
-								<div class="section-content">
-										<span class="text-lead" data-translate="sectionAAnim">Allow animations?</span>
-										<span class="rk-button receiver-destination-type-toggle off" data-file="BasicAnim">
-											<span class="toggle-flip"></span>
-											<span class="toggle-on"></span>
-											<span class="toggle-off"></span>
-										</span>
-										<div class="rbx-divider" style="margin: 12px;"></div>
-										<span class="text-description" data-translate="sectionAAnim1">Some pages might have some animation effects. (Requires Themes Option)</span>
-								</div>
-
-								<loadcode code="settingload" data-id="ExtraShadows"></loadcode>
-
 
 								<div class="section-content">
 										<span style="font-weight: 700;" data-translate="themeDefaultSection">Default Themes:</span>

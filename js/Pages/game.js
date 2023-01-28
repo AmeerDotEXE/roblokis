@@ -530,6 +530,10 @@ Rkis.page.game = () => {
 				var serverid = server.dataset.gameid;
 				if (serverid != '' && serverid != null) {
 					var joinbtn = server.querySelector('.rbx-game-server-join');
+					if (joinbtn == null) {
+						if (Rkis.IS_DEV) console.error(`join button not found`, server);
+						return;
+					}
 					var parent = joinbtn.parentElement;
 					Rkis.Scripts.PublicServersLink.secondone(joinbtn, parent, serverid);
 				}
