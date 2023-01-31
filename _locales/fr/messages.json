@@ -1,78 +1,90 @@
 {
 	"extDesc": {
-		"message": "Fonctionnalité et style customizer pour roblox.",
+		"message": "Personnalisez Roblox comme vous le souhaitez.",
 		"description": "Extension description."
 	},
+	"NoSettingReason": {
+		"message": "Pas de paramètres ? Visitez la page mentionnée dans le nom de cet onglet.",
+		"description": "message is showen in every settingts page."
+	},
+	"cantImage": {
+		"message": "Impossible d'obtenir une image.",
+		"description": "Cant reach the requested image."
+	},
+	"errorNoImage": {
+		"message": "Entrez l'url de l'image. (Https uniquement)",
+		"description": "The user must input an image to continue."
+	},
 	"extUpdate": {
-		"message": "Il Y'a Une Nouvelle Mise A Jour!",
+		"message": "Il y a une nouvelle mise à jour !",
 		"description": "Text shows then clicking on Extension icon. text will show then the extension is not up-to-date. this will be under 'Open Settings Menu' button"
 	},
 	"extUpdate1": {
-		"message": "Veiller Réinstaller Roblokis.",
+		"message": "Veuillez réinstaller Roblokis.",
 		"description": "Text shows then clicking on Extension icon. text will show then the extension is not up-to-date. this will be under the new update text"
 	},
 	"refresh": {
-		"message": "Rechargé",
+		"message": "Rafraîchir",
 		"description": "Text shows on a button at filtered servers on game page"
 	},
 	"LowPingSvrs": {
-		"message": "Serveur a bas ping",
+		"message": "Serveurs à faible ping",
 		"description": "Text shows on a button at filtered servers on game page"
 	},
 	"sectionMPN": {
-		"message": "Nombre Maximum De Joueurs.",
+		"message": "Nombre maximum de joueurs.",
 		"description": "Text shows on Roblokis settings page. text for a section"
 	},
 	"sectionMPN1": {
-		"message": "Montre Le Nombre Maximum De Joueur A Coté Du Nombre De joueur Disponible.",
+		"message": "Affiche le nombre maximum de joueurs à côté du nombre de joueurs disponibles.",
 		"description": "Text shows on Roblokis settings page. text for a section"
 	},
 	"serversFiltered": {
-		"message": "Server Specifique",
+		"message": "Serveurs filtrés",
 		"description": "Text shows in roblokis settings. text for a Section Selection"
 	},
 	"sectionFSS": {
-		"message": " Section De Server Filtré.",
+		"message": "Section des serveurs filtrés.",
 		"description": "Text shows on Roblokis settings page. text for a section"
 	},
 	"sectionFSS1": {
-		"message": "une nouvelle section avec des option de filtrage.",
+		"message": "Une nouvelle section avec des options de tri.",
 		"description": "Text shows on Roblokis settings page. text for a section"
 	},
 	"experimental": {
-		"message": "(EXPÉRIMENTALE)",
+		"message": "(EXPERIMENTAL)",
 		"description": "Text shows on Roblokis settings page. text for a section"
 	},
 	"sectionLSite": {
-		"message": "Langue Du Site Roblox.",
+		"message": "Langues du site Roblox.",
 		"description": "Text shows on Roblokis settings page. text for a section"
 	},
 	"sectionLSite1": {
-		"message": "Limite Les Langue De Roblokis Au Du Site Web Roblox.",
+		"message": "Limite la langue de Roblokis à la langue du site Roblox.",
 		"description": "Text shows on Roblokis settings page. text for a section"
 	},
 	"sectionExtraS": {
-		"message": "Plus D'Ombrages.",
+		"message": "Ombres supplémentaires.",
 		"description": "Text shows on Roblokis settings page. text for a section"
 	},
 	"sectionExtraS1": {
-		"message": "Ajoute De L'ombrage Sur Quelque Élément.",
+		"message": "Ajoute un effet d'ombre sous ou autour de certains éléments.",
 		"description": "Text shows on Roblokis settings page. text for a section"
 	},
 	"credits": {
-		"message": "Credits",
+		"message": "Crédits",
 		"description": "Text shows on Roblokis settings page. include your name for credits, you deseve it"
 	},
 	"creditsTranslate": {
-		"message": "Translation by redmeok4 (thereborn#4696 dicord)!",
+		"message": "Traduction par Ameer !",
 		"description": "Text shows on Roblokis settings page. include your name for credits, you deseve it"
 	},
 	"openSettingsMenu": {
-		"message": "Ouvrir Le Menu Des Option",
+		"message": "Ouvrir le menu des paramètres",
 		"description": "Text shows then you click on the extension. clicking it will open settings menu"
 	},
 	"errorCode": {
-		"message": "Code D'erreur:",
+		"message": "Code d'erreur:",
 		"description": "Error occured and error code will be next to it. Example: QFR11"
 	},
 	"error": {
@@ -80,115 +92,119 @@
 		"description": "Error occured."
 	},
 	"errorNameLength": {
-		"message": "Le Nom Doit Contenir Entre 3 a 24 Caractère!",
+		"message": "Le nom doit comporter entre 3 et 24 caractères !",
 		"description": "the user input should be in a specific range"
 	},
 	"errorDescLength": {
-		"message": "La Longuer Maximum De La Description Est De 36 Caractère!",
+		"message": "La longueur maximale de la description est de 36 caractères !",
 		"description": "the user input should be in a specific range"
 	},
 	"errorAtoZ": {
-		"message": "Seulement A-Z et 0-9 sont accepter!",
+		"message": "Seulement A-Z et 0-9 est autorisé !",
 		"description": "the user input should be in a specific letters"
 	},
 	"errorMaxSlots": {
-		"message": "Tout Les Espace Sont Utiliser.",
+		"message": "Tous les emplacements sont utilisés.",
 		"description": "User doesn't have enough space for themes"
 	},
 	"errorNameExist": {
-		"message": "Ce Nom Existe Déjà.",
+		"message": "Le nom existe déjà.",
 		"description": "Theme name already exist"
 	},
 	"btnEdit": {
-		"message": "Editer",
+		"message": "Modifier",
 		"description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will open edit menu for the themes"
 	},
 	"btnSelect": {
-		"message": "Sélectionner",
+		"message": "Sélectionnez",
 		"description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will select the theme"
 	},
 	"btnCreate": {
-		"message": "Crée",
+		"message": "Créer",
 		"description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will create a theme"
 	},
 	"btnCancel": {
-		"message": "annulé",
+		"message": "Annuler",
 		"description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will cancel your action"
 	},
 	"btnDelete": {
-		"message": "supprimer",
+		"message": "Supprimer",
 		"description": "Text Shows on Roblokis Settings at Designer Tab. clicking it will delete your theme"
 	},
 	"btnSaved": {
-		"message": " Les Données Ont été Sauvegardé",
+		"message": "Enregistré",
 		"description": "Text shows in roblokis settings. Shows then settings are saved"
 	},
 	"btnSave": {
-		"message": "Sauvegardé",
+		"message": "Enregistrer",
 		"description": "Text shows in roblokis settings. Shows on a button to save settings"
 	},
 	"copyTextSuccess": {
-		"message": "Texte Copier Avec Succès",
+		"message": "Texte copié avec succès",
 		"description": "Text shows then copying links/text. Copying text was successful"
 	},
 	"copyTextUnseccuss": {
-		"message": "Le Texte N'a Pas été Copier Avec Succès",
+		"message": "Texte copié sans succès",
 		"description": "Text shows then copying links/text. Copying text was unsuccessful"
 	},
 	"cantCopyText": {
-		"message": "Oops, Incapable De Copier",
+		"message": "Oops, incapable de copier",
 		"description": "Text shows then copying links/text. Couldn't copy text"
 	},
 	"settingsPageTitle": {
-		"message": "Paramètre De Roblokis",
+		"message": "Page des paramètres de Roblokis",
 		"description": "Text shows on settings page. Page title"
 	},
 	"categoryMain": {
-		"message": "Principal",
+		"message": "Page principale",
 		"description": "Text shows in roblokis settings. text for a catagory"
 	},
 	"categoryGamePage": {
-		"message": "Page De Jeu",
+		"message": "Page de jeu",
 		"description": "Text shows in roblokis settings. text for a catagory"
 	},
 	"categoryProfiles": {
-		"message": "Profiles",
+		"message": "Profils",
 		"description": "Text shows in roblokis settings. text for a catagory"
 	},
 	"tabAll": {
-		"message": "Tout",
+		"message": "Tous",
 		"description": "Text shows in roblokis settings. text for a tab"
 	},
 	"tabAbout": {
-		"message": "A Propos",
+		"message": "À propos de",
 		"description": "Text shows in roblokis settings. text for a tab"
 	},
 	"tabChangelog": {
-		"message": "Information de Mise a Jour",
+		"message": "Changelog",
 		"description": "Text shows in roblokis settings. text for a tab"
 	},
-	"tabDesigner": {
-		"message": "Créateur",
+	"tabDesign": {
+		"message": "Conception",
 		"description": "Text shows in roblokis settings. text for a tab"
+	},
+	"tabThemes": {
+		"message": "Thèmes",
+		"description": "Text shows in roblokis settings. text for a tab renamed from 'tabDesigner'"
 	},
 	"tabBadges": {
 		"message": "Badges",
 		"description": "Text shows in roblokis settings. text for a tab"
 	},
 	"tabServers": {
-		"message": "Servers",
+		"message": "Serveurs",
 		"description": "Text shows in roblokis settings. text for a tab"
 	},
 	"tabProfilePage": {
-		"message": "Page Profile",
+		"message": "Page de profil",
 		"description": "Text shows in roblokis settings. text for a tab"
 	},
 	"tabFriendsPage": {
-		"message": "Page D'Amis",
+		"message": "Page des amis",
 		"description": "Text shows in roblokis settings. text for a tab"
 	},
 	"tabHome": {
-		"message": "menu principal",
+		"message": "Accueil",
 		"description": "Text shows in roblokis settings. text for a tab"
 	},
 	"tabUsers": {
@@ -204,51 +220,51 @@
 		"description": "Text shows in roblokis settings. text for a tab"
 	},
 	"chooseSection": {
-		"message": "Choisir Une Section:",
+		"message": "Choisissez une section:",
 		"description": "Text shows in roblokis settings. text for a Section Selection"
 	},
 	"chooseSelect": {
-		"message": "Clicker pour sélectionner",
+		"message": "Cliquez pour sélectionner",
 		"description": "Text shows in roblokis settings. text for a Section Selection"
 	},
 	"serversPrivate": {
-		"message": "Server Privés",
+		"message": "Serveur privé",
 		"description": "Text shows in roblokis settings. text for a Section Selection"
 	},
 	"serversFriends": {
-		"message": "Server D'Amis",
+		"message": "Serveurs amis",
 		"description": "Text shows in roblokis settings. text for a Section Selection"
 	},
 	"serversSmall": {
-		"message": "Petit Servers",
+		"message": "Petits serveurs",
 		"description": "Text shows in roblokis settings. text for a Section Selection"
 	},
 	"serversPublic": {
-		"message": " Servers Publique",
+		"message": "Serveurs publics",
 		"description": "Text shows in roblokis settings. text for a Section Selection"
 	},
 	"sectionSLink": {
-		"message": "NOTE: Partager Le Lien Ne Fonctionnera Pas A Moins Que L'autre Personne Ai Aussi Cette Extension!",
+		"message": "REMARQUE: Le partage du lien ne fonctionnera pas si la personne n'a pas aussi cette extension !",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionSLB": {
-		"message": "Button Pour Le Lien Du Server",
+		"message": "Bouton de lien vers le serveur.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionSLB1": {
-		"message": "Montre Un Bouton a Coté Du Bouton Pour Rejoindre Et Donne Le Lien Pour ReJoindre le Server.",
+		"message": "Affiche un bouton de lien à côté du bouton de jointure et donne le lien de jointure du serveur.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionWhatRkis": {
-		"message": "quesque Roblokis?",
+		"message": "Qu'est-ce que Roblokis ?",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionWhatRkis1": {
-		"message": "Roblokis est une extension pour navigateur faite par ameer! pour rendre roblox plus facile a utiliser et plus accessible.",
+		"message": "Roblokis est une extension de broswer faite par Ameer ! pour rendre roblox plus facile à utiliser et plus accessible.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionWhatRkis2": {
-		"message": "Clicker ici pour la privacy policy et le site roblokis.",
+		"message": "Cliquez ici pour le site de Roblokis et sa politique de confidentialité.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionHelpNeed": {
@@ -256,155 +272,155 @@
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionHelpNeed1": {
-		"message": "Si L'extension a des probleme, vous pouver me contacter sur discord :",
+		"message": "si l'extension a des problèmes vous pouvez me contacter sur discord:",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionHelpNeed2": {
-		"message": "ou m'envoyer un message sur roblox (Ameer_Khalid):",
+		"message": "ou m'envoyer un message sur Roblox (Ameer_Khalid):",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionFeatures": {
-		"message": "Fonctionnalité:",
+		"message": "Caractéristiques:",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionFeatures1": {
-		"message": "les truc que roblokis peut faire",
+		"message": "Ce que Roblokis peut faire",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionQRB": {
-		"message": "Button d'enlèvement rapide.",
+		"message": "Bouton de suppression rapide.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionQRB1": {
-		"message": "Un petit bouton pour enlver des amis plus rapidement",
+		"message": "Petit bouton pour supprimer des amis plus rapidement.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionQRB2": {
-		"message": "NOTE: vous devais faire un double click sur le button pour qu'il fonctionnent!",
+		"message": "NOTE: Vous devez double-cliquer sur le bouton pour supprimer des amis !",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionLS": {
-		"message": "Derniers Status.",
+		"message": "Dernier statut.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionLS1": {
-		"message": "montre la derniere chose qu'un joueur fesait dans sa page profile.",
+		"message": "Affiche la dernière activité du joueur sur sa page de profil.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionCP": {
-		"message": "annulé en attente.",
+		"message": "Annuler l'attente.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionCP1": {
-		"message": "montre un boutton \"anulage en attente\"a la place de \"en attente\".",
+		"message": "Affiche un bouton \"Annuler en attente\" au lieu de \"En attente\".",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionCBV": {
-		"message": "nouveau badge et tout charger.",
+		"message": "Nouveaux badges Look & Load all.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionCBV1": {
-		"message": "montre le nouveau style de ameer! charge les 100 premier badge automatiquement.",
+		"message": "Affiche le nouveau style conçu par Ameer ! Charge automatiquement les 100 premiers badges.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionCBH": {
-		"message": "Montre les badges cacher.",
+		"message": "Afficher les badges cachés.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionCBH1": {
-		"message": " montre les badge cacher ou desactiver! (l'option tout charger est requise)",
+		"message": "Affiche les badges cachés/désactivés ! (L'option \"Charger tout\" est requise)",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionRJB": {
-		"message": "changer le nom du bouton rejoindre.",
+		"message": "Renommer le bouton \"Rejoindre\".",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionRJB1": {
-		"message": "change le nom du bouton pour rejoindre \"rejoindre un server privé \" ou \"rejoindre un server publique\" dependament du server.",
+		"message": "Renomme le bouton \"Rejoindre\" en \"Rejoindre un serveur privé\" ou \"Rejoindre un serveur public\" selon le serveur.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionSPN": {
-		"message": "serveur page nav.",
+		"message": "Nav. page serveur",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionSPN1": {
-		"message": "montre des bouttons Nav. en bas du boutton \"chargé plus\".",
+		"message": "Affiche les boutons de navigation sous le bouton \"Load More\".",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"SectionSSS": {
-		"message": "section pour petit server.",
+		"message": "Section des petits serveurs.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"SectionSSS1": {
-		"message": "une nouvelle section montre des serveur avec peu de joueur.",
+		"message": "Une nouvelle section montre les serveurs avec peu de joueurs.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionALM": {
-		"message": "charger plus automatiquement.",
+		"message": "Automatique Charger plus.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionALM1": {
-		"message": "click automatiquement charger plus puis les server refresh.",
+		"message": "Cliquez automatiquement sur la charge plus que le rafraîchissement des serveurs.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionASO": {
-		"message": "server disponible seulement.",
+		"message": "Serveurs disponibles uniquement.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionASO1": {
-		"message": "enleve tout les serveur undisponible ou tout les server sans boutton pour rejoindre.",
+		"message": "Supprime tous les serveurs indisponibles ou tous les serveurs sans bouton d'adhésion.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionCRT": {
-		"message": "texte robux customizer :",
+		"message": "Texte Robux personnalisé:",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionCRT1": {
-		"message": "ceci change le texte de robux en haut a droite dans tout les site roblox.",
+		"message": "Ce texte remplace le texte de robux en haut à droite sur tous les sites de roblox.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionCNT": {
-		"message": "nom de texte customizer:",
+		"message": "Texte de nom personnalisé:",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionCNT1": {
-		"message": "ceci change le nom d'utilisateur en haut a droite dans tout les site roblox.",
+		"message": "Ceci remplace le texte du nom d'utilisateur en haut à droite sur tous les sites roblox.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionUThemes": {
-		"message": "utiliser des themes.",
+		"message": "Utiliser les thèmes.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionUThemes1": {
-		"message": "desactiver ceci va desactiver les style et themes!",
+		"message": "Si vous désactivez cette option, les styles et les thèmes seront désactivés !",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionAAnim": {
-		"message": "permettre les animations?",
+		"message": "Autoriser les animations ?",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionAAnim1": {
-		"message": "quelque page peuvent avoir des effet d'animation. (A besoin de l'option des theme)",
+		"message": "Certaines pages peuvent avoir des effets d'animation. (Requiert l'option Themes)",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionQJB": {
-		"message": "boutton pour rejoindre rapidement.",
+		"message": "Bouton d'adhésion rapide.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionQJB1": {
-		"message": "ajoute un boutton pour rejoindre en basde tout les jeux dans les page Jeux Et Decouvrir.",
+		"message": "Ajoute un bouton d'adhésion sous chaque jeu sur les pages de jeu et de découverte.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionDApp": {
-		"message": "apli pour bureau.",
+		"message": "Application de bureau.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionDApp1": {
-		"message": "active le design de l'apli pour bureau de roblox.",
+		"message": "Active l'application de bureau conçue par Roblox.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"themeSlotNumber": {
-		"message": "Emplacement de thème $num$",
+		"message": "Thème Slot $num$",
 		"description": "Text Shows on Roblokis Settings at Designer Tab. the placeholder is the number of the empty slot",
 		"placeholders": {
 			"num": {
@@ -414,79 +430,83 @@
 		}
 	},
 	"themeSelected": {
-		"message": "Theme sélectionner",
+		"message": "Thème sélectionné",
 		"description": "Text shows in Roblokis Settings at Designer Tab. Under it will be the selected themes"
 	},
 	"themeNotLoad": {
-		"message": "pas charger",
+		"message": "Non chargé",
 		"description": "Text shows in Roblokis Settings at Designer Tab. shows then the designer tab is loading"
 	},
 	"themeDefaultSection": {
-		"message": "Themes par défaut:",
+		"message": "Thèmes par défaut:",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for a section"
 	},
 	"themeDefaultSection1": {
-		"message": "vien avec l'extension...",
+		"message": "Fournis avec l'extension...",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for a section"
 	},
 	"themeCustomSection": {
-		"message": "Themes customizer:",
+		"message": "Thèmes personnalisés:",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for a section"
 	},
 	"themeCustomSection1": {
-		"message": "tu utilise ou fabrique tes propre themes...",
+		"message": "Vous utilisez ou créez vos propres thèmes...",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for a section"
 	},
 	"themeNewTitle": {
-		"message": "nouveau thème",
+		"message": "Nouveau thème",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for a new theme creation"
 	},
 	"themeName": {
-		"message": "nom",
+		"message": "Nom",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for a new theme creation"
 	},
 	"themeDescription": {
-		"message": "Description (Optionel)",
+		"message": "Description (facultatif)",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for a new theme creation"
 	},
 	"themeImport": {
-		"message": "Importer un Theme (Optionel)",
+		"message": "Importer le thème",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for a new theme creation"
 	},
+	"imageImport": {
+		"message": "Image",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for image uploading"
+	},
 	"themeDeleteTitle": {
-		"message": "Suprimer un Theme",
+		"message": "Supprimer le thème",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for a theme Deletion"
 	},
 	"themeDeleteText": {
-		"message": "ete vous sur de vouloir suprimer ",
+		"message": "Êtes-vous sûr de vouloir supprimer",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for a theme Deletion"
 	},
 	"themeBackground": {
-		"message": "arriere plans",
+		"message": "Arrière-plan",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeCorners": {
-		"message": "coin",
+		"message": "Coins",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeAllCorners": {
-		"message": "tout les coins:",
+		"message": "Tous les coins:",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeTLCorner": {
-		"message": "coin en haut a gauche",
+		"message": "Coin supérieur gauche",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeTRCorner": {
-		"message": "coin en haut a droite",
+		"message": "Coin supérieur droit",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeBLCorner": {
-		"message": "coin en bas a gauche",
+		"message": "Coin inférieur gauche",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeBRCorner": {
-		"message": "coin en bas a droite",
+		"message": "Coin inférieur droit",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeColor": {
@@ -502,19 +522,19 @@
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeSize": {
-		"message": "côté:",
+		"message": "Côté:",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeFillX": {
-		"message": "remplir X",
+		"message": "Remplir X",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeFillY": {
-		"message": "remplir Y",
+		"message": "Remplir Y",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeAuto": {
-		"message": "Automatic",
+		"message": "Auto",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeRepeat": {
@@ -522,15 +542,15 @@
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeNoRepeat": {
-		"message": "ne pas répéter",
+		"message": "Pas de répétition",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeRepeatT": {
-		"message": "répéter:",
+		"message": "Répéter:",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeRound": {
-		"message": "Cercle",
+		"message": "Round",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeSpace": {
@@ -538,19 +558,19 @@
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeScroll": {
-		"message": "Descendre:",
+		"message": "Défilement:",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeEnabled": {
-		"message": "activer",
+		"message": "Activé",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeDisabled": {
-		"message": "Desactiver",
+		"message": "Désactivé",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeBorders": {
-		"message": "Bordure",
+		"message": "Bordures",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeWidth": {
@@ -570,31 +590,31 @@
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeDashed": {
-		"message": "pointillé",
+		"message": "En tirets",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeDotted": {
-		"message": "pointé",
+		"message": "Pointillé",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeInset": {
-		"message": "Insèrer",
+		"message": "Encart",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeOutset": {
-		"message": "début",
+		"message": "Extérieur",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeGroove": {
-		"message": "rainure",
+		"message": "Rainure",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeRidge": {
-		"message": "crête",
+		"message": "Faîtière",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeTBorder": {
-		"message": "Bordure du haut",
+		"message": "Bordure supérieure",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeRBorder": {
@@ -602,35 +622,35 @@
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeBBorder": {
-		"message": "bordure du fond",
+		"message": "Bordure inférieure",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeLBorder": {
-		"message": "bordure gauche",
+		"message": "Bordure gauche",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeSection": {
-		"message": "section",
+		"message": "Section",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeShadow": {
-		"message": "ombre:",
+		"message": "Ombre:",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themePreviewProfile": {
-		"message": "apercu d'example de profile",
+		"message": "Aperçu de l'exemple de profil",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeFriends": {
-		"message": "ami",
+		"message": "Amis",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeFollowers": {
-		"message": "suiveurs",
+		"message": "Suiveurs",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeFollowing": {
-		"message": "entrain de suivre",
+		"message": "Suivre",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeMessage": {
@@ -638,11 +658,11 @@
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themePreviewGroup": {
-		"message": "apercu d'exemple de groupe",
+		"message": "Exemple d'aperçu de groupe",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeGroupBy": {
-		"message": "par",
+		"message": "Par",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (next to it will be server creator name)"
 	},
 	"themeMembers": {
@@ -654,39 +674,39 @@
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themePreviewBadge": {
-		"message": "apercu d'exemple de badge",
+		"message": "Aperçu d'un exemple de badge",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeNameBadge": {
-		"message": "Roblokis Installé",
+		"message": "Roblokis installé",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (you can make this whatever you want)"
 	},
 	"themeDescBadge": {
-		"message": "les proprietere de ce badge ont installer roblokis",
+		"message": "Les propriétaires de ce badge ont installé Roblokis.",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (you can make this whatever you want)"
 	},
 	"themeTxtColor": {
-		"message": "couleur du texte",
+		"message": "Couleur du texte",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeTextColor": {
-		"message": "couleur du texte:",
+		"message": "Couleur du texte:",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeBrtColor": {
-		"message": "couleur vive:",
+		"message": "Couleur vive:",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeDrkColor": {
-		"message": "couleur noir:",
+		"message": "Couleur foncée:",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeTimeAgo": {
-		"message": "temp passe",
+		"message": "temps il y a",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themePreviewServer": {
-		"message": "apercu d'exemple de servers",
+		"message": "Exemple de serveur: aperçu",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themePrvSvr": {
@@ -694,87 +714,87 @@
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (you can make this whatever you want)"
 	},
 	"themePrvSvrRenu": {
-		"message": "Renouvelé",
+		"message": "Renouveler",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (you can make this whatever you want)"
 	},
 	"themePreviewDefault": {
-		"message": "apercu du server par defaut",
+		"message": "Aperçu du serveur par défaut",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themePreviewPrivate": {
-		"message": "apercu des servers prive",
+		"message": "Aperçu du serveur privé",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themePreviewPublic": {
-		"message": "apercu de server publique",
+		"message": "Aperçu du serveur public",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themePreviewSmall": {
-		"message": "apercu de petit server",
+		"message": "Aperçu du petit serveur",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themePreviewFriends": {
-		"message": "apercu de servers d'amis",
+		"message": "Aperçu du serveur d'amis",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeSvrStng": {
-		"message": "parametre de serveur",
+		"message": "Paramètres des serveurs",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeSvrPerRow": {
-		"message": "serveur par range:",
+		"message": "Serveurs par rangée:",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeSvrGap": {
-		"message": "ecart de server:",
+		"message": "Servers Gap:",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeOwnBG": {
-		"message": "arriere plan du propriétaire:",
+		"message": "Propriétaire Arrière-plan:",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeOwnBGAlp": {
-		"message": "arriere plan du proprietaire alpha:",
+		"message": "Propriétaire Bg Alpha:",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themePrvSvrInac": {
-		"message": "Inactive.",
+		"message": "Inactif.",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themeFrnSvrPlr": {
-		"message": "ami dans ce server: Roblox",
+		"message": "Amis dans ce serveur: Roblox",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"screenLength": {
-		"message": "taille x taille",
+		"message": "Taille x Taille",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"badgeNoDescription": {
-		"message": "pas de description pour ce badge",
+		"message": "Pas de description de badge",
 		"description": "Text shows on game badges. badge doesn't have a description"
 	},
 	"badgeNoName": {
-		"message": "pas de nom pour ce badge",
+		"message": "Pas de nom de badge",
 		"description": "Text shows on game badges. badge doesn't have a name"
 	},
 	"badgeRare": {
-		"message": "Rareté",
+		"message": "Rarity",
 		"description": "Text shows on game badges. how rare is this badge to get"
 	},
 	"badgeLastWon": {
-		"message": "gagne hier",
+		"message": "Gagné hier",
 		"description": "Text shows on game badges. how many players got this badge from yesterday"
 	},
 	"badgeWon": {
-		"message": "gagné tout le temp",
+		"message": "Won Ever",
 		"description": "Text shows on game badges. how many players have this badge"
 	},
 	"badgeAchievedShort": {
-		"message": "réussi",
+		"message": "obtenu",
 		"description": "Text shows on game badges. Next to it will be the date of when the player got the badge"
 	},
 	"badgeAchievedLong": {
-		"message": "reussi le $longdate$",
+		"message": "Atteint le $longdate$",
 		"description": "Text shows then you hover over game badges. a longer date will be showen in the placeholder",
 		"placeholders": {
 			"longdate": {
@@ -784,11 +804,11 @@
 		}
 	},
 	"badgeCreatedShort": {
-		"message": "Created",
+		"message": "Créé",
 		"description": "Text shows on game badges. Next to it will be the date of when the badge was created"
 	},
 	"badgeCreatedLong": {
-		"message": "Crée le $longdate$",
+		"message": "Créé le $longdate$",
 		"description": "Text shows then you hover over game badges. a longer date will be showen in the placeholder",
 		"placeholders": {
 			"longdate": {
@@ -798,11 +818,11 @@
 		}
 	},
 	"badgeUpdatedShort": {
-		"message": "Updated",
+		"message": "Mis à jour",
 		"description": "Text shows on game badges. Next to it will be the date of when the badge got updated"
 	},
 	"badgeUpdatedLong": {
-		"message": "derniere mise a jour le $longdate$",
+		"message": "Dernière mise à jour le $longdate$",
 		"description": "Text shows then you hover over game badges. a longer date will be showen in the placeholder",
 		"placeholders": {
 			"longdate": {
@@ -812,31 +832,31 @@
 		}
 	},
 	"joinButtons": {
-		"message": "rejoindre",
+		"message": "Rejoindre",
 		"description": "Text shows on games/servers button. clicking it would join your roblox game"
 	},
 	"cancelRequest": {
-		"message": "annuler requete",
+		"message": "Annuler la demande",
 		"description": "Text shows on profile at'Pending' button. cancels a friend request"
 	},
 	"canceledRequest": {
-		"message": "annuler",
+		"message": "Annulé",
 		"description": "Text shows on profile at'Pending' button. canceled the friend request"
 	},
 	"lastGame": {
-		"message": "Dernier jeu",
+		"message": "Dernière partie",
 		"description": "Text shows on profiles. under it will be the game join button"
 	},
 	"lastPlace": {
-		"message": "Derniere place",
+		"message": "Dernier lieu",
 		"description": "Text shows on profiles. under it will be the last game name"
 	},
 	"lastSeen": {
-		"message": "dernierement vue",
+		"message": "Dernier vu",
 		"description": "Text shows on profiles. under it will be the last date player was seen"
 	},
 	"lastSeenLong": {
-		"message": "dernierement vue le $longdate$",
+		"message": "Dernière fois vu sur $longdate$",
 		"description": "Text shows then you hover over last seen text in profile page. a longer date will be showen in the placeholder",
 		"placeholders": {
 			"longdate": {
@@ -846,23 +866,23 @@
 		}
 	},
 	"smallSection": {
-		"message": "quelque petit servers",
+		"message": "Quelques petits serveurs",
 		"description": "Text shows on game servers. the small servers section name"
 	},
 	"slowServer": {
-		"message": "serveur lent",
+		"message": "Serveur lent",
 		"description": "Text shows on servers. only shows then the server is slow"
 	},
 	"loadMore": {
-		"message": "charger plus",
+		"message": "Charger plus",
 		"description": "Text shows on game servers section. clicking it will load more servers"
 	},
 	"joinPrivateServer": {
-		"message": "rejoindre serveur privé",
+		"message": "Rejoindre un serveur privé",
 		"description": "Text shows on friends servers. text shows when your friend is in a private server"
 	},
 	"JoinPublicServer": {
-		"message": "rejoindre serveur publique",
+		"message": "Rejoindre un serveur public",
 		"description": "Text shows on friends servers. text shows when your friend is in a public server"
 	}
 }

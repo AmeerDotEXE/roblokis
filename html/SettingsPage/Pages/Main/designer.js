@@ -565,9 +565,9 @@ Designer.waitingForGeneral = function() {
 	}
 	
 	//Designer.LoadThemesData();
-	document.$watch("#rkpage .main .designer", (e) => { e.$on("script", () => {Designer.LoadThemesData();}) })
+	document.$watch("#rkpage .main .themes", (e) => { e.$on("script", () => {Designer.LoadThemesData();}) })
 
-	document.$watchLoop("#rkpage .main .designer .designer-btn", (e) => {
+	document.$watchLoop("#rkpage .main .themes .designer-btn", (e) => {
 		var i = e.dataset.themeid;
 		if(isNaN(Number(i)) == false) i = Number(i);
 		var daname = e.dataset.theme;
@@ -619,7 +619,7 @@ Designer.waitingForGeneral = function() {
 		}
 	})
 
-	document.$watchLoop("#rkpage .main .designer [data-designer-func]", (e) => {
+	document.$watchLoop("#rkpage .main .themes [data-designer-func]", (e) => {
 		var i = e.dataset.themeid;
 		if(isNaN(Number(i)) == false) i = Number(i);
 		var daname = e.dataset.theme;
