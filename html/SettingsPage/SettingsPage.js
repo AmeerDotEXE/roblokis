@@ -1081,9 +1081,6 @@ page.settingsWaitingForGeneral = function() {
 							<h3><span data-translate="categoryMain">Main</span> &gt; <span data-translate="tabDesign">Design</span></h3>
 							<button class="main-save-button" data-translate="btnSave">Save</button>
 
-							<span class="text-description" data-translate="NoSettingReason">No Settings? Visit the page mentioned in this Tab's name</span>
-							<div class="rbx-divider" style="margin: 12px;"></div>
-
 							<loadcode code="settingload" data-id="UseThemes"></loadcode>
 
 							<div class="section-content">
@@ -1101,9 +1098,6 @@ page.settingsWaitingForGeneral = function() {
 						</div>
 						<div class="tabcontent themes">
 							<h3><span data-translate="categoryMain">Main</span> &gt; <span data-translate="tabThemes">Themes</span></h3>
-
-							<span class="text-description" data-translate="NoSettingReason">No Settings? Visit the page mentioned in this Tab's name</span>
-							<div class="rbx-divider" style="margin: 12px;"></div>
 
 							<div id="rk-themesection">
 
