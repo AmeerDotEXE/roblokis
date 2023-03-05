@@ -32,6 +32,12 @@
 #rk-desktopapp:hover > span {color: #f22;}
 
 
+/* Fix error message peaking under navbar */
+html .alert-system-feedback .alert {
+	top: -25%;
+}
+
+
 /*content*/
 #container-main > div.content {
 

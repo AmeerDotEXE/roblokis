@@ -9,11 +9,13 @@
 
 #vertical-menu,
 #vertical-menu > li.menu-option > a,
-
-#settings-container > div.tab-content.rbx-tab-content > div[ui-view] > div > two-step-verification > div > div:not(.container-header) > div,
-#settings-container > div.tab-content.rbx-tab-content > div[ui-view] > div > div.section > div.section-content,
-#settings-container > div.tab-content.rbx-tab-content > div[ui-view] > div.section > div.section-content,
-#settings-container > div.tab-content.rbx-tab-content > div[ui-view] > div > div > div.section > div.section-content,
-#settings-container > div.tab-content.rbx-tab-content > div[ui-view] > div > div:not(.container-header) > div.section-content {
+div.section .section-content {
 	background-color: transparent;
+}
+
+#vertical-menu,
+div.section .section-content:not(.remove-panel) {
+	border-style: solid;
+	border-width: 0 1px 1px 0;
+    border-radius: 16px;
 }

@@ -977,6 +977,14 @@ page.settingsWaitingForGeneral = function() {
 								</table>
 								<div class="rbx-divider" style="margin: 12px 0 0 0;"></div>
 							</div>
+
+							<div class="section-content">
+								<h4>Roblokis Data</h4>
+								<div>
+									<button class="btn-control-sm" id="download-roblokis-data">Download</button>
+									<button class="btn-control-sm" data-translate="btnDelete" id="delete-roblokis-data">Delete</button>
+								</div>
+							</div>
 						</div>
 						<div class="tabcontent all">
 							<h3><span data-translate="categoryMain">Main</span> &gt; <span data-translate="tabAll">All</span></h3>
@@ -4271,6 +4279,30 @@ page.settingsWaitingForGeneral = function() {
 		document.firstElementChild.insertBefore(ttle, document.firstElementChild.firstElementChild);
 
 		page.start();
+
+		mainplace.querySelector(`#download-roblokis-data`).addEventListener('click', () => {
+			let rawText = localStorage.getItem('Roblokis');
+			makeTextFile(rawText, 'Raw Roblokis Data.json');
+		});
+		mainplace.querySelector(`#delete-roblokis-data`).addEventListener('click', () => {
+			let confirmation = confirm("WARNING: This can not be undone!\nContinuing will remove all your Roblokis information;\n-settings\n-themes\nare included, Continue?");
+			if (confirmation === true) {
+				localStorage.removeItem('Roblokis');
+				location.reload();
+			}
+		});
 	});
 }
-page.settingsWaitingForGeneral();
+try {
+	page.settingsWaitingForGeneral();
+} catch (err) {
+	if (err != null) {
+		if (Rkis.Toast != null) {
+			Rkis.Toast('Error: '+ new String(err));
+		} else {
+			prompt(`A problem occured with Roblokis, Please report to the developers\nError Code:`, err.stack || err);
+		}
+	}
+
+	page.settingsWaitingForGeneral();
+}
