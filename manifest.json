@@ -1,6 +1,6 @@
 {
 	"manifest_version": 3,
-	"version": "4.0.0.10",
+	"version": "4.0.0.11",
 	"version_name": "Pre-Release v4",
 
 	"author": "Ameer!",
@@ -26,12 +26,8 @@
 	},
 	"web_accessible_resources": [
 		{
-			"resources": [
-				"*.*"
-			],
-			"matches": [
-				"*://*.roblox.com/*"
-			],
+			"resources": [ "*.*" ],
+			"matches": [ "*://*.roblox.com/*" ],
 			"extension_ids": []
 		}
 	],

@@ -4300,7 +4300,7 @@ try {
 		if (Rkis.Toast != null) {
 			Rkis.Toast('Error: '+ new String(err));
 		} else {
-			prompt(`A problem occured with Roblokis, Please report to the developers\nError Code:`, err.stack || err);
+			prompt(`A problem occured with Roblokis, Please report to the developers\nError Code:`, err.stack || new String(err));
 		}
 	}
 
