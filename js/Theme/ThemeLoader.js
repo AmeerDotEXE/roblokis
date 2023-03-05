@@ -111,7 +111,7 @@ Rkis.Designer.SetupTheme = async function() {
 		{match: ".com/games/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/games.css" ]},
 		{match: ".com/groups/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/groups.css" ]},
 		
-		{match: ".com/catalog", paths: [ "js/Theme/Pages/all.css" ]},
+		{match: ".com/catalog", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/catalog.css" ]},
 		{match: ".com/upgrades/", paths: [ "js/Theme/Pages/all.css" ]},
 
 		{match: ".com/transactions", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/transactions.css" ]},
