@@ -1,4 +1,5 @@
 "use strict";
+var Rkis = Rkis || {};
 var page = page || {};
 
 page.serversDropDown = function() {
