@@ -1187,7 +1187,7 @@ page.settingsWaitingForGeneral = function() {
 												<div class="rk-tab-page" tab="importtheme">
 													<input type="file" id="newtheme-file" accept=".roblokis" oninput="if(this.files.length > 0) this.parentElement.querySelector('label').innerText = this.files[0].name; else this.parentElement.querySelector('label').innerText = '${Rkis.language['themeImport']}'" hidden>
 													<label id="newtheme-filename" for="newtheme-file" data-translate="themeImport">Import Theme</label>
-													<div id="newtheme-error" class="info" style="font-size: 12px;"></div>
+													<div id="newtheme-error" class="info" style="font-size: 12px;">NOTE: Only "Pre-made" Roblokis themes are accepted.<br>For Images: Upload image online and use it's link instead!</div>
 													<div>
 														<button onclick="document.querySelector('#rk-createthemesection').style.display = 'none';" data-translate="btnCancel">Cancel</button>
 														<button class="designer-btn createthetheme rk-createbtn" data-translate="btnCreate">Create</button>

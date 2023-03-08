@@ -37,20 +37,19 @@ var Rkis = {
 			if (typeof setting == "string") rksetting = Rkis.wholeData[setting];
 			if (rksetting == null) {
 				console.error("Missing Setting:", setting);
-				return;
+				return false;
 			}
 		
 			if (defaultSetting != null) {
 				if (rksetting && rksetting.id == null) {
-					if (typeof setting == "string") {
-						let valueObject = {};
-		
-						if (typeof rksetting == "boolean") valueObject.switch = Rkis.wholeData[setting];
-						else if (typeof rksetting == "string") valueObject.text = Rkis.wholeData[setting];
-		
-						if (valueObject == {}) Rkis.wholeData[setting] = { ...defaultSetting };
-						else Rkis.wholeData[setting] = { ...defaultSetting, ...{ value: valueObject } };
-					}
+					let valueObject = {};
+	
+					if (typeof rksetting == "boolean") valueObject.switch = Rkis.wholeData[setting];
+					else if (typeof rksetting == "string") valueObject.text = Rkis.wholeData[setting];
+	
+					if (valueObject == {}) Rkis.wholeData[setting] = { ...defaultSetting };
+					else Rkis.wholeData[setting] = { ...defaultSetting, ...{ value: valueObject } };
+
 					rksetting = Rkis.wholeData[setting];
 					localStorage.setItem("Roblokis", JSON.stringify(Rkis.wholeData));
 				}
@@ -59,7 +58,10 @@ var Rkis = {
 					Rkis.wholeData[setting] = { ...defaultSetting };
 					(() => { localStorage.setItem("Roblokis", JSON.stringify(Rkis.wholeData)); })();
 				}
-			} else if (rksetting.id == null) console.error("Unregistered Feature: " + setting);
+			} else if (rksetting.id == null) {
+				console.error("Unregistered Feature: " + setting);
+				return false;
+			}
 		
 			if (setting.options && setting.options.disabled == true) return false;
 		
