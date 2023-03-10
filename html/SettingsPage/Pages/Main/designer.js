@@ -558,7 +558,7 @@ function onclicked(target, code) {
 
 
 Designer.waitingForGeneral = function() {
-	if (Rkis.generalLoaded != true) {
+	if (Rkis == null || Rkis.generalLoaded != true) {
 		document.addEventListener("rk-general-loaded", () => {
 			Designer.waitingForGeneral();
 		}, {once: true});

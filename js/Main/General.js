@@ -53,11 +53,11 @@ var Rkis = {
 					rksetting = Rkis.wholeData[setting];
 					localStorage.setItem("Roblokis", JSON.stringify(Rkis.wholeData));
 				}
-				if (Rkis.wholeData[setting] != null) Rkis.wholeData[setting].details = defaultSetting.details;
 				if (Rkis.wholeData[setting] == null) {
 					Rkis.wholeData[setting] = { ...defaultSetting };
 					(() => { localStorage.setItem("Roblokis", JSON.stringify(Rkis.wholeData)); })();
 				}
+				if (Rkis.wholeData[setting] != null && typeof Rkis.wholeData[setting] == "object") Rkis.wholeData[setting].details = defaultSetting.details;
 			} else if (rksetting.id == null) {
 				console.error("Unregistered Feature: " + setting);
 				return false;

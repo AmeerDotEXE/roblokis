@@ -3,7 +3,7 @@ var Rkis = Rkis || {};
 var page = page || {};
 
 page.serversDropDown = function() {
-	if (Rkis.generalLoaded != true) {
+	if (Rkis == null || Rkis.generalLoaded != true) {
 		document.addEventListener("rk-general-loaded", () => {
 			page.serversDropDown();
 		}, {once: true});

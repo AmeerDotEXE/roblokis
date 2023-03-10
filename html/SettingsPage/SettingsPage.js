@@ -176,7 +176,7 @@ page.start = async function () {
 };
 
 page.settingsWaitingForGeneral = function() {
-	if (Rkis.generalLoaded != true) {
+	if (Rkis == null || Rkis.generalLoaded != true) {
 		document.addEventListener("rk-general-loaded", () => {
 			page.settingsWaitingForGeneral();
 		}, {once: true});
@@ -4298,7 +4298,7 @@ try {
 	page.settingsWaitingForGeneral();
 } catch (err) {
 	if (err != null) {
-		if (Rkis.Toast != null) {
+		if (Rkis != null && Rkis.Toast != null) {
 			Rkis.Toast('Error: '+ new String(err));
 		} else {
 			prompt(`A problem occured with Roblokis, Please report to the developers\nError Code:`, err.stack || new String(err));
