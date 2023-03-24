@@ -192,6 +192,14 @@ Rkis.Designer.SetupTheme = async function() {
 		.catch(err => {return null;})
 		if(tamplate0 == null) return;
 
+		// Format
+			/*>|REPLACE WITH STUFF|.value<*/
+		/* Result
+			stuff1.value
+			stuff2.value
+			...
+		*/
+		
 		//auto complete
 		tamplate0.split("/*>").forEach((e, i) => {
 			if(i == 0) return tamplate05 += e;
@@ -255,6 +263,18 @@ Rkis.Designer.SetupTheme = async function() {
 			tamplate05 += completecode + n[1];
 		});
 
+		/* Format
+			--loopstart: 0;
+				dummy: "hi";
+				|replace with stuff|.value
+			--loopend: 0;
+		// Result
+			dummy: "hi";
+			stuff1.value
+			dummy: "hi";
+			stuff2.value
+			...
+		*/
 		tamplate05.split("--loopstart: 0;").forEach((e, i) => {
 			if(i == 0) return tamplate1 += e;
 
@@ -284,6 +304,9 @@ Rkis.Designer.SetupTheme = async function() {
 
 			tamplate1 += completecode + n[1];
 		});
+
+		//--rk-something: %variable%;
+		//--rk-something: $value&default#;
 
 		//auto variable
 		tamplate1.split("--rk-").forEach((codepart, i) => {
@@ -363,12 +386,12 @@ Rkis.Designer.SetupTheme = async function() {
 				}
 			}
 
-			if(filled == false) return;
+			if (filled == false) return;
 
 			return tamplate2 += fill;
 		});
 
-		//url replace
+		//url replacer
 		var splittenTemplate2 = tamplate2.split("url(https://");
 		for (var i = 0; i < splittenTemplate2.length; i++) {
 			var codepart = splittenTemplate2[i];

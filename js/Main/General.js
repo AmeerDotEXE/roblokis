@@ -379,7 +379,7 @@ if (Rkis.ToastHolder == null || Rkis.ToastHolder == {}) {
 		let setting = defaultSettings[settingName];
 		if (setting == null || typeof setting != "object" || setting.id == null) continue;
 
-		if (Rkis.wholeData[settingName] == null) {
+		if (Rkis.wholeData[settingName] == null || typeof Rkis.wholeData[settingName] != "object") {
 			Rkis.wholeData[settingName] = setting;
 			continue;
 		}

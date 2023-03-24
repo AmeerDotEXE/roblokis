@@ -560,7 +560,7 @@ Rkis.page.game = () => {
 	}
 
 
-	//should or shouldn't show the max players count (7 => 7/8)
+	//should or shouldn't show the max players count (ex. 7 => 7/8)
 	if (Rkis.IsSettingEnabled("ShowMaxPlayers", {
 		id: "ShowMaxPlayers",
 		type: "switch",
@@ -579,13 +579,21 @@ Rkis.page.game = () => {
 	})) {
 		document.$watch("#game-instances", (e) => {
 
-			document.$watch("div.remove-panel > ul.game-stats-container > li:nth-child(6) > p.text-lead.font-caption-body:not(.invisible)", (playercount) => {
-				if (!(playercount != null && isNaN(parseInt(playercount.innerText)) != true && parseInt(playercount.innerText) < 10)) {
-					e.classList.add("max-players-text");
-				}
-			})
+			document.$watch("ul.game-stats-container > li > p.text-label",
+				(check) => check.innerText.toLowerCase() == "server size",
+				(label) => {
+					let playercount = label.parentElement.children[1];
 
-		})
+					Rkis.gamePlayers = parseInt(playercount.innerText || playercount.innerHTML);
+					if (isNaN(Rkis.gamePlayers)) Rkis.gamePlayers = undefined;
+
+					if (!(isNaN(Rkis.gamePlayers) != true && Rkis.gamePlayers < 10)) {
+						e.classList.add("max-players-text");
+					}
+				}
+			);
+
+		});
 	}
 
 	if (Rkis.IsSettingEnabled("Badges", {
@@ -769,14 +777,30 @@ Rkis.page.game = () => {
 		}
 	})) {
 
+		document.$watchLoop(`#rbx-private-game-server-item-container > li`, (x) => {
+			let serverTitle = x.querySelector(`.game-server-details > div.section-header > span`)?.innerText;
+			let ownerUrl = x.querySelector(`.game-server-details > div.rbx-private-owner > a.owner-avatar[href]`)?.href;
+
+			let index = -1;
+
+			x.parentElement.querySelectorAll(`.game-server-details:has(div.rbx-private-owner > a.owner-avatar[href="${ownerUrl}"]) > div.section-header > span`)
+			.forEach((z) => {
+				if (z.innerText !== serverTitle) return;
+				index++;
+				if (index == 0) return;
+				x.remove();
+			});
+		});
+
 		document.$watchLoop("#rbx-private-running-games > div.rbx-private-running-games-footer > button", async (loadmoreBTN) => {
 			while (document.contains(loadmoreBTN)) {
 				if (loadmoreBTN.getAttribute("disabled") == null) {
 					loadmoreBTN.click();
 				}
+
 				await Rkis.delay(200);
 			}
-		})
+		});
 
 	}
 
@@ -799,15 +823,16 @@ Rkis.page.game = () => {
 
 			var stylee = "";
 
-			var playercount = document.$find("#about > div.section.game-about-container > div.section-content.remove-panel > ul > li:nth-child(6) > p.text-lead.font-caption-body");
-			if (playercount == null) playercount = $r("#game-detail-page > div.btr-game-main-container.section-content > div.remove-panel.btr-description > ul > li:nth-child(6) > p.text-lead.font-caption-body");
+			var playercount = Rkis.gamePlayers;
+			if (playercount == null) playercount = document.$find("ul.game-stats-container > li:nth-child(6) > p.text-lead.font-caption-body")?.innerText;
+			if (playercount == null) playercount = $r("#game-detail-page > div.btr-game-main-container.section-content > div.remove-panel.btr-description > ul > li:nth-child(6) > p.text-lead.font-caption-body")?.innerText;
 
-			if (playercount && parseInt(playercount.innerText) <= totalPlayerCount) stylee += "background-color: darkred;color: white;";
-			else if (playercount && (parseInt(playercount.innerText) / 2) <= totalPlayerCount) stylee += "background-color: orangered;color: white;";
+			if (playercount && parseInt(playercount) <= totalPlayerCount) stylee += "background-color: darkred;color: white;";
+			else if (playercount && (parseInt(playercount) / 2) <= totalPlayerCount) stylee += "background-color: orangered;color: white;";
 			else stylee += "background-color: lightgray;color: black;";
 
 			counter.setAttribute("style", stylee);
-			counter.innerText = totalPlayerCount + (Rkis.IsSettingEnabled("ShowMaxPlayers") ? "/" + (playercount.innerText || "?") : "");
+			counter.innerText = totalPlayerCount + (Rkis.IsSettingEnabled("ShowMaxPlayers") ? "/" + (playercount || "?") : "");
 			counter.id = "rk-plr-counter";
 
 			rightsection.insertBefore(counter, rightsection.firstChild);
