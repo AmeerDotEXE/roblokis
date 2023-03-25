@@ -35,7 +35,7 @@ var Rkis = {
 		
 			let rksetting = setting;
 			if (typeof setting == "string") rksetting = Rkis.wholeData[setting];
-			if (rksetting == null) {
+			if (rksetting == null && defaultSetting == null) {
 				console.error("Missing Setting:", setting);
 				return false;
 			}
