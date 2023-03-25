@@ -177,7 +177,41 @@ Rkis.page.all = () => {
 		})();
 	}
 
-return {};
+	if (Rkis.IsSettingEnabled("InfiniteGameScrolling", {
+		id: "InfiniteGameScrolling",
+		type: "switch",
+		value: { switch: false },
+		details: {
+			default: "en",
+			translate: {
+				note: "experimental"
+			},
+			"en": {
+				name: "Infinite Games Scrolling",
+				description: "Allows touchpad/mouse wheel to scroll hotizantally in Discover page.",
+				note: "EXPERIMENTAL: This feature might change over time!"
+			}
+		}
+	})) {
+		//https://stackoverflow.com/a/71841743 (modified)
+		document.$watchLoop(".horizontal-scroller > .horizontal-scroll-window > .horizontally-scrollable", (x) => {
+			x.parentElement.addEventListener("wheel", function (e) {
+				e.preventDefault();
+				let curr = parseInt(x.style.left.substring(-2));
+
+				if (e.deltaY > 0) {
+					if (curr <= -2560) return; // thats roblox's maximum pixels that load per row
+					x.style.left = (curr - 100) + "px";
+				}
+				else {
+					if (curr >= 0) return;
+					x.style.left = (curr + 100) + "px";
+				}
+			});
+		});
+	}
+
+	return {};
 	
 }
 
