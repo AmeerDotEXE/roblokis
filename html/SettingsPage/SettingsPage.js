@@ -1004,6 +1004,10 @@ page.settingsWaitingForGeneral = function() {
 							<loadcode code="settingload" data-id="SiteLanguage"></loadcode>
 							<loadcode code="settingload" data-id="QuickGameJoin"></loadcode>
 							<loadcode code="settingload" data-id="DesktopApp"></loadcode>
+
+							<div class="rbx-divider" style="margin: 12px;"></div>
+
+							<loadcode code="settingload" data-id="InfiniteGameScrolling"></loadcode>
 						</div>
 						<div class="tabcontent changelog">
 							<h3>Main &gt; Changelog</h3>
