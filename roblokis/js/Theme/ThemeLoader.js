@@ -68,7 +68,7 @@ Rkis.Designer.SetupTheme = async function() {
 	if(Rkis.IsSettingEnabled("ExtraShadows", {
 	id: "ExtraShadows",
 	type: "switch",
-	value: { switch: true },
+	value: { switch: false },
 	details: {
 		default: "en",
 		translate: {
@@ -178,242 +178,260 @@ Rkis.Designer.SetupTheme = async function() {
 	var theme = Rkis.Designer.currentTheme;
 	if(theme == null) return;
 
-	if(theme.all.css != null) {
+	let isModified = theme.pages != null;
 
-		var tamplate0 = null;
-		var tamplate05 = "";
-		var tamplate1 = "";
-		var tamplate2 = "";
-		var tamplate3 = "";
-		
+	if (isModified == false) {
+		theme.pages = theme.pages || {};
 
-		tamplate0 = await fetch(Rkis.fileLocation + "js/Theme/DefaultTamplate.css")
-		.then(response => response.text())
-		.catch(err => {return null;})
-		if(tamplate0 == null) return;
-
-		// Format
-			/*>|REPLACE WITH STUFF|.value<*/
-		/* Result
-			stuff1.value
-			stuff2.value
-			...
-		*/
-		
-		//auto complete
-		tamplate0.split("/*>").forEach((e, i) => {
-			if(i == 0) return tamplate05 += e;
-
-			var n = e.split("<*/");
-			if(n.length < 2) return tamplate05 += e;
-
-			var completecode = "";
-
-			if(n[0].includes("|CORNERS|")) {
-				var alltheelements = ["all","top-left","top-right","bottom-right","bottom-left"];
-
-				alltheelements.forEach((element, elementnumber) => {
-					completecode += n[0].split("|CORNERS|").join(element);
-					if(elementnumber != alltheelements.length - 1) completecode += "\n"; //make them look good
-				})
-			}
-			if(n[0].includes("|CORNER|")) {
-				var alltheelements = ["top-left","top-right","bottom-right","bottom-left"];
-
-				alltheelements.forEach((element, elementnumber) => {
-					completecode += n[0].split("|CORNER|").join(element);
-					if(elementnumber != alltheelements.length - 1) completecode += "\n"; //make them look good
-				})
-			}
-			if(n[0].includes("|SIDES|")) {
-				var alltheelements = ["all","top","left","bottom","right"];
-
-				alltheelements.forEach((element, elementnumber) => {
-					completecode += n[0].split("|SIDES|").join(element);
-					if(elementnumber != alltheelements.length - 1) completecode += "\n"; //make them look good
-				})
-			}
-			if(n[0].includes("|SIDE|")) {
-				var alltheelements = ["top","right","bottom","left"];
-
-				alltheelements.forEach((element, elementnumber) => {
-					completecode += n[0].split("|SIDE|").join(element);
-					if(elementnumber != alltheelements.length - 1) completecode += "\n"; //make them look good
-				})
-			}
-			if(n[0].includes("|IMAGE|")) {
-				var alltheelements = ["size","repeat","position","attachment"];
-
-				alltheelements.forEach((element, elementnumber) => {
-					completecode += n[0].split("|IMAGE|").join(element);
-					if(elementnumber != alltheelements.length - 1) completecode += "\n"; //make them look good
-				})
-			}
-			if(n[0].includes("|IMG|")) {
-				var alltheelements = ["repeat","position","attachment"];
-
-				alltheelements.forEach((element, elementnumber) => {
-					completecode += n[0].split("|IMG|").join(element);
-					if(elementnumber != alltheelements.length - 1) completecode += " "; //make them look good
-				})
-			}
-
-			if(completecode == "") return tamplate05 += n[1];
-
-			tamplate05 += completecode + n[1];
-		});
-
-		/* Format
-			--loopstart: 0;
-				dummy: "hi";
-				|replace with stuff|.value
-			--loopend: 0;
-		// Result
-			dummy: "hi";
-			stuff1.value
-			dummy: "hi";
-			stuff2.value
-			...
-		*/
-		tamplate05.split("--loopstart: 0;").forEach((e, i) => {
-			if(i == 0) return tamplate1 += e;
-
-			var n = e.split("--loopend: 0;");
-			if(n.length < 2) return tamplate1 += e;
-
-			var completecode = "";
-
-			if(n[0].includes("|server|")) {
-				var alltheelements = ["filteredserver","publicserver","smallserver","friendsserver","privateserver"];
-
-				alltheelements.forEach((element, elementnumber) => {
-					completecode += n[0].split("|server|").join(element);
-					if(elementnumber != alltheelements.length - 1) completecode += "\n"; //make them look good
-				})
-			}
-			if(n[0].includes("|fullpack|")) {
-				var alltheelements = ["pagenav","badge","content","profile","group"];
-
-				alltheelements.forEach((element, elementnumber) => {
-					completecode += n[0].split("|fullpack|").join(element);
-					if(elementnumber != alltheelements.length - 1) completecode += "\n"; //make them look good
-				})
-			}
-
-			if(completecode == "") return tamplate1 += n[1];
-
-			tamplate1 += completecode + n[1];
-		});
-
-		//--rk-something: %variable%;
-		//--rk-something: $value&default#;
-
-		//auto variable
-		tamplate1.split("--rk-").forEach((codepart, i) => {
-			if(i == 0) return tamplate2 += codepart; //don't change start
-			codepart = "--rk-" + codepart; //keep the cutted part
-
-			var fill = ""; //values
-			var filled = false; //check if css used
-
-			if(!codepart.includes("$") && !codepart.includes("%")) return tamplate2 += codepart; //no variable detection
-			var all_values = codepart.split("$"); //collect variables
-
-			for (var dollar_num = 0; dollar_num < all_values.length; dollar_num++) {
-				if(dollar_num == 0) {fill += all_values[0]; continue;} //don't change start
-				
-				//no end detection
-				var raw_value = all_values[dollar_num].split("#");
-				if(raw_value.length < 2) {fill += "$" + all_values[dollar_num]; continue;}
-
-				var raw_multiple_value = raw_value[0].split("&")[0].split("/"); //multiple value detection
-
-				var val = null; //value
-
-				var checkvalue = function(check_value, allcheck) {
-					var tryval = theme[Rkis.pageName];
-					if (allcheck == true) tryval = theme.all;
-					if (tryval == null) return null;
-
-					tryval = tryval.css;
-					if (tryval == null) return null;
-
-					var value_dots = check_value.split(".");
-
-					for(var doti = 0; doti < value_dots.length && tryval != null; doti++) {
-						var dot = value_dots[doti];
-						tryval = tryval[dot];
-					}
-
-					return tryval;
-				}
-
-				for(var checking_num = 0; checking_num < raw_multiple_value.length && val == null; checking_num++) {
-					var to_check_value = raw_multiple_value[checking_num];
-
-					val = checkvalue(to_check_value);
-
-					if(val != null) continue;
-
-					val = checkvalue(to_check_value, true);
-				}
-
-				if(val == null && raw_value[0].split("&").length > 1) {
-					val = raw_value[0].split("&")[1];
-				}
-
-				if(val == null) {fill += raw_value[1]; continue;}
-
-				fill += val + raw_value[1];
-				filled = true;
-
-			}
-
-			if(codepart.includes("%") && codepart.split("%").length > 2) {
-				var prts = codepart.split("%");
-
-				var val = null;
-				if(Rkis.wholeData[prts[1]] != true) val = "disabled";
-
-				if(val != null) {
-					fill += prts[0];
-
-					fill += val;
-
-					fill += prts[2];
-
-					filled = true;
-				}
-			}
-
-			if (filled == false) return;
-
-			return tamplate2 += fill;
-		});
-
-		//url replacer
-		var splittenTemplate2 = tamplate2.split("url(https://");
-		for (var i = 0; i < splittenTemplate2.length; i++) {
-			var codepart = splittenTemplate2[i];
-			if(i == 0){tamplate3 += codepart; continue;} //don't change start
-			codepart = "url(https://" + codepart; //keep the cutted part
-
-			var fill = ""; //values
-
-			if(codepart.split(")").length < 2) {tamplate3 += codepart; continue;} //no variable detection
-			var url = codepart.split("url(")[1].split(")")[0];
-
-			fill = await FetchImage(url);
-
-			//console.log(url, fill);
-
-			tamplate3 += 'url(' + fill + ')' + codepart.split(")").slice(1).join(')');
-		};
-
-		var styl = document.createElement("style");
-		styl.innerHTML = tamplate3;
-		document.$watch("head", (e) => { e.append(styl); });
+		for (let page in theme) {
+			if (theme[page].css == null) continue;
+			
+			isModified = true;
+			theme.pages[page] = theme[page].css;
+			delete theme[page];
+		}
 	}
+	
+	if(isModified == false) return;
+
+	var tamplate0 = null;
+	var tamplate05 = "";
+	var tamplate1 = "";
+	var tamplate2 = "";
+	var tamplate3 = "";
+
+
+	tamplate0 = await fetch(Rkis.fileLocation + "js/Theme/DefaultTamplate.css")
+	.then(response => response.text())
+	.catch(err => {return null;})
+	if(tamplate0 == null) return;
+
+	// Format
+		/*>|REPLACE WITH STUFF|.value<*/
+	/* Result
+		stuff1.value
+		stuff2.value
+		...
+	*/
+	
+	//auto complete
+	tamplate0.split("/*>").forEach((e, i) => {
+		if(i == 0) return tamplate05 += e;
+
+		var n = e.split("<*/");
+		if(n.length < 2) return tamplate05 += e;
+
+		var completecode = "";
+
+		if(n[0].includes("|CORNERS|")) {
+			var alltheelements = ["all","top-left","top-right","bottom-right","bottom-left"];
+
+			alltheelements.forEach((element, elementnumber) => {
+				completecode += n[0].split("|CORNERS|").join(element);
+				if(elementnumber != alltheelements.length - 1) completecode += "\n"; //make them look good
+			})
+		}
+		if(n[0].includes("|CORNER|")) {
+			var alltheelements = ["top-left","top-right","bottom-right","bottom-left"];
+
+			alltheelements.forEach((element, elementnumber) => {
+				completecode += n[0].split("|CORNER|").join(element);
+				if(elementnumber != alltheelements.length - 1) completecode += "\n"; //make them look good
+			})
+		}
+		if(n[0].includes("|SIDES|")) {
+			var alltheelements = ["all","top","left","bottom","right"];
+
+			alltheelements.forEach((element, elementnumber) => {
+				completecode += n[0].split("|SIDES|").join(element);
+				if(elementnumber != alltheelements.length - 1) completecode += "\n"; //make them look good
+			})
+		}
+		if(n[0].includes("|SIDE|")) {
+			var alltheelements = ["top","right","bottom","left"];
+
+			alltheelements.forEach((element, elementnumber) => {
+				completecode += n[0].split("|SIDE|").join(element);
+				if(elementnumber != alltheelements.length - 1) completecode += "\n"; //make them look good
+			})
+		}
+		if(n[0].includes("|IMAGE|")) {
+			var alltheelements = ["size","repeat","position","attachment"];
+
+			alltheelements.forEach((element, elementnumber) => {
+				completecode += n[0].split("|IMAGE|").join(element);
+				if(elementnumber != alltheelements.length - 1) completecode += "\n"; //make them look good
+			})
+		}
+		if(n[0].includes("|IMG|")) {
+			var alltheelements = ["repeat","position","attachment"];
+
+			alltheelements.forEach((element, elementnumber) => {
+				completecode += n[0].split("|IMG|").join(element);
+				if(elementnumber != alltheelements.length - 1) completecode += " "; //make them look good
+			})
+		}
+
+		if(completecode == "") return tamplate05 += n[1];
+
+		tamplate05 += completecode + n[1];
+	});
+
+	/* Format
+		--loopstart: 0;
+			dummy: "hi";
+			|replace with stuff|.value
+		--loopend: 0;
+	// Result
+		dummy: "hi";
+		stuff1.value
+		dummy: "hi";
+		stuff2.value
+		...
+	*/
+	tamplate05.split("--loopstart: 0;").forEach((e, i) => {
+		if(i == 0) return tamplate1 += e;
+
+		var n = e.split("--loopend: 0;");
+		if(n.length < 2) return tamplate1 += e;
+
+		var completecode = "";
+
+		if(n[0].includes("|server|")) {
+			var alltheelements = ["filteredserver","publicserver","smallserver","friendsserver","privateserver"];
+
+			alltheelements.forEach((element, elementnumber) => {
+				completecode += n[0].split("|server|").join(element);
+				if(elementnumber != alltheelements.length - 1) completecode += "\n"; //make them look good
+			})
+		}
+		if(n[0].includes("|fullpack|")) {
+			var alltheelements = ["pagenav","badge","content","profile","group"];
+
+			alltheelements.forEach((element, elementnumber) => {
+				completecode += n[0].split("|fullpack|").join(element);
+				if(elementnumber != alltheelements.length - 1) completecode += "\n"; //make them look good
+			})
+		}
+
+		if(completecode == "") return tamplate1 += n[1];
+
+		tamplate1 += completecode + n[1];
+	});
+
+	//--rk-something: %variable%;
+	//--rk-something: $value&default#;
+
+	//auto variable
+	tamplate1.split("--rk-").forEach((codepart, i) => {
+		if(i == 0) return tamplate2 += codepart; //don't change start
+		codepart = "--rk-" + codepart; //keep the cutted part
+
+		var fill = ""; //values
+		var filled = false; //check if css used
+
+		if(!codepart.includes("$") && !codepart.includes("%")) return tamplate2 += codepart; //no variable detection
+		var all_values = codepart.split("$"); //collect variables
+
+		for (var dollar_num = 0; dollar_num < all_values.length; dollar_num++) {
+			if(dollar_num == 0) {fill += all_values[0]; continue;} //don't change start
+			
+			//no end detection
+			var raw_value = all_values[dollar_num].split("#");
+			if(raw_value.length < 2) {fill += "$" + all_values[dollar_num]; continue;}
+
+			var raw_multiple_value = raw_value[0].split("&")[0].split("/"); //multiple value detection
+
+			var val = null; //value
+
+			var checkvalue = function(check_value, allcheck) {
+				var tryval = theme.pages[Rkis.pageName];
+				if (allcheck == true) tryval = theme.pages.all;
+				if (tryval == null) return null;
+
+				var value_dots = check_value.split(".");
+
+				for(var doti = 0; doti < value_dots.length && tryval != null; doti++) {
+					var dot = value_dots[doti];
+					tryval = tryval[dot];
+				}
+
+				return tryval;
+			}
+
+			for(var checking_num = 0; checking_num < raw_multiple_value.length && val == null; checking_num++) {
+				var to_check_value = raw_multiple_value[checking_num];
+
+				val = checkvalue(to_check_value);
+
+				if(val != null) continue;
+
+				val = checkvalue(to_check_value, true);
+			}
+
+			if(val == null && raw_value[0].split("&").length > 1) {
+				val = raw_value[0].split("&")[1];
+			}
+
+			if(val == null) {fill += raw_value[1]; continue;}
+
+			fill += val + raw_value[1];
+			filled = true;
+
+		}
+
+		if(codepart.includes("%") && codepart.split("%").length > 2) {
+			var prts = codepart.split("%");
+
+			var val = null;
+			if(Rkis.wholeData[prts[1]] != true) val = "disabled";
+
+			if(val != null) {
+				fill += prts[0];
+
+				fill += val;
+
+				fill += prts[2];
+
+				filled = true;
+			}
+		}
+
+		if (filled == false) return;
+
+		return tamplate2 += fill;
+	});
+
+	//url replacer
+	var splittenTemplate2 = tamplate2.split("url(https://");
+	for (var i = 0; i < splittenTemplate2.length; i++) {
+		var codepart = splittenTemplate2[i];
+		if(i == 0){tamplate3 += codepart; continue;} //don't change start
+		codepart = "url(https://" + codepart; //keep the cutted part
+
+		var fill = ""; //values
+
+		if(codepart.split(")").length < 2) {tamplate3 += codepart; continue;} //no variable detection
+		var url = codepart.split("url(")[1].split(")")[0];
+
+		fill = await FetchImage(url);
+
+		//console.log(url, fill);
+
+		tamplate3 += 'url(' + fill + ')' + codepart.split(")").slice(1).join(')');
+	};
+
+	var styl = document.createElement("style");
+	styl.innerHTML = tamplate3;
+	document.$watch("head", (e) => {
+		e.append(styl);
+	});
+	document.$watch("body", (e) => {
+		let isDark = theme.isDark != false;
+		e.classList.toggle('dark-theme', isDark);
+		e.classList.toggle('light-theme', !isDark);
+	});
+
 }
 
 Rkis.Designer.SetupTheme();

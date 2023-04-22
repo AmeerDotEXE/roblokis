@@ -9,14 +9,19 @@
 	border-radius: .5rem;
 	margin: 0 .2rem;
 }
+body.light-theme .rk-btn { background-color: white; color: rgb(57 59 61);border: 1px solid rgb(57 59 61); }
 .rk-btn.rk-green { background-color: rgb(57, 184, 61); color: rgb(35, 37, 39); }
+.rk-btn.rk-white { background-color: white; color: rgb(35, 37, 39); }
+body.light-theme .rk-btn.rk-white { background-color: rgb(35, 37, 39); color: white; }
 
 .rk-flex { display: flex; }
 .rk-flex-row { flex-direction: row !important; }
 .rk-flex-top { justify-content: flex-start; }
 .rk-flex.rk-column { flex-direction: column; }
 .rk-flex.rk-space-evenly { justify-content: space-evenly; }
+.rk-flex.rk-space-between { justify-content: space-between; }
 .rk-flex.rk-center-y { justify-content: center; }
+.rk-flex.rk-center-x { align-items: center; }
 
 
 /* Global */
@@ -25,6 +30,10 @@
 	border-radius: 20px;
 	border-right: 1px solid #b8b8b8;
 	border-bottom: 1px solid #b8b8b8;
+}
+
+.section-content:has(span.text-description:empty):has(div.text-description:empty) .rbx-divider {
+	display: none;
 }
 
 input.rk-textfield {
@@ -218,6 +227,7 @@ span.rk-button {
 	font-size: 14px;
 	margin-right: 1%;
 }
+.add-components-card > button {font-size: 16px;}
 
 .default-theme-template > button {
 	background-color: rgb(57 59 61);
@@ -229,6 +239,7 @@ span.rk-button {
 	font-size: 12px;
 	font-weight: 600;
 }
+.add-components-card > div > div {font-size: 14px;}
 
 .default-theme-template > div > span,
 .theme-template > div > span {
@@ -238,6 +249,7 @@ span.rk-button {
 	display: block;
 	line-height: normal;
 }
+.add-components-card > div > span {font-size: 12px;}
 
 
 
@@ -344,6 +356,10 @@ span.rk-button {
 [data-nav-tab] *:has(> [code="setupsize"]) {
 	width: 100%;
 	height: clamp(10rem, 100%, 30rem);
+}
+
+.component-holder {
+	width: 100%;
 }
 
 

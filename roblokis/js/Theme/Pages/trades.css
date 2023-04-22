@@ -1,6 +1,17 @@
 /*content*/
+@media (min-width: 992px) {
+	.inventory-panel-holder {
+		width: calc(100% - 375px);
+	}
+	.trade-inventory-panel {
+		width: 100%;
+	}
+	body #trades-container .trade-request-window .item-cards-stackable .item-card {
+		width: fit-content;
+	}
+}
 #container-main > div.content {
-	width: 90%;
+	min-width: 75%;
 }
 
 #trades-container {

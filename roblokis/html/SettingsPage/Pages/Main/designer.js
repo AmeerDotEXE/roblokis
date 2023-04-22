@@ -3,7 +3,1208 @@ var Rkis = Rkis || {};
 var Designer = Designer || {};
 
 Designer.Selected = {};
-Designer.MaxCustomThemes = 5;
+Designer.MaxCustomThemes = 5; //browser can store max of 5mb of data
+//so don't higher it too much, it might corrupt your Roblokis data
+
+//in designer tab, adding menu can add elements
+//in element tab, both elements (limited) and edits available.
+const nullComponent = {
+	id: "null",
+	//tags: ["page"],
+	details: {
+		name: "Unknown",
+		//description: "",
+	},
+	parent: {
+		all: false, //optional
+		//headId: 'experimental',
+		ids: { //optional
+			test: true
+		},
+		tags: { //optional
+			experimental: true
+		}
+	},
+	element: {
+		html: ``,
+		//[properties on html]: [property value],
+		//js: function(element) {}, //Runs after element is set
+	},
+};
+const defaultcomponentElements = {
+	horizantalGroup: {
+		html: /*html*/`
+		<div class="section-content" style="cursor: pointer;">
+			<!--span class="text-lead" data-component-get="name">Unnamed Component</span>
+			<button class="rk-btn" data-remove-component style="float: right;margin-top: -.5ch;">-</button-->
+			<div class="rk-flex rk-space-between rk-center-x">
+				<button class="rk-btn"><span class="text-lead" data-component-get="name">Unnamed Component</span></button>
+				<button class="rk-btn" data-remove-component>-</button>
+			</div>
+			<div class="rbx-divider" style="margin: 12px;"></div>
+			<span class="text-description" data-component-get="description"></span>
+			<div style="color: red;" class="text-description" data-component-get="note"></div>
+		</div>
+		<div class="rk-popup-holder" style="z-index:999;">
+			<div class="rk-popup" style="width: min(100%, 55rem);max-height: 100%;padding: 0;overflow: hidden;"><!--data-designer-func="add-edits"-->
+				<div data-component-holder style="width: 100%;overflow: auto;padding: 1rem;"> 
+					<button class="section-content rk-btn" style="width: 100%;" data-designer-func="add-edits-btn" data-translate="editorComponentAdding">Add Component</button>
+				</div>
+			</div>
+		</div>`,
+		js: function(data, parentElement) {
+			let element = data.element;
+			let component = data.component;
+
+			//setup remove component btn
+			element.querySelector(`[data-remove-component]`)
+			.addEventListener("click", () => {
+				//console.log("Not Implemented");
+				parentElement.removeComponent(data.component);
+			});
+
+			//setup component info
+			element.querySelectorAll(`[data-component-get]`).forEach((infoElement) => {
+				let infoType = infoElement.dataset.componentGet;
+				let hasLanguageTag = component.details.translate != null;
+
+				let detail = component.details;
+				let translate = component.details.translate;
+
+				if (infoType == 'name') {
+					infoElement.innerText = detail.name;
+					if (hasLanguageTag)
+						infoElement.dataset.translate = translate.name;
+				} else if (infoType == 'description' && detail.description) {
+					infoElement.innerText = detail.description;
+					if (hasLanguageTag)
+						infoElement.dataset.translate = translate.description;
+				} else if (infoType == 'note' && detail.note) {
+					infoElement.innerText = detail.note;
+					if (hasLanguageTag)
+						infoElement.dataset.translate = translate.note;
+				}
+			});
+
+			//setup component manager
+			let componentHolder = element.querySelector(`[data-component-holder]`);
+			
+			componentHolder.dataset.componentId = component.id;
+			componentHolder.dataset.headId = element.dataset.headId;
+			componentHolder.componentTags = component.tags || [];
+
+			Designer.ThemeEditor.setupComponentsManager(componentHolder);
+			element.load = componentHolder.load;
+			element.save = componentHolder.save;
+			
+			//setup popup
+			let popup = element.querySelector(`.rk-popup-holder`);
+			
+			element.addEventListener("click", (e) => {
+				if (e.target == popup) return;
+				if (e.target.closest(`.rk-popup-holder`) == popup) return;
+
+				//setup/load edits
+				popup.style.display = "flex";
+			});
+
+			popup.addEventListener("click", function (e) {
+				if (e.target != popup) return;
+
+				//apply edits
+				popup.style.display = "none";
+			});
+		}
+	}
+};
+let designerComponents = [
+	{
+		id: "background",
+		parent: {
+			all: false,
+			headId: 'pages',
+			tags: {
+				page: true,
+				blockElement: true,
+				hasBackground: true
+			}
+		},
+		details: {
+			name: "Background",
+			translate: {
+				name: 'themeBackground'
+			}
+		},
+		element: {
+			html: /*html*/`
+			<div class="section-content">
+				<div class="rk-flex rk-space-between rk-center-x">
+					<h4 style="width: fit-content;" data-translate="themeBackground">Background</h4>
+					<button class="rk-btn" data-remove-component>-</button>
+				</div>
+
+
+				<div class="rk-flex rk-space-between rk-center-x">
+					<span style="min-width: fit-content;margin-right: 5px;" data-translate="themeColor">Color:</span>
+					<input type="color" value="#232527"
+						data-location="color" data-type="color" class="form-control input-field">
+				</div>
+
+				<div class="rk-flex rk-space-between rk-center-x">
+					<span style="min-width: fit-content;margin-right: 5px;" data-translate="themeAlpha">Alpha:</span>
+					<input type="range" value="100" step="10"
+						data-location="color" data-type="color-alpha" class="form-control input-field">
+				</div>
+
+
+				<div class="rbx-divider" style="margin: 12px;"></div>
+
+
+				<div class="rk-flex rk-space-between rk-center-x">
+					<span style="min-width: fit-content;margin-right: 5px;" data-translate="themeLink">File:</span>
+					<input type="url" value=""
+						data-location="image.link" data-type="value" class="form-control input-field">
+				</div>
+
+				<div class="rk-flex rk-space-between rk-center-x">
+					<span data-translate="themeSize">Size:</span>
+					<select selected="contain" data-location="image.size" data-type="value">
+						<option value="contain" data-translate="themeFillX">Fill X</option>
+						<option value="cover" data-translate="themeFillY">Fill Y</option>
+						<option value="auto" data-translate="themeAuto">Auto</option>
+					</select>
+				</div>
+
+				<div class="rk-flex rk-space-between rk-center-x">
+					<span data-translate="themeRepeatT">Repeat:</span>
+					<select selected="round" data-location="image.repeat" data-type="value">
+						<option value="round" data-translate="themeRound">Round</option>
+						<option value="repeat" data-translate="themeRepeat">Repeat</option>
+						<option value="space" data-translate="themeSpace">Space</option>
+						<option value="no-repeat" data-translate="themeNoRepeat">No Repeat</option>
+					</select>
+				</div>
+
+				<div class="rk-flex rk-space-between rk-center-x">
+					<span data-translate="themeScroll">Scroll:</span>
+					<select selected="fixed" data-location="image.attachment" data-type="value">
+						<option value="fixed" data-translate="themeEnabled">Enabled</option>
+						<option value="scroll" data-translate="themeDisabled">Disabled</option>
+					</select>
+				</div>
+
+			</div>`,
+			js: function (idCard, parentElement) {
+				let element = idCard.element;
+
+				//setup remove component btn
+				element.querySelector(`[data-remove-component]`)
+					.addEventListener("click", () => {
+						//console.log("Not Implemented");
+						parentElement.removeComponent(idCard.component);
+					});
+			},
+			load: function (theme_object, idCard) {
+				let element = idCard.element;
+
+				//load color
+				let rawColor = theme_object.color;
+				let splittenColor = rawColor.slice(5).slice(0, -1).split(',');
+
+				element.querySelectorAll(`[data-location="color"]`).forEach((input) => {
+					if (input.dataset.type == "color") {
+						input.value = rgbToHex(splittenColor[0], splittenColor[1], splittenColor[2]);
+					}
+					if (input.dataset.type == "color-alpha") {
+						let alpha = splittenColor[3];
+						if (alpha.endsWith('%')) alpha.slice(0, -1);
+
+						if (parseInt(alpha) <= 0) alpha = Number(alpha) * 100;
+						else alpha = parseInt(alpha);
+
+						input.value = alpha;
+					}
+				});
+
+				//load image
+				let image = theme_object.image;
+
+				element.querySelectorAll(`[data-location]`).forEach((input) => {
+					if (input.dataset.location.startsWith('image.') == false) return;
+
+					let type = input.dataset.location.split('.')[1];
+
+					input.value = image[type];
+				});
+			},
+			save: function (idCard) {
+				let element = idCard.element;
+
+				let component_object = {};
+
+				//save color
+				let hexColor = element.querySelector(`[data-location="color"][data-type="color"]`).value;
+				let alphaColor = element.querySelector(`[data-location="color"][data-type="color-alpha"]`).value;
+
+				component_object.color = rgbTorgba(hexToRgb(hexColor), alphaColor);
+
+				//save image
+				let image = {};
+
+				element.querySelectorAll(`[data-location]`).forEach((input) => {
+					if (input.dataset.location.startsWith('image.') == false) return;
+
+					let type = input.dataset.location.split('.')[1];
+
+					image[type] = input.value;
+				});
+
+				component_object.image = image;
+
+				return component_object;
+			}
+		}
+	},//background
+	{
+		id: "corners",
+		parent: {
+			all: false,
+			headId: 'pages',
+			tags: {
+				blockElement: true,
+				hasCorners: true
+			}
+		},
+		details: {
+			name: "Corners Radius",
+			translate: {
+				name: "themeCornerRadius"
+			}
+		},
+		element: {
+			html: /*html*/`
+			<div class="section-content">
+				<div class="rk-flex rk-space-between rk-center-x">
+					<h4 style="width: fit-content;margin-right: 10px;" data-translate="themeCorners">Corners Radius</h4>
+					<button class="rk-btn" data-remove-component>-</button>
+				</div>
+
+				<div class="text-lead rk-flex rk-space-between rk-center-x">
+					<span style="min-width: fit-content;margin-right: 5px;" data-translate="themeAllCorners">All Corners:</span>
+					<input type="range" value="0"
+						data-location="corners.all.radius" data-type="corner" class="form-control input-field" max="20" min="0" style="width: calc(100% - 20ch);margin: 10px;">
+				</div>
+
+				<div class="rbx-divider" style="margin: 12px;"></div>
+
+				<div class="text-lead rk-flex rk-space-between rk-center-x">
+					<div style="text-align: center;" data-translate="themeTLCorner">Top-Left Corner</div>
+					<input type="range" value="-1"
+						data-location="corners.top-left.radius" data-type="corner" class="form-control input-field" max="20" min="-1" style="width: calc(100% - 20ch);margin: 10px;">
+				</div>
+
+				<div class="text-lead rk-flex rk-space-between rk-center-x">
+					<div style="text-align: center;" data-translate="themeTRCorner">Top-Right Corner</div>
+					<input type="range" value="-1"
+						data-location="corners.top-right.radius" data-type="corner" class="form-control input-field" max="20" min="-1" style="width: calc(100% - 20ch);margin: 10px;">
+				</div>
+
+				<div class="text-lead rk-flex rk-space-between rk-center-x">
+					<div style="text-align: center;" data-translate="themeBRCorner">Bottom-Right Corner</div>
+					<input type="range" value="-1"
+						data-location="corners.bottom-right.radius" data-type="corner" class="form-control input-field" max="20" min="-1" style="width: calc(100% - 20ch);margin: 10px;">
+				</div>
+
+				<div class="text-lead rk-flex rk-space-between rk-center-x">
+					<div style="text-align: center;" data-translate="themeBLCorner">Bottom-Left Corner</div>
+					<input type="range" value="-1"
+						data-location="corners.bottom-left.radius" data-type="corner" class="form-control input-field" max="20" min="-1" style="width: calc(100% - 20ch);margin: 10px;">
+				</div>
+
+			</div>`,
+			js: function (idCard, parentElement) {
+				let element = idCard.element;
+
+				//setup remove component btn
+				element.querySelector(`[data-remove-component]`)
+					.addEventListener("click", () => {
+						parentElement.removeComponent(idCard.component);
+					});
+			},
+			load: function (theme_object, idCard) {
+				let element = idCard.element;
+
+				for (let corner in theme_object) {
+					if (theme_object[corner].radius == null) continue;
+
+					let value = theme_object[corner].radius.slice(0, -2);
+					element.querySelector(`[data-location="corners.${corner}.radius"]`).value = value;
+				}
+			},
+			save: function (idCard) {
+				let element = idCard.element;
+				let component_object = {};
+
+				element.querySelectorAll(`[data-location]`).forEach((input) => {
+					let corner = input.dataset.location.split(".")[1];
+
+					let value = input.value + "px";
+					if (input.value == -1) value = null;
+
+					component_object[corner] = {
+						radius: value
+					};
+				});
+
+				return component_object;
+			}
+		}
+	},//corners
+	{
+		id: "borders",
+		parent: {
+			all: false,
+			headId: 'pages',
+			tags: {
+				blockElement: true,
+				hasBorders: true,
+			}
+		},
+		details: {
+			name: "Borders",
+			translate: {
+				name: 'themeBorders'
+			}
+		},
+		element: {
+			html: /*html*/`
+			<div class="section-content" style="min-width: 260px;">
+				<div class="rk-flex rk-space-between rk-center-x">
+					<h4 style="width: fit-content;" data-translate="themeBorders">Borders</h4>
+					<button class="rk-btn" data-remove-component>-</button>
+				</div>
+				<div>
+					<div class="text-lead rk-flex rk-space-between rk-center-x">
+						<span data-translate="themeWidth">Width:</span>
+						<input type="range" value="0"
+							data-location="borders.all.size" data-type="px" class="form-control input-field" max="10">
+					</div>
+					<div class="rk-flex rk-space-between rk-center-x">
+						<span data-translate="themeStyle">Style:</span>
+						<select selected="solid" data-location="borders.all.style" data-type="value">
+							<option value="solid" data-translate="themeSolid">Solid</option>
+							<option value="double" data-translate="themeDouble">Double</option>
+							<option value="dashed" data-translate="themeDashed">Dashed</option>
+							<option value="dotted" data-translate="themeDotted">Dotted</option>
+							<option value="inset" data-translate="themeInset">Inset</option>
+							<option value="outset" data-translate="themeOutset">Outset</option>
+							<option value="groove" data-translate="themeGroove">Groove</option>
+							<option value="ridge" data-translate="themeRidge">Ridge</option>
+						</select>
+					</div>
+					<div class="text-lead rk-flex rk-space-between rk-center-x">
+						<span data-translate="themeColor">Color:</span>
+						<input type="color" value="#ffffff"
+							data-location="borders.all.color" data-type="color" class="form-control input-field">
+					</div>
+					<div class="text-lead rk-flex rk-space-between rk-center-x">
+						<span data-translate="themeAlpha">Alpha:</span>
+						<input type="range" value="100" step="10"
+							data-location="borders.all.color" data-type="color-alpha" class="form-control input-field">
+					</div>
+				</div>
+				<div class="rbx-divider" style="margin: 12px;"></div>
+
+				<div style="border-radius: 10px;margin-bottom: 6px;" class="text-lead">
+					<input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
+					<label class="accordion__label" style="font-weight: 400;" data-translate="themeTBorder">Top Border</label>
+
+					<span data-location="borders.top" class="rk-button receiver-destination-type-toggle off" style="float: right;">
+						<span class="toggle-flip"></span>
+						<span class="toggle-on"></span>
+						<span class="toggle-off"></span>
+					</span>
+					<div class="accordion__content">
+						<div>
+							<div class="text-lead rk-flex rk-space-between rk-center-x">
+								<span data-translate="themeWidth">Width:</span>
+								<input type="range" value="0"
+									data-location="borders.top.size" data-type="px" class="form-control input-field" max="10">
+							</div>
+							<div class="rk-flex rk-space-between rk-center-x">
+								<span data-translate="themeStyle">Style:</span>
+								<select selected="solid" data-location="borders.top.style" data-type="value">
+									<option value="solid" data-translate="themeSolid">Solid</option>
+									<option value="double" data-translate="themeDouble">Double</option>
+									<option value="dashed" data-translate="themeDashed">Dashed</option>
+									<option value="dotted" data-translate="themeDotted">Dotted</option>
+									<option value="inset" data-translate="themeInset">Inset</option>
+									<option value="outset" data-translate="themeOutset">Outset</option>
+									<option value="groove" data-translate="themeGroove">Groove</option>
+									<option value="ridge" data-translate="themeRidge">Ridge</option>
+								</select>
+							</div>
+							<div class="text-lead rk-flex rk-space-between rk-center-x">
+								<span data-translate="themeColor">Color:</span>
+								<input type="color" value="#ffffff"
+									data-location="borders.top.color" data-type="color" class="form-control input-field">
+							</div>
+							<div class="text-lead rk-flex rk-space-between rk-center-x">
+								<span data-translate="themeAlpha">Alpha:</span>
+								<input type="range" value="100" step="10"
+									data-location="borders.top.color" data-type="color-alpha" class="form-control input-field">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div style="border-radius: 10px;margin-bottom: 6px;" class="text-lead">
+					<input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
+					<label class="accordion__label" style="font-weight: 400;" data-translate="themeLBorder">Left Border</label>
+
+					<span data-location="borders.left" class="rk-button receiver-destination-type-toggle off" style="float: right;">
+						<span class="toggle-flip"></span>
+						<span class="toggle-on"></span>
+						<span class="toggle-off"></span>
+					</span>
+					<div class="accordion__content">
+						<div>
+							<div class="text-lead rk-flex rk-space-between rk-center-x">
+								<span data-translate="themeWidth">Width:</span>
+								<input type="range" value="0"
+									data-location="borders.left.size" data-type="px" class="form-control input-field" max="10">
+							</div>
+							<div class="rk-flex rk-space-between rk-center-x">
+								<span data-translate="themeStyle">Style:</span>
+								<select selected="solid" data-location="borders.left.style" data-type="value">
+									<option value="solid" data-translate="themeSolid">Solid</option>
+									<option value="double" data-translate="themeDouble">Double</option>
+									<option value="dashed" data-translate="themeDashed">Dashed</option>
+									<option value="dotted" data-translate="themeDotted">Dotted</option>
+									<option value="inset" data-translate="themeInset">Inset</option>
+									<option value="outset" data-translate="themeOutset">Outset</option>
+									<option value="groove" data-translate="themeGroove">Groove</option>
+									<option value="ridge" data-translate="themeRidge">Ridge</option>
+								</select>
+							</div>
+							<div class="text-lead rk-flex rk-space-between rk-center-x">
+								<span data-translate="themeColor">Color:</span>
+								<input type="color" value="#ffffff"
+									data-location="borders.left.color" data-type="color" class="form-control input-field">
+							</div>
+							<div class="text-lead rk-flex rk-space-between rk-center-x">
+								<span data-translate="themeAlpha">Alpha:</span>
+								<input type="range" value="100" step="10"
+									data-location="borders.left.color" data-type="color-alpha" class="form-control input-field">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div style="border-radius: 10px;margin-bottom: 6px;" class="text-lead">
+					<input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
+					<label class="accordion__label" style="font-weight: 400;" data-translate="themeBBorder">Bottom Border</label>
+
+					<span data-location="borders.bottom" class="rk-button receiver-destination-type-toggle off" style="float: right;">
+						<span class="toggle-flip"></span>
+						<span class="toggle-on"></span>
+						<span class="toggle-off"></span>
+					</span>
+					<div class="accordion__content">
+						<div>
+							<div class="text-lead rk-flex rk-space-between rk-center-x">
+								<span data-translate="themeWidth">Width:</span>
+								<input type="range" value="0"
+									data-location="borders.bottom.size" data-type="px" class="form-control input-field" max="10">
+							</div>
+							<div class="rk-flex rk-space-between rk-center-x">
+								<span data-translate="themeStyle">Style:</span>
+								<select selected="solid" data-location="borders.bottom.style" data-type="value">
+									<option value="solid" data-translate="themeSolid">Solid</option>
+									<option value="double" data-translate="themeDouble">Double</option>
+									<option value="dashed" data-translate="themeDashed">Dashed</option>
+									<option value="dotted" data-translate="themeDotted">Dotted</option>
+									<option value="inset" data-translate="themeInset">Inset</option>
+									<option value="outset" data-translate="themeOutset">Outset</option>
+									<option value="groove" data-translate="themeGroove">Groove</option>
+									<option value="ridge" data-translate="themeRidge">Ridge</option>
+								</select>
+							</div>
+							<div class="text-lead rk-flex rk-space-between rk-center-x">
+								<span data-translate="themeColor">Color:</span>
+								<input type="color" value="#ffffff"
+									data-location="borders.bottom.color" data-type="color" class="form-control input-field">
+							</div>
+							<div class="text-lead rk-flex rk-space-between rk-center-x">
+								<span data-translate="themeAlpha">Alpha:</span>
+								<input type="range" value="100" step="10"
+									data-location="borders.bottom.color" data-type="color-alpha" class="form-control input-field">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div style="border-radius: 10px;margin-bottom: 6px;" class="text-lead">
+					<input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
+					<label class="accordion__label" style="font-weight: 400;" data-translate="themeRBorder">Right Border</label>
+
+					<span data-location="borders.right" class="rk-button receiver-destination-type-toggle off" style="float: right;">
+						<span class="toggle-flip"></span>
+						<span class="toggle-on"></span>
+						<span class="toggle-off"></span>
+					</span>
+					<div class="accordion__content">
+						<div>
+							<div class="text-lead rk-flex rk-space-between rk-center-x">
+								<span data-translate="themeWidth">Width:</span>
+								<input type="range" value="0"
+									data-location="borders.right.size" data-type="px" class="form-control input-field" max="10">
+							</div>
+							<div class="rk-flex rk-space-between rk-center-x">
+									<span data-translate="themeStyle">Style:</span>
+									<select selected="solid" data-location="borders.right.style" data-type="value">
+										<option value="solid" data-translate="themeSolid">Solid</option>
+										<option value="double" data-translate="themeDouble">Double</option>
+										<option value="dashed" data-translate="themeDashed">Dashed</option>
+										<option value="dotted" data-translate="themeDotted">Dotted</option>
+										<option value="inset" data-translate="themeInset">Inset</option>
+										<option value="outset" data-translate="themeOutset">Outset</option>
+										<option value="groove" data-translate="themeGroove">Groove</option>
+										<option value="ridge" data-translate="themeRidge">Ridge</option>
+									</select>
+							</div>
+							<div class="text-lead rk-flex rk-space-between rk-center-x">
+								<span data-translate="themeColor">Color:</span>
+								<input type="color" value="#ffffff"
+									data-location="borders.right.color" data-type="color" class="form-control input-field">
+							</div>
+							<div class="text-lead rk-flex rk-space-between rk-center-x">
+								<span data-translate="themeAlpha">Alpha:</span>
+								<input type="range" value="100" step="10"
+									data-location="borders.right.color" data-type="color-alpha" class="form-control input-field">
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>`,
+			js: function (idCard, parentElement) {
+				let element = idCard.element;
+
+				//setup remove component btn
+				element.querySelector(`[data-remove-component]`)
+					.addEventListener("click", () => {
+						parentElement.removeComponent(idCard.component);
+					});
+			},
+			load: function (theme_object, idCard) {
+				let element = idCard.element;
+
+				for (let corner in theme_object) {
+					if (theme_object[corner] == null) continue;
+
+					let enableSwitch = element.querySelector(`[data-location="borders.${corner}"]`);
+					if (enableSwitch != null) {
+						page.toggleSwich(enableSwitch, true);
+					}
+
+					let edge = theme_object[corner];
+
+					let size = edge.size.slice(0, -2);
+					element.querySelector(`[data-location="borders.${corner}.size"]`).value = size;
+
+					element.querySelector(`[data-location="borders.${corner}.style"]`).value = edge.style;
+
+					//load color
+					let rawColor = edge.color;
+					let splittenColor = rawColor.slice(5).slice(0, -1).split(',');
+
+					element.querySelectorAll(`[data-location="borders.${corner}.color"]`).forEach((input) => {
+						if (input.dataset.type == "color") {
+							input.value = rgbToHex(splittenColor[0], splittenColor[1], splittenColor[2]);
+						}
+						if (input.dataset.type == "color-alpha") {
+							let alpha = splittenColor[3];
+							if (alpha.endsWith('%')) alpha.slice(0, -1);
+
+							if (parseInt(alpha) <= 0) alpha = Number(alpha) * 100;
+							else alpha = parseInt(alpha);
+
+							input.value = alpha;
+						}
+					});
+				}
+			},
+			save: function (idCard) {
+				let element = idCard.element;
+				let component_object = {};
+
+				let colorCollection = {};
+
+				element.querySelectorAll(`[data-location]`).forEach((input) => {
+					let splittenLocation = input.dataset.location.split(".");
+					if (splittenLocation.length <= 2) return;
+
+					let edge = splittenLocation[1];
+					let part = splittenLocation[2];
+
+					component_object[edge] = component_object[edge] || {};
+					colorCollection[edge] = colorCollection[edge] || {};
+
+					//save color
+					if (part == 'color') {
+						let type = input.dataset.type;
+
+						colorCollection[edge][type] = input.value;
+
+						let edgeColor = colorCollection[edge].color;
+						let edgeAlpha = colorCollection[edge]["color-alpha"];
+
+						if (edgeColor && edgeAlpha != null) {
+							component_object[edge].color = rgbTorgba(hexToRgb(edgeColor), edgeAlpha);
+						}
+
+						return;
+					}
+
+					//save style
+					else if (part == 'style') {
+						component_object[edge][part] = input.value;
+						return;
+					}
+
+					//save style
+					else if (part == 'size') {
+						component_object[edge][part] = input.value + "px";
+						return;
+					}
+				});
+
+				element.querySelectorAll(`[data-location]`).forEach((input) => {
+					let splittenLocation = input.dataset.location.split(".");
+					if (splittenLocation.length >= 3) return;
+
+					let edge = splittenLocation[1];
+					let isEnabled = page.getSwich(input);
+
+					if (isEnabled == false) component_object[edge] = null;
+				});
+
+				return component_object;
+			},
+			isEmpty: function (theme_object) {
+				let isEmpty = true;
+
+				for (let edge in theme_object) {
+					if (edge == null) continue;
+
+					isEmpty = true;
+					break;
+				}
+
+				return isEmpty;
+			}
+		}
+	},//borders
+	{
+		id: "all",
+		tags: ["page"],
+		parent: {
+			ids: {
+				pages: true
+			}
+		},
+		details: {
+			name: "All Pages",
+			description: "Default components for all pages."
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//all
+	{
+		id: "home",
+		tags: ["page"],
+		parent: {
+			ids: {
+				pages: true
+			}
+		},
+		details: {
+			name: "Home Page"
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//home
+	{
+		id: "game",
+		tags: ["page"],
+		parent: {
+			ids: {
+				pages: true
+			}
+		},
+		details: {
+			name: "Game Page",
+			translate: {
+				name: 'categoryGamePage'
+			}
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//game
+	{
+		id: "users",
+		tags: ["page"],
+		parent: {
+			ids: {
+				pages: true
+			}
+		},
+		details: {
+			name: "User Page"
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//users
+	{
+		id: "groups",
+		tags: ["page"],
+		parent: {
+			ids: {
+				pages: true
+			}
+		},
+		details: {
+			name: "Group Page"
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//groups
+	{
+		id: "content",
+		tags: ["blockElement"],
+		parent: {
+			tags: {
+				page: true
+			}
+		},
+		details: {
+			name: "Page's Content",
+			description: "Edits the middle block that holds page content.",
+			translate: {
+				name: "themePageContent",
+				description: "themePageContentDesc"
+			}
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//content
+	{
+		id: "menu",
+		tags: ["hasBackground"],
+		parent: {
+			tags: {
+				page: true
+			}
+		},
+		details: {
+			name: "Page's Menu",
+			description: "Edits the top, left and bottom navigation bars all togeather."
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//menu
+	{
+		id: "group",
+		tags: ["blockElement"],
+		parent: {
+			ids: {
+				groups: true
+			}
+		},
+		details: {
+			name: "Group Header",
+			description: "Edits group header, groups list and group buttons all togeather."
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//group
+	{
+		id: "profile",
+		tags: ["blockElement"],
+		parent: {
+			ids: {
+				users: true
+			}
+		},
+		details: {
+			name: "Profile Header",
+			description: "Edits profile header, profile blocks of information (avatar, badges, etc.), profile buttons and friend list all togeather."
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//profile
+	{
+		id: "shadow",
+		parent: {
+			headId: 'pages',
+			ids: {
+				content: true
+			},
+			tags: {
+				hasShadow: true
+			}
+		},
+		details: {
+			name: "Border Shadow",
+			translate: {
+				name: 'themeBorderShadow'
+			}
+		},
+		element: {
+			html: /*html*/`
+			<div class="section-content">
+				<div class="rk-flex rk-space-between rk-center-x">
+					<span data-translate="themeShadow">Shadow:</span>
+					<button class="rk-btn" data-remove-component>-</button>
+				</div>
+				
+				<select selected="" data-location="shadow" data-type="value" style="width: 100%;margin: 0;">
+					<option value="" data-translate="themeEnabled">Enabled</option>
+					<option value="disabled" data-translate="themeDisabled">Disabled</option>
+				</select>
+			</div>`,
+			js: function (idCard, parentElement) {
+				let element = idCard.element;
+
+				//setup remove component btn
+				element.querySelector(`[data-remove-component]`)
+					.addEventListener("click", () => {
+						parentElement.removeComponent(idCard.component);
+					});
+			},
+			load: function (theme_object, idCard) {
+				let element = idCard.element;
+
+				element.querySelector(`[data-location="shadow"]`).value = theme_object;
+			},
+			save: function (idCard) {
+				let element = idCard.element;
+
+				return element.querySelector(`[data-location="shadow"]`).value;
+			}
+		}
+	},//shadow
+	{
+		id: "badge",
+		tags: ["blockElement", "hasBrightnDarkColors"],
+		parent: {
+			ids: {
+				game: true
+			}
+		},
+		details: {
+			name: "Badge"
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//badge
+	{
+		id: "colors",
+		parent: {
+			headId: 'pages',
+			ids: {
+				badge: true
+			},
+			tags: {
+				hasBrightnDarkColors: true
+			}
+		},
+		details: {
+			name: "Text Color",
+			translate: {
+				name: 'themeTxtColor'
+			}
+		},
+		element: {
+			html: /*html*/`
+			<div class="section-content">
+				<div class="rk-flex rk-space-between rk-center-x">
+					<h4 style="width: fit-content;" data-translate="themeTxtColor">Text Color</h4>
+					<button class="rk-btn" data-remove-component>-</button>
+				</div>
+
+				<div class="text-lead rk-flex rk-space-between rk-center-x">
+					<span style="min-width: fit-content;" data-translate="themeBrtColor">Bright Color:</span>
+					<input type="color" value="#ffffff"
+						data-location="colors.bright" data-type="value" class="form-control input-field">
+				</div>
+				
+				<div class="text-lead rk-flex rk-space-between rk-center-x">
+					<span style="min-width: fit-content;" data-translate="themeDrkColor">Dark Color:</span>
+					<input type="color" value="#bdbebe"
+						data-location="colors.dark" data-type="value" class="form-control input-field">
+				</div>
+
+			</div>`,
+			js: function (idCard, parentElement) {
+				let element = idCard.element;
+
+				//setup remove component btn
+				element.querySelector(`[data-remove-component]`)
+					.addEventListener("click", () => {
+						parentElement.removeComponent(idCard.component);
+					});
+			},
+			load: function (theme_object, idCard) {
+				let element = idCard.element;
+
+				element.querySelector(`[data-location="colors.bright"]`).value = theme_object.bright;
+				element.querySelector(`[data-location="colors.dark"]`).value = theme_object.dark;
+			},
+			save: function (idCard) {
+				let element = idCard.element;
+
+				return {
+					bright: element.querySelector(`[data-location="colors.bright"]`).value,
+					dark: element.querySelector(`[data-location="colors.dark"]`).value
+				};
+			}
+		}
+	},//colors - 2
+	{
+		id: "pagenav",
+		tags: ["blockElement", "hasColor", "hasButton"],
+		parent: {
+			ids: {
+				game: true
+			}
+		},
+		details: {
+			name: "Game Page Navigator",
+			description: "Edits the navigation button under servers list"
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//pagenav
+	{
+		id: "color",
+		parent: {
+			headId: 'pages',
+			ids: {
+				pagenav: true
+			},
+			tags: {
+				hasColor: true
+			}
+		},
+		details: {
+			name: "Text Color",
+			translate: {
+				name: 'themeTxtColor'
+			}
+		},
+		element: {
+			html: /*html*/`
+			<div class="section-content">
+				<div class="rk-flex rk-space-between rk-center-x">
+					<h4 style="width: fit-content;" data-translate="themeTxtColor">Text Color</h4>
+					<button class="rk-btn" data-remove-component>-</button>
+				</div>
+
+				<input type="color" value="#ffffff"
+						data-location="color" data-type="value" class="form-control input-field"
+						style="width: 100%;margin: 0;">
+			</div>`,
+			js: function (idCard, parentElement) {
+				let element = idCard.element;
+
+				//setup remove component btn
+				element.querySelector(`[data-remove-component]`)
+					.addEventListener("click", () => {
+						parentElement.removeComponent(idCard.component);
+					});
+			},
+			load: function (theme_object, idCard) {
+				let element = idCard.element;
+
+				element.querySelector(`[data-location="color"]`).value = theme_object;
+			},
+			save: function (idCard) {
+				let element = idCard.element;
+
+				return element.querySelector(`[data-location="color"]`).value;
+			}
+		}
+	},//color
+	{
+		id: "button",
+		tags: ["blockElement"],
+		parent: {
+			tags: {
+				hasButton: true
+			}
+		},
+		details: {
+			name: "Button"
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//button
+	{
+		id: "defaultserver",
+		tags: ["blockElement", "hasButton"],
+		parent: {
+			ids: {
+				game: true
+			}
+		},
+		details: {
+			name: "Default Server",
+			description: "Default Components for Servers."
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//defaultserver
+	{
+		id: "column",
+		parent: {
+			headId: 'pages',
+			tags: {
+				server: true
+			}
+		},
+		details: {
+			name: "Column Count",
+		},
+		element: {
+			html: /*html*/`
+			<div class="section-content">
+				<div class="rk-flex rk-space-between rk-center-x">
+					<span style="min-width: fit-content;margin: 0 5px 5px 0px;" data-translate="themeSvrPerRow">Servers Per Row:</span>
+					<button class="rk-btn" data-remove-component>-</button>
+				</div>
+				
+				<input type="range" value="5"
+					data-location="column" data-type="value" class="form-control input-field" max="8" style="width: 100%;margin: 0;">
+			</div>`,
+			js: function (idCard, parentElement) {
+				let element = idCard.element;
+
+				//setup remove component btn
+				element.querySelector(`[data-remove-component]`)
+					.addEventListener("click", () => {
+						parentElement.removeComponent(idCard.component);
+					});
+			},
+			load: function (theme_object, idCard) {
+				let element = idCard.element;
+
+				element.querySelector(`[data-location="column"]`).value = theme_object;
+			},
+			save: function (idCard) {
+				let element = idCard.element;
+
+				return element.querySelector(`[data-location="column"]`).value;
+			}
+		}
+	},//column
+	{
+		id: "gap",
+		parent: {
+			headId: 'pages',
+			tags: {
+				server: true
+			}
+		},
+		details: {
+			name: "Gap Between Servers",
+		},
+		element: {
+			html: /*html*/`
+			<div class="section-content">
+				<div class="rk-flex rk-space-between rk-center-x">
+					<span style="min-width: fit-content;margin: 0 5px 0px 0px;" data-translate="themeSvrGap">Servers Gap:</span>
+					<button class="rk-btn" data-remove-component>-</button>
+				</div>
+				
+				<input type="range" value="0.3" step="0.1"
+					data-location="gap" data-type="percent" class="form-control input-field" max="2"
+					style="width: 100%;margin: 0;">
+			</div>`,
+			js: function (idCard, parentElement) {
+				let element = idCard.element;
+
+				//setup remove component btn
+				element.querySelector(`[data-remove-component]`)
+					.addEventListener("click", () => {
+						parentElement.removeComponent(idCard.component);
+					});
+			},
+			load: function (theme_object, idCard) {
+				let element = idCard.element;
+
+				element.querySelector(`[data-location="gap"]`).value = theme_object.slice(0, -1);
+			},
+			save: function (idCard) {
+				let element = idCard.element;
+
+				return element.querySelector(`[data-location="gap"]`).value + '%';
+			}
+		}
+	},//gap
+	{
+		id: "publicserver",
+		tags: ["blockElement", "hasButton", "server"],
+		parent: {
+			ids: {
+				game: true
+			}
+		},
+		details: {
+			name: "Public Server",
+			translate: {
+				name: 'serversPublic'
+			}
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//publicserver
+	{
+		id: "smallserver",
+		tags: ["blockElement", "hasButton", "server"],
+		parent: {
+			ids: {
+				game: true
+			}
+		},
+		details: {
+			name: "Small Server",
+			translate: {
+				name: 'serversSmall'
+			}
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//smallserver
+	{
+		id: "friendsserver",
+		tags: ["blockElement", "hasButton", "hasColor", "server"],
+		parent: {
+			ids: {
+				game: true
+			}
+		},
+		details: {
+			name: "Friends Server",
+			translate: {
+				name: 'serversFriends'
+			}
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//friendsserver
+	{
+		id: "privateserver",
+		tags: ["blockElement", "hasButton", "hasColor", "server"],
+		parent: {
+			ids: {
+				game: true
+			}
+		},
+		details: {
+			name: "Private Server",
+			translate: {
+				name: 'serversPrivate'
+			}
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//privateserver
+]; //list of editable elements
 
 
 function FetchImage(url, quick) {
@@ -15,6 +1216,9 @@ function FetchImage(url, quick) {
 	})
 }
 
+
+
+//SECTION - ThemeManager
 
 Designer.LoadThemesData = async function() {
 	var customthemesholder = await document.$watch("#customthemesholder").$promise();
@@ -65,7 +1269,7 @@ Designer.LoadThemesData = async function() {
 					<button class="designer-btn export" data-theme="${daname ? daname[0] : Rkis.language["error"]}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(57 59 184);color: rgb(35 37 39);font-size: 20px;">⤓</button>
 					<button class="designer-btn delete" data-theme="${daname ? daname[0] : Rkis.language["error"]}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(184 59 61);color: rgb(35 37 39);font-weight: 600;">X</button>
 					<button class="designer-btn edit" data-theme="${daname ? daname[0] : Rkis.language["error"]}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(57 184 61);color: rgb(35 37 39);" data-translate="btnEdit">Edit</button>
-					<button class="designer-btn select" data-theme="${daname ? daname[0] : Rkis.language["error"]}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(57 59 61);color: white;${theme.all == null ? "display: none;" : ""}" data-translate="btnSelect">Select</button>
+					<button class="designer-btn select" data-theme="${daname ? daname[0] : Rkis.language["error"]}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(57 59 61);color: white;${theme.all == null && theme.pages?.all == null ? "display: none;" : ""}" data-translate="btnSelect">Select</button>
 				</div>`;
 		}
 		else {
@@ -128,6 +1332,19 @@ Designer.SelectThemeButton = function(button) {
 
 	localStorage.setItem("Roblokis", JSON.stringify(wholedata));
 	Rkis.wholeData = wholedata;
+	
+	if (Designer.Selected.isDefaultTheme == false) {
+		let theTheme = wholedata.Designer.Themes[Designer.Selected.id];
+		fetch("https://accountsettings.roblox.com/v1/themes/user", {
+			"headers": {
+				"content-type": "application/x-www-form-urlencoded",
+				"x-csrf-token": document.querySelector("#rbx-body > meta").dataset.token
+			},
+			"body": `themeType=${theTheme.isDark != false ? 'Dark' : 'Light'}`,
+			"method": "PATCH",
+			"credentials": "include"
+		});
+	}
 
 	Designer.LoadThemesData();
 }
@@ -178,7 +1395,9 @@ Designer.CreateNewTheme = async function(button) {
 
 	var safetycheck = await Designer.TestThemeDetails(themename, themedesc, themeimage);
 
-	if (newthemeimage != null) filetheme = {"all":{"css":{"background":{"image":{"link":themeimage}}}}};
+	if (newthemeimage != null) filetheme = {"pages":{"all":{"background":{"image":{"link":themeimage}}}}};
+	filetheme = filetheme || {};
+	filetheme.isDark = document.body.classList.contains('dark-theme');
 
 	if (safetycheck.error == null) safetycheck = await Designer.SaveNewTheme(themename, themedesc, filetheme);
 	if (safetycheck.error != null) {
@@ -308,11 +1527,57 @@ Designer.EditTheme = function(themeId) {
 	document.querySelector("#rk-editthemesection").style.display = "flex";
 }
 
+//END SECTION ThemeManager
 
+
+
+//SECTION - ThemeEditor
 
 Designer.ThemeEditor = Designer.ThemeEditor || {};
 
-Designer.ThemeEditor.Save = function() {
+Designer.ThemeEditor.Save = async function() {
+	var wholedata = Rkis.wholeData || {};
+	wholedata.Designer = wholedata.Designer || {};
+	wholedata.Designer.Themes = wholedata.Designer.Themes || [];
+
+	var theme = wholedata.Designer.Themes[Designer.ThemeEditor.themeId];
+	if(theme == null) return;
+
+	var pagestab = document.querySelector(`[data-editthemetabs="pages"]`);
+	theme.pages = pagestab.save();
+
+	theme.current_version = Rkis.version;
+
+	let newName = document.querySelector(`#rk-editor-name`).value;
+	let newDesc = document.querySelector(`#rk-editor-desc`).value;
+
+	let detailsCheck = await Designer.TestThemeDetails(newName, newDesc);
+
+	if (detailsCheck.error == null) {
+		theme.name = newName;
+		theme.description = newDesc;
+	} else Rkis.Toast(detailsCheck.error);
+
+	theme.isDark = document.querySelector(`#rk-editor-theme-dark`).classList.contains('rk-white');
+
+	for (let page in theme) {
+		if (theme[page].css == null) continue;
+
+		delete theme[page];
+	}
+	
+	//console.log(`Saving:`, theme);
+
+	wholedata.Designer.Themes[Designer.ThemeEditor.themeId] = theme;
+
+	localStorage.setItem("Roblokis", JSON.stringify(wholedata));
+	Rkis.wholeData = wholedata;
+
+	Designer.LoadThemesData();
+	document.querySelector("#rk-editthemesection").style.display = "none";
+}
+
+Designer.ThemeEditor.SaveOld = function() {
 	var wholedata = Rkis.wholeData || {};
 	wholedata.Designer = wholedata.Designer || {};
 	wholedata.Designer.Themes = wholedata.Designer.Themes || [];
@@ -411,11 +1676,66 @@ Designer.ThemeEditor.Load = function() {
 
 	document.$triggerCustom("designer-edittheme-loading");
 
-	document.querySelectorAll(`[data-editthemetabs]`).forEach((tab, tabindex, tablist) => {
+	//console.log(`Loading:`, theme);
+
+	document.querySelector(`#rk-editor-name`).value = theme.name;
+	document.querySelector(`#rk-editor-desc`).value = theme.description;
+
+	let isDark = theme.isDark != false;
+	let themeButtons = [
+		document.querySelector(`#rk-editor-theme-dark`),
+		document.querySelector(`#rk-editor-theme-light`)
+	];
+	
+	themeButtons[0].classList.toggle('rk-white', isDark);
+	themeButtons[1].classList.toggle('rk-white', !isDark);
+
+	if (themeButtons[0].isListening != true) {
+		themeButtons.forEach((x, i) => {
+			x.isListening = true;
+			x.addEventListener("click", () => {
+				if (x.classList.contains('rk-white')) return;
+				x.classList.add('rk-white');
+
+				let otherIndex = (i+1) % 2;
+				themeButtons[otherIndex].classList.remove('rk-white');
+			});
+		});
+	}
+
+	var pagestab = document.querySelector(`[data-editthemetabs="pages"]`);
+	
+	if (theme.pages != null) pagestab.load(theme.pages);
+	else {
+		let pages_object = {};
+
+		for (let page in theme) {
+			if (theme[page].css == null) continue;
+
+			pages_object[page] = theme[page].css;
+		}
+
+		pagestab.load(pages_object);
+	}
+
+	document.$triggerCustom("designer-edittheme-loaded");
+}
+
+Designer.ThemeEditor.LoadOld = function() {
+	var wholedata = Rkis.wholeData || {};
+	wholedata.Designer = wholedata.Designer || {};
+	wholedata.Designer.Themes = wholedata.Designer.Themes || [];
+
+	var theme = wholedata.Designer.Themes[Designer.ThemeEditor.themeId];
+	if(theme == null) return;
+
+	document.$triggerCustom("designer-edittheme-loading");
+
+	document.querySelectorAll('[data-editthemetabs]').forEach((tab, tabindex, tablist) => {
 		if(tab.dataset.editthemetabs == null || tab.dataset.editthemetabs == "") return;
 		if(theme[tab.dataset.editthemetabs] == null || theme[tab.dataset.editthemetabs].css == null) return;
 
-		tab.querySelectorAll(`[data-location][data-type]`).forEach(input => {
+		tab.querySelectorAll('[data-location][data-type]').forEach(input => {
 			if(input.dataset.location == null || input.dataset.location == "") return;
 
 			var placewithoutdots = input.dataset.location.split(".");
@@ -435,7 +1755,7 @@ Designer.ThemeEditor.Load = function() {
 			//input.$triggerCustom("input");
 		})
 
-		tab.querySelectorAll(`[data-location][data-enabled]`).forEach((input, theindex, thelist) => {
+		tab.querySelectorAll('[data-location][data-enabled]').forEach((input, theindex, thelist) => {
 			if(input.dataset.location == null) return;
 
 			var placewithoutdots = input.dataset.location.split(".");
@@ -486,13 +1806,181 @@ Designer.ThemeEditor.SelectTab = function(tab) {
 	var tabdiv = document.querySelector(`[data-editthemetabs="${tab.dataset.editthemetab}"]`);
 	if(tabdiv == null) return;
 
-	document.querySelectorAll(`[data-editthemetab]`).forEach(tabs => {tabs.classList.remove("active");})
-	document.querySelectorAll(`[data-editthemetabs]`).forEach(tabsdiv => {tabsdiv.style.display = "none";})
+	document.querySelectorAll('[data-editthemetab]').forEach(tabs => {tabs.classList.remove("active");})
+	document.querySelectorAll('[data-editthemetabs]').forEach(tabsdiv => {tabsdiv.style.display = "none";})
 
 	tab.classList.add("active");
 	tabdiv.style.display = "";
 	Designer.ThemeEditor.ActiveTab = tabdiv;
 }
+
+Designer.ThemeEditor.setupComponentsManager = function(btn) {
+	let isIdBtn = true;
+	let isTagBtn = true;
+	let hasHeadId = true;
+
+	// Checks if the component has an id.
+	let id = btn.dataset.componentId || btn.dataset.headComponentId;
+	if (id == null || id == "") {
+		isIdBtn = false;
+	}
+
+	// Checks if a component has any tags.
+	let tags = btn.componentTags;
+	if (tags == null || tags.length == 0) {
+		isTagBtn = false;
+	}
+
+	// Exit if couldn't identify the element
+	if (isIdBtn == false && isTagBtn == false) return;
+
+	let headId = btn.dataset.headId || btn.dataset.headComponentId;
+	if (headId == null || headId == "") {
+		hasHeadId = false;
+	}
+
+	// Find usable components
+	let components = designerComponents.filter(x => {
+		let pass = x.parent.all ?? false;
+
+		if (hasHeadId == true && x.parent.headId != null) {
+			if (x.parent.headId != headId) return false;
+		}
+
+		if (isIdBtn == true && x.parent.ids != null) {
+			if (x.parent.ids[id] === true) pass = true;
+			else if (x.parent.ids[id] === false) return false;
+		}
+
+		if (isTagBtn == true && x.parent.tags != null) {
+			for (let tag of tags) {
+				if (x.parent.tags[tag] === true) pass = true;
+				else if (x.parent.tags[tag] === false) return false;
+			};
+		}
+		return pass;
+	});
+
+	let componentsList = document.querySelector(`#rk-add-edits-list`);
+	let currentComponents = [];
+
+	// Displays the theme template add - components - card
+	btn.showAddComponentMenu = function() {
+		componentsList.innerHTML = "";
+		components.forEach(component => {
+			if (currentComponents.find(x => x.id == component.id) != null) return;
+
+			let ComponentDiv = document.createElement(`div`);
+			ComponentDiv.className = "theme-template add-components-card";
+			ComponentDiv.innerHTML = /*html*/`<div>
+			<div data-translate="${component.details.translate?.name || ""}">${component.details.name || "No Name"}</div>
+				<span data-translate="${component.details.translate?.description || ""}">${component.details.description || ""}</span>
+			</div>
+			<div style="margin-left: auto;"></div>
+			<button style="background-color: rgb(57 59 61);color: white;">+</button>`;
+
+			ComponentDiv.querySelector('button').addEventListener('click', () => {
+				btn.addComponent(component);
+				ComponentDiv.remove();
+			}, {once: true});
+
+			componentsList.appendChild(ComponentDiv);
+		});
+		document.querySelector("#rk-editthemesectionadding").style.display = "flex";
+	}
+	btn.addComponent = function(component) {
+		if (!components.includes(component)) return;
+
+		let addedComponent = currentComponents.find(x => x.id == component.id);
+		if (addedComponent != null) return addedComponent;
+
+		//add element
+		let holder = document.createElement('div');
+		holder.classList.add("component-holder");
+		holder.innerHTML = component.element.html;
+		holder.dataset.componentId = component.id;
+		holder.dataset.headId = headId;
+		btn.appendChild(holder);
+
+		//setup element
+		for (let key in component.element) {
+			if (key == "html" || key == "js") continue;
+
+
+			holder[key] = component.element[key];
+		}
+		holder.componentTags = component.tags;
+
+		let idCard = {
+			id: component.id,
+			element: holder,
+			component
+		};
+
+		let run = component.element.js;
+		if (typeof run == 'function') run(idCard, btn);
+		
+		//add in currentComponents
+		currentComponents.push(idCard);
+
+		return idCard;
+	}
+	btn.removeComponent = function(component) {
+		currentComponents = currentComponents.filter(x => {
+			if (x.id != component.id) return true;
+
+			x.element.remove();
+			return false;
+		});
+		return;
+	}
+	btn.load = function(theme_object) {
+		//if (id == 'pages') console.log(`loading theme`, theme_object);
+
+		//clear currentComponents
+		currentComponents = [];
+		btn.querySelectorAll('.component-holder').forEach((element) => {
+			element.remove();
+		});
+
+		//for all objects in theme_object
+		for (let path in theme_object) {
+			if (theme_object[path] == null) continue;
+			if (JSON.stringify(theme_object[path]) === '{}') continue;
+
+			let component = components.find(x => x.id == path);
+
+			//check if path/object key exist in components as id
+			if (component == null) continue;
+
+			if (typeof component.isEmpty == 'function' && component.isEmpty(theme_object[path])) continue;
+
+			//add component
+			let idCard = btn.addComponent(component);
+
+			//after setup do load and pass the same object's value
+			if (typeof idCard.element.load == 'function') idCard.element.load(theme_object[path], idCard);
+		}
+	}
+	btn.save = function() {
+		//create an page_object
+		let page_object = {};
+
+		//for each current Components
+		for (let idCard of currentComponents) {
+			//run save_object
+			let save_component = idCard.element.save;
+			if (typeof save_component != 'function') continue;
+
+			//put object in page_object with key of component id
+			page_object[idCard.id] = save_component(idCard);
+		}
+		
+		return page_object;
+	}
+}
+
+//END SECTION ThemeEditor
 
 
 
@@ -513,7 +2001,7 @@ function rgbaTovar(rgba) {
 }
 
 function rgbToHex(r, g, b) {
-	return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+	return "#" + ((1 << 24) + (r << 16) + (g << 8) + parseInt(b)).toString(16).slice(1);
 }
 
 function jsonConcat(o1, o2) {
@@ -566,7 +2054,7 @@ Designer.waitingForGeneral = function() {
 	}
 	
 	//Designer.LoadThemesData();
-	document.$watch("#rkpage .main .themes", (e) => { e.$on("script", () => {Designer.LoadThemesData();}) })
+	document.$watch("#rkpage .main .themes", (e) => { e.$on("script", () => {Designer.LoadThemesData();}) });
 
 	document.$watchLoop("#rkpage .main .themes .designer-btn", (e) => {
 		var i = e.dataset.themeid;
@@ -618,7 +2106,7 @@ Designer.waitingForGeneral = function() {
 				}
 			})
 		}
-	})
+	});
 
 	document.$watchLoop("#rkpage .main .themes [data-designer-func]", (e) => {
 		var i = e.dataset.themeid;
@@ -630,6 +2118,21 @@ Designer.waitingForGeneral = function() {
 			case "editorsave":
 				e.$on("click", () => {
 					Designer.ThemeEditor.Save();
+				})
+				break;
+			case "add-edits":
+				Designer.ThemeEditor.setupComponentsManager(e);
+				break;
+			case "add-edits-btn":
+				e.$on('click', () => {
+					e.parentElement.showAddComponentMenu();
+				});
+				break;
+			case "close-edit-adding":
+				e.addEventListener("click", function (event) {
+					if (event.target == e) {
+						e.style.display = "none";
+					}
 				})
 				break;
 		}
@@ -662,10 +2165,6 @@ Designer.waitingForGeneral = function() {
 			e.$on("click", () => {
 				Designer.DeleteTheTheme(e);
 			})
-		} else if(e.classList.contains("editorsave")) {
-			e.$on("click", () => {
-				Designer.ThemeEditor.Save();
-			})
 		} else if(e.classList.contains("editortab")) {
 			e.$on("click", () => {
 				Designer.ThemeEditor.SelectTab(e);
@@ -679,7 +2178,7 @@ Designer.waitingForGeneral = function() {
 				}
 			})
 		}
-	})
+	});
 }
 
 Designer.waitingForGeneral();

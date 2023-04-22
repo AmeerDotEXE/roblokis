@@ -2,10 +2,6 @@
 var Rkis = Rkis || {};
 var page = page || {};
 
-//in adding menu you can add options if in designer tab
-//you can add both options (limited) and edits in element tab
-let designerOptions = []; //list of editable elements
-
 function FetchImage(url, quick) {
 	return new Promise(resolve => {
 		chrome.runtime.sendMessage({about: "getImageRequest", url: url, quick: quick}, 
@@ -93,7 +89,7 @@ page.save = function (button) {
 	var textfields = document.querySelectorAll(".rk-textfield:not(.rk-input-string)");
 	textfields.forEach((e) => {
 		if (e.dataset.file == null) return;
-		wholedata[e.dataset.file] = e.value;
+		wholedata[e.dataset.file] = e.value.slice(0, 500);
 	});
 	
 	var textfields = document.querySelectorAll(".rk-input-string");
@@ -102,7 +98,7 @@ page.save = function (button) {
 
 		var setting = wholedata[e.dataset.file];
 		if (setting.options && setting.options.disabled == true) return;
-		wholedata[e.dataset.file].value[setting.type] = e.value;
+		wholedata[e.dataset.file].value[setting.type] = e.value.slice(0, 500);
 	});
 
 	var buttons = document.querySelectorAll(".rk-input-bool");
@@ -898,10 +894,10 @@ page.settingsWaitingForGeneral = function() {
 
 	document.$watch("#container-main > div.content", async (mainplace) => {
 
-		mainplace.innerHTML = `
-	<div id="rkmainpage">
-		<div id="rkmaintitle" style="text-align: center;font-weight: 800;font-size: 32px;margin: 1%;" data-translate="settingsPageTitle">Roblokis Settings Page</div>
-		<div style="display: flex;justify-content: center;">
+		mainplace.innerHTML = /*html*/`
+		<div id="rkmainpage">
+			<div id="rkmaintitle" style="text-align: center;font-weight: 800;font-size: 32px;margin: 1%;" data-translate="settingsPageTitle">Roblokis Settings Page</div>
+			<div style="display: flex;justify-content: center;">
 				<div class="left-navigation">
 
 					<div data-translate="categoryMain">Main</div>
@@ -935,7 +931,7 @@ page.settingsWaitingForGeneral = function() {
 								<h4 data-translate="sectionWhatRkis">What is Roblokis?</h4>
 								<div>
 									<div data-translate="sectionWhatRkis1">Roblokis is a broswer extenstion made by Ameer! to make roblox easier to use and more accessable.</div><br>
-									<a href="https://ameerdotexe.github.io/roblokis/" data-translate="sectionWhatRkis2">Click here for roblokis site and privacy policy.</a>
+									<a href="https://ameerdotexe.github.io/roblokis/" style="text-decoration: underline;" data-translate="sectionWhatRkis2">Click here for roblokis site and privacy policy.</a>
 								</div>
 							</div>
 
@@ -1010,88 +1006,14 @@ page.settingsWaitingForGeneral = function() {
 							<loadcode code="settingload" data-id="InfiniteGameScrolling"></loadcode>
 						</div>
 						<div class="tabcontent changelog">
-							<h3>Main &gt; Changelog</h3>
+							<h3><span data-translate="categoryMain">Main</span> &gt; <span data-translate="tabChangelog">Changelog</span></h3>
 							
 							<div class="section-content">
-								<h4>Roblokis V4 Pre-Release</h4>
+								<h4 data-translate="changelogGithubTitle">Moved to Github</h4>
 								<div>
-										Rebuild Roblokis from zero Again Again
-								</div><br>
-								<ul style="padding-left: 5%;">
-									<li style="list-style: disc;">This is an Early Release</li>
-									<li style="list-style: disc;">Fixed Bugs</li>
-								</ul>	
-							</div>
-
-							<div class="section-content">
-								<h4>Roblokis V3.1.2.2</h4>
-								<div>
-										Rebuild Roblokis from zero Again
-								</div><br>
-								<ul style="padding-left: 5%;">
-									<li style="list-style: disc;">Roblokis now loads faster</li>
-									<li style="list-style: disc;">added animations</li>
-									<li style="list-style: disc;">new themes</li>
-									<li style="list-style: disc;">new theme designer</li>
-									<li style="list-style: disc;">improved speed of every feature by 1.5x to 10x</li>
-									<li style="list-style: disc;">added roblokis button in settings</li>
-									<li style="list-style: disc;">Server, badges, etc. styles will load instantly</li>
-									<li style="list-style: disc;">added option to disable themes</li>
-									<li style="list-style: disc;">added support for BTRoblox, RoPro, RoGold, Roblox+</li>
-									<li style="list-style: disc;">Changed default theme to match default site</li>
-									<li style="list-style: disc;">fixed logout button not working</li>
-									<li style="list-style: disc;">fixed link copying, quick join buttons and more stuff</li>
-									<li style="list-style: disc;">added language support & option to limit it</li>
-									<li style="list-style: disc;">added light theme support & added default light theme</li>
-									<li style="list-style: disc;">fixed public servers pager</li>
-									<li style="list-style: disc;">fixed spanish translation problem</li>
-									<li style="list-style: disc;">added maximum players number option</li>
-									<li style="list-style: disc;">fixed and disabled some features after site update</li>
-									<li style="list-style: disc;">randomized the rotation of the quick join button</li>
-									<li style="list-style: disc;">fixed extension goig down by the lastest chrome update</li>
-								</ul>	
-							</div>
-
-							<div class="section-content">
-								<h4>Roblokis V2.6.3.2</h4>
-								<div>
-										added new features<br>
-										fixed a lot of stuff
-								</div><br>
-								<ul style="padding-left: 5%;">
-									<li style="list-style: disc;">quick join button in all tab</li>
-									<li style="list-style: disc;">fixed settings page not showing for some people</li>
-									<li style="list-style: disc;">fixed some fetching & searching errors</li>
-									<li style="list-style: disc;">added loading cubes for small servers section</li>
-									<li style="list-style: disc;">fixed public links not working</li>
-									<li style="list-style: disc;">added badge achieve date</li>
-									<li style="list-style: disc;">added last seen & last place on profiles</li>
-									<li style="list-style: disc;">fixed "web" and "www" mistakes</li>
-									<li style="list-style: disc;">Roblox status are back</li>
-									<li style="list-style: disc;">fixed removing friend not show on profile page</li>
-									<li style="list-style: disc;">fixed overflowing text on servers</li>
-									<li style="list-style: disc;">fixed links for public servers not working</li>
-									<li style="list-style: disc;">small servers join button not working</li>
-								</ul>	
-							</div>
-
-							<div class="section-content">
-								<h4>Roblokis V2.5.0</h4>
-								<div>
-										changed the core loading system
-								</div><br>
-								<ul style="padding-left: 5%;">
-									<li style="list-style: disc;">badges will load 40x faster</li>
-									<li style="list-style: disc;">server design will load 40x to 60x faster</li>
-									<li style="list-style: disc;">automatic load will be 120x to 140x faster</li>
-									<li style="list-style: disc;">servers link will load 2x to 10x faster</li>
-									<li style="list-style: disc;">friends removing button will show 2x to 10x faster</li>
-									<li style="list-style: disc;">name and robux changing will be 2x to 10x faster</li>
-									<li style="list-style: disc;">settings page will load 2x to 10x faster</li>
-									<li style="list-style: disc;">server removing will be 40x to 60x faster</li>
-									<li style="list-style: disc;">added timer to page nav. to prevent spamming</li>
-									<li style="list-style: disc;">no option will be selected on servers tab</li>
-								</ul>	
+									<div data-translate="changelogGithubDescription">All changes are listed on our open source github repository.</div><br>
+									<a href="https://github.com/AmeerDotEXE/roblokis/commits/release" style="text-decoration: underline;" data-translate="changelogGithubRedirection">Click here to view full changelog.</a>
+								</div>	
 							</div>
 						</div>
 						<div class="tabcontent design">
@@ -1233,15 +1155,9 @@ page.settingsWaitingForGeneral = function() {
 
 											<ul class="menu-vertical submenus" role="tablist" style="border-radius: 10px;border-right: 1px solid #b8b8b8;border-bottom: 1px solid #b8b8b8;">
 											
-												<li data-nav-page="all" class="designer-btn editortab menu-option active" style="border-radius: 10px 0 0 0;"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabAll">All</span> </a> </li>
+												<li data-nav-page="details" class="designer-btn editortab menu-option" style="border-radius: 10px 0 0 0;"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="editorInfoTab">Info</span> </a> </li>
 
-												<li data-nav-page="home" class="designer-btn editortab menu-option" style="border-radius: 0 0 0 0;"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabHome">Home</span> </a> </li>
-
-												<li data-nav-page="users" class="designer-btn editortab menu-option" style="border-radius: 0 0 0 0;"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabUsers">Users</span> </a> </li>
-
-												<li data-nav-page="groups" class="designer-btn editortab menu-option" style="border-radius: 0 0 0 0;"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabGroups">Groups</span> </a> </li>
-
-												<li data-nav-page="game" class="designer-btn editortab menu-option" style="border-radius: 0 0 0 10px;"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabGame">Game</span> </a> </li>
+												<li data-nav-page="pages" class="designer-btn editortab menu-option active" style="border-radius: 0 0 0 10px;"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="editorPagesTab">Pages</span> </a> </li>
 
 											</ul>
 
@@ -1249,7 +1165,7 @@ page.settingsWaitingForGeneral = function() {
 
 										<!--save button-->
 										<div class="rk-gap"></div>
-										<div class="rk-flex rk-center-y">
+										<div class="rk-flex rk-center-y" style="margin-top: 1rem;">
 
 											<button onclick="document.querySelector('#rk-editthemesection').style.display = 'none';" class="rk-btn" data-translate="btnCancel">Close</button>
 
@@ -1524,7 +1440,7 @@ page.settingsWaitingForGeneral = function() {
 												[data-editthemetabs] select {
 													margin: 0 3px 0 3px;
 													border-radius: 8px;
-													width: calc(100% - 80px);
+													width: calc(100% - 10ch);
 												}
 
 												[data-editthemetabs] div > label.rk-label-input,
@@ -1588,7 +1504,8 @@ page.settingsWaitingForGeneral = function() {
 												}
 
 												/*test*/
-												[data-editthemetabs] {
+												[data-editthemetabs],
+												[data-component-holder] {
 													display: flex;
 													flex-direction: column;
 													align-items: center;
@@ -1634,1025 +1551,42 @@ page.settingsWaitingForGeneral = function() {
 												}
 										</style>
 										
-										<div data-nav-tab="all" data-editthemetabs="all" class="active">
-
-
-												<div style="background-color: #fff;transition: all 400ms;position: relative;">
-													<loadcode code="setupsize" data-size="$x$"></loadcode>
-
-
-													<div class="recreate-background selectable designer-btn showthelem">
-															<loadcode code="editelement">
-																<loadcode code="editbackground" data-location="background"></loadcode>
-																<loadcode code="loadedits"></loadcode>
-															</loadcode>
-													</div>
-
-													<div class="recreate-content selectable dark designer-btn showthelem">
-															<loadcode code="editelement">
-
-																<div class="section-content" style="border-radius: 20px;border-right: 1px solid #b8b8b8;border-bottom: 1px solid #b8b8b8;">
-																		<div style="display: flex;align-items: center;justify-content: space-between;">
-																			<span data-translate="themeShadow">Shadow:</span>
-																			<select selected="" data-location="content.shadow" data-type="value">
-																					<option value="" data-translate="themeEnabled">Enabled</option>
-																					<option value="disabled" data-translate="themeDisabled">Disabled</option>
-																			</select>
-																		</div>
-																</div>
-
-																<loadcode code="editbackground" data-location="content.background" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
-																<loadcode code="editcorners" data-location="content" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
-																<loadcode code="editborders" data-location="content" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
-
-																<loadcode code="loadedits"></loadcode>
-															</loadcode>
-													</div>
-
-													<div class="recreate-menus group designer-btn showthelem">
-															<loadcode code="editelement">
-																<loadcode code="editbackground" data-location="menu.background" data-title="Menus "></loadcode>
-																<loadcode code="loadedits"></loadcode>
-															</loadcode>
-
-															<div class="recreate-topmenu dark"></div>
-															<div class="recreate-bottommenu dark"></div>
-															<div class="recreate-rightmenu dark"></div>
-													</div>
-
-
-												</div>
-
-
-										</div>
-
-
-
-										<div data-nav-tab="home" data-editthemetabs="home">
-
-
-												<div style="background-color: #fff;margin-bottom: 20px;transition: all 400ms;position: relative;">
-													<loadcode code="setupsize" data-size="$x$"></loadcode>
-
-
-													<div class="recreate-background selectable designer-btn showthelem">
-															<loadcode code="editelement">
-																<loadcode code="editbackground" data-location="background" data-togglebtn="on" data-toggle="off"></loadcode>
-																<loadcode code="loadedits"></loadcode>
-															</loadcode>
-													</div>
-
-													<div class="recreate-content selectable dark designer-btn showthelem">
-															<loadcode code="editelement">
-
-																<div class="section-content" style="border-radius: 20px;border-right: 1px solid #b8b8b8;border-bottom: 1px solid #b8b8b8;">
-																		<div style="display: flex;align-items: center;justify-content: space-between;">
-																			<span data-translate="themeShadow">Shadow:</span>
-																			<select selected="" data-location="content.shadow" data-type="value">
-																					<option value="" data-translate="themeEnabled">Enabled</option>
-																					<option value="disabled" data-translate="themeDisabled">Disabled</option>
-																			</select>
-																		</div>
-																</div>
-
-																<loadcode code="editbackground" data-location="content.background" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
-																<loadcode code="editcorners" data-location="content" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
-																<loadcode code="editborders" data-location="content" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
-
-																<loadcode code="loadedits"></loadcode>
-															</loadcode>
-													</div>
-
-													<div class="recreate-menus group designer-btn showthelem">
-															<loadcode code="editelement">
-																<loadcode code="editbackground" data-location="menu.background" data-title="Menus " data-togglebtn="on" data-toggle="off"></loadcode>
-																<loadcode code="loadedits"></loadcode>
-															</loadcode>
-
-															<div class="recreate-topmenu dark"></div>
-															<div class="recreate-bottommenu dark"></div>
-															<div class="recreate-rightmenu dark"></div>
-													</div>
-
-
-												</div>
-
-
-										</div>
-
-
-
-										<div data-nav-tab="users" data-editthemetabs="users">
-
-
-												<div style="background-color: #fff;margin-bottom: 20px;transition: all 400ms;position: relative;">
-													<loadcode code="setupsize" data-size="$x$"></loadcode>
-
-
-													<div class="recreate-background selectable designer-btn showthelem">
-															<loadcode code="editelement">
-																<loadcode code="editbackground" data-location="background" data-togglebtn="on" data-toggle="off"></loadcode>
-																<loadcode code="loadedits"></loadcode>
-															</loadcode>
-													</div>
-
-													<div class="recreate-content selectable dark designer-btn showthelem">
-															<loadcode code="editelement">
-
-																<div class="section-content" style="border-radius: 20px;border-right: 1px solid #b8b8b8;border-bottom: 1px solid #b8b8b8;">
-																		<div style="display: flex;align-items: center;justify-content: space-between;">
-																			<span data-translate="themeShadow">Shadow:</span>
-																			<select selected="" data-location="content.shadow" data-type="value">
-																					<option value="" data-translate="themeEnabled">Enabled</option>
-																					<option value="disabled" data-translate="themeDisabled">Disabled</option>
-																			</select>
-																		</div>
-																</div>
-
-																<loadcode code="editbackground" data-location="content.background" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
-																<loadcode code="editcorners" data-location="content" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
-																<loadcode code="editborders" data-location="content" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
-
-																<loadcode code="loadedits"></loadcode>
-															</loadcode>
-													</div>
-
-													<div class="recreate-menus group designer-btn showthelem">
-															<loadcode code="editelement">
-																<loadcode code="editbackground" data-location="menu.background" data-title="Menus " data-togglebtn="on" data-toggle="off"></loadcode>
-																<loadcode code="loadedits"></loadcode>
-															</loadcode>
-
-															<div class="recreate-topmenu dark"></div>
-															<div class="recreate-bottommenu dark"></div>
-															<div class="recreate-rightmenu dark"></div>
-													</div>
-
-
-												</div>
-
-
-
-												<div class="designer-section" style="margin-bottom: 20px;transition: all 400ms;position: relative;">
-													<loadcode code="setupsize" data-size="$xfit-content"></loadcode>
-
-													<div style="margin: 10px 0;text-align: center;">
-															<div class="colors bright" style="font-weight: 600;" data-translate="themePreviewProfile">Profile Example Preview</div>
-													</div>
-
-													<div class="recreate-profile profile-header-content designer-btn showthelem">
-															<loadcode code="editelement">
-
-																<loadcode code="editbackground" data-location="profile.background" data-togglebtn="on" data-toggle="off" data-title="Profile "></loadcode>
-																<loadcode code="editcorners" data-location="profile" data-togglebtn="on" data-toggle="off" data-title="Profile "></loadcode>
-																<loadcode code="editborders" data-location="profile" data-togglebtn="on" data-toggle="off" data-title="Profile "></loadcode>
-
-																<loadcode code="loadedits"></loadcode>
-															</loadcode>
-
-															<div class="profile-header-top">
-																<div class="avatar avatar-headshot-lg card-plain profile-avatar-image">
-																		<span class="avatar-card-link avatar-image-link" style="background-color: #d4d4d4;"></span>
-																</div>
-																<div class="header-caption">
-																		<div class="header-names">
-																			<div class="header-title" style="display: flex;align-items: center;">
-																					<h2 class="profile-name text-overflow" style="padding: 0;display: inline-block;margin: 0 12px 0 0;float: left;font-size: calc(32px * 2 * var(--editor-size-percent));">Roblox</h2>
-																			</div>
-																			<div class="recreate-12px-text-size profile-display-name font-caption-body text text-overflow">@Roblox</div>
-																		</div>
-																		<div class="header-details">
-																			<ul class="details-info" style="display: flex;">
-																						<li>
-																								<div class="recreate-12px-text-size text-label font-caption-header" data-translate="themeFriends">Friends</div>
-																								<a class="text-name"><span class="recreate-text-size font-header-2" style="margin-right: 6px;" title="0">0</span></a>
-																						</li>
-																						<li>
-																								<div class="recreate-12px-text-size text-label font-caption-header" data-translate="themeFollowers">Followers</div>
-																								<a class="text-name"><span class="recreate-text-size font-header-2" style="margin-right: 6px;" title="999">999</span></a>
-																						</li>
-																						<li>
-																								<div class="recreate-12px-text-size text-label font-caption-header" data-translate="themeFollowing">Following</div>
-																								<a class="text-name"><span class="recreate-text-size font-header-2" style="margin-right: 6px;" title="0">0</span></a>
-																						</li>
-																			</ul>
-																			<ul class="details-actions desktop-action" style="display: block;">
-																					<li class="btn-messages" style="float: right;padding-right: 15px;">
-																							<button class="recreate-text-size btn-control-md" data-translate="themeMessage">Message</button>
-																					</li>
-																			</ul>
-																		</div>
-																</div>
-															</div>
-															<div id="profile-header-more" class="profile-header-more" ng-show="profileHeaderLayout.isMoreBtnVisible">
-																<a id="popover-link" class="rbx-menu-item" data-toggle="popover"><span class="icon-more"></span></a>
-															</div>
-
-													</div>
-
-												</div>
-
-
-										</div>
-
-
-
-										<div data-nav-tab="groups" data-editthemetabs="groups">
-
-
-												<div style="background-color: #fff;margin-bottom: 20px;transition: all 400ms;position: relative;">
-													<loadcode code="setupsize" data-size="$x$"></loadcode>
-
-
-													<div class="recreate-background selectable designer-btn showthelem">
-															<loadcode code="editelement">
-																<loadcode code="editbackground" data-location="background" data-togglebtn="on" data-toggle="off"></loadcode>
-																<loadcode code="loadedits"></loadcode>
-															</loadcode>
-													</div>
-
-													<div class="recreate-content selectable dark designer-btn showthelem">
-															<loadcode code="editelement">
-
-																<div class="section-content" style="border-radius: 20px;border-right: 1px solid #b8b8b8;border-bottom: 1px solid #b8b8b8;">
-																		<div style="display: flex;align-items: center;justify-content: space-between;">
-																			<span data-translate="themeShadow">Shadow:</span>
-																			<select selected="" data-location="content.shadow" data-type="value">
-																					<option value="" data-translate="themeEnabled">Enabled</option>
-																					<option value="disabled" data-translate="themeDisabled">Disabled</option>
-																			</select>
-																		</div>
-																</div>
-
-																<loadcode code="editbackground" data-location="content.background" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
-																<loadcode code="editcorners" data-location="content" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
-																<loadcode code="editborders" data-location="content" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
-
-																<loadcode code="loadedits"></loadcode>
-															</loadcode>
-													</div>
-
-													<div class="recreate-menus group designer-btn showthelem">
-															<loadcode code="editelement">
-																<loadcode code="editbackground" data-location="menu.background" data-title="Menus " data-togglebtn="on" data-toggle="off"></loadcode>
-																<loadcode code="loadedits"></loadcode>
-															</loadcode>
-
-															<div class="recreate-topmenu dark"></div>
-															<div class="recreate-bottommenu dark"></div>
-															<div class="recreate-rightmenu dark"></div>
-													</div>
-
-
-												</div>
-
-
-
-												<div class="designer-section" style="margin-bottom: 20px;transition: all 400ms;position: relative;">
-													<loadcode code="setupsize" data-size="$xfit-content"></loadcode>
-
-													<div style="margin: 10px 0;text-align: center;">
-															<div class="colors bright" style="font-weight: 600;" data-translate="themePreviewGroup">Group Example Preview</div>
-													</div>
-
-													<div class="recreate-group designer-btn showthelem">
-															<loadcode code="editelement">
-
-																<loadcode code="editbackground" data-location="group.background" data-togglebtn="on" data-toggle="off" data-title="Group "></loadcode>
-																<loadcode code="editcorners" data-location="group" data-togglebtn="on" data-toggle="off" data-title="Group "></loadcode>
-																<loadcode code="editborders" data-location="group" data-togglebtn="on" data-toggle="off" data-title="Group "></loadcode>
-
-																<loadcode code="loadedits"></loadcode>
-															</loadcode>
-
-															<div class="group-header">
-																<div class="group-image" style="width: calc(256px * var(--editor-size-percent));margin-right: calc(24px * var(--editor-size-percent)); float: left;">
-																		<div style="width: calc(256px * var(--editor-size-percent)); height: calc(256px * var(--editor-size-percent)); background-color: gray; display: inline-block; border-radius: calc(16px * var(--editor-size-percent)); float: left;"></div>
-																</div>
-																<div class="group-caption">
-																		<div class="group-title">
-																			<h1 class="group-name text-overflow" style="font-size: calc(64px * var(--editor-size-percent));">Roblox</h1>
-																			<div class="group-owner text font-caption-body">
-																					<span class="recreate-12px-text-size" data-translate="themeGroupBy">By</span> <a class="text-link recreate-12px-text-size">Roblox</a>
-																			</div>
-																		</div>
-																		<div class="group-info">
-																			<ul class="group-stats" style="display: flex;max-width: 100%;">
-																					<li class="group-members">
-																						<span class="font-header-2 recreate-text-size" title="0000000">0</span>
-																						<div class="text-label font-caption-header recreate-12px-text-size" data-translate="themeMembers">Members</div>
-																					</li>
-																					<li class="group-rank text-overflow">
-																						<span class="text-overflow font-header-2 recreate-text-size" title="-">-</span>
-																						<div class="text-label font-caption-header recreate-12px-text-size" data-translate="themeRank">Rank</div>
-																					</li>
-																			</ul>
-																		</div>
-																</div>
-																<div class="group-menu"> <a tabindex="0" class="rbx-menu-item" popover-placement="bottom-right" popover-trigger="'outsideClick'" uib-popover-template="'group-menu-popover'"> <span class="icon-more"></span> </a> </div>
-															</div>
-
-													</div>
-
-												</div>
-
-
-										</div>
-
-
-
-										<div data-nav-tab="game" data-editthemetabs="game">
-
-
-											<div style="background-color: #fff;margin-bottom: 20px;transition: all 400ms;position: relative;">
-												<loadcode code="setupsize" data-size="$x$"></loadcode>
-
-
-												<div class="recreate-background selectable designer-btn showthelem">
-														<loadcode code="editelement">
-															<loadcode code="editbackground" data-location="background" data-togglebtn="on" data-toggle="off"></loadcode>
-															<loadcode code="loadedits"></loadcode>
-														</loadcode>
-												</div>
-
-												<div class="recreate-content selectable dark designer-btn showthelem">
-														<loadcode code="editelement">
-
-															<div class="section-content" style="border-radius: 20px;border-right: 1px solid #b8b8b8;border-bottom: 1px solid #b8b8b8;">
-																	<div style="display: flex;align-items: center;justify-content: space-between;">
-																		<span data-translate="themeShadow">Shadow:</span>
-																		<select selected="" data-location="content.shadow" data-type="value">
-																				<option value="" data-translate="themeEnabled">Enabled</option>
-																				<option value="disabled" data-translate="themeDisabled">Disabled</option>
-																		</select>
-																	</div>
-															</div>
-
-															<loadcode code="editbackground" data-location="content.background" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
-															<loadcode code="editcorners" data-location="content" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
-															<loadcode code="editborders" data-location="content" data-togglebtn="on" data-toggle="off" data-title="Content "></loadcode>
-
-															<loadcode code="loadedits"></loadcode>
-														</loadcode>
-												</div>
-
-												<div class="recreate-menus group designer-btn showthelem">
-														<loadcode code="editelement">
-															<loadcode code="editbackground" data-location="menu.background" data-title="Menus " data-togglebtn="on" data-toggle="off"></loadcode>
-															<loadcode code="loadedits"></loadcode>
-														</loadcode>
-
-														<div class="recreate-topmenu dark"></div>
-														<div class="recreate-bottommenu dark"></div>
-														<div class="recreate-rightmenu dark"></div>
-												</div>
-
-											</div>
-
-
-											<div class="designer-section" style="display: flex;margin-bottom: 20px;">
-												<div class="designer-section" style="transition: all 400ms;position: relative;overflow: hidden;">
-														<loadcode code="setupsize" data-size="calc($ * 0.5)xfit-content"></loadcode>
-
-														<div style="margin: 10px 0;text-align: center;">
-															<div class="colors bright" style="font-weight: 600;" data-translate="themePreviewBadge">Badge Example Preview</div>
-														</div>
-
-														<div class="recreate-badge selectable dark designer-btn showthelem">
-															<loadcode code="editelement">
-
-																	<div class="section-content" style="min-width: 280px;">
-																		<div style="display: flex;justify-content: space-between;align-items: center;">
-																				<h4 style="width: fit-content;" data-translate="themeTxtColor">Text Color</h4>
-																				<span data-location="badge.colors" data-enabled="switch" class="rk-button receiver-destination-type-toggle on">
-																					<span class="toggle-flip"></span>
-																					<span class="toggle-on"></span>
-																					<span class="toggle-off"></span>
-																				</span>
-																		</div>
-
-																		<div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;" data-translate="themeBrtColor">Bright Color:</span><input type="color" value="#ffffff" data-location="badge.colors.bright" data-type="value" class="form-control input-field"></div>
-																		
-																		<div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;" data-translate="themeDrkColor">Dark Color:</span><input type="color" value="#bdbebe" data-location="badge.colors.dark" data-type="value" class="form-control input-field"></div>
-
-																	</div>
-
-																	<loadcode code="editcorners" data-location="badge" data-togglebtn="on" data-toggle="off" data-title="Badge "></loadcode>
-																	<loadcode code="editbackground" data-title="Badge " data-location="badge.background" data-togglebtn="on" data-toggle="off"></loadcode>
-																	<loadcode code="editborders" data-location="badge" data-togglebtn="on" data-toggle="off" data-title="Badge "></loadcode>
-
-																	<loadcode code="loadedits"></loadcode>
-															</loadcode>
-
-															<div style="width: calc(150px * 1.5 * var(--editor-size-percent));height: calc(150px * 1.5 * var(--editor-size-percent));background-color: #d4d4d4;border-radius: 50%;"></div>
-
-															<div style="margin-top: calc(9px * var(--editor-size-percent));">
-																	<div style="padding: 0 calc(12px * var(--editor-size-percent));">
-																		<div class="colors bright recreate-text-size" data-translate="themeNameBadge">Installed Roblokis!</div>
-																		<p class="colors dark recreate-text-size" data-translate="themeDescBadge">Owners of this badge have Roblokis installed.</p>
-																	</div>
-																	<ul class="badge-content-data">
-																		<li> <div class="colors dark recreate-text-size" data-translate="badgeRare">Rarity</div>
-																				<div class="colors bright recreate-text-size">20.0%</div> </li>
-																		<li> <div class="colors dark recreate-text-size" data-translate="badgeLastWon">Won Yesterday</div>
-																				<div class="colors bright recreate-text-size">100</div> </li>
-																		<li> <div class="colors dark recreate-text-size" data-translate="badgeWon">Won Ever</div> 
-																				<div class="colors bright recreate-text-size">101</div></li>
-																		<li class="thecut"></li>
-																		<li> <div class="colors dark recreate-text-size" data-translate="badgeCreatedShort">Created</div> 
-																				<div class="colors bright recreate-text-size" data-translate="themeTimeAgo">Time ago</div> </li>
-																		<li> <div class="colors dark recreate-text-size" data-translate="badgeUpdatedShort">Updated</div> 
-																				<div class="colors bright recreate-text-size" data-translate="themeTimeAgo">Time ago</div> </li>
-																		<li> <div class="colors dark recreate-text-size" data-translate="badgeAchievedShort">Achieved</div> 
-																				<div class="colors bright recreate-text-size" data-translate="themeTimeAgo">Time ago</div> </li>
-																	</ul>
-															</div>
-														</div>
-
-												</div>
-
-												<div class="designer-section" style="transition: all 400ms;position: relative;overflow: hidden;">
-														<loadcode code="setupsize" data-size="calc($ * 0.4)xfit-content"></loadcode>
-
-														<div style="margin: 10px 0;text-align: center;">
-															<div class="bright" style="font-weight: 600;" data-translate="themePreviewServer">Servers Example Preview</div>
-														</div>
-
-														<div class="recreate-servers mainpreview selectable dark designer-btn showthelem" data-type="server">
-															<loadcode code="editelement">
-
-																	<div class="designer-section" style="margin-bottom: 20px;transition: all 400ms;position: relative;overflow: hidden;min-width: 240px;">
-
-																		<div style="margin: 10px 0;text-align: center;">
-																				<div class="bright" style="font-weight: 600;" data-translate="themePreviewDefault">Default Server Preview</div>
-																		</div>
-
-																		<div class="recreate-servers selectable dark designer-btn showthelem">
-																				<loadcode code="editelement">
-
-																					<loadcode code="editcorners" data-location="defaultserver" data-title="Server " data-togglebtn="on" data-toggle="off"></loadcode>
-
-																					<loadcode code="editbackground" data-location="defaultserver.background" data-title="Server " data-togglebtn="on" data-toggle="off"></loadcode>
-
-																					<loadcode code="editborders" data-location="defaultserver" data-title="Server " data-togglebtn="on" data-toggle="off"></loadcode>
-
-
-																					<div class="section-left rbx-private-server-details group designer-section designer-btn showthelem" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 10px;border-radius: 20px;margin-bottom: 20px;min-width: 220px;">
-																							<loadcode code="editelement">
-
-																								<loadcode code="editcorners" data-location="defaultserver.button" data-title="Button "	data-togglebtn="on" data-toggle="off"></loadcode>
-
-
-																								<loadcode code="editbackground" data-title="Button " data-location="defaultserver.button.background" data-togglebtn="on" data-toggle="off"></loadcode>
-
-
-																								<loadcode code="editborders" data-location="defaultserver.button" data-title="Button " data-togglebtn="on" data-toggle="off"></loadcode>
-
-																								<loadcode code="loadedits"></loadcode>
-																							</loadcode>
-
-																							<a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
-																							<a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
-																					</div>
-
-																					<loadcode code="loadedits"></loadcode>
-																				</loadcode>
-
-																				<div class="section-left rbx-private-server-details" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 0px;">
-
-																					<div class="rbx-private-server-alert recreate-text-size">
-																							<span class="icon-remove"></span>
-																							<span data-translate="slowServer">Slow Server</span>
-																					</div>
-
-																					<a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
-																					<a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
-																				</div>
-
-																				<div class="section-right rbx-friends-game-server-players" style="float: none;width: 99%;">
-																					<span class="avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image recreate-text-size" style="background-color: lightgrey;color: black;" id="rk-plr-counter">3</span>
-
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link" title="Some Person"><img class="avatar-card-image"></a></span>
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																				</div>
-																		</div>
-
-																	</div>
-
-																	<div class="designer-section" style="margin-bottom: 20px;transition: all 400ms;position: relative;overflow: hidden;min-width: 240px;">
-
-																		<div style="margin: 10px 0;text-align: center;">
-																				<div class="bright" style="font-weight: 600;" data-translate="themePreviewPrivate">Private Server Preview</div>
-																		</div>
-
-																		<div class="recreate-servers selectable dark designer-btn showthelem">
-																				<loadcode code="editelement">
-
-																					<div class="section-content">
-																							<div style="display: flex;justify-content: space-between;align-items: center;">
-																								<h4 style="width: fit-content;" data-translate="themeSvrStng">Servers Settings</h4>
-																							</div>
-
-																							<div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin: 0 5px 5px 0px;" data-translate="themeSvrPerRow">Servers Per Row:</span><input type="range" value="5" data-location="privateserver.column" data-type="value" class="form-control input-field" max="8"></div>
-
-																							<div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin: 0 5px 0px 0px;" data-translate="themeSvrGap">Servers Gap:</span><input type="range" value="0.3" step="0.1" data-location="privateserver.gap" data-type="percent" class="form-control input-field" max="2"></div>
-
-																							<div class="rbx-divider" style="margin: 12px;"></div>
-
-																							<div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;" data-translate="themeTextColor">Text Color:</span><input type="color" value="#ffffff" data-location="privateserver.color" data-type="color" class="form-control input-field"></div>
-
-																							<div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;" data-translate="themeOwnBG">Owner Background:</span><input type="color" value="#d4d4d4" data-location="privateserver.owner.background.color" data-type="color" class="form-control input-field"></div>
-																							
-																							<div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin: 5px 5px 0px 0px;" data-translate="themeOwnBGAlp">Owner Bg Alpha:</span><input type="range" value="100" step="10" data-location="privateserver.owner.background.color" data-type="color-alpha" class="form-control input-field"></div>
-																					</div>
-
-
-																					<loadcode code="editcorners" data-location="privateserver" data-togglebtn="on" data-toggle="off" data-title="Server "></loadcode>
-
-
-																					<loadcode code="editbackground" data-title="Server " data-location="privateserver.background" data-togglebtn="on" data-toggle="off"></loadcode>
-
-
-																					<loadcode code="editborders" data-location="privateserver" data-togglebtn="on" data-toggle="off" data-title="Server "></loadcode>
-
-
-																					<div class="section-left rbx-private-server-details group designer-section designer-btn showthelem" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 10px;border-radius: 20px;margin-bottom: 20px;min-width: 220px;">
-																							<loadcode code="editelement">
-
-																								<div class="section-content" style="min-width: 200px;">
-																										<div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;" data-translate="themeTextColor">Text Color:</span><input type="color" value="#ffffff" data-location="privateserver.button.color" data-type="color" class="form-control input-field"></div>
-																								</div>
-
-
-																								<loadcode code="editcorners" data-location="privateserver.button" data-togglebtn="on" data-toggle="off" data-title="Button "></loadcode>
-
-
-																								<loadcode code="editbackground" data-title="Button " data-location="privateserver.button.background" data-togglebtn="on" data-toggle="off"></loadcode>
-
-
-																								<loadcode code="editborders" data-location="privateserver.button" data-togglebtn="on" data-toggle="off" data-title="Button "></loadcode>
-
-																								<loadcode code="loadedits"></loadcode>
-																							</loadcode>
-
-																							<a class="btn-full-width btn-control-xs rbx-private-server-renew recreate-12px-text-size color dark" data-inside="button" style="margin: 0;">Renew</a>
-																							<a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
-																							<a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
-																					</div>
-
-																					<loadcode code="loadedits"></loadcode>
-																				</loadcode>
-
-																				<div class="stack-header">
-																					<span class="font-bold recreate-14px-text-size color bright" title="A Private Server" style="display: inline-block;text-overflow: ellipsis;width: 100%;white-space: nowrap;overflow: hidden;">A Private Server</span>
-																					<div class="link-menu rbx-private-server-menu"></div>
-																				</div>
-
-																				<div class="section-left rbx-private-server-details" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 0px;">
-
-																					<div class="rbx-private-owner">
-																							<a class="avatar avatar-card-fullbody owner-avatar" title="Some Person" style="display: block;margin: 6px auto;width: calc(90px * 2 * var(--editor-size-percent));height: calc(90px * 2 * var(--editor-size-percent));background-color: #d4d4d4;" data-inside="owner"></a>
-																					</div>
-
-																					<div class="rbx-private-server-alert recreate-text-size">
-																							<span class="icon-remove"></span>
-																							<span data-translate="slowServer">Slow Server</span>
-																					</div>
-
-																					<div class="rbx-private-server-inactive recreate-text-size">
-																							<span class="icon-remove"></span>
-																							<span data-translate="themePrvSvrInac">Inactive.</span>
-																					</div>
-
-																					<a class="btn-full-width btn-control-xs rbx-private-server-renew recreate-12px-text-size color dark" data-inside="button" style="margin: 0;" data-translate="themePrvSvrRenu">Renew</a>
-																					<a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
-																					<a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
-																				</div>
-
-																				<div class="section-right rbx-friends-game-server-players" style="float: none;width: 99%;">
-																					<span class="avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image recreate-text-size" style="background-color: lightgrey;color: black;" id="rk-plr-counter">4</span>
-
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link" title="Some Person"><img class="avatar-card-image"></a></span>
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																				</div>
-																		</div>
-
-																	</div>
-
-																	<div class="designer-section" style="margin-bottom: 20px;transition: all 400ms;position: relative;overflow: hidden;min-width: 240px;">
-
-																		<div style="margin: 10px 0;text-align: center;">
-																				<div class="bright" style="font-weight: 600;" data-translate="themePreviewFriends">Friends Server Preview</div>
-																		</div>
-
-																		<div class="recreate-servers selectable dark designer-btn showthelem">
-																				<loadcode code="editelement">
-
-																					<div class="section-content">
-																							<div style="display: flex;justify-content: space-between;align-items: center;">
-																								<h4 style="width: fit-content;" data-translate="themeSvrStng">Servers Settings</h4>
-																							</div>
-
-																							<div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin: 0 5px 5px 0px;" data-translate="themeSvrPerRow">Servers Per Row:</span><input type="range" value="5" data-location="friendsserver.column" data-type="value" class="form-control input-field" max="8"></div>
-
-																							<div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin: 0 5px 0px 0px;" data-translate="themeSvrGap">Servers Gap:</span><input type="range" value="0.3" step="0.1" data-location="friendsserver.gap" data-type="percent" class="form-control input-field" max="2"></div>
-
-																							<div class="rbx-divider" style="margin: 12px;"></div>
-
-																							<div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;" data-translate="themeTextColor">Text Color:</span><input type="color" value="#ffffff" data-location="friendsserver.color" data-type="color" class="form-control input-field"></div>
-																					</div>
-
-
-																					<loadcode code="editcorners" data-location="friendsserver" data-togglebtn="on" data-toggle="off" data-title="Server "></loadcode>
-
-
-																					<loadcode code="editbackground" data-title="Server " data-location="friendsserver.background" data-togglebtn="on" data-toggle="off"></loadcode>
-
-
-																					<loadcode code="editborders" data-location="friendsserver" data-togglebtn="on" data-toggle="off" data-title="Server "></loadcode>
-
-
-																					<div class="section-left rbx-private-server-details group designer-section designer-btn showthelem" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 10px;border-radius: 20px;margin-bottom: 20px;min-width: 220px;">
-																							<loadcode code="editelement">
-
-																								<div class="section-content" style="min-width: 200px;">
-																										<div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;" data-translate="themeTextColor">Text Color:</span><input type="color" value="#ffffff" data-location="friendsserver.button.color" data-type="color" class="form-control input-field"></div>
-																								</div>
-
-
-																								<loadcode code="editcorners" data-location="friendsserver.button" data-togglebtn="on" data-toggle="off" data-title="Button "></loadcode>
-
-
-																								<loadcode code="editbackground" data-title="Button " data-location="friendsserver.button.background" data-togglebtn="on" data-toggle="off"></loadcode>
-
-
-																								<loadcode code="editborders" data-location="friendsserver.button" data-togglebtn="on" data-toggle="off" data-title="Button "></loadcode>
-
-																								<loadcode code="loadedits"></loadcode>
-																							</loadcode>
-																							
-																							<a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
-																							<a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="JoinPublicServer">Join Public Server</a>
-																					</div>
-
-																					<loadcode code="loadedits"></loadcode>
-																				</loadcode>
-
-																				<div class="section-left rbx-private-server-details" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 0px;">
-
-																					<div class="text-info rbx-game-status rbx-friends-game-server-status recreate-90p-text-size color dark" style="text-overflow: ellipsis;overflow: hidden;" data-translate="themeFrnSvrPlr">Friends in this server: Roblox</div>
-
-																					<div class="rbx-private-server-alert recreate-text-size">
-																							<span class="icon-remove"></span>
-																							<span data-translate="slowServer">Slow Server</span>
-																					</div>
-
-																					<a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
-																					<a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="JoinPublicServer">Join Public Server</a>
-																				</div>
-
-																				<div class="section-right rbx-friends-game-server-players" style="float: none;width: 99%;">
-																					<span class="avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image recreate-text-size" style="background-color: orangered;color: white;" id="rk-plr-counter">5</span>
-
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link" title="Some Person"><img class="avatar-card-image"></a></span>
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																				</div>
-																		</div>
-
-																	</div>
-
-																	<div class="designer-section" style="margin-bottom: 20px;transition: all 400ms;position: relative;overflow: hidden;min-width: 240px;">
-
-																		<div style="margin: 10px 0;text-align: center;">
-																				<div class="bright" style="font-weight: 600;" data-translate="themePreviewSmall">Small Server Preview</div>
-																		</div>
-
-																		<div class="recreate-servers selectable dark designer-btn showthelem">
-																				<loadcode code="editelement">
-
-																					<div class="section-content">
-																							<div style="display: flex;justify-content: space-between;align-items: center;">
-																								<h4 style="width: fit-content;" data-translate="themeSvrStng">Servers Settings</h4>
-																							</div>
-
-																							<div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin: 0 5px 5px 0px;" data-translate="themeSvrPerRow">Servers Per Row:</span><input type="range" value="5" data-location="smallserver.column" data-type="value" class="form-control input-field" max="8"></div>
-
-																							<div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin: 0 5px 0px 0px;" data-translate="themeSvrGap">Servers Gap:</span><input type="range" value="0.3" step="0.1" data-location="smallserver.gap" data-type="percent" class="form-control input-field" max="2"></div>
-																					</div>
-
-
-																					<loadcode code="editcorners" data-location="smallserver" data-togglebtn="on" data-toggle="off" data-title="Server "></loadcode>
-
-
-																					<loadcode code="editbackground" data-title="Server " data-location="smallserver.background" data-togglebtn="on" data-toggle="off"></loadcode>
-
-
-																					<loadcode code="editborders" data-location="smallserver" data-togglebtn="on" data-toggle="off" data-title="Server "></loadcode>
-
-
-																					<div class="section-left rbx-private-server-details group designer-section designer-btn showthelem" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 10px;border-radius: 20px;margin-bottom: 20px;min-width: 220px;">
-																							<loadcode code="editelement">
-																								<div class="section-content" style="min-width: 200px;">
-																										<div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;" data-translate="themeTextColor">Text Color:</span><input type="color" value="#ffffff" data-location="smallserver.button.color" data-type="color" class="form-control input-field"></div>
-																								</div>
-
-
-																								<loadcode code="editcorners" data-location="smallserver.button" data-togglebtn="on" data-toggle="off" data-title="Button "></loadcode>
-
-
-																								<loadcode code="editbackground" data-title="Button " data-location="smallserver.button.background" data-togglebtn="on" data-toggle="off"></loadcode>
-
-
-																								<loadcode code="editborders" data-location="smallserver.button" data-togglebtn="on" data-toggle="off" data-title="Button "></loadcode>
-
-																								<loadcode code="loadedits"></loadcode>
-																							</loadcode>
-
-																							<a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
-																							<a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
-																					</div>
-
-																					<loadcode code="loadedits"></loadcode>
-																				</loadcode>
-
-																				<div class="section-left rbx-private-server-details" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 0px;">
-
-																					<div class="rbx-private-server-alert recreate-text-size">
-																							<span class="icon-remove"></span>
-																							<span data-translate="slowServer">Slow Server</span>
-																					</div>
-
-																					<a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
-																					<a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
-																				</div>
-
-																				<div class="section-right rbx-friends-game-server-players" style="float: none;width: 99%;">
-																					<span class="avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image recreate-text-size" style="background-color: lightgrey;color: black;" id="rk-plr-counter">2</span>
-
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link" title="Some Person"><img class="avatar-card-image"></a></span>
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																				</div>
-																		</div>
-
-																	</div>
-
-																	<div class="designer-section" style="margin-bottom: 20px;transition: all 400ms;position: relative;overflow: hidden;min-width: 240px;">
-
-																		<div style="margin: 10px 0;text-align: center;">
-																				<div class="bright" style="font-weight: 600;" data-translate="themePreviewPublic">Public Server Preview</div>
-																		</div>
-
-																		<div class="recreate-servers selectable dark designer-btn showthelem">
-																				<loadcode code="editelement">
-
-																					<div class="section-content">
-																							<div style="display: flex;justify-content: space-between;align-items: center;">
-																								<h4 style="width: fit-content;" data-translate="themeSvrStng">Servers Settings</h4>
-																							</div>
-
-																							<div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin: 0 5px 5px 0px;" data-translate="themeSvrPerRow">Servers Per Row:</span><input type="range" value="5" data-location="publicserver.column" data-type="value" class="form-control input-field" max="8"></div>
-
-																							<div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin: 0 5px 0px 0px;" data-translate="themeSvrGap">Servers Gap:</span><input type="range" value="0.3" step="0.1" data-location="publicserver.gap" data-type="percent" class="form-control input-field" max="2"></div>
-																					</div>
-
-
-																					<loadcode code="editcorners" data-location="publicserver" data-togglebtn="on" data-toggle="off" data-title="Server "></loadcode>
-
-
-																					<loadcode code="editbackground" data-title="Server " data-location="publicserver.background" data-togglebtn="on" data-toggle="off"></loadcode>
-
-
-																					<loadcode code="editborders" data-location="publicserver" data-togglebtn="on" data-toggle="off" data-title="Server "></loadcode>
-
-
-																					<div class="rbx-private-server-details group designer-section designer-btn showthelem" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 10px;border-radius: 20px;margin-bottom: 20px;min-width: 220px;">
-																							<loadcode code="editelement">
-
-																										<div class="section-content" style="min-width: 200px;">
-																											<div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;" data-translate="themeTextColor">Text Color:</span><input type="color" value="#ffffff" data-location="publicserver.button.color" data-type="color" class="form-control input-field"></div>
-																										</div>
-
-
-																										<loadcode code="editcorners" data-location="publicserver.button" data-togglebtn="on" data-toggle="off" data-title="Button "></loadcode>
-
-
-																										<loadcode code="editbackground" data-title="Button " data-location="publicserver.button.background" data-togglebtn="on" data-toggle="off"></loadcode>
-
-
-																										<loadcode code="editborders" data-location="publicserver.button" data-togglebtn="on" data-toggle="off" data-title="Button "></loadcode>
-
-																										<loadcode code="loadedits"></loadcode>
-																								</loadcode>
-
-																							<a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
-																							<a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
-																					</div>
-
-																					<loadcode code="loadedits"></loadcode>
-																				</loadcode>
-																				
-																				<div class="section-left rbx-private-server-details" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 0px;">
-
-																					<div class="rbx-private-server-alert recreate-text-size">
-																							<span class="icon-remove"></span>
-																							<span data-translate="slowServer">Slow Server</span>
-																					</div>
-
-																					<a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
-																					<a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
-																				</div>
-
-																				<div class="section-right rbx-friends-game-server-players" style="float: none;width: 99%;">
-																					<span class="avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image recreate-text-size" style="background-color: darkred;color: white;" id="rk-plr-counter">8</span>
-
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link" title="Some Person"><img class="avatar-card-image"></a></span>
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																				</div>
-																		</div>
-
-																	</div>
-
-																	<div class="designer-section" style="margin-bottom: 20px;transition: all 400ms;position: relative;overflow: hidden;min-width: 240px;">
-
-																		<div style="margin: 10px 0;text-align: center;">
-																				<div class="bright" style="font-weight: 600;" data-translate="themePreviewSmall">Filtered Server Preview</div>
-																		</div>
-
-																		<div class="recreate-servers selectable dark designer-btn showthelem">
-																				<loadcode code="editelement">
-
-																					<div class="section-content">
-																							<div style="display: flex;justify-content: space-between;align-items: center;">
-																								<h4 style="width: fit-content;" data-translate="themeSvrStng">Servers Settings</h4>
-																							</div>
-
-																							<div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin: 0 5px 5px 0px;" data-translate="themeSvrPerRow">Servers Per Row:</span><input type="range" value="5" data-location="filteredserver.column" data-type="value" class="form-control input-field" max="8"></div>
-
-																							<div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;margin: 0 5px 0px 0px;" data-translate="themeSvrGap">Servers Gap:</span><input type="range" value="0.3" step="0.1" data-location="filteredserver.gap" data-type="percent" class="form-control input-field" max="2"></div>
-																					</div>
-
-
-																					<loadcode code="editcorners" data-location="filteredserver" data-togglebtn="on" data-toggle="off" data-title="Server "></loadcode>
-
-
-																					<loadcode code="editbackground" data-title="Server " data-location="filteredserver.background" data-togglebtn="on" data-toggle="off"></loadcode>
-
-
-																					<loadcode code="editborders" data-location="filteredserver" data-togglebtn="on" data-toggle="off" data-title="Server "></loadcode>
-
-
-																					<div class="section-left rbx-private-server-details group designer-section designer-btn showthelem" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 10px;border-radius: 20px;margin-bottom: 20px;min-width: 220px;">
-																							<loadcode code="editelement">
-																								<div class="section-content" style="min-width: 200px;">
-																										<div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;" data-translate="themeTextColor">Text Color:</span><input type="color" value="#ffffff" data-location="filteredserver.button.color" data-type="color" class="form-control input-field"></div>
-																								</div>
-
-
-																								<loadcode code="editcorners" data-location="filteredserver.button" data-togglebtn="on" data-toggle="off" data-title="Button "></loadcode>
-
-
-																								<loadcode code="editbackground" data-title="Button " data-location="filteredserver.button.background" data-togglebtn="on" data-toggle="off"></loadcode>
-
-
-																								<loadcode code="editborders" data-location="filteredserver.button" data-togglebtn="on" data-toggle="off" data-title="Button "></loadcode>
-
-																								<loadcode code="loadedits"></loadcode>
-																							</loadcode>
-
-																							<a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
-																							<a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
-																					</div>
-
-																					<loadcode code="loadedits"></loadcode>
-																				</loadcode>
-
-																				<div class="section-left rbx-private-server-details" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 0px;">
-
-																					<div class="rbx-private-server-alert recreate-text-size">
-																							<span class="icon-remove"></span>
-																							<span data-translate="slowServer">Slow Server</span>
-																					</div>
-
-																					<a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
-																					<a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;" data-translate="joinButtons">Join</a>
-																				</div>
-
-																				<div class="section-right rbx-friends-game-server-players" style="float: none;width: 99%;">
-																					<span class="avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image recreate-text-size" style="background-color: orangered;color: white;" id="rk-plr-counter">7</span>
-
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link" title="Some Person"><img class="avatar-card-image"></a></span>
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																					<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																				</div>
-																		</div>
-
-																	</div>
-
-																	<loadcode code="loadedits"></loadcode>
-															</loadcode>
-
-															<div class="stack-header">
-																	<span class="font-bold recreate-14px-text-size color bright" title="Roblokis Hangout" style="display: inline-block;text-overflow: ellipsis;width: 100%;white-space: nowrap;overflow: hidden;" data-translate="themePrvSvr">Roblokis Hangout</span>
-																	<div class="link-menu rbx-private-server-menu"></div>
-															</div>
-
-															<div class="section-left rbx-private-server-details" style="float: none;width: auto;border-width: initial;border-style: none;border-color: initial;border-image: initial;padding: 0px;">
-
-																	<div class="rbx-private-owner">
-																		<a class="avatar avatar-card-fullbody owner-avatar" title="Some Person" style="display: block;margin: 6px auto;width: calc(90px * 2 * var(--editor-size-percent));height: calc(90px * 2 * var(--editor-size-percent));background-color: #d4d4d4;" data-inside="owner"></a>
-																	</div>
-
-																	<div class="rbx-private-server-alert recreate-text-size">
-																			<span class="icon-remove"></span>
-																			<span data-translate="slowServer">Slow Server</span>
-																	</div>
-
-																	<a class="btn-full-width btn-control-xs rbx-private-server-renew recreate-12px-text-size color dark" data-inside="button" style="margin: 0;" data-translate="themePrvSvrRenu">Renew</a>
-																	<a class="btn-control-xs recreate-12px-text-size color dark" data-inside="button" style="width: calc(18% - 2px);">🔗</a>
-																	<a class="btn-full-width btn-control-xs rbx-private-server-join recreate-12px-text-size color dark" data-inside="button" style="width: 80%;margin: 0 0 0 0;", data-translate="joinButtons">Join</a>
-															</div>
-
-															<div class="section-right rbx-friends-game-server-players" style="float: none;width: 99%;">
-																	<span class="avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image recreate-text-size" style="background-color: darkred;color: white;" id="rk-plr-counter">16</span>
-
-																	<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																	<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																	<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																	<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																	<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																	<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																	<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																	<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																	<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																	<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																	<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																	<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																	<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																	<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																	<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-																	<span class="avatar avatar-headshot-sm player-avatar"><a class="avatar-card-link"><img class="avatar-card-image"></a></span>
-															</div>
-														</div>
-
+										<div data-nav-tab="details" data-editthemetabs="details">
+
+											<div class="section-content" style="width: 100%;">
+												<input class="form-control input-field" style="width: 100%;" placeholder="Name" id="rk-editor-name">
+												<input class="form-control input-field" style="width: 100%;" placeholder="Description" id="rk-editor-desc">
+												<div class="rbx-divider" style="margin: 12px;"></div>
+												<div>
+													<button style="width: calc(50% - 0.4rem);margin: auto;" class="rk-btn" id="rk-editor-theme-dark" data-translate="themeDark">Dark theme</button>
+													<button style="width: calc(50% - 0.4rem);" class="rk-btn" id="rk-editor-theme-light" data-translate="themeLight">Light theme</button>
 												</div>
 											</div>
 
+										</div>
+										
+										<div data-nav-tab="pages" data-editthemetabs="pages" data-head-component-id="pages" class="active" data-designer-func="add-edits">
 
-											<div class="designer-section" style="margin-bottom: 20px;transition: all 400ms;position: relative;">
-												<loadcode code="setupsize" data-size="$xfit-content"></loadcode>
-
-
-												<div class="recreate-loadmore group designer-btn showthelem">
-													<loadcode code="editelement">
-
-														<div class="section-content" style="min-width: 200px;">
-																<div class="text-lead" style="display: flex;align-items: center;justify-content: space-between;"><span style="min-width: fit-content;" data-translate="themeTextColor">Text Color:</span><input type="color" value="#ffffff" data-location="pagenav.color" data-type="color" class="form-control input-field"></div>
-														</div>
-
-														<loadcode code="editcorners" data-location="pagenav" data-togglebtn="on" data-toggle="off" data-title="Navigator "></loadcode>
-														<loadcode code="editbackground" data-title="Navigator " data-location="pagenav.background" data-togglebtn="on" data-toggle="off"></loadcode>
-														<loadcode code="editborders" data-location="pagenav" data-togglebtn="on" data-toggle="off" data-title="Navigator "></loadcode>
-
-														<loadcode code="loadedits"></loadcode>
-													</loadcode>
-
-													<button type="button" class="btn-control-sm btn-full-width rbx-running-games-load-more recreate-text-size color" data-translate="loadMore">Load More</button>
-
-													<div class="inner-group" id="rkpagenav" style="margin: 12px 20% 0;display: flex;height: calc(30px * 2 * var(--editor-size-percent));" data-page="1" data-max="326">
-														<button type="button" class="btn-control-sm btn-full-width rbx-running-games-load-more recreate-text-size color" style="margin: 0 4px;">|&lt;</button>
-														<button type="button" class="btn-control-sm btn-full-width rbx-running-games-load-more recreate-text-size color" style="margin: 0 4px;">&lt;</button>
-
-														<span class="btn-control-sm btn-full-width rbx-running-games-load-more recreate-text-size color" style="margin: 0 4px;width: 200%;display: flex;align-self: center;align-items: center;height: 120%;justify-content: center;">2 / 64</span>
-
-														<button type="button" class="btn-control-sm btn-full-width rbx-running-games-load-more recreate-text-size color" style="margin: 0 4px;">&gt;</button>
-														<button type="button" class="btn-control-sm btn-full-width rbx-running-games-load-more recreate-text-size color" style="margin: 0 4px;">&gt;|</button>
-													</div>
-												</div>
-
-											</div>
-
+											<button class="section-content rk-btn" style="width: 100%;" data-designer-func="add-edits-btn">Add Component</button>
 
 										</div>
 
 									</div>
 								</div>
 							</div>
+						
+							<div id="rk-editthemesectionadding" class="rk-popup-holder" style="z-index: 1100;" data-designer-func="close-edit-adding">
+								<div class="rk-popup" style="min-width: 25rem;">
+										<h3 style="margin: 0;" data-translate="editorComponentAdding">Add Component</h3>
+										<div class="rbx-divider" style="margin: 12px;width: 100%;"></div>
+										<input class="form-control input-field" id="rk-search-component-list" placeholder="Search Components" data-translate="editorComponentSearching">
+										<div class="rbx-divider" style="margin: 12px;width: 100%;"></div>
+										<div class="rk-popup-content rk-scroll" id="rk-add-edits-list" style="padding: 1rem;width: calc(100% + 2rem);max-height: 40vh;">
+										
+										</div>
+								</div>
+							</div>
+
 						</div>
 					</div>
 					<div class="gamepage">
@@ -2794,8 +1728,8 @@ page.settingsWaitingForGeneral = function() {
 						</div>
 					</div>
 				</div>
-		</div>
-	</div>`;
+			</div>
+		</div>`;
 		var ttle = document.createElement("title");
 		ttle.innerText = Rkis.language["settingsPageTitle"];
 
@@ -2814,8 +1748,28 @@ page.settingsWaitingForGeneral = function() {
 				location.reload();
 			}
 		});
+
+		mainplace.querySelector(`#rk-search-component-list`).addEventListener('input', (e) => {
+			let componentList = mainplace.querySelectorAll(`#rk-add-edits-list > .add-components-card`);
+
+			let input = e.target;
+			let text = input.value.toLowerCase();
+
+			componentList.forEach(x => {
+				let title = x.querySelector(`div > div`).innerText.toLowerCase();
+				let description = x.querySelector(`div > span`).innerText.toLowerCase();
+
+				if (!(title.includes(text) || description.includes(text))) {
+					x.style.display = 'none';
+					return;
+				}
+				
+				x.style.display = '';
+			});
+		});
 	});
 }
+
 try {
 	page.settingsWaitingForGeneral();
 } catch (err) {

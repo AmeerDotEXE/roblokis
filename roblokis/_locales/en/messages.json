@@ -5,7 +5,7 @@
 	},
 	"NoSettingReason": {
 		"message": "No Settings? Visit the page mentioned in this Tab's name.",
-		"description": "message is showen in every settingts page."
+		"description": "message is showen in every settings page."
 	},
 	"cantImage": {
 		"message": "Couldn't Get Image.",
@@ -22,6 +22,34 @@
 	"extUpdate1": {
 		"message": "Please Reinstall Roblokis.",
 		"description": "Text shows then clicking on Extension icon. text will show then the extension is not up-to-date. this will be under the new update text"
+	},
+	"editorPagesTab": {
+		"message": "Pages",
+		"description": "in theme editor at the tabs."
+	},
+	"editorComponentAdding": {
+		"message": "Add Component",
+		"description": "in theme editor when adding component."
+	},
+	"editorComponentSearching": {
+		"message": "Search Components",
+		"description": "in theme editor when adding component."
+	},
+	"editorInfoTab": {
+		"message": "Info",
+		"description": "in theme editor at the tabs."
+	},
+	"changelogGithubTitle": {
+		"message": "Moved to Github",
+		"description": "in changelog tab on roblokis settings page."
+	},
+	"changelogGithubDescription": {
+		"message": "All changes are listed in our open source github repository.",
+		"description": "in changelog tab on roblokis settings page."
+	},
+	"changelogGithubRedirection": {
+		"message": "Click here to view full changelog.",
+		"description": "in changelog tab on roblokis settings page."
 	},
 	"refresh": {
 		"message": "Refresh",
@@ -138,6 +166,14 @@
 	"btnSave": {
 		"message": "Save",
 		"description": "Text shows in roblokis settings. Shows on a button to save settings"
+	},
+	"themeDark": {
+		"message": "Dark theme",
+		"description": "Text shows in roblokis settings. Shows in editor on info tab"
+	},
+	"themeLight": {
+		"message": "Light theme",
+		"description": "Text shows in roblokis settings. Shows in editor on info tab"
 	},
 	"copyTextSuccess": {
 		"message": "Copied text successfuly",
@@ -485,6 +521,10 @@
 		"message": "Background",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
+	"themeCornerRadius": {
+		"message": "Corners Radius",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
 	"themeCorners": {
 		"message": "Corners",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
@@ -633,6 +673,10 @@
 		"message": "Section",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
+	"themeBorderShadow": {
+		"message": "Border Shadow",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
 	"themeShadow": {
 		"message": "Shadow:",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
@@ -716,6 +760,14 @@
 	"themePrvSvrRenu": {
 		"message": "Renew",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing (you can make this whatever you want)"
+	},
+	"themePageContent": {
+		"message": "Page's Content",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePageContentDesc": {
+		"message": "Edits the middle block that holds page content.",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	},
 	"themePreviewDefault": {
 		"message": "Default Server Preview",

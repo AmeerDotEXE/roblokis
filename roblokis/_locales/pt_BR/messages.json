@@ -884,5 +884,57 @@
 	"JoinPublicServer": {
 		"message": "Junte-se ao Servidor Público",
 		"description": "Text shows on friends servers. text shows when your friend is in a public server"
+	},
+	"editorPagesTab": {
+		"message": "Páginas",
+		"description": "in theme editor at the tabs."
+	},
+	"editorComponentAdding": {
+		"message": "Adicionar Componente",
+		"description": "in theme editor when adding component."
+	},
+	"editorComponentSearching": {
+		"message": "Componentes de busca",
+		"description": "in theme editor when adding component."
+	},
+	"editorInfoTab": {
+		"message": "Informações",
+		"description": "in theme editor at the tabs."
+	},
+	"changelogGithubTitle": {
+		"message": "Mudado para Github",
+		"description": "in changelog tab on roblokis settings page."
+	},
+	"changelogGithubDescription": {
+		"message": "Todas as mudanças estão listadas em nosso repositório de githubs de código aberto.",
+		"description": "in changelog tab on roblokis settings page."
+	},
+	"changelogGithubRedirection": {
+		"message": "Clique aqui para ver o changelog completo.",
+		"description": "in changelog tab on roblokis settings page."
+	},
+	"themeDark": {
+		"message": "Tema escuro",
+		"description": "Text shows in roblokis settings. Shows in editor on info tab"
+	},
+	"themeLight": {
+		"message": "Tema leve",
+		"description": "Text shows in roblokis settings. Shows in editor on info tab"
+	},
+	"themeCornerRadius": {
+		"message": "Raio dos cantos",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeBorderShadow": {
+		"message": "Sombra da fronteira",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePageContent": {
+		"message": "Conteúdo da página",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePageContentDesc": {
+		"message": "Edita o bloco central que contém o conteúdo da página.",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	}
 }

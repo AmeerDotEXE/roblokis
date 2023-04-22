@@ -884,5 +884,57 @@
 	"JoinPublicServer": {
 		"message": "Genel Sunucuya Katıl",
 		"description": "Text shows on friends servers. text shows when your friend is in a public server"
+	},
+	"editorPagesTab": {
+		"message": "Sayfalar",
+		"description": "in theme editor at the tabs."
+	},
+	"editorComponentAdding": {
+		"message": "Bileşen Ekle",
+		"description": "in theme editor when adding component."
+	},
+	"editorComponentSearching": {
+		"message": "Arama Bileşenleri",
+		"description": "in theme editor when adding component."
+	},
+	"editorInfoTab": {
+		"message": "Bilgi",
+		"description": "in theme editor at the tabs."
+	},
+	"changelogGithubTitle": {
+		"message": "Github'a taşındı",
+		"description": "in changelog tab on roblokis settings page."
+	},
+	"changelogGithubDescription": {
+		"message": "Tüm değişiklikler açık kaynak github depomuzda listelenmiştir.",
+		"description": "in changelog tab on roblokis settings page."
+	},
+	"changelogGithubRedirection": {
+		"message": "Tam değişiklik günlüğünü görüntülemek için buraya tıklayın.",
+		"description": "in changelog tab on roblokis settings page."
+	},
+	"themeDark": {
+		"message": "Koyu tema",
+		"description": "Text shows in roblokis settings. Shows in editor on info tab"
+	},
+	"themeLight": {
+		"message": "Işık teması",
+		"description": "Text shows in roblokis settings. Shows in editor on info tab"
+	},
+	"themeCornerRadius": {
+		"message": "Köşeler Yarıçap",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeBorderShadow": {
+		"message": "Sınır Gölgesi",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePageContent": {
+		"message": "Sayfa İçeriği",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePageContentDesc": {
+		"message": "Sayfa içeriğini tutan orta bloğu düzenler.",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	}
 }

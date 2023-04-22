@@ -884,5 +884,57 @@
 	"JoinPublicServer": {
 		"message": "Partecipa al server pubblico",
 		"description": "Text shows on friends servers. text shows when your friend is in a public server"
+	},
+	"editorPagesTab": {
+		"message": "Pagine",
+		"description": "in theme editor at the tabs."
+	},
+	"editorComponentAdding": {
+		"message": "Aggiungi componente",
+		"description": "in theme editor when adding component."
+	},
+	"editorComponentSearching": {
+		"message": "Ricerca componenti",
+		"description": "in theme editor when adding component."
+	},
+	"editorInfoTab": {
+		"message": "Info",
+		"description": "in theme editor at the tabs."
+	},
+	"changelogGithubTitle": {
+		"message": "Spostato su Github",
+		"description": "in changelog tab on roblokis settings page."
+	},
+	"changelogGithubDescription": {
+		"message": "Tutte le modifiche sono elencate nel nostro repository github open source.",
+		"description": "in changelog tab on roblokis settings page."
+	},
+	"changelogGithubRedirection": {
+		"message": "Fare clic qui per visualizzare il changelog completo.",
+		"description": "in changelog tab on roblokis settings page."
+	},
+	"themeDark": {
+		"message": "Tema scuro",
+		"description": "Text shows in roblokis settings. Shows in editor on info tab"
+	},
+	"themeLight": {
+		"message": "Tema chiaro",
+		"description": "Text shows in roblokis settings. Shows in editor on info tab"
+	},
+	"themeCornerRadius": {
+		"message": "Raggio degli angoli",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeBorderShadow": {
+		"message": "Ombra del bordo",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePageContent": {
+		"message": "Contenuto della pagina",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePageContentDesc": {
+		"message": "Modifica il blocco centrale che contiene il contenuto della pagina.",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	}
 }

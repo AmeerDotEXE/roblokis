@@ -884,5 +884,57 @@
 	"JoinPublicServer": {
 		"message": "Присоединиться к публичному серверу",
 		"description": "Text shows on friends servers. text shows when your friend is in a public server"
+	},
+	"editorPagesTab": {
+		"message": "Страницы",
+		"description": "in theme editor at the tabs."
+	},
+	"editorComponentAdding": {
+		"message": "Добавить компонент",
+		"description": "in theme editor when adding component."
+	},
+	"editorComponentSearching": {
+		"message": "Поиск компонентов",
+		"description": "in theme editor when adding component."
+	},
+	"editorInfoTab": {
+		"message": "Информация",
+		"description": "in theme editor at the tabs."
+	},
+	"changelogGithubTitle": {
+		"message": "Перемещено на Github",
+		"description": "in changelog tab on roblokis settings page."
+	},
+	"changelogGithubDescription": {
+		"message": "Все изменения перечислены в нашем открытом репозитории github.",
+		"description": "in changelog tab on roblokis settings page."
+	},
+	"changelogGithubRedirection": {
+		"message": "Нажмите здесь, чтобы просмотреть полный журнал изменений.",
+		"description": "in changelog tab on roblokis settings page."
+	},
+	"themeDark": {
+		"message": "Темная тема",
+		"description": "Text shows in roblokis settings. Shows in editor on info tab"
+	},
+	"themeLight": {
+		"message": "Светлая тема",
+		"description": "Text shows in roblokis settings. Shows in editor on info tab"
+	},
+	"themeCornerRadius": {
+		"message": "Радиус углов",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themeBorderShadow": {
+		"message": "Тень границы",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePageContent": {
+		"message": "Содержание страницы",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"themePageContentDesc": {
+		"message": "Редактирует средний блок, в котором размещается содержимое страницы.",
+		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
 	}
 }
