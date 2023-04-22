@@ -10,7 +10,8 @@ Side Notes:
 - you might get an annoy popup every time you open the browser
 
 ### Steps:
-1. Download the roblokis folder and exctract the file  
+1. Download this repository by pressing on "Code" (at top right)  
+then pressing on "Download ZIP" and extract the file  
 (location doesn't matter)
 2. go to your Browser's extension tab a.k.a. Extension Manager
 3. turn on Developer Mode
