@@ -145,7 +145,7 @@ Rkis.page.game = () => {
 					smallserverdetails.classList.add("section-left");
 					smallserverdetails.classList.add("rbx-game-server-details");
 					//put 8 of 7 people max
-					smallserverdetails.innerHTML = `<div class="text-info rbx-game-status rbx-game-server-status">${servers[i].maxPlayers} / ${servers[i].playing}</div>`;
+					smallserverdetails.innerHTML = `<div class="text-info rbx-game-status rbx-game-server-status">${escapeHTML(servers[i].maxPlayers)} / ${escapeHTML(servers[i].playing)}</div>`;
 					//if(servers[i].ShowSlowGameMessage) smallserverdetails.innerHTML += `<div class="rbx-game-server-alert"><span class="icon-remove"></span>${Rkis.language["slowServer"]}</div>`;
 					if (Rkis.IsSettingEnabled("SmallServerLink", {
 						id: "SmallServerLink",
@@ -164,9 +164,9 @@ Rkis.page.game = () => {
 								note: "NOTE: Sharing the link won't work unless the person also have this extension!"
 							}
 						}
-					})) smallserverdetails.innerHTML += `<a class="btn-control-xs rk-copy-link-btn" style="width: 18%;margin: 0 2% 0 0;" data-placeid="${PlaceId}" data-serverid="${servers[i].id}">🔗</a><a class="btn-full-width btn-control-xs rbx-game-server-join" onclick="Roblox.GameLauncher.joinGameInstance(${PlaceId}, '${servers[i].id}', null);return false;" style="margin: 0;width: 80%;">${Rkis.language["joinButtons"]}</a>`;
-					else smallserverdetails.innerHTML += `<a style="margin: 0;" class="btn-full-width btn-control-xs rbx-game-server-join" onclick="Roblox.GameLauncher.joinGameInstance(${PlaceId}, '${servers[i].id}');">${Rkis.language["joinButtons"]}</a>`;
-					smallserverdetails.$find(".rk-copy-link-btn", (e) => { e.addEventListener("click", () => { Rkis.CopyText(`https://${Rkis.SubDomain}.roblox.com/home?placeid=${e.dataset.placeid}&gameid=${e.dataset.serverid}`); }); });
+					})) smallserverdetails.innerHTML += `<a class="btn-control-xs rk-copy-link-btn" style="width: 18%;margin: 0 2% 0 0;" data-placeid="${escapeHTML(PlaceId)}" data-serverid="${escapeHTML(servers[i].id)}">🔗</a><a class="btn-full-width btn-control-xs rbx-game-server-join" onclick="Roblox.GameLauncher.joinGameInstance(${escapeHTML(PlaceId)}, '${escapeHTML(servers[i].id)}', null);return false;" style="margin: 0;width: 80%;">${Rkis.language["joinButtons"]}</a>`;
+					else smallserverdetails.innerHTML += `<a style="margin: 0;" class="btn-full-width btn-control-xs rbx-game-server-join" onclick="Roblox.GameLauncher.joinGameInstance(${escapeHTML(PlaceId)}, '${escapeHTML(servers[i].id)}');">${Rkis.language["joinButtons"]}</a>`;
+					smallserverdetails.$find(".rk-copy-link-btn", (e) => { e.addEventListener("click", () => { Rkis.CopyText(`https://${escapeHTML(Rkis.SubDomain)}.roblox.com/home?placeid=${escapeHTML(e.dataset.placeid)}&gameid=${escapeHTML(e.dataset.serverid)}`); }); });
 					smallserver.append(smallserverdetails);
 
 					var smallserverplayers = document.createElement("div");
@@ -177,7 +177,7 @@ Rkis.page.game = () => {
 						var smallservercount = document.createElement("span");
 						smallservercount.id = "rk-plr-counter";
 						smallservercount.setAttribute("class", "avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image");
-						smallservercount.innerText = servers[i].playing + (Rkis.IsSettingEnabled("ShowMaxPlayers") ? "/" + servers[i].maxPlayers : "");
+						smallservercount.textContent = servers[i].playing + (Rkis.IsSettingEnabled("ShowMaxPlayers") ? "/" + servers[i].maxPlayers : "");
 						smallserverplayers.append(smallservercount);
 					}
 
@@ -193,7 +193,7 @@ Rkis.page.game = () => {
 						};
 						var smallserverplayer = document.createElement("span");
 						smallserverplayer.setAttribute("class", "avatar avatar-headshot-sm player-avatar");
-						smallserverplayer.innerHTML = `<a class="avatar-card-link"><img class="avatar-card-image" data-thumbnailrequestid="${thumbnail.requestId}"></a>`;
+						smallserverplayer.innerHTML = `<a class="avatar-card-link"><img class="avatar-card-image" data-thumbnailrequestid="${escapeHTML(thumbnail.requestId)}"></a>`;
 						smallserverplayers.append(smallserverplayer);
 
 						thumbnailsToFetch.push(thumbnail);
@@ -210,7 +210,7 @@ Rkis.page.game = () => {
 
 					var loadmorebutton = document.createElement("button");
 					loadmorebutton.setAttribute("class", "rbx-running-games-load-more btn-control-md btn-full-width");
-					loadmorebutton.innerText = Rkis.language["loadMore"];
+					loadmorebutton.textContent = Rkis.language["loadMore"];
 					if (i / 10 != 0) loadmorebutton.style.display = "none";
 					if (i / 10 != 0) loadmorebutton.dataset.loadmore = (i / 10) - 1;
 					loadmorebutton.dataset.loadnum = (i / 10);
@@ -310,12 +310,12 @@ Rkis.page.game = () => {
 				var pagecount = Math.floor((Rkis.Scripts.PageNav.totalServers.length || 0) / 10) + 1;
 
 				buttonplace.innerHTML += `
-				<div id="rkpagenav" style="margin: 12px 20% 0;display: flex;height: 40px;" data-page="1" data-max="${pagecount}">
+				<div id="rkpagenav" style="margin: 12px 20% 0;display: flex;height: 40px;" data-page="1" data-max="${escapeHTML(pagecount)}">
 					<button type="button" class="btn-control-sm btn-full-width rbx-running-games-load-more" style="margin: 0 4px;">|&lt;</button>
 					<button type="button" class="btn-control-sm btn-full-width rbx-running-games-load-more" style="margin: 0 4px;">&lt;</button>
 					<span class="btn-control-sm btn-full-width rbx-running-games-load-more" style="margin: 0 4px;width: 200%;display: flex;align-self: center;align-items: center;">
 						<input type="textfield" style="border: none;width: 42%;text-align: right;" class="btn-control-sm rbx-running-games-load-more" id="rkpagenavnum" value="1" placeholder="Page">
-						<span>/ ${pagecount}+</span></span>
+						<span>/ ${escapeHTML(pagecount)}+</span></span>
 					<button type="button" class="btn-control-sm btn-full-width rbx-running-games-load-more" style="margin: 0 4px;">&gt;</button>
 					<button type="button" class="btn-control-sm btn-full-width rbx-running-games-load-more" style="margin: 0 4px;">&gt;|</button>
 				</div>`;
@@ -370,7 +370,7 @@ Rkis.page.game = () => {
 
 				pagecount = Math.floor((Rkis.Scripts.PageNav.totalServers.length || 0) / 10) + 1;
 				if (pagenav) pagenav.dataset.max = pagecount;
-				if (pagenav) pagenav.$find("span > span").innerText = `/ ${pagenav.dataset.max}+`
+				if (pagenav) pagenav.$find("span > span").textContent = `/ ${pagenav.dataset.max}+`
 
 				var serversToAdd = [];
 				for (var o = (pagenum * 10) - 10; o < (pagenum * 10) && o < Rkis.Scripts.PageNav.totalServers.length; o++) { serversToAdd.push(Rkis.Scripts.PageNav.totalServers[o]); }
@@ -427,7 +427,7 @@ Rkis.page.game = () => {
 					var fullcode = "";
 
 					fullcode += `
-					<li class="rbx-game-server-item col-md-3 col-sm-4 col-xs-6 pagenav" data-gameid="${server.id}">
+					<li class="rbx-game-server-item col-md-3 col-sm-4 col-xs-6 pagenav" data-gameid="${escapeHTML(server.id)}">
 						<div class="card-item">
 							<div class="player-thumbnails-container">`;
 
@@ -444,7 +444,7 @@ Rkis.page.game = () => {
 						fullcode += `
 						<span class="avatar avatar-headshot-md player-avatar">
 							<span class="thumbnail-2d-container avatar-card-image">
-								<img class="" data-thumbnailrequestid="${thumbnail.requestId}" alt="" title="">
+								<img class="" data-thumbnailrequestid="${escapeHTML(thumbnail.requestId)}" alt="" title="">
 							</span>
 						</span>`;
 
@@ -452,17 +452,17 @@ Rkis.page.game = () => {
 					}
 
 					if (useLimit && server.playing > ROBLOX_ICON_LIMIT)
-						fullcode += `<span class="avatar avatar-headshot-md player-avatar hidden-players-placeholder">+${server.playing - ROBLOX_ICON_LIMIT}</span>`;
+						fullcode += `<span class="avatar avatar-headshot-md player-avatar hidden-players-placeholder">+${escapeHTML(server.playing - ROBLOX_ICON_LIMIT)}</span>`;
 
 					fullcode += `
 							</div>
 							<div class="rbx-game-server-details game-server-details">
-								<div class="text-info rbx-game-status rbx-game-server-status text-overflow">${server.playing} / ${server.maxPlayers}</div>
+								<div class="text-info rbx-game-status rbx-game-server-status text-overflow">${escapeHTML(server.playing)} / ${escapeHTML(server.maxPlayers)}</div>
 								<div class="server-player-count-gauge border">
-									<div class="gauge-inner-bar border" style="width: ${Math.floor((server.playing / server.maxPlayers) * 100)}%;"></div>
+									<div class="gauge-inner-bar border" style="width: ${escapeHTML(Math.floor((server.playing / server.maxPlayers) * 100))}%;"></div>
 								</div>
-								<span data-placeid="${Rkis.GameId}">
-									<button type="button" class="btn-full-width btn-control-xs rbx-game-server-join game-server-join-btn btn-primary-md btn-min-width" onclick="Roblox.GameLauncher.joinGameInstance(${Rkis.GameId}, '${server.id}');">${Rkis.language["joinButtons"]}</button>
+								<span data-placeid="${escapeHTML(Rkis.GameId)}">
+									<button type="button" class="btn-full-width btn-control-xs rbx-game-server-join game-server-join-btn btn-primary-md btn-min-width" onclick="Roblox.GameLauncher.joinGameInstance(${escapeHTML(Rkis.GameId)}, '${escapeHTML(server.id)}');">${Rkis.language["joinButtons"]}</button>
 								</span>
 							</div>
 						</div>
@@ -546,7 +546,7 @@ Rkis.page.game = () => {
 				var newbtn = document.createElement("a");
 				newbtn.setAttribute("class", "btn-control-xs");
 				newbtn.id = `linkbtnid${serverid}`;
-				newbtn.innerText = "🔗";
+				newbtn.textContent = "🔗";
 
 				sver.setAttribute("style", "width: 80%;margin: 0 0 0 0;");
 				newbtn.setAttribute("style", "width: 18%;margin: 0 2% 0 0;");
@@ -580,11 +580,11 @@ Rkis.page.game = () => {
 		document.$watch("#game-instances", (e) => {
 
 			document.$watch("ul.game-stats-container > li > p.text-label",
-				(check) => check.innerText.toLowerCase() == "server size",
+				(check) => check.textContent.toLowerCase() == "server size",
 				(label) => {
 					let playercount = label.parentElement.children[1];
 
-					Rkis.gamePlayers = parseInt(playercount.innerText || playercount.innerHTML);
+					Rkis.gamePlayers = parseInt(playercount.textContent);
 					if (isNaN(Rkis.gamePlayers)) Rkis.gamePlayers = undefined;
 
 					if (!(isNaN(Rkis.gamePlayers) != true && Rkis.gamePlayers < 10)) {
@@ -690,13 +690,13 @@ Rkis.page.game = () => {
 							thecut = true;
 						}
 
-						if (badgeimg && badgeimg.imageUrl) mainelement.innerHTML = `<div class="badge-image"> <a href="${window.location.origin}/badges/${badge.id}/${badge.name}"> <img src="${badgeimg.imageUrl}"></a> </div>`;
+						if (badgeimg && badgeimg.imageUrl) mainelement.innerHTML = `<div class="badge-image"> <a href="${window.location.origin}/badges/${escapeHTML(badge.id)}/${escapeHTML(badge.name)}"> <img src="${escapeHTML(badgeimg.imageUrl)}"></a> </div>`;
 						mainelement.innerHTML += `<div class="badge-content"> <div class="badge-data-container">
-						<div class="font-header-2 badge-name">${badge.displayName || Rkis.language["badgeNoName"]}</div>
-						<p class="para-overflow">${badge.displayDescription || Rkis.language["badgeNoDescription"]}</p> </div> <ul class="badge-stats-container"> <li> <div class="text-label">${Rkis.language["badgeRare"]}</div>
-						<div class="font-header-2 badge-stats-info">${Math.floor(badge.statistics.winRatePercentage * 1000) / 10}%</div> </li> <li> <div class="text-label">${Rkis.language["badgeLastWon"]}</div>
-						<div class="font-header-2 badge-stats-info">${badge.statistics.pastDayAwardedCount}</div> </li> <li> <div class="text-label">${Rkis.language["badgeWon"]}</div> 
-						<div class="font-header-2 badge-stats-info">${badge.statistics.awardedCount}</div> </li>
+						<div class="font-header-2 badge-name">${escapeHTML(badge.displayName) || Rkis.language["badgeNoName"]}</div>
+						<p class="para-overflow">${escapeHTML(badge.displayDescription) || Rkis.language["badgeNoDescription"]}</p> </div> <ul class="badge-stats-container"> <li> <div class="text-label">${Rkis.language["badgeRare"]}</div>
+						<div class="font-header-2 badge-stats-info">${escapeHTML(Math.floor(badge.statistics.winRatePercentage * 1000) / 10)}%</div> </li> <li> <div class="text-label">${Rkis.language["badgeLastWon"]}</div>
+						<div class="font-header-2 badge-stats-info">${escapeHTML(badge.statistics.pastDayAwardedCount)}</div> </li> <li> <div class="text-label">${Rkis.language["badgeWon"]}</div> 
+						<div class="font-header-2 badge-stats-info">${escapeHTML(badge.statistics.awardedCount)}</div> </li>
 						${thecut == true ? `<li class="thecut"></li>` : ""} ${creat != null ? `<li
 						title="${Rkis.language.get("badgeCreatedLong", creat.$format("MMM D, YYYY | hh:mm A (T)"))}"> <div class="text-label">${Rkis.language["badgeCreatedShort"]}</div> 
 						<div class="font-header-2 badge-stats-info">${creat.$since()}</div> </li>` : ""} ${updat != null ? `<li
@@ -778,14 +778,14 @@ Rkis.page.game = () => {
 	})) {
 
 		document.$watchLoop(`#rbx-private-game-server-item-container > li`, (x) => {
-			let serverTitle = x.querySelector(`.game-server-details > div.section-header > span`)?.innerText;
+			let serverTitle = x.querySelector(`.game-server-details > div.section-header > span`)?.textContent;
 			let ownerUrl = x.querySelector(`.game-server-details > div.rbx-private-owner > a.owner-avatar[href]`)?.href;
 
 			let index = -1;
 
 			x.parentElement.querySelectorAll(`.game-server-details:has(div.rbx-private-owner > a.owner-avatar[href="${ownerUrl}"]) > div.section-header > span`)
 			.forEach((z) => {
-				if (z.innerText !== serverTitle) return;
+				if (z.textContent !== serverTitle) return;
 				index++;
 				if (index == 0) return;
 				x.remove();
@@ -816,7 +816,7 @@ Rkis.page.game = () => {
 
 			let hiddenPlayers = serversitm.$find("div.player-thumbnails-container > span.hidden-players-placeholder");
 			let totalPlayerCount = players.length;
-			if (hiddenPlayers != null) totalPlayerCount += Number(hiddenPlayers.innerText);
+			if (hiddenPlayers != null) totalPlayerCount += Number(hiddenPlayers.textContent);
 
 			var counter = document.createElement("span");
 			counter.setAttribute("class", "avatar avatar-headshot-md player-avatar avatar-card-link avatar-card-image");
@@ -824,15 +824,15 @@ Rkis.page.game = () => {
 			var stylee = "";
 
 			var playercount = Rkis.gamePlayers;
-			if (playercount == null) playercount = document.$find("ul.game-stats-container > li:nth-child(6) > p.text-lead.font-caption-body")?.innerText;
-			if (playercount == null) playercount = $r("#game-detail-page > div.btr-game-main-container.section-content > div.remove-panel.btr-description > ul > li:nth-child(6) > p.text-lead.font-caption-body")?.innerText;
+			if (playercount == null) playercount = document.$find("ul.game-stats-container > li:nth-child(6) > p.text-lead.font-caption-body")?.textContent;
+			if (playercount == null) playercount = $r("#game-detail-page > div.btr-game-main-container.section-content > div.remove-panel.btr-description > ul > li:nth-child(6) > p.text-lead.font-caption-body")?.textContent;
 
 			if (playercount && parseInt(playercount) <= totalPlayerCount) stylee += "background-color: darkred;color: white;";
 			else if (playercount && (parseInt(playercount) / 2) <= totalPlayerCount) stylee += "background-color: orangered;color: white;";
 			else stylee += "background-color: lightgray;color: black;";
 
 			counter.setAttribute("style", stylee);
-			counter.innerText = totalPlayerCount + (Rkis.IsSettingEnabled("ShowMaxPlayers") ? "/" + (playercount || "?") : "");
+			counter.textContent = totalPlayerCount + (Rkis.IsSettingEnabled("ShowMaxPlayers") ? "/" + (playercount || "?") : "");
 			counter.id = "rk-plr-counter";
 
 			rightsection.insertBefore(counter, rightsection.firstChild);
@@ -851,7 +851,7 @@ Rkis.page.game = () => {
 		Rkis.Scripts.PrivateServersView.secondone = function (serversitm) {
 			//Server Name Highlight
 			var serverNameElement = serversitm.$find("div.rbx-private-game-server-details > div.section-header > span");
-			if (serverNameElement != null) serverNameElement.setAttribute("title", serverNameElement.innerText);
+			if (serverNameElement != null) serverNameElement.setAttribute("title", serverNameElement.textContent);
 
 			//Remove Empty Image Highlight
 			serversitm.$watch("div.rbx-private-game-server-details > div.rbx-private-owner > a.owner-avatar > span > img", (serverAvatarElement) => {
@@ -879,7 +879,7 @@ Rkis.page.game = () => {
 			var leftsection = serversitm.$find("div.game-server-details");
 			if (leftsection == null) return;
 
-			leftsection.$find("div.rbx-friends-game-server-status").setAttribute("title", leftsection.$find("div.rbx-friends-game-server-status").innerText);
+			leftsection.$find("div.rbx-friends-game-server-status").setAttribute("title", leftsection.$find("div.rbx-friends-game-server-status").textContent);
 		}
 
 		////////////

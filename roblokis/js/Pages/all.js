@@ -30,7 +30,7 @@ Rkis.page.all = () => {
 	})) {
 		(function() {
 			document.$watch("#right-navigation-header > div.navbar-right > ul > div > a > span.age-bracket-label-username", (topright) => {
-				topright.innerText = Rkis.GetSettingValue("CustomName");
+				topright.textContent = Rkis.GetSettingValue("CustomName");
 			})
 		})();
 	}
@@ -59,9 +59,9 @@ Rkis.page.all = () => {
 			//use listener of element change then added
 			document.$watch("#navbar-robux").$then()
 			.$watch("#nav-robux-amount", async (rbxplate) => {
-				rbxplate.$watchData((element) => element.innerText != Rkis.GetSettingValue("CustomRobux"), (element) => {
+				rbxplate.$watchData((element) => element.textContent != Rkis.GetSettingValue("CustomRobux"), (element) => {
 					element.id = "nav-custom-robux-amount";
-					element.innerText = Rkis.GetSettingValue("CustomRobux");
+					element.textContent = Rkis.GetSettingValue("CustomRobux");
 				});
 			});
 
@@ -72,7 +72,7 @@ Rkis.page.all = () => {
 				var rbxmenu = $r("#nav-robux-balance");
 				if(rbxmenu) {
 					rbxmenu.id = "nav-custom-robux-balance";
-					rbxmenu.innerText = Rkis.GetSettingValue("CustomRobux") + " Robux";
+					rbxmenu.textContent = Rkis.GetSettingValue("CustomRobux") + " Robux";
 				}
 			})
 		})();
@@ -161,7 +161,7 @@ Rkis.page.all = () => {
 
 				newbutton.className = "dynamic-overflow-container text-nav";
 				newbutton.id = "rk-desktopapp";
-				newbutton.innerHTML = `<div><span class="icon-nav-giftcards" style="background-image: url(${Rkis.fileLocation}images/icons/icon_300x300.png);background-position: center;background-size: 30px;"></span></div><span class="font-header-2 dynamic-ellipsis-item">Desktop App</span>`;
+				newbutton.innerHTML = `<div><span class="icon-nav-giftcards" style="background-image: url(${escapeHTML(Rkis.fileLocation)}images/icons/icon_300x300.png);background-position: center;background-size: 30px;"></span></div><span class="font-header-2 dynamic-ellipsis-item">Desktop App</span>`;
 				newbutton.addEventListener("click", () => { document.$event("rk-desktopapp"); });
 				newbtn.append(newbutton);
 

@@ -73,7 +73,7 @@ Rkis.page.user = () => {
 					deletebutton.setAttribute("onmouseout", "this.style.backgroundColor='transparent';this.style.border='2px dashed red';");
 					//deletebutton.setAttribute("ondblclick", `Rkis.Scripts.QuickFriendRemove.unFriend(this, "${e.id}")`);
 					deletebutton.addEventListener("dblclick", () => { Rkis.Scripts.QuickFriendRemove.unFriend(this, "" + e.id) })
-					deletebutton.innerText = "-";
+					deletebutton.textContent = "-";
 
 					placetoadd.insertBefore(deletebutton, placetoadd.firstChild);
 
@@ -125,10 +125,10 @@ Rkis.page.user = () => {
 		Rkis.Scripts.CancelFriendPending = Rkis.Scripts.CancelFriendPending || {};
 
 		document.$watch(`ul.details-actions > li.btn-friends > button`, (check) => {
-			if (check.innerText == "Pending") return true;
+			if (check.textContent == "Pending") return true;
 			return false;
 		}, (penbtn) => {
-			penbtn.innerText = Rkis.language["cancelRequest"];
+			penbtn.textContent = Rkis.language["cancelRequest"];
 			penbtn.classList.remove("disabled");
 			penbtn.parentElement.addEventListener("click", Rkis.Scripts.CancelFriendPending.secondone);
 			penbtn.parentElement.style.cursor = "pointer";
@@ -148,7 +148,7 @@ Rkis.page.user = () => {
 			})
 				.then((resp) => {
 					if (resp.status == 200) {
-						target.innerText = Rkis.language["canceledRequest"];
+						target.textContent = Rkis.language["canceledRequest"];
 						target.classList.add("disabled");
 						target.parentElement.removeEventListener("click", Rkis.Scripts.CancelFriendPending.secondone);
 						target.parentElement.style.cursor = "";
@@ -231,10 +231,10 @@ Rkis.page.user = () => {
 			if (result != null) {
 				var award = new Date(result.lastOnline);//small start letters
 
-				if (result.placeId != null) onlinestats = `<a class="text-lead" href="${window.location.origin}/games/refer?PlaceId=${result.placeId}" style="text-decoration: underline;">${result.lastLocation}</a>`;
-				else onlinestats = `<p class="text-lead">${result.lastLocation}</p>`;
+				if (result.placeId != null) onlinestats = `<a class="text-lead" href="${window.location.origin}/games/refer?PlaceId=${escapeHTML(result.placeId)}" style="text-decoration: underline;">${escapeHTML(result.lastLocation)}</a>`;
+				else onlinestats = `<p class="text-lead">${escapeHTML(result.lastLocation)}</p>`;
 
-				if (result.placeId != null && result.gameId != null) onlinegame = `<li class="profile-stat" style="display: grid;justify-items: center;"><p class="text-label">${Rkis.language["lastGame"]}</p> <p class="text-lead" onclick="Roblox.GameLauncher.joinGameInstance(${result.placeId}, '${result.gameId}')" style="width: fit-content;background-color: #00b06f;border-radius: 10px;padding: 0 20%;cursor: pointer;align-self: center;">${Rkis.language["joinButtons"]}</p> </li>`;
+				if (result.placeId != null && result.gameId != null) onlinegame = `<li class="profile-stat" style="display: grid;justify-items: center;"><p class="text-label">${Rkis.language["lastGame"]}</p> <p class="text-lead" onclick="Roblox.GameLauncher.joinGameInstance(${escapeHTML(result.placeId)}, '${escapeHTML(result.gameId)}')" style="width: fit-content;background-color: #00b06f;border-radius: 10px;padding: 0 20%;cursor: pointer;align-self: center;">${Rkis.language["joinButtons"]}</p> </li>`;
 
 				onlineseen = `<p class="text-lead"
 			title="${Rkis.language.get("lastSeenLong", award.$format("MM/DD/YYYY, hh:mm"))}">${award.$since(new Date(), false, true)}</p>`;

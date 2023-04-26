@@ -88,7 +88,7 @@
 		<h3 data-translate="themeNewTitle">New Theme</h3>
 		<input id="newtheme-name" placeholder="Name" data-translate="themeName">
 		<input id="newtheme-desc" placeholder="Description (Optional)" style="margin-bottom: 20px;" data-translate="themeDescription">
-		<input type="file" id="newtheme-file" accept=".roblokis" oninput="if(this.files.length > 0) document.querySelector('#newtheme-filename').innerText = this.files[0].name; else document.querySelector('#newtheme-filename').innerText = Rkis.language['themeImport']" hidden>
+		<input type="file" id="newtheme-file" accept=".roblokis" oninput="if(this.files.length > 0) document.querySelector('#newtheme-filename').textContent = this.files[0].name; else document.querySelector('#newtheme-filename').textContent = Rkis.language['themeImport']" hidden>
 		<label id="newtheme-filename" for="newtheme-file" data-translate="themeImport">Import Theme (Optional)</label>
 		<div id="newtheme-error" class="info" style="font-size: 12px;"></div>
 		<div>

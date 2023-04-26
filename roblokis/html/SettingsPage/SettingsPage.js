@@ -113,8 +113,8 @@ page.save = function (button) {
 	localStorage.setItem("Roblokis", JSON.stringify(wholedata));
 	Rkis.wholeData = wholedata;
 
-	button.innerText = Rkis.language["btnSaved"];
-	setTimeout((btn) => { btn.innerText = Rkis.language["btnSave"]; }, 1000, button);
+	button.textContent = Rkis.language["btnSaved"];
+	setTimeout((btn) => { btn.textContent = Rkis.language["btnSave"]; }, 1000, button);
 }
 
 page.E = "A";
@@ -195,7 +195,7 @@ page.settingsWaitingForGeneral = function() {
 				var settingId = element.dataset.id;
 
 				//get settings
-				var setting = Rkis.wholeData[settingId];
+				var setting = escapeJSON(Rkis.wholeData[settingId]);
 				if (setting == null || typeof setting.type != "string") return;
 
 				let canEdit = true;
@@ -971,8 +971,8 @@ page.settingsWaitingForGeneral = function() {
 										.map((setting) => (`
 										<tr>
 											<td></td>
-											<td class="text-lead" data-translate="${setting.details.translate.name}">${setting.details[setting.details.default].name}</td>
-											<td class="text-description" data-translate="${setting.details.translate.description}">${setting.details[setting.details.default].description}</td>
+											<td class="text-lead" data-translate="${escapeHTML(setting.details.translate.name)}">${escapeHTML(setting.details[setting.details.default].name)}</td>
+											<td class="text-description" data-translate="${escapeHTML(setting.details.translate.description)}">${escapeHTML(setting.details[setting.details.default].description)}</td>
 										</tr>`)).join("")}
 									</tbody>
 								</table>
@@ -1115,7 +1115,7 @@ page.settingsWaitingForGeneral = function() {
 													</div>
 												</div>
 												<div class="rk-tab-page" tab="importtheme">
-													<input type="file" id="newtheme-file" accept=".roblokis" oninput="if(this.files.length > 0) this.parentElement.querySelector('label').innerText = this.files[0].name; else this.parentElement.querySelector('label').innerText = '${Rkis.language['themeImport']}'" hidden>
+													<input type="file" id="newtheme-file" accept=".roblokis" oninput="if(this.files.length > 0) this.parentElement.querySelector('label').textContent = this.files[0].name; else this.parentElement.querySelector('label').textContent = '${Rkis.language['themeImport']}'" hidden>
 													<label id="newtheme-filename" for="newtheme-file" data-translate="themeImport">Import Theme</label>
 													<div id="newtheme-error" class="info" style="font-size: 12px;">NOTE: Only "Pre-made" Roblokis themes are accepted.<br>For Images: Upload image online and use it's link instead!</div>
 													<div>
@@ -1731,7 +1731,7 @@ page.settingsWaitingForGeneral = function() {
 			</div>
 		</div>`;
 		var ttle = document.createElement("title");
-		ttle.innerText = Rkis.language["settingsPageTitle"];
+		ttle.textContent = Rkis.language["settingsPageTitle"];
 
 		document.firstElementChild.insertBefore(ttle, document.firstElementChild.firstElementChild);
 
@@ -1756,8 +1756,8 @@ page.settingsWaitingForGeneral = function() {
 			let text = input.value.toLowerCase();
 
 			componentList.forEach(x => {
-				let title = x.querySelector(`div > div`).innerText.toLowerCase();
-				let description = x.querySelector(`div > span`).innerText.toLowerCase();
+				let title = x.querySelector(`div > div`).textContent.toLowerCase();
+				let description = x.querySelector(`div > span`).textContent.toLowerCase();
 
 				if (!(title.includes(text) || description.includes(text))) {
 					x.style.display = 'none';

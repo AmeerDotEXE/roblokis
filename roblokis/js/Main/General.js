@@ -117,7 +117,7 @@ var Rkis = {
 				return;
 			}
 		
-			Rkis.ToastHolder.innerText = text;
+			Rkis.ToastHolder.textContent = text;
 			Rkis.ToastHolder.style.opacity = "1";
 			Rkis.ToastHolder.style.bottom = "30px";
 			setTimeout(() => { Rkis.ToastHolder.style.opacity = "0"; Rkis.ToastHolder.style.bottom = "0px"; }, ms || 4000)
@@ -215,8 +215,10 @@ Rkis.wholeData = { ...wholedata };
 
 		valueText = valueText.split("$1$").join(e.dataset.translate1).split("$2$").join(e.dataset.translate2).split("$3$").join(e.dataset.translate3).split("$4$").join(e.dataset.translate4).split("$5$").join(e.dataset.translate5).split("$6$").join(e.dataset.translate6).split("$7$").join(e.dataset.translate7).split("$8$").join(e.dataset.translate8).split("$9$").join(e.dataset.translate9);
 
+		valueText = escapeHTML(valueText);
+
 		if (e.tagName == "INPUT") e.placeholder = valueText;
-		else e.innerText = valueText;
+		else e.textContent = valueText;
 	})
 
 	if (Rkis.IsSettingEnabled("SiteLanguage", {
@@ -282,6 +284,8 @@ Rkis.wholeData = { ...wholedata };
 			if ((i / 2).toString().includes(".")) Rkis.language[msg] += `$${Math.floor(i / 2) + 1}$`;
 			else Rkis.language[msg] += e;
 		})
+
+		Rkis.language[msg] = escapeJSON(Rkis.language[msg]);
 	}
 	//lc = (msg) => { Rkis.language = (msg, txt) => this.l.split("$1$").join(txt); Rkis.language[msg]["l"] = chrome.i18n.getMessage(msg, "$1$"); };
 
@@ -360,7 +364,7 @@ if (Rkis.ToastHolder == null || Rkis.ToastHolder == {}) {
 		if (stng.getAttribute("aria-describedby") != null) return;
 
 		let rkisbtn = document.createElement("li");
-		rkisbtn.innerHTML = `<a class="rbx-menu-item roblokis-settings-button" href="https://${Rkis.SubDomain}.roblox.com/roblokis" style="color: rgb(255,64,64);">Roblokis</a>`;
+		rkisbtn.innerHTML = `<a class="rbx-menu-item roblokis-settings-button" href="https://${escapeHTML(Rkis.SubDomain)}.roblox.com/roblokis" style="color: rgb(255,64,64);">Roblokis</a>`;
 
 		let doc = await document.$watch("#settings-popover-menu").$promise();
 		if (doc == null || doc.querySelector(".roblokis-settings-button") != null) return;

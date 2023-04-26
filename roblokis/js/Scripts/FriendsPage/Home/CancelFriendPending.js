@@ -21,10 +21,10 @@ if (Rkis.IsSettingEnabled("CancelPending", {
 	Rkis.Scripts.CancelFriendPending = Rkis.Scripts.CancelFriendPending || {};
 
 	document.$watch(`ul.details-actions > li.btn-friends > button`, (check) => {
-		if (check.innerText == "Pending") return true;
+		if (check.textContent == "Pending") return true;
 		return false;
 	}, (penbtn) => {
-		penbtn.innerText = Rkis.language["cancelRequest"];
+		penbtn.textContent = Rkis.language["cancelRequest"];
 		penbtn.classList.remove("disabled");
 		penbtn.parentElement.addEventListener("click", Rkis.Scripts.CancelFriendPending.secondone);
 		penbtn.parentElement.style.cursor = "pointer";
@@ -44,7 +44,7 @@ if (Rkis.IsSettingEnabled("CancelPending", {
 		})
 			.then((resp) => {
 				if (resp.status == 200) {
-					target.innerText = Rkis.language["canceledRequest"];
+					target.textContent = Rkis.language["canceledRequest"];
 					target.classList.add("disabled");
 					target.parentElement.removeEventListener("click", Rkis.Scripts.CancelFriendPending.secondone);
 					target.parentElement.style.cursor = "";

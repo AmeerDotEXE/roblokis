@@ -72,15 +72,15 @@ const defaultcomponentElements = {
 				let translate = component.details.translate;
 
 				if (infoType == 'name') {
-					infoElement.innerText = detail.name;
+					infoElement.textContent = detail.name;
 					if (hasLanguageTag)
 						infoElement.dataset.translate = translate.name;
 				} else if (infoType == 'description' && detail.description) {
-					infoElement.innerText = detail.description;
+					infoElement.textContent = detail.description;
 					if (hasLanguageTag)
 						infoElement.dataset.translate = translate.description;
 				} else if (infoType == 'note' && detail.note) {
-					infoElement.innerText = detail.note;
+					infoElement.textContent = detail.note;
 					if (hasLanguageTag)
 						infoElement.dataset.translate = translate.note;
 				}
@@ -1231,7 +1231,7 @@ Designer.LoadThemesData = async function() {
 
 	var letterNumber = /^[\s0-9a-zA-Z-_]+$/g;
 
-	document.querySelector("#currentthemeplace").innerText = (wholedata.Designer.Theme.isDefaultTheme != true ? (wholedata.Designer.Themes[wholedata.Designer.Theme.id] ? wholedata.Designer.Themes[wholedata.Designer.Theme.id].name : "Default Theme") : wholedata.Designer.Theme.name);
+	document.querySelector("#currentthemeplace").textContent = (wholedata.Designer.Theme.isDefaultTheme != true ? (wholedata.Designer.Themes[wholedata.Designer.Theme.id] ? wholedata.Designer.Themes[wholedata.Designer.Theme.id].name : "Default Theme") : wholedata.Designer.Theme.name);
 
 	for(var i = 0; i < Designer.MaxCustomThemes; i++) {
 		var theme = wholedata.Designer.Themes[i];
@@ -1401,7 +1401,7 @@ Designer.CreateNewTheme = async function(button) {
 
 	if (safetycheck.error == null) safetycheck = await Designer.SaveNewTheme(themename, themedesc, filetheme);
 	if (safetycheck.error != null) {
-		errorplace.innerText = safetycheck.error;
+		errorplace.textContent = safetycheck.error;
 
 		button.disabled = false;
 		button.style.opacity = "1";
@@ -1412,7 +1412,7 @@ Designer.CreateNewTheme = async function(button) {
 	Designer.LoadThemesData();
 
 	document.querySelector("#rk-createthemesection").style.display = "none";
-	errorplace.innerText = "";
+	errorplace.textContent = "";
 
 	button.disabled = false;
 	button.style.opacity = "1";
@@ -1480,7 +1480,7 @@ Designer.ExportTheme = function(button, themename, themeId) {
 
 Designer.DeleteTheme = function(themename, themeId) {
 	document.querySelector("#deletetheme-button").dataset.themeid = themeId;
-	document.querySelector("#deletetheme-themename").innerText = themename;
+	document.querySelector("#deletetheme-themename").textContent = themename;
 	document.querySelector("#rk-deletethemesection").style.display = "flex";
 }
 
@@ -1870,11 +1870,13 @@ Designer.ThemeEditor.setupComponentsManager = function(btn) {
 		components.forEach(component => {
 			if (currentComponents.find(x => x.id == component.id) != null) return;
 
+			let details = escapeJSON(component.details);
+
 			let ComponentDiv = document.createElement(`div`);
 			ComponentDiv.className = "theme-template add-components-card";
 			ComponentDiv.innerHTML = /*html*/`<div>
-			<div data-translate="${component.details.translate?.name || ""}">${component.details.name || "No Name"}</div>
-				<span data-translate="${component.details.translate?.description || ""}">${component.details.description || ""}</span>
+			<div data-translate="${details.translate?.name || ""}">${details.name || "No Name"}</div>
+				<span data-translate="${details.translate?.description || ""}">${details.description || ""}</span>
 			</div>
 			<div style="margin-left: auto;"></div>
 			<button style="background-color: rgb(57 59 61);color: white;">+</button>`;

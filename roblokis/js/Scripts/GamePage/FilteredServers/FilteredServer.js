@@ -140,7 +140,7 @@ if (Rkis.wholeData.FilteredServer == true) {
 				var FilteredServercount = document.createElement("span");
 				FilteredServercount.id = "rk-plr-counter";
 				FilteredServercount.setAttribute("class", "avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image");
-				FilteredServercount.innerText = servers[i].CurrentPlayers.length + (Rkis.IsSettingEnabled("ShowMaxPlayers") ? "/" + servers[i].Capacity : "");
+				FilteredServercount.textContent = servers[i].CurrentPlayers.length + (Rkis.IsSettingEnabled("ShowMaxPlayers") ? "/" + servers[i].Capacity : "");
 				if (servers[i].Capacity <= servers[i].CurrentPlayers.length) FilteredServercount.style = "background-color: darkred;color: white;";
 				else if ((servers[i].Capacity / 2) <= servers[i].CurrentPlayers.length) FilteredServercount.style = "background-color: orangered;color: white;";
 				else FilteredServercount.style = "background-color: lightgray;color: black;";

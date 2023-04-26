@@ -29,7 +29,6 @@ console.error = (function(old) {
 	}
 })(console.error);
 
-//add listener then the elemend has changed
 $r = (() => {
 	let $ = {};
 	
@@ -909,3 +908,30 @@ popup = (() => {
 	
 	return popup;
 })();
+
+function escapeHTML(...text) {
+	let temp = document.createElement('div');
+	temp.textContent = text.join('');
+	let result = temp.innerHTML;
+	temp.remove();
+	return result;
+}
+
+function escapeJSON(json) {
+	if (typeof json == 'object') {
+		if (json == null) return;
+
+		if (json.length > 0 || json.length === 0) {
+			return json.map(x => escapeJSON(x));
+		}
+		
+		let object = {};
+
+		Object.keys(json).forEach(x => object[x] = escapeJSON(json[x]));
+		
+		return object;
+	}
+
+	if (typeof json == 'string') return escapeHTML(json);
+	return json;
+}

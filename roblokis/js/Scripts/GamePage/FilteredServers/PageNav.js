@@ -88,7 +88,7 @@ if (Rkis.wholeData.FilteredServer != false && Rkis.wholeData.FilteredPageNav != 
 		if (result == null || result.servers.length <= 0) return;
 
 		if (FilteredPageNav) FilteredPageNav.dataset.max = Math.floor(result.pages / 10) + 1;
-		if (FilteredPageNav) FilteredPageNav.$find("span > span").innerText = `/ ${FilteredPageNav.dataset.max}`;
+		if (FilteredPageNav) FilteredPageNav.$find("span > span").textContent = `/ ${FilteredPageNav.dataset.max}`;
 
 		Rkis.Scripts.FilteredPageNav.setpage(result.servers, more);
 	}
@@ -152,7 +152,7 @@ if (Rkis.wholeData.FilteredServer != false && Rkis.wholeData.FilteredPageNav != 
 				var FilteredServercount = document.createElement("span");
 				FilteredServercount.id = "rk-plr-counter";
 				FilteredServercount.setAttribute("class", "avatar avatar-headshot-sm player-avatar avatar-card-link avatar-card-image");
-				FilteredServercount.innerText = servers[i].CurrentPlayers.length + (Rkis.IsSettingEnabled("ShowMaxPlayers") ? "/" + servers[i].Capacity : "");
+				FilteredServercount.textContent = servers[i].CurrentPlayers.length + (Rkis.IsSettingEnabled("ShowMaxPlayers") ? "/" + servers[i].Capacity : "");
 
 				var stylee = "";
 				if (servers[i].Capacity <= servers[i].CurrentPlayers.length) stylee = "background-color: darkred;color: white;";

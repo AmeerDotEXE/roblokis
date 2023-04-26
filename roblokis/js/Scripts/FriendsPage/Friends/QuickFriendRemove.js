@@ -63,7 +63,7 @@ if (Rkis.IsSettingEnabled("QuickRemove", {
 					deletebutton.setAttribute("onmouseout", "this.style.backgroundColor='transparent';this.style.border='2px dashed red';");
 					//deletebutton.setAttribute("ondblclick", `Rkis.Scripts.QuickFriendRemove.unFriend(this, "${e.id}")`);
 					deletebutton.addEventListener("dblclick", () => { Rkis.Scripts.QuickFriendRemove.unFriend(this, "" + e.id) })
-					deletebutton.innerText = "-";
+					deletebutton.textContent = "-";
 
 					placetoadd.insertBefore(deletebutton, placetoadd.firstChild);
 
