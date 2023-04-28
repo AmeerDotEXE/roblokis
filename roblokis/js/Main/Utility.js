@@ -17,7 +17,6 @@ console.log = (function(old) {
 	}
 })(console.log);
 
-//TODO error collection system
 console.error = (function(old) {
 	return function(...args) {
 		return old("[Roblokis Error]", ...args.map(x => {
