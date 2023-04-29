@@ -358,6 +358,14 @@ $r = (() => {
 				if (callback != null && result != null && result.length > 0) Array.prototype.forEach.call(result, callback);
 				return result;
 			},
+			clear(self) {
+				self.childNodes.forEach((node) => {
+					node.remove();
+				});
+				self.children.forEach((element) => {
+					element.remove();
+				});
+			},
 
 			on(self, events, selector, callback, config) {
 				if (typeof selector == "function") { [selector, callback, config] = [null, selector, callback]; }
@@ -427,6 +435,7 @@ $r = (() => {
 			$each(...args) { return $.each(this.children, ...args); },
 			$find(...args) { return $.find(this, ...args); },
 			$findAll(...args) { return $.findAll(this, ...args); },
+			$clear() { return $.clear(this); },
 			$watch(...args) { return $.watch(this, ...args); },
 			$watchLoop(...args) { return $.watchLoop(this, ...args); },
 			$watchData(...args) { return $.watchData(this, ...args); }
@@ -933,4 +942,44 @@ function escapeJSON(json) {
 
 	if (typeof json == 'string') return escapeHTML(json);
 	return json;
+}
+
+function HTMLParser(input, ...elements) {
+	let holder = null;
+
+	if (input?.tagName != null && input?.tagName != '') holder = input;
+	
+	if (typeof input == 'string') {
+		let tag = input;
+		if (tag.startsWith('<')) tag = tag.slice(1);
+		if (tag.endsWith('>')) tag = tag.slice(0, -1);
+
+		tag = tag.split(' = ').join('=');
+		
+		let tokens = tag.match(/\S+(="(\\"|[^"])*")|\S+/g);
+		let tagName = tokens[0];
+
+		let attributes = {};
+
+		tokens.slice(1)
+		.map(x => (x.includes('=') ? x : x+'=""'))
+		.reduce((all, curr) => {
+			all[curr.split("=")[0]] = curr.split("=")[1].slice(1, -1);
+			return all;
+		}, attributes);
+
+		holder = document.createElement(tagName);
+		if (attributes.class != null) holder.className = attributes.class;
+
+		for (let attr in attributes) {
+			if (attr == 'class') continue;
+			holder.setAttribute(attr, attributes[attr]);
+		}
+	}
+	
+	if (holder == null) holder = document.createElement('div');
+	
+	if (elements.length > 0) holder.append(...elements);
+
+	return holder;
 }

@@ -400,6 +400,44 @@ function getRndInteger(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+//Function below is roblox's theme changer simplified and integerated with roblokis
+function changeRobloxTheme(themeType) {
+	let types = {
+		Classic: "light-theme",
+		Dark: "dark-theme",
+		Light: "light-theme"
+	};
+	let siteElement = [
+		"#navigation-container",
+		".container-main",
+		"#chat-container", 
+		".notification-stream-base",
+		"#notification-stream-popover"
+	];
+	let newType = types[themeType];
+
+	let hasBody = false;
+	document.$watch('.rbx-body', (siteBody) => {
+		hasBody = true;
+
+		for (let type in types) {
+			siteBody.classList.remove(types[type]);
+		}
+
+		siteBody.classList.add(newType);
+	});
+
+	siteElement.forEach(elemstr => {
+		document.$watch(elemstr, (elem) => {
+			for (let type in types) {
+				elem.classList.remove(types[type]);
+			}
+			if (hasBody == true) return;
+			elem.classList.add(newType);
+		});
+	});
+}
+
 document.$watch("body", (e) => { e.classList.add("Roblokis-installed") });
 Rkis.generalLoaded = true;
 document.$triggerCustom("rk-general-loaded");

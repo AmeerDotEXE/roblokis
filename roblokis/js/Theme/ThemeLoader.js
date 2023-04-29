@@ -426,10 +426,10 @@ Rkis.Designer.SetupTheme = async function() {
 	document.$watch("head", (e) => {
 		e.append(styl);
 	});
-	document.$watch("body", (e) => {
+	document.$watch(".light-theme, .dark-theme", (e) => {
 		let isDark = theme.isDark != false;
-		e.classList.toggle('dark-theme', isDark);
-		e.classList.toggle('light-theme', !isDark);
+
+		changeRobloxTheme(isDark ? 'Dark' : 'Light');
 	});
 
 }

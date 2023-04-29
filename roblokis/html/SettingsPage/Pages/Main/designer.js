@@ -1332,19 +1332,6 @@ Designer.SelectThemeButton = function(button) {
 
 	localStorage.setItem("Roblokis", JSON.stringify(wholedata));
 	Rkis.wholeData = wholedata;
-	
-	if (Designer.Selected.isDefaultTheme == false) {
-		let theTheme = wholedata.Designer.Themes[Designer.Selected.id];
-		fetch("https://accountsettings.roblox.com/v1/themes/user", {
-			"headers": {
-				"content-type": "application/x-www-form-urlencoded",
-				"x-csrf-token": document.querySelector("#rbx-body > meta").dataset.token
-			},
-			"body": `themeType=${theTheme.isDark != false ? 'Dark' : 'Light'}`,
-			"method": "PATCH",
-			"credentials": "include"
-		});
-	}
 
 	Designer.LoadThemesData();
 }
