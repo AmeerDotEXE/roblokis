@@ -228,7 +228,9 @@
 	"PageNav": {
 		"id": "PageNav",
 		"options": {
-			"main": true
+			"main": true,
+			"disabled": true,
+			"hidden": true
 		},
 		"type": "switch",
 		"value": {
@@ -333,8 +335,6 @@
 		"id": "ShowPrivateServers",
 		"options": {
 			"main": true,
-			"disabled": true,
-			"hidden": true
 		},
 		"type": "switch",
 		"value": {
