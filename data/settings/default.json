@@ -334,7 +334,7 @@
 	"ShowPrivateServers": {
 		"id": "ShowPrivateServers",
 		"options": {
-			"main": true,
+			"main": true
 		},
 		"type": "switch",
 		"value": {
