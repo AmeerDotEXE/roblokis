@@ -823,7 +823,9 @@ page.settingsWaitingForGeneral = function() {
 											
 												<li data-nav-page="details" class="designer-btn editortab menu-option" style="border-radius: 10px 0 0 0;"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="editorInfoTab">Info</span> </a> </li>
 
-												<li data-nav-page="pages" class="designer-btn editortab menu-option active" style="border-radius: 0 0 0 10px;"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="editorPagesTab">Pages</span> </a> </li>
+												<li data-nav-page="pages" class="designer-btn editortab menu-option active" style="border-radius: 0 0 0 0px;"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="editorPagesTab">Pages</span> </a> </li>
+												<li data-nav-page="styles" class="designer-btn editortab menu-option" style="border-radius: 0 0 0 10px;"> <a class="menu-option-content"> <span class="font-caption-header">Styles</span> </a> </li>
+												<!--TODO translate -->
 
 											</ul>
 
@@ -1236,6 +1238,12 @@ page.settingsWaitingForGeneral = function() {
 											<button class="section-content rk-btn" style="width: 100%;" data-designer-func="add-edits-btn">Add Component</button>
 
 										</div>
+										
+										<div data-nav-tab="styles" data-editthemetabs="styles" data-head-component-id="styles" data-designer-func="add-edits">
+
+											<button class="section-content rk-btn" style="width: 100%;" data-designer-func="add-edits-btn">Add Component</button>
+
+										</div>
 
 									</div>
 								</div>
@@ -1330,44 +1338,6 @@ page.settingsWaitingForGeneral = function() {
 									
 									<loadcode code="settingload" data-id="PublicServersLink"></loadcode>
 									<loadcode code="settingload" data-id="PageNav"></loadcode>
-								</div>
-								<div class="serversection filteredservers">
-									<h3><span data-translate="categoryGamePage">Game Page</span> &gt; <span data-translate="tabServers">Servers</span> &gt; <span data-translate="serversFiltered">Filtered Servers</span></h3>
-
-									<div class="section-content">
-										<span class="text-lead" data-translate="sectionFSS">Filtered Servers Section.</span>
-										<span class="rk-button rk-button receiver-destination-type-toggle off" data-file="FilteredServer">
-												<span class="toggle-flip"></span>
-												<span class="toggle-on"></span>
-												<span class="toggle-off"></span>
-										</span>
-										<div class="rbx-divider" style="margin: 12px;"></div>
-										<span class="text-description" data-translate="sectionFSS1">A new section with sorting options.</span>
-										<span class="text-description" data-translate="experimental">(EXPERIMENTAL)</span>
-									</div>
-
-									<div class="section-content">
-										<span class="text-lead" data-translate="sectionSPN">Server Page Nav.</span>
-										<span class="rk-button rk-button receiver-destination-type-toggle on" data-file="FilteredPageNav">
-												<span class="toggle-flip"></span>
-												<span class="toggle-on"></span>
-												<span class="toggle-off"></span>
-										</span>
-										<div class="rbx-divider" style="margin: 12px;"></div>
-										<span class="text-description" data-translate="sectionSPN1">Shows Nav. buttons under "Load More" button.</span>
-									</div>
-
-									<div class="section-content">
-										<span class="text-lead" data-translate="sectionSLB">Servers Link Button.</span>
-										<span class="rk-button rk-button receiver-destination-type-toggle on" data-file="FilteredServerLink">
-												<span class="toggle-flip"></span>
-												<span class="toggle-on"></span>
-												<span class="toggle-off"></span>
-										</span>
-										<div class="rbx-divider" style="margin: 12px;"></div>
-										<span class="text-description" data-translate="sectionSLB1">Shows a link button next to the join button and gives server's join link.</span>
-										<div class="text-description" style="color: red;" data-translate="sectionSLink">NOTE: Sharing the link won't work unless the person also have this extension!</div>
-									</div>
 								</div>
 							</div>
 						</div>

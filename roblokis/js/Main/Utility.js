@@ -359,10 +359,10 @@ $r = (() => {
 				return result;
 			},
 			clear(self) {
-				self.childNodes.forEach((node) => {
+				Array.prototype.forEach.call(self.childNodes, (node) => {
 					node.remove();
 				});
-				self.children.forEach((element) => {
+				Array.prototype.forEach.call(self.children, (element) => {
 					element.remove();
 				});
 			},

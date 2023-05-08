@@ -115,9 +115,143 @@ const defaultcomponentElements = {
 				popup.style.display = "none";
 			});
 		}
+	},
+	styleDropdown: {
+		html: /*html*/`
+		<div class="section-content">
+
+			<div class="rk-flex rk-space-between rk-center-x">
+				<h4 style="width: fit-content;" data-component-get="name">Loading...</h4>
+				<button class="rk-btn" data-remove-component>-</button>
+			</div>
+
+
+			<div class="rk-flex rk-space-between rk-center-x">
+				<span data-translate="themeStyle">Style:</span>
+				<select selected="" data-location="style"></select>
+			</div>
+
+
+			<div class="rbx-divider" style="margin: 12px;"></div>
+
+			<div>
+				<div data-location="image" style="float: left;margin-right: 1rem;"></div>
+				<span class="text-description" data-location="description"></span>
+			</div>
+
+		</div>`,
+		js: function (idCard, parentElement) {
+			let element = idCard.element;
+			let component = idCard.component;
+
+			//setup remove component btn
+			element.querySelector(`[data-remove-component]`)
+			.addEventListener("click", () => {
+				//console.log("Not Implemented");
+				parentElement.removeComponent(idCard.component);
+			});
+
+			
+			//setup component info
+			element.querySelectorAll(`[data-component-get]`).forEach((infoElement) => {
+				let infoType = infoElement.dataset.componentGet;
+				let hasLanguageTag = component.details.translate != null;
+
+				let detail = component.details;
+				let translate = component.details.translate;
+
+				if (infoType == 'name') {
+					infoElement.textContent = detail.name;
+					if (hasLanguageTag)
+						infoElement.dataset.translate = translate.name;
+				}
+			});
+
+			//setup data
+			let options = component.data?.options;
+			if (options == null) {
+				console.error('no options, designer.js:172');
+				Rkis.Toast('Error: d160')
+				return;
+			}
+
+			let dropdown = element.querySelector(`[data-location="style"]`);
+			let imageHolder = element.querySelector(`[data-location="image"]`);
+			let descriptionElem = element.querySelector(`[data-location="description"]`);
+
+			dropdown.$clear();
+			options.forEach(option => {
+				let details = escapeJSON(option.details);
+				dropdown.appendChild(
+					HTMLParser(`<option value="${option.value}" data-translate="${details.translate?.name || ''}">`,
+						details.name
+					)
+				);
+			});
+
+			//setup functionality
+			dropdown.addEventListener('input', () => {
+				let value = dropdown.value;
+				let option = options.find(x => x.value == value);
+
+				descriptionElem.textContent = option.details.description || '';
+				descriptionElem.dataset.translate = option.details.translate?.description || '';
+				
+				if (option.image != null) {
+					imageHolder.innerHTML = `<img src="${escapeHTML(chrome.runtime.getURL(option.image))}" style="border-radius:8px;">`
+				}
+				else imageHolder.$clear();
+			});
+			
+			element.querySelector(`[data-location="style"]`).dispatchEvent(new Event('input'));
+		},
+		load: function (theme_object, idCard) {
+			let element = idCard.element;
+
+			element.querySelector(`[data-location="style"]`).value = theme_object || '';
+			element.querySelector(`[data-location="style"]`).dispatchEvent(new Event('input'));
+		},
+		save: function (idCard) {
+			let element = idCard.element;
+
+			let style = element.querySelector(`[data-location="style"]`).value;
+			if (style == '') style = null;
+
+			return style;
+		}
 	}
 };
 let designerComponents = [
+
+
+
+	//styles
+	{
+		id: "servers",
+		details: {
+			name: "Servers",
+			translate: {
+				name: "tabServers"
+			}
+		},
+		parent: {
+			headId: 'styles',
+			ids: {
+				styles: true
+			}
+		},
+		data: {
+			options: [
+				{value: '',image:'images/themes/styles/serversDefault.png',details:{name:'Default',description:"Roblox's default design"}},
+				{value: 'card',image:'images/themes/styles/serversCard.png',details:{name:'Card',description:"Vertcal cards with Player icons on bottom"}},
+			]
+		},
+		element: defaultcomponentElements.styleDropdown
+	},//servers
+
+
+
+	//pages
 	{
 		id: "background",
 		parent: {
@@ -964,7 +1098,7 @@ let designerComponents = [
 	},//colors - 2
 	{
 		id: "pagenav",
-		tags: ["blockElement", "hasColor", "hasButton"],
+		tags: ["blockElement", "hasColor"],
 		parent: {
 			ids: {
 				game: true
@@ -1017,12 +1151,12 @@ let designerComponents = [
 			load: function (theme_object, idCard) {
 				let element = idCard.element;
 
-				element.querySelector(`[data-location="color"]`).value = theme_object;
+				element.querySelector(`[data-location="color"]`).value = rgbToHex(...Object.values(rgbaTovar(theme_object)));
 			},
 			save: function (idCard) {
 				let element = idCard.element;
 
-				return element.querySelector(`[data-location="color"]`).value;
+				return hexToRgb(element.querySelector(`[data-location="color"]`).value);
 			}
 		}
 	},//color
@@ -1307,6 +1441,14 @@ Designer.SaveNewTheme = async function(name, desc, themedata) {
 		current_version: Rkis.version
 	};
 
+	themedata.pages = themedata.pages || {};
+	for (let page in themedata) {
+		if (themedata[page].css == null) continue;
+
+		themedata.pages[page] = themedata[page].css;
+		delete themedata[page];
+	}
+
 	if(themedata != null) thenewtheme = jsonConcat(themedata, thenewtheme);
 
 	wholedata.Designer.Themes.push(jsonConcat(themetemplate, thenewtheme));
@@ -1532,6 +1674,9 @@ Designer.ThemeEditor.Save = async function() {
 
 	var pagestab = document.querySelector(`[data-editthemetabs="pages"]`);
 	theme.pages = pagestab.save();
+	
+	var stylestab = document.querySelector(`[data-editthemetabs="styles"]`);
+	theme.styles = stylestab.save();
 
 	theme.current_version = Rkis.version;
 
@@ -1691,6 +1836,7 @@ Designer.ThemeEditor.Load = function() {
 	}
 
 	var pagestab = document.querySelector(`[data-editthemetabs="pages"]`);
+	var stylestab = document.querySelector(`[data-editthemetabs="styles"]`);
 	
 	if (theme.pages != null) pagestab.load(theme.pages);
 	else {
@@ -1704,6 +1850,8 @@ Designer.ThemeEditor.Load = function() {
 
 		pagestab.load(pages_object);
 	}
+	
+	if (theme.styles != null) stylestab.load(theme.styles);
 
 	document.$triggerCustom("designer-edittheme-loaded");
 }

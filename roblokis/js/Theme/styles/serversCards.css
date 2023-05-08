@@ -1,0 +1,109 @@
+
+
+
+
+/* Private Servers  */
+#game-instances #rbx-private-running-games > ul > li > div.card-item {
+	flex-direction: column-reverse;
+}
+
+#game-instances #rbx-private-running-games > ul > li {
+	display: flex;
+	flex-direction: column-reverse;
+
+	max-width: calc(calc(100% / var(--rk-privateserver-column, 5)) - calc(var(--rk-privateserver-gap, 0.3%) * 2));
+}
+#rbx-private-running-games > ul > li:hover {
+	transform: var(--rk-basic-animations, scale(1.2));
+}
+
+#rbx-private-running-games ul li div.player-thumbnails-container > span {
+	margin: 0px -10px 6px 0px;
+	top: 8px;
+	width: 34px;
+	height: 34px;
+}
+
+#rbx-private-running-games ul li div.rbx-private-game-server-details {
+	float: none;
+	border: none;
+	padding: 0;
+	width: auto;
+	margin-right: 0px;
+	min-width: 0px;
+}
+
+
+
+
+/* Friends Servers  */
+#game-instances #rbx-friends-game-server-item-container > li > div.card-item {
+	flex-direction: column-reverse;
+}
+
+#game-instances #rbx-friends-game-server-item-container > li {
+	width: calc(calc(100% / var(--rk-friendsserver-column, 5)) - calc(var(--rk-friendsserver-gap, 0.3%) * 2));
+}
+
+#rbx-friends-game-server-item-container > li > div.card-item > div.player-thumbnails-container {
+	align-self: flex-start;
+}
+
+#rbx-friends-game-server-item-container > li > div.card-item > div.player-thumbnails-container > span {
+	margin: 0px -10px 6px 0px;
+	top: 8px;
+	width: 34px;
+	height: 34px;
+}
+
+
+
+
+/* Small Servers  */
+#game-instances #rbx-small-game-server-item-container > li {
+	width: calc(calc(100% / var(--rk-publicserver-column, 5)) - calc(var(--rk-publicserver-gap, 0.3%) * 2));
+}
+#game-instances #rbx-small-game-server-item-container li > div.card-item {
+	flex-direction: column-reverse;
+}
+
+#rbx-small-game-server-item-container li div.player-thumbnails-container {
+	align-self: flex-start;
+}
+
+#rbx-small-game-server-item-container li div.player-thumbnails-container > span {
+	margin: 0px -10px 6px 0px;
+	top: 8px;
+	width: 34px;
+	height: 34px;
+}
+
+
+
+
+/* Public Servers  */
+#rbx-running-games > div.container-header > div.server-list-options {
+	display: none;
+}
+
+#game-instances #rbx-game-server-item-container li {
+	width: calc(calc(100% / var(--rk-publicserver-column, 5)) - calc(var(--rk-publicserver-gap, 0.3%) * 2));
+}
+#game-instances #rbx-game-server-item-container li > div.card-item {
+	flex-direction: column-reverse;
+}
+
+#rbx-game-server-item-container li div.player-thumbnails-container {
+	align-self: flex-start;
+}
+
+#rbx-game-server-item-container li div.player-thumbnails-container > span {
+	margin: 0px -10px 6px 0px;
+	top: 8px;
+	width: 34px;
+	height: 34px;
+}
+
+#rbx-game-server-item-container.pagenav > li:not(.pagenav) {
+	display: none;
+}

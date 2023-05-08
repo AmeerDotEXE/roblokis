@@ -47,7 +47,7 @@ Rkis.Designer.SetupTheme = async function() {
 
 	Rkis.Designer.addCSS = (paths) => {
 		if(window.ContextScript != true) return console.error("Not Context Script");
-		if(typeof paths == "string") paths = [...paths];
+		if(typeof paths == "string") paths = [paths];
 
 		if(!mainStyle) {
 			const style = document.createElement("style");
@@ -64,6 +64,7 @@ Rkis.Designer.SetupTheme = async function() {
 	}
 
 	var putCSS = Rkis.Designer.addCSS; //shorter form
+	putCSS(["js/Theme/Extras/features.css"]);
 
 	if(Rkis.IsSettingEnabled("ExtraShadows", {
 	id: "ExtraShadows",
@@ -422,12 +423,14 @@ Rkis.Designer.SetupTheme = async function() {
 	};
 
 	var styl = document.createElement("style");
+	styl.id = "rk-theme-loaded";
 	styl.innerHTML = tamplate3;
 	document.$watch("head", (e) => {
 		e.append(styl);
 	});
 	document.$watch(".light-theme, .dark-theme", (e) => {
 		let isDark = theme.isDark != false;
+		if (pagetheme == null) isDark = !Rkis.wholeData.isUsingLightTheme;
 
 		changeRobloxTheme(isDark ? 'Dark' : 'Light');
 	});

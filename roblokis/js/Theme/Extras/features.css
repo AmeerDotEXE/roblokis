@@ -1,0 +1,13 @@
+/* Copy Server link */
+li .game-server-details > span:has(> button.game-server-join-btn):has(> .rk-copy-link-btn) {
+	display: flex;
+	gap: 4px;
+}
+
+/* Player Counter */
+ul:has( .rk-plr-counter) li .game-server-details > div.rbx-game-status {
+	display: none;
+}
+ul:has( .rk-plr-counter) li div.player-thumbnails-container:has(> *:nth-child(6)) > span:nth-last-child(2) {
+	display: none;
+}

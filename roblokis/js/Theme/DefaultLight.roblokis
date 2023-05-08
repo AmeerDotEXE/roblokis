@@ -1,1 +1,245 @@
-{"all":{"css":{"background":{"color":"rgba(242,244,245,100%)","image":{"link":"","size":"contain","repeat":"round","attachment":"fixed"}},"menu":{"background":{"color":"rgba(222,225,225,100%)","image":{"link":"","size":"contain","repeat":"round","attachment":"fixed"}}},"content":{"shadow":"disabled","corners":null,"background":{"color":"rgba(35,37,39,0%)","image":{"link":"","size":"contain","repeat":"round","attachment":"fixed"}},"borders":{"all":null,"top":null,"left":null,"bottom":null,"right":null}}}},"game":{"css":{"badge":{"colors":{"bright":"#393b3d","dark":"#606162"},"corners":{"all":{"radius":"20px"},"top-left":{"radius":null},"top-right":{"radius":null},"bottom-right":{"radius":null},"bottom-left":{"radius":null}},"background":{"color":"rgba(255,255,255,100%)","image":{"link":"","size":"contain","repeat":"round","attachment":"fixed"}},"borders":{"all":null,"top":null,"left":null,"bottom":{"size":"1px","style":"solid","color":"rgba(255,255,255,100%)"},"right":{"size":"1px","style":"solid","color":"rgba(255,255,255,100%)"}}},"defaultserver":{"column":"5","gap":"0.3%","corners":{"all":{"radius":"20px"},"top-left":{"radius":null},"top-right":{"radius":null},"bottom-right":{"radius":null},"bottom-left":{"radius":null}},"background":{"color":"rgba(255,255,255,100%)","image":{"link":"","size":"contain","repeat":"round","attachment":"fixed"}},"button":{"color":"rgb(189,190,190)","corners":{"all":{"radius":"8px"},"top-left":{"radius":null},"top-right":{"radius":null},"bottom-right":{"radius":null},"bottom-left":{"radius":null}},"borders":{"all":{"size":"1px","style":"solid","color":"rgba(96,97,98,100%)"},"top":null,"left":null,"bottom":null,"right":null},"background":null},"borders":{"all":null,"top":null,"left":null,"bottom":{"size":"1px","style":"solid","color":"rgba(96,97,98,100%)"},"right":{"size":"1px","style":"solid","color":"rgba(96,97,98,100%)"}}},"pagenav":{"colors":{"bright":"rgb(189,190,190)"},"corners":{"all":{"radius":"8px"},"top-left":{"radius":null},"top-right":{"radius":null},"bottom-right":{"radius":null},"bottom-left":{"radius":null}},"background":{"color":"rgba(35,37,39,0%)","image":{"link":"","size":"contain","repeat":"round","attachment":"fixed"}},"borders":{"all":{"size":"1px","style":"solid","color":"rgba(96,97,98,100%)"},"top":null,"left":null,"bottom":null,"right":null},"color":"rgb(96,97,98)"},"background":null,"content":{"background":null,"corners":null,"borders":{"all":null,"top":null,"left":null,"bottom":null,"right":null},"shadow":"disabled"},"menu":{"background":null},"privateserver":{"column":"5","gap":"0.3%","color":"rgb(57,59,61)","owner":{"background":{"color":"rgba(212,212,212,100%)"}},"corners":null,"background":null,"borders":{"all":null,"top":null,"left":null,"bottom":null,"right":null},"button":{"color":"rgb(96,97,98)","corners":null,"background":null,"borders":{"all":null,"top":null,"left":null,"bottom":null,"right":null}}},"friendsserver":{"column":"5","gap":"0.3%","color":"rgb(96,97,98)","corners":null,"background":null,"borders":{"all":null,"top":null,"left":null,"bottom":null,"right":null},"button":{"color":"rgb(96,97,98)","corners":null,"background":null,"borders":{"all":{"size":"1px","style":"solid","color":"rgba(96,97,98,100%)"},"top":null,"left":null,"bottom":null,"right":null}}},"smallserver":{"column":"5","gap":"0.3%","corners":null,"background":null,"borders":{"all":null,"top":null,"left":null,"bottom":null,"right":null},"button":{"color":"rgb(96,97,98)","corners":null,"background":null,"borders":{"all":null,"top":null,"left":null,"bottom":null,"right":null}}},"publicserver":{"column":"5","gap":"0.3%","corners":null,"background":null,"borders":{"all":null,"top":null,"left":null,"bottom":null,"right":null},"button":{"color":"rgb(96,97,98)","corners":null,"background":null,"borders":{"all":null,"top":null,"left":null,"bottom":null,"right":null}}}}},"users":{"css":{"profile":{"background":{"color":"rgba(255,255,255,100%)","image":{"link":"","size":"contain","repeat":"round","attachment":"fixed"}},"corners":{"all":{"radius":"0px"},"top-left":{"radius":null},"top-right":{"radius":null},"bottom-right":{"radius":null},"bottom-left":{"radius":null}},"borders":{"all":null,"top":null,"left":null,"bottom":null,"right":null}},"background":null,"content":{"background":null,"corners":null,"borders":{"all":null,"top":null,"left":null,"bottom":null,"right":null},"shadow":"disabled"},"menu":{"background":null}}},"groups":{"css":{"group":{"background":{"color":"rgba(255,255,255,100%)","image":{"link":"","size":"contain","repeat":"round","attachment":"fixed"}},"corners":{"all":{"radius":"0px"},"top-left":{"radius":null},"top-right":{"radius":null},"bottom-right":{"radius":null},"bottom-left":{"radius":null}},"borders":{"all":null,"top":null,"left":null,"bottom":null,"right":null}},"background":null,"content":{"background":null,"corners":null,"borders":{"all":null,"top":null,"left":null,"bottom":null,"right":null},"shadow":"disabled"},"menu":{"background":null}}},"home":{"css":{"background":null,"content":{"background":null,"corners":null,"borders":{"all":null,"top":null,"left":null,"bottom":null,"right":null},"shadow":"disabled"},"menu":{"background":null}}},"name":"Default White Theme","description":""}
+{
+	"styles": {
+		"servers": "card"
+	},
+	"pages": {
+		"all": {
+			"background": {
+				"color": "rgba(242,244,245,100%)",
+				"image": {
+					"link": "",
+					"size": "contain",
+					"repeat": "round",
+					"attachment": "fixed"
+				}
+			},
+			"menu": {
+				"background": {
+					"color": "rgba(222,225,225,100%)",
+					"image": {
+						"link": "",
+						"size": "contain",
+						"repeat": "round",
+						"attachment": "fixed"
+					}
+				}
+			},
+			"content": {
+				"shadow": "disabled",
+				"corners": null,
+				"background": {
+					"color": "rgba(35,37,39,0%)",
+					"image": {
+						"link": "",
+						"size": "contain",
+						"repeat": "round",
+						"attachment": "fixed"
+					}
+				}
+			}
+		},
+		"game": {
+			"badge": {
+				"colors": {
+					"bright": "#393b3d",
+					"dark": "#606162"
+				},
+				"corners": {
+					"all": {
+						"radius": "20px"
+					},
+					"top-left": {
+						"radius": null
+					},
+					"top-right": {
+						"radius": null
+					},
+					"bottom-right": {
+						"radius": null
+					},
+					"bottom-left": {
+						"radius": null
+					}
+				},
+				"background": {
+					"color": "rgba(255,255,255,100%)",
+					"image": {
+						"link": "",
+						"size": "contain",
+						"repeat": "round",
+						"attachment": "fixed"
+					}
+				},
+				"borders": {
+					"all": null,
+					"top": null,
+					"left": null,
+					"bottom": {
+						"size": "1px",
+						"style": "solid",
+						"color": "rgba(255,255,255,100%)"
+					},
+					"right": {
+						"size": "1px",
+						"style": "solid",
+						"color": "rgba(255,255,255,100%)"
+					}
+				}
+			},
+			"defaultserver": {
+				"corners": {
+					"all": {
+						"radius": "20px"
+					},
+					"top-left": {
+						"radius": null
+					},
+					"top-right": {
+						"radius": null
+					},
+					"bottom-right": {
+						"radius": null
+					},
+					"bottom-left": {
+						"radius": null
+					}
+				},
+				"background": {
+					"color": "rgba(255,255,255,100%)",
+					"image": {
+						"link": "",
+						"size": "contain",
+						"repeat": "round",
+						"attachment": "fixed"
+					}
+				},
+				"button": {
+					"color": "rgb(189,190,190)",
+					"corners": {
+						"all": {
+							"radius": "8px"
+						},
+						"top-left": {
+							"radius": null
+						},
+						"top-right": {
+							"radius": null
+						},
+						"bottom-right": {
+							"radius": null
+						},
+						"bottom-left": {
+							"radius": null
+						}
+					},
+					"borders": {
+						"all": {
+							"size": "1px",
+							"style": "solid",
+							"color": "rgba(96,97,98,100%)"
+						},
+						"top": null,
+						"left": null,
+						"bottom": null,
+						"right": null
+					}
+				},
+				"borders": {
+					"all": null,
+					"top": null,
+					"left": null,
+					"bottom": {
+						"size": "1px",
+						"style": "solid",
+						"color": "rgba(96,97,98,100%)"
+					},
+					"right": {
+						"size": "1px",
+						"style": "solid",
+						"color": "rgba(96,97,98,100%)"
+					}
+				}
+			},
+			"pagenav": {
+				"corners": {
+					"all": {
+						"radius": "8px"
+					},
+					"top-left": {
+						"radius": null
+					},
+					"top-right": {
+						"radius": null
+					},
+					"bottom-right": {
+						"radius": null
+					},
+					"bottom-left": {
+						"radius": null
+					}
+				},
+				"background": {
+					"color": "rgba(35,37,39,0%)",
+					"image": {
+						"link": "",
+						"size": "contain",
+						"repeat": "round",
+						"attachment": "fixed"
+					}
+				},
+				"borders": {
+					"all": {
+						"size": "1px",
+						"style": "solid",
+						"color": "rgba(96,97,98,100%)"
+					},
+					"top": null,
+					"left": null,
+					"bottom": null,
+					"right": null
+				},
+				"color": "rgb(96,97,98)"
+			},
+			"privateserver": {
+				"color": "rgb(57,59,61)",
+				"owner": {
+					"background": {
+						"color": "rgba(212,212,212,100%)"
+					}
+				}
+			},
+			"friendsserver": {
+				"color": "rgb(96,97,98)"
+			}
+		},
+		"users": {
+			"profile": {
+				"background": {
+					"color": "rgba(255,255,255,100%)",
+					"image": {
+						"link": "",
+						"size": "contain",
+						"repeat": "round",
+						"attachment": "fixed"
+					}
+				}
+			}
+		},
+		"groups": {
+			"group": {
+				"background": {
+					"color": "rgba(255,255,255,100%)",
+					"image": {
+						"link": "",
+						"size": "contain",
+						"repeat": "round",
+						"attachment": "fixed"
+					}
+				}
+			}
+		}
+	},
+	"name": "Default White Theme",
+	"description": "",
+	"isDark": false
+}
