@@ -122,11 +122,17 @@ Rkis.Designer.SetupTheme = async function() {
 		{match: ".com/my/account", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/settings.css" ]}
 	];
 
+	let loadedStyleFile = false;
 	allCssFiles.forEach((e) => {
 		if(!window.location.href.toLowerCase().includes(e.match)) return;
 
 		putCSS(e.paths);
-	})
+		loadedStyleFile = true;
+	});
+
+	if (loadedStyleFile == false) {
+		return;
+	}
 
 	var pagetheme = Rkis.Designer.GetPageTheme();
 
@@ -299,7 +305,7 @@ Rkis.Designer.SetupTheme = async function() {
 		var completecode = "";
 
 		if(n[0].includes("|server|")) {
-			var alltheelements = ["filteredserver","publicserver","smallserver","friendsserver","privateserver"];
+			var alltheelements = ["publicserver","smallserver","friendsserver","privateserver"];
 
 			alltheelements.forEach((element, elementnumber) => {
 				completecode += n[0].split("|server|").join(element);
@@ -324,83 +330,101 @@ Rkis.Designer.SetupTheme = async function() {
 	//--rk-something: $value&default#;
 
 	//auto variable
-	tamplate1.split("--rk-").forEach((codepart, i) => {
-		if(i == 0) return tamplate2 += codepart; //don't change start
-		codepart = "--rk-" + codepart; //keep the cutted part
+	tamplate1.split("{").forEach((selector, selectorIndex) => {
+		if(selectorIndex == 0) return tamplate2 += selector; //don't change start
 
-		var fill = ""; //values
-		var filled = false; //check if css used
+		let afterit = "}" + selector.split('}').slice(1).join("}");
+		let beforeit = "{";
+		let propertiesPart = selector.split("}")[0];
 
-		if(!codepart.includes("$") && !codepart.includes("%")) return tamplate2 += codepart; //no variable detection
-		var all_values = codepart.split("$"); //collect variables
+		tamplate2 += beforeit;
 
-		for (var dollar_num = 0; dollar_num < all_values.length; dollar_num++) {
-			if(dollar_num == 0) {fill += all_values[0]; continue;} //don't change start
-			
-			//no end detection
-			var raw_value = all_values[dollar_num].split("#");
-			if(raw_value.length < 2) {fill += "$" + all_values[dollar_num]; continue;}
+		propertiesPart.split(":").forEach((codepart, i) => {
+			if(i == 0) return tamplate2 += codepart; //don't change start
+			let afterit = ";" + codepart.split(';').slice(1).join(";");
+			let beforeit = ":";
+			codepart = codepart.split(';')[0]; //keep the cutted part
 
-			var raw_multiple_value = raw_value[0].split("&")[0].split("/"); //multiple value detection
+			var fill = ""; //values
+			var filled = false; //check if css used
 
-			var val = null; //value
+			if(!codepart.includes("$") && !codepart.includes("%")) return tamplate2 += codepart; //no variable detection
+			var all_values = codepart.split("$"); //collect variables
 
-			var checkvalue = function(check_value, allcheck) {
-				var tryval = theme.pages[Rkis.pageName];
-				if (allcheck == true) tryval = theme.pages.all;
-				if (tryval == null) return null;
+			for (var dollar_num = 0; dollar_num < all_values.length; dollar_num++) {
+				if(dollar_num == 0) {fill += all_values[0]; continue;} //don't change start
+				
+				//no end detection
+				var raw_value = all_values[dollar_num].split("#");
+				if(raw_value.length < 2) {fill += "$" + all_values[dollar_num]; continue;}
 
-				var value_dots = check_value.split(".");
+				var raw_multiple_value = raw_value[0].split("&")[0].split("/"); //multiple value detection
 
-				for(var doti = 0; doti < value_dots.length && tryval != null; doti++) {
-					var dot = value_dots[doti];
-					tryval = tryval[dot];
+				var val = null; //value
+
+				var checkvalue = function(check_value, allcheck) {
+					var tryval = theme.pages[Rkis.pageName];
+					if (allcheck == true) tryval = theme.pages.all;
+					if (tryval == null) return null;
+
+					var value_dots = check_value.split(".");
+
+					for(var doti = 0; doti < value_dots.length && tryval != null; doti++) {
+						var dot = value_dots[doti];
+						tryval = tryval[dot];
+					}
+
+					return tryval;
 				}
 
-				return tryval;
-			}
+				for(var checking_num = 0; checking_num < raw_multiple_value.length && val == null; checking_num++) {
+					var to_check_value = raw_multiple_value[checking_num];
 
-			for(var checking_num = 0; checking_num < raw_multiple_value.length && val == null; checking_num++) {
-				var to_check_value = raw_multiple_value[checking_num];
+					val = checkvalue(to_check_value);
 
-				val = checkvalue(to_check_value);
+					if(val != null) continue;
 
-				if(val != null) continue;
+					val = checkvalue(to_check_value, true);
+				}
 
-				val = checkvalue(to_check_value, true);
-			}
+				if(val == null && raw_value[0].split("&").length > 1) {
+					val = raw_value[0].split("&")[1];
+				}
 
-			if(val == null && raw_value[0].split("&").length > 1) {
-				val = raw_value[0].split("&")[1];
-			}
+				if(val == null) {fill += raw_value[1]; continue;}
 
-			if(val == null) {fill += raw_value[1]; continue;}
-
-			fill += val + raw_value[1];
-			filled = true;
-
-		}
-
-		if(codepart.includes("%") && codepart.split("%").length > 2) {
-			var prts = codepart.split("%");
-
-			var val = null;
-			if(Rkis.wholeData[prts[1]] != true) val = "disabled";
-
-			if(val != null) {
-				fill += prts[0];
-
-				fill += val;
-
-				fill += prts[2];
-
+				fill += val + raw_value[1];
 				filled = true;
+
 			}
-		}
 
-		if (filled == false) return;
+			if(codepart.includes("%") && codepart.split("%").length > 2) {
+				var prts = codepart.split("%");
 
-		return tamplate2 += fill;
+				var val = null;
+				if(Rkis.wholeData[prts[1]] != true) val = "disabled";
+
+				if(val != null) {
+					fill += prts[0];
+
+					fill += val;
+
+					fill += prts[2];
+
+					filled = true;
+				}
+			}
+
+			if (filled == false) {
+				let variableKey = propertiesPart.split(":")[i-1].split("\n").slice(-1)[0];
+				tamplate2 = tamplate2.slice(0, -1 * variableKey.length) + afterit.slice(1);
+				return;
+			}
+
+			return tamplate2 += beforeit + fill + afterit;
+		});
+		
+		tamplate2 += afterit;
 	});
 
 	//url replacer

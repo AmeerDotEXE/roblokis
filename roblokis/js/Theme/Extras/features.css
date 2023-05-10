@@ -5,9 +5,9 @@ li .game-server-details > span:has(> button.game-server-join-btn):has(> .rk-copy
 }
 
 /* Player Counter */
-ul:has( .rk-plr-counter) li .game-server-details > div.rbx-game-status {
+#game-instances:has( .rk-plr-counter) li .game-server-details > div.rbx-game-status {
 	display: none;
 }
-ul:has( .rk-plr-counter) li div.player-thumbnails-container:has(> *:nth-child(6)) > span:nth-last-child(2) {
+#game-instances:has( .rk-plr-counter) li div.player-thumbnails-container:has(> *:nth-child(6)) > span:nth-last-child(2) {
 	display: none;
 }

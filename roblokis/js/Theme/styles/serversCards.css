@@ -86,7 +86,7 @@
 	display: none;
 }
 
-#game-instances #rbx-game-server-item-container li {
+#game-instances #rbx-game-server-item-container > li {
 	width: calc(calc(100% / var(--rk-publicserver-column, 5)) - calc(var(--rk-publicserver-gap, 0.3%) * 2));
 }
 #game-instances #rbx-game-server-item-container li > div.card-item {
@@ -102,8 +102,4 @@
 	top: 8px;
 	width: 34px;
 	height: 34px;
-}
-
-#rbx-game-server-item-container.pagenav > li:not(.pagenav) {
-	display: none;
 }

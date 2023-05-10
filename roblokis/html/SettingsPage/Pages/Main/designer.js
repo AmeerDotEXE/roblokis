@@ -1151,7 +1151,8 @@ let designerComponents = [
 			load: function (theme_object, idCard) {
 				let element = idCard.element;
 
-				element.querySelector(`[data-location="color"]`).value = rgbToHex(...Object.values(rgbaTovar(theme_object)));
+				if (theme_object.startsWith("#")) element.querySelector(`[data-location="color"]`).value = theme_object;
+				else element.querySelector(`[data-location="color"]`).value = rgbToHex(...Object.values(rgbaTovar(theme_object)));
 			},
 			save: function (idCard) {
 				let element = idCard.element;
@@ -1524,7 +1525,15 @@ Designer.CreateNewTheme = async function(button) {
 
 	var safetycheck = await Designer.TestThemeDetails(themename, themedesc, themeimage);
 
-	if (newthemeimage != null) filetheme = {"pages":{"all":{"background":{"image":{"link":themeimage}}}}};
+	if (newthemeimage != null) filetheme = {"pages":{"all":{"background":{
+		"color": "rgba(25,27,29,100%)",
+		"image":{
+			"link": themeimage,
+			"attachment": "fixed",
+			"repeat": "round",
+			"size": "contain",
+		}
+	}}}};
 	filetheme = filetheme || {};
 	filetheme.isDark = document.body.classList.contains('dark-theme');
 

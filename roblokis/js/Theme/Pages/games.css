@@ -393,7 +393,7 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
 
 
 /* Public Servers  */
-#game-instances #rbx-game-server-item-container li {
+#game-instances #rbx-game-server-item-container > li {
 	transition: all 400ms;
 	transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
 
@@ -411,7 +411,7 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
 	background: var(--rk-publicserver-background);
 	background-size: var(--rk-publicserver-background-image-size);
 }
-#rbx-game-server-item-container li:hover {
+#rbx-game-server-item-container > li:hover {
 	transform: var(--rk-basic-animations, scale(1.2));
 	opacity: var(--rk-basic-animations, 1);
 	z-index: var(--rk-basic-animations, 10);

@@ -2,7 +2,7 @@
 
 	--rk-basic-animations: %BasicAnim%;
 
-	--rk-background: $background.color# url($background.image.link#) /*>$background.image.|IMG|#<*/;
+	--rk-background: $background.color# /*>$background.image.|IMG|#<*/;
 	--rk-background-image-size: $background.image.size#;
 
 
@@ -13,7 +13,7 @@
 	--rk-|fullpack|-borders-color: /*>$|fullpack|.borders.|SIDE|.color/|fullpack|.borders.all.color&white#<*/;
 	--rk-|fullpack|-borders-style: /*>$|fullpack|.borders.|SIDE|.style/|fullpack|.borders.all.style&solid#<*/;
 
-	--rk-|fullpack|-background: $|fullpack|.background.color# url($|fullpack|.background.image.link#) /*>$|fullpack|.background.image.|IMG|#<*/;
+	--rk-|fullpack|-background: $|fullpack|.background.color# /*>$|fullpack|.background.image.|IMG|#<*/;
 	--rk-|fullpack|-background-image-size: $|fullpack|.background.image.size#;
 --loopend: 0;
 
@@ -27,7 +27,7 @@
 	
 	--rk-|server|-corners-radius: /*>$|server|.corners.|CORNER|.radius/|server|.corners.all.radius/defaultserver.corners.|CORNER|.radius/defaultserver.corners.all.radius#<*/;
 
-	--rk-|server|-background: $|server|.background.color/defaultserver.background.color# url($|server|.background.image.link/defaultserver.background.image.link#) /*>$|server|.background.image.|IMG|/defaultserver.background.image.|IMG|#<*/;
+	--rk-|server|-background: $|server|.background.color/defaultserver.background.color# /*>$|server|.background.image.|IMG|/defaultserver.background.image.|IMG|#<*/;
 	--rk-|server|-background-image-size: $|server|.background.image.size/defaultserver.background.image.size#;
 
 	--rk-|server|-borders-size: /*>$|server|.borders.|SIDE|.size/|server|.borders.all.size/defaultserver.borders.|SIDE|.size/defaultserver.borders.all.size&0px#<*/;
@@ -44,7 +44,7 @@
 	
 	--rk-|server|-button-corners-radius: /*>$|server|.button.corners.|CORNER|.radius/|server|.button.corners.all.radius/defaultserver.button.corners.|CORNER|.radius/defaultserver.button.corners.all.radius#<*/;
 
-	--rk-|server|-button-background: $|server|.button.background.color/defaultserver.button.background.color# url($|server|.button.background.image.link/defaultserver.button.background.image.link#) /*>$|server|.button.background.image.|IMG|/defaultserver.button.background.image.|IMG|#<*/;
+	--rk-|server|-button-background: $|server|.button.background.color/defaultserver.button.background.color# /*>$|server|.button.background.image.|IMG|/defaultserver.button.background.image.|IMG|#<*/;
 	--rk-|server|-button-background-image-size: $|server|.button.background.image.size/defaultserver.button.background.image.size#;
 
 	--rk-|server|-button-borders-size: /*>$|server|.button.borders.|SIDE|.size/|server|.button.borders.all.size/defaultserver.button.borders.|SIDE|.size/defaultserver.button.borders.all.size&0px#<*/;
@@ -55,7 +55,7 @@
 
 /*  Menu	*/
 
-	--rk-menu-background: $menu.background.color# url($menu.background.image.link#) /*>$menu.background.image.|IMG|#<*/;
+	--rk-menu-background: $menu.background.color# /*>$menu.background.image.|IMG|#<*/;
 	--rk-menu-background-image-size: $menu.background.image.size#;
 
 
@@ -90,4 +90,86 @@
 	--rk-pagenav-color: $pagenav.color#;
 
 
+}
+
+
+/*	Custom Gif Background Ugly Workaround	*/
+
+/*all.css*/
+#rbx-body {
+	background-image: url($background.image.link#);
+}
+#header,#navigation,#footer-container {
+	background-image: url($menu.background.image.link#);
+}
+#container-main > div.content {
+	background-image: url($content.background.image.link#);
+}
+
+/*groups.css*/
+#group-container > div > div > div.group-details > div > div.section-content,
+#horizontal-tabs > li > a,
+#configure-group > configure-group-page > div > div:nth-child(2) > div > configure-group-menu > div.menu-vertical-container > ul,
+#group-shout > div.section-content.shout-container,
+#group-container > div > div > div.group-details > div > div[group-about] > div > group-wall > div > div.section-content.group-wall.group-wall-no-margin,
+#group-container > div > div > div.group-details > div > div[group-about] > div > group-members-list > div > div.section-content.group-members-list,
+#group-container > div > div > groups-list > div.menu-vertical-container > ul.menu-vertical,
+#configure-group > configure-group-page > div > div:nth-child(2) > div > div > configure-group-settings > div > div > div.section-content,
+#configure-group > configure-group-page > div > div:nth-child(2) > div > div > revenue-summary > div.section > table,
+#configure-group > configure-group-page > div > div:nth-child(2) > div > div > configure-group-members > div > configure-group-members-list > ul > configure-group-member-card > li > div,
+#configure-group > configure-group-page > div > div:nth-child(2) > div > div > configure-group-roles > div > configure-group-role-settings > div > div > div.section-content,
+#configure-group > configure-group-page > div > div:nth-child(2) > div > div > configure-group-allies > div > configure-group-allies-list > div.group-affiliates > ul > configure-group-affiliate-card > li > div,
+#configure-group > configure-group-page > div > div:nth-child(2) > div > div > configure-group-allies > div > configure-group-ally-requests > div.group-affiliates > ul > configure-group-affiliate-request-card > li > div,
+#group-container > div > div > div.group-details > div > group-wall > div > div.section-content.group-wall.group-wall-no-margin {
+	background-image: url($group.background.image.link#);
+}
+
+/*profile.css*/
+#container-main > div.content > div.profile-container > div > div.btr-profile-container > div.btr-profile-left > div.btr-profile-about.profile-about > div.section-content,
+#roblox-badges-container > div.section-content,
+#container-main > div.content > div.profile-container > div > div.btr-profile-container > div.btr-profile-right > div.btr-profile-favorites > div.section-content,
+#container-main > div.content > div.profile-container > div > div.btr-profile-container > div.btr-profile-left > div.btr-profile-playerbadges > div.section-content,
+#container-main > div.content > div.profile-container > div > div.btr-profile-container > div.btr-profile-left > div.btr-profile-groups > div.section-content,
+#btr-injected-inventory,
+#profile-current-wearing-avatar > div.profile-avatar-right.visible {
+	background-image: url($profile.background.image.link#);
+}
+
+/*games.css*/
+#game-badges-container > game-badges-list > div:not(.btr-badges-container) > ul > li.badge-row,
+#game-badges-container > game-badges-list > div > ul > li.badge-row {
+	background-image: url($badge.background.image.link#);
+}
+#game-instances #rbx-private-running-games > ul > li {
+	background-image: url($privateserver.background.image.link#);
+}
+#rbx-private-running-games > ul > li > div.card-item > div.rbx-private-game-server-details > span > * {
+	background-image: url($privateserver.button.background.image.link#);
+}
+#game-instances #rbx-friends-game-server-item-container > li {
+	background-image: url($friendsserver.background.image.link#);
+}
+#rbx-friends-game-server-item-container li div.rbx-friends-game-server-details > span > * {
+	background-image: url($friendsserver.button.background.image.link#);
+}
+#game-instances #rbx-small-game-server-item-container > li {
+	background-image: url($smallserver.background.image.link#);
+}
+#rbx-small-game-server-item-container li div.game-server-details > span > * {
+	background-image: url($smallserver.button.background.image.link#);
+}
+#game-instances #rbx-recent-server-box > li,
+#game-instances #rbx-game-server-item-container > li {
+	background-image: url($publicserver.background.image.link#);
+}
+#rbx-game-server-item-container li div.game-server-details > span > * {
+	background-image: url($publicserver.button.background.image.link#);
+}
+#rbx-running-games > div.rbx-running-games-footer > button,
+#rbx-running-games > div.ropro-running-games-footer > button,
+#rbx-running-games > div.btr-server-pager > ul.btr-pager > li > button,
+#rbx-small-running-games > button,
+#rbx-private-running-games > div > button,
+#rkpagenav > * {
+	background-image: url($pagenav.background.image.link#);
 }
