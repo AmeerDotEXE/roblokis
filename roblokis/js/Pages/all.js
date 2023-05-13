@@ -10,6 +10,44 @@ Rkis.page.all = () => {
 		return;
 	}
 
+	//load styles
+	document.$watch('#rk-theme-loaded', () => {
+		let styles = {
+			menu: {
+				float: {
+					css: ["js/Theme/styles/menuFloat.css"]
+				}
+			}
+		};
+		if (Rkis.Designer.currentTheme != null
+			&& Rkis.Designer.currentTheme.styles != null)
+			{
+			let theme = Rkis.Designer.currentTheme;
+			
+			let findFile = function(styleLocation, stylesObj) {
+				for (let stylePath in stylesObj) {
+					if (styleLocation[stylePath] == null) continue;
+					
+					if (stylesObj[stylePath][styleLocation[stylePath]] == null) {
+						//run loop on this object
+						findFile(styleLocation[stylePath], stylesObj[stylePath]);
+						continue;
+					}
+
+					let style = stylesObj[stylePath][styleLocation[stylePath]]
+					if (style.css != null) {
+						Rkis.Designer.addCSS(style.css);
+					}
+					if (style.js != null) {
+						style.js();
+					}
+				}
+			}
+
+			findFile(theme.styles, styles);
+		}
+	});
+
 	//Custom Name
 	if(Rkis.IsSettingEnabled("CustomName", {
 		id: "CustomName",

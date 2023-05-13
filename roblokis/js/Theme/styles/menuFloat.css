@@ -1,0 +1,38 @@
+#navigation {
+	height: fit-content;
+	max-height: 90%;
+	overflow-y: auto;
+	padding-bottom: 5px;
+	margin: 1%;
+}
+
+#header,
+#navigation,
+#footer-container {
+	border-color: var(--rk-menu-borders-color);
+	border-style: var(--rk-menu-borders-style);
+	border-width: var(--rk-menu-borders-size);
+}
+
+#header {
+	border-radius: var(--rk-menu-corners-radius, 16px);
+	/* border-radius: 0 0 16px 16px; */
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+}
+#footer-container {
+	border-radius: var(--rk-menu-corners-radius, 60px);
+	/* border-radius: 60px 60px 0 0; */
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	border-bottom: 0;
+	border-left: 0;
+	border-right: 0;
+}
+
+#navigation {
+	border-radius: var(--rk-menu-corners-radius, 20px);
+}

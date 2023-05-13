@@ -66,7 +66,7 @@ Rkis.page.game = () => {
 
 			findFile(theme.styles, styles);
 		}
-	})
+	});
 
 	//Small Servers
 	if (Rkis.IsSettingEnabled("SmallServer", {

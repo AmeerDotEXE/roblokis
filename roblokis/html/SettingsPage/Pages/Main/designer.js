@@ -196,7 +196,13 @@ const defaultcomponentElements = {
 				descriptionElem.dataset.translate = option.details.translate?.description || '';
 				
 				if (option.image != null) {
-					imageHolder.innerHTML = `<img src="${escapeHTML(chrome.runtime.getURL(option.image))}" style="border-radius:8px;max-height: 12rem;max-width: 100%;">`
+					if (option.isPortrait == true) imageHolder.style.display = "block";
+					imageHolder.innerHTML = `<img src="${escapeHTML(chrome.runtime.getURL(option.image))}" class="rk-style-image">`;
+
+					let imageElement = imageHolder.querySelector('img');
+					imageElement.addEventListener('click', () => {
+						imageElement.classList.toggle("rk-focus-zoom-image");
+					});
 				}
 				else imageHolder.$clear();
 			});
@@ -268,6 +274,28 @@ let designerComponents = [
 		},
 		element: defaultcomponentElements.styleDropdown
 	},//badges
+	{
+		id: "menu",
+		details: {
+			name: "Menu",
+			translate: {
+				name: "" // ! translate
+			}
+		},
+		parent: {
+			headId: 'styles',
+			ids: {
+				styles: true
+			}
+		},
+		data: {
+			options: [
+				{value: '',image:'images/themes/styles/menuDefault.png',isPortrait:true,details:{name:'Default',description:"Roblox's default design"}},
+				{value: 'float',image:'images/themes/styles/menuFloat.png',isPortrait:true,details:{name:'Floating',description:"Floating phone looking design"}},
+			]
+		},
+		element: defaultcomponentElements.styleDropdown
+	},//menu
 
 
 
@@ -961,6 +989,42 @@ let designerComponents = [
 		},
 		element: defaultcomponentElements.horizantalGroup
 	},//menu
+	{
+		id: "icon",
+		tags: ["hasBackground"],
+		parent: {
+			tags: {
+				page: true
+			}
+		},
+		details: {
+			name: "Header Wide Logo",
+			description: "Edits the 'ROBLOX' logo on top right of site.",
+			translate: {
+				name: "", // ! translate
+				description: ""
+			}
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//icon
+	{
+		id: "iconr",
+		tags: ["hasBackground"],
+		parent: {
+			tags: {
+				page: true
+			}
+		},
+		details: {
+			name: "Header Short Logo",
+			description: "Edits the 'O' logo on top right of site.",
+			translate: {
+				name: "", // ! translate
+				description: ""
+			}
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//iconr
 	{
 		id: "group",
 		tags: ["blockElement"],

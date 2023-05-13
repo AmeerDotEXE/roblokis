@@ -23,6 +23,18 @@ body.light-theme .rk-btn.rk-white { background-color: rgb(35, 37, 39); color: wh
 .rk-flex.rk-center-y { justify-content: center; }
 .rk-flex.rk-center-x { align-items: center; }
 
+:root .rk-focus-zoom-image {
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    zoom: 2.5;
+	max-height: 80%;
+	max-width: 80%;
+	box-shadow: 0px 0px 100px 50px black;
+	z-index: 5000;
+}
+
 
 /* Global */
 
@@ -399,3 +411,9 @@ span.rk-button {
 	justify-content: center;
 }
 
+.rk-style-image {
+	border-radius: 8px;
+    max-height: 12rem;
+    max-width: 100%;
+	cursor: pointer;
+}

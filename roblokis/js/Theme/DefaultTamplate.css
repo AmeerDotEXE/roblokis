@@ -53,6 +53,15 @@
 --loopend: 0;
 
 
+/*  Header Logo	*/
+
+	--rk-icon-background: $icon.background.color# /*>$icon.background.image.|IMG|#<*/;
+	--rk-icon-background-image-size: $icon.background.image.size#;
+	
+	--rk-icon-r-background: $iconr.background.color# /*>$iconr.background.image.|IMG|#<*/;
+	--rk-icon-r-background-image-size: $iconr.background.image.size#;
+
+
 /*  Content	 */
 
 	--rk-content-box-shadow: $content.shadow#black 0px 0px 8px 2px;
@@ -98,6 +107,12 @@
 }
 #container-main > div.content {
 	background-image: url($content.background.image.link#);
+}
+:root .icon-logo {
+	background-image: url($icon.background.image.link#);
+}
+:root .icon-logo-r {
+	background-image: url($iconr.background.image.link#);
 }
 
 /*groups.css*/

@@ -365,7 +365,8 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
 	z-index: var(--rk-basic-animations, 10);
 }
 
-#rbx-game-server-item-container li div.game-server-details > span > * {
+#rbx-game-server-item-container li div.game-server-details a,
+#rbx-game-server-item-container li div.game-server-details button {
 	margin-top: 0 !important;
 	color: var(--rk-publicserver-button-color);
 
