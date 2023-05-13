@@ -30,7 +30,12 @@ Rkis.page.game = () => {
 		let styles = {
 			servers: {
 				card: {
-					css: ["js/Theme/styles/serversCards.css"]
+					css: ["js/Theme/styles/serversCard.css"]
+				}
+			},
+			badges: {
+				card: {
+					css: ["js/Theme/styles/badgesCard.css"]
 				}
 			}
 		};
@@ -871,18 +876,42 @@ Rkis.page.game = () => {
 							thecut = true;
 						}
 
+						if (Rkis.Designer.currentTheme?.styles?.badges != "card") thecut = false;
+
 						if (badgeimg && badgeimg.imageUrl) mainelement.innerHTML = `<div class="badge-image"> <a href="${window.location.origin}/badges/${escapeHTML(badge.id)}/${escapeHTML(badge.name)}"> <img src="${escapeHTML(badgeimg.imageUrl)}"></a> </div>`;
-						mainelement.innerHTML += `<div class="badge-content"> <div class="badge-data-container">
-						<div class="font-header-2 badge-name">${escapeHTML(badge.displayName) || Rkis.language["badgeNoName"]}</div>
-						<p class="para-overflow">${escapeHTML(badge.displayDescription) || Rkis.language["badgeNoDescription"]}</p> </div> <ul class="badge-stats-container"> <li> <div class="text-label">${Rkis.language["badgeRare"]}</div>
-						<div class="font-header-2 badge-stats-info">${escapeHTML(Math.floor(badge.statistics.winRatePercentage * 1000) / 10)}%</div> </li> <li> <div class="text-label">${Rkis.language["badgeLastWon"]}</div>
-						<div class="font-header-2 badge-stats-info">${escapeHTML(badge.statistics.pastDayAwardedCount)}</div> </li> <li> <div class="text-label">${Rkis.language["badgeWon"]}</div> 
-						<div class="font-header-2 badge-stats-info">${escapeHTML(badge.statistics.awardedCount)}</div> </li>
-						${thecut == true ? `<li class="thecut"></li>` : ""} ${creat != null ? `<li
-						title="${Rkis.language.get("badgeCreatedLong", creat.$format("MMM D, YYYY | hh:mm A (T)"))}"> <div class="text-label">${Rkis.language["badgeCreatedShort"]}</div> 
-						<div class="font-header-2 badge-stats-info">${creat.$since()}</div> </li>` : ""} ${updat != null ? `<li
-						title="${Rkis.language.get("badgeUpdatedLong", updat.$format("MMM D, YYYY | hh:mm A (T)"))}"> <div class="text-label">${Rkis.language["badgeUpdatedShort"]}</div> 
-						<div class="font-header-2 badge-stats-info">${updat.$since()}</div> </li>` : ""}` + badgeawrd + `</ul> </div>`;
+						mainelement.innerHTML += /*html*/`
+						<div class="badge-content">
+							<div class="badge-data-container">
+								<div class="font-header-2 badge-name">${escapeHTML(badge.displayName) || Rkis.language["badgeNoName"]}</div>
+								<p class="para-overflow">${escapeHTML(badge.displayDescription) || Rkis.language["badgeNoDescription"]}</p>
+							</div>
+							<ul class="badge-stats-container">
+								<li>
+									<div class="text-label">${Rkis.language["badgeRare"]}</div>
+									<div class="font-header-2 badge-stats-info">${escapeHTML(Math.floor(badge.statistics.winRatePercentage * 1000) / 10)}%</div>
+								</li>
+								<li>
+									<div class="text-label">${Rkis.language["badgeLastWon"]}</div>
+									<div class="font-header-2 badge-stats-info">${escapeHTML(badge.statistics.pastDayAwardedCount)}</div>
+								</li>
+								<li>
+									<div class="text-label">${Rkis.language["badgeWon"]}</div> 
+									<div class="font-header-2 badge-stats-info">${escapeHTML(badge.statistics.awardedCount)}</div>
+								</li>
+								${thecut == true ? `<li class="thecut"></li>` : ""}
+								${creat != null ? /*html*/`
+								<li title="${Rkis.language.get("badgeCreatedLong", creat.$format("MMM D, YYYY | hh:mm A (T)"))}">
+									<div class="text-label">${Rkis.language["badgeCreatedShort"]}</div> 
+									<div class="font-header-2 badge-stats-info">${creat.$since()}</div>
+								</li>` : ""}
+								${updat != null ? /*html*/`
+								<li title="${Rkis.language.get("badgeUpdatedLong", updat.$format("MMM D, YYYY | hh:mm A (T)"))}">
+									<div class="text-label">${Rkis.language["badgeUpdatedShort"]}</div> 
+									<div class="font-header-2 badge-stats-info">${updat.$since()}</div>
+								</li>` : ""}
+								${badgeawrd}
+							</ul>
+						</div>`;
 
 						badgessection.append(mainelement);
 					}

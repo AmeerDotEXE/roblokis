@@ -36,7 +36,7 @@ Rkis.page.all = () => {
 	}
 
 	//Custom Robux
-	//can be improved!!!
+	//* can be improved!!!
 	if(Rkis.IsSettingEnabled("CustomRobux", {
 			id: "CustomRobux",
 			type: "text",
@@ -79,7 +79,7 @@ Rkis.page.all = () => {
 	}
 
 	//Quick Game Join
-	//can be improved!!!
+	//* can be improved!!!
 	if(Rkis.IsSettingEnabled("QuickGameJoin", {
 		id: "QuickGameJoin",
 		type: "switch",
@@ -134,7 +134,7 @@ Rkis.page.all = () => {
 	}
 
 	//Desktop App
-	//add translation for button
+	// TODO add translation for button
 	if(Rkis.IsSettingEnabled("DesktopApp", {
 		id: "DesktopApp",
 		type: "switch",
@@ -174,6 +174,30 @@ Rkis.page.all = () => {
 				});
 
 			})
+		})();
+	}
+
+	//! translate
+	if(Rkis.IsSettingEnabled("StatusRing", {
+		id: "StatusRing",
+		type: "switch",
+		value: { switch: true },
+		details: {
+			default: "en",
+			translate: {
+				name: "",
+				description: ""
+			},
+			"en": {
+				name: "Friend Status Ring",
+				description: "Shows friend's status icon color around their avatar."
+			}
+		}
+	})) {
+		(function() {
+			document.$watch("body", (body) => {
+				body.classList.add('rk-status-ring');
+			});
 		})();
 	}
 

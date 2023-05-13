@@ -53,12 +53,6 @@
 --loopend: 0;
 
 
-/*  Menu	*/
-
-	--rk-menu-background: $menu.background.color# /*>$menu.background.image.|IMG|#<*/;
-	--rk-menu-background-image-size: $menu.background.image.size#;
-
-
 /*  Content	 */
 
 	--rk-content-box-shadow: $content.shadow#black 0px 0px 8px 2px;

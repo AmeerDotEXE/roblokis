@@ -134,10 +134,8 @@ const defaultcomponentElements = {
 
 			<div class="rbx-divider" style="margin: 12px;"></div>
 
-			<div>
-				<div data-location="image" style="float: left;margin-right: 1rem;"></div>
-				<span class="text-description" data-location="description"></span>
-			</div>
+			<span class="text-description" data-location="description"></span>
+			<div data-location="image" style="width: 100%;display: flex;justify-content: center;"></div>
 
 		</div>`,
 		js: function (idCard, parentElement) {
@@ -198,7 +196,7 @@ const defaultcomponentElements = {
 				descriptionElem.dataset.translate = option.details.translate?.description || '';
 				
 				if (option.image != null) {
-					imageHolder.innerHTML = `<img src="${escapeHTML(chrome.runtime.getURL(option.image))}" style="border-radius:8px;">`
+					imageHolder.innerHTML = `<img src="${escapeHTML(chrome.runtime.getURL(option.image))}" style="border-radius:8px;max-height: 12rem;max-width: 100%;">`
 				}
 				else imageHolder.$clear();
 			});
@@ -243,11 +241,33 @@ let designerComponents = [
 		data: {
 			options: [
 				{value: '',image:'images/themes/styles/serversDefault.png',details:{name:'Default',description:"Roblox's default design"}},
-				{value: 'card',image:'images/themes/styles/serversCard.png',details:{name:'Card',description:"Vertcal cards with Player icons on bottom"}},
+				{value: 'card',image:'images/themes/styles/serversCard.png',details:{name:'Card',description:"Cards with Player icons on bottom"}},
 			]
 		},
 		element: defaultcomponentElements.styleDropdown
 	},//servers
+	{
+		id: "badges",
+		details: {
+			name: "Badges",
+			translate: {
+				name: "tabBadges"
+			}
+		},
+		parent: {
+			headId: 'styles',
+			ids: {
+				styles: true
+			}
+		},
+		data: {
+			options: [
+				{value: '',image:'images/themes/styles/badgesDefault.png',details:{name:'Default',description:"Roblox's default design"}},
+				{value: 'card',image:'images/themes/styles/badgesCard.png',details:{name:'Card'}},
+			]
+		},
+		element: defaultcomponentElements.styleDropdown
+	},//badges
 
 
 
@@ -929,7 +949,7 @@ let designerComponents = [
 	},//content
 	{
 		id: "menu",
-		tags: ["hasBackground"],
+		tags: ["blockElement"],
 		parent: {
 			tags: {
 				page: true

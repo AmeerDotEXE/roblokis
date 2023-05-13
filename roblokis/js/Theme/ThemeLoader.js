@@ -313,7 +313,7 @@ Rkis.Designer.SetupTheme = async function() {
 			})
 		}
 		if(n[0].includes("|fullpack|")) {
-			var alltheelements = ["pagenav","badge","content","profile","group"];
+			var alltheelements = ["pagenav","badge","content","menu","profile","group"];
 
 			alltheelements.forEach((element, elementnumber) => {
 				completecode += n[0].split("|fullpack|").join(element);

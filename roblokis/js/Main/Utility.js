@@ -979,7 +979,12 @@ function HTMLParser(input, ...elements) {
 	
 	if (holder == null) holder = document.createElement('div');
 	
+	let functions = elements.filter(x => typeof x == "function");
+	elements = elements.filter(x => typeof x != "function" && x != null);
+
 	if (elements.length > 0) holder.append(...elements);
+
+	functions.forEach(x => x(holder));
 
 	return holder;
 }

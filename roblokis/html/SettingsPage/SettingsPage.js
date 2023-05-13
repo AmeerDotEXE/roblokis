@@ -700,6 +700,10 @@ page.settingsWaitingForGeneral = function() {
 							</div>
 
 							<loadcode code="settingload" data-id="ExtraShadows"></loadcode>
+
+							<div class="rbx-divider" style="margin: 12px;"></div>
+
+							<loadcode code="settingload" data-id="StatusRing"></loadcode>
 						</div>
 						<div class="tabcontent themes">
 							<h3><span data-translate="categoryMain">Main</span> &gt; <span data-translate="tabThemes">Themes</span></h3>

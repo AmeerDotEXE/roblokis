@@ -8,6 +8,23 @@ li .game-server-details > span:has(> button.game-server-join-btn):has(> .rk-copy
 #game-instances:has( .rk-plr-counter) li .game-server-details > div.rbx-game-status {
 	display: none;
 }
-#game-instances:has( .rk-plr-counter) li div.player-thumbnails-container:has(> *:nth-child(6)) > span:nth-last-child(2) {
+#game-instances:has( .rk-plr-counter) li div.player-thumbnails-container:has(> .hidden-players-placeholder:not(.rk-plr-counter)):has(> *:nth-child(6)) > span:nth-last-child(2) {
 	display: none;
+}
+
+/* Avatar Status Ring */
+.avatar-container:has( .avatar-status:not(.icon-game):not(.icon-online):not(.icon-studio)) {
+	--friend-status-color: hsl(0, 0%, 0%);
+}
+.avatar-container:has( .avatar-status.icon-game) {
+	--friend-status-color: hsl(148, 98%, 36%);
+}
+.avatar-container:has( .avatar-status.icon-online) {
+	--friend-status-color: hsl(202, 100%, 50%);
+}
+.avatar-container:has( .avatar-status.icon-studio) {
+	--friend-status-color: hsl(33, 98%, 49%);
+}
+.rk-status-ring .avatar-container:has( .avatar-status) .avatar thumbnail-2d.avatar-card-image {
+	border: 2px solid var(--friend-status-color);
 }
