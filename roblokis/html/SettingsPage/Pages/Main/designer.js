@@ -279,7 +279,7 @@ let designerComponents = [
 		details: {
 			name: "Menu",
 			translate: {
-				name: "" // ! translate
+				name: "EditorStyleMenu"
 			}
 		},
 		parent: {
@@ -1001,8 +1001,8 @@ let designerComponents = [
 			name: "Header Wide Logo",
 			description: "Edits the 'ROBLOX' logo on top right of site.",
 			translate: {
-				name: "", // ! translate
-				description: ""
+				name: "componmentIcon",
+				description: "componmentIconDesc"
 			}
 		},
 		element: defaultcomponentElements.horizantalGroup
@@ -1019,8 +1019,8 @@ let designerComponents = [
 			name: "Header Short Logo",
 			description: "Edits the 'O' logo on top right of site.",
 			translate: {
-				name: "", // ! translate
-				description: ""
+				name: "componmentIconR",
+				description: "componmentIconRDesc"
 			}
 		},
 		element: defaultcomponentElements.horizantalGroup

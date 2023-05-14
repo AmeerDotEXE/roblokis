@@ -412,7 +412,7 @@
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionDApp": {
-		"message": "Aplicación de escritorio.",
+		"message": "Aplicación de escritorio",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionDApp1": {
@@ -936,5 +936,37 @@
 	"themePageContentDesc": {
 		"message": "Edita el bloque central que contiene el contenido de la página.",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"EditorStyleMenu": {
+		"message": "Menú",
+		"description": "Text shows in roblokis settings. Shows in Editor at styles tab"
+	},
+	"editorStylesTab": {
+		"message": "Estilos",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"componmentIcon": {
+		"message": "Logotipo ancho de cabecera",
+		"description": "Text shows in roblokis settings. Shows in Editor at Pages tab"
+	},
+	"componmentIconDesc": {
+		"message": "Edita el logo 'ROBLOX' en la parte superior derecha del sitio.",
+		"description": "Text shows in roblokis settings. Shows in Editor at Pages tab"
+	},
+	"componmentIconR": {
+		"message": "Logotipo corto de cabecera",
+		"description": "Text shows in roblokis settings. Shows in Editor at Pages tab"
+	},
+	"componmentIconRDesc": {
+		"message": "Edita el logo 'O' en la parte superior derecha del sitio.",
+		"description": "Text shows in roblokis settings. Shows in Editor at Pages tab"
+	},
+	"StatusRing": {
+		"message": "Anillo de estado de amigo",
+		"description": "Text shows in roblokis settings. Shows in Design tab"
+	},
+	"StatusRingDesc": {
+		"message": "Muestra el color del icono de estado de un amigo alrededor de su avatar.",
+		"description": "Text shows in roblokis settings. Shows in Design tab"
 	}
 }

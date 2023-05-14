@@ -138,8 +138,8 @@ Rkis.page.all = () => {
 			var lastnumber = 0;
 
 			document.$watchLoop("a.game-card-link", (elem) => {
-				if(elem == null || elem.href == null || elem.dataset.addedjoin == "true") return;
-				elem.dataset.addedjoin = "true";
+				if(elem.href == null || elem.addedjoin == "true") return;
+				elem.addedjoin = "true";
 
 				/*
 					https://www.roblox.com/games/refer?IsLargeGameTile=false&PageId=4a6d26c8-7d80-4a32-ab3b-9e9365bcad66&PageType=Games&PlaceId=6872265039&Position=7&SortName=PersonalRecommendation&SortPosition=2&LocalTimestamp=2022-01-10T08:07:43.575Z
@@ -160,9 +160,12 @@ Rkis.page.all = () => {
 				var elmnt = document.createElement("a");
 				elmnt.className = "btn-full-width btn-control-xs rbx-game-server-join rk-quickgamejoin rk-btn-r" + num;
 				elmnt.dataset.placeid = id;
-				elmnt.setAttribute("onclick", `Roblox.GameLauncher.joinMultiplayerGame(${elmnt.dataset.placeid})`);
-				elmnt.setAttribute("style", `margin: 0; display: inline-block;`);
-				elmnt.dataset.translate = "joinButtons";
+				//elmnt.setAttribute("onclick", `Roblox.GameLauncher.joinMultiplayerGame(${elmnt.dataset.placeid})`);
+				// elmnt.setAttribute("style", `margin: 0; display: inline-block;`);
+				elmnt.style.margin = "0";
+				elmnt.style.display = "inline-block";
+				// elmnt.dataset.translate = "joinButtons";
+				elmnt.innerHTML = Rkis.language["joinButtons"];
 
 				var namethingy = elem.$find("div.game-card-name.game-name-title");
 				elem.insertBefore(elmnt, namethingy);
@@ -199,7 +202,7 @@ Rkis.page.all = () => {
 
 				newbutton.className = "dynamic-overflow-container text-nav";
 				newbutton.id = "rk-desktopapp";
-				newbutton.innerHTML = `<div><span class="icon-nav-giftcards" style="background-image: url(${escapeHTML(Rkis.fileLocation)}images/icons/icon_300x300.png);background-position: center;background-size: 30px;"></span></div><span class="font-header-2 dynamic-ellipsis-item">Desktop App</span>`;
+				newbutton.innerHTML = `<div><span class="icon-nav-giftcards" style="background-image: url(${escapeHTML(Rkis.fileLocation)}images/icons/icon_300x300.png);background-position: center;background-size: 30px;"></span></div><span class="font-header-2 dynamic-ellipsis-item">${Rkis.language["sectionDApp"]}</span>`;
 				newbutton.addEventListener("click", () => { document.$event("rk-desktopapp"); });
 				newbtn.append(newbutton);
 
@@ -215,7 +218,6 @@ Rkis.page.all = () => {
 		})();
 	}
 
-	//! translate
 	if(Rkis.IsSettingEnabled("StatusRing", {
 		id: "StatusRing",
 		type: "switch",
@@ -223,8 +225,8 @@ Rkis.page.all = () => {
 		details: {
 			default: "en",
 			translate: {
-				name: "",
-				description: ""
+				name: "StatusRing",
+				description: "StatusRingDesc"
 			},
 			"en": {
 				name: "Friend Status Ring",

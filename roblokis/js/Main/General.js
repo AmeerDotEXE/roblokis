@@ -275,8 +275,8 @@ Rkis.wholeData = { ...wholedata };
 		if (Rkis.language[msg] != null && Rkis.language[msg] != "") return;
 		Rkis.languageCode = chrome.i18n.getUILanguage();
 
-		Rkis.language[msg] = chrome.i18n.getMessage(msg, ["$1$", "$2$", "$3$", "$4$", "$5$", "$6$", "$7$", "$8$", "$9$"]);
-		Rkis.language[msg] = (allCodes[msg] != null ? (allCodes[msg].message || Rkis.language[msg]) : Rkis.language[msg]);
+		if (allCodes[msg] != null) Rkis.language[msg] = allCodes[msg].message;
+		if (Rkis.language[msg] == null) Rkis.language[msg] = chrome.i18n.getMessage(msg, ["$1$", "$2$", "$3$", "$4$", "$5$", "$6$", "$7$", "$8$", "$9$"]);
 
 		Rkis.language[msg].split("$").forEach((e, i) => {
 			if (i == 0) return Rkis.language[msg] = e;
@@ -326,6 +326,7 @@ Rkis.wholeData = { ...wholedata };
 	l("badgeUpdatedLong");
 
 	l("joinButtons");
+	l("sectionDApp");
 
 	l("cancelRequest");
 	l("canceledRequest");//

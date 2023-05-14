@@ -448,7 +448,7 @@
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionDApp": {
-		"message": "Desktop App.",
+		"message": "Desktop App",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionDApp1": {
@@ -936,5 +936,37 @@
 	"JoinPublicServer": {
 		"message": "Join Public Server",
 		"description": "Text shows on friends servers. text shows when your friend is in a public server"
+	},
+	"EditorStyleMenu": {
+		"message": "Menu",
+		"description": "Text shows in roblokis settings. Shows in Editor at styles tab"
+	},
+	"editorStylesTab": {
+		"message": "Styles",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"componmentIcon": {
+		"message": "Header Wide Logo",
+		"description": "Text shows in roblokis settings. Shows in Editor at Pages tab"
+	},
+	"componmentIconDesc": {
+		"message": "Edits the 'ROBLOX' logo on top right of site.",
+		"description": "Text shows in roblokis settings. Shows in Editor at Pages tab"
+	},
+	"componmentIconR": {
+		"message": "Header Short Logo",
+		"description": "Text shows in roblokis settings. Shows in Editor at Pages tab"
+	},
+	"componmentIconRDesc": {
+		"message": "Edits the 'O' logo on top right of site.",
+		"description": "Text shows in roblokis settings. Shows in Editor at Pages tab"
+	},
+	"StatusRing": {
+		"message": "Friend Status Ring",
+		"description": "Text shows in roblokis settings. Shows in Design tab"
+	},
+	"StatusRingDesc": {
+		"message": "Shows friend's status icon color around their avatar.",
+		"description": "Text shows in roblokis settings. Shows in Design tab"
 	}
 }

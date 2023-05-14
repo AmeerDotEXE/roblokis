@@ -412,7 +412,7 @@
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionDApp": {
-		"message": "Aplikasi Desktop.",
+		"message": "Aplikasi Desktop",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionDApp1": {
@@ -936,5 +936,37 @@
 	"themePageContentDesc": {
 		"message": "Mengedit blok tengah yang menampung konten halaman.",
 		"description": "Text shows in Roblokis Settings at Designer Tab. text for theme Editing"
+	},
+	"EditorStyleMenu": {
+		"message": "Menu",
+		"description": "Text shows in roblokis settings. Shows in Editor at styles tab"
+	},
+	"editorStylesTab": {
+		"message": "Gaya",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"componmentIcon": {
+		"message": "Logo Lebar Header",
+		"description": "Text shows in roblokis settings. Shows in Editor at Pages tab"
+	},
+	"componmentIconDesc": {
+		"message": "Mengedit logo 'ROBLOX' di bagian kanan atas situs.",
+		"description": "Text shows in roblokis settings. Shows in Editor at Pages tab"
+	},
+	"componmentIconR": {
+		"message": "Logo Pendek Header",
+		"description": "Text shows in roblokis settings. Shows in Editor at Pages tab"
+	},
+	"componmentIconRDesc": {
+		"message": "Mengedit logo 'O' di kanan atas situs.",
+		"description": "Text shows in roblokis settings. Shows in Editor at Pages tab"
+	},
+	"StatusRing": {
+		"message": "Cincin Status Teman",
+		"description": "Text shows in roblokis settings. Shows in Design tab"
+	},
+	"StatusRingDesc": {
+		"message": "Menampilkan warna ikon status teman di sekitar avatar mereka.",
+		"description": "Text shows in roblokis settings. Shows in Design tab"
 	}
 }

@@ -1,13 +1,17 @@
 var Rkis = Rkis || {};
 
 Rkis.InjectFile = function(src) {
+	let head = document.head;
+	if (head == null) head = document.documentElement;
+
 	const script = document.createElement('script');
 	script.src = src;
 	script.onload = function() {
 		//console.log("script injected");
 		this.remove();
 	};
-	(document.head || document.documentElement).appendChild(script);
+
+	head.appendChild(script);
 };
 Rkis.IS_DEV = chrome.runtime.getManifest().update_url == null;
 
@@ -266,10 +270,8 @@ $r = (() => {
 					execute() {
 						const matches = target.$findAll(selector);
 
-						for (let index = 0; index < matches.length; index++) {
-							const match = matches[index];
-
-							if (!this.checked.has(match)) {
+						for (const match of matches) {
+							if (this.checked.has(match) == false) {
 								this.checked.add(match);
 
 								if (!filter || filter(match)) {
@@ -349,12 +351,12 @@ $r = (() => {
 			},
 
 			find(self, selector, callback) {
-				let result = self.querySelector(selector.replace(/(^|,)\s*(?=>)/g, "$&:scope"));
+				let result = self.querySelector(selector);
 				if (callback != null && result != null) return (callback(result) || result);
 				return result;
 			},
 			findAll(self, selector, callback) {
-				let result = self.querySelectorAll(selector.replace(/(^|,)\s*(?=>)/g, "$&:scope"));
+				let result = self.querySelectorAll(selector);
 				if (callback != null && result != null && result.length > 0) Array.prototype.forEach.call(result, callback);
 				return result;
 			},

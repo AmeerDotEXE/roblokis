@@ -46,8 +46,11 @@
 		var joinbtn = button.querySelector("a.rk-quickgamejoin");
 
 		button.addEventListener("click", (e) => {
-			if (e.target == joinbtn) { e.preventDefault(); return false; }
-			return true;
+			if (e.target != joinbtn) return true;
+
+			Roblox.GameLauncher.joinMultiplayerGame(joinbtn.dataset.placeid);
+			e.preventDefault();
+			return false;
 		})
 	});
 

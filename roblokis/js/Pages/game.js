@@ -878,7 +878,7 @@ Rkis.page.game = () => {
 
 						if (Rkis.Designer.currentTheme?.styles?.badges != "card") thecut = false;
 
-						if (badgeimg && badgeimg.imageUrl) mainelement.innerHTML = `<div class="badge-image"> <a href="${window.location.origin}/badges/${escapeHTML(badge.id)}/${escapeHTML(badge.name)}"> <img src="${escapeHTML(badgeimg.imageUrl)}"></a> </div>`;
+						if (badgeimg?.imageUrl != null) mainelement.innerHTML = `<div class="badge-image"> <a href="${window.location.origin}/badges/${escapeHTML(badge.id)}/${escapeHTML(badge.name)}"> <img src="${escapeHTML(badgeimg.imageUrl)}"></a> </div>`;
 						mainelement.innerHTML += /*html*/`
 						<div class="badge-content">
 							<div class="badge-data-container">
