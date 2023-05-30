@@ -535,7 +535,6 @@ let designerComponents = [
 					element.style.borderRadius = finishedStyle.join(' ');
 				}
 
-
 				let previewElement = element.querySelector('[data-preview]');
 				if (previewElement != null) {
 					element.querySelectorAll('[data-location]')
@@ -593,191 +592,68 @@ let designerComponents = [
 		},
 		element: {
 			html: /*html*/`
-			<div class="section-content" style="min-width: 260px;">
-				<div class="rk-flex rk-space-between rk-center-x">
-					<h4 style="width: fit-content;" data-translate="themeBorders">Borders</h4>
-					<button class="rk-btn" data-remove-component>-</button>
+			<div class="section-content" style="min-width: 260px;display: flex;">
+				<!-- ! translate -->
+				<div data-preview
+					style="width: min(10rem, 20%);display: flex;background-color: rgba(128,128,128,0.1);margin-right: 1rem;justify-content: center;align-items: center;border-radius: 20px 0;">
+					Preview
 				</div>
-				<div>
-					<div class="text-lead rk-flex rk-space-between rk-center-x">
-						<span data-translate="themeWidth">Width:</span>
-						<input type="range" value="0"
-							data-location="borders.all.size" data-type="px" class="form-control input-field" max="10">
-					</div>
+				<div style="flex-grow: 1;">
 					<div class="rk-flex rk-space-between rk-center-x">
-						<span data-translate="themeStyle">Style:</span>
-						<select selected="solid" data-location="borders.all.style" data-type="value">
-							<option value="solid" data-translate="themeSolid">Solid</option>
-							<option value="double" data-translate="themeDouble">Double</option>
-							<option value="dashed" data-translate="themeDashed">Dashed</option>
-							<option value="dotted" data-translate="themeDotted">Dotted</option>
-							<option value="inset" data-translate="themeInset">Inset</option>
-							<option value="outset" data-translate="themeOutset">Outset</option>
-							<option value="groove" data-translate="themeGroove">Groove</option>
-							<option value="ridge" data-translate="themeRidge">Ridge</option>
-						</select>
+						<h4 style="width: fit-content;" data-translate="themeBorders">Borders</h4>
+						<button class="rk-btn" data-remove-component>-</button>
 					</div>
-					<div class="text-lead rk-flex rk-space-between rk-center-x">
-						<span data-translate="themeColor">Color:</span>
-						<input type="color" value="#ffffff"
-							data-location="borders.all.color" data-type="color" class="form-control input-field">
-					</div>
-					<div class="text-lead rk-flex rk-space-between rk-center-x">
-						<span data-translate="themeAlpha">Alpha:</span>
-						<input type="range" value="100" step="10"
-							data-location="borders.all.color" data-type="color-alpha" class="form-control input-field">
-					</div>
-				</div>
-				<div class="rbx-divider" style="margin: 12px;"></div>
-
-				<div style="border-radius: 10px;margin-bottom: 6px;" class="text-lead">
-					<input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
-					<label class="accordion__label" style="font-weight: 400;" data-translate="themeTBorder">Top Border</label>
-
-					<span data-location="borders.top" class="rk-button receiver-destination-type-toggle off" style="float: right;">
-						<span class="toggle-flip"></span>
-						<span class="toggle-on"></span>
-						<span class="toggle-off"></span>
-					</span>
-					<div class="accordion__content">
-						<div>
-							<div class="text-lead rk-flex rk-space-between rk-center-x">
-								<span data-translate="themeWidth">Width:</span>
-								<input type="range" value="0"
-									data-location="borders.top.size" data-type="px" class="form-control input-field" max="10">
-							</div>
-							<div class="rk-flex rk-space-between rk-center-x">
-								<span data-translate="themeStyle">Style:</span>
-								<select selected="solid" data-location="borders.top.style" data-type="value">
-									<option value="solid" data-translate="themeSolid">Solid</option>
-									<option value="double" data-translate="themeDouble">Double</option>
-									<option value="dashed" data-translate="themeDashed">Dashed</option>
-									<option value="dotted" data-translate="themeDotted">Dotted</option>
-									<option value="inset" data-translate="themeInset">Inset</option>
-									<option value="outset" data-translate="themeOutset">Outset</option>
-									<option value="groove" data-translate="themeGroove">Groove</option>
-									<option value="ridge" data-translate="themeRidge">Ridge</option>
-								</select>
-							</div>
-							<div class="text-lead rk-flex rk-space-between rk-center-x">
-								<span data-translate="themeColor">Color:</span>
-								<input type="color" value="#ffffff"
-									data-location="borders.top.color" data-type="color" class="form-control input-field">
-							</div>
-							<div class="text-lead rk-flex rk-space-between rk-center-x">
-								<span data-translate="themeAlpha">Alpha:</span>
-								<input type="range" value="100" step="10"
-									data-location="borders.top.color" data-type="color-alpha" class="form-control input-field">
-							</div>
+					<div>
+						<div class="text-lead rk-flex rk-space-between rk-center-x">
+							<span data-translate="themeWidth">Width:</span>
+							<input type="range" value="0"
+								data-location="borders.all.size" data-type="px" class="form-control input-field" max="10">
+						</div>
+						<div class="rk-flex rk-space-between rk-center-x">
+							<span data-translate="themeStyle">Style:</span>
+							<select selected="solid" data-location="borders.all.style" data-type="value">
+								<option value="solid" data-translate="themeSolid">Solid</option>
+								<option value="double" data-translate="themeDouble">Double</option>
+								<option value="dashed" data-translate="themeDashed">Dashed</option>
+								<option value="dotted" data-translate="themeDotted">Dotted</option>
+								<option value="inset" data-translate="themeInset">Inset</option>
+								<option value="outset" data-translate="themeOutset">Outset</option>
+								<option value="groove" data-translate="themeGroove">Groove</option>
+								<option value="ridge" data-translate="themeRidge">Ridge</option>
+							</select>
+						</div>
+						<div class="text-lead rk-flex rk-space-between rk-center-x">
+							<span data-translate="themeColor">Color:</span>
+							<input type="color" value="#ffffff"
+								data-location="borders.all.color" data-type="color" class="form-control input-field">
+						</div>
+						<div class="text-lead rk-flex rk-space-between rk-center-x">
+							<span data-translate="themeAlpha">Alpha:</span>
+							<input type="range" value="100" step="10"
+								data-location="borders.all.color" data-type="color-alpha" class="form-control input-field">
 						</div>
 					</div>
-				</div>
+					<div class="rbx-divider" style="margin: 12px;"></div>
 
-				<div style="border-radius: 10px;margin-bottom: 6px;" class="text-lead">
-					<input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
-					<label class="accordion__label" style="font-weight: 400;" data-translate="themeLBorder">Left Border</label>
+					<div style="border-radius: 10px;margin-bottom: 6px;" class="text-lead">
+						<input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
+						<label class="accordion__label" style="font-weight: 400;" data-translate="themeTBorder">Top Border</label>
 
-					<span data-location="borders.left" class="rk-button receiver-destination-type-toggle off" style="float: right;">
-						<span class="toggle-flip"></span>
-						<span class="toggle-on"></span>
-						<span class="toggle-off"></span>
-					</span>
-					<div class="accordion__content">
-						<div>
-							<div class="text-lead rk-flex rk-space-between rk-center-x">
-								<span data-translate="themeWidth">Width:</span>
-								<input type="range" value="0"
-									data-location="borders.left.size" data-type="px" class="form-control input-field" max="10">
-							</div>
-							<div class="rk-flex rk-space-between rk-center-x">
-								<span data-translate="themeStyle">Style:</span>
-								<select selected="solid" data-location="borders.left.style" data-type="value">
-									<option value="solid" data-translate="themeSolid">Solid</option>
-									<option value="double" data-translate="themeDouble">Double</option>
-									<option value="dashed" data-translate="themeDashed">Dashed</option>
-									<option value="dotted" data-translate="themeDotted">Dotted</option>
-									<option value="inset" data-translate="themeInset">Inset</option>
-									<option value="outset" data-translate="themeOutset">Outset</option>
-									<option value="groove" data-translate="themeGroove">Groove</option>
-									<option value="ridge" data-translate="themeRidge">Ridge</option>
-								</select>
-							</div>
-							<div class="text-lead rk-flex rk-space-between rk-center-x">
-								<span data-translate="themeColor">Color:</span>
-								<input type="color" value="#ffffff"
-									data-location="borders.left.color" data-type="color" class="form-control input-field">
-							</div>
-							<div class="text-lead rk-flex rk-space-between rk-center-x">
-								<span data-translate="themeAlpha">Alpha:</span>
-								<input type="range" value="100" step="10"
-									data-location="borders.left.color" data-type="color-alpha" class="form-control input-field">
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div style="border-radius: 10px;margin-bottom: 6px;" class="text-lead">
-					<input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
-					<label class="accordion__label" style="font-weight: 400;" data-translate="themeBBorder">Bottom Border</label>
-
-					<span data-location="borders.bottom" class="rk-button receiver-destination-type-toggle off" style="float: right;">
-						<span class="toggle-flip"></span>
-						<span class="toggle-on"></span>
-						<span class="toggle-off"></span>
-					</span>
-					<div class="accordion__content">
-						<div>
-							<div class="text-lead rk-flex rk-space-between rk-center-x">
-								<span data-translate="themeWidth">Width:</span>
-								<input type="range" value="0"
-									data-location="borders.bottom.size" data-type="px" class="form-control input-field" max="10">
-							</div>
-							<div class="rk-flex rk-space-between rk-center-x">
-								<span data-translate="themeStyle">Style:</span>
-								<select selected="solid" data-location="borders.bottom.style" data-type="value">
-									<option value="solid" data-translate="themeSolid">Solid</option>
-									<option value="double" data-translate="themeDouble">Double</option>
-									<option value="dashed" data-translate="themeDashed">Dashed</option>
-									<option value="dotted" data-translate="themeDotted">Dotted</option>
-									<option value="inset" data-translate="themeInset">Inset</option>
-									<option value="outset" data-translate="themeOutset">Outset</option>
-									<option value="groove" data-translate="themeGroove">Groove</option>
-									<option value="ridge" data-translate="themeRidge">Ridge</option>
-								</select>
-							</div>
-							<div class="text-lead rk-flex rk-space-between rk-center-x">
-								<span data-translate="themeColor">Color:</span>
-								<input type="color" value="#ffffff"
-									data-location="borders.bottom.color" data-type="color" class="form-control input-field">
-							</div>
-							<div class="text-lead rk-flex rk-space-between rk-center-x">
-								<span data-translate="themeAlpha">Alpha:</span>
-								<input type="range" value="100" step="10"
-									data-location="borders.bottom.color" data-type="color-alpha" class="form-control input-field">
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div style="border-radius: 10px;margin-bottom: 6px;" class="text-lead">
-					<input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
-					<label class="accordion__label" style="font-weight: 400;" data-translate="themeRBorder">Right Border</label>
-
-					<span data-location="borders.right" class="rk-button receiver-destination-type-toggle off" style="float: right;">
-						<span class="toggle-flip"></span>
-						<span class="toggle-on"></span>
-						<span class="toggle-off"></span>
-					</span>
-					<div class="accordion__content">
-						<div>
-							<div class="text-lead rk-flex rk-space-between rk-center-x">
-								<span data-translate="themeWidth">Width:</span>
-								<input type="range" value="0"
-									data-location="borders.right.size" data-type="px" class="form-control input-field" max="10">
-							</div>
-							<div class="rk-flex rk-space-between rk-center-x">
+						<span data-location="borders.top" class="rk-button receiver-destination-type-toggle off" style="float: right;">
+							<span class="toggle-flip"></span>
+							<span class="toggle-on"></span>
+							<span class="toggle-off"></span>
+						</span>
+						<div class="accordion__content">
+							<div>
+								<div class="text-lead rk-flex rk-space-between rk-center-x">
+									<span data-translate="themeWidth">Width:</span>
+									<input type="range" value="0"
+										data-location="borders.top.size" data-type="px" class="form-control input-field" max="10">
+								</div>
+								<div class="rk-flex rk-space-between rk-center-x">
 									<span data-translate="themeStyle">Style:</span>
-									<select selected="solid" data-location="borders.right.style" data-type="value">
+									<select selected="solid" data-location="borders.top.style" data-type="value">
 										<option value="solid" data-translate="themeSolid">Solid</option>
 										<option value="double" data-translate="themeDouble">Double</option>
 										<option value="dashed" data-translate="themeDashed">Dashed</option>
@@ -787,16 +663,146 @@ let designerComponents = [
 										<option value="groove" data-translate="themeGroove">Groove</option>
 										<option value="ridge" data-translate="themeRidge">Ridge</option>
 									</select>
+								</div>
+								<div class="text-lead rk-flex rk-space-between rk-center-x">
+									<span data-translate="themeColor">Color:</span>
+									<input type="color" value="#ffffff"
+										data-location="borders.top.color" data-type="color" class="form-control input-field">
+								</div>
+								<div class="text-lead rk-flex rk-space-between rk-center-x">
+									<span data-translate="themeAlpha">Alpha:</span>
+									<input type="range" value="100" step="10"
+										data-location="borders.top.color" data-type="color-alpha" class="form-control input-field">
+								</div>
 							</div>
-							<div class="text-lead rk-flex rk-space-between rk-center-x">
-								<span data-translate="themeColor">Color:</span>
-								<input type="color" value="#ffffff"
-									data-location="borders.right.color" data-type="color" class="form-control input-field">
+						</div>
+					</div>
+
+					<div style="border-radius: 10px;margin-bottom: 6px;" class="text-lead">
+						<input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
+						<label class="accordion__label" style="font-weight: 400;" data-translate="themeLBorder">Left Border</label>
+
+						<span data-location="borders.left" class="rk-button receiver-destination-type-toggle off" style="float: right;">
+							<span class="toggle-flip"></span>
+							<span class="toggle-on"></span>
+							<span class="toggle-off"></span>
+						</span>
+						<div class="accordion__content">
+							<div>
+								<div class="text-lead rk-flex rk-space-between rk-center-x">
+									<span data-translate="themeWidth">Width:</span>
+									<input type="range" value="0"
+										data-location="borders.left.size" data-type="px" class="form-control input-field" max="10">
+								</div>
+								<div class="rk-flex rk-space-between rk-center-x">
+									<span data-translate="themeStyle">Style:</span>
+									<select selected="solid" data-location="borders.left.style" data-type="value">
+										<option value="solid" data-translate="themeSolid">Solid</option>
+										<option value="double" data-translate="themeDouble">Double</option>
+										<option value="dashed" data-translate="themeDashed">Dashed</option>
+										<option value="dotted" data-translate="themeDotted">Dotted</option>
+										<option value="inset" data-translate="themeInset">Inset</option>
+										<option value="outset" data-translate="themeOutset">Outset</option>
+										<option value="groove" data-translate="themeGroove">Groove</option>
+										<option value="ridge" data-translate="themeRidge">Ridge</option>
+									</select>
+								</div>
+								<div class="text-lead rk-flex rk-space-between rk-center-x">
+									<span data-translate="themeColor">Color:</span>
+									<input type="color" value="#ffffff"
+										data-location="borders.left.color" data-type="color" class="form-control input-field">
+								</div>
+								<div class="text-lead rk-flex rk-space-between rk-center-x">
+									<span data-translate="themeAlpha">Alpha:</span>
+									<input type="range" value="100" step="10"
+										data-location="borders.left.color" data-type="color-alpha" class="form-control input-field">
+								</div>
 							</div>
-							<div class="text-lead rk-flex rk-space-between rk-center-x">
-								<span data-translate="themeAlpha">Alpha:</span>
-								<input type="range" value="100" step="10"
-									data-location="borders.right.color" data-type="color-alpha" class="form-control input-field">
+						</div>
+					</div>
+
+					<div style="border-radius: 10px;margin-bottom: 6px;" class="text-lead">
+						<input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
+						<label class="accordion__label" style="font-weight: 400;" data-translate="themeBBorder">Bottom Border</label>
+
+						<span data-location="borders.bottom" class="rk-button receiver-destination-type-toggle off" style="float: right;">
+							<span class="toggle-flip"></span>
+							<span class="toggle-on"></span>
+							<span class="toggle-off"></span>
+						</span>
+						<div class="accordion__content">
+							<div>
+								<div class="text-lead rk-flex rk-space-between rk-center-x">
+									<span data-translate="themeWidth">Width:</span>
+									<input type="range" value="0"
+										data-location="borders.bottom.size" data-type="px" class="form-control input-field" max="10">
+								</div>
+								<div class="rk-flex rk-space-between rk-center-x">
+									<span data-translate="themeStyle">Style:</span>
+									<select selected="solid" data-location="borders.bottom.style" data-type="value">
+										<option value="solid" data-translate="themeSolid">Solid</option>
+										<option value="double" data-translate="themeDouble">Double</option>
+										<option value="dashed" data-translate="themeDashed">Dashed</option>
+										<option value="dotted" data-translate="themeDotted">Dotted</option>
+										<option value="inset" data-translate="themeInset">Inset</option>
+										<option value="outset" data-translate="themeOutset">Outset</option>
+										<option value="groove" data-translate="themeGroove">Groove</option>
+										<option value="ridge" data-translate="themeRidge">Ridge</option>
+									</select>
+								</div>
+								<div class="text-lead rk-flex rk-space-between rk-center-x">
+									<span data-translate="themeColor">Color:</span>
+									<input type="color" value="#ffffff"
+										data-location="borders.bottom.color" data-type="color" class="form-control input-field">
+								</div>
+								<div class="text-lead rk-flex rk-space-between rk-center-x">
+									<span data-translate="themeAlpha">Alpha:</span>
+									<input type="range" value="100" step="10"
+										data-location="borders.bottom.color" data-type="color-alpha" class="form-control input-field">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div style="border-radius: 10px;margin-bottom: 6px;" class="text-lead">
+						<input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
+						<label class="accordion__label" style="font-weight: 400;" data-translate="themeRBorder">Right Border</label>
+
+						<span data-location="borders.right" class="rk-button receiver-destination-type-toggle off" style="float: right;">
+							<span class="toggle-flip"></span>
+							<span class="toggle-on"></span>
+							<span class="toggle-off"></span>
+						</span>
+						<div class="accordion__content">
+							<div>
+								<div class="text-lead rk-flex rk-space-between rk-center-x">
+									<span data-translate="themeWidth">Width:</span>
+									<input type="range" value="0"
+										data-location="borders.right.size" data-type="px" class="form-control input-field" max="10">
+								</div>
+								<div class="rk-flex rk-space-between rk-center-x">
+										<span data-translate="themeStyle">Style:</span>
+										<select selected="solid" data-location="borders.right.style" data-type="value">
+											<option value="solid" data-translate="themeSolid">Solid</option>
+											<option value="double" data-translate="themeDouble">Double</option>
+											<option value="dashed" data-translate="themeDashed">Dashed</option>
+											<option value="dotted" data-translate="themeDotted">Dotted</option>
+											<option value="inset" data-translate="themeInset">Inset</option>
+											<option value="outset" data-translate="themeOutset">Outset</option>
+											<option value="groove" data-translate="themeGroove">Groove</option>
+											<option value="ridge" data-translate="themeRidge">Ridge</option>
+										</select>
+								</div>
+								<div class="text-lead rk-flex rk-space-between rk-center-x">
+									<span data-translate="themeColor">Color:</span>
+									<input type="color" value="#ffffff"
+										data-location="borders.right.color" data-type="color" class="form-control input-field">
+								</div>
+								<div class="text-lead rk-flex rk-space-between rk-center-x">
+									<span data-translate="themeAlpha">Alpha:</span>
+									<input type="range" value="100" step="10"
+										data-location="borders.right.color" data-type="color-alpha" class="form-control input-field">
+								</div>
 							</div>
 						</div>
 					</div>
@@ -808,9 +814,39 @@ let designerComponents = [
 
 				//setup remove component btn
 				element.querySelector(`[data-remove-component]`)
-					.addEventListener("click", () => {
-						parentElement.removeComponent(idCard.component);
+				.addEventListener("click", () => {
+					parentElement.removeComponent(idCard.component);
+				});
+
+				let holder = element.querySelector('.section-content');
+				element.update = function() {
+					let settings = element.save(idCard);
+					if (settings == null) return;
+					let finishedStyle = [];
+					
+					// "top","right","bottom","left"
+					finishedStyle.push({...settings.all, ...settings["top"]});
+					finishedStyle.push({...settings.all, ...settings["right"]});
+					finishedStyle.push({...settings.all, ...settings["bottom"]});
+					finishedStyle.push({...settings.all, ...settings["left"]});
+
+					previewElement.style.borderWidth = finishedStyle.map(x => x.size).join(" ");
+					previewElement.style.borderStyle = finishedStyle.map(x => x.style).join(' ');
+					previewElement.style.borderColor = finishedStyle.map(x => x.color).join(' ');
+
+					holder.style.borderWidth = finishedStyle.map(x => x.size).join(" ");
+					holder.style.borderStyle = finishedStyle.map(x => x.style).join(' ');
+					holder.style.borderColor = finishedStyle.map(x => x.color).join(' ');
+				}
+					
+				let previewElement = element.querySelector('[data-preview]');
+				if (previewElement != null) {
+					element.querySelectorAll('[data-location]')
+					.forEach((input) => {
+						if (input.classList.contains('rk-button')) input.addEventListener('switched', () => element.update());
+						else input.addEventListener('input', () => element.update());
 					});
+				}
 			},
 			load: function (theme_object, idCard) {
 				let element = idCard.element;
@@ -849,6 +885,8 @@ let designerComponents = [
 						}
 					});
 				}
+				
+				if (typeof element.update == 'function') element.update();
 			},
 			save: function (idCard) {
 				let element = idCard.element;

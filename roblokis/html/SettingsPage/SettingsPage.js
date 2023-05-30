@@ -62,7 +62,8 @@ page.toggleSwich = function (swich, stat) {
 		swich.classList.remove("off");
 		swich.classList.add(stat ? "on" : "off");
 
-		return stat
+		swich.dispatchEvent(new Event('switched'));
+		return stat;
 	}
 
 	return null;
