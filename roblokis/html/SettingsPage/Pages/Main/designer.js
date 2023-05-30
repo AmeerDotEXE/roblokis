@@ -465,53 +465,84 @@ let designerComponents = [
 		},
 		element: {
 			html: /*html*/`
-			<div class="section-content">
-				<div class="rk-flex rk-space-between rk-center-x">
-					<h4 style="width: fit-content;margin-right: 10px;" data-translate="themeCorners">Corners Radius</h4>
-					<button class="rk-btn" data-remove-component>-</button>
+				<!-- ! translate -->
+				<div data-preview
+					style="width: min(10rem, 20%);display: flex;margin-right: 1rem;background-color: rgba(128,128,128,0.5);justify-content: center;align-items: center;">
+					Preview
 				</div>
+				<div style="flex-grow: 1;">
+					<div class="rk-flex rk-space-between rk-center-x">
+						<h4 style="width: fit-content;margin-right: 10px;" data-translate="themeCorners">Corners Radius</h4>
+						<button class="rk-btn" data-remove-component>-</button>
+					</div>
 
-				<div class="text-lead rk-flex rk-space-between rk-center-x">
-					<span style="min-width: fit-content;margin-right: 5px;" data-translate="themeAllCorners">All Corners:</span>
-					<input type="range" value="0"
-						data-location="corners.all.radius" data-type="corner" class="form-control input-field" max="20" min="0" style="width: calc(100% - 20ch);margin: 10px;">
-				</div>
+					<div class="text-lead rk-flex rk-space-between rk-center-x">
+						<span style="min-width: fit-content;margin-right: 5px;" data-translate="themeAllCorners">All Corners:</span>
+						<input type="range" value="0"
+							data-location="corners.all.radius" data-type="corner" class="form-control input-field" max="20" min="0" style="width: calc(100% - 20ch);margin: 10px;">
+					</div>
 
-				<div class="rbx-divider" style="margin: 12px;"></div>
+					<div class="rbx-divider" style="margin: 12px;"></div>
 
-				<div class="text-lead rk-flex rk-space-between rk-center-x">
-					<div style="text-align: center;" data-translate="themeTLCorner">Top-Left Corner</div>
-					<input type="range" value="-1"
-						data-location="corners.top-left.radius" data-type="corner" class="form-control input-field" max="20" min="-1" style="width: calc(100% - 20ch);margin: 10px;">
-				</div>
+					<div class="text-lead rk-flex rk-space-between rk-center-x">
+						<div style="text-align: center;" data-translate="themeTLCorner">Top-Left Corner</div>
+						<input type="range" value="-1"
+							data-location="corners.top-left.radius" data-type="corner" class="form-control input-field" max="20" min="-1" style="width: calc(100% - 20ch);margin: 10px;">
+					</div>
 
-				<div class="text-lead rk-flex rk-space-between rk-center-x">
-					<div style="text-align: center;" data-translate="themeTRCorner">Top-Right Corner</div>
-					<input type="range" value="-1"
-						data-location="corners.top-right.radius" data-type="corner" class="form-control input-field" max="20" min="-1" style="width: calc(100% - 20ch);margin: 10px;">
-				</div>
+					<div class="text-lead rk-flex rk-space-between rk-center-x">
+						<div style="text-align: center;" data-translate="themeTRCorner">Top-Right Corner</div>
+						<input type="range" value="-1"
+							data-location="corners.top-right.radius" data-type="corner" class="form-control input-field" max="20" min="-1" style="width: calc(100% - 20ch);margin: 10px;">
+					</div>
 
-				<div class="text-lead rk-flex rk-space-between rk-center-x">
-					<div style="text-align: center;" data-translate="themeBRCorner">Bottom-Right Corner</div>
-					<input type="range" value="-1"
-						data-location="corners.bottom-right.radius" data-type="corner" class="form-control input-field" max="20" min="-1" style="width: calc(100% - 20ch);margin: 10px;">
-				</div>
+					<div class="text-lead rk-flex rk-space-between rk-center-x">
+						<div style="text-align: center;" data-translate="themeBRCorner">Bottom-Right Corner</div>
+						<input type="range" value="-1"
+							data-location="corners.bottom-right.radius" data-type="corner" class="form-control input-field" max="20" min="-1" style="width: calc(100% - 20ch);margin: 10px;">
+					</div>
 
-				<div class="text-lead rk-flex rk-space-between rk-center-x">
-					<div style="text-align: center;" data-translate="themeBLCorner">Bottom-Left Corner</div>
-					<input type="range" value="-1"
-						data-location="corners.bottom-left.radius" data-type="corner" class="form-control input-field" max="20" min="-1" style="width: calc(100% - 20ch);margin: 10px;">
-				</div>
-
-			</div>`,
+					<div class="text-lead rk-flex rk-space-between rk-center-x">
+						<div style="text-align: center;" data-translate="themeBLCorner">Bottom-Left Corner</div>
+						<input type="range" value="-1"
+							data-location="corners.bottom-left.radius" data-type="corner" class="form-control input-field" max="20" min="-1" style="width: calc(100% - 20ch);margin: 10px;">
+					</div>
+				</div>`,
 			js: function (idCard, parentElement) {
 				let element = idCard.element;
 
+				element.classList.add("section-content");
+				element.style.display = 'flex';
+
 				//setup remove component btn
-				element.querySelector(`[data-remove-component]`)
+				element.querySelector('[data-remove-component]')
 					.addEventListener("click", () => {
 						parentElement.removeComponent(idCard.component);
 					});
+
+				element.update = function() {
+					let settings = element.save(idCard);
+					if (settings == null) return;
+					let finishedStyle = [];
+					
+					// "top-left","top-right","bottom-right","bottom-left"
+					finishedStyle.push(settings["top-left"]?.radius || settings.all.radius);
+					finishedStyle.push(settings["top-right"]?.radius || settings.all.radius);
+					finishedStyle.push(settings["bottom-right"]?.radius || settings.all.radius);
+					finishedStyle.push(settings["bottom-left"]?.radius || settings.all.radius);
+
+					previewElement.style.borderRadius = finishedStyle.join(' ');
+					element.style.borderRadius = finishedStyle.join(' ');
+				}
+
+
+				let previewElement = element.querySelector('[data-preview]');
+				if (previewElement != null) {
+					element.querySelectorAll('[data-location]')
+					.forEach((input) => {
+						input.addEventListener('input', () => element.update());
+					});
+				}
 			},
 			load: function (theme_object, idCard) {
 				let element = idCard.element;
@@ -522,12 +553,14 @@ let designerComponents = [
 					let value = theme_object[corner].radius.slice(0, -2);
 					element.querySelector(`[data-location="corners.${corner}.radius"]`).value = value;
 				}
+				
+				if (typeof element.update == 'function') element.update();
 			},
 			save: function (idCard) {
 				let element = idCard.element;
 				let component_object = {};
 
-				element.querySelectorAll(`[data-location]`).forEach((input) => {
+				element.querySelectorAll('[data-location]').forEach((input) => {
 					let corner = input.dataset.location.split(".")[1];
 
 					let value = input.value + "px";
