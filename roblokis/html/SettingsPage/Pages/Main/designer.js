@@ -319,72 +319,118 @@ let designerComponents = [
 		},
 		element: {
 			html: /*html*/`
-			<div class="section-content">
-				<div class="rk-flex rk-space-between rk-center-x">
-					<h4 style="width: fit-content;" data-translate="themeBackground">Background</h4>
-					<button class="rk-btn" data-remove-component>-</button>
+				<!-- ! translate -->
+				<div data-preview
+				style="width: min(10rem, 20%);display: flex;border: 1px solid rgba(128,128,128,0.5);margin-right: 1rem;justify-content: center;align-items: center;border-radius: 20px 0;">
+					Preview
 				</div>
+				<div style="flex-grow: 1;">
+					<div class="rk-flex rk-space-between rk-center-x">
+						<h4 style="width: fit-content;" data-translate="themeBackground">Background</h4>
+						<button class="rk-btn" data-remove-component>-</button>
+					</div>
 
 
-				<div class="rk-flex rk-space-between rk-center-x">
-					<span style="min-width: fit-content;margin-right: 5px;" data-translate="themeColor">Color:</span>
-					<input type="color" value="#232527"
-						data-location="color" data-type="color" class="form-control input-field">
-				</div>
+					<div class="rk-flex rk-space-between rk-center-x">
+						<span style="min-width: fit-content;margin-right: 5px;" data-translate="themeColor">Color:</span>
+						<input type="color" value="#232527"
+							data-location="color" data-type="color" class="form-control input-field">
+					</div>
 
-				<div class="rk-flex rk-space-between rk-center-x">
-					<span style="min-width: fit-content;margin-right: 5px;" data-translate="themeAlpha">Alpha:</span>
-					<input type="range" value="100" step="10"
-						data-location="color" data-type="color-alpha" class="form-control input-field">
-				</div>
-
-
-				<div class="rbx-divider" style="margin: 12px;"></div>
+					<div class="rk-flex rk-space-between rk-center-x">
+						<span style="min-width: fit-content;margin-right: 5px;" data-translate="themeAlpha">Alpha:</span>
+						<input type="range" value="100" step="10"
+							data-location="color" data-type="color-alpha" class="form-control input-field">
+					</div>
 
 
-				<div class="rk-flex rk-space-between rk-center-x">
-					<span style="min-width: fit-content;margin-right: 5px;" data-translate="themeLink">File:</span>
-					<input type="url" value=""
-						data-location="image.link" data-type="value" class="form-control input-field">
-				</div>
+					<div class="rbx-divider" style="margin: 12px;"></div>
 
-				<div class="rk-flex rk-space-between rk-center-x">
-					<span data-translate="themeSize">Size:</span>
-					<select selected="contain" data-location="image.size" data-type="value">
-						<option value="contain" data-translate="themeFillX">Fill X</option>
-						<option value="cover" data-translate="themeFillY">Fill Y</option>
-						<option value="auto" data-translate="themeAuto">Auto</option>
-					</select>
-				</div>
 
-				<div class="rk-flex rk-space-between rk-center-x">
-					<span data-translate="themeRepeatT">Repeat:</span>
-					<select selected="round" data-location="image.repeat" data-type="value">
-						<option value="round" data-translate="themeRound">Round</option>
-						<option value="repeat" data-translate="themeRepeat">Repeat</option>
-						<option value="space" data-translate="themeSpace">Space</option>
-						<option value="no-repeat" data-translate="themeNoRepeat">No Repeat</option>
-					</select>
-				</div>
+					<div class="rk-flex rk-space-between rk-center-x">
+						<span style="min-width: fit-content;margin-right: 5px;" data-translate="themeLink">File:</span>
+						<input type="url" value=""
+							data-location="image.link" data-type="value" class="form-control input-field">
+					</div>
 
-				<div class="rk-flex rk-space-between rk-center-x">
-					<span data-translate="themeScroll">Scroll:</span>
-					<select selected="fixed" data-location="image.attachment" data-type="value">
-						<option value="fixed" data-translate="themeEnabled">Enabled</option>
-						<option value="scroll" data-translate="themeDisabled">Disabled</option>
-					</select>
-				</div>
+					<div class="rk-flex rk-space-between rk-center-x">
+						<span data-translate="themeSize">Size:</span>
+						<select selected="contain" data-location="image.size" data-type="value">
+							<option value="contain" data-translate="themeFillX">Fill X</option>
+							<option value="cover" data-translate="themeFillY">Fill Y</option>
+							<option value="auto" data-translate="themeAuto">Auto</option>
+						</select>
+					</div>
 
-			</div>`,
+					<div class="rk-flex rk-space-between rk-center-x">
+						<span data-translate="themeRepeatT">Repeat:</span>
+						<select selected="round" data-location="image.repeat" data-type="value">
+							<option value="round" data-translate="themeRound">Round</option>
+							<option value="repeat" data-translate="themeRepeat">Repeat</option>
+							<option value="space" data-translate="themeSpace">Space</option>
+							<option value="no-repeat" data-translate="themeNoRepeat">No Repeat</option>
+						</select>
+					</div>
+
+					<div class="rk-flex rk-space-between rk-center-x">
+						<span data-translate="themeScroll">Scroll:</span>
+						<select selected="fixed" data-location="image.attachment" data-type="value">
+							<option value="fixed" data-translate="themeEnabled">Enabled</option>
+							<option value="scroll" data-translate="themeDisabled">Disabled</option>
+						</select>
+					</div>
+				</div>`,
 			js: function (idCard, parentElement) {
 				let element = idCard.element;
+				
+				element.classList.add("section-content");
+				element.style.display = 'flex';
 
 				//setup remove component btn
 				element.querySelector(`[data-remove-component]`)
-					.addEventListener("click", () => {
-						//console.log("Not Implemented");
-						parentElement.removeComponent(idCard.component);
+				.addEventListener("click", () => {
+					//console.log("Not Implemented");
+					parentElement.removeComponent(idCard.component);
+				});
+
+				function FetchImage(url) {
+					return new Promise(resolve => {
+						chrome.runtime.sendMessage({about: "getImageRequest", url: url}, 
+						function(data) {
+							resolve(data)
+						})
+					})
+				}
+
+				element.update = function() {
+					let settings = element.save(idCard);
+					if (settings == null) return;
+
+					//background: color image("repeat","position","attachment")
+					//background-image: image.url
+					//background-image-size: image.size
+					previewElement.style.background = `${settings.color} ${settings.image.repeat}`;
+					previewElement.style.backgroundSize = settings.image.size;
+					
+					element.style.background = `${settings.color} ${settings.image.repeat} ${settings.image.attachment}`;
+					element.style.backgroundSize = settings.image.size;
+
+					FetchImage(settings.image.link).then((encoded) => {
+						previewElement.style.backgroundImage = `url(${encoded})`;
+						element.style.backgroundImage = `url(${encoded})`;
 					});
+				}
+
+				let previewElement = element.querySelector('[data-preview]');
+				if (previewElement != null) {
+					element.querySelectorAll('[data-location]')
+					.forEach((input) => {
+						if (input.dataset.location == "image.link") return;
+						input.addEventListener('input', () => element.update());
+					});
+					element.querySelector('[data-location="image.link"]')
+					.addEventListener('change', () => element.update());
+				}
 			},
 			load: function (theme_object, idCard) {
 				let element = idCard.element;
@@ -418,6 +464,8 @@ let designerComponents = [
 
 					input.value = image[type];
 				});
+				
+				if (typeof element.update == 'function') element.update();
 			},
 			save: function (idCard) {
 				let element = idCard.element;
