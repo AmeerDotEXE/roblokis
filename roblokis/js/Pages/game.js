@@ -67,6 +67,35 @@ Rkis.page.game = () => {
 			findFile(theme.styles, styles);
 		}
 	});
+	
+	//should or shouldn't show the max players count (ex. 7 => 7/8)
+	if (Rkis.IsSettingEnabled("GameBannerToBackground", {
+		id: "GameBannerToBackground",
+		type: "switch",
+		value: { switch: false },
+		details: {
+			default: "en",
+			// ! translate
+			// translate: {
+			// 	name: "sectionMPN",
+			// 	description: "sectionMPN1"
+			// },
+			"en": {
+				name: "game Banner to Background",
+				description: "Uses first game image as page's background."
+			}
+		}
+	})) {
+		document.$watch("#game-details-carousel-container > div > span > img", (imgElement) => {
+
+			let backgroundElement = document.createElement('div');
+			backgroundElement.classList.add('rk-page-background', 'rk-blurred');
+			backgroundElement.style.backgroundImage = `url(${imgElement.src})`;
+
+			document.body.prepend(backgroundElement);
+
+		});
+	}
 
 	//Small Servers
 	if (Rkis.IsSettingEnabled("SmallServer", {
@@ -744,7 +773,6 @@ Rkis.page.game = () => {
 			//document.addEventListener("rkrequested-public", Rkis.Scripts.SmallServer.createSection);
 		})();
 	}
-
 
 	//should or shouldn't show the max players count (ex. 7 => 7/8)
 	if (Rkis.IsSettingEnabled("ShowMaxPlayers", {

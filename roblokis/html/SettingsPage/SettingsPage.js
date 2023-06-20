@@ -1285,6 +1285,7 @@ page.settingsWaitingForGeneral = function() {
 							<span class="text-description" data-translate="NoSettingReason">No Settings? Visit the page mentioned in this Tab's name</span>
 							<div class="rbx-divider" style="margin: 12px;"></div>
 
+							<loadcode code="settingload" data-id="GameBannerToBackground"></loadcode>
 							<loadcode code="settingload" data-id="ShowMaxPlayers"></loadcode>
 
 							<div class="serversselector" style="margin: 6px;border-radius: 20px;border: 1px solid grey;padding: 6px 12px;display: flex;align-items: center;">
