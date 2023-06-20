@@ -17,7 +17,12 @@ Rkis.page.all = () => {
 				float: {
 					css: ["js/Theme/styles/menuFloat.css"]
 				}
-			}
+			},
+			navbar: {
+				float: {
+					css: ["js/Theme/styles/navbarFloat.css"]
+				}
+			},
 		};
 		if (Rkis.Designer.currentTheme != null
 			&& Rkis.Designer.currentTheme.styles != null)

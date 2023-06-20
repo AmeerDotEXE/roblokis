@@ -296,6 +296,29 @@ let designerComponents = [
 		},
 		element: defaultcomponentElements.styleDropdown
 	},//menu
+	{
+		id: "navbar",
+		details: {
+			name: "Top Navigation Bar",
+			// ! translate
+			translate: {
+				name: ""
+			}
+		},
+		parent: {
+			headId: 'styles',
+			ids: {
+				styles: true
+			}
+		},
+		data: {
+			options: [
+				{value: '',isPortrait:true,details:{name:'Default',description:"Roblox's default design"}},
+				{value: 'float',isPortrait:true,details:{name:'Floating',description:"Floating design"}},
+			]
+		},
+		element: defaultcomponentElements.styleDropdown
+	},//navbar
 
 
 

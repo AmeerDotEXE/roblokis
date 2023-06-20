@@ -27,13 +27,15 @@
 	border-top: 0;
 	border-left: 0;
 	border-right: 0;
+	box-sizing: content-box;
 }
 #navigation {
 	border-top-left-radius: 0;
 	border-bottom-left-radius: 0;
 	border-left: 0;
-	border-top: 0;
+	border-top-width: 0;
 	border-bottom: 0;
+	box-sizing: content-box;
 }
 #footer-container {
 	/* border-radius: 60px 60px 0 0; */
@@ -60,7 +62,7 @@ html .alert-system-feedback .alert {
 	
 	background: var(--rk-icon-background);
 	background-size: var(--rk-icon-background-image-size, 118px 30px);
-    /* background-size: 118px 30px; */
+	/* background-size: 118px 30px; */
 }
 :root .icon-logo-r {
 	border-radius: 8px;
@@ -93,6 +95,7 @@ html .alert-system-feedback .alert {
 	padding: 3% 4%;
 	flex-wrap: wrap;
 	width: fit-content;
+	box-sizing: content-box;
 }
 
 /*disable ads*/
