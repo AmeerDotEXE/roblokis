@@ -3,8 +3,8 @@ var Rkis = {
 	...Rkis,
 	...{
 		SubDomain: (window.location.hostname.startsWith("web") == true ? "web" : "www"),
-		id: chrome.runtime.id,
-		manifest: chrome.runtime.getManifest(),
+		id: BROWSER.runtime.id,
+		manifest: BROWSER.runtime.getManifest(),
 
 		GetSettingValue(setting) {
 			if (setting == null) return null;
@@ -201,8 +201,20 @@ Rkis.wholeData = { ...wholedata };
 		}
 		else {
 
-			valueText = chrome.i18n.getMessage(place, [e.dataset.translate1, e.dataset.translate2, e.dataset.translate3, e.dataset.translate4, e.dataset.translate5, e.dataset.translate6, e.dataset.translate7, e.dataset.translate8, e.dataset.translate9]);
-			valueText = (allCodes[place] != null ? (allCodes[place].message || valueText) : valueText);
+			if (allCodes[place] != null)
+				valueText = allCodes[place].message;
+			if (valueText == null)
+				valueText = getLocaleMessage(place, [
+					e.dataset.translate1,
+					e.dataset.translate2,
+					e.dataset.translate3,
+					e.dataset.translate4,
+					e.dataset.translate5,
+					e.dataset.translate6,
+					e.dataset.translate7,
+					e.dataset.translate8,
+					e.dataset.translate9
+				]);
 
 			valueText.split("$").forEach((e, i) => {
 				if (i == 0) return valueText = e;
@@ -213,7 +225,16 @@ Rkis.wholeData = { ...wholedata };
 		}
 		if (valueText == null) return;
 
-		valueText = valueText.split("$1$").join(e.dataset.translate1).split("$2$").join(e.dataset.translate2).split("$3$").join(e.dataset.translate3).split("$4$").join(e.dataset.translate4).split("$5$").join(e.dataset.translate5).split("$6$").join(e.dataset.translate6).split("$7$").join(e.dataset.translate7).split("$8$").join(e.dataset.translate8).split("$9$").join(e.dataset.translate9);
+		valueText = valueText
+			.split("$1$").join(e.dataset.translate1)
+			.split("$2$").join(e.dataset.translate2)
+			.split("$3$").join(e.dataset.translate3)
+			.split("$4$").join(e.dataset.translate4)
+			.split("$5$").join(e.dataset.translate5)
+			.split("$6$").join(e.dataset.translate6)
+			.split("$7$").join(e.dataset.translate7)
+			.split("$8$").join(e.dataset.translate8)
+			.split("$9$").join(e.dataset.translate9);
 
 		valueText = escapeHTML(valueText);
 
@@ -243,17 +264,18 @@ Rkis.wholeData = { ...wholedata };
 		Rkis.languageCode = Rkis.robloxCode.split("_")[0];
 		Rkis.languageCode = Rkis.roblokisCodes[Rkis.languageCode] || Rkis.languageCode;
 
-		fetch(Rkis.fileLocation + `_locales/${Rkis.languageCode}/messages.json`)
-			.then((res) => res.text())
-			.then((rawtext) => {
-				if (rawtext == null || rawtext == "") return;
+		// fetch(Rkis.fileLocation + `_locales/${Rkis.languageCode}/messages.json`)
+		// 	.then((res) => res.text())
+		BROWSER.runtime.sendMessage({about: 'getURLRequest', url: Rkis.fileLocation + `_locales/${Rkis.languageCode}/messages.json`})
+			.then((text) => {
+				// if (rawtext == null || rawtext == "") return;
 
-				let text = null;
+				// let text = null;
 
-				try { text = JSON.parse(rawtext); }
-				catch { console.error("Rkis | Couldn't Convert Data.", Rkis.fileLocation + `_locales/${Rkis.languageCode}/messages.json`, rawtext); text = null; }
+				// try { text = JSON.parse(rawtext); }
+				// catch { console.error("Rkis | Couldn't Convert Data.", Rkis.fileLocation + `_locales/${Rkis.languageCode}/messages.json`, rawtext); text = null; }
 
-				if (text == null || text == {}) return;
+				// if (text == null || text == {}) return;
 				allCodes = text;
 
 				for (var code in allCodes) {
@@ -270,13 +292,13 @@ Rkis.wholeData = { ...wholedata };
 			.catch((err) => { console.error("Rkis", err) })
 	}
 
-	//Rkis.language[""] = chrome.i18n.getMessage("");
+	//Rkis.language[""] = chrome .i18n.getMessage("");
 	let l = (msg) => {
 		if (Rkis.language[msg] != null && Rkis.language[msg] != "") return;
-		Rkis.languageCode = chrome.i18n.getUILanguage();
+		Rkis.languageCode = BROWSER.i18n.getUILanguage().replace('_');
 
 		if (allCodes[msg] != null) Rkis.language[msg] = allCodes[msg].message;
-		if (Rkis.language[msg] == null) Rkis.language[msg] = chrome.i18n.getMessage(msg, ["$1$", "$2$", "$3$", "$4$", "$5$", "$6$", "$7$", "$8$", "$9$"]);
+		if (Rkis.language[msg] == null) Rkis.language[msg] = getLocaleMessage(msg, ["$1$", "$2$", "$3$", "$4$", "$5$", "$6$", "$7$", "$8$", "$9$"]);
 
 		Rkis.language[msg].split("$").forEach((e, i) => {
 			if (i == 0) return Rkis.language[msg] = e;
@@ -287,7 +309,7 @@ Rkis.wholeData = { ...wholedata };
 
 		Rkis.language[msg] = escapeJSON(Rkis.language[msg]);
 	}
-	//lc = (msg) => { Rkis.language = (msg, txt) => this.l.split("$1$").join(txt); Rkis.language[msg]["l"] = chrome.i18n.getMessage(msg, "$1$"); };
+	//lc = (msg) => { Rkis.language = (msg, txt) => this.l.split("$1$").join(txt); Rkis.language[msg]["l"] = chrome .i18n.getMessage(msg, "$1$"); };
 
 	l("errorCode");
 	l("error");
@@ -375,8 +397,10 @@ if (Rkis.ToastHolder == null || Rkis.ToastHolder == {}) {
 
 (async function () {
 	//Get default settings
-	let defaultSettings = await fetch(`https://ameerdotexe.github.io/roblokis/data/settings/default.json`)
-		.then(res => res.json()).catch(() => null);
+	// let defaultSettings = await fetch(`https://ameerdotexe.github.io/roblokis/data/settings/default.json`)
+	// 	.then(res => res.json()).catch(() => null);
+	// ! TODO - switch to background fetch
+	let defaultSettings = await BROWSER.runtime.sendMessage({about: 'getURLRequest', url: 'https://ameerdotexe.github.io/roblokis/data/settings/default.json'}).catch(() => null);
 	if (defaultSettings == null) return;
 
 	//Modify defaults without changing user's settings
@@ -450,31 +474,62 @@ document.$watchLoop(".rk-tab", (tab) => {
 	if (tab.dataset.listening == "1") return;
 	tab.dataset.listening = "1";
 
-	const e = tab.closest(`*:has(.rk-tabs)`);
+	const tabHolder = tab.parentElement;
+	const pageHolder = tabHolder.parentElement.querySelector('.rk-tab-pages');
 
 	tab.addEventListener("click", () => {
 		if (tab.classList.contains("is-active")) return;
 
-		e.$findAll(".rk-tab.is-active", (offtab) => { offtab.classList.remove("is-active"); });
+		tabHolder.$findAll(".rk-tab.is-active", (offtab) => { offtab.classList.remove("is-active"); });
 		tab.classList.add("is-active");
 
-		e.$findAll(".rk-tab-page.is-active", (page) => { page.classList.remove("is-active"); });
-		e.$find(`.rk-tab-page[tab="${tab.getAttribute("page")}"]`, (page) => { page.classList.add("is-active"); });
+		pageHolder.$findAll(".rk-tab-page.is-active", (page) => { page.classList.remove("is-active"); });
+		pageHolder.$find(`.rk-tab-page[tab="${tab.getAttribute("page")}"]`, (page) => { page.classList.add("is-active"); });
 	});
 });
 document.$watchLoop("[data-nav-page]", (tab) => {
 	if (tab.dataset.listening == "1") return;
 	tab.dataset.listening = "1";
 
-	const e = tab.closest(`*:has([data-nav-tab])`);
+	const popupElement = tab.closest('.rk-popup');
 
 	tab.addEventListener("click", () => {
 		if (tab.classList.contains("active")) return;
 
-		e.$findAll(".active[data-nav-page]", (offtab) => { offtab.classList.remove("active"); });
+		popupElement.$findAll(".active[data-nav-page]", (offtab) => { offtab.classList.remove("active"); });
 		tab.classList.add("active");
 
-		e.$findAll(".active[data-nav-tab]", (page) => { page.classList.remove("active"); });
-		e.$find(`[data-nav-tab="${tab.dataset.navPage}"]`, (page) => { page.classList.add("active"); });
+		popupElement.$findAll(".active[data-nav-tab]", (page) => { page.classList.remove("active"); });
+		popupElement.$find(`[data-nav-tab="${tab.dataset.navPage}"]`, (page) => { page.classList.add("active"); });
 	});
 });
+
+
+//Ameer's custom made API wrappers
+//(Copyright) AmeerDotEXE. All rights reserved.
+function getLocaleMessage(messageName, _substitutions) {
+	let message = "";
+
+	//fixes - Chrome max of 9 substitutions
+	let substitutions = [];
+	if (typeof _substitutions === 'object') substitutions = _substitutions.slice(0, 8);
+	else if (typeof _substitutions === 'string') substitutions.push(_substitutions);
+
+	//fixes - Edge strings only
+	substitutions = substitutions.filter(x => typeof x === 'string');
+
+	//fixes - Edge returns exception instead of empty string
+	try {
+		message = BROWSER.i18n.getMessage(messageName, substitutions);
+	} catch {};
+
+	// fixes - firefox 47- not returning empty string when not found
+	if (message === "??") message = "";
+	
+	if (typeof message === 'undefined') message = "";
+
+	//NOTE - 'message' might contain html excutable code
+	//either add result in textContent or escape characters
+	
+	return message;
+}

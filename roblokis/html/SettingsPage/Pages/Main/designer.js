@@ -197,7 +197,7 @@ const defaultcomponentElements = {
 				
 				if (option.image != null) {
 					if (option.isPortrait == true) imageHolder.style.display = "block";
-					imageHolder.innerHTML = `<img src="${escapeHTML(chrome.runtime.getURL(option.image))}" class="rk-style-image">`;
+					imageHolder.innerHTML = `<img src="${escapeHTML(BROWSER.runtime.getURL(option.image))}" class="rk-style-image">`;
 
 					let imageElement = imageHolder.querySelector('img');
 					imageElement.addEventListener('click', () => {
@@ -395,7 +395,7 @@ let designerComponents = [
 
 				function FetchImage(url) {
 					return new Promise(resolve => {
-						chrome.runtime.sendMessage({about: "getImageRequest", url: url}, 
+						BROWSER.runtime.sendMessage({about: "getImageRequest", url: url}, 
 						function(data) {
 							resolve(data)
 						})
@@ -1547,7 +1547,7 @@ let designerComponents = [
 
 function FetchImage(url, quick) {
 	return new Promise(resolve => {
-		chrome.runtime.sendMessage({about: "getImageRequest", url: url, quick: quick}, 
+		BROWSER.runtime.sendMessage({about: "getImageRequest", url: url, quick: quick}, 
 		function(data) {
 			resolve(data)
 		})

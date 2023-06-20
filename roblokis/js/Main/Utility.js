@@ -1,3 +1,7 @@
+var globalThis = typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this;
+const IS_CHROME_API = typeof globalThis.browser === "undefined" || Object.getPrototypeOf(globalThis.browser) !== Object.prototype;
+const BROWSER = IS_CHROME_API ? chrome : globalThis.browser;
+
 var Rkis = Rkis || {};
 
 Rkis.InjectFile = function(src) {
@@ -13,7 +17,7 @@ Rkis.InjectFile = function(src) {
 
 	head.appendChild(script);
 };
-Rkis.IS_DEV = chrome.runtime.getManifest().update_url == null;
+Rkis.IS_DEV = BROWSER.runtime.getManifest().update_url == null;
 
 console.log = (function(old) {
 	return function(...args) {

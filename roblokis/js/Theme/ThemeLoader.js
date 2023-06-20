@@ -4,7 +4,7 @@ Rkis.Designer = Rkis.Designer || {};
 
 function FetchImage(url) {
 	return new Promise(resolve => {
-		chrome.runtime.sendMessage({about: "getImageRequest", url: url}, 
+		BROWSER.runtime.sendMessage({about: "getImageRequest", url: url}, 
 		function(data) {
 			resolve(data)
 		})

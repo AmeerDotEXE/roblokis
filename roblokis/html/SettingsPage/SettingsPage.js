@@ -4,7 +4,7 @@ var page = page || {};
 
 function FetchImage(url, quick) {
 	return new Promise(resolve => {
-		chrome.runtime.sendMessage({about: "getImageRequest", url: url, quick: quick}, 
+		BROWSER.runtime.sendMessage({about: "getImageRequest", url: url, quick: quick}, 
 		function(data) {
 			resolve(data)
 		})

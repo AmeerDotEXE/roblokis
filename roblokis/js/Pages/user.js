@@ -186,21 +186,21 @@ Rkis.page.user = () => {
 
 			function getPresences(url, json) {
 				return new Promise(resolve => {
-					chrome.runtime.sendMessage({ about: "postURLRequest", url: url, jsonData: json },
-						function (data) {
-							resolve(data)
-						})
+					BROWSER.runtime.sendMessage({ about: "postURLRequest", url: url, jsonData: json },
+					function (data) {
+						resolve(data)
+					})
 				})
 			}
 
-			function getData(url) {
-				return new Promise(resolve => {
-					chrome.runtime.sendMessage({ about: "getURLRequest", url: url },
-						function (data) {
-							resolve(data)
-						})
-				})
-			}
+			// function getData(url) {
+			// 	return new Promise(resolve => {
+			// 		BROWSER.runtime.sendMessage({ about: "getURLRequest", url: url },
+			// 		function (data) {
+			// 			resolve(data)
+			// 		})
+			// 	})
+			// }
 
 			var result = await getPresences(`https://presence.roblox.com/v1/presence/users`, { "userIds": [ id ] });
 			/*var result = await getData(`https://api.roblox.com/users/${id}/onlinestatus/`);/*fetch("https://presence.roblox.com/v1/presence/users", {
