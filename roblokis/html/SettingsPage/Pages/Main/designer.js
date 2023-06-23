@@ -46,8 +46,8 @@ const defaultcomponentElements = {
 			<div style="color: red;" class="text-description" data-component-get="note"></div>
 		</div>
 		<div class="rk-popup-holder" style="z-index:999;">
-			<div class="rk-popup" style="width: min(100%, 55rem);max-height: 100%;padding: 0;overflow: hidden;"><!--data-designer-func="add-edits"-->
-				<div data-component-holder style="width: 100%;overflow: auto;padding: 1rem;"> 
+			<div class="rk-popup" style="width: min(100%, 55rem);min-height: 25%;max-height: 100%;padding: 0;overflow: hidden;"><!--data-designer-func="add-edits"-->
+				<div data-component-holder style="width: 100%;height: 100%;overflow: auto;padding: 1rem;"> 
 					<button class="section-content rk-btn" style="width: 100%;" data-designer-func="add-edits-btn" data-translate="editorComponentAdding">Add Component</button>
 				</div>
 			</div>
@@ -94,8 +94,8 @@ const defaultcomponentElements = {
 			componentHolder.componentTags = component.tags || [];
 
 			Designer.ThemeEditor.setupComponentsManager(componentHolder);
-			element.load = componentHolder.load;
-			element.save = componentHolder.save;
+			if (typeof element.load != 'function') element.load = componentHolder.load;
+			if (typeof element.save != 'function') element.save = componentHolder.save;
 			
 			//setup popup
 			let popup = element.querySelector(`.rk-popup-holder`);
@@ -113,6 +113,8 @@ const defaultcomponentElements = {
 
 				//apply edits
 				popup.style.display = "none";
+
+				element.update?.();
 			});
 		}
 	},
@@ -223,7 +225,7 @@ const defaultcomponentElements = {
 
 			return style;
 		}
-	}
+	},
 };
 let designerComponents = [
 
@@ -518,6 +520,684 @@ let designerComponents = [
 			}
 		}
 	},//background
+	{
+		id: "backgroundfilter",
+		parent: {
+			all: false,
+			headId: 'pages',
+			tags: {
+				page: false,
+				blockElement: true,
+				hasBackgroundFilter: true
+			}
+		},
+		details: {
+			name: "Backdrop Filter",
+			description: "adds filters behind the background of the element"
+			// ! translate
+		},
+		// element: {
+		// 	html: /*html*/`
+		// 	<div class="section-content" style="cursor: pointer;">
+		// 		<!--span class="text-lead" data-component-get="name">Unnamed Component</span>
+		// 		<button class="rk-btn" data-remove-component style="float: right;margin-top: -.5ch;">-</button-->
+		// 		<div class="rk-flex rk-space-between rk-center-x">
+		// 			<button class="rk-btn"><span class="text-lead" data-component-get="name">Unnamed Component</span></button>
+		// 			<button class="rk-btn" data-remove-component>-</button>
+		// 		</div>
+		// 		<div class="rbx-divider" style="margin: 12px;"></div>
+		// 		<span class="text-description" data-component-get="description"></span>
+		// 		<div style="color: red;" class="text-description" data-component-get="note"></div>
+		// 	</div>
+		// 	<div class="rk-popup-holder" style="z-index:999;">
+		// 		<div class="rk-popup" style="width: min(100%, 55rem);min-height: 25%;max-height: 100%;padding: 0;overflow: hidden;"><!--data-designer-func="add-edits"-->
+		// 			<div data-component-holder style="width: 100%;height: 100%;overflow: auto;padding: 1rem;"> 
+		// 				<button class="section-content rk-btn" style="width: 100%;" data-designer-func="add-edits-btn" data-translate="editorComponentAdding">Add Component</button>
+		// 			</div>
+		// 		</div>
+		// 	</div>`,
+		// 	js: function(idCard, parentElement) {
+		// 		let element = idCard.element;
+		// 		let component = idCard.component;
+
+		// 		//setup remove component btn
+		// 		element.querySelector(`[data-remove-component]`)
+		// 		.addEventListener("click", () => {
+		// 			//console.log("Not Implemented");
+		// 			parentElement.removeComponent(idCard.component);
+		// 		});
+
+		// 		//setup component info
+		// 		element.querySelectorAll(`[data-component-get]`).forEach((infoElement) => {
+		// 			let infoType = infoElement.dataset.componentGet;
+		// 			let hasLanguageTag = component.details.translate != null;
+
+		// 			let detail = component.details;
+		// 			let translate = component.details.translate;
+
+		// 			if (infoType == 'name') {
+		// 				infoElement.textContent = detail.name;
+		// 				if (hasLanguageTag)
+		// 					infoElement.dataset.translate = translate.name;
+		// 			} else if (infoType == 'description' && detail.description) {
+		// 				infoElement.textContent = detail.description;
+		// 				if (hasLanguageTag)
+		// 					infoElement.dataset.translate = translate.description;
+		// 			} else if (infoType == 'note' && detail.note) {
+		// 				infoElement.textContent = detail.note;
+		// 				if (hasLanguageTag)
+		// 					infoElement.dataset.translate = translate.note;
+		// 			}
+		// 		});
+
+		// 		//setup component manager
+		// 		let componentHolder = element.querySelector(`[data-component-holder]`);
+				
+		// 		componentHolder.dataset.componentId = component.id;
+		// 		componentHolder.dataset.headId = element.dataset.headId;
+		// 		componentHolder.componentTags = component.tags || [];
+
+		// 		Designer.ThemeEditor.setupComponentsManager(componentHolder);
+		// 		element.getComponents = componentHolder.getComponents;
+		// 		element.clearComponents = componentHolder.clearComponents;
+		// 		element.addComponent = componentHolder.addComponent;
+				
+		// 		//setup popup
+		// 		let popup = element.querySelector(`.rk-popup-holder`);
+				
+		// 		element.addEventListener("click", (e) => {
+		// 			if (e.target == popup) return;
+		// 			if (e.target.closest(`.rk-popup-holder`) == popup) return;
+
+		// 			//setup/load edits
+		// 			popup.style.display = "flex";
+		// 		});
+
+		// 		popup.addEventListener("click", function (e) {
+		// 			if (e.target != popup) return;
+
+		// 			//apply edits
+		// 			popup.style.display = "none";
+
+		// 			//update ui
+		// 			// console.log('update ui');
+		// 		});
+		// 	},
+		// 	load: function (theme_object, idCard) {
+		// 		let element = idCard.element;
+
+		// 		//clear currentComponents
+		// 		element.clearComponents();
+
+		// 		//for all objects in theme_object
+		// 		if (theme_object === '') return;
+		// 		let filters = theme_object.split(' ');
+		// 		for (let filter of filters) {
+		// 			if (filter == '') continue;
+
+		// 			let filterName = filter.split('(')[0];
+
+		// 			//check if path/object key exist in components as id
+		// 			if (filterName == null || filterName == '') continue;
+
+		// 			//add component
+		// 			let componentIdCard = element.addComponent(component);
+		// 			let value = filter.split('(')[1].split(')')[0];
+
+		// 			//after setup do load and pass the same object's value
+		// 			if (typeof componentIdCard.element.load == 'function') componentIdCard.element.load(value, componentIdCard);
+		// 		}
+		// 	},
+		// 	save: function (idCard) {
+		// 		let element = idCard.element;
+
+		// 		//create filters
+		// 		let filters = [];
+		// 		let currentComponents = element.getComponents();
+
+		// 		//for each current Components
+		// 		for (let componentIdCard of currentComponents) {
+		// 			//run save_object
+		// 			let save_component = componentIdCard.element.save;
+		// 			if (typeof save_component != 'function') continue;
+
+		// 			//put object in filters with key of component id
+		// 			filters.push(
+		// 				save_component(componentIdCard)
+		// 			);
+		// 		}
+				
+		// 		return filters.join(' ');
+		// 	}
+		// }
+		element: {
+			...defaultcomponentElements.horizantalGroup,
+			...{
+				load: function (theme_object, idCard) {
+					let element = idCard.element;
+					let componentHolder = element.querySelector(`[data-component-holder]`);
+
+					//clear currentComponents
+					componentHolder.clearComponents();
+
+					//for all objects in theme_object
+					if (theme_object === '') return;
+					let filters = theme_object.split(' ');
+					for (let filter of filters) {
+						if (filter == '') continue;
+
+						let filterName = filter.split('(')[0];
+
+						//check if path/object key exist in components as id
+						if (filterName == null || filterName == '') continue;
+
+						let component = componentHolder.availableComponents.find(x => x.id == 'filter'+filterName);
+						if (component == null) continue;
+
+						//add component
+						let componentIdCard = componentHolder.addComponent(component);
+						let value = filter.split('(')[1].split(')')[0];
+
+						//after setup do load and pass the same object's value
+						if (typeof componentIdCard.element.load == 'function') componentIdCard.element.load(value, componentIdCard);
+					}
+				},
+				save: function (idCard) {
+					let element = idCard.element;
+					let componentHolder = element.querySelector(`[data-component-holder]`);
+
+					//create filters
+					let filters = [];
+					let currentComponents = componentHolder.getComponents();
+
+					//for each current Components
+					for (let componentIdCard of currentComponents) {
+						//run save_object
+						let saveComponent = componentIdCard.element.save;
+						if (typeof saveComponent != 'function') continue;
+
+						//put object in filters with key of component id
+						filters.push(
+							saveComponent(componentIdCard)
+						);
+					}
+					
+					return filters.join(' ');
+				}
+			}
+		}
+	},//backgroundfilter
+	{
+		id: "filterbrightness",
+		parent: {
+			all: false,
+			ids: {
+				backgroundfilter: true
+			}
+		},
+		details: {
+			name: "Brightness",
+			// ! - translate
+			// translate: {
+			// 	name: 'themeBackground'
+			// }
+		},
+		element: {
+			html: /*html*/`
+			<div class="section-content" style="display: flex;">
+
+				<button class="rk-btn" data-remove-component>-</button>
+
+				<div class="rk-flex rk-space-between rk-center-x" style="flex-grow: 1;">
+					<span data-component-get="name">loading</span>
+					<input data-location="value" type="range" class="form-control input-field"
+						min="0" max="2" value="1" step="0.1">
+				</div>
+	
+			</div>`,
+			js: function (idCard, parentElement) {
+				let element = idCard.element;
+				let component = idCard.component;
+
+				//setup remove component btn
+				element.querySelector(`[data-remove-component]`)
+				.addEventListener("click", () => {
+					//console.log("Not Implemented");
+					parentElement.removeComponent(idCard.component);
+				});
+
+				//setup component info
+				element.querySelectorAll(`[data-component-get]`).forEach((infoElement) => {
+					let infoType = infoElement.dataset.componentGet;
+					let hasLanguageTag = component.details.translate != null;
+
+					let detail = component.details;
+					let translate = component.details.translate;
+
+					if (infoType == 'name') {
+						infoElement.textContent = detail.name;
+						if (hasLanguageTag)
+							infoElement.dataset.translate = translate.name;
+					}
+				});
+			},
+			load: function (theme_object, idCard) {
+				let element = idCard.element;
+
+				let inputElement = element.querySelector(`[data-location="value"]`);
+				if (inputElement) inputElement.value = theme_object;
+			},
+			save: function (idCard) {
+				let element = idCard.element;
+
+				let inputElement = element.querySelector(`[data-location="value"]`);
+
+				return `brightness(${inputElement.value})`;
+			}
+		}
+	},//filterbrightness
+	{
+		id: "filterblur",
+		parent: {
+			all: false,
+			ids: {
+				backgroundfilter: true
+			}
+		},
+		details: {
+			name: "Blur",
+			// ! - translate
+			// translate: {
+			// 	name: 'themeBackground'
+			// }
+		},
+		element: {
+			html: /*html*/`
+			<div class="section-content" style="display: flex;">
+
+				<button class="rk-btn" data-remove-component>-</button>
+
+				<div class="rk-flex rk-space-between rk-center-x" style="flex-grow: 1;">
+					<span data-component-get="name">loading</span>
+					<input data-location="value" type="range" class="form-control input-field"
+						min="0" max="50" value="0" step="5">
+				</div>
+	
+			</div>`,
+			js: function (idCard, parentElement) {
+				let element = idCard.element;
+				let component = idCard.component;
+
+				//setup remove component btn
+				element.querySelector(`[data-remove-component]`)
+				.addEventListener("click", () => {
+					//console.log("Not Implemented");
+					parentElement.removeComponent(idCard.component);
+				});
+
+				//setup component info
+				element.querySelectorAll(`[data-component-get]`).forEach((infoElement) => {
+					let infoType = infoElement.dataset.componentGet;
+					let hasLanguageTag = component.details.translate != null;
+
+					let detail = component.details;
+					let translate = component.details.translate;
+
+					if (infoType == 'name') {
+						infoElement.textContent = detail.name;
+						if (hasLanguageTag)
+							infoElement.dataset.translate = translate.name;
+					}
+				});
+			},
+			load: function (theme_object, idCard) {
+				let element = idCard.element;
+
+				let inputElement = element.querySelector(`[data-location="value"]`);
+				if (inputElement) inputElement.value = theme_object.split('px')[0];
+			},
+			save: function (idCard) {
+				let element = idCard.element;
+
+				let inputElement = element.querySelector(`[data-location="value"]`);
+
+				return `blur(${inputElement.value}px)`;
+			}
+		}
+	},//filterblur
+	{
+		id: "filtercontrast",
+		parent: {
+			all: false,
+			ids: {
+				backgroundfilter: true
+			}
+		},
+		details: {
+			name: "Contrast",
+			// ! - translate
+			// translate: {
+			// 	name: 'themeBackground'
+			// }
+		},
+		element: {
+			html: /*html*/`
+			<div class="section-content" style="display: flex;">
+
+				<button class="rk-btn" data-remove-component>-</button>
+
+				<div class="rk-flex rk-space-between rk-center-x" style="flex-grow: 1;">
+					<span data-component-get="name">loading</span>
+					<input data-location="value" type="range" class="form-control input-field"
+						min="0" max="2" value="1" step="0.1">
+				</div>
+	
+			</div>`,
+			js: function (idCard, parentElement) {
+				let element = idCard.element;
+				let component = idCard.component;
+
+				//setup remove component btn
+				element.querySelector(`[data-remove-component]`)
+				.addEventListener("click", () => {
+					//console.log("Not Implemented");
+					parentElement.removeComponent(idCard.component);
+				});
+
+				//setup component info
+				element.querySelectorAll(`[data-component-get]`).forEach((infoElement) => {
+					let infoType = infoElement.dataset.componentGet;
+					let hasLanguageTag = component.details.translate != null;
+
+					let detail = component.details;
+					let translate = component.details.translate;
+
+					if (infoType == 'name') {
+						infoElement.textContent = detail.name;
+						if (hasLanguageTag)
+							infoElement.dataset.translate = translate.name;
+					}
+				});
+			},
+			load: function (theme_object, idCard) {
+				let element = idCard.element;
+
+				let inputElement = element.querySelector(`[data-location="value"]`);
+				if (inputElement) inputElement.value = theme_object;
+			},
+			save: function (idCard) {
+				let element = idCard.element;
+
+				let inputElement = element.querySelector(`[data-location="value"]`);
+
+				return `contrast(${inputElement.value})`;
+			}
+		}
+	},//filtercontrast
+	{
+		id: "filtergrayscale",
+		parent: {
+			all: false,
+			ids: {
+				backgroundfilter: true
+			}
+		},
+		details: {
+			name: "Grayscale",
+			// ! - translate
+			// translate: {
+			// 	name: 'themeBackground'
+			// }
+		},
+		element: {
+			html: /*html*/`
+			<div class="section-content" style="display: flex;">
+
+				<button class="rk-btn" data-remove-component>-</button>
+
+				<div class="rk-flex rk-space-between rk-center-x" style="flex-grow: 1;">
+					<span data-component-get="name">loading</span>
+					<input data-location="value" type="range" class="form-control input-field"
+						min="0" max="1" value="0" step="0.1">
+				</div>
+	
+			</div>`,
+			js: function (idCard, parentElement) {
+				let element = idCard.element;
+				let component = idCard.component;
+
+				//setup remove component btn
+				element.querySelector(`[data-remove-component]`)
+				.addEventListener("click", () => {
+					//console.log("Not Implemented");
+					parentElement.removeComponent(idCard.component);
+				});
+
+				//setup component info
+				element.querySelectorAll(`[data-component-get]`).forEach((infoElement) => {
+					let infoType = infoElement.dataset.componentGet;
+					let hasLanguageTag = component.details.translate != null;
+
+					let detail = component.details;
+					let translate = component.details.translate;
+
+					if (infoType == 'name') {
+						infoElement.textContent = detail.name;
+						if (hasLanguageTag)
+							infoElement.dataset.translate = translate.name;
+					}
+				});
+			},
+			load: function (theme_object, idCard) {
+				let element = idCard.element;
+
+				let inputElement = element.querySelector(`[data-location="value"]`);
+				if (inputElement) inputElement.value = theme_object;
+			},
+			save: function (idCard) {
+				let element = idCard.element;
+
+				let inputElement = element.querySelector(`[data-location="value"]`);
+
+				return `grayscale(${inputElement.value})`;
+			}
+		}
+	},//filtergrayscale
+	{
+		id: "filterhue-rotate",
+		parent: {
+			all: false,
+			ids: {
+				backgroundfilter: true
+			}
+		},
+		details: {
+			name: "Hue Rotate",
+			// ! - translate
+			// translate: {
+			// 	name: 'themeBackground'
+			// }
+		},
+		element: {
+			html: /*html*/`
+			<div class="section-content" style="display: flex;">
+
+				<button class="rk-btn" data-remove-component>-</button>
+
+				<div class="rk-flex rk-space-between rk-center-x" style="flex-grow: 1;">
+					<span data-component-get="name">loading</span>
+					<input data-location="value" type="range" class="form-control input-field"
+						min="0" max="360" value="0" step="10">
+				</div>
+	
+			</div>`,
+			js: function (idCard, parentElement) {
+				let element = idCard.element;
+				let component = idCard.component;
+
+				//setup remove component btn
+				element.querySelector(`[data-remove-component]`)
+				.addEventListener("click", () => {
+					//console.log("Not Implemented");
+					parentElement.removeComponent(idCard.component);
+				});
+
+				//setup component info
+				element.querySelectorAll(`[data-component-get]`).forEach((infoElement) => {
+					let infoType = infoElement.dataset.componentGet;
+					let hasLanguageTag = component.details.translate != null;
+
+					let detail = component.details;
+					let translate = component.details.translate;
+
+					if (infoType == 'name') {
+						infoElement.textContent = detail.name;
+						if (hasLanguageTag)
+							infoElement.dataset.translate = translate.name;
+					}
+				});
+			},
+			load: function (theme_object, idCard) {
+				let element = idCard.element;
+
+				let inputElement = element.querySelector(`[data-location="value"]`);
+				if (inputElement) inputElement.value = theme_object.split('deg')[0];
+			},
+			save: function (idCard) {
+				let element = idCard.element;
+
+				let inputElement = element.querySelector(`[data-location="value"]`);
+
+				return `hue-rotate(${inputElement.value}deg)`;
+			}
+		}
+	},//filterhue-rotate
+	{
+		id: "filterinvert",
+		parent: {
+			all: false,
+			ids: {
+				backgroundfilter: true
+			}
+		},
+		details: {
+			name: "Invert",
+			// ! - translate
+			// translate: {
+			// 	name: 'themeBackground'
+			// }
+		},
+		element: {
+			html: /*html*/`
+			<div class="section-content" style="display: flex;">
+
+				<button class="rk-btn" data-remove-component>-</button>
+
+				<div class="rk-flex rk-space-between rk-center-x" style="flex-grow: 1;">
+					<span data-component-get="name">loading</span>
+				</div>
+	
+			</div>`,
+			js: function (idCard, parentElement) {
+				let element = idCard.element;
+				let component = idCard.component;
+
+				//setup remove component btn
+				element.querySelector(`[data-remove-component]`)
+				.addEventListener("click", () => {
+					//console.log("Not Implemented");
+					parentElement.removeComponent(idCard.component);
+				});
+
+				//setup component info
+				element.querySelectorAll(`[data-component-get]`).forEach((infoElement) => {
+					let infoType = infoElement.dataset.componentGet;
+					let hasLanguageTag = component.details.translate != null;
+
+					let detail = component.details;
+					let translate = component.details.translate;
+
+					if (infoType == 'name') {
+						infoElement.textContent = detail.name;
+						if (hasLanguageTag)
+							infoElement.dataset.translate = translate.name;
+					}
+				});
+			},
+			save: function (idCard) {
+				return `invert(1)`;
+			}
+		}
+	},//filterinvert
+	{
+		id: "filtersaturate",
+		parent: {
+			all: false,
+			ids: {
+				backgroundfilter: true
+			}
+		},
+		details: {
+			name: "Saturate",
+			// ! - translate
+			// translate: {
+			// 	name: 'themeBackground'
+			// }
+		},
+		element: {
+			html: /*html*/`
+			<div class="section-content" style="display: flex;">
+
+				<button class="rk-btn" data-remove-component>-</button>
+
+				<div class="rk-flex rk-space-between rk-center-x" style="flex-grow: 1;">
+					<span data-component-get="name">loading</span>
+					<input data-location="value" type="range" class="form-control input-field"
+						min="0" max="2" value="1" step="0.1">
+				</div>
+	
+			</div>`,
+			js: function (idCard, parentElement) {
+				let element = idCard.element;
+				let component = idCard.component;
+
+				//setup remove component btn
+				element.querySelector(`[data-remove-component]`)
+				.addEventListener("click", () => {
+					//console.log("Not Implemented");
+					parentElement.removeComponent(idCard.component);
+				});
+
+				//setup component info
+				element.querySelectorAll(`[data-component-get]`).forEach((infoElement) => {
+					let infoType = infoElement.dataset.componentGet;
+					let hasLanguageTag = component.details.translate != null;
+
+					let detail = component.details;
+					let translate = component.details.translate;
+
+					if (infoType == 'name') {
+						infoElement.textContent = detail.name;
+						if (hasLanguageTag)
+							infoElement.dataset.translate = translate.name;
+					}
+				});
+			},
+			load: function (theme_object, idCard) {
+				let element = idCard.element;
+
+				let inputElement = element.querySelector(`[data-location="value"]`);
+				if (inputElement) inputElement.value = theme_object;
+			},
+			save: function (idCard) {
+				let element = idCard.element;
+
+				let inputElement = element.querySelector(`[data-location="value"]`);
+
+				return `saturate(${inputElement.value})`;
+			}
+		}
+	},//filtersaturate
 	{
 		id: "corners",
 		parent: {
@@ -1030,6 +1710,7 @@ let designerComponents = [
 			}
 		}
 	},//borders
+
 	{
 		id: "all",
 		tags: ["page"],
@@ -2230,6 +2911,7 @@ Designer.ThemeEditor.setupComponentsManager = function(btn) {
 		}
 		return pass;
 	});
+	btn.availableComponents = components;
 
 	let componentsList = document.querySelector(`#rk-add-edits-list`);
 	let currentComponents = [];
@@ -2306,14 +2988,20 @@ Designer.ThemeEditor.setupComponentsManager = function(btn) {
 		});
 		return;
 	}
-	btn.load = function(theme_object) {
-		//if (id == 'pages') console.log(`loading theme`, theme_object);
-
-		//clear currentComponents
+	btn.getComponents = function() {
+		return currentComponents;
+	}
+	btn.clearComponents = function() {
 		currentComponents = [];
 		btn.querySelectorAll('.component-holder').forEach((element) => {
 			element.remove();
 		});
+	}
+	btn.load = function(theme_object) {
+		//if (id == 'pages') console.log(`loading theme`, theme_object);
+
+		//clear currentComponents
+		btn.clearComponents();
 
 		//for all objects in theme_object
 		for (let path in theme_object) {

@@ -68,7 +68,6 @@ Rkis.page.game = () => {
 		}
 	});
 	
-	//should or shouldn't show the max players count (ex. 7 => 7/8)
 	if (Rkis.IsSettingEnabled("GameBannerToBackground", {
 		id: "GameBannerToBackground",
 		type: "switch",
@@ -81,7 +80,7 @@ Rkis.page.game = () => {
 			// 	description: "sectionMPN1"
 			// },
 			"en": {
-				name: "game Banner to Background",
+				name: "Game Banner to Background",
 				description: "Uses first game image as page's background."
 			}
 		}

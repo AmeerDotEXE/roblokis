@@ -28,6 +28,8 @@
 
 	background: var(--rk-profile-background, transparent);
 	background-size: var(--rk-profile-background-image-size);
+
+	backdrop-filter: var(--rk-profile-backdrop-filter);
 }
 
 #horizontal-tabs,

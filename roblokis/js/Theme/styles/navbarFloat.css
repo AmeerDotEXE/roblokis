@@ -2,6 +2,7 @@
 	margin-top: 5px;
 	border: 0;
 	background: transparent;
+	backdrop-filter: none;
 }
 
 #navigation {
@@ -31,6 +32,8 @@
 	border-color: var(--rk-menu-borders-color);
 	border-style: var(--rk-menu-borders-style);
 	border-width: var(--rk-menu-borders-size);
+
+	backdrop-filter: var(--rk-content-backdrop-filter);
 	
 	box-sizing: content-box;
 	margin-right: 10px;

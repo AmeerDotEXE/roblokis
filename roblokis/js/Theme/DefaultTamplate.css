@@ -15,6 +15,8 @@
 
 	--rk-|fullpack|-background: $|fullpack|.background.color# /*>$|fullpack|.background.image.|IMG|#<*/;
 	--rk-|fullpack|-background-image-size: $|fullpack|.background.image.size#;
+
+	--rk-|fullpack|-backdrop-filter: $|fullpack|.backgroundfilter#;
 --loopend: 0;
 
 
@@ -29,6 +31,8 @@
 
 	--rk-|server|-background: $|server|.background.color/defaultserver.background.color# /*>$|server|.background.image.|IMG|/defaultserver.background.image.|IMG|#<*/;
 	--rk-|server|-background-image-size: $|server|.background.image.size/defaultserver.background.image.size#;
+
+	--rk-|server|-backdrop-filter: $|server|.backgroundfilter/defaultserver.backgroundfilter#;
 
 	--rk-|server|-borders-size: /*>$|server|.borders.|SIDE|.size/|server|.borders.all.size/defaultserver.borders.|SIDE|.size/defaultserver.borders.all.size&0px#<*/;
 	--rk-|server|-borders-color: /*>$|server|.borders.|SIDE|.color/|server|.borders.all.color/defaultserver.borders.|SIDE|.color/defaultserver.borders.all.color&white#<*/;
@@ -46,6 +50,8 @@
 
 	--rk-|server|-button-background: $|server|.button.background.color/defaultserver.button.background.color# /*>$|server|.button.background.image.|IMG|/defaultserver.button.background.image.|IMG|#<*/;
 	--rk-|server|-button-background-image-size: $|server|.button.background.image.size/defaultserver.button.background.image.size#;
+
+	--rk-|server|-button-backdrop-filter: $|server|.button.backgroundfilter/defaultserver.button.background.image.size#;
 
 	--rk-|server|-button-borders-size: /*>$|server|.button.borders.|SIDE|.size/|server|.button.borders.all.size/defaultserver.button.borders.|SIDE|.size/defaultserver.button.borders.all.size&0px#<*/;
 	--rk-|server|-button-borders-color: /*>$|server|.button.borders.|SIDE|.color/|server|.button.borders.all.color/defaultserver.button.borders.|SIDE|.color/defaultserver.button.borders.all.color&white#<*/;

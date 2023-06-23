@@ -17,6 +17,8 @@
 	border-color: var(--rk-menu-borders-color);
 	border-style: var(--rk-menu-borders-style);
 	border-width: var(--rk-menu-borders-size);
+
+	backdrop-filter: var(--rk-menu-backdrop-filter);
 }
 
 #header {
@@ -87,6 +89,8 @@ html .alert-system-feedback .alert {
 	background: var(--rk-content-background);
 	background-size: var(--rk-content-background-image-size);
 
+	backdrop-filter: var(--rk-content-backdrop-filter);
+
 
 	display: flex;
 	justify-content: center;
@@ -95,7 +99,6 @@ html .alert-system-feedback .alert {
 	padding: 3% 4%;
 	flex-wrap: wrap;
 	width: fit-content;
-	box-sizing: content-box;
 }
 
 .rk-page-background {

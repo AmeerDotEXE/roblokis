@@ -20,6 +20,8 @@
 
 	background: var(--rk-group-background, transparent);
 	background-size: var(--rk-group-background-image-size);
+
+	backdrop-filter: var(--rk-group-backdrop-filter);
 }
 
 #horizontal-tabs,
