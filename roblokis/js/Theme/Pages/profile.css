@@ -30,6 +30,7 @@
 	background-size: var(--rk-profile-background-image-size);
 
 	backdrop-filter: var(--rk-profile-backdrop-filter);
+	box-shadow: var(--rk-profile-box-shadow);
 }
 
 #horizontal-tabs,

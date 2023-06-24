@@ -19,6 +19,7 @@
 	border-width: var(--rk-menu-borders-size);
 
 	backdrop-filter: var(--rk-menu-backdrop-filter);
+	box-shadow: var(--rk-menu-box-shadow);
 }
 
 #header {
@@ -90,6 +91,7 @@ html .alert-system-feedback .alert {
 	background-size: var(--rk-content-background-image-size);
 
 	backdrop-filter: var(--rk-content-backdrop-filter);
+	box-shadow: var(--rk-content-box-shadow);
 
 
 	display: flex;

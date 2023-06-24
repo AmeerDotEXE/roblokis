@@ -521,14 +521,221 @@ let designerComponents = [
 		}
 	},//background
 	{
+		id: "box-shadow",
+		parent: {
+			all: false,
+			headId: 'pages',
+			tags: {
+				blockElement: true,
+			}
+		},
+		details: {
+			name: "Box Shadow"
+			// ! translate
+		},
+		element: {
+			...defaultcomponentElements.horizantalGroup,
+			...{
+				load: function (theme_object, idCard) {
+					let element = idCard.element;
+					let componentHolder = element.querySelector(`[data-component-holder]`);
+
+					//clear currentComponents
+					componentHolder.clearComponents();
+
+					//for all objects in theme_object
+					if (theme_object === '') return;
+					let shadows = theme_object.split(',');
+					for (let shadow of shadows) {
+						if (shadow == '') continue;
+
+						let component = componentHolder.availableComponents.find(x => x.id == 'shadows');
+
+						//check if path/object key exist in components as id
+						if (component == null) continue;
+
+						//add component
+						let componentIdCard = componentHolder.addComponent(component);
+
+						//after setup do load and pass the same object's value
+						if (typeof componentIdCard.element.load == 'function') componentIdCard.element.load(shadow, componentIdCard);
+					}
+				},
+				save: function (idCard) {
+					let element = idCard.element;
+					let componentHolder = element.querySelector(`[data-component-holder]`);
+
+					//create shadows
+					let shadows = [];
+					let currentComponents = componentHolder.getComponents();
+
+					//for each current Components
+					for (let componentIdCard of currentComponents) {
+						//run save_object
+						let saveComponent = componentIdCard.element.save;
+						if (typeof saveComponent != 'function') continue;
+
+						//put object in shadows with key of component id
+						shadows.push(
+							saveComponent(componentIdCard)
+						);
+					}
+					
+					return shadows.join(',');
+				}
+			}
+		}
+	},//box-shadow
+	{
+		id: "shadows",
+		parent: {
+			all: false,
+			ids: {
+				'box-shadow': true,
+			}
+		},
+		options: {
+			isMulti: true,
+			maxMulti: 5,
+		},
+		details: {
+			name: "Shadow",
+			// ! translate
+		},
+		element: {
+			html: /*html*/`
+				<!-- ! translate -->
+				<div data-preview
+				style="width: min(10rem, 20%);display: flex;border: 1px solid rgba(128,128,128,0.5);margin-right: 1rem;justify-content: center;align-items: center;border-radius: 20px 0;">
+					Preview
+				</div>
+				<div style="flex-grow: 1;">
+					<div class="rk-flex rk-space-between rk-center-x">
+						<h4 style="width: fit-content;">Shadow</h4>
+						<button class="rk-btn" data-remove-component>-</button>
+					</div>
+
+
+					<div class="rk-flex rk-space-between rk-center-x">
+						<span>Type:</span>
+						<select selected="" data-location="type">
+							<option value="" selected>Outset</option>
+							<option value="inset">Inset</option>
+						</select>
+					</div>
+
+
+					<div class="rbx-divider" style="margin: 12px;"></div>
+
+
+					<div class="rk-flex rk-space-between rk-center-x">
+						<span style="min-width: fit-content;margin-right: 5px;">X:</span>
+						<input type="range" value="0" step="1" min="-20" max="20"
+							data-location="x" class="form-control input-field">
+					</div>
+
+					<div class="rk-flex rk-space-between rk-center-x">
+						<span style="min-width: fit-content;margin-right: 5px;">Y:</span>
+						<input type="range" value="0" step="1" min="-20" max="20"
+							data-location="y" class="form-control input-field">
+					</div>
+
+
+					<div class="rbx-divider" style="margin: 12px;"></div>
+
+
+					<div class="rk-flex rk-space-between rk-center-x">
+						<span style="min-width: fit-content;margin-right: 5px;">Blur:</span>
+						<input type="range" value="0" step="1" min="0" max="20"
+							data-location="blur" class="form-control input-field">
+					</div>
+
+					<div class="rk-flex rk-space-between rk-center-x">
+						<span style="min-width: fit-content;margin-right: 5px;">Spread:</span>
+						<input type="range" value="0" step="1" min="0" max="20"
+							data-location="spread" class="form-control input-field">
+					</div>
+
+
+					<div class="rbx-divider" style="margin: 12px;"></div>
+
+
+					<div class="rk-flex rk-space-between rk-center-x">
+						<span style="min-width: fit-content;margin-right: 5px;" data-translate="themeColor">Color:</span>
+						<input type="color" value="#000000"
+							data-location="color" data-type="color" class="form-control input-field">
+					</div>
+				</div>`,
+			js: function (idCard, parentElement) {
+				let element = idCard.element;
+				
+				element.classList.add("section-content");
+				element.style.display = 'flex';
+
+				//setup remove component btn
+				element.querySelector(`[data-remove-component]`)
+				.addEventListener("click", () => {
+					//console.log("Not Implemented");
+					parentElement.removeComponent(idCard.component, idCard);
+				});
+
+				element.update = function() {
+					let settings = element.save(idCard);
+					if (settings == '') return;
+
+					previewElement.style.boxShadow = settings;
+					element.style.boxShadow = settings;
+				}
+
+				let previewElement = element.querySelector('[data-preview]');
+				if (previewElement != null) {
+					element.querySelectorAll('[data-location]')
+					.forEach((input) => {
+						input.addEventListener('input', () => element.update());
+					});
+				}
+			},
+			load: function (theme_object, idCard) {
+				let element = idCard.element;
+				
+				if (theme_object.startsWith('inset ') != true) theme_object = ' ' + theme_object;
+				let [type, x, y, blur, spread, rawColor] = theme_object.split(' ');
+
+				//load rest
+				let inputsValue = {type,x,y,blur,spread,color: rawColor};
+				element.querySelectorAll(`[data-location]`).forEach((input) => {
+					let value = inputsValue[input.dataset.location];
+
+					input.value = value.split('px')[0];
+				});
+				
+				if (typeof element.update == 'function') element.update();
+			},
+			save: function (idCard) {
+				let element = idCard.element;
+				let inputsValue = {};
+
+				//save inputs
+				element.querySelectorAll(`[data-location]`).forEach((input) => {
+					let value = input.value;
+					if (input.dataset.location != 'type' &&
+						input.dataset.location != 'color') value += 'px';
+
+					inputsValue[input.dataset.location] = value;
+				});
+
+				return `${inputsValue.type} ${inputsValue.x} ${inputsValue.y} ${inputsValue.blur} ${inputsValue.spread} ${inputsValue.color}`;
+			}
+		}
+	},//shadows
+	{
 		id: "backgroundfilter",
 		parent: {
 			all: false,
 			headId: 'pages',
 			tags: {
 				page: false,
-				blockElement: true,
-				hasBackgroundFilter: true
+				blockElement: true
 			}
 		},
 		details: {
@@ -1877,57 +2084,6 @@ let designerComponents = [
 		element: defaultcomponentElements.horizantalGroup
 	},//profile
 	{
-		id: "shadow",
-		parent: {
-			headId: 'pages',
-			ids: {
-				content: true
-			},
-			tags: {
-				hasShadow: true
-			}
-		},
-		details: {
-			name: "Border Shadow",
-			translate: {
-				name: 'themeBorderShadow'
-			}
-		},
-		element: {
-			html: /*html*/`
-			<div class="section-content">
-				<div class="rk-flex rk-space-between rk-center-x">
-					<span data-translate="themeShadow">Shadow:</span>
-					<button class="rk-btn" data-remove-component>-</button>
-				</div>
-				
-				<select selected="" data-location="shadow" data-type="value" style="width: 100%;margin: 0;">
-					<option value="" data-translate="themeEnabled">Enabled</option>
-					<option value="disabled" data-translate="themeDisabled">Disabled</option>
-				</select>
-			</div>`,
-			js: function (idCard, parentElement) {
-				let element = idCard.element;
-
-				//setup remove component btn
-				element.querySelector(`[data-remove-component]`)
-					.addEventListener("click", () => {
-						parentElement.removeComponent(idCard.component);
-					});
-			},
-			load: function (theme_object, idCard) {
-				let element = idCard.element;
-
-				element.querySelector(`[data-location="shadow"]`).value = theme_object;
-			},
-			save: function (idCard) {
-				let element = idCard.element;
-
-				return element.querySelector(`[data-location="shadow"]`).value;
-			}
-		}
-	},//shadow
-	{
 		id: "badge",
 		tags: ["blockElement", "hasBrightnDarkColors"],
 		parent: {
@@ -2920,7 +3076,10 @@ Designer.ThemeEditor.setupComponentsManager = function(btn) {
 	btn.showAddComponentMenu = function() {
 		componentsList.innerHTML = "";
 		components.forEach(component => {
-			if (currentComponents.find(x => x.id == component.id) != null) return;
+			let similarComponents = currentComponents.filter(x => x.id == component.id);
+			let isMulti = component.options?.isMulti == true;
+			if (isMulti && similarComponents.length >= component.options.maxMulti) isMulti = false;
+			if (isMulti != true && similarComponents[0] != null) return;
 
 			let details = escapeJSON(component.details);
 
@@ -2935,8 +3094,11 @@ Designer.ThemeEditor.setupComponentsManager = function(btn) {
 
 			ComponentDiv.querySelector('button').addEventListener('click', () => {
 				btn.addComponent(component);
-				ComponentDiv.remove();
-			}, {once: true});
+
+				let similarComponents = currentComponents.filter(x => x.id == component.id);
+				if (isMulti && similarComponents.length >= component.options.maxMulti) isMulti = false;
+				if (isMulti != true) ComponentDiv.remove();
+			}, {once: isMulti != true});
 
 			componentsList.appendChild(ComponentDiv);
 		});
@@ -2945,8 +3107,10 @@ Designer.ThemeEditor.setupComponentsManager = function(btn) {
 	btn.addComponent = function(component) {
 		if (!components.includes(component)) return;
 
-		let addedComponent = currentComponents.find(x => x.id == component.id);
-		if (addedComponent != null) return addedComponent;
+		let addedComponents = currentComponents.filter(x => x.id == component.id);
+		let isMulti = component.options?.isMulti == true;
+		if (isMulti && addedComponents.length >= component.options.maxMulti) isMulti = false;
+		if (isMulti != true && addedComponents[0] != null) return addedComponents[0];
 
 		//add element
 		let holder = document.createElement('div');
@@ -2968,8 +3132,9 @@ Designer.ThemeEditor.setupComponentsManager = function(btn) {
 		let idCard = {
 			id: component.id,
 			element: holder,
-			component
+			component,
 		};
+		if (isMulti) idCard.multiNum = addedComponents.length;
 
 		let run = component.element.js;
 		if (typeof run == 'function') run(idCard, btn);
@@ -2979,9 +3144,10 @@ Designer.ThemeEditor.setupComponentsManager = function(btn) {
 
 		return idCard;
 	}
-	btn.removeComponent = function(component) {
+	btn.removeComponent = function(component, idCard) {
 		currentComponents = currentComponents.filter(x => {
 			if (x.id != component.id) return true;
+			if (idCard && x.multiNum != idCard.multiNum) return true;
 
 			x.element.remove();
 			return false;

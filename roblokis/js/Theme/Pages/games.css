@@ -77,6 +77,7 @@ div.container-list.games-detail div.game-card-container > a:hover > a {
 	background-size: var(--rk-badge-background-image-size);
 
 	backdrop-filter: var(--rk-badge-backdrop-filter);
+	box-shadow: var(--rk-badge-box-shadow);
 }
 #game-badges-container > game-badges-list > div > ul > li.badge-row {
 	max-height: unset;
@@ -173,6 +174,7 @@ div.section-content-off {
 	background-size: var(--rk-privateserver-background-image-size);
 
 	backdrop-filter: var(--rk-privateserver-backdrop-filter);
+	box-shadow: var(--rk-privateserver-box-shadow);
 }
 #rbx-private-running-games > ul > li:hover {
 	transform: var(--rk-basic-animations, scale(1.1));
@@ -195,6 +197,7 @@ div.section-content-off {
 	background-size: var(--rk-privateserver-button-background-image-size);
 
 	backdrop-filter: var(--rk-privateserver-button-backdrop-filter);
+	box-shadow: var(--rk-privateserver-button-box-shadow);
 }
 
 #rbx-private-running-games ul li div.game-server-details > div.section-header > span {
@@ -234,6 +237,7 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
 	background-size: var(--rk-publicserver-background-image-size);
 
 	backdrop-filter: var(--rk-publicserver-backdrop-filter);
+	box-shadow: var(--rk-publicserver-box-shadow);
 }
 
 #rbx-game-server-item-container li div.rbx-game-server-details div.ropro-server-info.text-info {
@@ -270,6 +274,7 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
 	background-size: var(--rk-friendsserver-background-image-size);
 
 	backdrop-filter: var(--rk-friendsserver-backdrop-filter);
+	box-shadow: var(--rk-friendsserver-box-shadow);
 }
 #rbx-friends-game-server-item-container > li:hover {
 	transform: var(--rk-basic-animations, scale(1.2));
@@ -292,6 +297,7 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
 	background-size: var(--rk-friendsserver-button-background-image-size);
 
 	backdrop-filter: var(--rk-friendsserver-button-backdrop-filter);
+	box-shadow: var(--rk-friendsserver-button-box-shadow);
 }
 
 #rbx-friends-game-server-item-container li div.game-server-details > div.friends-in-server-label {
@@ -324,6 +330,7 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
 	background-size: var(--rk-smallserver-background-image-size);
 
 	backdrop-filter: var(--rk-smallserver-backdrop-filter);
+	box-shadow: var(--rk-smallserver-box-shadow);
 }
 #rbx-small-game-server-item-container > li:hover {
 	transform: var(--rk-basic-animations, scale(1.2));
@@ -346,6 +353,7 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
 	background-size: var(--rk-smallserver-button-background-image-size);
 
 	backdrop-filter: var(--rk-smallserver-button-backdrop-filter);
+	box-shadow: var(--rk-smallserver-button-box-shadow);
 }
 
 #game-instances #rbx-small-game-server-item-container > li[hidden] {
@@ -376,6 +384,7 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
 	background-size: var(--rk-publicserver-background-image-size);
 
 	backdrop-filter: var(--rk-publicserver-backdrop-filter);
+	box-shadow: var(--rk-publicserver-box-shadow);
 }
 #rbx-game-server-item-container > li:hover {
 	transform: var(--rk-basic-animations, scale(1.2));
@@ -399,6 +408,7 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
 	background-size: var(--rk-publicserver-button-background-image-size);
 
 	backdrop-filter: var(--rk-publicserver-button-backdrop-filter);
+	box-shadow: var(--rk-publicserver-button-box-shadow);
 }
 
 #rbx-game-server-item-container.pagenav > li:not(.pagenav) {
@@ -426,6 +436,7 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
 	background-size: var(--rk-pagenav-background-image-size);
 
 	backdrop-filter: var(--rk-pagenav-backdrop-filter);
+	box-shadow: var(--rk-pagenav-box-shadow);
 }
 
 #rbx-running-games > div.rbx-running-games-footer > button,

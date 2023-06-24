@@ -3,6 +3,7 @@
 	border: 0;
 	background: transparent;
 	backdrop-filter: none;
+	box-shadow: none;
 }
 
 #navigation {
@@ -33,7 +34,8 @@
 	border-style: var(--rk-menu-borders-style);
 	border-width: var(--rk-menu-borders-size);
 
-	backdrop-filter: var(--rk-content-backdrop-filter);
+	backdrop-filter: var(--rk-menu-backdrop-filter);
+	box-shadow: var(--rk-menu-box-shadow);
 	
 	box-sizing: content-box;
 	margin-right: 10px;
