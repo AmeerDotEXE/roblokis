@@ -57,7 +57,7 @@
 /* Fix error message peaking under navbar */
 html .alert-system-feedback .alert {
 	/* top: -25%; */
-	transform: translate(0, -20px);
+	transform: translate(0, -200%);
 }
 
 :root .icon-logo {
@@ -122,48 +122,48 @@ html .alert-system-feedback .alert {
 .abp {display: none;}
 
 /*quick join button*/
-a.game-card-link[data-addedjoin="true"] > a.rbx-game-server-join[onclick][data-placeid] {
+a.game-card-link > a.rk-quickgamejoin {
 	transition: transform 400ms;
 	transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
 }
-a.game-card-link[data-addedjoin="true"]:hover > a.rbx-game-server-join[onclick][data-placeid] {
+a.game-card-link:hover > a.rk-quickgamejoin {
 	transform: var(--rk-basic-animations, scale(1.12) rotate(5deg));
 }
 
 
-a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r0.rbx-game-server-join[onclick][data-placeid] {
+a.game-card-link:hover > a.rk-btn-r0.rk-quickgamejoin {
 	transform: var(--rk-basic-animations, scale(1.12) rotate(0deg));
 }
 
-a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r1.rbx-game-server-join[onclick][data-placeid] {
+a.game-card-link:hover > a.rk-btn-r1.rk-quickgamejoin {
 	transform: var(--rk-basic-animations, scale(1.12) rotate(3deg));
 }
-a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r2.rbx-game-server-join[onclick][data-placeid] {
+a.game-card-link:hover > a.rk-btn-r2.rk-quickgamejoin {
 	transform: var(--rk-basic-animations, scale(1.12) rotate(6deg));
 }
-a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r3.rbx-game-server-join[onclick][data-placeid] {
+a.game-card-link:hover > a.rk-btn-r3.rk-quickgamejoin {
 	transform: var(--rk-basic-animations, scale(1.12) rotate(9deg));
 }
-a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r4.rbx-game-server-join[onclick][data-placeid] {
+a.game-card-link:hover > a.rk-btn-r4.rk-quickgamejoin {
 	transform: var(--rk-basic-animations, scale(1.12) rotate(12deg));
 }
-a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r5.rbx-game-server-join[onclick][data-placeid] {
+a.game-card-link:hover > a.rk-btn-r5.rk-quickgamejoin {
 	transform: var(--rk-basic-animations, scale(1.12) rotate(15deg));
 }
 
-a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r-1.rbx-game-server-join[onclick][data-placeid] {
+a.game-card-link:hover > a.rk-btn-r-1.rk-quickgamejoin {
 	transform: var(--rk-basic-animations, scale(1.12) rotate(-3deg));
 }
-a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r-2.rbx-game-server-join[onclick][data-placeid] {
+a.game-card-link:hover > a.rk-btn-r-2.rk-quickgamejoin {
 	transform: var(--rk-basic-animations, scale(1.12) rotate(-6deg));
 }
-a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r-3.rbx-game-server-join[onclick][data-placeid] {
+a.game-card-link:hover > a.rk-btn-r-3.rk-quickgamejoin {
 	transform: var(--rk-basic-animations, scale(1.12) rotate(-9deg));
 }
-a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r-4.rbx-game-server-join[onclick][data-placeid] {
+a.game-card-link:hover > a.rk-btn-r-4.rk-quickgamejoin {
 	transform: var(--rk-basic-animations, scale(1.12) rotate(-12deg));
 }
-a.game-card-link[data-addedjoin="true"]:hover > a.rk-btn-r-5.rbx-game-server-join[onclick][data-placeid] {
+a.game-card-link:hover > a.rk-btn-r-5.rk-quickgamejoin {
 	transform: var(--rk-basic-animations, scale(1.12) rotate(-15deg));
 }
 

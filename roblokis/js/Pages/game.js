@@ -28,15 +28,17 @@ Rkis.page.game = () => {
 	//load styles
 	document.$watch('#rk-theme-loaded', () => {
 		let styles = {
-			servers: {
-				card: {
-					css: ["js/Theme/styles/serversCard.css"]
-				}
-			},
-			badges: {
-				card: {
-					css: ["js/Theme/styles/badgesCard.css"]
-				}
+			game: {
+				servers: {
+					card: {
+						css: ["js/Theme/styles/serversCard.css"]
+					}
+				},
+				badges: {
+					card: {
+						css: ["js/Theme/styles/badgesCard.css"]
+					}
+				},
 			}
 		};
 		if (Rkis.Designer.currentTheme != null

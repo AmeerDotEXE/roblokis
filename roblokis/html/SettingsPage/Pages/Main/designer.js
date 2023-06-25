@@ -233,6 +233,39 @@ let designerComponents = [
 
 	//styles
 	{
+		id: "all",
+		tags: ["page"],
+		parent: {
+			headId: 'styles',
+			ids: {
+				styles: true
+			}
+		},
+		details: {
+			name: "All Pages",
+			description: "Default components for all pages."
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//all
+	{
+		id: "game",
+		tags: ["page"],
+		parent: {
+			headId: 'styles',
+			ids: {
+				styles: true
+			}
+		},
+		details: {
+			name: "Game Page",
+			translate: {
+				name: 'categoryGamePage'
+			}
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//game
+
+	{
 		id: "servers",
 		details: {
 			name: "Servers",
@@ -243,7 +276,7 @@ let designerComponents = [
 		parent: {
 			headId: 'styles',
 			ids: {
-				styles: true
+				game: true
 			}
 		},
 		data: {
@@ -265,7 +298,7 @@ let designerComponents = [
 		parent: {
 			headId: 'styles',
 			ids: {
-				styles: true
+				game: true
 			}
 		},
 		data: {
@@ -287,7 +320,7 @@ let designerComponents = [
 		parent: {
 			headId: 'styles',
 			ids: {
-				styles: true
+				all: true
 			}
 		},
 		data: {
@@ -310,17 +343,40 @@ let designerComponents = [
 		parent: {
 			headId: 'styles',
 			ids: {
-				styles: true
+				all: true
 			}
 		},
 		data: {
 			options: [
-				{value: '',isPortrait:true,details:{name:'Default',description:"Roblox's default design"}},
-				{value: 'float',isPortrait:true,details:{name:'Floating',description:"Floating design"}},
+				{value: '',image:'images/themes/styles/navbarDefault.png',details:{name:'Default',description:"Roblox's default design"}},
+				{value: 'float',image:'images/themes/styles/navbarFloat.png',details:{name:'Floating',description:"Floating design"}},
 			]
 		},
 		element: defaultcomponentElements.styleDropdown
 	},//navbar
+	{
+		id: "gamecards",
+		details: {
+			name: "Game Cards",
+			// ! translate
+			translate: {
+				name: ""
+			}
+		},
+		parent: {
+			headId: 'styles',
+			ids: {
+				all: true
+			}
+		},
+		data: {
+			options: [
+				{value: '',image:'images/themes/styles/gamecardsDefault.png',details:{name:'Default',description:"Roblox's default design"}},
+				{value: '1',image:'images/themes/styles/gamecards1.png',details:{name:'Style 1',description:"Cards game Style"}},
+			]
+		},
+		element: defaultcomponentElements.styleDropdown
+	},//gamecards
 
 
 
@@ -1991,6 +2047,7 @@ let designerComponents = [
 		id: "content",
 		tags: ["blockElement"],
 		parent: {
+			headId: 'pages',
 			tags: {
 				page: true
 			}
@@ -2009,6 +2066,7 @@ let designerComponents = [
 		id: "menu",
 		tags: ["blockElement"],
 		parent: {
+			headId: 'pages',
 			tags: {
 				page: true
 			}
@@ -2023,6 +2081,7 @@ let designerComponents = [
 		id: "icon",
 		tags: ["hasBackground"],
 		parent: {
+			headId: 'pages',
 			tags: {
 				page: true
 			}
@@ -2041,6 +2100,7 @@ let designerComponents = [
 		id: "iconr",
 		tags: ["hasBackground"],
 		parent: {
+			headId: 'pages',
 			tags: {
 				page: true
 			}
@@ -2087,6 +2147,7 @@ let designerComponents = [
 		id: "badge",
 		tags: ["blockElement", "hasBrightnDarkColors"],
 		parent: {
+			headId: 'pages',
 			ids: {
 				game: true
 			}
@@ -2163,6 +2224,7 @@ let designerComponents = [
 		id: "pagenav",
 		tags: ["blockElement", "hasColor"],
 		parent: {
+			headId: 'pages',
 			ids: {
 				game: true
 			}
@@ -2241,6 +2303,7 @@ let designerComponents = [
 		id: "defaultserver",
 		tags: ["blockElement", "hasButton"],
 		parent: {
+			headId: 'pages',
 			ids: {
 				game: true
 			}
@@ -2342,6 +2405,7 @@ let designerComponents = [
 		id: "publicserver",
 		tags: ["blockElement", "hasButton", "server"],
 		parent: {
+			headId: 'pages',
 			ids: {
 				game: true
 			}
@@ -2358,6 +2422,7 @@ let designerComponents = [
 		id: "smallserver",
 		tags: ["blockElement", "hasButton", "server"],
 		parent: {
+			headId: 'pages',
 			ids: {
 				game: true
 			}
@@ -2374,6 +2439,7 @@ let designerComponents = [
 		id: "friendsserver",
 		tags: ["blockElement", "hasButton", "hasColor", "server"],
 		parent: {
+			headId: 'pages',
 			ids: {
 				game: true
 			}
@@ -2390,6 +2456,7 @@ let designerComponents = [
 		id: "privateserver",
 		tags: ["blockElement", "hasButton", "hasColor", "server"],
 		parent: {
+			headId: 'pages',
 			ids: {
 				game: true
 			}

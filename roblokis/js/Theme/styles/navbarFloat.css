@@ -71,3 +71,10 @@
 #navbar-stream.notification-margins {
 	margin: 0;
 }
+
+/* make hover effect */
+body .rbx-header .rbx-navbar li:hover {
+	border-bottom: 0 !important;
+	background-color: hsl(0 0% 50% / 0.25);
+	border-radius: var(--rk-menu-corners-radius, 12px);
+}

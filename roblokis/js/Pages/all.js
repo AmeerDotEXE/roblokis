@@ -13,16 +13,23 @@ Rkis.page.all = () => {
 	//load styles
 	document.$watch('#rk-theme-loaded', () => {
 		let styles = {
-			menu: {
-				float: {
-					css: ["js/Theme/styles/menuFloat.css"]
-				}
-			},
-			navbar: {
-				float: {
-					css: ["js/Theme/styles/navbarFloat.css"]
-				}
-			},
+			all: {
+				menu: {
+					float: {
+						css: ["js/Theme/styles/menuFloat.css"]
+					}
+				},
+				navbar: {
+					float: {
+						css: ["js/Theme/styles/navbarFloat.css"]
+					}
+				},
+				gamecards: {
+					'1': {
+						css: ["js/Theme/styles/gamecards1.css"]
+					}
+				},
+			}
 		};
 		if (Rkis.Designer.currentTheme != null
 			&& Rkis.Designer.currentTheme.styles != null)
@@ -143,8 +150,8 @@ Rkis.page.all = () => {
 			var lastnumber = 0;
 
 			document.$watchLoop("a.game-card-link", (elem) => {
-				if(elem.href == null || elem.addedjoin == "true") return;
-				elem.addedjoin = "true";
+				if(elem.href == null || elem.dataset.addedjoin == "true") return;
+				elem.dataset.addedjoin = "true";
 
 				/*
 					https://www.roblox.com/games/refer?IsLargeGameTile=false&PageId=4a6d26c8-7d80-4a32-ab3b-9e9365bcad66&PageType=Games&PlaceId=6872265039&Position=7&SortName=PersonalRecommendation&SortPosition=2&LocalTimestamp=2022-01-10T08:07:43.575Z

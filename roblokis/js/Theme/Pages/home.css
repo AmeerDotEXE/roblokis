@@ -28,3 +28,12 @@ div.section-content.people-list li.list-item.friend:hover span.avatar-status {
 #holder > div > div {
 	background-color: transparent;
 }
+
+
+
+/* fixes hover cuts */
+body .section .people-list,
+.game-carousel {
+	padding: 6px;
+	box-sizing: content-box;
+}
