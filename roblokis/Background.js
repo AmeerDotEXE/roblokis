@@ -5,11 +5,13 @@
 /* Retreaving Data Tamplate
 function name() {
 	return new Promise(resolve => {
-	BROWSER.runtime.sendMessage({about: ""}, 
-		function(data) {
-			resolve(data)
-		})
-	})
+		BROWSER.runtime.sendMessage(
+			{about: ""}, 
+			function(data) {
+				resolve(data)
+			}
+		);
+	});
 }
 */
 

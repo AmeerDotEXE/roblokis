@@ -6,6 +6,84 @@ var Rkis = {
 		id: BROWSER.runtime.id,
 		manifest: BROWSER.runtime.getManifest(),
 
+		database: {
+			async save() {
+				let data = Rkis.wholeData;
+				//modify saving structure
+				//  exclude details & translation
+
+				//save to new database
+				await BROWSER.storage.local.set({
+					Roblokis: data
+				});
+
+				// ? temporary save to old database
+				// saveOldDatabase();
+				return;
+
+				function saveOldDatabase() {
+					let strigifiedData = null;
+
+					try {
+						strigifiedData = JSON.stringify(Rkis.wholeData);
+					} catch {}
+
+					if (strigifiedData === null) return;
+					localStorage.setItem("Roblokis", strigifiedData);
+				}
+			},
+			async load() {
+				let data = null;
+
+				// load from new database
+				data = await BROWSER.storage.local.get('Roblokis');
+				if (typeof data === 'undefined') data = null;
+				else if (data === null) {}
+				else if (JSON.stringify(data) === '{}') data = null;
+				if (data !== null && typeof data.Roblokis !== 'undefined') data = data.Roblokis;
+
+				//load from old database
+				if (data === null) {
+					data = loadFromOldDatabase();
+				}
+
+				//load default data
+				if (data === null) data = {};
+				
+				//un-modify saving structure
+
+				Rkis.wholeData = { ...data };
+				return Rkis.wholeData;
+
+				function loadFromOldDatabase() {
+					let oldData = null;
+					let rawOldData = localStorage.getItem("Roblokis");
+					if (rawOldData) {
+						try {
+							oldData = JSON.parse(rawOldData);
+						} catch {}
+					}
+					return oldData;
+				}
+			},
+			async clearDatabase(confirmation = false) {
+				if (confirmation !== true) return false;
+
+				//clear old database
+				if (localStorage.getItem('Roblokis') !== null) {
+					localStorage.removeItem('Roblokis');
+				}
+
+				//clear new database
+				await BROWSER.storage.local.clear().catch(() => {});
+
+				//clear current data
+				Rkis.wholeData = {}; // for double checking only
+				await Rkis.database.load();
+				return true;
+			}
+		},
+
 		GetSettingValue(setting) {
 			if (setting == null) return null;
 			if (typeof setting == "string") setting = Rkis.wholeData[setting];
@@ -51,11 +129,11 @@ var Rkis = {
 					else Rkis.wholeData[setting] = { ...defaultSetting, ...{ value: valueObject } };
 
 					rksetting = Rkis.wholeData[setting];
-					localStorage.setItem("Roblokis", JSON.stringify(Rkis.wholeData));
+					Rkis.database.save();
 				}
 				if (Rkis.wholeData[setting] == null) {
 					Rkis.wholeData[setting] = { ...defaultSetting };
-					(() => { localStorage.setItem("Roblokis", JSON.stringify(Rkis.wholeData)); })();
+					(() => { Rkis.database.save() })();
 				}
 				if (Rkis.wholeData[setting] != null && typeof Rkis.wholeData[setting] == "object") Rkis.wholeData[setting].details = defaultSetting.details;
 			} else if (rksetting.id == null) {
@@ -121,7 +199,7 @@ var Rkis = {
 			Rkis.ToastHolder.style.opacity = "1";
 			Rkis.ToastHolder.style.bottom = "30px";
 			setTimeout(() => { Rkis.ToastHolder.style.opacity = "0"; Rkis.ToastHolder.style.bottom = "0px"; }, ms || 4000)
-		}
+		},
 	}
 };
 
@@ -148,10 +226,7 @@ else if (window.location.href.includes("/groups/")) {
 else if (window.location.href.includes("/home")) Rkis.pageName = "home";
 else Rkis.pageName = "all";
 
-let wholedata = localStorage.getItem("Roblokis");
-if (wholedata) wholedata = JSON.parse(wholedata) || {};
-
-Rkis.wholeData = { ...wholedata };
+const databaseLoading = Rkis.database.load();
 
 
 /*//		Settings Structure
@@ -178,191 +253,6 @@ Rkis.wholeData = { ...wholedata };
 	}
 }
 */
-
-(function () {
-	Rkis.language = Rkis.language || {};
-	Rkis.language.get = (msg, txt1, txt2, txt3, txt4, txt5, txt6, txt7, txt8, txt9) => {
-		if (Rkis.language[msg] == null) {
-			if (console.error != null) console.error("G121: " + msg);
-			return "Error";
-		}
-		return Rkis.language[msg].split("$1$").join(txt1).split("$2$").join(txt2).split("$3$").join(txt3).split("$4$").join(txt4).split("$5$").join(txt5).split("$6$").join(txt6).split("$7$").join(txt7).split("$8$").join(txt8).split("$9$").join(txt9);
-	}
-
-	let allCodes = {};
-
-	document.$watchLoop("[data-translate]", (e) => {
-		let place = e.dataset.translate;
-		if (place == null || place == "") return;
-		let valueText;
-
-		if (Rkis.language[place] != null && Rkis.language[place] != "") {
-			valueText = Rkis.language[place];
-		}
-		else {
-
-			if (allCodes[place] != null)
-				valueText = allCodes[place].message;
-			if (valueText == null)
-				valueText = getLocaleMessage(place, [
-					e.dataset.translate1,
-					e.dataset.translate2,
-					e.dataset.translate3,
-					e.dataset.translate4,
-					e.dataset.translate5,
-					e.dataset.translate6,
-					e.dataset.translate7,
-					e.dataset.translate8,
-					e.dataset.translate9
-				]);
-
-			valueText.split("$").forEach((e, i) => {
-				if (i == 0) return valueText = e;
-
-				if ((i / 2).toString().includes(".")) valueText += `$${Math.floor(i / 2) + 1}$`;
-				else valueText += e;
-			})
-		}
-		if (valueText == null) return;
-
-		valueText = valueText
-			.split("$1$").join(e.dataset.translate1)
-			.split("$2$").join(e.dataset.translate2)
-			.split("$3$").join(e.dataset.translate3)
-			.split("$4$").join(e.dataset.translate4)
-			.split("$5$").join(e.dataset.translate5)
-			.split("$6$").join(e.dataset.translate6)
-			.split("$7$").join(e.dataset.translate7)
-			.split("$8$").join(e.dataset.translate8)
-			.split("$9$").join(e.dataset.translate9);
-
-		valueText = escapeHTML(valueText);
-
-		if (e.tagName == "INPUT") e.placeholder = valueText;
-		else e.textContent = valueText;
-	})
-
-	if (Rkis.IsSettingEnabled("SiteLanguage", {
-		id: "SiteLanguage",
-		type: "switch",
-		value: { switch: true },
-		details: {
-			default: "en",
-			translate: {
-				name: "sectionLSite",
-				description: "sectionLSite1"
-			},
-			"en": {
-				name: "Use Roblox language",
-				description: "Limits Roblokis Language to Roblox Site Language."
-			}
-		}
-	})) {
-		Rkis.robloxCode = localStorage.getItem("RobloxLocaleCode") || "en";
-		Rkis.roblokisCodes = { "pt": "pt_BR" };
-
-		Rkis.languageCode = Rkis.robloxCode.split("_")[0];
-		Rkis.languageCode = Rkis.roblokisCodes[Rkis.languageCode] || Rkis.languageCode;
-
-		// fetch(Rkis.fileLocation + `_locales/${Rkis.languageCode}/messages.json`)
-		// 	.then((res) => res.text())
-		BROWSER.runtime.sendMessage({about: 'getURLRequest', url: Rkis.fileLocation + `_locales/${Rkis.languageCode}/messages.json`})
-			.then((text) => {
-				// if (rawtext == null || rawtext == "") return;
-
-				// let text = null;
-
-				// try { text = JSON.parse(rawtext); }
-				// catch { console.error("Rkis | Couldn't Convert Data.", Rkis.fileLocation + `_locales/${Rkis.languageCode}/messages.json`, rawtext); text = null; }
-
-				// if (text == null || text == {}) return;
-				allCodes = text;
-
-				for (var code in allCodes) {
-					Rkis.language[code] = allCodes[code].message || Rkis.language[code];
-
-					Rkis.language[code].split("$").forEach((e, i) => {
-						if (i == 0) return Rkis.language[code] = e;
-
-						if ((i / 2).toString().includes(".")) Rkis.language[code] += `$${Math.floor(i / 2) + 1}$`;
-						else Rkis.language[code] += e;
-					})
-				}
-			})
-			.catch((err) => { console.error("Rkis", err) })
-	}
-
-	//Rkis.language[""] = chrome .i18n.getMessage("");
-	let l = (msg) => {
-		if (Rkis.language[msg] != null && Rkis.language[msg] != "") return;
-		Rkis.languageCode = BROWSER.i18n.getUILanguage().replace('_');
-
-		if (allCodes[msg] != null) Rkis.language[msg] = allCodes[msg].message;
-		if (Rkis.language[msg] == null) Rkis.language[msg] = getLocaleMessage(msg, ["$1$", "$2$", "$3$", "$4$", "$5$", "$6$", "$7$", "$8$", "$9$"]);
-
-		Rkis.language[msg].split("$").forEach((e, i) => {
-			if (i == 0) return Rkis.language[msg] = e;
-
-			if ((i / 2).toString().includes(".")) Rkis.language[msg] += `$${Math.floor(i / 2) + 1}$`;
-			else Rkis.language[msg] += e;
-		})
-
-		Rkis.language[msg] = escapeJSON(Rkis.language[msg]);
-	}
-	//lc = (msg) => { Rkis.language = (msg, txt) => this.l.split("$1$").join(txt); Rkis.language[msg]["l"] = chrome .i18n.getMessage(msg, "$1$"); };
-
-	l("errorCode");
-	l("error");
-	l("errorNameLength");
-	l("errorDescLength");
-	l("errorAtoZ");
-	l("errorMaxSlots");
-	l("errorNameExist");
-	l("cantImage");
-	l("errorNoImage");
-
-	l("btnSaved");
-	l("btnSave");//
-	l("themeSlotNumber");
-
-	l("copyTextSuccess");
-	l("copyTextUnseccuss");
-	l("cantCopyText");
-
-	l("settingsPageTitle");//
-	l("themeImport");
-	l("themeBackground");
-	l("themeCorners");
-	l("themeBorders");
-
-	l("badgeNoDescription");
-	l("badgeNoName");//
-	l("badgeRare");
-	l("badgeLastWon");
-	l("badgeWon");//
-	l("badgeAchievedShort");
-	l("badgeAchievedLong");
-	l("badgeCreatedShort");
-	l("badgeCreatedLong");
-	l("badgeUpdatedShort");
-	l("badgeUpdatedLong");
-
-	l("joinButtons");
-	l("sectionDApp");
-
-	l("cancelRequest");
-	l("canceledRequest");//
-	l("lastGame");
-	l("lastPlace");
-	l("lastSeen");
-	l("lastSeenLong");
-
-	l("smallSection");
-	l("slowServer");
-	l("loadMore");
-	l("joinPrivateServer");
-	l("JoinPublicServer");
-})();
 
 
 if (Rkis.ToastHolder == null || Rkis.ToastHolder == {}) {
@@ -418,7 +308,7 @@ if (Rkis.ToastHolder == null || Rkis.ToastHolder == {}) {
 	}
 
 	//Save Modified Settings
-	localStorage.setItem("Roblokis", JSON.stringify(Rkis.wholeData));
+	Rkis.database.save()
 })();
 
 function getRndInteger(min, max) {
@@ -463,9 +353,196 @@ function changeRobloxTheme(themeType) {
 	});
 }
 
-document.$watch("body", (e) => { e.classList.add("Roblokis-installed") });
-Rkis.generalLoaded = true;
-document.$triggerCustom("rk-general-loaded");
+databaseLoading.then(() => {
+	(function () {
+		Rkis.language = Rkis.language || {};
+		Rkis.language.get = (msg, txt1, txt2, txt3, txt4, txt5, txt6, txt7, txt8, txt9) => {
+			if (Rkis.language[msg] == null) {
+				if (console.error != null) console.error("G121: " + msg);
+				return "Error";
+			}
+			return Rkis.language[msg].split("$1$").join(txt1).split("$2$").join(txt2).split("$3$").join(txt3).split("$4$").join(txt4).split("$5$").join(txt5).split("$6$").join(txt6).split("$7$").join(txt7).split("$8$").join(txt8).split("$9$").join(txt9);
+		}
+	
+		let allCodes = {};
+	
+		document.$watchLoop("[data-translate]", (e) => {
+			let place = e.dataset.translate;
+			if (place == null || place == "") return;
+			let valueText;
+	
+			if (Rkis.language[place] != null && Rkis.language[place] != "") {
+				valueText = Rkis.language[place];
+			}
+			else {
+	
+				if (allCodes[place] != null)
+					valueText = allCodes[place].message;
+				if (valueText == null)
+					valueText = getLocaleMessage(place, [
+						e.dataset.translate1,
+						e.dataset.translate2,
+						e.dataset.translate3,
+						e.dataset.translate4,
+						e.dataset.translate5,
+						e.dataset.translate6,
+						e.dataset.translate7,
+						e.dataset.translate8,
+						e.dataset.translate9
+					]);
+	
+				valueText.split("$").forEach((e, i) => {
+					if (i == 0) return valueText = e;
+	
+					if ((i / 2).toString().includes(".")) valueText += `$${Math.floor(i / 2) + 1}$`;
+					else valueText += e;
+				})
+			}
+			if (valueText == null) return;
+	
+			valueText = valueText
+				.split("$1$").join(e.dataset.translate1)
+				.split("$2$").join(e.dataset.translate2)
+				.split("$3$").join(e.dataset.translate3)
+				.split("$4$").join(e.dataset.translate4)
+				.split("$5$").join(e.dataset.translate5)
+				.split("$6$").join(e.dataset.translate6)
+				.split("$7$").join(e.dataset.translate7)
+				.split("$8$").join(e.dataset.translate8)
+				.split("$9$").join(e.dataset.translate9);
+	
+			valueText = escapeHTML(valueText);
+	
+			if (e.tagName == "INPUT") e.placeholder = valueText;
+			else e.textContent = valueText;
+		})
+	
+		if (Rkis.IsSettingEnabled("SiteLanguage", {
+			id: "SiteLanguage",
+			type: "switch",
+			value: { switch: true },
+			details: {
+				default: "en",
+				translate: {
+					name: "sectionLSite",
+					description: "sectionLSite1"
+				},
+				"en": {
+					name: "Use Roblox language",
+					description: "Limits Roblokis Language to Roblox Site Language."
+				}
+			}
+		})) {
+			Rkis.robloxCode = localStorage.getItem("RobloxLocaleCode") || "en";
+			Rkis.roblokisCodes = { "pt": "pt_BR" };
+	
+			Rkis.languageCode = Rkis.robloxCode.split("_")[0];
+			Rkis.languageCode = Rkis.roblokisCodes[Rkis.languageCode] || Rkis.languageCode;
+	
+			// fetch(Rkis.fileLocation + `_locales/${Rkis.languageCode}/messages.json`)
+			// 	.then((res) => res.text())
+			BROWSER.runtime.sendMessage({about: 'getURLRequest', url: Rkis.fileLocation + `_locales/${Rkis.languageCode}/messages.json`})
+				.then((text) => {
+					// if (rawtext == null || rawtext == "") return;
+	
+					// let text = null;
+	
+					// try { text = JSON.parse(rawtext); }
+					// catch { console.error("Rkis | Couldn't Convert Data.", Rkis.fileLocation + `_locales/${Rkis.languageCode}/messages.json`, rawtext); text = null; }
+	
+					// if (text == null || text == {}) return;
+					allCodes = text;
+	
+					for (var code in allCodes) {
+						Rkis.language[code] = allCodes[code].message || Rkis.language[code];
+	
+						Rkis.language[code].split("$").forEach((e, i) => {
+							if (i == 0) return Rkis.language[code] = e;
+	
+							if ((i / 2).toString().includes(".")) Rkis.language[code] += `$${Math.floor(i / 2) + 1}$`;
+							else Rkis.language[code] += e;
+						})
+					}
+				})
+				.catch((err) => { console.error("Rkis", err) })
+		}
+	
+		//Rkis.language[""] = chrome .i18n.getMessage("");
+		let l = (msg) => {
+			if (Rkis.language[msg] != null && Rkis.language[msg] != "") return;
+			Rkis.languageCode = BROWSER.i18n.getUILanguage().replace('_');
+	
+			if (allCodes[msg] != null) Rkis.language[msg] = allCodes[msg].message;
+			if (Rkis.language[msg] == null) Rkis.language[msg] = getLocaleMessage(msg, ["$1$", "$2$", "$3$", "$4$", "$5$", "$6$", "$7$", "$8$", "$9$"]);
+	
+			Rkis.language[msg].split("$").forEach((e, i) => {
+				if (i == 0) return Rkis.language[msg] = e;
+	
+				if ((i / 2).toString().includes(".")) Rkis.language[msg] += `$${Math.floor(i / 2) + 1}$`;
+				else Rkis.language[msg] += e;
+			})
+	
+			Rkis.language[msg] = escapeJSON(Rkis.language[msg]);
+		}
+		//lc = (msg) => { Rkis.language = (msg, txt) => this.l.split("$1$").join(txt); Rkis.language[msg]["l"] = chrome .i18n.getMessage(msg, "$1$"); };
+	
+		l("errorCode");
+		l("error");
+		l("errorNameLength");
+		l("errorDescLength");
+		l("errorAtoZ");
+		l("errorMaxSlots");
+		l("errorNameExist");
+		l("cantImage");
+		l("errorNoImage");
+	
+		l("btnSaved");
+		l("btnSave");//
+		l("themeSlotNumber");
+	
+		l("copyTextSuccess");
+		l("copyTextUnseccuss");
+		l("cantCopyText");
+	
+		l("settingsPageTitle");//
+		l("themeImport");
+		l("themeBackground");
+		l("themeCorners");
+		l("themeBorders");
+	
+		l("badgeNoDescription");
+		l("badgeNoName");//
+		l("badgeRare");
+		l("badgeLastWon");
+		l("badgeWon");//
+		l("badgeAchievedShort");
+		l("badgeAchievedLong");
+		l("badgeCreatedShort");
+		l("badgeCreatedLong");
+		l("badgeUpdatedShort");
+		l("badgeUpdatedLong");
+	
+		l("joinButtons");
+		l("sectionDApp");
+	
+		l("cancelRequest");
+		l("canceledRequest");//
+		l("lastGame");
+		l("lastPlace");
+		l("lastSeen");
+		l("lastSeenLong");
+	
+		l("smallSection");
+		l("slowServer");
+		l("loadMore");
+		l("joinPrivateServer");
+		l("JoinPublicServer");
+	})();
+
+	document.$watch("body", (e) => { e.classList.add("Roblokis-installed") });
+	Rkis.generalLoaded = true;
+	document.$triggerCustom("rk-general-loaded");
+});
 
 
 // CSS Functionality

@@ -142,7 +142,7 @@ Rkis.Designer.SetupTheme = async function() {
 			if(bodyElement.classList.contains("light-theme") == Rkis.wholeData.isUsingLightTheme) return;
 
 			Rkis.wholeData.isUsingLightTheme = bodyElement.classList.contains("light-theme");
-			localStorage.setItem("Roblokis", JSON.stringify(Rkis.wholeData));
+			Rkis.database.save()
 			Rkis.Designer.SetupTheme();
 			continueloading = false;
 		});

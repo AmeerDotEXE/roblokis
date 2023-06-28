@@ -2584,8 +2584,8 @@ Designer.SaveNewTheme = async function(name, desc, themedata) {
 
 	wholedata.Designer.Themes.push(jsonConcat(themetemplate, thenewtheme));
 
-	localStorage.setItem("Roblokis", JSON.stringify(wholedata));
 	Rkis.wholeData = wholedata;
+	Rkis.database.save();
 
 	return {};
 	
@@ -2598,13 +2598,10 @@ Designer.SelectThemeButton = function(button) {
 	Designer.Selected.id = button.dataset.themeid;
 	Designer.Selected.isDefaultTheme = button.dataset.isdefaulttheme != "false";
 
-	var wholedata = Rkis.wholeData || {};
-	wholedata.Designer = wholedata.Designer || {};
+	Rkis.wholeData.Designer = Rkis.wholeData.Designer || {};
+	Rkis.wholeData.Designer.Theme = {...Designer.Selected};
 
-	wholedata.Designer.Theme = {...Designer.Selected};
-
-	localStorage.setItem("Roblokis", JSON.stringify(wholedata));
-	Rkis.wholeData = wholedata;
+	Rkis.database.save();
 
 	Designer.LoadThemesData();
 }
@@ -2778,8 +2775,8 @@ Designer.DeleteTheTheme = function(button) {
 	if(wholedata.Designer.Themes[themeId] != null)
 		wholedata.Designer.Themes.splice(themeId, 1);
 
-	localStorage.setItem("Roblokis", JSON.stringify(wholedata));
 	Rkis.wholeData = wholedata;
+	Rkis.database.save();
 
 	Designer.LoadThemesData();
 
@@ -2841,8 +2838,8 @@ Designer.ThemeEditor.Save = async function() {
 
 	wholedata.Designer.Themes[Designer.ThemeEditor.themeId] = theme;
 
-	localStorage.setItem("Roblokis", JSON.stringify(wholedata));
 	Rkis.wholeData = wholedata;
+	Rkis.database.save();
 
 	Designer.LoadThemesData();
 	document.querySelector("#rk-editthemesection").style.display = "none";
@@ -2931,8 +2928,8 @@ Designer.ThemeEditor.SaveOld = function() {
 
 	wholedata.Designer.Themes[Designer.ThemeEditor.themeId] = theme;
 
-	localStorage.setItem("Roblokis", JSON.stringify(wholedata));
 	Rkis.wholeData = wholedata;
+	Rkis.database.save();
 
 	document.querySelector("#rk-editthemesection").style.display = "none";
 }

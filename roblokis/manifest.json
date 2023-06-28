@@ -10,6 +10,9 @@
 	"options_page": "html/Popup/Popup.html",
 	"homepage_url": "https://ameerdotexe.github.io/roblokis/",
 	"incognito": "split",
+	"permissions": [
+		"storage"
+	],
 
 	"host_permissions": [
 		"https://*/*.png",

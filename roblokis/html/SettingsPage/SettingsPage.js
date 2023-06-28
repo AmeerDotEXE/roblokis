@@ -12,8 +12,6 @@ function FetchImage(url, quick) {
 }
 
 page.setup = function () {
-	var wholedata = Rkis.wholeData || {};
-
 	document.querySelectorAll("button.main-save-button").forEach((e) => {
 		if (e.dataset.listening != null) return;
 		e.dataset.listening = "true";
@@ -80,39 +78,26 @@ page.getSwich = function (swich) {
 
 page.save = function (button) {
 	var wholedata = Rkis.wholeData || {};
-
-	var buttons = document.querySelectorAll(".rk-button:not(.rk-input-bool)");
-	buttons.forEach((e) => {
-		if (e.dataset.file == null) return;
-		wholedata[e.dataset.file] = page.getSwich(e);
-	});
-
-	var textfields = document.querySelectorAll(".rk-textfield:not(.rk-input-string)");
-	textfields.forEach((e) => {
-		if (e.dataset.file == null) return;
-		wholedata[e.dataset.file] = e.value.slice(0, 500);
-	});
 	
-	var textfields = document.querySelectorAll(".rk-input-string");
-	textfields.forEach((e) => {
-		if (e.dataset.file == null) return;
+	document.querySelectorAll(".rk-input-string[data-file]")
+	.forEach((e) => {
+		if (e.dataset.file == '') return;
 
-		var setting = wholedata[e.dataset.file];
-		if (setting.options && setting.options.disabled == true) return;
-		wholedata[e.dataset.file].value[setting.type] = e.value.slice(0, 500);
+		var setting = Rkis.wholeData[e.dataset.file];
+		if (setting && setting.options && setting.options.disabled == true) return;
+		Rkis.wholeData[e.dataset.file].value[setting.type] = e.value.slice(0, 500);
 	});
 
-	var buttons = document.querySelectorAll(".rk-input-bool");
-	buttons.forEach((e) => {
-		if (e.dataset.file == null) return;
+	document.querySelectorAll(".rk-input-bool[data-file]")
+	.forEach((e) => {
+		if (e.dataset.file == '') return;
 		
-		var setting = wholedata[e.dataset.file];
-		if (setting.options && setting.options.disabled == true) return;
-		wholedata[e.dataset.file].value[setting.type] = page.getSwich(e);
+		var setting = Rkis.wholeData[e.dataset.file];
+		if (setting && setting.options && setting.options.disabled == true) return;
+		Rkis.wholeData[e.dataset.file].value[setting.type] = page.getSwich(e);
 	});
 
-	localStorage.setItem("Roblokis", JSON.stringify(wholedata));
-	Rkis.wholeData = wholedata;
+	Rkis.database.save();
 
 	button.textContent = Rkis.language["btnSaved"];
 	setTimeout((btn) => { btn.textContent = Rkis.language["btnSave"]; }, 1000, button);
@@ -1379,13 +1364,13 @@ page.settingsWaitingForGeneral = function() {
 		page.start();
 
 		mainplace.querySelector(`#download-roblokis-data`).addEventListener('click', () => {
-			let rawText = localStorage.getItem('Roblokis');
+			let rawText = JSON.stringify(Rkis.wholeData);
 			makeTextFile(rawText, 'Raw Roblokis Data.json');
 		});
 		mainplace.querySelector(`#delete-roblokis-data`).addEventListener('click', () => {
 			let confirmation = confirm("WARNING: This can not be undone!\nContinuing will remove all your Roblokis information;\n-settings\n-themes\nare included, Continue?");
 			if (confirmation === true) {
-				localStorage.removeItem('Roblokis');
+				Rkis.database.clearDatabase(confirmation);
 				location.reload();
 			}
 		});
