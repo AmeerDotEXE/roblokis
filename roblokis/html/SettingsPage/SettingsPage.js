@@ -77,7 +77,18 @@ page.getSwich = function (swich) {
 }
 
 page.save = function (button) {
-	var wholedata = Rkis.wholeData || {};
+
+	document.querySelectorAll(".rk-button:not(.rk-input-bool)")
+	.forEach((e) => {
+		if (e.dataset.file == null) return;
+		Rkis.wholeData[e.dataset.file] = page.getSwich(e);
+	});
+
+	document.querySelectorAll(".rk-textfield:not(.rk-input-string)")
+	.forEach((e) => {
+		if (e.dataset.file == null) return;
+		Rkis.wholeData[e.dataset.file] = e.value.slice(0, 500);
+	});
 	
 	document.querySelectorAll(".rk-input-string[data-file]")
 	.forEach((e) => {
@@ -91,16 +102,17 @@ page.save = function (button) {
 	document.querySelectorAll(".rk-input-bool[data-file]")
 	.forEach((e) => {
 		if (e.dataset.file == '') return;
-		
+
 		var setting = Rkis.wholeData[e.dataset.file];
 		if (setting && setting.options && setting.options.disabled == true) return;
 		Rkis.wholeData[e.dataset.file].value[setting.type] = page.getSwich(e);
+		console.log(e.dataset.file, Rkis.wholeData[e.dataset.file].value[setting.type])
 	});
 
-	Rkis.database.save();
-
-	button.textContent = Rkis.language["btnSaved"];
-	setTimeout((btn) => { btn.textContent = Rkis.language["btnSave"]; }, 1000, button);
+	Rkis.database.save().then(() => {
+		button.textContent = Rkis.language["btnSaved"];
+		setTimeout((btn) => { btn.textContent = Rkis.language["btnSave"]; }, 1000, button);
+	});
 }
 
 page.E = "A";
@@ -675,14 +687,14 @@ page.settingsWaitingForGeneral = function() {
 							<loadcode code="settingload" data-id="UseThemes"></loadcode>
 
 							<div class="section-content">
-									<span class="text-lead" data-translate="sectionAAnim">Allow animations?</span>
-									<span class="rk-button receiver-destination-type-toggle off" data-file="BasicAnim">
-										<span class="toggle-flip"></span>
-										<span class="toggle-on"></span>
-										<span class="toggle-off"></span>
-									</span>
-									<div class="rbx-divider" style="margin: 12px;"></div>
-									<span class="text-description" data-translate="sectionAAnim1">Some pages might have some animation effects. (Requires Themes Option)</span>
+								<span class="text-lead" data-translate="sectionAAnim">Allow animations?</span>
+								<span class="rk-button receiver-destination-type-toggle off" data-file="BasicAnim">
+									<span class="toggle-flip"></span>
+									<span class="toggle-on"></span>
+									<span class="toggle-off"></span>
+								</span>
+								<div class="rbx-divider" style="margin: 12px;"></div>
+								<span class="text-description" data-translate="sectionAAnim1">Some pages might have some animation effects. (Requires Themes Option)</span>
 							</div>
 
 							<loadcode code="settingload" data-id="ExtraShadows"></loadcode>
