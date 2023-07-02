@@ -62,15 +62,17 @@ html .alert-system-feedback .alert {
 
 :root .icon-logo {
 	border-radius: 8px;
-	
-	background: var(--rk-icon-background);
+
+	background-color: var(--rk-icon-background-color);
+	background-repeat: var(--rk-icon-background-image-repeat);
 	background-size: var(--rk-icon-background-image-size, 118px 30px);
 	/* background-size: 118px 30px; */
 }
 :root .icon-logo-r {
 	border-radius: 8px;
-	
-	background: var(--rk-icon-r-background);
+
+	background-color: var(--rk-icon-r-background-color);
+	background-repeat: var(--rk-icon-r-background-image-repeat);
 	background-size: var(--rk-icon-r-background-image-size, 30px 30px);
 	/* background-size: 30px 30px; */
 }
@@ -78,8 +80,6 @@ html .alert-system-feedback .alert {
 
 /*content*/
 #container-main > div.content {
-
-	box-shadow: var(--rk-content-box-shadow);
 
 	border-radius: var(--rk-content-corners-radius, 20px);
 

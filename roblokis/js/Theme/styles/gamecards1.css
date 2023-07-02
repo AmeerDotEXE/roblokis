@@ -97,6 +97,9 @@ body .game-card-container>a.game-card-link:hover .game-card-thumb-container {
 	width: 100%;
 	background: linear-gradient(transparent, hsl(0 0% 0% / 0.8));
 }
+.light-theme .game-card-thumb-container::after {
+	background: linear-gradient(transparent, hsl(0 0% 100% / 0.8));
+}
 a:hover .game-card-thumb-container::after {
 	opacity: 0;
 }

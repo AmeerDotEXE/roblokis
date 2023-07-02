@@ -106,7 +106,6 @@ page.save = function (button) {
 		var setting = Rkis.wholeData[e.dataset.file];
 		if (setting && setting.options && setting.options.disabled == true) return;
 		Rkis.wholeData[e.dataset.file].value[setting.type] = page.getSwich(e);
-		console.log(e.dataset.file, Rkis.wholeData[e.dataset.file].value[setting.type])
 	});
 
 	Rkis.database.save().then(() => {

@@ -64,10 +64,12 @@
 
 /*  Header Logo	*/
 
-	--rk-icon-background: $icon.background.color# /*>$icon.background.image.|IMG|#<*/;
+	--rk-icon-background-color: $icon.background.color#;
+	--rk-icon-background-image-repeat: $icon.background.image.repeat#;
 	--rk-icon-background-image-size: $icon.background.image.size#;
 	
-	--rk-icon-r-background: $iconr.background.color# /*>$iconr.background.image.|IMG|#<*/;
+	--rk-icon-r-background-color: $iconr.background.color#;
+	--rk-icon-r-background-image-repeat: $iconr.background.image.repeat#;
 	--rk-icon-r-background-image-size: $iconr.background.image.size#;
 
 

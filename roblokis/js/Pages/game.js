@@ -82,8 +82,8 @@ Rkis.page.game = () => {
 			// 	description: "sectionMPN1"
 			// },
 			"en": {
-				name: "Game Banner to Background",
-				description: "Uses first game image as page's background."
+				name: "Game Banner to Background.",
+				description: "Uses first game image as page's background. (Works best with dark theme)"
 			}
 		}
 	})) {
