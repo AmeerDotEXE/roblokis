@@ -27,162 +27,9 @@ Rkis.Designer.GetPageTheme = function() {
 	};
 }
 
-Rkis.Designer.SetupTheme = async function() {
-
-	if (Rkis.generalLoaded != true) {
-		document.addEventListener("rk-general-loaded", () => {
-			Rkis.Designer.SetupTheme();
-		}, {once: true});
-		return;
-	}
-
-	let mainStyle = null;
-
-	const addStyle = url => {
-		const cssRule = `@import url("${url}")`;
-		const ruleIndex = mainStyle.insertRule(cssRule, mainStyle.cssRules.length);
-		
-		return mainStyle.cssRules[ruleIndex];
-	}
-
-	Rkis.Designer.addCSS = (paths) => {
-		if(window.ContextScript != true) return console.error("Not Context Script");
-		if(typeof paths == "string") paths = [paths];
-
-		if(!mainStyle) {
-			const style = document.createElement("style");
-
-			const parent = document.head || document.documentElement;
-			parent.append(style);
-
-			mainStyle = style.sheet;
-		}
-		
-		paths.forEach((path) => {
-			addStyle(Rkis.fileLocation + path);
-		})
-	}
-
-	var putCSS = Rkis.Designer.addCSS; //shorter form
-	putCSS(["js/Theme/Extras/features.css"]);
-
-	if(Rkis.IsSettingEnabled("ExtraShadows", {
-	id: "ExtraShadows",
-	type: "switch",
-	value: { switch: false },
-	details: {
-		default: "en",
-		translate: {
-			name: "sectionExtraS",
-			description: "sectionExtraS1"
-		},
-		"en": {
-			name: "Extra Shadows",
-			description: "Adds a shadow effect under or around some elements.",
-		}
-	}
-	}))
-		putCSS(["js/Theme/Pages/shadows.css"]);
-
-	if(Rkis.IsSettingDisabled("UseThemes", {
-	id: "UseThemes",
-	type: "switch",
-	value: { switch: true },
-	details: {
-		default: "en",
-		translate: {
-			name: "sectionUThemes",
-			description: "sectionUThemes1"
-		},
-		"en": {
-			name: "Use Themes",
-			description: "Disabling this will disable Styles and Themes!",
-		}
-	}
-	})) {
-		putCSS(["js/Theme/Extras/extensions.css"]);
-		document.$watch("body", (e) => {e.classList.add("Roblokis-no-themes")});
-		return;
-	}
-
-	var allCssFiles = [
-		{match: ".com/home", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/home.css" ]},
-		{match: ".com/discover", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/discover.css" ]},
-		{match: ".com/users/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/profile.css" ]},
-		{match: ".com/games/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/games.css" ]},
-		{match: ".com/groups/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/groups.css" ]},
-		
-		{match: ".com/catalog", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/catalog.css" ]},
-		{match: ".com/upgrades/", paths: [ "js/Theme/Pages/all.css" ]},
-
-		{match: ".com/transactions", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/transactions.css" ]},
-		{match: ".com/trades", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/trades.css" ]},
-		{match: ".com/my/messages", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/messages.css" ]},
-		{match: ".com/my/avatar", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/avatar.css" ]},
-		{match: ".com/my/account", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/settings.css" ]}
-	];
-
-	let loadedStyleFile = false;
-	allCssFiles.forEach((e) => {
-		if(!window.location.href.toLowerCase().includes(e.match)) return;
-
-		putCSS(e.paths);
-		loadedStyleFile = true;
-	});
-
-	if (loadedStyleFile == false) {
-		return;
-	}
-
-	var pagetheme = Rkis.Designer.GetPageTheme();
-
-	if(pagetheme == null) {
-		var continueloading = true;
-		document.$watch("body", (bodyElement) => {
-			if(bodyElement.classList.contains("light-theme") == Rkis.wholeData.isUsingLightTheme) return;
-
-			Rkis.wholeData.isUsingLightTheme = bodyElement.classList.contains("light-theme");
-			Rkis.database.save()
-			Rkis.Designer.SetupTheme();
-			continueloading = false;
-		});
-
-		if (continueloading == false) return;
-
-		if(Rkis.wholeData.isUsingLightTheme == true) {
-			await fetch(Rkis.fileLocation + "js/Theme/DefaultLight.Roblokis")
-			.then(response => response.json())
-			.then(theme => {Rkis.Designer.currentTheme = theme;})
-			.catch(err => {console.error(err);})
-		}
-		else {
-			await fetch(Rkis.fileLocation + "js/Theme/DefaultDark.Roblokis")
-			.then(response => response.json())
-			.then(theme => {Rkis.Designer.currentTheme = theme;})
-			.catch(err => {console.error(err);})
-		}
-	}
-	else if(pagetheme.isDefaultTheme == false) {
-		//load custom theme
-		Rkis.Designer.currentTheme = Rkis.wholeData.Designer.Themes[pagetheme.themeId];
-	}
-	else {
-		if(pagetheme.themeId == 1) {
-			//load other theme
-			await fetch(Rkis.fileLocation + "js/Theme/DefaultLight.Roblokis")
-			.then(response => response.json())
-			.then(theme => {Rkis.Designer.currentTheme = theme;})
-			.catch(err => {console.error(err);})
-		}
-		else {
-			await fetch(Rkis.fileLocation + "js/Theme/DefaultDark.Roblokis")
-			.then(response => response.json())
-			.then(theme => {Rkis.Designer.currentTheme = theme;})
-			.catch(err => {console.error(err);})
-		}
-	}
+Rkis.Designer.CreateThemeElement = async function(theme) {
 	
-	var theme = Rkis.Designer.currentTheme;
+	if (typeof theme == 'undefined' || theme == null) theme = Rkis.Designer.currentTheme;
 	if(theme == null) return;
 
 	let isModified = theme.pages != null;
@@ -449,6 +296,170 @@ Rkis.Designer.SetupTheme = async function() {
 	var styl = document.createElement("style");
 	styl.id = "rk-theme-loaded";
 	styl.innerHTML = tamplate3;
+	return styl;
+}
+
+Rkis.Designer.SetupTheme = async function() {
+
+	if (Rkis.generalLoaded != true) {
+		document.addEventListener("rk-general-loaded", () => {
+			Rkis.Designer.SetupTheme();
+		}, {once: true});
+		return;
+	}
+
+	let mainStyle = null;
+
+	const addStyle = url => {
+		const cssRule = `@import url("${url}")`;
+		const ruleIndex = mainStyle.insertRule(cssRule, mainStyle.cssRules.length);
+		
+		return mainStyle.cssRules[ruleIndex];
+	}
+
+	Rkis.Designer.addCSS = (paths) => {
+		if(window.ContextScript != true) return console.error("Not Context Script");
+		if(typeof paths == "string") paths = [paths];
+
+		if(!mainStyle) {
+			const style = document.createElement("style");
+			style.id = "rk-css-loaded";
+
+			const parent = document.head || document.documentElement;
+			parent.append(style);
+
+			mainStyle = style.sheet;
+		}
+		
+		paths.forEach((path) => {
+			addStyle(Rkis.fileLocation + path);
+		})
+	}
+
+	var putCSS = Rkis.Designer.addCSS; //shorter form
+	putCSS(["js/Theme/Extras/features.css"]);
+
+	if(Rkis.IsSettingEnabled("ExtraShadows", {
+	id: "ExtraShadows",
+	type: "switch",
+	value: { switch: false },
+	details: {
+		default: "en",
+		translate: {
+			name: "sectionExtraS",
+			description: "sectionExtraS1"
+		},
+		"en": {
+			name: "Extra Shadows",
+			description: "Adds a shadow effect under or around some elements.",
+		}
+	}
+	}))
+		putCSS(["js/Theme/Pages/shadows.css"]);
+
+	if(Rkis.IsSettingDisabled("UseThemes", {
+	id: "UseThemes",
+	type: "switch",
+	value: { switch: true },
+	details: {
+		default: "en",
+		translate: {
+			name: "sectionUThemes",
+			description: "sectionUThemes1"
+		},
+		"en": {
+			name: "Use Themes",
+			description: "Disabling this will disable Styles and Themes!",
+		}
+	}
+	})) {
+		putCSS(["js/Theme/Extras/extensions.css"]);
+		document.$watch("body", (e) => {e.classList.add("Roblokis-no-themes")});
+		return;
+	}
+
+	var allCssFiles = [
+		{match: ".com/home", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/home.css" ]},
+		{match: ".com/discover", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/discover.css" ]},
+		{match: ".com/users/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/profile.css" ]},
+		{match: ".com/games/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/games.css" ]},
+		{match: ".com/groups/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/groups.css" ]},
+		
+		{match: ".com/catalog", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/catalog.css" ]},
+		{match: ".com/upgrades/", paths: [ "js/Theme/Pages/all.css" ]},
+
+		{match: ".com/transactions", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/transactions.css" ]},
+		{match: ".com/trades", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/trades.css" ]},
+		{match: ".com/my/messages", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/messages.css" ]},
+		{match: ".com/my/avatar", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/avatar.css" ]},
+		{match: ".com/my/account", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/settings.css" ]}
+	];
+
+	let loadedStyleFile = false;
+	allCssFiles.forEach((e) => {
+		if(!window.location.href.toLowerCase().includes(e.match)) return;
+
+		putCSS(e.paths);
+		loadedStyleFile = true;
+	});
+
+	if (loadedStyleFile == false) {
+		return;
+	}
+
+	var pagetheme = Rkis.Designer.GetPageTheme();
+
+	if(pagetheme == null) {
+		var continueloading = true;
+		document.$watch("body", (bodyElement) => {
+			if(bodyElement.classList.contains("light-theme") == Rkis.wholeData.isUsingLightTheme) return;
+
+			Rkis.wholeData.isUsingLightTheme = bodyElement.classList.contains("light-theme");
+			Rkis.database.save()
+			Rkis.Designer.SetupTheme();
+			continueloading = false;
+		});
+
+		if (continueloading == false) return;
+
+		if(Rkis.wholeData.isUsingLightTheme == true) {
+			await fetch(Rkis.fileLocation + "js/Theme/DefaultLight.Roblokis")
+			.then(response => response.json())
+			.then(theme => {Rkis.Designer.currentTheme = theme;})
+			.catch(err => {console.error(err);})
+		}
+		else {
+			await fetch(Rkis.fileLocation + "js/Theme/DefaultDark.Roblokis")
+			.then(response => response.json())
+			.then(theme => {Rkis.Designer.currentTheme = theme;})
+			.catch(err => {console.error(err);})
+		}
+	}
+	else if(pagetheme.isDefaultTheme == false) {
+		//load custom theme
+		Rkis.Designer.currentTheme = Rkis.wholeData.Designer.Themes[pagetheme.themeId];
+	}
+	else {
+		if(pagetheme.themeId == 1) {
+			//load other theme
+			await fetch(Rkis.fileLocation + "js/Theme/DefaultLight.Roblokis")
+			.then(response => response.json())
+			.then(theme => {Rkis.Designer.currentTheme = theme;})
+			.catch(err => {console.error(err);})
+		}
+		else {
+			await fetch(Rkis.fileLocation + "js/Theme/DefaultDark.Roblokis")
+			.then(response => response.json())
+			.then(theme => {Rkis.Designer.currentTheme = theme;})
+			.catch(err => {console.error(err);})
+		}
+	}
+
+	var theme = Rkis.Designer.currentTheme;
+
+	var styl = await Rkis.Designer.CreateThemeElement(theme);
+	if (styl == null) return;
+
 	document.$watch("head", (e) => {
 		e.append(styl);
 	});
@@ -462,3 +473,75 @@ Rkis.Designer.SetupTheme = async function() {
 }
 
 Rkis.Designer.SetupTheme();
+
+Rkis.Designer.tempTimeout = null;
+Rkis.Designer.tempOriginalTheme = null;
+Rkis.Designer.tempPreviewTheme = null;
+Rkis.Designer.SetupTempTheme = async function() {
+
+	let tempTheme = document.getElementById('rk-temp-theme-loaded');
+	if (tempTheme) tempTheme.remove();
+
+	let isTempTheme = false;
+	let rawTheme = localStorage.getItem('rkis-temp-theme');
+	let theme = null;
+
+	try {
+		if (rawTheme !== null) theme = JSON.parse(rawTheme);
+	} catch {}
+	if (theme !== null) isTempTheme = true;
+
+	if (isTempTheme === false) {
+		// let defaultTheme = document.getElementById('rk-theme-loaded');
+		// if (defaultTheme) defaultTheme.setAttribute('type', 'text/css');
+
+		if (Rkis.Designer.tempOriginalTheme) document.head.appendChild(Rkis.Designer.tempOriginalTheme);
+
+		// Rkis.Designer.SetupTheme();
+
+		localStorage.removeItem('rkis-temp-theme');
+
+		return;
+	}
+	if (Rkis.Designer.tempPreviewTheme === rawTheme) return;
+	Rkis.Designer.tempPreviewTheme = rawTheme;
+
+	let defaultTheme = document.getElementById('rk-theme-loaded');
+	// if (defaultTheme) defaultTheme.remove();
+	if (defaultTheme) Rkis.Designer.tempOriginalTheme = defaultTheme.parentElement.removeChild(defaultTheme);
+
+	if (Rkis.Designer.tempTimeout === null) {
+		Rkis.Designer.tempTimeout = setTimeout(() => {
+			localStorage.removeItem('rkis-temp-theme');
+			Rkis.Designer.tempTimeout = null;
+			Rkis.Designer.SetupTempTheme();
+		}, 30e3);
+	}
+
+	var pagetheme = Rkis.Designer.GetPageTheme();
+
+	if(pagetheme.isDefaultTheme == false) {
+		//load custom theme
+		Rkis.Designer.currentTheme = Rkis.wholeData.Designer.Themes[pagetheme.themeId];
+	} else {
+		localStorage.removeItem('rkis-temp-theme');
+		return;
+	}
+
+	var styl = await Rkis.Designer.CreateThemeElement(theme);
+	if (styl == null) return;
+	styl.id = 'rk-temp-theme-loaded';
+
+	document.$watch("head", (e) => {
+		e.append(styl);
+	});
+
+}
+
+document.addEventListener("visibilitychange", function() {
+    if (document.hidden){
+        return;
+    } else {
+        Rkis.Designer.SetupTempTheme();
+    }
+});

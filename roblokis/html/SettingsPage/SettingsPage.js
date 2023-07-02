@@ -831,8 +831,20 @@ page.settingsWaitingForGeneral = function() {
 
 										</div>
 
-										<!--save button-->
 										<div class="rk-gap"></div>
+
+										<div>
+											<!-- ! translate -->
+											<span class="text-lead">Live Pages.</span>
+											<span class="rk-input-bool rk-button receiver-destination-type-toggle off" data-designer-func='livepreview'>
+												<span class="toggle-flip"></span>
+												<span class="toggle-on"></span>
+												<span class="toggle-off"></span>
+											</span>
+											<div class="text-lead" style="font-size: 0.75em;color: red;" data-translate="experimental">(EXPERIMENTAL)</div>
+										</div>
+
+										<!--save button-->
 										<div class="rk-flex rk-center-y" style="margin-top: 1rem;">
 
 											<button onclick="document.querySelector('#rk-editthemesection').style.display = 'none';" class="rk-btn" data-translate="btnCancel">Close</button>

@@ -2604,6 +2604,11 @@ Designer.SelectThemeButton = function(button) {
 	Rkis.database.save();
 
 	Designer.LoadThemesData();
+
+	localStorage.removeItem('rkis-temp-theme');
+	Designer.ThemeEditor.liveThemeAutoReset = null;
+	Designer.ThemeEditor.isLivePreview = false;
+	page.toggleSwich(document.querySelector('#rkpage .main .themes [data-designer-func="livepreview"]'), false);
 }
 
 Designer.CreateTheme = function() {
@@ -3270,6 +3275,30 @@ Designer.ThemeEditor.setupComponentsManager = function(btn) {
 	}
 }
 
+Designer.ThemeEditor.UpdateLivePreview = function() {
+	if (Designer.ThemeEditor.isLivePreview !== true) return;
+
+	var theme = Rkis.wholeData.Designer.Themes[Designer.ThemeEditor.themeId];
+	if(theme == null) return;
+
+	let editorTheme = {};
+
+	var pagestab = document.querySelector(`[data-editthemetabs="pages"]`);
+	editorTheme.pages = pagestab.save();
+
+	let themeStringified = JSON.stringify(editorTheme);
+
+	localStorage.setItem('rkis-temp-theme', themeStringified);
+
+	if (Designer.ThemeEditor.liveThemeAutoReset) clearTimeout(Designer.ThemeEditor.liveThemeAutoReset);
+	Designer.ThemeEditor.liveThemeAutoReset = setTimeout(() => {
+		localStorage.removeItem('rkis-temp-theme');
+		Designer.ThemeEditor.liveThemeAutoReset = null;
+		Designer.ThemeEditor.isLivePreview = false;
+		page.toggleSwich(document.querySelector('#rkpage .main .themes [data-designer-func="livepreview"]'), false);
+	}, 30e3);
+}
+
 //END SECTION ThemeEditor
 
 
@@ -3425,6 +3454,16 @@ Designer.waitingForGeneral = function() {
 					}
 				})
 				break;
+			case "livepreview":
+				e.addEventListener("switched", () => {
+					Designer.ThemeEditor.isLivePreview = page.getSwich(e);
+					if (Designer.ThemeEditor.isLivePreview == false) {
+						localStorage.removeItem('rkis-temp-theme');
+					} else {
+						Designer.ThemeEditor.UpdateLivePreview();
+					}
+				});
+				break;
 		}
 
 		if(e.classList.contains("export")) {
@@ -3467,6 +3506,14 @@ Designer.waitingForGeneral = function() {
 					e.firstElementChild.style.display = "flex";
 				}
 			})
+		}
+	});
+
+	document.addEventListener("visibilitychange", function() {
+		if (document.hidden){
+			Designer.ThemeEditor.UpdateLivePreview();
+		} else {
+			return;
 		}
 	});
 }
