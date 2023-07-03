@@ -76,11 +76,10 @@ Rkis.page.game = () => {
 		value: { switch: false },
 		details: {
 			default: "en",
-			// ! translate
-			// translate: {
-			// 	name: "sectionMPN",
-			// 	description: "sectionMPN1"
-			// },
+			translate: {
+				name: "sectionGBtB",
+				description: "sectionGBtB1"
+			},
 			"en": {
 				name: "Game Banner to Background.",
 				description: "Uses first game image as page's background. (Works best with dark theme)"

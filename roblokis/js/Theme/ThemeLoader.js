@@ -478,9 +478,25 @@ Rkis.Designer.tempTimeout = null;
 Rkis.Designer.tempOriginalTheme = null;
 Rkis.Designer.tempPreviewTheme = null;
 Rkis.Designer.SetupTempTheme = async function() {
+	if(Rkis.IsSettingDisabled("UseThemes", {
+		id: "UseThemes",
+		type: "switch",
+		value: { switch: true },
+		details: {
+			default: "en",
+			translate: {
+				name: "sectionUThemes",
+				description: "sectionUThemes1"
+			},
+			"en": {
+				name: "Use Themes",
+				description: "Disabling this will disable Styles and Themes!",
+			}
+		}
+	})) {
+		return;
+	}
 
-	let tempTheme = document.getElementById('rk-temp-theme-loaded');
-	if (tempTheme) tempTheme.remove();
 
 	let isTempTheme = false;
 	let rawTheme = localStorage.getItem('rkis-temp-theme');
@@ -492,6 +508,9 @@ Rkis.Designer.SetupTempTheme = async function() {
 	if (theme !== null) isTempTheme = true;
 
 	if (isTempTheme === false) {
+		let tempTheme = document.getElementById('rk-temp-theme-loaded');
+		if (tempTheme) tempTheme.remove();
+
 		// let defaultTheme = document.getElementById('rk-theme-loaded');
 		// if (defaultTheme) defaultTheme.setAttribute('type', 'text/css');
 
@@ -505,6 +524,9 @@ Rkis.Designer.SetupTempTheme = async function() {
 	}
 	if (Rkis.Designer.tempPreviewTheme === rawTheme) return;
 	Rkis.Designer.tempPreviewTheme = rawTheme;
+
+	let tempTheme = document.getElementById('rk-temp-theme-loaded');
+	if (tempTheme) tempTheme.remove();
 
 	let defaultTheme = document.getElementById('rk-theme-loaded');
 	// if (defaultTheme) defaultTheme.remove();

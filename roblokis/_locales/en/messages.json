@@ -968,5 +968,69 @@
 	"StatusRingDesc": {
 		"message": "Shows friend's status icon color around their avatar.",
 		"description": "Text shows in roblokis settings. Shows in Design tab"
+	},
+	"editorlivepages": {
+		"message": "Live Pages",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"sectionGBtB": {
+		"message": "Game Banner as Background",
+		"description": "Text shows in roblokis settings. Shows in Servers tab"
+	},
+	"sectionGBtB1": {
+		"message": "Uses first game image as page's background. (Works best with dark theme)",
+		"description": "Text shows in roblokis settings. Shows in Servers tab"
+	},
+	"styletopnavbar": {
+		"message": "Top Navigation Bar",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"stylegamecards": {
+		"message": "Game Cards",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themePreview": {
+		"message": "Preview",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeShadowComponent": {
+		"message": "Shadow",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeBackdropFilter": {
+		"message": "Backdrop Filter",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeBackdropFilter1": {
+		"message": "adds filters behind the background of the element",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterBrightness": {
+		"message": "Brightness",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterBlur": {
+		"message": "Blur",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterContrast": {
+		"message": "Contrast",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterGrayscale": {
+		"message": "Grayscale",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterHueRotate": {
+		"message": "Hue Rotate",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterInvert": {
+		"message": "Invert",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterSaturate": {
+		"message": "Saturate",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
 	}
 }

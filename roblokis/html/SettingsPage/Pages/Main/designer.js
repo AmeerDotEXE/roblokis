@@ -335,9 +335,8 @@ let designerComponents = [
 		id: "navbar",
 		details: {
 			name: "Top Navigation Bar",
-			// ! translate
 			translate: {
-				name: ""
+				name: "styletopnavbar"
 			}
 		},
 		parent: {
@@ -358,9 +357,8 @@ let designerComponents = [
 		id: "gamecards",
 		details: {
 			name: "Game Cards",
-			// ! translate
 			translate: {
-				name: ""
+				name: "stylegamecards"
 			}
 		},
 		parent: {
@@ -400,8 +398,7 @@ let designerComponents = [
 		},
 		element: {
 			html: /*html*/`
-				<!-- ! translate -->
-				<div data-preview
+				<div data-preview data-translate="themePreview"
 				style="width: min(10rem, 20%);display: flex;border: 1px solid rgba(128,128,128,0.5);margin-right: 1rem;justify-content: center;align-items: center;border-radius: 20px 0;">
 					Preview
 				</div>
@@ -586,8 +583,10 @@ let designerComponents = [
 			}
 		},
 		details: {
-			name: "Box Shadow"
-			// ! translate
+			name: "Border Shadow",
+			translate: {
+				name: 'themeBorderShadow'
+			}
 		},
 		element: {
 			...defaultcomponentElements.horizantalGroup,
@@ -656,12 +655,13 @@ let designerComponents = [
 		},
 		details: {
 			name: "Shadow",
-			// ! translate
+			translate: {
+				name: 'themeShadowComponent'
+			}
 		},
 		element: {
 			html: /*html*/`
-				<!-- ! translate -->
-				<div data-preview
+				<div data-preview data-translate="themePreview"
 				style="width: min(10rem, 20%);display: flex;border: 1px solid rgba(128,128,128,0.5);margin-right: 1rem;justify-content: center;align-items: center;border-radius: 20px 0;">
 					Preview
 				</div>
@@ -796,8 +796,11 @@ let designerComponents = [
 		},
 		details: {
 			name: "Backdrop Filter",
-			description: "adds filters behind the background of the element"
-			// ! translate
+			description: "adds filters behind the background of the element",
+			translate: {
+				name: 'themeBackdropFilter',
+				description: 'themeBackdropFilter1'
+			}
 		},
 		// element: {
 		// 	html: /*html*/`
@@ -1000,10 +1003,9 @@ let designerComponents = [
 		},
 		details: {
 			name: "Brightness",
-			// ! - translate
-			// translate: {
-			// 	name: 'themeBackground'
-			// }
+			translate: {
+				name: 'themeFilterBrightness'
+			}
 		},
 		element: {
 			html: /*html*/`
@@ -1069,10 +1071,9 @@ let designerComponents = [
 		},
 		details: {
 			name: "Blur",
-			// ! - translate
-			// translate: {
-			// 	name: 'themeBackground'
-			// }
+			translate: {
+				name: 'themeFilterBlur'
+			}
 		},
 		element: {
 			html: /*html*/`
@@ -1138,10 +1139,9 @@ let designerComponents = [
 		},
 		details: {
 			name: "Contrast",
-			// ! - translate
-			// translate: {
-			// 	name: 'themeBackground'
-			// }
+			translate: {
+				name: 'themeFilterContrast'
+			}
 		},
 		element: {
 			html: /*html*/`
@@ -1207,10 +1207,9 @@ let designerComponents = [
 		},
 		details: {
 			name: "Grayscale",
-			// ! - translate
-			// translate: {
-			// 	name: 'themeBackground'
-			// }
+			translate: {
+				name: 'themeFilterGrayscale'
+			}
 		},
 		element: {
 			html: /*html*/`
@@ -1276,10 +1275,9 @@ let designerComponents = [
 		},
 		details: {
 			name: "Hue Rotate",
-			// ! - translate
-			// translate: {
-			// 	name: 'themeBackground'
-			// }
+			translate: {
+				name: 'themeFilterHueRotate'
+			}
 		},
 		element: {
 			html: /*html*/`
@@ -1345,10 +1343,9 @@ let designerComponents = [
 		},
 		details: {
 			name: "Invert",
-			// ! - translate
-			// translate: {
-			// 	name: 'themeBackground'
-			// }
+			translate: {
+				name: 'themeFilterInvert'
+			}
 		},
 		element: {
 			html: /*html*/`
@@ -1402,10 +1399,9 @@ let designerComponents = [
 		},
 		details: {
 			name: "Saturate",
-			// ! - translate
-			// translate: {
-			// 	name: 'themeBackground'
-			// }
+			translate: {
+				name: 'themeFilterSaturate'
+			}
 		},
 		element: {
 			html: /*html*/`
@@ -1479,8 +1475,7 @@ let designerComponents = [
 		},
 		element: {
 			html: /*html*/`
-				<!-- ! translate -->
-				<div data-preview
+				<div data-preview data-translate="themePreview"
 					style="width: min(10rem, 20%);display: flex;margin-right: 1rem;background-color: rgba(128,128,128,0.5);justify-content: center;align-items: center;">
 					Preview
 				</div>
@@ -1607,8 +1602,7 @@ let designerComponents = [
 		element: {
 			html: /*html*/`
 			<div class="section-content" style="min-width: 260px;display: flex;">
-				<!-- ! translate -->
-				<div data-preview
+				<div data-preview data-translate="themePreview"
 					style="width: min(10rem, 20%);display: flex;background-color: rgba(128,128,128,0.1);margin-right: 1rem;justify-content: center;align-items: center;border-radius: 20px 0;">
 					Preview
 				</div>

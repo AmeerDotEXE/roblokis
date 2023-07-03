@@ -968,5 +968,69 @@
 	"StatusRingDesc": {
 		"message": "Показывает цвет иконки статуса друга вокруг его аватара.",
 		"description": "Text shows in roblokis settings. Shows in Design tab"
+	},
+	"editorlivepages": {
+		"message": "Живые страницы",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"sectionGBtB": {
+		"message": "Игровой баннер в качестве фона",
+		"description": "Text shows in roblokis settings. Shows in Servers tab"
+	},
+	"sectionGBtB1": {
+		"message": "Использует первое изображение игры в качестве фона страницы. (Лучше всего работает с темной темой)",
+		"description": "Text shows in roblokis settings. Shows in Servers tab"
+	},
+	"styletopnavbar": {
+		"message": "Верхняя панель навигации",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"stylegamecards": {
+		"message": "Карточки игры",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themePreview": {
+		"message": "Предварительный просмотр",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeShadowComponent": {
+		"message": "Тень",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeBackdropFilter": {
+		"message": "Фоновый фильтр",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeBackdropFilter1": {
+		"message": "добавляет фильтры за фон элемента",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterBrightness": {
+		"message": "Яркость",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterBlur": {
+		"message": "Размытие",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterContrast": {
+		"message": "Контраст",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterGrayscale": {
+		"message": "Градации серого",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterHueRotate": {
+		"message": "Оттенок Поворот",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterInvert": {
+		"message": "Инвертировать",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterSaturate": {
+		"message": "Насыщенность",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
 	}
 }

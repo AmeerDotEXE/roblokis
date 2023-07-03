@@ -968,5 +968,69 @@
 	"StatusRingDesc": {
 		"message": "Arkadaşınızın durum simgesi rengini avatarının etrafında gösterir.",
 		"description": "Text shows in roblokis settings. Shows in Design tab"
+	},
+	"editorlivepages": {
+		"message": "Canlı Sayfalar",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"sectionGBtB": {
+		"message": "Arka Plan Olarak Oyun Afişi",
+		"description": "Text shows in roblokis settings. Shows in Servers tab"
+	},
+	"sectionGBtB1": {
+		"message": "Sayfanın arka planı olarak ilk oyun resmini kullanır. (En iyi koyu tema ile çalışır)",
+		"description": "Text shows in roblokis settings. Shows in Servers tab"
+	},
+	"styletopnavbar": {
+		"message": "Üst Gezinti Çubuğu",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"stylegamecards": {
+		"message": "Oyun Kartları",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themePreview": {
+		"message": "Önizleme",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeShadowComponent": {
+		"message": "Gölge",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeBackdropFilter": {
+		"message": "Arka Plan Filtresi",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeBackdropFilter1": {
+		"message": "öğenin arka planının arkasına filtreler ekler",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterBrightness": {
+		"message": "Parlaklık",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterBlur": {
+		"message": "Bulanıklık",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterContrast": {
+		"message": "Kontrast",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterGrayscale": {
+		"message": "Gri Tonlama",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterHueRotate": {
+		"message": "Ton Döndürme",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterInvert": {
+		"message": "Ters çevir",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterSaturate": {
+		"message": "Doygunluk",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
 	}
 }

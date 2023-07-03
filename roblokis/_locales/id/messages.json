@@ -968,5 +968,69 @@
 	"StatusRingDesc": {
 		"message": "Menampilkan warna ikon status teman di sekitar avatar mereka.",
 		"description": "Text shows in roblokis settings. Shows in Design tab"
+	},
+	"editorlivepages": {
+		"message": "Halaman Langsung",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"sectionGBtB": {
+		"message": "Spanduk Game sebagai Latar Belakang",
+		"description": "Text shows in roblokis settings. Shows in Servers tab"
+	},
+	"sectionGBtB1": {
+		"message": "Menggunakan gambar game pertama sebagai latar belakang halaman. (Bekerja paling baik dengan tema gelap)",
+		"description": "Text shows in roblokis settings. Shows in Servers tab"
+	},
+	"styletopnavbar": {
+		"message": "Bilah Navigasi Atas",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"stylegamecards": {
+		"message": "Kartu Permainan",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themePreview": {
+		"message": "Pratinjau",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeShadowComponent": {
+		"message": "Bayangan",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeBackdropFilter": {
+		"message": "Filter Latar Belakang",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeBackdropFilter1": {
+		"message": "menambahkan filter di belakang latar belakang elemen",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterBrightness": {
+		"message": "Kecerahan",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterBlur": {
+		"message": "Kabur",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterContrast": {
+		"message": "Kontras",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterGrayscale": {
+		"message": "Skala abu-abu",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterHueRotate": {
+		"message": "Rona Putar",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterInvert": {
+		"message": "Membalikkan",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
+	},
+	"themeFilterSaturate": {
+		"message": "Jenuh",
+		"description": "Text shows in roblokis settings. Shows in Theme Editor"
 	}
 }

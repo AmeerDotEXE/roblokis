@@ -834,8 +834,7 @@ page.settingsWaitingForGeneral = function() {
 										<div class="rk-gap"></div>
 
 										<div>
-											<!-- ! translate -->
-											<span class="text-lead">Live Pages.</span>
+											<span class="text-lead" data-translate="editorlivepages">Live Pages.</span>
 											<span class="rk-input-bool rk-button receiver-destination-type-toggle off" data-designer-func='livepreview'>
 												<span class="toggle-flip"></span>
 												<span class="toggle-on"></span>

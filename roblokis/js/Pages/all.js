@@ -187,7 +187,6 @@ Rkis.page.all = () => {
 	}
 
 	//Desktop App
-	// TODO add translation for button
 	if(Rkis.IsSettingEnabled("DesktopApp", {
 		id: "DesktopApp",
 		type: "switch",
