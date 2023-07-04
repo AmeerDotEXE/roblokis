@@ -17,6 +17,24 @@
 			}
 		}
 	},
+	"GameBannerToBackground": {
+		"id": "GameBannerToBackground",
+		"type": "switch",
+		"value": {
+			"switch": false
+		},
+		"details": {
+			"default": "en",
+			"translate": {
+				"name": "sectionGBtB",
+				"description": "sectionGBtB1"
+			},
+			"en": {
+				"name": "Game Banner to Background.",
+				"description": "Uses first game image as page's background. (Works best with dark theme)"
+			}
+		}
+	},
 	"ExtraShadows": {
 		"id": "ExtraShadows",
 		"type": "switch",
