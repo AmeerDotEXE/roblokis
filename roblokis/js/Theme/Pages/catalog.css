@@ -4,6 +4,13 @@
     width: calc(100% - 166px);
 }
 
+#container-main > div.content {
+	width: auto;
+}
+.catalog-container {
+	width: 100%;
+}
+
 #results {
 	margin-top: 60px;
 }
