@@ -483,7 +483,7 @@ Rkis.page.game = () => {
 				if (pagenavnum) pagenavnum.value = pagenum;
 
 				if (pagenum >= pagecount) {
-					var result = await fetch(`https://games.roblox.com/v1/games/${Rkis.GameId}/servers/Public?limit=100&sortOrder=Desc&cursor=${Rkis.Scripts.PageNav.nextPage}&excludeFullGames=true`)
+					var result = await fetch(`https://games.roblox.com/v1/games/${Rkis.GameId}/servers/Public?limit=100&sortOrder=Desc&cursor=${Rkis.Scripts.PageNav.nextPage || ''}&excludeFullGames=true`)
 						.then((response) => response.json())
 						.then((data) => {
 							if (data.data == null) return null;
@@ -491,14 +491,26 @@ Rkis.page.game = () => {
 						})
 						.catch(() => { return null });
 					if (result == null) return;
-					Rkis.Scripts.PageNav.nextPage = result.nextPageCursor;
+					Rkis.Scripts.PageNav.nextPage = result.nextPageCursor || '';
 
 					result.data.forEach((e) => { Rkis.Scripts.PageNav.totalServers.push(e); });
 				}
+				//https://stackoverflow.com/a/74442647
+				Rkis.Scripts.PageNav.totalServers = Rkis.Scripts.PageNav.totalServers.reduce((accumulator, current) => {
+					let exists = accumulator.find(item => {
+						return item.id === current.id;
+					});
+					if(!exists) { 
+						accumulator = accumulator.concat(current);
+					}
+					return accumulator;
+				}, [])
 
 				pagecount = Math.floor((Rkis.Scripts.PageNav.totalServers.length || 0) / 10) + 1;
 				if (pagenav) pagenav.dataset.max = pagecount;
-				if (pagenav) pagenav.$find("span > span").textContent = `/ ${pagenav.dataset.max}+`
+				let hasMore = Rkis.Scripts.PageNav.nextPage !== '';
+				if (hasMore) hasMore = pagenav.dataset.max !== pagenum+'';
+				if (pagenav) pagenav.$find("span > span").textContent = `/ ${pagenav.dataset.max}` + (hasMore ? '+' : '');
 
 				var serversToAdd = [];
 				for (var o = (pagenum * 10) - 10; o < (pagenum * 10) && o < Rkis.Scripts.PageNav.totalServers.length; o++) { serversToAdd.push(Rkis.Scripts.PageNav.totalServers[o]); }
