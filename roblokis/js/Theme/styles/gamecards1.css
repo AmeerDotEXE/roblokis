@@ -15,8 +15,8 @@
 /* game details/friends/friend activity bar */
 .game-card-container>a.game-card-link .game-card-info, .game-card-friend-activity {
 	position: relative;
-	min-height: 32px;
-	margin: 0 6px 6px;
+	/* min-height: 32px; */
+	margin: 3px 6px 6px !important;
 	width: auto;
 	display: flex;
     justify-content: center;
@@ -27,6 +27,8 @@
 .game-card-container>a.game-card-link .game-card-thumb-container img {
 	width: auto;
 	z-index: -1;
+	height: 100%;
+    position: absolute;
 }
 .game-card-container>a.game-card-link .game-card-thumb-container {
 	display: grid;
@@ -36,7 +38,7 @@
 .game-card-container>a.game-card-link .game-card-thumb-container .thumbnail-2d-container {
 	height: 100%;
 	width: 100%;
-	display: grid;
+	display: flex;
     justify-content: center;
 	background: none;
 }
@@ -46,7 +48,8 @@ body .game-card-container>a.game-card-link {
 	min-height: 200px;
 	display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-end !important;
+	height: auto !important;
 }
 body .game-card-container>a.game-card-link:hover {
 	padding-top: 150px;
@@ -102,4 +105,30 @@ body .game-card-container>a.game-card-link:hover .game-card-thumb-container {
 }
 a:hover .game-card-thumb-container::after {
 	opacity: 0;
+}
+
+/* profile space for hover */
+.game-carousel {
+	padding: 6px;
+}
+.container-list.favorite-games-container ul.hlist.game-cards {
+	padding: 6px 6px 12px;
+}
+
+
+/* Rogold fixes */
+#pinned-container .game-card-container {
+	width: 150px !important;
+	min-height: unset;
+}
+#pinned-container .game-card-thumb-container {
+	height: 150px;
+}
+#pinned-container .game-card-link {
+	/* min-height: 150px; */
+	/* add 6 for spacing */
+	min-height: 156px;
+}
+#pinned-container .game-card-thumb-container::after {
+	background: transparent;
 }
