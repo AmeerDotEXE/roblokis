@@ -39,6 +39,7 @@
 	
 	box-sizing: content-box;
 	margin-right: 10px;
+	max-width: 30rem;
 }
 
 #right-navigation-header {
@@ -61,6 +62,7 @@
 
 #right-navigation-header .rbx-navbar-right .age-bracket-label {
 	padding: 0;
+	margin-left: 6px;
 }
 
 #right-navigation-header .rbx-navbar-right .age-bracket-label > span,

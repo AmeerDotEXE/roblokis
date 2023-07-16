@@ -754,7 +754,7 @@ let designerComponents = [
 			load: function (theme_object, idCard) {
 				let element = idCard.element;
 				
-				if (theme_object.startsWith('inset ') != true) theme_object = ' ' + theme_object;
+				// if (theme_object.startsWith('inset ') != true) theme_object = ' ' + theme_object;
 				let [type, x, y, blur, spread, rawColor] = theme_object.split(' ');
 
 				//load rest

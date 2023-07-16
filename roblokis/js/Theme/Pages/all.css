@@ -116,6 +116,7 @@ html .alert-system-feedback .alert {
 }
 .rk-page-background.rk-blurred {
 	filter: brightness(0.5) blur(15px);
+	transform: scale(1.05);
 }
 
 /*disable ads*/

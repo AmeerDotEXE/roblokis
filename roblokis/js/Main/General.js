@@ -110,6 +110,10 @@ var Rkis = {
 		},
 		IsSettingEnabled(setting, defaultSetting, callback) {
 			if (typeof defaultSetting == "function") [callback, defaultSetting] = [defaultSetting, null];
+
+			if (typeof Rkis.wholeData === 'undefined' || Rkis.wholeData === null) {
+				Rkis.wholeData = Rkis.wholeData || {};
+			}
 		
 			let rksetting = setting;
 			if (typeof setting == "string") rksetting = Rkis.wholeData[setting];

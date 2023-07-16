@@ -105,6 +105,7 @@
 #container-main > div.content > div.profile-container,
 #friends-container {
 	min-width: 80%;
+	max-width: 1020px;
 }
 
 
@@ -112,9 +113,9 @@
 	width: 100%;
 }
 
-#container-main > div.content {
+/* #container-main > div.content {
 	width: auto;
-}
+} */
 
 #friends-container > div > div.rbx-tabs-horizontal.rbx-scrollable-tabs-horizontal > ul > li {
 	margin: 0;
