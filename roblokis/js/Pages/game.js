@@ -922,8 +922,8 @@ Rkis.page.game = () => {
 						mainelement.innerHTML += /*html*/`
 						<div class="badge-content">
 							<div class="badge-data-container">
-								<div class="font-header-2 badge-name">${escapeHTML(badge.displayName) || Rkis.language["badgeNoName"]}</div>
-								<p class="para-overflow">${escapeHTML(badge.displayDescription) || Rkis.language["badgeNoDescription"]}</p>
+								<div class="font-header-2 badge-name">${escapeHTML(badge.name) || Rkis.language["badgeNoName"]}</div>
+								<p class="para-overflow">${escapeHTML(badge.description) || Rkis.language["badgeNoDescription"]}</p>
 							</div>
 							<ul class="badge-stats-container">
 								<li>
