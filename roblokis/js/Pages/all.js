@@ -161,7 +161,8 @@ Rkis.page.all = () => {
 					https://www.roblox.com/games/refer?PlaceId=537413528&PageType=GroupDetail&LocalTimestamp={localTimestamp}
 				*/
 
-				var id = elem.href.toLowerCase().split("placeid=")[1].split("&")[0];
+				var id = elem.href.toLowerCase().split("placeid=")[1]?.split("&")[0];
+				if (id == null) return;
 				elem.dataset.id = id;
 
 				//random button angle generator

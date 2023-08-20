@@ -494,8 +494,8 @@ let designerComponents = [
 					element.style.backgroundSize = settings.image.size;
 
 					FetchImage(settings.image.link).then((encoded) => {
-						previewElement.style.backgroundImage = `url(${encoded})`;
-						element.style.backgroundImage = `url(${encoded})`;
+						previewElement.style.backgroundImage = encoded;
+						element.style.backgroundImage = encoded;
 					});
 				}
 
@@ -3290,7 +3290,7 @@ Designer.ThemeEditor.UpdateLivePreview = function() {
 		Designer.ThemeEditor.liveThemeAutoReset = null;
 		Designer.ThemeEditor.isLivePreview = false;
 		page.toggleSwich(document.querySelector('#rkpage .main .themes [data-designer-func="livepreview"]'), false);
-	}, 60e3);
+	}, 10*60*1000); // 10m
 }
 
 //END SECTION ThemeEditor
@@ -3431,6 +3431,10 @@ Designer.waitingForGeneral = function() {
 			case "editorsave":
 				e.$on("click", () => {
 					Designer.ThemeEditor.Save();
+					localStorage.removeItem('rkis-temp-theme');
+					Designer.ThemeEditor.liveThemeAutoReset = null;
+					Designer.ThemeEditor.isLivePreview = false;
+					page.toggleSwich(document.querySelector('#rkpage .main .themes [data-designer-func="livepreview"]'), false);
 				})
 				break;
 			case "add-edits":

@@ -275,22 +275,22 @@ Rkis.Designer.CreateThemeElement = async function(theme) {
 	});
 
 	//url replacer
-	var splittenTemplate2 = tamplate2.split("url(https://");
+	var splittenTemplate2 = tamplate2.split("url(");
 	for (var i = 0; i < splittenTemplate2.length; i++) {
 		var codepart = splittenTemplate2[i];
 		if(i == 0){tamplate3 += codepart; continue;} //don't change start
-		codepart = "url(https://" + codepart; //keep the cutted part
+		codepart = "url(" + codepart; //keep the cutted part
 
 		var fill = ""; //values
 
 		if(codepart.split(")").length < 2) {tamplate3 += codepart; continue;} //no variable detection
-		var url = codepart.split("url(")[1].split(")")[0];
+		var url = codepart.split("url(")[1].split(");")[0];
 
 		fill = await FetchImage(url);
 
 		//console.log(url, fill);
 
-		tamplate3 += 'url(' + fill + ')' + codepart.split(")").slice(1).join(')');
+		tamplate3 += fill + codepart.split(");").slice(1).join(');');
 	};
 
 	var styl = document.createElement("style");
@@ -556,6 +556,7 @@ Rkis.Designer.SetupTempTheme = async function() {
 		Rkis.Designer.currentTheme = Rkis.wholeData.Designer.Themes[pagetheme.themeId];
 	} else {
 		localStorage.removeItem('rkis-temp-theme');
+		Rkis.Designer.SetupTempTheme();
 		return;
 	}
 

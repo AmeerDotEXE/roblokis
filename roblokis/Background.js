@@ -59,6 +59,11 @@ BROWSER.runtime.onMessage.addListener((request, sender, sendResponse) => {
 				sendResponse(null);
 				break;
 			}
+			
+			if (request.url.startsWith("linear-gradient")) {
+				sendResponse(request.url.split(')')[0]+')');
+				break;
+			}
 
 			var temp = async function () {
 				var result = await fetch(request.url).then(response => response.blob())
@@ -71,10 +76,10 @@ BROWSER.runtime.onMessage.addListener((request, sender, sendResponse) => {
 						console.error(err);
 						return (request.url);
 					});
-
-				if (result.startsWith("data:image") == false) result = request.url;
-
-				sendResponse(result);
+				
+				if (result.startsWith("data:image")) return sendResponse(`url(${result})`);
+				result = request.url.split(')')[0];
+				sendResponse(`url(${result})`);
 			}
 			temp();
 			break;
