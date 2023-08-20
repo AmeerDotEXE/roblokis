@@ -1,15 +1,5 @@
 {
-	"styles": {
-		"all": {
-			"gamecards": "1",
-			"menu": "float",
-			"navbar": "float"
-		},
-		"game": {
-			"badges": "card",
-			"servers": "card"
-		}
-	},
+	"styles": {},
 	"pages": {
 		"all": {
 			"background": {

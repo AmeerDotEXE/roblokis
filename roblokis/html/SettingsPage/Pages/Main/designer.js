@@ -3290,7 +3290,7 @@ Designer.ThemeEditor.UpdateLivePreview = function() {
 		Designer.ThemeEditor.liveThemeAutoReset = null;
 		Designer.ThemeEditor.isLivePreview = false;
 		page.toggleSwich(document.querySelector('#rkpage .main .themes [data-designer-func="livepreview"]'), false);
-	}, 30e3);
+	}, 60e3);
 }
 
 //END SECTION ThemeEditor

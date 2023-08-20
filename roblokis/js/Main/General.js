@@ -319,7 +319,7 @@ function getRndInteger(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-//Function below is roblox's theme changer simplified and integerated with roblokis
+//Function below is roblox's official theme changer simplified and integerated with roblokis
 function changeRobloxTheme(themeType) {
 	let types = {
 		Classic: "light-theme",

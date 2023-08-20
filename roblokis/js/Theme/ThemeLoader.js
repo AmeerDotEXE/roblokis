@@ -299,6 +299,7 @@ Rkis.Designer.CreateThemeElement = async function(theme) {
 	return styl;
 }
 
+Rkis.Designer.loadedStyleFile = false;
 Rkis.Designer.SetupTheme = async function() {
 
 	if (Rkis.generalLoaded != true) {
@@ -389,21 +390,21 @@ Rkis.Designer.SetupTheme = async function() {
 		{match: ".com/upgrades/", paths: [ "js/Theme/Pages/all.css" ]},
 
 		{match: ".com/transactions", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/transactions.css" ]},
-		{match: ".com/trades", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/trades.css" ]},
+		// {match: ".com/trades", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/trades.css" ]},
 		{match: ".com/my/messages", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/messages.css" ]},
 		{match: ".com/my/avatar", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/avatar.css" ]},
 		{match: ".com/my/account", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/settings.css" ]}
 	];
 
-	let loadedStyleFile = false;
+	Rkis.Designer.loadedStyleFile = false;
 	allCssFiles.forEach((e) => {
 		if(!window.location.href.toLowerCase().includes(e.match)) return;
 
 		putCSS(e.paths);
-		loadedStyleFile = true;
+		Rkis.Designer.loadedStyleFile = true;
 	});
 
-	if (loadedStyleFile == false) {
+	if (Rkis.Designer.loadedStyleFile == false) {
 		return;
 	}
 
@@ -478,6 +479,10 @@ Rkis.Designer.tempTimeout = null;
 Rkis.Designer.tempOriginalTheme = null;
 Rkis.Designer.tempPreviewTheme = null;
 Rkis.Designer.SetupTempTheme = async function() {
+	if (Rkis.Designer.loadedStyleFile == false) {
+		return;
+	}
+
 	if(Rkis.IsSettingDisabled("UseThemes", {
 		id: "UseThemes",
 		type: "switch",
@@ -532,12 +537,16 @@ Rkis.Designer.SetupTempTheme = async function() {
 	// if (defaultTheme) defaultTheme.remove();
 	if (defaultTheme) Rkis.Designer.tempOriginalTheme = defaultTheme.parentElement.removeChild(defaultTheme);
 
+	if (Rkis.Designer.tempTimeout !== null) {
+		clearTimeout(Rkis.Designer.tempTimeout);
+		Rkis.Designer.tempTimeout = null;
+	}
 	if (Rkis.Designer.tempTimeout === null) {
 		Rkis.Designer.tempTimeout = setTimeout(() => {
 			localStorage.removeItem('rkis-temp-theme');
 			Rkis.Designer.tempTimeout = null;
 			Rkis.Designer.SetupTempTheme();
-		}, 30e3);
+		}, 60e3);
 	}
 
 	var pagetheme = Rkis.Designer.GetPageTheme();
