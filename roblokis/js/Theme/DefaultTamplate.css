@@ -125,6 +125,9 @@
 :root .icon-logo-r {
 	background-image: url($iconr.background.image.link#);
 }
+.avatar .avatar-card-image {
+	background-image: url($avatar.background.image.link#);
+}
 
 /*groups.css*/
 #group-container > div > div > div.group-details > div > div.section-content,

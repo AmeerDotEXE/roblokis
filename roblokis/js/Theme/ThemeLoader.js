@@ -160,7 +160,7 @@ Rkis.Designer.CreateThemeElement = async function(theme) {
 			})
 		}
 		if(n[0].includes("|fullpack|")) {
-			var alltheelements = ["pagenav","badge","content","menu","profile","group"];
+			var alltheelements = ["pagenav","badge","content","menu","profile","group","avatar"];
 
 			alltheelements.forEach((element, elementnumber) => {
 				completecode += n[0].split("|fullpack|").join(element);

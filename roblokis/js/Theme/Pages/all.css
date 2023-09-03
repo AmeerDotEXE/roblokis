@@ -218,3 +218,25 @@ table.table.table-striped>tbody>tr:nth-child(2n)>td, table.table.table-striped>t
 	width: 100%;
 	height: 100%;
 }
+
+.avatar-container img:not(.avatar-card-image) {
+	background: none;
+}
+
+/* bypass default transparency from home.css */
+div.section-content.people-list div.avatar .avatar-card-image,
+body.dark-theme .avatar .avatar-card-image,
+
+.avatar .avatar-card-image {
+	background: var(--rk-avatar-background);
+	background-size: var(--rk-avatar-background-image-size);
+	
+	border-radius: var(--rk-avatar-corners-radius, 50%);
+
+	border-color: var(--rk-avatar-borders-color);
+	border-style: var(--rk-avatar-borders-style);
+	border-width: var(--rk-avatar-borders-size);
+
+	backdrop-filter: var(--rk-avatar-backdrop-filter);
+	box-shadow: var(--rk-avatar-box-shadow);
+}

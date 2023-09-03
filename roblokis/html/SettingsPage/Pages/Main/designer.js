@@ -2138,6 +2138,21 @@ let designerComponents = [
 		element: defaultcomponentElements.horizantalGroup
 	},//profile
 	{
+		id: "avatar",
+		tags: ["blockElement"],
+		parent: {
+			headId: 'pages',
+			tags: {
+				page: true
+			}
+		},
+		details: {
+			name: "User Avatars",
+			description: "Edits all circular user avatars."
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//avatar
+	{
 		id: "badge",
 		tags: ["blockElement", "hasBrightnDarkColors"],
 		parent: {

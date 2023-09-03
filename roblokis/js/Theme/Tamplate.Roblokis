@@ -1,5 +1,14 @@
 {
-	"styles": {},
+	"styles": {
+		"all": {
+			"menu": "float",
+			"navbar": "float"
+		},
+		"game": {
+			"badges": "card",
+			"servers": "card"
+		}
+	},
 	"pages": {
 		"all": {
 			"menu": {
