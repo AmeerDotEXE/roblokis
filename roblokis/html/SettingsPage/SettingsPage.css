@@ -163,15 +163,15 @@ span.rk-button {
 }
 
 .left-navigation > .menu-vertical > .menu-option {
-	border-radius: 0 0 0 0;
+	border-radius: 0;
 }
 
 .left-navigation > .menu-vertical > .menu-option:first-child {
-	border-radius: 10px 0 0 0px;
+	border-top-left-radius: 10px;
 }
 
 .left-navigation > .menu-vertical > .menu-option:last-child {
-	border-radius: 0 0 0 10px;
+	border-bottom-left-radius: 10px;
 }
 
 #rkpage h3,

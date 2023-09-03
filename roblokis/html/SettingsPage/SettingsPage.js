@@ -119,7 +119,7 @@ page.Sports = "It's in the Game";
 
 page.start = async function () {
 	await document.$watch("#rkmainpage").$promise()
-	if (await page.open(window.location.hash.split("#!/")[1], true) == "404") {
+	if (await page.open(decodeURIComponent(window.location.hash.split("#!/")[1].split("?")[0]), true) == "404") {
 		if (await page.open(document.querySelector("#vertical-menu > li.menu-option.active").dataset.file, true) == "404") {
 			page.open(document.querySelector("#vertical-menu > li.menu-option").dataset.file, true);
 		}
@@ -565,23 +565,26 @@ page.settingsWaitingForGeneral = function() {
 
 					<div data-translate="categoryMain">Main</div>
 					<ul id="vertical-menu" class="menu-vertical submenus" role="tablist">
-							<li class="menu-option active" data-file="Main/About"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabAbout">About</span> </a> </li>
-							<li class="menu-option" data-file="Main/Changelog"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabChangelog">Changelog</span> </a> </li>
-							<li class="menu-option" data-file="Main/All"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabAll">All</span> </a> </li>
-							<li class="menu-option" data-file="Main/Design"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabDesign">Design</span> </a> </li>
-							<li class="menu-option" data-file="Main/Themes"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabThemes">Themes</span> </a> </li>
+						<li class="menu-option active" data-file="Main/About"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabAbout">About</span> </a> </li>
+						<li class="menu-option" data-file="Main/Changelog"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabChangelog">Changelog</span> </a> </li>
+						<li class="menu-option" data-file="Main/All"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabAll">All</span> </a> </li>
+						<li class="menu-option" data-file="Main/Design"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabDesign">Design</span> </a> </li>
+						<li class="menu-option" data-file="Main/Themes"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabThemes">Themes</span> </a> </li>
 					</ul>
 
 					<div data-translate="categoryGamePage">Game Page</div>
 					<ul id="vertical-menu" class="menu-vertical submenus" role="tablist">
-							<li class="menu-option" data-file="GamePage/Badges"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabBadges">Badges</span> </a> </li>
-							<li class="menu-option" data-file="GamePage/Servers"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabServers">Servers</span> </a> </li>
+						<li class="menu-option" data-file="GamePage/Badges"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabBadges">Badges</span> </a> </li>
+						<li class="menu-option" data-file="GamePage/Servers"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabServers">Servers</span> </a> </li>
 					</ul>
 
 					<div data-translate="categoryProfiles">Profiles</div>
 					<ul id="vertical-menu" class="menu-vertical submenus" role="tablist">
-							<li class="menu-option" data-file="Profiles/ProfilePage"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabProfilePage">Profile Page</span> </a> </li>
-							<li class="menu-option" data-file="Profiles/FriendsPage"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabFriendsPage">Friends Page</span> </a> </li>
+						<li class="menu-option" data-file="Profiles/ProfilePage"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabProfilePage">Profile Page</span> </a> </li>
+						<li class="menu-option" data-file="Profiles/FriendsPage"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabFriendsPage">Friends Page</span> </a> </li>
+					</ul>
+					<ul id="vertical-menu" class="menu-vertical submenus" role="tablist">
+						<li class="menu-option" data-file="Search Features"> <a class="menu-option-content"> <span class="font-caption-header">Search Features</span> </a> </li>
 					</ul>
 				
 				</div>
@@ -1375,6 +1378,13 @@ page.settingsWaitingForGeneral = function() {
 							<loadcode code="settingload" data-id="QuickRemove"></loadcode>
 						</div>
 					</div>
+					<div class="tabcontent search-features">
+						<span class="text-description">Make sure to save after editing!</span>
+						<div class="rbx-divider" style="margin: 12px;"></div>
+						<button class="main-save-button" data-translate="btnSave">Save</button>
+						<input class="form-control input-field" placeholder="Search" id="rk-search-features">
+						<div class="rbx-divider" style="margin: 12px;"></div>
+					</div>
 				</div>
 			</div>
 		</div>`;
@@ -1414,6 +1424,61 @@ page.settingsWaitingForGeneral = function() {
 				
 				x.style.display = '';
 			});
+		});
+		
+		mainplace.querySelector(`#rk-search-features`).addEventListener('input', (e) => {
+			let page = mainplace.querySelector(`.search-features`);
+			page.querySelectorAll(`loadcode`).forEach(x => x.remove());
+
+			let input = e.target;
+			let text = input.value;
+			if (text === '') return;
+
+			let spesificFeature = Rkis.wholeData[text];
+			if (spesificFeature != null && spesificFeature.id != null) {
+				let featureElement = document.createElement('loadcode');
+				featureElement.setAttribute('code', 'settingload');
+				featureElement.dataset.id = spesificFeature.id;
+				page.appendChild(featureElement);
+				return;
+			}
+			
+			text = text.toLowerCase();
+
+			let featuresList = Object.values(Rkis.wholeData)
+			.filter(setting => {
+				if (setting == null || typeof setting != "object" || setting.id == null) return false;
+
+				return true;
+			})
+			.filter((setting, i, all) => {
+				if (setting.details == null) return false;
+				if (setting.details.default == null) return false;
+				let detail = setting.details[setting.details.default];
+				if (detail == null) return false;
+				if (detail.name == null) return false;
+				if (all.filter(x => x.details[x.details.default].name.toLowerCase().includes(detail.name.toLowerCase())).length > 1) return false;
+				if (detail.name?.toLowerCase().includes(text)) return true;
+				if (detail.description?.toLowerCase().includes(text)) return true;
+
+				return false;
+			});
+
+			featuresList.forEach(feature => {
+				let featureElement = document.createElement('loadcode');
+				featureElement.setAttribute('code', 'settingload');
+				featureElement.dataset.id = feature.id;
+				page.appendChild(featureElement);
+			});
+		});
+
+		window.location.href.split("search=").forEach((query, i) => {
+			if (i !== 1) return;
+
+			let text = decodeURIComponent(query.split("&")[0]);
+			let input = mainplace.querySelector(`#rk-search-features`);
+			input.value = text;
+			input.dispatchEvent(new InputEvent('input'), {});
 		});
 	});
 }
