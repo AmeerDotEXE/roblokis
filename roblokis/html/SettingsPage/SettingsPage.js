@@ -119,7 +119,7 @@ page.Sports = "It's in the Game";
 
 page.start = async function () {
 	await document.$watch("#rkmainpage").$promise()
-	if (await page.open(decodeURIComponent(window.location.hash.split("#!/")[1].split("?")[0]), true) == "404") {
+	if (await page.open(decodeURIComponent(window.location.hash.split("#!/")[1]?.split("?")[0]), true) == "404") {
 		if (await page.open(document.querySelector("#vertical-menu > li.menu-option.active").dataset.file, true) == "404") {
 			page.open(document.querySelector("#vertical-menu > li.menu-option").dataset.file, true);
 		}
