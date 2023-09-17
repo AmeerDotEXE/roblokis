@@ -227,6 +227,7 @@ else if (window.location.href.includes("/groups/")) {
 	Rkis.GroupId = window.location.href.split("/groups/")[1].split("/")[0];
 	Rkis.pageName = "groups";
 }
+else if (window.location.href.includes("/my/avatar")) Rkis.pageName = "avatarpage";
 else if (window.location.href.includes("/home")) Rkis.pageName = "home";
 else Rkis.pageName = "all";
 

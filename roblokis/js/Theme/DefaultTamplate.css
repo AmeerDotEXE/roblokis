@@ -196,3 +196,8 @@
 #rkpagenav > * {
 	background-image: url($pagenav.background.image.link#);
 }
+
+/* avatar.css */
+#avatar-container div[avatar-back] > div.avatar-back {
+	background-image: url($avatareditor.background.image.link#);
+}

@@ -19,3 +19,20 @@
 #recent-items-container > div.items-list.avatar-item-list > ul > li {
 	width: fit-content;
 }
+
+#avatar-container div[avatar-back] > div.avatar-back {
+	/* background */
+	background: var(--rk-avatareditor-background);
+	background-size: var(--rk-avatareditor-background-image-size);
+	
+	/* Border Radius */
+	border-radius: var(--rk-avatareditor-corners-radius, 12px);
+
+	/* Borders */
+	border-color: var(--rk-avatareditor-borders-color);
+	border-style: var(--rk-avatareditor-borders-style);
+	border-width: var(--rk-avatareditor-borders-size);
+
+	backdrop-filter: var(--rk-avatareditor-backdrop-filter);
+	box-shadow: var(--rk-avatareditor-box-shadow);
+}

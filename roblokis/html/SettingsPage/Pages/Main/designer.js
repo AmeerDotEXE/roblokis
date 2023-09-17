@@ -2038,6 +2038,19 @@ let designerComponents = [
 		element: defaultcomponentElements.horizantalGroup
 	},//groups
 	{
+		id: "avatarpage",
+		tags: ["page"],
+		parent: {
+			ids: {
+				pages: true
+			}
+		},
+		details: {
+			name: "Avatar Page"
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//avatarpage
+	{
 		id: "content",
 		tags: ["blockElement"],
 		parent: {
@@ -2152,6 +2165,20 @@ let designerComponents = [
 		},
 		element: defaultcomponentElements.horizantalGroup
 	},//avatar
+	{
+		id: "avatareditor",
+		tags: ["blockElement"],
+		parent: {
+			headId: 'pages',
+			tags: {
+				page: true
+			}
+		},
+		details: {
+			name: "Avatar Preview"
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//avatareditor
 	{
 		id: "badge",
 		tags: ["blockElement", "hasBrightnDarkColors"],
