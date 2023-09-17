@@ -139,6 +139,8 @@ const defaultcomponentElements = {
 			<span class="text-description" data-location="description"></span>
 			<div data-location="image" style="width: 100%;display: flex;justify-content: center;"></div>
 
+			<div class="rbx-divider" style="margin: 12px;"></div>
+			<div class="component-holder"></div>
 		</div>`,
 		js: function (idCard, parentElement) {
 			let element = idCard.element;
@@ -178,6 +180,7 @@ const defaultcomponentElements = {
 			let dropdown = element.querySelector(`[data-location="style"]`);
 			let imageHolder = element.querySelector(`[data-location="image"]`);
 			let descriptionElem = element.querySelector(`[data-location="description"]`);
+			let componentElement = element.querySelector(`[data-location="description"]`);
 
 			dropdown.$clear();
 			options.forEach(option => {
@@ -189,10 +192,49 @@ const defaultcomponentElements = {
 				);
 			});
 
-			//setup functionality
-			dropdown.addEventListener('input', () => {
-				let value = dropdown.value;
+			element.selectedOption = null;
+
+			element.loadOptionComponent = (style, styleOptions) => {
+				if (style == null || style.element == null) {
+					componentElement.innerHTML = "";
+					return;
+				}
+				componentElement.innerHTML = style.element.html;
+
+				//setup element
+				for (let key in style.element) {
+					if (key == "html" || key == "js") continue;
+
+
+					componentElement[key] = style.element[key];
+				}
+
+				let idCard = {
+					id: style.value,
+					element: componentElement,
+					component: style,
+				};
+				if (isMulti) idCard.multiNum = addedComponents.length;
+
+				let run = style.element.js;
+				if (typeof run == 'function') run(idCard, element);
+
+				if (typeof componentElement.load == 'function') componentElement.load(styleOptions, idCard);
+			};
+			element.saveOptionComponent = (style) => {
+				if (style == null) style = element.selectedOption;
+
+				//run save_object
+				let save_component = componentElement.save;
+				if (typeof save_component != 'function') return null;
+
+				//put object in page_object with key of component id
+				return save_component(style);
+			};
+			element.updateOption = (value, styleOptions) => {
 				let option = options.find(x => x.value == value);
+				if (option == null) option = options.find(x => x.value == "");
+				element.querySelector(`[data-location="style"]`).value = option.value;
 
 				descriptionElem.textContent = option.details.description || '';
 				descriptionElem.dataset.translate = option.details.translate?.description || '';
@@ -207,6 +249,15 @@ const defaultcomponentElements = {
 					});
 				}
 				else imageHolder.$clear();
+
+				element.selectedOption = option;
+				element.loadOptionComponent(option, styleOptions || null);
+			};
+
+			//setup functionality
+			dropdown.addEventListener('input', () => {
+				let value = dropdown.value;
+				element.updateOption(value, null);
 			});
 			
 			element.querySelector(`[data-location="style"]`).dispatchEvent(new Event('input'));
@@ -215,8 +266,7 @@ const defaultcomponentElements = {
 			if (theme_object == null) return;
 			let element = idCard.element;
 
-			element.querySelector(`[data-location="style"]`).value = theme_object.type || '';
-			element.querySelector(`[data-location="style"]`).dispatchEvent(new Event('input'));
+			element.updateOption(theme_object.type || '', theme_object.options || null);
 		},
 		save: function (idCard) {
 			let element = idCard.element;
@@ -224,9 +274,11 @@ const defaultcomponentElements = {
 			let style = element.querySelector(`[data-location="style"]`).value;
 			if (style == '') style = null;
 
+			let options = element.saveOptionComponent() || null;
+
 			return {
 				type: style,
-				options: null
+				options
 			};
 		}
 	},

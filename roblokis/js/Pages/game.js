@@ -48,20 +48,24 @@ Rkis.page.game = () => {
 			
 			let findFile = function(styleLocation, stylesObj) {
 				for (let stylePath in stylesObj) {
-					if (styleLocation[stylePath] == null) continue;
-					
-					if (stylesObj[stylePath][styleLocation[stylePath]] == null) {
+					let innderStyleLocation = styleLocation[stylePath];
+					if (innderStyleLocation == null) continue;
+
+					let innderStyleObj = stylesObj[stylePath];
+
+					if (innderStyleLocation.type == null) {
 						//run loop on this object
-						findFile(styleLocation[stylePath], stylesObj[stylePath]);
+						findFile(innderStyleLocation, innderStyleObj);
 						continue;
 					}
 
-					let style = stylesObj[stylePath][styleLocation[stylePath]]
+					let style = innderStyleObj[innderStyleLocation.type];
+					if (style == null) continue;
 					if (style.css != null) {
 						Rkis.Designer.addCSS(style.css);
 					}
 					if (style.js != null) {
-						style.js();
+						style.js(innderStyleLocation);
 					}
 				}
 			}
