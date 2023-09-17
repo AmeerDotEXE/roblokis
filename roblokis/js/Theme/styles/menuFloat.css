@@ -36,3 +36,11 @@
 #navigation {
 	border-radius: var(--rk-menu-corners-radius, 20px);
 }
+
+.rbx-left-col .rbx-scrollbar li.rbx-upgrade-now .btn-secondary-md {
+	border-radius: calc(var(--rk-menu-corners-radius, 20px) / 2);
+}
+
+.rbx-left-col .rbx-scrollbar li.rbx-upgrade-now:last-child {
+	margin-bottom: 7px;
+}

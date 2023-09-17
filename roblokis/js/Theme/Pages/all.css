@@ -219,7 +219,9 @@ table.table.table-striped>tbody>tr:nth-child(2n)>td, table.table.table-striped>t
 	height: 100%;
 }
 
-.avatar-container img:not(.avatar-card-image) {
+.avatar-container img:not(.avatar-card-image),
+div.section-content.people-list div.avatar .avatar-card-image > span.thumbnail-2d-container,
+body.dark-theme .icon-placeholder-avatar-headshot {
 	background: none;
 }
 
