@@ -41,6 +41,11 @@ Rkis.page.all = () => {
 						css: ["js/Theme/styles/gamecards1.css"]
 					}
 				},
+				chat: {
+					bubble: {
+						css: ["js/Theme/styles/chatBubble.css"]
+					}
+				},
 			}
 		};
 		if (Rkis.Designer.currentTheme != null

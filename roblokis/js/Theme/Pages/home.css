@@ -4,7 +4,7 @@
 	transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
 }
 #home-header a.avatar:hover {transform: var(--rk-basic-animations, scale(1.2));}
-body.dark-theme .avatar .avatar-card-image {background-color: transparent;}
+body#rbx-body .avatar .avatar-card-image {background-color: transparent;}
 
 #home-header div.user-info-container > h1 > a {
 	transition: all 400ms;

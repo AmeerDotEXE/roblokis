@@ -2,22 +2,26 @@
 	"styles": {
 		"all": {
 			"menu": {
-				type: "float",
-				options: null
+				"type": "float",
+				"options": null
 			},
 			"navbar": {
-				type: "float",
-				options: null
+				"type": "float",
+				"options": null
+			},
+			"chat": {
+				"type": "bubble",
+				"options": null
 			}
 		},
 		"game": {
 			"badges": {
-				type: "card",
-				options: null
+				"type": "card",
+				"options": null
 			},
 			"servers": {
-				type: "card",
-				options: null
+				"type": "card",
+				"options": null
 			}
 		}
 	},

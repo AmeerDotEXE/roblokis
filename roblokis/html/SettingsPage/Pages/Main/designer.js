@@ -481,6 +481,25 @@ let designerComponents = [
 		},
 		element: defaultcomponentElements.styleDropdown
 	},//gamecards
+	{
+		id: "chat",
+		details: {
+			name: "Chat"
+		},
+		parent: {
+			headId: 'styles',
+			ids: {
+				all: true
+			}
+		},
+		data: {
+			options: [
+				{value: '',details:{name:'Default',description:"Roblox's default design"}},
+				{value: 'bubble',details:{name:'Bubble',description:"Bubble Header"}},
+			]
+		},
+		element: defaultcomponentElements.styleDropdown
+	},//gamecards
 
 
 

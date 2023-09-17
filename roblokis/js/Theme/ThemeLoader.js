@@ -459,7 +459,7 @@ Rkis.Designer.SetupTheme = async function() {
 
 	var theme = Rkis.Designer.currentTheme;
 	
-	if (theme.styles != null) {
+	if (theme != null && theme.styles != null) {
 		theme.styles = theme.styles || {};
 
 		let changeOldFormat = function(styleLoc) {

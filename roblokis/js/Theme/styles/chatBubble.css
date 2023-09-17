@@ -1,0 +1,59 @@
+.chat-container .chat-main,
+.dialogs .dialog-container {
+	background-color: transparent;
+    box-shadow: none;
+}
+.chat-container .chat-main .chat-header {
+	bottom: 6px;
+    margin-bottom: 6px;
+    width: fit-content;
+    margin-left: auto;
+	border-radius: 1rem;
+}
+.chat-container:not(.collapsed) .chat-main .chat-header {
+	margin-top: -6px;
+}
+.chat-container .chat-header .chat-header-label {
+    padding: 10px 6px;
+}
+.chat-container .chat-main .chat-header .chat-header-title {
+	height: auto;
+}
+
+.dark-theme .chat-main .chat-body,
+.dark-theme .dialogs .dialog-container .dialog-body {
+	background-color: rgba(0,0,0,0.8);
+}
+.light-theme .chat-main .chat-body,
+.light-theme .dialogs .dialog-container .dialog-body {
+	background-color: rgba(255,255,255,0.8);
+}
+.chat-main .chat-body,
+.dialogs .dialog-container .dialog-body {
+    border-radius: 8px 8px 0 0;
+}
+
+.dialogs .dialog-container .dialog-header {
+	bottom: 6px;
+	border-radius: 1rem;
+}
+.dialog-container .dialog-header .chat-header-label {
+	padding: 10px 0 10px 5px;
+}
+.dialogs .dialog-container.collapsed .dialog-header .dialog-header-title {
+	padding: 0 6px;
+}
+
+.dialogs .dialog-container .dialog-body {
+	padding-bottom: 8px;
+    margin-bottom: -8px;
+    box-sizing: content-box;
+}
+.dialog-container .dialog-body .mCustomScrollBox.dialog-visible {
+	padding-bottom: 8px;
+	box-sizing: content-box;
+}
+
+.dialogs .dialog-container .dialog-input-container {
+	border: 0;
+}

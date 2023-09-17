@@ -220,14 +220,14 @@ table.table.table-striped>tbody>tr:nth-child(2n)>td, table.table.table-striped>t
 }
 
 .avatar-container img:not(.avatar-card-image),
-div.section-content.people-list div.avatar .avatar-card-image > span.thumbnail-2d-container,
-body.dark-theme .icon-placeholder-avatar-headshot {
+div.avatar .avatar-card-image > span.thumbnail-2d-container,
+body#rbx-body .icon-placeholder-avatar-headshot {
 	background: none;
 }
 
 /* bypass default transparency from home.css */
 div.section-content.people-list div.avatar .avatar-card-image,
-body.dark-theme .avatar .avatar-card-image,
+body#rbx-body .avatar .avatar-card-image,
 
 .avatar .avatar-card-image {
 	background: var(--rk-avatar-background);
