@@ -212,9 +212,10 @@ const defaultcomponentElements = {
 			element.querySelector(`[data-location="style"]`).dispatchEvent(new Event('input'));
 		},
 		load: function (theme_object, idCard) {
+			if (theme_object == null) return;
 			let element = idCard.element;
 
-			element.querySelector(`[data-location="style"]`).value = theme_object || '';
+			element.querySelector(`[data-location="style"]`).value = theme_object.type || '';
 			element.querySelector(`[data-location="style"]`).dispatchEvent(new Event('input'));
 		},
 		save: function (idCard) {
@@ -223,7 +224,10 @@ const defaultcomponentElements = {
 			let style = element.querySelector(`[data-location="style"]`).value;
 			if (style == '') style = null;
 
-			return style;
+			return {
+				type: style,
+				options: null
+			};
 		}
 	},
 };
@@ -3026,6 +3030,30 @@ Designer.ThemeEditor.Load = function() {
 		}
 
 		pagestab.load(pages_object);
+	}
+
+	if (theme.styles != null) {
+		theme.styles = theme.styles || {};
+
+		let changeOldFormat = function(styleLoc) {
+			if (styleLoc == null) return null;
+			if (typeof styleLoc.type != "undefined") return styleLoc;
+			for (let style in styleLoc) {
+				if (style == "type") return styleLoc;
+				if (typeof styleLoc[style] == "string") {
+					styleLoc[style] = {
+						type: styleLoc[style],
+						options: null
+					};
+					continue;
+				}
+				
+				styleLoc[style] = changeOldFormat(styleLoc[style]);
+			}
+			return styleLoc
+		}
+
+		theme.styles = changeOldFormat(theme.styles);
 	}
 	
 	if (theme.styles != null) stylestab.load(theme.styles);

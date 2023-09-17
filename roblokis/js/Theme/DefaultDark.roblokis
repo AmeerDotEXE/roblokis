@@ -1,12 +1,24 @@
 {
 	"styles": {
 		"all": {
-			"menu": "float",
-			"navbar": "float"
+			"menu": {
+				type: "float",
+				options: null
+			},
+			"navbar": {
+				type: "float",
+				options: null
+			}
 		},
 		"game": {
-			"badges": "card",
-			"servers": "card"
+			"badges": {
+				type: "card",
+				options: null
+			},
+			"servers": {
+				type: "card",
+				options: null
+			}
 		}
 	},
 	"pages": {

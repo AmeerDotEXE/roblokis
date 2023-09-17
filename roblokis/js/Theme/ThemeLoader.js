@@ -32,21 +32,18 @@ Rkis.Designer.CreateThemeElement = async function(theme) {
 	if (typeof theme == 'undefined' || theme == null) theme = Rkis.Designer.currentTheme;
 	if(theme == null) return;
 
-	let isModified = theme.pages != null;
-
-	if (isModified == false) {
+	if (theme.pages == null) {
 		theme.pages = theme.pages || {};
 
 		for (let page in theme) {
 			if (theme[page].css == null) continue;
 			
-			isModified = true;
 			theme.pages[page] = theme[page].css;
 			delete theme[page];
 		}
 	}
 	
-	if(isModified == false) return;
+	if(theme.pages == null) return;
 
 	var tamplate0 = null;
 	var tamplate05 = "";
@@ -461,6 +458,30 @@ Rkis.Designer.SetupTheme = async function() {
 	}
 
 	var theme = Rkis.Designer.currentTheme;
+	
+	if (theme.styles != null) {
+		theme.styles = theme.styles || {};
+
+		let changeOldFormat = function(styleLoc) {
+			if (styleLoc == null) return null;
+			if (typeof styleLoc.type != "undefined") return styleLoc;
+			for (let style in styleLoc) {
+				if (style == "type") return styleLoc;
+				if (typeof styleLoc[style] == "string") {
+					styleLoc[style] = {
+						type: styleLoc[style],
+						options: null
+					};
+					continue;
+				}
+				
+				styleLoc[style] = changeOldFormat(styleLoc[style]);
+			}
+			return styleLoc
+		}
+
+		theme.styles = changeOldFormat(theme.styles);
+	}
 
 	var styl = await Rkis.Designer.CreateThemeElement(theme);
 	if (styl == null) return;
