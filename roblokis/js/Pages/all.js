@@ -21,7 +21,19 @@ Rkis.page.all = () => {
 				},
 				navbar: {
 					float: {
-						css: ["js/Theme/styles/navbarFloat.css"]
+						css: ["js/Theme/styles/navbarFloat.css"],
+						js: (style) => {
+							let options = style.options;
+							if (options == null) return;
+							if (options.hideNavBtns == true) {
+								Rkis.Designer.addCSS(["js/Theme/styles/navbarFloatNoNavBtns.css"]);
+							}
+							if (typeof options.searchbarLength == "string" && options.searchbarLength != '') {
+								document.$watch("#right-navigation-header > div.navbar-search", (searchbar) => {
+									searchbar.style.width = options.searchbarLength + "%";
+								});
+							}
+						}
 					}
 				},
 				gamecards: {

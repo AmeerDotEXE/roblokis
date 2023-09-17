@@ -140,7 +140,7 @@ const defaultcomponentElements = {
 			<div data-location="image" style="width: 100%;display: flex;justify-content: center;"></div>
 
 			<div class="rbx-divider" style="margin: 12px;"></div>
-			<div class="component-holder"></div>
+			<div data-location="styleOptions" class="component-holder"></div>
 		</div>`,
 		js: function (idCard, parentElement) {
 			let element = idCard.element;
@@ -180,7 +180,7 @@ const defaultcomponentElements = {
 			let dropdown = element.querySelector(`[data-location="style"]`);
 			let imageHolder = element.querySelector(`[data-location="image"]`);
 			let descriptionElem = element.querySelector(`[data-location="description"]`);
-			let componentElement = element.querySelector(`[data-location="description"]`);
+			let componentElement = element.querySelector(`[data-location="styleOptions"]`);
 
 			dropdown.$clear();
 			options.forEach(option => {
@@ -197,6 +197,7 @@ const defaultcomponentElements = {
 			element.loadOptionComponent = (style, styleOptions) => {
 				if (style == null || style.element == null) {
 					componentElement.innerHTML = "";
+					element.selectedOption = null;
 					return;
 				}
 				componentElement.innerHTML = style.element.html;
@@ -214,7 +215,7 @@ const defaultcomponentElements = {
 					element: componentElement,
 					component: style,
 				};
-				if (isMulti) idCard.multiNum = addedComponents.length;
+				element.selectedOption = idCard;
 
 				let run = style.element.js;
 				if (typeof run == 'function') run(idCard, element);
@@ -223,6 +224,7 @@ const defaultcomponentElements = {
 			};
 			element.saveOptionComponent = (style) => {
 				if (style == null) style = element.selectedOption;
+				if (style == null) return null;
 
 				//run save_object
 				let save_component = componentElement.save;
@@ -250,7 +252,6 @@ const defaultcomponentElements = {
 				}
 				else imageHolder.$clear();
 
-				element.selectedOption = option;
 				element.loadOptionComponent(option, styleOptions || null);
 			};
 
@@ -404,7 +405,56 @@ let designerComponents = [
 		data: {
 			options: [
 				{value: '',image:'images/themes/styles/navbarDefault.png',details:{name:'Default',description:"Roblox's default design"}},
-				{value: 'float',image:'images/themes/styles/navbarFloat.png',details:{name:'Floating',description:"Floating design"}},
+				{value: 'float',image:'images/themes/styles/navbarFloat.png',details:{name:'Floating',description:"Floating design"},element:{
+					html: /*html*/`
+						<span class="text-lead">Hide Navigation Buttons</span>
+						<span data-location="hideNavBtns" class="rk-button receiver-destination-type-toggle off">
+							<span class="toggle-flip"></span>
+							<span class="toggle-on"></span>
+							<span class="toggle-off"></span>
+						</span>
+						<div class="rk-flex rk-space-between rk-center-x" style="width: 100%;margin-top: 0.5rem;">
+							<span style="flex-shrink: 0;margin-right: 1ch;">Search Bar Length</span>
+							<input data-location="searchbarLength" type="range" class="form-control input-field"
+								min="25" max="50" value="25" step="5">
+						</div>`,
+					js: null,
+					load: function (theme_object, idCard) {
+						let element = idCard.element;
+		
+						for (let key in theme_object) {
+							if (theme_object[key] == null) continue;
+							let value = theme_object[key];
+		
+							let input = element.querySelector(`[data-location="${key}"]`);
+							if (input == null) return;
+
+							if (input.classList.contains("rk-button")) {
+								page.toggleSwich(input, value);
+							} else if (input.classList.contains("input-field")) {
+								input.value = value;
+							}
+						}
+					},
+					save: function (idCard) {
+						let element = idCard.element;
+						let component_object = {};
+		
+						element.querySelectorAll(`[data-location]`).forEach((input) => {
+							let edge = input.dataset.location;
+							let value = null;
+							if (input.classList.contains("rk-button")) {
+								value = page.getSwich(input);
+							} else if (input.classList.contains("input-field")) {
+								value = input.value;
+							}
+		
+							component_object[edge] = value;
+						});
+		
+						return component_object;
+					}
+				}},
 			]
 		},
 		element: defaultcomponentElements.styleDropdown
@@ -2015,7 +2065,7 @@ let designerComponents = [
 				for (let edge in theme_object) {
 					if (edge == null) continue;
 
-					isEmpty = true;
+					isEmpty = false;
 					break;
 				}
 
@@ -2226,8 +2276,8 @@ let designerComponents = [
 		tags: ["blockElement"],
 		parent: {
 			headId: 'pages',
-			tags: {
-				page: true
+			ids: {
+				avatarpage: true
 			}
 		},
 		details: {
