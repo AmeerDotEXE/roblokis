@@ -26,5 +26,5 @@ li .game-server-details > span:has(> button.game-server-join-btn):has(> .rk-copy
 	--friend-status-color: hsl(33, 98%, 49%);
 }
 .rk-status-ring .avatar-container:has( .avatar-status) .avatar thumbnail-2d.avatar-card-image {
-	border: 2px solid var(--friend-status-color);
+	border: 2px solid var(--friend-status-color) !important;
 }

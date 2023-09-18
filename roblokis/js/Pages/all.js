@@ -38,7 +38,15 @@ Rkis.page.all = () => {
 				},
 				gamecards: {
 					'1': {
-						css: ["js/Theme/styles/gamecards1.css"]
+						css: ["js/Theme/styles/gamecards1.css"],
+						js: (style) => {
+							let options = style.options;
+							if (options == null) return;
+							if (options.hideText == true) {
+								let body = document.querySelector("body");
+								if (body) body.classList.add("gamecards-no-text");
+							}
+						}
 					}
 				},
 				chat: {

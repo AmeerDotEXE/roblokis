@@ -48,6 +48,7 @@ const defaultcomponentElements = {
 		<div class="rk-popup-holder" style="z-index:999;">
 			<div class="rk-popup" style="width: min(100%, 55rem);min-height: 25%;max-height: 100%;padding: 0;overflow: hidden;"><!--data-designer-func="add-edits"-->
 				<div data-component-holder style="width: 100%;height: 100%;overflow: auto;padding: 1rem;"> 
+					<span data-component-path style="width: 100%;"></span>
 					<button class="section-content rk-btn" style="width: 100%;" data-designer-func="add-edits-btn" data-translate="editorComponentAdding">Add Component</button>
 				</div>
 			</div>
@@ -86,12 +87,19 @@ const defaultcomponentElements = {
 				}
 			});
 
+			let componentPath = element.querySelector(`[data-component-path]`);
+			if (componentPath != null && element.path != null && element.path.join != null) {
+				componentPath.textContent = element.path.join(" > ");
+				componentPath.style.marginBottom = "0.5rem";
+			}
+
 			//setup component manager
 			let componentHolder = element.querySelector(`[data-component-holder]`);
 			
 			componentHolder.dataset.componentId = component.id;
 			componentHolder.dataset.headId = element.dataset.headId;
 			componentHolder.componentTags = component.tags || [];
+			componentHolder.path = element.path || [component.details?.name || component.id];
 
 			Designer.ThemeEditor.setupComponentsManager(componentHolder);
 			if (typeof element.load != 'function') element.load = componentHolder.load;
@@ -476,7 +484,51 @@ let designerComponents = [
 		data: {
 			options: [
 				{value: '',image:'images/themes/styles/gamecardsDefault.png',details:{name:'Default',description:"Roblox's default design"}},
-				{value: '1',image:'images/themes/styles/gamecards1.png',details:{name:'Style 1',description:"Cards game Style"}},
+				{value: '1',image:'images/themes/styles/gamecards1.png',details:{name:'Style 1',description:"Cards game Style"},element:{
+					html: /*html*/`
+						<span class="text-lead">Hide Text</span>
+						<span data-location="hideText" class="rk-button receiver-destination-type-toggle off">
+							<span class="toggle-flip"></span>
+							<span class="toggle-on"></span>
+							<span class="toggle-off"></span>
+						</span>`,
+					js: null,
+					load: function (theme_object, idCard) {
+						let element = idCard.element;
+		
+						for (let key in theme_object) {
+							if (theme_object[key] == null) continue;
+							let value = theme_object[key];
+		
+							let input = element.querySelector(`[data-location="${key}"]`);
+							if (input == null) return;
+
+							if (input.classList.contains("rk-button")) {
+								page.toggleSwich(input, value);
+							} else if (input.classList.contains("input-field")) {
+								input.value = value;
+							}
+						}
+					},
+					save: function (idCard) {
+						let element = idCard.element;
+						let component_object = {};
+		
+						element.querySelectorAll(`[data-location]`).forEach((input) => {
+							let edge = input.dataset.location;
+							let value = null;
+							if (input.classList.contains("rk-button")) {
+								value = page.getSwich(input);
+							} else if (input.classList.contains("input-field")) {
+								value = input.value;
+							}
+		
+							component_object[edge] = value;
+						});
+		
+						return component_object;
+					}
+				}},
 			]
 		},
 		element: defaultcomponentElements.styleDropdown
@@ -499,7 +551,7 @@ let designerComponents = [
 			]
 		},
 		element: defaultcomponentElements.styleDropdown
-	},//gamecards
+	},//chat
 
 
 
@@ -3322,6 +3374,7 @@ Designer.ThemeEditor.setupComponentsManager = function(btn) {
 		return pass;
 	});
 	btn.availableComponents = components;
+	btn.path = btn.path || [btn.dataset.headComponentId];
 
 	let componentsList = document.querySelector(`#rk-add-edits-list`);
 	let currentComponents = [];
@@ -3372,6 +3425,7 @@ Designer.ThemeEditor.setupComponentsManager = function(btn) {
 		holder.innerHTML = component.element.html;
 		holder.dataset.componentId = component.id;
 		holder.dataset.headId = headId;
+		holder.path = [...btn.path, ...[component.details?.name || component.id]];
 		btn.appendChild(holder);
 
 		//setup element
