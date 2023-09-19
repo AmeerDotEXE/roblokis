@@ -168,6 +168,11 @@ a.game-card-link:hover > a.rk-btn-r-5.rk-quickgamejoin {
 	transform: var(--rk-basic-animations, scale(1.12) rotate(-15deg));
 }
 
+body.gamecards-text-center .game-card-link .game-card-name,
+body.gamecards-text-center .game-card-link .game-card-info {
+	text-align: center;
+}
+
 /*remove error backgrounds*/
 #container-main > div.content > div.request-error-page-content > div.default-error-page {
 	background-color: transparent;

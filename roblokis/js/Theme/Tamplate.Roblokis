@@ -12,6 +12,12 @@
 			"chat": {
 				"type": "bubble",
 				"options": null
+			},
+			"gamecards": {
+				"type": "",
+				"options": {
+					"centerText": true
+				}
 			}
 		},
 		"game": {

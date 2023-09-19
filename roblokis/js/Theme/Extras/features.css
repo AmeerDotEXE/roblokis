@@ -4,6 +4,14 @@ li .game-server-details > span:has(> button.game-server-join-btn):has(> .rk-copy
 	gap: 4px;
 }
 
+/* Quick Join Button */
+.rk-quickgamejoin {
+	margin: 4px 0 0;
+}
+.game-card-container .game-card-name {
+	margin-top: 4px;
+}
+
 /* Player Counter */
 #game-instances:has( .rk-plr-counter) li .game-server-details > div.rbx-game-status {
 	display: none;

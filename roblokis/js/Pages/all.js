@@ -47,6 +47,16 @@ Rkis.page.all = () => {
 								if (body) body.classList.add("gamecards-no-text");
 							}
 						}
+					},
+					'': {
+						js: (style) => {
+							let options = style.options;
+							if (options == null) return;
+							if (options.centerText == true) {
+								let body = document.querySelector("body");
+								if (body) body.classList.add("gamecards-text-center");
+							}
+						}
 					}
 				},
 				chat: {
@@ -204,7 +214,6 @@ Rkis.page.all = () => {
 				elmnt.dataset.placeid = id;
 				//elmnt.setAttribute("onclick", `Roblox.GameLauncher.joinMultiplayerGame(${elmnt.dataset.placeid})`);
 				// elmnt.setAttribute("style", `margin: 0; display: inline-block;`);
-				elmnt.style.margin = "0";
 				elmnt.style.display = "inline-block";
 				// elmnt.dataset.translate = "joinButtons";
 				elmnt.innerHTML = Rkis.language["joinButtons"];
