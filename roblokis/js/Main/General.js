@@ -145,7 +145,7 @@ var Rkis = {
 				return false;
 			}
 		
-			if (setting.options && setting.options.disabled == true) return false;
+			if (rksetting.options && rksetting.options.disabled == true) return false;
 		
 			let value = Rkis.GetSettingValue(rksetting);
 			let result = true;

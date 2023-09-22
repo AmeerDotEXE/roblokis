@@ -2,6 +2,12 @@
 #Leaderboard-Abp {margin-bottom: 1%;}
 
 
+/* Removes the server count text */
+#game-instances li .game-server-details > div.rbx-game-status {
+	display: none;
+}
+
+
 /* Btroblox Support */
 #game-detail-page > div.btr-game-main-container.section-content,
 #game-instances,

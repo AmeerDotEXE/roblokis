@@ -1058,7 +1058,9 @@ Rkis.page.game = () => {
 
 	}
 
-	if (Rkis.wholeData.UseThemes != false) {
+	//permanitly disabled might get added later
+	//but for now, it looks bad
+	if (false && Rkis.wholeData.UseThemes != false) {
 
 		//TODO update counter on refresh
 		Rkis.Scripts.ServerPlayerCounterLoader = function (serversitm) {
