@@ -1,3 +1,8 @@
+/* Overwrite roseal hight (revert to original roblox height) */
+[data-rosealfe-chatsorttypes] body #chat-container:not([class*=collapsed]) .chat-main {
+	height: 360px !important;
+}
+
 .chat-container .chat-main,
 .dialogs .dialog-container {
 	background-color: transparent;
