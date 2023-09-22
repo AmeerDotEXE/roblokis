@@ -31,7 +31,15 @@ Rkis.page.game = () => {
 			game: {
 				servers: {
 					card: {
-						css: ["js/Theme/styles/serversCard.css"]
+						css: ["js/Theme/styles/serversCard.css"],
+						js: (style) => {
+							let options = style.options;
+							if (options == null) return;
+							if (options.hidePlayers == true) {
+								let body = document.querySelector("body");
+								if (body) body.classList.add("servers-no-players");
+							}
+						}
 					}
 				},
 				badges: {
