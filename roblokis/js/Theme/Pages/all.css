@@ -79,6 +79,9 @@ html .alert-system-feedback .alert {
 
 
 /*content*/
+#container-main {
+	outline: none;
+}
 #container-main > div.content {
 
 	border-radius: var(--rk-content-corners-radius, 20px);

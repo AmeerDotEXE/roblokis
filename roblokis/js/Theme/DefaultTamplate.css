@@ -73,6 +73,12 @@
 	--rk-icon-r-background-image-size: $iconr.background.image.size#;
 
 
+/*  Menu	*/
+
+	--rk-menu-corner-radius: $menu.corners.all.radius#;
+
+
+
 /*  Content	 */
 
 	--rk-content-box-shadow: $content.shadow#black 0px 0px 8px 2px;

@@ -12,6 +12,7 @@ Rkis.page.all = () => {
 
 	//load styles
 	document.$watch('#rk-theme-loaded', () => {
+		let body = document.querySelector("body");
 		let styles = {
 			all: {
 				menu: {
@@ -26,7 +27,10 @@ Rkis.page.all = () => {
 							let options = style.options;
 							if (options == null) return;
 							if (options.hideNavBtns == true) {
-								Rkis.Designer.addCSS(["js/Theme/styles/navbarFloatNoNavBtns.css"]);
+								if (body) body.classList.add("navbar-no-nav-buttons");
+							}
+							if (options.makeSearchBtn == true) {
+								if (body) body.classList.add("navbar-search-button");
 							}
 							if (typeof options.searchbarLength == "string" && options.searchbarLength != '') {
 								document.$watch("#right-navigation-header > div.navbar-search", (searchbar) => {
@@ -43,7 +47,6 @@ Rkis.page.all = () => {
 							let options = style.options;
 							if (options == null) return;
 							if (options.hideText == true) {
-								let body = document.querySelector("body");
 								if (body) body.classList.add("gamecards-no-text");
 							}
 						}
@@ -53,7 +56,6 @@ Rkis.page.all = () => {
 							let options = style.options;
 							if (options == null) return;
 							if (options.centerText == true) {
-								let body = document.querySelector("body");
 								if (body) body.classList.add("gamecards-text-center");
 							}
 						}

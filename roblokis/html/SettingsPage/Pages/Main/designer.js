@@ -348,12 +348,14 @@ let designerComponents = [
 				{value: '',image:'images/themes/styles/serversDefault.png',details:{name:'Default',description:"Roblox's default design"}},
 				{value: 'card',image:'images/themes/styles/serversCard.png',details:{name:'Card',description:"Cards with Player icons on bottom"},element:{
 					html: /*html*/`
-						<span class="text-lead">Hide Players</span>
-						<span data-location="hidePlayers" class="rk-button receiver-destination-type-toggle off">
-							<span class="toggle-flip"></span>
-							<span class="toggle-on"></span>
-							<span class="toggle-off"></span>
-						</span>`,
+						<div style="width: 100%;margin-top: 0.5rem;">
+							<span class="text-lead">Hide Players</span>
+							<span data-location="hidePlayers" class="rk-button receiver-destination-type-toggle off">
+								<span class="toggle-flip"></span>
+								<span class="toggle-on"></span>
+								<span class="toggle-off"></span>
+							</span>
+						</div>`,
 					js: null,
 					load: function (theme_object, idCard) {
 						let element = idCard.element;
@@ -458,12 +460,22 @@ let designerComponents = [
 				{value: '',image:'images/themes/styles/navbarDefault.png',details:{name:'Default',description:"Roblox's default design"}},
 				{value: 'float',image:'images/themes/styles/navbarFloat.png',details:{name:'Floating',description:"Floating design"},element:{
 					html: /*html*/`
-						<span class="text-lead">Hide Navigation Buttons</span>
-						<span data-location="hideNavBtns" class="rk-button receiver-destination-type-toggle off">
-							<span class="toggle-flip"></span>
-							<span class="toggle-on"></span>
-							<span class="toggle-off"></span>
-						</span>
+						<div style="width: 100%;margin-top: 0.5rem;">
+							<span class="text-lead">Hide Navigation Buttons</span>
+							<span data-location="hideNavBtns" class="rk-button receiver-destination-type-toggle off">
+								<span class="toggle-flip"></span>
+								<span class="toggle-on"></span>
+								<span class="toggle-off"></span>
+							</span>
+						</div>
+						<div style="width: 100%;margin-top: 0.5rem;">
+							<span class="text-lead">Make Search a Button</span>
+							<span data-location="makeSearchBtn" class="rk-button receiver-destination-type-toggle off">
+								<span class="toggle-flip"></span>
+								<span class="toggle-on"></span>
+								<span class="toggle-off"></span>
+							</span>
+						</div>
 						<div class="rk-flex rk-space-between rk-center-x" style="width: 100%;margin-top: 0.5rem;">
 							<span style="flex-shrink: 0;margin-right: 1ch;">Search Bar Length</span>
 							<input data-location="searchbarLength" type="range" class="form-control input-field"
@@ -528,12 +540,14 @@ let designerComponents = [
 			options: [
 				{value: '',image:'images/themes/styles/gamecardsDefault.png',details:{name:'Default',description:"Roblox's default design"},element:{
 					html: /*html*/`
-						<span class="text-lead">Center Text</span>
-						<span data-location="centerText" class="rk-button receiver-destination-type-toggle off">
-							<span class="toggle-flip"></span>
-							<span class="toggle-on"></span>
-							<span class="toggle-off"></span>
-						</span>`,
+						<div style="width: 100%;margin-top: 0.5rem;">
+							<span class="text-lead">Center Text</span>
+							<span data-location="centerText" class="rk-button receiver-destination-type-toggle off">
+								<span class="toggle-flip"></span>
+								<span class="toggle-on"></span>
+								<span class="toggle-off"></span>
+							</span>
+						</div>`,
 					js: null,
 					load: function (theme_object, idCard) {
 						let element = idCard.element;
@@ -573,12 +587,14 @@ let designerComponents = [
 				}},
 				{value: '1',image:'images/themes/styles/gamecards1.png',details:{name:'Style 1',description:"Cards game Style"},element:{
 					html: /*html*/`
-						<span class="text-lead">Hide Text</span>
-						<span data-location="hideText" class="rk-button receiver-destination-type-toggle off">
-							<span class="toggle-flip"></span>
-							<span class="toggle-on"></span>
-							<span class="toggle-off"></span>
-						</span>`,
+						<div style="width: 100%;margin-top: 0.5rem;">
+							<span class="text-lead">Hide Text</span>
+							<span data-location="hideText" class="rk-button receiver-destination-type-toggle off">
+								<span class="toggle-flip"></span>
+								<span class="toggle-on"></span>
+								<span class="toggle-off"></span>
+							</span>
+						</div>`,
 					js: null,
 					load: function (theme_object, idCard) {
 						let element = idCard.element;

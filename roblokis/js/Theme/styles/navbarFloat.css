@@ -1,5 +1,5 @@
 #header {
-	margin-top: 5px;
+	margin: 5px;
 	border: 0;
 	background: transparent;
 	backdrop-filter: none;
@@ -21,14 +21,34 @@
 	align-items: center;
 }
 
+.rbx-header .rbx-navbar-header {
+	margin-left: 0;
+	margin-right: auto;
+	flex-shrink: 0;
+}
+
 #header .container-fluid ul.nav.rbx-navbar.hidden-sm {
 	box-sizing: content-box;
 	margin-right: 10px;
 	max-width: 30rem;
+	width: auto;
+	height: 40px;
+	align-items: center;
+	margin: 0;
+	margin-right: 5px;
+	padding: 0 4px;
 }
 #header .container-fluid ul.nav.rbx-navbar.hidden-lg {
 	margin: 3px;
 	width: calc(100% - 6px);
+}
+
+#header .container-fluid ul.nav.rbx-navbar li a {
+	font-weight: 400 !important;
+	font-size: .95em;
+	opacity: .9;
+	padding: 4px 14px;
+	white-space: nowrap;
 }
 
 #header .container-fluid ul.nav.rbx-navbar,
@@ -51,13 +71,19 @@
 }
 
 #right-navigation-header {
-	width: 50%;
+	/* width: 50%; */
+	display: contents;
 }
 
 #right-navigation-header .navbar-search {
     width: fit-content;
-    margin-right: auto;
     margin-top: 0;
+	transition: width 200ms ease;
+}
+
+#right-navigation-header .navbar-right {
+	margin-left: auto;
+	margin-right: 0px;
 }
 
 #right-navigation-header .nav.rbx-navbar-icon-group {
@@ -86,13 +112,18 @@
 #navbar-search-input {
 	background: none;
 	border: 0;
+	height: 40px;
+	padding-left: 45px;
 }
-#right-navigation-header > div.navbar-search > div.input-group {
-	margin: 3px 0;
+.input-group .input-group-btn .input-addon-btn {
+	height: 40px;
+	width: 40px;
+	display: flex;
+	justify-content: center;
 }
-
-.rbx-header .rbx-navbar-icon-group > li.navbar-icon-item > button {
-	padding: 1px 4px;
+.rbx-header .navbar-search .clear-search {
+	top: 10px;
+	right: 10px;
 }
 
 /* make hover effect */
@@ -108,5 +139,29 @@ body .rbx-header .rbx-navbar li:hover {
 	}
 	#right-navigation-header {
 		width: auto;
+		display: block;
 	}
+	#right-navigation-header .navbar-search {
+		width: auto !important;
+	}
+}
+
+/* Search button option */
+.navbar-search-button .rbx-header .navbar-search:not(:focus-within) .clear-search {
+	opacity: 0;
+}
+.navbar-search-button .rbx-header .navbar-search:not(:focus-within) .clear-search,
+.navbar-search-button .rbx-header .navbar-search:not(:focus-within) .input-group .input-group-btn .input-addon-btn {
+	pointer-events: none;
+}
+.navbar-search-button .rbx-header .navbar-search:not(:focus-within) {
+	width: 40px !important;
+}
+
+/* No nav buttons */
+.navbar-no-nav-buttons #header .container-fluid ul.nav.rbx-navbar {
+	display: none;
+}
+body:not(.navbar-no-nav-buttons) .rbx-header .navbar-search {
+	max-width: 350px;
 }
