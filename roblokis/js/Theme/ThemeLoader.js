@@ -16,6 +16,18 @@ Rkis.Designer.DefaultThemes = [
 		name: "Default Light Theme",
 		description: "Simple Design made to match default roblox.",
 	},
+	{
+		themeId: "2",
+		location: "js/Theme/Default/Simple Gradient.Roblokis",
+		name: "Simple Gradient",
+		description: "Simple Red-Blue gradient theme",
+	},
+	{
+		themeId: "3",
+		location: "js/Theme/Default/Dark Shadow Theme.Roblokis",
+		name: "Dark Shadow Theme",
+		description: "",
+	},
 ];
 
 function FetchImage(url) {

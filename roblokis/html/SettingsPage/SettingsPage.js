@@ -855,20 +855,20 @@ page.settingsWaitingForGeneral = function() {
 
 										<div class="default-theme-template">
 											<div>
-													<div>Default Dark Theme</div>
-													<span>Simple Design made to match default roblox.</span>
+													<div>Simple Gradient</div>
+													<span>Simple Red-Blue gradient theme</span>
 											</div>
 											<div style="margin-left: auto;"></div>
-											<button class="designer-btn select" data-theme="Default Dark Theme" data-themeid="0" data-isdefaulttheme="true" data-translate="btnSelect">Select</button>
+											<button class="designer-btn select" data-theme="Simple Gradient" data-themeid="2" data-isdefaulttheme="true" data-translate="btnSelect">Select</button>
 										</div>
 
 										<div class="default-theme-template">
 											<div>
-													<div>Default Light Theme</div>
-													<span>Simple Design made to match default roblox.</span>
+													<div>Dark Shadow Theme</div>
+													<span></span>
 											</div>
 											<div style="margin-left: auto;"></div>
-											<button class="designer-btn select" data-theme="Default Light Theme" data-themeid="1" data-isdefaulttheme="true" data-translate="btnSelect">Select</button>
+											<button class="designer-btn select" data-theme="Dark Shadow Theme" data-themeid="3" data-isdefaulttheme="true" data-translate="btnSelect">Select</button>
 										</div>
 
 										<button class="default-theme-template" style="border: 0;width: 100%;justify-content: center;" data-designer-func="show-more-themes">View More</button>
