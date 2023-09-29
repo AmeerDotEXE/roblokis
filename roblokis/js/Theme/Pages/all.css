@@ -60,21 +60,27 @@ html .alert-system-feedback .alert {
 	transform: translate(0, -200%);
 }
 
-:root .icon-logo {
-	border-radius: 8px;
+.rbx-header .rbx-navbar-header {
+	max-width: unset;
+}
 
+.rbx-header .navbar-brand {
+	border-radius: var(--rk-menu-corners-radius, 8px);
 	background-color: var(--rk-icon-background-color);
+}
+:root .icon-logo {
 	background-repeat: var(--rk-icon-background-image-repeat);
 	background-size: var(--rk-icon-background-image-size, 118px 30px);
 	/* background-size: 118px 30px; */
+	background-position: center;
 }
 :root .icon-logo-r {
-	border-radius: 8px;
-
-	background-color: var(--rk-icon-r-background-color);
 	background-repeat: var(--rk-icon-r-background-image-repeat);
 	background-size: var(--rk-icon-r-background-image-size, 30px 30px);
 	/* background-size: 30px 30px; */
+	background-position: center;
+
+	margin: 0 5px;
 }
 
 

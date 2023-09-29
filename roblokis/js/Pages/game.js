@@ -838,6 +838,11 @@ Rkis.page.game = () => {
 		id: "Badges",
 		type: "switch",
 		value: { switch: true },
+		data: {
+			customization: {
+				showHiddenBadges: true
+			}
+		},
 		details: {
 			default: "en",
 			translate: {
@@ -853,6 +858,12 @@ Rkis.page.game = () => {
 		(function () {
 
 			Rkis.Scripts.BadgesView = Rkis.Scripts.BadgesView || {};
+
+			let customization = Rkis.GetSettingCustomization("Badges");
+			let showHiddenBadges = true;
+			if (typeof customization.showHiddenBadges == "boolean") {
+				showHiddenBadges = customization.showHiddenBadges;
+			}
 
 			Rkis.Scripts.BadgesView.firstone = async function () {
 
@@ -968,22 +979,7 @@ Rkis.page.game = () => {
 						badgessection.append(mainelement);
 					}
 
-					if (Rkis.IsSettingEnabled("BadgesHidden", {
-						id: "BadgesHidden",
-						type: "switch",
-						value: { switch: true },
-						details: {
-							default: "en",
-							translate: {
-								name: "sectionCBH",
-								description: "sectionCBH1"
-							},
-							"en": {
-								name: "Show Hidden Badges",
-								description: "Shows the Hidden/Disabled Badges! (Load All Option is Required)"
-							}
-						}
-					})) secondloop = true;
+					if (showHiddenBadges) secondloop = true;
 					else x = 2;
 
 				}

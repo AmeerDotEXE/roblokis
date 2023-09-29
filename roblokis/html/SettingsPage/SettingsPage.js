@@ -2,6 +2,59 @@
 var Rkis = Rkis || {};
 var page = page || {};
 
+//would you look at that, its very similar to the designer code :O
+let featureCustomizations = {
+	"Badges": {
+		html: /*html*/`
+			<div style="width: 100%;">
+				<span class="text-lead">Show Hidden Badges</span>
+				<span data-location="showHiddenBadges" class="rk-button receiver-destination-type-toggle off">
+					<span class="toggle-flip"></span>
+					<span class="toggle-on"></span>
+					<span class="toggle-off"></span>
+				</span>
+			</div>`,
+		js: null,
+		load: function (theme_object, idCard) {
+			let element = idCard.element;
+
+			for (let key in theme_object) {
+				if (theme_object[key] == null) continue;
+				let value = theme_object[key];
+
+				let input = element.querySelector(`[data-location="${key}"]`);
+				if (input == null) return;
+
+				if (input.classList.contains("rk-button")) {
+					page.toggleSwich(input, value);
+				} else if (input.classList.contains("input-field")) {
+					input.value = value;
+				}
+			}
+		},
+		save: function (idCard) {
+			let element = idCard.element;
+			let component_object = {};
+
+			element.querySelectorAll(`[data-location]`).forEach((input) => {
+				let edge = input.dataset.location;
+				let value = null;
+				if (input.classList.contains("rk-button")) {
+					value = page.getSwich(input);
+				} else if (input.classList.contains("input-field")) {
+					value = input.value;
+				}
+
+				component_object[edge] = value;
+			});
+
+			return component_object;
+		}
+	},
+};
+
+
+
 function FetchImage(url, quick) {
 	return new Promise(resolve => {
 		BROWSER.runtime.sendMessage({about: "getImageRequest", url: url, quick: quick}, 
@@ -77,6 +130,7 @@ page.getSwich = function (swich) {
 }
 
 page.save = function (button) {
+	document.dispatchEvent(new Event("rk-page-save"));
 
 	document.querySelectorAll(".rk-button:not(.rk-input-bool)")
 	.forEach((e) => {
@@ -192,7 +246,8 @@ page.settingsWaitingForGeneral = function() {
 				var settingId = element.dataset.id;
 
 				//get settings
-				var setting = escapeJSON(Rkis.wholeData[settingId]);
+				var settingRaw = Rkis.wholeData[settingId];
+				var setting = escapeJSON(settingRaw);
 				if (setting == null || typeof setting.type != "string") return;
 
 				let canEdit = true;
@@ -201,8 +256,10 @@ page.settingsWaitingForGeneral = function() {
 					setting.options.disabled == true && (canEdit = false);
 				}
 
-				var details = Rkis.GetSettingDetails(setting.details);
-				var trDetails = setting.details.translate || {};
+				var details = Rkis.GetSettingDetails(setting.details) || {};
+				var trDetails = setting.details?.translate || {};
+
+				let featureCustomization = featureCustomizations[settingId];
 
 				//get structer depending on type
 				var getStructureByType = {
@@ -213,6 +270,18 @@ page.settingsWaitingForGeneral = function() {
 							<div class="rbx-divider" style="margin: 12px;"></div>
 							<span class="text-description" data-translate="${trDetails.description || ""}">${details.description || "Error: SP149"}</span>
 							<div style="color: red;" class="text-description" data-translate="${trDetails.note || ""}">${details.note || ""}</div>
+							${featureCustomization != null ?
+								`<div class="rbx-divider" style="margin: 12px;"></div>
+								<div class="text-lead">
+									<label>
+										<input type="checkbox" class="accordion__input" hidden>
+										<span class="accordion__label" style="font-weight: 400;">Customize</span>
+									</label>
+									<div class="accordion__content">
+										<div data-feature-options class="component-holder"></div>
+									</div>
+								</div>` : ''
+							}
 						</div>`,
 					"switch": 
 						`<div class="section-content">
@@ -225,6 +294,18 @@ page.settingsWaitingForGeneral = function() {
 							<div class="rbx-divider" style="margin: 12px;"></div>
 							<span class="text-description" data-translate="${trDetails.description || ""}">${details.description || "Error: SP161"}</span>
 							<div style="color: red;" class="text-description" data-translate="${trDetails.note || ""}">${details.note || ""}</div>
+							${featureCustomization != null ?
+								`<div class="rbx-divider" style="margin: 12px;"></div>
+								<div class="text-lead">
+									<label>
+										<input type="checkbox" class="accordion__input" hidden>
+										<span class="accordion__label" style="font-weight: 400;">Customize</span>
+									</label>
+									<div class="accordion__content">
+										<div data-feature-options class="component-holder"></div>
+									</div>
+								</div>` : ''
+							}
 						</div>`
 				};
 
@@ -232,6 +313,61 @@ page.settingsWaitingForGeneral = function() {
 
 				//apply structer info from setting
 				element.innerHTML = getStructureByType[setting.type];
+
+				if (featureCustomization == null) return;
+				
+				let componentElement = element.querySelector("[data-feature-options]");
+				element.selectedOption = null;
+
+				element.loadOptionComponent = (component, featureOptions) => {
+					if (component == null || component.element == null) {
+						element.selectedOption = null;
+						return;
+					}
+					componentElement.innerHTML = component.element.html;
+
+					//setup element
+					for (let key in component.element) {
+						if (key == "html" || key == "js") continue;
+
+
+						componentElement[key] = component.element[key];
+					}
+
+					let idCard = {
+						id: component.id,
+						element: componentElement,
+						component,
+					};
+					element.selectedOption = idCard;
+
+					let run = component.element.js;
+					if (typeof run == 'function') run(idCard, element);
+
+					if (typeof componentElement.load == 'function') componentElement.load(featureOptions, idCard);
+				};
+				element.saveOptionComponent = (component) => {
+					if (component == null) component = element.selectedOption;
+					if (component == null) return null;
+
+					//run save_object
+					let save_component = componentElement.save;
+					console.log({save_component})
+					if (typeof save_component != 'function') return null;
+
+					//put object in page_object with key of component id
+					return save_component(component);
+				};
+
+				element.loadOptionComponent({
+					id: settingId,
+					element: featureCustomization,
+					feature: settingRaw,
+				}, (settingRaw.data && settingRaw.data.customization) || null);
+				document.addEventListener("rk-page-save", () => {
+					if (settingRaw.data == null) settingRaw.data = {};
+					settingRaw.data.customization = element.saveOptionComponent();
+				});
 				break;
 			case "editelement":
 				//onclick="hidethelem(this,event)" class="rk-popup-holder" style="z-index: 999;"
@@ -637,8 +773,8 @@ page.settingsWaitingForGeneral = function() {
 										.map((setting) => (`
 										<tr>
 											<td></td>
-											<td class="text-lead" data-translate="${escapeHTML(setting.details.translate.name)}">${escapeHTML(setting.details[setting.details.default].name)}</td>
-											<td class="text-description" data-translate="${escapeHTML(setting.details.translate.description)}">${escapeHTML(setting.details[setting.details.default].description)}</td>
+											<td class="text-lead" data-translate="${escapeHTML(setting.details?.translate?.name || "")}">${escapeHTML(setting.details?.[setting.details?.default]?.name || "")}</td>
+											<td class="text-description" data-translate="${escapeHTML(setting.details?.translate?.description || "")}">${escapeHTML(setting.details?.[setting.details?.default]?.description || "")}</td>
 										</tr>`)).join("")}
 									</tbody>
 								</table>
@@ -1199,17 +1335,17 @@ page.settingsWaitingForGeneral = function() {
 												}
 
 												.accordion__content {
-													animation: fadeout 400ms ease-in-out;
+													animation: fadeout 400ms ease-in;
 													opacity: 0;
 													display: none;
 													background-color: rgb(35, 37, 39);
-													border-radius: 20px;
+													border-radius: 10px;
 													padding: 10px;
 													margin-top: 10px;
 												}
 
-												.accordion__input:checked ~ .accordion__content {
-													animation: fadein 400ms ease-in-out;
+												label:has(.accordion__input:checked) ~ .accordion__content {
+													animation: fadein 400ms ease-in;
 													opacity: 1;
 													display: block;
 												}

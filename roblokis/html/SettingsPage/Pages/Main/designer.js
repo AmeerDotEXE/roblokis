@@ -292,7 +292,6 @@ const defaultcomponentElements = {
 	},
 };
 let designerComponents = [
-	nullComponent,
 
 
 	//styles
@@ -1924,14 +1923,16 @@ let designerComponents = [
 					<div class="rbx-divider" style="margin: 12px;"></div>
 
 					<div style="border-radius: 10px;margin-bottom: 6px;" class="text-lead">
-						<input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
-						<label class="accordion__label" style="font-weight: 400;" data-translate="themeTBorder">Top Border</label>
+						<label>
+							<input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
+							<span class="accordion__label" style="font-weight: 400;" data-translate="themeTBorder">Top Border</span>
 
-						<span data-location="borders.top" class="rk-button receiver-destination-type-toggle off" style="float: right;">
-							<span class="toggle-flip"></span>
-							<span class="toggle-on"></span>
-							<span class="toggle-off"></span>
-						</span>
+							<span data-location="borders.top" class="rk-button receiver-destination-type-toggle off" style="float: right;">
+								<span class="toggle-flip"></span>
+								<span class="toggle-on"></span>
+								<span class="toggle-off"></span>
+							</span>
+						</label>
 						<div class="accordion__content">
 							<div>
 								<div class="text-lead rk-flex rk-space-between rk-center-x">
@@ -1967,14 +1968,16 @@ let designerComponents = [
 					</div>
 
 					<div style="border-radius: 10px;margin-bottom: 6px;" class="text-lead">
-						<input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
-						<label class="accordion__label" style="font-weight: 400;" data-translate="themeLBorder">Left Border</label>
+						<label>
+							<input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
+							<span class="accordion__label" style="font-weight: 400;" data-translate="themeLBorder">Left Border</span>
 
-						<span data-location="borders.left" class="rk-button receiver-destination-type-toggle off" style="float: right;">
-							<span class="toggle-flip"></span>
-							<span class="toggle-on"></span>
-							<span class="toggle-off"></span>
-						</span>
+							<span data-location="borders.left" class="rk-button receiver-destination-type-toggle off" style="float: right;">
+								<span class="toggle-flip"></span>
+								<span class="toggle-on"></span>
+								<span class="toggle-off"></span>
+							</span>
+						</label>
 						<div class="accordion__content">
 							<div>
 								<div class="text-lead rk-flex rk-space-between rk-center-x">
@@ -2010,14 +2013,16 @@ let designerComponents = [
 					</div>
 
 					<div style="border-radius: 10px;margin-bottom: 6px;" class="text-lead">
-						<input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
-						<label class="accordion__label" style="font-weight: 400;" data-translate="themeBBorder">Bottom Border</label>
+						<label>
+							<input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
+							<span class="accordion__label" style="font-weight: 400;" data-translate="themeBBorder">Bottom Border</span>
 
-						<span data-location="borders.bottom" class="rk-button receiver-destination-type-toggle off" style="float: right;">
-							<span class="toggle-flip"></span>
-							<span class="toggle-on"></span>
-							<span class="toggle-off"></span>
-						</span>
+							<span data-location="borders.bottom" class="rk-button receiver-destination-type-toggle off" style="float: right;">
+								<span class="toggle-flip"></span>
+								<span class="toggle-on"></span>
+								<span class="toggle-off"></span>
+							</span>
+						</label>
 						<div class="accordion__content">
 							<div>
 								<div class="text-lead rk-flex rk-space-between rk-center-x">
@@ -2053,14 +2058,16 @@ let designerComponents = [
 					</div>
 
 					<div style="border-radius: 10px;margin-bottom: 6px;" class="text-lead">
-						<input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
-						<label class="accordion__label" style="font-weight: 400;" data-translate="themeRBorder">Right Border</label>
+						<label>
+							<input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
+							<span class="accordion__label" style="font-weight: 400;" data-translate="themeRBorder">Right Border</span>
 
-						<span data-location="borders.right" class="rk-button receiver-destination-type-toggle off" style="float: right;">
-							<span class="toggle-flip"></span>
-							<span class="toggle-on"></span>
-							<span class="toggle-off"></span>
-						</span>
+							<span data-location="borders.right" class="rk-button receiver-destination-type-toggle off" style="float: right;">
+								<span class="toggle-flip"></span>
+								<span class="toggle-on"></span>
+								<span class="toggle-off"></span>
+							</span>
+						</label>
 						<div class="accordion__content">
 							<div>
 								<div class="text-lead rk-flex rk-space-between rk-center-x">

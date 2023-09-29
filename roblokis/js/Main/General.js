@@ -10,7 +10,19 @@ var Rkis = {
 			async save() {
 				let data = Rkis.wholeData;
 				//modify saving structure
-				//  exclude details & translation
+				//  exclude details & element & translation
+
+				// try {
+				// 	let savingData = JSON.parse(JSON.stringify(data));
+
+				// 	for (let settingName in savingData) {
+				// 		let setting = savingData[settingName];
+				// 		if (setting == null || typeof setting != "object" || setting.id == null) continue;
+				// 		setting.details = null;
+				// 	}
+
+				// 	data = savingData;
+				// } catch (err) {console.error(err);}
 
 				//save to new database
 				await BROWSER.storage.local.set({
@@ -100,6 +112,12 @@ var Rkis = {
 					return value.text || "";
 			}
 		},
+		GetSettingCustomization(setting) {
+			if (setting == null) return null;
+			if (typeof setting == "string") setting = Rkis.wholeData[setting];
+			if (setting == null || typeof setting.id != "string") return null;
+			return setting.data?.customization;
+		},
 		GetSettingDetails(details) {
 			if (details == null) return null;
 		
@@ -139,7 +157,13 @@ var Rkis = {
 					Rkis.wholeData[setting] = { ...defaultSetting };
 					(() => { Rkis.database.save() })();
 				}
-				if (Rkis.wholeData[setting] != null && typeof Rkis.wholeData[setting] == "object") Rkis.wholeData[setting].details = defaultSetting.details;
+				if (Rkis.wholeData[setting] != null && typeof Rkis.wholeData[setting] == "object") {
+					Rkis.wholeData[setting].details = defaultSetting.details;
+					if (Rkis.wholeData[setting].data == null && defaultSetting.data != null) {
+						Rkis.wholeData[setting].data = defaultSetting.data;
+						(() => { Rkis.database.save() })();
+					}
+				}
 			} else if (rksetting.id == null) {
 				console.error("Unregistered Feature: " + setting);
 				return false;
@@ -298,6 +322,8 @@ if (Rkis.ToastHolder == null || Rkis.ToastHolder == {}) {
 	let defaultSettings = await BROWSER.runtime.sendMessage({about: 'getURLRequest', url: 'https://ameerdotexe.github.io/roblokis/data/settings/default.json'}).catch(() => null);
 	if (defaultSettings == null) return;
 
+	await databaseLoading;
+
 	//Modify defaults without changing user's settings
 	for (let settingName in defaultSettings) {
 		let setting = defaultSettings[settingName];
@@ -313,7 +339,7 @@ if (Rkis.ToastHolder == null || Rkis.ToastHolder == {}) {
 	}
 
 	//Save Modified Settings
-	Rkis.database.save()
+	Rkis.database.save();
 })();
 
 function getRndInteger(min, max) {

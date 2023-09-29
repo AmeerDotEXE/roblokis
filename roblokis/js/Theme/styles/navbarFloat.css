@@ -78,7 +78,7 @@
 #right-navigation-header .navbar-search {
     width: fit-content;
     margin-top: 0;
-	transition: width 200ms ease;
+	transition: max-width 200ms ease;
 }
 
 #right-navigation-header .navbar-right {
@@ -155,7 +155,7 @@ body .rbx-header .rbx-navbar li:hover {
 	pointer-events: none;
 }
 .navbar-search-button .rbx-header .navbar-search:not(:focus-within) {
-	width: 40px !important;
+	max-width: 40px !important;
 }
 
 /* No nav buttons */
