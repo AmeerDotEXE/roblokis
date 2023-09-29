@@ -7,7 +7,9 @@
 			},
 			"navbar": {
 				"type": "float",
-				"options": null
+				"options": {
+					"makeSearchBtn": true
+				}
 			},
 			"chat": {
 				"type": "bubble",

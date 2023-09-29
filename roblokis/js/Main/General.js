@@ -228,6 +228,20 @@ var Rkis = {
 			Rkis.ToastHolder.style.bottom = "30px";
 			setTimeout(() => { Rkis.ToastHolder.style.opacity = "0"; Rkis.ToastHolder.style.bottom = "0px"; }, ms || 4000)
 		},
+		versionCompare(a, b) {
+			if (a.startsWith("v")) a = a.substring(1);
+			if (b.startsWith("v")) b = b.substring(1);
+			if (a == b) return 0;
+
+			let aParts = a.split(".").map(x => parseInt(x));
+			let bParts = b.split(".").map(x => parseInt(x));
+			
+			for (let i = 0; i < aParts.length; i++) {
+				if (aParts[i] > bParts[i]) return 1;
+			}
+
+			return 2;
+		},
 	}
 };
 
@@ -328,6 +342,11 @@ if (Rkis.ToastHolder == null || Rkis.ToastHolder == {}) {
 	for (let settingName in defaultSettings) {
 		let setting = defaultSettings[settingName];
 		if (setting == null || typeof setting != "object" || setting.id == null) continue;
+
+		if (setting.options?.deleted === true) {
+			delete Rkis.wholeData[settingName];
+			continue;
+		}
 
 		if (Rkis.wholeData[settingName] == null || typeof Rkis.wholeData[settingName] != "object") {
 			Rkis.wholeData[settingName] = setting;

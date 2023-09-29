@@ -2,6 +2,22 @@
 var Rkis = Rkis || {};
 Rkis.Designer = Rkis.Designer || {};
 
+Rkis.Designer.DefaultThemes = [
+	{
+		themeId: "0",
+		location: "js/Theme/DefaultDark.Roblokis",
+		name: "Default Dark Theme",
+		description: "Simple Design made to match default roblox.",
+		isDefault: true,
+	},
+	{
+		themeId: "1",
+		location: "js/Theme/DefaultLight.Roblokis",
+		name: "Default Light Theme",
+		description: "Simple Design made to match default roblox.",
+	},
+];
+
 function FetchImage(url) {
 	return new Promise(resolve => {
 		BROWSER.runtime.sendMessage({about: "getImageRequest", url: url}, 
@@ -19,11 +35,18 @@ Rkis.Designer.GetPageTheme = function() {
 	wholedata.Designer.Themes = wholedata.Designer.Themes || [];
 
 	if (wholedata.Designer.Theme.id == null) return null;
-	if (wholedata.Designer.Theme.isDefaultTheme == false && wholedata.Designer.Themes.length - 1 < wholedata.Designer.Theme.id) return null;
+
+	let type = wholedata.Designer.Theme.type;
+	if (type == null) type = wholedata.Designer.Theme.isDefaultTheme ? "default" : "saved";
+
+	if (type == "saved" && wholedata.Designer.Themes.length - 1 < wholedata.Designer.Theme.id) return null;
 
 	return {
+		type,
 		isDefaultTheme: wholedata.Designer.Theme.isDefaultTheme,
-		themeId: wholedata.Designer.Theme.id
+		themeId: wholedata.Designer.Theme.id,
+		name: wholedata.Designer.Theme.name,
+		extra: wholedata.Designer.Theme.extra,
 	};
 }
 
@@ -437,24 +460,24 @@ Rkis.Designer.SetupTheme = async function() {
 			.catch(err => {console.error(err);})
 		}
 	}
-	else if(pagetheme.isDefaultTheme == false) {
+	else if(pagetheme.type == "remote") {
+		await fetch(pagetheme.extra)
+		.then(response => response.json())
+		.then(theme => {Rkis.Designer.currentTheme = theme;})
+		.catch(err => {console.error(err);})
+	}
+	else if(pagetheme.type == "saved") {
 		//load custom theme
 		Rkis.Designer.currentTheme = Rkis.wholeData.Designer.Themes[pagetheme.themeId];
 	}
 	else {
-		if(pagetheme.themeId == 1) {
-			//load other theme
-			await fetch(Rkis.fileLocation + "js/Theme/DefaultLight.Roblokis")
-			.then(response => response.json())
-			.then(theme => {Rkis.Designer.currentTheme = theme;})
-			.catch(err => {console.error(err);})
-		}
-		else {
-			await fetch(Rkis.fileLocation + "js/Theme/DefaultDark.Roblokis")
-			.then(response => response.json())
-			.then(theme => {Rkis.Designer.currentTheme = theme;})
-			.catch(err => {console.error(err);})
-		}
+		let themeInfo = Rkis.Designer.DefaultThemes.find(x => x.themeId == pagetheme.themeId);
+		if (themeInfo == null) themeInfo = Rkis.Designer.DefaultThemes.find(x => x.isDefault);
+
+		await fetch(Rkis.fileLocation + themeInfo.location)
+		.then(response => response.json())
+		.then(theme => {Rkis.Designer.currentTheme = theme;})
+		.catch(err => {console.error(err);})
 	}
 
 	var theme = Rkis.Designer.currentTheme;

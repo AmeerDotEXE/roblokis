@@ -7,7 +7,9 @@
 			},
 			"navbar": {
 				"type": "float",
-				"options": null
+				"options": {
+					"makeSearchBtn": true
+				}
 			},
 			"chat": {
 				"type": "bubble",
@@ -35,7 +37,7 @@
 		"all": {
 			"menu": {
 				"background": {
-					"color": "rgba(25,27,29,100%)",
+					"color": "rgba(0,0,0,40%)",
 					"image": {
 						"link": "",
 						"size": "contain",
@@ -52,7 +54,7 @@
 					"dark": "#bdbebe"
 				},
 				"background": {
-					"color": "rgba(128,128,128,20%)",
+					"color": "rgba(0,0,0,40%)",
 					"image": {
 						"link": "",
 						"size": "contain",
@@ -63,7 +65,7 @@
 			},
 			"defaultserver": {
 				"background": {
-					"color": "rgba(128,128,128,20%)",
+					"color": "rgba(0,0,0,40%)",
 					"image": {
 						"link": "",
 						"size": "contain",

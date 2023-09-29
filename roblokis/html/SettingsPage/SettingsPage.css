@@ -255,7 +255,7 @@ span.rk-button {
 
 .default-theme-template > div > span,
 .theme-template > div > span {
-	font-size: 8px;
+	font-size: 10px;
 	color: rgb(255 255 255 / 60%);
 	font-weight: 400;
 	display: block;
@@ -305,6 +305,7 @@ span.rk-button {
 	font-weight: 500;
 }
 
+#rk-viewmore-themesection .rk-popup button,
 #rk-deletethemesection .rk-popup > div > button,
 #rk-createthemesection .rk-popup div > div > button {
 	background-color: rgb(57 59 61);

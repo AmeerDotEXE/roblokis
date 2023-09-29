@@ -871,6 +871,8 @@ page.settingsWaitingForGeneral = function() {
 											<button class="designer-btn select" data-theme="Default Light Theme" data-themeid="1" data-isdefaulttheme="true" data-translate="btnSelect">Select</button>
 										</div>
 
+										<button class="default-theme-template" style="border: 0;width: 100%;justify-content: center;" data-designer-func="show-more-themes">View More</button>
+
 										<div class="rbx-divider" style="margin: 12px 0 0 0;"></div>
 								</div>
 
@@ -890,6 +892,31 @@ page.settingsWaitingForGeneral = function() {
 							</div>
 
 							
+							<div id="rk-viewmore-themesection" class="rk-popup-holder" style="z-index: 10000;">
+								<div class="rk-popup" style="width: min(100%, 60rem);min-height: 40%;max-height: 90%;">
+										<h3>Official Themes</h3>
+										<div class="rk-page-tab" style="display: flex;flex-direction: column;overflow: hidden;">
+											<div class="rk-tabs">
+												<div class="rk-tab" page="defaultthemes">Default</div>
+												<div class="rk-tab is-active" page="browsethemes">Browse</div>
+											</div>
+											<div class="rk-tab-pages">
+												<div class="rk-tab-page" tab="defaultthemes" style="height: 100%;overflow: auto;">
+													<div id="rk-default-theme-list" style="width: 100%;height: 100%;">
+														<div style="text-align: center;">Not Loaded</div>
+													</div>
+												</div>
+												<div class="rk-tab-page is-active" tab="browsethemes" style="height: 100%;overflow: auto;">
+													<div id="rk-browse-theme-list" style="width: 100%;height: 100%;">
+														<div style="text-align: center;">Not Loaded</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<button style="margin-top: 10px;" onclick="document.querySelector('#rk-viewmore-themesection').style.display = 'none';" data-translate="btnCancel">Cancel</button>
+								</div>
+							</div>
+
 							<div id="rk-createthemesection" class="rk-popup-holder" style="z-index: 10000;">
 								<div class="rk-popup">
 										<h3 data-translate="themeNewTitle">New Theme</h3>

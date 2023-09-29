@@ -2809,6 +2809,16 @@ function FetchImage(url, quick) {
 //SECTION - ThemeManager
 
 Designer.LoadThemesData = async function() {
+	// update selected theme text
+	let themeType = 
+	document.querySelector("#currentthemeplace").textContent = Rkis.Designer.GetPageTheme()?.name || "Default Theme";
+
+	Designer.LoadCustomThemesData();
+	Designer.LoadDefaultThemesData();
+	Designer.LoadBrowseThemesData();
+}
+
+Designer.LoadCustomThemesData = async function() {
 	var customthemesholder = await document.$watch("#customthemesholder").$promise();
 	customthemesholder.innerHTML = "";
 
@@ -2818,8 +2828,6 @@ Designer.LoadThemesData = async function() {
 	wholedata.Designer.Themes = wholedata.Designer.Themes || [];
 
 	var letterNumber = /^[\s0-9a-zA-Z-_]+$/g;
-
-	document.querySelector("#currentthemeplace").textContent = (wholedata.Designer.Theme.isDefaultTheme != true ? (wholedata.Designer.Themes[wholedata.Designer.Theme.id] ? wholedata.Designer.Themes[wholedata.Designer.Theme.id].name : "Default Theme") : wholedata.Designer.Theme.name);
 
 	for(var i = 0; i < Designer.MaxCustomThemes; i++) {
 		var theme = wholedata.Designer.Themes[i];
@@ -2874,7 +2882,65 @@ Designer.LoadThemesData = async function() {
 	}
 }
 
-Designer.SaveNewTheme = async function(name, desc, themedata) {
+Designer.LoadDefaultThemesData = async function() {
+	var defaultthemesholder = await document.$watch("#rk-default-theme-list").$promise();
+	defaultthemesholder.innerHTML = "";
+
+	for(var i = 0; i < Rkis.Designer.DefaultThemes.length; i++) {
+		var theme = Rkis.Designer.DefaultThemes[i];
+
+		var daname = escapeHTML(theme.name);
+		var dadesc = escapeHTML(theme.description);
+
+		defaultthemesholder.innerHTML += `
+			<div class="default-theme-template">
+				<div>
+					<div>${daname ? daname : Rkis.language["error"]}</div>
+					<span>${dadesc ? dadesc : ""}</span>
+				</div>
+				<div style="margin-left: auto;"></div>
+				<button class="designer-btn select" data-theme="${daname ? daname : Rkis.language["error"]}" data-themeid="${i}" data-isdefaulttheme="true" data-translate="btnSelect">Select</button>
+			</div>`;
+	}
+}
+
+Designer.BrowseThemeList = [];
+Designer.LoadBrowseThemesData = async function() {
+	var browsethemesholder = await document.$watch("#rk-browse-theme-list").$promise();
+	if (Designer.BrowseThemeList.length != 0) return;
+
+	let themes = await fetch("https://ameerdotexe.github.io/roblokis/data/themes/top.json")
+	.then(res => res.json())
+	.catch(() => []);
+
+	if (themes == null || themes.length == 0) return;
+
+	browsethemesholder.innerHTML = "";
+	Designer.BrowseThemeList = themes;
+
+	for(var i = 0; i < themes.length; i++) {
+		var theme = themes[i];
+
+		let themeUrl = theme.link.file || theme.link.dark;
+		if (themeUrl == null) continue;
+
+		var daname = escapeHTML(theme.name);
+		var dadesc = escapeHTML(`Author: ${theme.author}`);
+
+		browsethemesholder.innerHTML += `
+			<div class="default-theme-template">
+				<div>
+					<div>${daname ? daname : Rkis.language["error"]}${theme.animated ? ` <span style="border: 1px solid;border-radius: 4px;padding: 1px 3px;color: cornflowerblue;">Animated</span>` : ''}</div>
+					<span>${dadesc ? dadesc : Rkis.language["error"]}</span>
+				</div>
+				<div style="margin-left: auto;"></div>
+				<button class="designer-btn select" data-theme="${daname ? daname : Rkis.language["error"]}" data-themeid="${i}" data-isdefaulttheme="false" data-type="remote" data-extra="${escapeHTML(themeUrl)}">Try</button>
+				<button data-designer-func="add-remote-theme" data-themenum="${i}">Import</button>
+			</div>`;
+	}
+}
+
+Designer.SaveNewTheme = async function(name, desc, themedata, options = {}) {
 	var wholedata = Rkis.wholeData || {};
 	wholedata.Designer = wholedata.Designer || {};
 	wholedata.Designer.Themes = wholedata.Designer.Themes || [];
@@ -2895,6 +2961,7 @@ Designer.SaveNewTheme = async function(name, desc, themedata) {
 		current_version: Rkis.version
 	};
 
+	let isOlderThenTemplate = Rkis.versionCompare("4.0.0.23", themedata.current_version) === 1;
 	themedata.pages = themedata.pages || {};
 	for (let page in themedata) {
 		if (themedata[page].css == null) continue;
@@ -2904,8 +2971,10 @@ Designer.SaveNewTheme = async function(name, desc, themedata) {
 	}
 
 	if(themedata != null) thenewtheme = jsonConcat(themedata, thenewtheme);
+	let finalFile = thenewtheme; //compare with latest template edit version
+	if (options.skipTemplate !== true || isOlderThenTemplate === true) finalFile = jsonConcat(themetemplate, thenewtheme);
 
-	wholedata.Designer.Themes.push(jsonConcat(themetemplate, thenewtheme));
+	wholedata.Designer.Themes.push(finalFile);
 
 	Rkis.wholeData = wholedata;
 	Rkis.database.save();
@@ -2919,6 +2988,8 @@ Designer.SelectThemeButton = function(button) {
 
 	Designer.Selected.name = button.dataset.theme;
 	Designer.Selected.id = button.dataset.themeid;
+	Designer.Selected.type = button.dataset.type;
+	Designer.Selected.extra = button.dataset.extra;
 	Designer.Selected.isDefaultTheme = button.dataset.isdefaulttheme != "false";
 
 	Rkis.wholeData.Designer = Rkis.wholeData.Designer || {};
@@ -2932,10 +3003,6 @@ Designer.SelectThemeButton = function(button) {
 	Designer.ThemeEditor.liveThemeAutoReset = null;
 	Designer.ThemeEditor.isLivePreview = false;
 	page.toggleSwich(document.querySelector('#rkpage .main .themes [data-designer-func="livepreview"]'), false);
-}
-
-Designer.CreateTheme = function() {
-	document.querySelector("#rk-createthemesection").style.display = "flex";
 }
 
 Designer.CreateNewTheme = async function(button) {
@@ -3747,7 +3814,7 @@ Designer.waitingForGeneral = function() {
 			})
 		} else if(e.classList.contains("create")) {
 			e.$on("click", () => {
-				Designer.CreateTheme();
+				document.querySelector("#rk-createthemesection").style.display = "flex";
 			})
 		} else if(e.classList.contains("createthetheme")) {
 			e.$on("click", () => {
@@ -3807,6 +3874,59 @@ Designer.waitingForGeneral = function() {
 					}
 				})
 				break;
+			case "show-more-themes":
+				e.$on("click", () => {
+					document.querySelector("#rk-viewmore-themesection").style.display = "flex";
+				})
+				break;
+			case "add-remote-theme":
+				e.$on("click", async () => {
+					e.disabled = true;
+					e.style.opacity = "0.5";
+
+					let themeInfo = Designer.BrowseThemeList[e.dataset.themenum];
+					if (themeInfo == null) {
+						Rkis.Toast("Error D3887: 404 not found.");
+						return;
+					}
+
+					
+					let themeUrl = themeInfo.link.file || themeInfo.link.dark;
+					if (themeUrl == null) {
+						Rkis.Toast("Error D3894: 404 not found.");
+						return;
+					}
+
+					let themeFile = await fetch(themeUrl)
+					.then(response => response.json())
+					.catch(err => {console.error(err);return null;});
+					if (themeFile == null) {
+						Rkis.Toast("Error D3902: 404 not found.");
+						e.disabled = false;
+						e.style.opacity = "1";
+						return;
+					}
+
+					
+					var antiLetterNumber = /[^\s0-9a-zA-Z-_]/g;
+					var daname = themeInfo.name.replaceAll(antiLetterNumber, "");
+					var dadesc = `By ${themeInfo.author}`.replaceAll(antiLetterNumber, "");
+
+					let safetycheck = await Designer.SaveNewTheme(daname, dadesc, themeFile, {
+						skipTemplate: true,
+					});
+					if (safetycheck.error != null) {
+						Rkis.Toast("Error D3916: Corrupt file.");
+						return;
+					}
+
+					Designer.LoadThemesData();
+					document.querySelector("#rk-viewmore-themesection").style.display = "none";
+
+					e.disabled = false;
+					e.style.opacity = "1";
+				})
+				break;
 			case "livepreview":
 				e.addEventListener("switched", () => {
 					Designer.ThemeEditor.isLivePreview = page.getSwich(e);
@@ -3837,7 +3957,7 @@ Designer.waitingForGeneral = function() {
 			})
 		} else if(e.classList.contains("create")) {
 			e.$on("click", () => {
-				Designer.CreateTheme();
+				document.querySelector("#rk-createthemesection").style.display = "flex";
 			})
 		} else if(e.classList.contains("createthetheme")) {
 			e.$on("click", () => {
