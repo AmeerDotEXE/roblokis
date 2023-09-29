@@ -1,11 +1,11 @@
-body:not(.btr-profile) .game-card-container:not(.featured-grid-item-container) {
+body:not(.btr-profile) *:not(.grid-tile) > .game-card-container:not(.featured-grid-item-container) {
 	min-height: 248px;
 }
-body:not(.btr-profile) .game-card-container:not(.featured-grid-item-container):has( .rk-quickgamejoin) {
+body:not(.btr-profile) *:not(.grid-tile) > .game-card-container:not(.featured-grid-item-container):has( .rk-quickgamejoin) {
 	min-height: 270px;
 }
 /* game name */
-body:not(.btr-profile) .game-card-container:not(.featured-grid-item-container) .game-card-name {
+body:not(.btr-profile) *:not(.grid-tile) > .game-card-container:not(.featured-grid-item-container) .game-card-name {
 	height: 4ch;
 	margin-left: 6px;
 	margin-right: 6px;
@@ -13,7 +13,7 @@ body:not(.btr-profile) .game-card-container:not(.featured-grid-item-container) .
 	text-align: center;
 }
 /* game details/friends/friend activity bar */
-body:not(.btr-profile) .game-card-container:not(.featured-grid-item-container)>a.game-card-link .game-card-info, .game-card-friend-activity {
+body:not(.btr-profile) *:not(.grid-tile) > .game-card-container:not(.featured-grid-item-container)>a.game-card-link .game-card-info, .game-card-friend-activity {
 	position: relative;
 	/* min-height: 32px; */
 	margin: 3px 6px 6px !important;
@@ -24,18 +24,18 @@ body:not(.btr-profile) .game-card-container:not(.featured-grid-item-container)>a
 	border-radius: 4px;
 }
 /* image auto fit & cut */
-body:not(.btr-profile) .game-card-container:not(.featured-grid-item-container)>a.game-card-link .game-card-thumb-container img {
+body:not(.btr-profile) *:not(.grid-tile) > .game-card-container:not(.featured-grid-item-container)>a.game-card-link .game-card-thumb-container img {
 	width: auto;
 	z-index: -1;
 	height: 100%;
     position: absolute;
 }
-body:not(.btr-profile) .game-card-container:not(.featured-grid-item-container)>a.game-card-link .game-card-thumb-container {
+body:not(.btr-profile) *:not(.grid-tile) > .game-card-container:not(.featured-grid-item-container)>a.game-card-link .game-card-thumb-container {
 	display: grid;
 	justify-items: center;
 	overflow: hidden;
 }
-body:not(.btr-profile) .game-card-container:not(.featured-grid-item-container)>a.game-card-link .game-card-thumb-container .thumbnail-2d-container {
+body:not(.btr-profile) *:not(.grid-tile) > .game-card-container:not(.featured-grid-item-container)>a.game-card-link .game-card-thumb-container .thumbnail-2d-container {
 	height: 100%;
 	width: 100%;
 	display: flex;
@@ -43,7 +43,7 @@ body:not(.btr-profile) .game-card-container:not(.featured-grid-item-container)>a
 	background: none;
 }
 /* design */
-body:not(.btr-profile) .game-card-container:not(.featured-grid-item-container)>a.game-card-link {
+body:not(.btr-profile) *:not(.grid-tile) > .game-card-container:not(.featured-grid-item-container)>a.game-card-link {
 	transition: var(--rk-basic-animations, all 300ms ease-in-out);
 	min-height: 200px;
 	display: flex;
@@ -51,28 +51,28 @@ body:not(.btr-profile) .game-card-container:not(.featured-grid-item-container)>a
     justify-content: flex-end !important;
 	height: auto !important;
 }
-body:not(.btr-profile) .game-card-container:not(.featured-grid-item-container)>a.game-card-link:hover {
+body:not(.btr-profile) *:not(.grid-tile) > .game-card-container:not(.featured-grid-item-container)>a.game-card-link:hover {
 	padding-top: 150px;
 	transform: scale(1.05);
 	/* padding-top: 156px;
 	width: calc(100% + 12px); */
 }
-body:not(.btr-profile) #games-carousel-page .game-card-container:not(.featured-grid-item-container)>a.game-card-link:hover {
+body:not(.btr-profile) #games-carousel-page *:not(.grid-tile) > .game-card-container:not(.featured-grid-item-container)>a.game-card-link:hover {
 	margin-left: -6px;
 }
-body:not(.btr-profile) .game-card-container:not(.featured-grid-item-container)>a.game-card-link .game-card-thumb-container {
+body:not(.btr-profile) *:not(.grid-tile) > .game-card-container:not(.featured-grid-item-container)>a.game-card-link .game-card-thumb-container {
 	transition: var(--rk-basic-animations, all 300ms ease-in-out);
 	height: 200px;
 	position: absolute;
     top: 0;
 }
-body:not(.btr-profile) .game-card-container:not(.featured-grid-item-container)>a.game-card-link:hover .game-card-thumb-container {
+body:not(.btr-profile) *:not(.grid-tile) > .game-card-container:not(.featured-grid-item-container)>a.game-card-link:hover .game-card-thumb-container {
 	height: 150px;
 	/* height: 162px;
 	width: calc(100% + 12px);
 	top: -6px; */
 }
-body:not(.btr-profile) .game-card-container:not(.featured-grid-item-container)>a.game-card-link .rk-quickgamejoin {
+body:not(.btr-profile) *:not(.grid-tile) > .game-card-container:not(.featured-grid-item-container)>a.game-card-link .rk-quickgamejoin {
 	transition: var(--rk-basic-animations, all 300ms);
 	transform: none !important;
 	margin: 6px 6px 0 !important;
@@ -80,10 +80,10 @@ body:not(.btr-profile) .game-card-container:not(.featured-grid-item-container)>a
 	width: auto;
 	opacity: 0;
 }
-body:not(.btr-profile) .game-card-container:not(.featured-grid-item-container)>a.game-card-link:hover .rk-quickgamejoin {
+body:not(.btr-profile) *:not(.grid-tile) > .game-card-container:not(.featured-grid-item-container)>a.game-card-link:hover .rk-quickgamejoin {
 	opacity: 1;
 }
-/* .game-card-container:not(.featured-grid-item-container)>a.game-card-link > *:not(.game-card-thumb-container) {
+/* *:not(.grid-tile) > .game-card-container:not(.featured-grid-item-container)>a.game-card-link > *:not(.game-card-thumb-container) {
 	top: calc(-42px + -4ch);
 	position: relative;
 } */
