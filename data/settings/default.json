@@ -375,6 +375,8 @@
 	"BadgesHidden": {
 		"id": "BadgesHidden",
 		"options": {
+			"deleted": true,
+			"hidden": true,
 			"main": true
 		},
 		"type": "switch",

@@ -1,62 +1,78 @@
 [
-{
-	"name": "Roblox re-imagination",
-	"link": {
-		"dark": "https://ameerdotexe.github.io/roblokis/data/themes/top/reroblox/Dark-edited.roblokis",
-		"light": "https://ameerdotexe.github.io/roblokis/data/themes/top/reroblox/Light.roblokis"
+	{
+		"name": "Roblox re-imagination",
+		"link": {
+			"dark": "https://ameerdotexe.github.io/roblokis/data/themes/top/reroblox/Dark-edited.roblokis",
+			"light": "https://ameerdotexe.github.io/roblokis/data/themes/top/reroblox/Light.roblokis"
+		},
+		"animated": false,
+		"author": "MQ317",
+		"images": [
+			"https://ameerdotexe.github.io/roblokis/data/themes/top/reroblox/darkphoto.png",
+			"https://ameerdotexe.github.io/roblokis/data/themes/top/reroblox/lightphoto.png"
+		],
+		"contact": {
+			"discord": "mquan_317"
+		}
 	},
-	"animated": false,
-	"author": "MQ317",
-	"images": [
-		"https://ameerdotexe.github.io/roblokis/data/themes/top/reroblox/darkphoto.png",
-		"https://ameerdotexe.github.io/roblokis/data/themes/top/reroblox/lightphoto.png"
-	],
-	"contact": {
-		"discord": "MQ317#7294"
-	}
-},
-{
-	"name": "Relaxing Theme",
-	"link": {
-		"file": "https://ameerdotexe.github.io/roblokis/data/themes/top/relaxing/Relax.roblokis"
+	{
+		"name": "Relaxing Theme",
+		"link": {
+			"file": "https://ameerdotexe.github.io/roblokis/data/themes/top/relaxing/Relax.roblokis"
+		},
+		"animated": false,
+		"author": "MindOfRobloxian",
+		"images": [
+			"https://ameerdotexe.github.io/roblokis/data/themes/top/relaxing/profilepreview.png",
+			"https://ameerdotexe.github.io/roblokis/data/themes/top/relaxing/homepreview.png",
+			"https://ameerdotexe.github.io/roblokis/data/themes/top/relaxing/gamepreview.png"
+		],
+		"contact": {
+			"discord": "MindOfRobloxian#9417"
+		}
 	},
-	"animated": false,
-	"author": "MindOfRobloxian",
-	"images": [
-		"https://ameerdotexe.github.io/roblokis/data/themes/top/relaxing/profilepreview.png",
-		"https://ameerdotexe.github.io/roblokis/data/themes/top/relaxing/homepreview.png",
-		"https://ameerdotexe.github.io/roblokis/data/themes/top/relaxing/gamepreview.png"
-	],
-	"contact": {
-		"discord": "MindOfRobloxian#9417"
-	}
-},
-{
-	"name": "Welcoming City",
-	"link": {
-		"file": "https://ameerdotexe.github.io/roblokis/data/themes/top/welcomingcity/City.roblokis"
+	{
+		"name": "Welcoming City",
+		"link": {
+			"file": "https://ameerdotexe.github.io/roblokis/data/themes/top/welcomingcity/City.roblokis"
+		},
+		"animated": true,
+		"author": "Mush_Skeleton",
+		"images": [
+			"https://ameerdotexe.github.io/roblokis/data/themes/top/welcomingcity/profilepreview.png"
+		],
+		"contact": {
+			"discord": "Mush_Skeleton#9787"
+		}
 	},
-	"animated": true,
-	"author": "Mush_Skeleton",
-	"images": [
-		"https://ameerdotexe.github.io/roblokis/data/themes/top/welcomingcity/profilepreview.png"
-	],
-	"contact": {
-		"discord": "Mush_Skeleton#9787"
-	}
-},
-{
-	"name": "Starfall",
-	"link": {
-		"file": "https://ameerdotexe.github.io/roblokis/data/themes/top/starfall/Starfall.roblokis"
+	{
+		"name": "Starfall",
+		"link": {
+			"file": "https://ameerdotexe.github.io/roblokis/data/themes/top/starfall/Starfall.roblokis"
+		},
+		"animated": true,
+		"author": "Monarchvy",
+		"images": [
+			"https://ameerdotexe.github.io/roblokis/data/themes/top/starfall/profilepreview.png"
+		],
+		"contact": {
+			"discord": "Monarchvy#7728"
+		}
 	},
-	"animated": true,
-	"author": "Monarchvy",
-	"images": [
-		"https://ameerdotexe.github.io/roblokis/data/themes/top/starfall/profilepreview.png"
-	],
-	"contact": {
-		"discord": "Monarchvy#7728"
+	{
+		"name": "Fluent 2",
+		"link": {
+			"dark": "https://ameerdotexe.github.io/roblokis/data/themes/top/Fluent-2/Improved-Dark.roblokis",
+			"light": "https://ameerdotexe.github.io/roblokis/data/themes/top/Fluent-2/Improved.roblokis"
+		},
+		"animated": false,
+		"author": "presiden30",
+		"images": [
+			"https://media.discordapp.net/attachments/1156674191123292171/1156677167783104704/image.png",
+			"https://media.discordapp.net/attachments/1156674191123292171/1156677371030667395/image.png"
+		],
+		"contact": {
+			"discord": "fantasight"
+		}
 	}
-}
 ]
