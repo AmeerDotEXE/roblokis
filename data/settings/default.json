@@ -17,6 +17,24 @@
 			}
 		}
 	},
+	"GameBannerToBackground": {
+		"id": "GameBannerToBackground",
+		"type": "switch",
+		"value": {
+			"switch": false
+		},
+		"details": {
+			"default": "en",
+			"translate": {
+				"name": "sectionGBtB",
+				"description": "sectionGBtB1"
+			},
+			"en": {
+				"name": "Game Banner to Background.",
+				"description": "Uses first game image as page's background. (Works best with dark theme)"
+			}
+		}
+	},
 	"ExtraShadows": {
 		"id": "ExtraShadows",
 		"type": "switch",
@@ -228,7 +246,9 @@
 	"PageNav": {
 		"id": "PageNav",
 		"options": {
-			"main": true
+			"main": true,
+			"disabled": true,
+			"hidden": true
 		},
 		"type": "switch",
 		"value": {
@@ -332,9 +352,7 @@
 	"ShowPrivateServers": {
 		"id": "ShowPrivateServers",
 		"options": {
-			"main": true,
-			"disabled": true,
-			"hidden": true
+			"main": true
 		},
 		"type": "switch",
 		"value": {
@@ -392,6 +410,25 @@
 			"en": {
 				"name": "Show Hidden Badges",
 				"description": "Shows the Hidden/Disabled Badges! (Load All Option is Required)"
+			}
+		}
+	},
+	"StatusRing":{
+		"id": "StatusRing",
+		"options": {
+			"main": true
+		},
+		"type": "switch",
+		"value": { "switch": true },
+		"details": {
+			"default": "en",
+			"translate": {
+				"name": "StatusRing",
+				"description": "StatusRingDesc"
+			},
+			"en": {
+				"name": "Friend Status Ring",
+				"description": "Shows friend's status icon color around their avatar."
 			}
 		}
 	}
