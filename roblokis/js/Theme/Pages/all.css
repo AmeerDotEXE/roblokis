@@ -262,3 +262,17 @@ body#rbx-body .avatar .avatar-card-image,
 	backdrop-filter: var(--rk-avatar-backdrop-filter);
 	box-shadow: var(--rk-avatar-box-shadow);
 }
+
+#rbx-body .rk-quickgamejoin {
+	background: var(--rk-quickgamejoin-background);
+	background-size: var(--rk-quickgamejoin-background-image-size);
+	
+	border-radius: var(--rk-quickgamejoin-corners-radius, 8px);
+
+	border-color: var(--rk-quickgamejoin-borders-color);
+	border-style: var(--rk-quickgamejoin-borders-style, solid);
+	border-width: var(--rk-quickgamejoin-borders-size, 1px);
+
+	backdrop-filter: var(--rk-quickgamejoin-backdrop-filter);
+	box-shadow: var(--rk-quickgamejoin-box-shadow);
+}

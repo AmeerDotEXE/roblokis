@@ -2469,6 +2469,35 @@ let designerComponents = [
 		element: defaultcomponentElements.horizantalGroup
 	},//avatareditor
 	{
+		id: "quickgamejoin",
+		tags: ["blockElement"],
+		parent: {
+			headId: 'pages',
+			tags: {
+				page: true
+			}
+		},
+		details: {
+			name: "Quick Join Button",
+			description: "Edits the join button created by 'Quick Join Button' feature which is shown on game cards."
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//quickgamejoin
+	{
+		id: "gameplay",
+		tags: ["blockElement"],
+		parent: {
+			headId: 'pages',
+			ids: {
+				game: true
+			}
+		},
+		details: {
+			name: "Play Game Button"
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//gameplay
+	{
 		id: "badge",
 		tags: ["blockElement", "hasBrightnDarkColors"],
 		parent: {

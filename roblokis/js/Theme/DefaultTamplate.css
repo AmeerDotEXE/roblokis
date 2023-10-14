@@ -128,6 +128,9 @@
 .avatar .avatar-card-image {
 	background-image: url($avatar.background.image.link#);
 }
+#rbx-body .rk-quickgamejoin {
+	background-image: url($quickgamejoin.background.image.link#);
+}
 
 /*groups.css*/
 #group-container > div > div > div.group-details > div > div.section-content,
@@ -159,6 +162,9 @@
 }
 
 /*games.css*/
+#game-details-play-button-container > button {
+	background-image: url($gameplay.background.image.link#);
+}
 #game-badges-container > game-badges-list > div:not(.btr-badges-container) > ul > li.badge-row,
 #game-badges-container > game-badges-list > div > ul > li.badge-row {
 	background-image: url($badge.background.image.link#);

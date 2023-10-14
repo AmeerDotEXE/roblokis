@@ -195,7 +195,8 @@ Rkis.Designer.CreateThemeElement = async function(theme) {
 			var alltheelements = [
 				"pagenav","badge","content",
 				"menu","profile","group",
-				"avatar","avatareditor"
+				"avatar","avatareditor",
+				"quickgamejoin", "gameplay"
 			];
 
 			alltheelements.forEach((element, elementnumber) => {

@@ -27,16 +27,29 @@
 	transform: var(--rk-basic-animations, scale(1.06) rotate(1deg));
 }
 .dark-theme #game-details-play-button-container > button {
-	background: none;
-	border: 2px solid #fff;
+	background: var(--rk-gameplay-background, none);
+	border-style: var(--rk-gameplay-borders-style, solid);
+	border-width: var(--rk-gameplay-borders-size, 2px);
 }
 #game-details-play-button-container > button {
-	transition: transform 500ms, border-width 250ms;
+	background: var(--rk-gameplay-background, #00b06f);
+	background-size: var(--rk-gameplay-background-image-size);
+	
+	border-radius: var(--rk-gameplay-corners-radius, 8px);
+
+	border-color: var(--rk-gameplay-borders-color);
+	border-style: var(--rk-gameplay-borders-style);
+	border-width: var(--rk-gameplay-borders-size);
+
+	backdrop-filter: var(--rk-gameplay-backdrop-filter);
+	box-shadow: var(--rk-gameplay-box-shadow);
+}
+#game-details-play-button-container > button {
+	transition: transform 500ms;
 	transition-timing-function: cubic-bezier(0.25, 1.27, 0.9, 1.01);
 }
 #game-details-play-button-container > button:hover {
 	transform: var(--rk-basic-animations, scale(1.08) rotate(-2deg));
-	border-width: var(--rk-basic-animations, 3px);
 }
 
 
