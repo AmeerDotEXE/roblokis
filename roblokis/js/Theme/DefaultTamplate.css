@@ -9,9 +9,9 @@
 --loopstart: 0;
 	--rk-|fullpack|-corners-radius: /*>$|fullpack|.corners.|CORNER|.radius/|fullpack|.corners.all.radius#<*/;
 
-	--rk-|fullpack|-borders-size: /*>$|fullpack|.borders.|SIDE|.size/|fullpack|.borders.all.size&0px#<*/;
-	--rk-|fullpack|-borders-color: /*>$|fullpack|.borders.|SIDE|.color/|fullpack|.borders.all.color&white#<*/;
-	--rk-|fullpack|-borders-style: /*>$|fullpack|.borders.|SIDE|.style/|fullpack|.borders.all.style&solid#<*/;
+	--rk-|fullpack|-borders-size: /*>$|fullpack|.borders.|SIDE|.size/|fullpack|.borders.all.size#<*/;
+	--rk-|fullpack|-borders-color: /*>$|fullpack|.borders.|SIDE|.color/|fullpack|.borders.all.color#<*/;
+	--rk-|fullpack|-borders-style: /*>$|fullpack|.borders.|SIDE|.style/|fullpack|.borders.all.style#<*/;
 
 	--rk-|fullpack|-background: $|fullpack|.background.color# /*>$|fullpack|.background.image.|IMG|#<*/;
 	--rk-|fullpack|-background-image-size: $|fullpack|.background.image.size#;
@@ -36,9 +36,9 @@
 	--rk-|server|-backdrop-filter: $|server|.backgroundfilter/defaultserver.backgroundfilter#;
 	--rk-|server|-box-shadow: $|server|.box-shadow/defaultserver.box-shadow#;
 
-	--rk-|server|-borders-size: /*>$|server|.borders.|SIDE|.size/|server|.borders.all.size/defaultserver.borders.|SIDE|.size/defaultserver.borders.all.size&0px#<*/;
-	--rk-|server|-borders-color: /*>$|server|.borders.|SIDE|.color/|server|.borders.all.color/defaultserver.borders.|SIDE|.color/defaultserver.borders.all.color&white#<*/;
-	--rk-|server|-borders-style: /*>$|server|.borders.|SIDE|.style/|server|.borders.all.style/defaultserver.borders.|SIDE|.style/defaultserver.borders.all.style&solid#<*/;
+	--rk-|server|-borders-size: /*>$|server|.borders.|SIDE|.size/|server|.borders.all.size/defaultserver.borders.|SIDE|.size/defaultserver.borders.all.size#<*/;
+	--rk-|server|-borders-color: /*>$|server|.borders.|SIDE|.color/|server|.borders.all.color/defaultserver.borders.|SIDE|.color/defaultserver.borders.all.color#<*/;
+	--rk-|server|-borders-style: /*>$|server|.borders.|SIDE|.style/|server|.borders.all.style/defaultserver.borders.|SIDE|.style/defaultserver.borders.all.style#<*/;
 --loopend: 0;
 
 
@@ -56,9 +56,9 @@
 	--rk-|server|-button-backdrop-filter: $|server|.button.backgroundfilter/defaultserver.button.background.image.size#;
 	--rk-|server|-button-box-shadow: $|server|.button.box-shadow/defaultserver.button.box-shadow#;
 
-	--rk-|server|-button-borders-size: /*>$|server|.button.borders.|SIDE|.size/|server|.button.borders.all.size/defaultserver.button.borders.|SIDE|.size/defaultserver.button.borders.all.size&0px#<*/;
-	--rk-|server|-button-borders-color: /*>$|server|.button.borders.|SIDE|.color/|server|.button.borders.all.color/defaultserver.button.borders.|SIDE|.color/defaultserver.button.borders.all.color&white#<*/;
-	--rk-|server|-button-borders-style: /*>$|server|.button.borders.|SIDE|.style/|server|.button.borders.all.style/defaultserver.button.borders.|SIDE|.style/defaultserver.button.borders.all.style&solid#<*/;
+	--rk-|server|-button-borders-size: /*>$|server|.button.borders.|SIDE|.size/|server|.button.borders.all.size/defaultserver.button.borders.|SIDE|.size/defaultserver.button.borders.all.size#<*/;
+	--rk-|server|-button-borders-color: /*>$|server|.button.borders.|SIDE|.color/|server|.button.borders.all.color/defaultserver.button.borders.|SIDE|.color/defaultserver.button.borders.all.color#<*/;
+	--rk-|server|-button-borders-style: /*>$|server|.button.borders.|SIDE|.style/|server|.button.borders.all.style/defaultserver.button.borders.|SIDE|.style/defaultserver.button.borders.all.style#<*/;
 --loopend: 0;
 
 
@@ -76,12 +76,6 @@
 /*  Menu	*/
 
 	--rk-menu-corner-radius: $menu.corners.all.radius#;
-
-
-
-/*  Content	 */
-
-	--rk-content-box-shadow: $content.shadow#black 0px 0px 8px 2px;
 
 
 

@@ -181,6 +181,12 @@ body.gamecards-text-center .game-card-link .game-card-name,
 body.gamecards-text-center .game-card-link .game-card-info {
 	text-align: center;
 }
+body.gamecards-text-center .game-card-link .game-card-friend-info {
+	justify-content: center;
+}
+body.gamecards-text-center .game-card-friend-info .info-avatar .avatar-card:first-child {
+	position: relative;
+}
 
 /*remove error backgrounds*/
 #container-main > div.content > div.request-error-page-content > div.default-error-page {
