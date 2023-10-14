@@ -229,6 +229,8 @@ var Rkis = {
 			setTimeout(() => { Rkis.ToastHolder.style.opacity = "0"; Rkis.ToastHolder.style.bottom = "0px"; }, ms || 4000)
 		},
 		versionCompare(a, b) {
+			if (typeof a == "undefined" || typeof b == "undefined") return 0;
+			if (a === null || b === null) return 0;
 			if (a.startsWith("v")) a = a.substring(1);
 			if (b.startsWith("v")) b = b.substring(1);
 			if (a == b) return 0;
@@ -354,7 +356,7 @@ if (Rkis.ToastHolder == null || Rkis.ToastHolder == {}) {
 		}
 
 		Rkis.wholeData[settingName].options = setting.options;
-		Rkis.wholeData[settingName].details = setting.details;
+		if (setting.details) Rkis.wholeData[settingName].details = setting.details;
 	}
 
 	//Save Modified Settings

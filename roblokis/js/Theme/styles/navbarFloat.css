@@ -21,7 +21,7 @@
 	align-items: center;
 }
 
-.rbx-header .rbx-navbar-header {
+#header.rbx-header .rbx-navbar-header {
 	margin-left: 0;
 	margin-right: auto;
 	flex-shrink: 0;

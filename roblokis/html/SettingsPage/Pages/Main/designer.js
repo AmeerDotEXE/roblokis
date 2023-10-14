@@ -772,6 +772,7 @@ let designerComponents = [
 					element.style.background = `${settings.color} ${settings.image.repeat} ${settings.image.attachment}`;
 					element.style.backgroundSize = settings.image.size;
 
+					if (settings.image.link === "") return;
 					FetchImage(settings.image.link).then((encoded) => {
 						previewElement.style.backgroundImage = encoded;
 						element.style.backgroundImage = encoded;
@@ -2241,16 +2242,17 @@ let designerComponents = [
 				return component_object;
 			},
 			isEmpty: function (theme_object) {
-				let isEmpty = true;
+				let currentlyEmpty = true;
 
-				for (let edge in theme_object) {
+				for (let edgeName in theme_object) {
+					const edge = theme_object[edgeName];
 					if (edge == null) continue;
 
-					isEmpty = false;
+					currentlyEmpty = false;
 					break;
 				}
 
-				return isEmpty;
+				return currentlyEmpty;
 			}
 		}
 	},//borders
@@ -3664,7 +3666,7 @@ Designer.ThemeEditor.setupComponentsManager = function(btn) {
 			//check if path/object key exist in components as id
 			if (component == null) continue;
 
-			if (typeof component.isEmpty == 'function' && component.isEmpty(theme_object[path])) continue;
+			if (typeof component.element.isEmpty == 'function' && component.element.isEmpty(theme_object[path])) continue;
 
 			//add component
 			let idCard = btn.addComponent(component);
