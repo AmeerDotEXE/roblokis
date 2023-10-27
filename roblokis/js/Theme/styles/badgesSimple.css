@@ -1,0 +1,34 @@
+#game-badges-container > game-badges-list > div > ul {
+	display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+#game-badges-container > game-badges-list > div > ul > li.badge-row {
+	width: calc(33.3% - 8px);
+    margin: 0;
+}
+.game-badges-list .badge-row .badge-image, game-badges-list .badge-row .badge-image {
+	width: 75px;
+	height: 75px;
+}
+.game-badges-list .badge-row .badge-image, game-badges-list .badge-row .badge-image * {
+	width: 75px !important;
+	height: 75px !important;
+}
+.game-badges-list .badge-row .badge-content, game-badges-list .badge-row .badge-content {
+	width: calc(100% - 75px);
+}
+.game-badges-list .badge-row .badge-data-container, game-badges-list .badge-row .badge-data-container {
+	padding-right: 0;
+}
+#game-badges-container > game-badges-list > div > ul > li > div.badge-content > div > p {
+	/* max-height: 42px; */
+    max-height: 62px;
+    color: var(--rk-badge-dark-color);
+    margin: 0;
+    font-size: 14px;
+    height: auto;
+}
+.game-badges-list .badge-row .badge-stats-container, game-badges-list .badge-row .badge-stats-container {
+	display: none;
+}

@@ -103,8 +103,3 @@
 	width: 34px;
 	height: 34px;
 }
-
-/* no players style */
-.servers-no-players #game-instances ul.card-list li .player-thumbnails-container {
-	display: none;
-}

@@ -45,6 +45,9 @@ Rkis.page.game = () => {
 				badges: {
 					card: {
 						css: ["js/Theme/styles/badgesCard.css"]
+					},
+					simple: {
+						css: ["js/Theme/styles/badgesSimple.css"]
 					}
 				},
 			}

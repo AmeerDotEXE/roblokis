@@ -344,7 +344,53 @@ let designerComponents = [
 		},
 		data: {
 			options: [
-				{value: '',image:'images/themes/styles/serversDefault.png',details:{name:'Default',description:"Roblox's default design"}},
+				{value: '',image:'images/themes/styles/serversDefault.png',details:{name:'Default',description:"Roblox's default design"},element:{
+					html: /*html*/`
+						<div style="width: 100%;margin-top: 0.5rem;">
+							<span class="text-lead">Hide Players</span>
+							<span data-location="hidePlayers" class="rk-button receiver-destination-type-toggle off">
+								<span class="toggle-flip"></span>
+								<span class="toggle-on"></span>
+								<span class="toggle-off"></span>
+							</span>
+						</div>`,
+					js: null,
+					load: function (theme_object, idCard) {
+						let element = idCard.element;
+		
+						for (let key in theme_object) {
+							if (theme_object[key] == null) continue;
+							let value = theme_object[key];
+		
+							let input = element.querySelector(`[data-location="${key}"]`);
+							if (input == null) return;
+
+							if (input.classList.contains("rk-button")) {
+								page.toggleSwich(input, value);
+							} else if (input.classList.contains("input-field")) {
+								input.value = value;
+							}
+						}
+					},
+					save: function (idCard) {
+						let element = idCard.element;
+						let component_object = {};
+		
+						element.querySelectorAll(`[data-location]`).forEach((input) => {
+							let edge = input.dataset.location;
+							let value = null;
+							if (input.classList.contains("rk-button")) {
+								value = page.getSwich(input);
+							} else if (input.classList.contains("input-field")) {
+								value = input.value;
+							}
+		
+							component_object[edge] = value;
+						});
+		
+						return component_object;
+					}
+				}},
 				{value: 'card',image:'images/themes/styles/serversCard.png',details:{name:'Card',description:"Cards with Player icons on bottom"},element:{
 					html: /*html*/`
 						<div style="width: 100%;margin-top: 0.5rem;">
@@ -414,6 +460,7 @@ let designerComponents = [
 			options: [
 				{value: '',image:'images/themes/styles/badgesDefault.png',details:{name:'Default',description:"Roblox's default design"}},
 				{value: 'card',image:'images/themes/styles/badgesCard.png',details:{name:'Card'}},
+				{value: 'simple',details:{name:'Simplified',description:"no stats and short description"}},
 			]
 		},
 		element: defaultcomponentElements.styleDropdown
