@@ -156,6 +156,7 @@ body .rbx-header .rbx-navbar li:hover {
 }
 .navbar-search-button .rbx-header .navbar-search:not(:focus-within) {
 	max-width: 40px !important;
+	box-sizing: content-box;
 }
 
 /* No nav buttons */

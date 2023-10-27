@@ -184,7 +184,7 @@ body.gamecards-text-center .game-card-link .game-card-info {
 body.gamecards-text-center .game-card-link .game-card-friend-info {
 	justify-content: center;
 }
-body.gamecards-text-center .game-card-friend-info .info-avatar .avatar-card:first-child {
+body.gamecards-text-center .game-card-friend-info .info-avatar {
 	position: relative;
 }
 

@@ -803,9 +803,9 @@ let designerComponents = [
 					}
 					if (input.dataset.type == "color-alpha") {
 						let alpha = splittenColor[3];
-						if (alpha.endsWith('%')) alpha.slice(0, -1);
+						if (alpha.endsWith('%')) alpha = alpha.slice(0, -1);
 
-						if (parseInt(alpha) <= 0) alpha = Number(alpha) * 100;
+						if (parseInt(alpha) <= 0) alpha = parseInt(alpha) * 100;
 						else alpha = parseInt(alpha);
 
 						input.value = alpha;
