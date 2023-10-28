@@ -24,3 +24,7 @@
 #randomGameButton {
 	right: 100px !important;
 }
+
+.game-cards .game-card:has(.rk-quickgamejoin) {
+	min-height: 250;
+}

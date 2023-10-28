@@ -172,7 +172,32 @@ page.E = "A";
 page.Sports = "It's in the Game";
 
 page.start = async function () {
-	await document.$watch("#rkmainpage").$promise()
+	await document.$watch("#rkmainpage").$promise();
+
+	//slider value
+	document.$watchLoop(`input[type="range"]`, (inputElement) => {
+		const parentElement = inputElement.parentElement;
+		let isContainer = parentElement.classList.contains("text-lead") || parentElement.children.length == 2;
+		let textElement = parentElement.querySelector("span,div");
+		if (textElement == null) isContainer = false;
+		if (isContainer == false) return;
+
+		let originalText = textElement.textContent;
+		let textTimeout = null;
+		let maxValue = inputElement.max || "100";
+		inputElement.addEventListener("input", () => {
+			if (textTimeout !== null) {
+				clearTimeout(textTimeout);
+			} else originalText = textElement.textContent;
+			textTimeout = setTimeout(() => {
+				textElement.textContent = originalText;
+				textTimeout = null;
+			}, 3000);
+
+			textElement.textContent = inputElement.value+" / "+maxValue;
+		});
+	});
+
 	if (await page.open(decodeURIComponent(window.location.hash.split("#!/")[1]?.split("?")[0]), true) == "404") {
 		if (await page.open(document.querySelector("#vertical-menu > li.menu-option.active").dataset.file, true) == "404") {
 			page.open(document.querySelector("#vertical-menu > li.menu-option").dataset.file, true);

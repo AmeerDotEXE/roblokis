@@ -115,7 +115,7 @@
 	height: 40px;
 	padding-left: 45px;
 }
-.input-group .input-group-btn .input-addon-btn {
+#header .input-group .input-group-btn .input-addon-btn {
 	height: 40px;
 	width: 40px;
 	display: flex;

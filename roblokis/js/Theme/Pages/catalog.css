@@ -15,12 +15,18 @@
 	margin-top: 60px;
 }
 
-.dark-theme .catalog-content .search-options .panel {
-    background: rgba(57,59,61,.5);
+.catalog-content .search-options .panel {
     padding: 6px;
     border-radius: 8px;
 }
-
+.dark-theme .catalog-content .search-options .panel {
+    background: rgba(57,59,61,.5);
+}
 .light-theme .catalog-content .search-options .panel {
 	background-color: rgba(0,0,0,.1);
+}
+
+#rbx-body .catalog-container .sticky .search-bars,
+#rbx-body .catalog-container .sticky .topic-container {
+	background-color: transparent;
 }
