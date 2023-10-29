@@ -227,6 +227,53 @@ Rkis.page.all = () => {
 		})();
 	}
 
+	//Filter Game Name
+	//* can be improved!!!
+	if(Rkis.IsSettingEnabled("GameNameFilter", {
+		id: "GameNameFilter",
+		type: "switch",
+		value: { switch: true },
+		data: {
+			customization: {
+				removeEmojis: false
+			}
+		},
+		details: {
+			default: "en",
+			"en": {
+				name: "Game Name Filter",
+				description: "Removes anything inside parentheses on a game's name."
+			}
+		}
+	})) {
+		(function() {
+			const emojiRegex = /([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g;
+			
+			let customization = Rkis.GetSettingCustomization("GameNameFilter");
+			let removeEmojis = false;
+			if (typeof customization.removeEmojis == "boolean") {
+				removeEmojis = customization.removeEmojis;
+			}
+
+			document.$watchLoop(".game-card-name, .game-name-title", (elem) => {
+				if(elem.dataset.filteredName == "true") return;
+				elem.dataset.filteredName = "true";
+
+				let filteredText = elem.textContent;
+
+				if (filteredText.includes("[") && filteredText.includes("]")) filteredText = filteredText.split("[")[0] + filteredText.split("]")[1];
+				if (filteredText.includes("{") && filteredText.includes("}")) filteredText = filteredText.split("{")[0] + filteredText.split("}")[1];
+				if (filteredText.includes("(") && filteredText.includes(")")) filteredText = filteredText.split("(")[0] + filteredText.split(")")[1];
+
+				if (removeEmojis === true) {
+					filteredText = filteredText.replace(emojiRegex, '');
+				}
+
+				elem.textContent = filteredText.replace(/\s+/g, ' ').trim();
+			});
+		})();
+	}
+
 	//Desktop App
 	if(Rkis.IsSettingEnabled("DesktopApp", {
 		id: "DesktopApp",

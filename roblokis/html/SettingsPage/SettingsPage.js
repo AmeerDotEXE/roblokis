@@ -7,8 +7,55 @@ let featureCustomizations = {
 	"Badges": {
 		html: /*html*/`
 			<div style="width: 100%;">
-				<span class="text-lead">Show Hidden Badges</span>
-				<span data-location="showHiddenBadges" class="rk-button receiver-destination-type-toggle off">
+				<span class="text-lead" translate="sectionCBH">Show Hidden Badges</span>
+				<span data-location="showHiddenBadges" class="rk-button receiver-destination-type-toggle on">
+					<span class="toggle-flip"></span>
+					<span class="toggle-on"></span>
+					<span class="toggle-off"></span>
+				</span>
+			</div>`,
+		js: null,
+		load: function (theme_object, idCard) {
+			let element = idCard.element;
+
+			for (let key in theme_object) {
+				if (theme_object[key] == null) continue;
+				let value = theme_object[key];
+
+				let input = element.querySelector(`[data-location="${key}"]`);
+				if (input == null) return;
+
+				if (input.classList.contains("rk-button")) {
+					page.toggleSwich(input, value);
+				} else if (input.classList.contains("input-field")) {
+					input.value = value;
+				}
+			}
+		},
+		save: function (idCard) {
+			let element = idCard.element;
+			let component_object = {};
+
+			element.querySelectorAll(`[data-location]`).forEach((input) => {
+				let edge = input.dataset.location;
+				let value = null;
+				if (input.classList.contains("rk-button")) {
+					value = page.getSwich(input);
+				} else if (input.classList.contains("input-field")) {
+					value = input.value;
+				}
+
+				component_object[edge] = value;
+			});
+
+			return component_object;
+		}
+	},
+	"GameNameFilter": {
+		html: /*html*/`
+			<div style="width: 100%;">
+				<span class="text-lead">Remove Emojis</span>
+				<span data-location="removeEmojis" class="rk-button receiver-destination-type-toggle off">
 					<span class="toggle-flip"></span>
 					<span class="toggle-on"></span>
 					<span class="toggle-off"></span>
@@ -826,6 +873,7 @@ page.settingsWaitingForGeneral = function() {
 
 							<loadcode code="settingload" data-id="SiteLanguage"></loadcode>
 							<loadcode code="settingload" data-id="QuickGameJoin"></loadcode>
+							<loadcode code="settingload" data-id="GameNameFilter"></loadcode>
 							<loadcode code="settingload" data-id="DesktopApp"></loadcode>
 
 							<div class="rbx-divider" style="margin: 12px;"></div>
