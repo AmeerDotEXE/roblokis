@@ -127,6 +127,14 @@ html .alert-system-feedback .alert {
 	filter: brightness(0.5) blur(15px);
 	transform: scale(1.05);
 }
+.rk-page-background-video {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	min-width: 100%;
+	min-height: 100%;
+	transform: translate(-50%, -50%);
+}
 
 /*disable ads*/
 .abp {display: none;}

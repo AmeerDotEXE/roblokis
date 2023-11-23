@@ -20,6 +20,44 @@ Rkis.page.all = () => {
 						css: ["js/Theme/styles/menuFloat.css"]
 					}
 				},
+				videobackground: {
+					videoplayer: {
+						css: [],
+						js: (style) => {
+							let options = style.options;
+							if (options == null) return;
+							if (options.videolink == null) return;
+							let videoLink = options.videolink;
+							let isMuted = options.mutevideo != false
+
+							let backgroundElement = document.createElement('video');
+							backgroundElement.classList.add('rk-page-background-video');
+							backgroundElement.src = videoLink;
+							backgroundElement.autoplay = true;
+							backgroundElement.loop = true;
+							backgroundElement.muted = true;
+							// backgroundElement.muted = isMuted;
+							// backgroundElement.style.backgroundImage = `url(${imgElement.src})`;
+							document.body.prepend(backgroundElement);
+
+							let playVideo = () => {
+								try {
+									backgroundElement.play();
+									if (backgroundElement.paused == false) {
+										backgroundElement.muted = isMuted;
+										return;
+									}
+								} catch {}
+								setTimeout(playVideo, 1000);
+							};
+							backgroundElement.onpause = playVideo;
+							backgroundElement.oncanplay = playVideo;
+							backgroundElement.oncanplaythrough = playVideo;
+							backgroundElement.onload = playVideo;
+							playVideo();
+						}
+					}
+				},
 				navbar: {
 					float: {
 						css: ["js/Theme/styles/navbarFloat.css"],
@@ -255,7 +293,16 @@ Rkis.page.all = () => {
 				removeEmojis = customization.removeEmojis;
 			}
 
-			document.$watchLoop(".game-card-name, .game-name-title", (elem) => {
+			document.$watchLoop(".game-card-name, .game-name-title, .place-name", updateElementName);
+
+			function updateElementName(elem, tries = 10) {
+				if (elem.textContent === "") {
+					if (tries === 0) return;
+					setTimeout(() => {
+						updateElementName(elem, tries - 1);
+					}, 500);
+					return;
+				}
 				if(elem.dataset.filteredName == "true") return;
 				elem.dataset.filteredName = "true";
 
@@ -270,7 +317,7 @@ Rkis.page.all = () => {
 				}
 
 				elem.textContent = filteredText.replace(/\s+/g, ' ').trim();
-			});
+			}
 		})();
 	}
 

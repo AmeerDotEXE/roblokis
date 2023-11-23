@@ -147,7 +147,7 @@ const defaultcomponentElements = {
 			<span class="text-description" data-location="description"></span>
 			<div data-location="image" style="width: 100%;display: flex;justify-content: center;"></div>
 
-			<div class="rbx-divider" style="margin: 12px;"></div>
+			<div data-desc-divider="" class="rbx-divider" style="margin: 12px;"></div>
 			<div data-location="styleOptions" class="component-holder"></div>
 		</div>`,
 		js: function (idCard, parentElement) {
@@ -186,6 +186,7 @@ const defaultcomponentElements = {
 			}
 
 			let dropdown = element.querySelector(`[data-location="style"]`);
+			let detailsDivider = element.querySelector(`[data-desc-divider]`);
 			let imageHolder = element.querySelector(`[data-location="image"]`);
 			let descriptionElem = element.querySelector(`[data-location="description"]`);
 			let componentElement = element.querySelector(`[data-location="styleOptions"]`);
@@ -245,9 +246,11 @@ const defaultcomponentElements = {
 				let option = options.find(x => x.value == value);
 				if (option == null) option = options.find(x => x.value == "");
 				element.querySelector(`[data-location="style"]`).value = option.value;
+				let hasDetails = false;
 
 				descriptionElem.textContent = option.details.description || '';
 				descriptionElem.dataset.translate = option.details.translate?.description || '';
+				if (descriptionElem.textContent.length > 0) hasDetails = true;
 				
 				if (option.image != null) {
 					if (option.isPortrait == true) imageHolder.style.display = "block";
@@ -257,8 +260,14 @@ const defaultcomponentElements = {
 					imageElement.addEventListener('click', () => {
 						imageElement.classList.toggle("rk-focus-zoom-image");
 					});
+
+					hasDetails = true
 				}
 				else imageHolder.$clear();
+
+				
+				if (hasDetails == false) detailsDivider.style.display = "none";
+				else detailsDivider.style.display = "";
 
 				element.loadOptionComponent(option, styleOptions || null);
 			};
@@ -328,6 +337,77 @@ let designerComponents = [
 		element: defaultcomponentElements.horizantalGroup
 	},//game
 
+	{
+		id: "videobackground",
+		details: {
+			name: "Video Background",
+			description: "Adds a video player over the background."
+		},
+		parent: {
+			headId: 'styles',
+			ids: {
+				all: true
+			}
+		},
+		data: {
+			options: [
+				{value: '',details:{name:'Disabled'}},
+				{value: 'videoplayer',details:{name:'Enabled'},element:{
+					html: /*html*/`
+						<div style="width: 100%;margin-top: 0.5rem;" class="rk-flex rk-space-between rk-center-x">
+							<span style="min-width: fit-content;margin-right: 5px;">File:</span>
+							<input type="url" value="" placeholder="URL"
+								data-location="videolink" data-type="value" class="form-control input-field">
+						</div>
+						<div style="width: 100%;margin-top: 0.5rem;">
+							<span class="text-lead">Mute Video</span>
+							<span data-location="mutevideo" class="rk-button receiver-destination-type-toggle on">
+								<span class="toggle-flip"></span>
+								<span class="toggle-on"></span>
+								<span class="toggle-off"></span>
+							</span>
+						</div>`,
+					js: null,
+					load: function (theme_object, idCard) {
+						let element = idCard.element;
+		
+						for (let key in theme_object) {
+							if (theme_object[key] == null) continue;
+							let value = theme_object[key];
+		
+							let input = element.querySelector(`[data-location="${key}"]`);
+							if (input == null) return;
+
+							if (input.classList.contains("rk-button")) {
+								page.toggleSwich(input, value);
+							} else if (input.classList.contains("input-field")) {
+								input.value = value;
+							}
+						}
+					},
+					save: function (idCard) {
+						let element = idCard.element;
+						let component_object = {};
+		
+						element.querySelectorAll(`[data-location]`).forEach((input) => {
+							let edge = input.dataset.location;
+							let value = null;
+							if (input.classList.contains("rk-button")) {
+								value = page.getSwich(input);
+							} else if (input.classList.contains("input-field")) {
+								value = input.value;
+							}
+		
+							component_object[edge] = value;
+						});
+		
+						return component_object;
+					}
+				}},
+			]
+		},
+		element: defaultcomponentElements.styleDropdown
+	},//videobackground
 	{
 		id: "servers",
 		details: {

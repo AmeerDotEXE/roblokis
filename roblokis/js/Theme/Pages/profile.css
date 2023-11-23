@@ -43,7 +43,8 @@
 #friends-container > div > div.rbx-tabs-horizontal.rbx-scrollable-tabs-horizontal > div > div > div.friends-content.section > ul > li > div,
 #profile-current-wearing-avatar > div.section-content.profile-avatar-right > div,
 #profile-current-wearing-avatar > div.profile-avatar-right.visible > div,
-#inventory-container > inventory > div > assets-explorer > div > div > div.tab-content.rbx-tab-content > div > div.item-cards > div {
+#inventory-container > inventory > div > assets-explorer > div > div > div.tab-content.rbx-tab-content > div > div.item-cards > div,
+#profile-header-container > div > div.section-content {
 	background-color: transparent;
 }
 
@@ -58,6 +59,10 @@
 #profile-current-wearing-avatar > div.section-content.profile-avatar-left,
 #profile-current-wearing-avatar > div.section-content.profile-avatar-right {
 	transform: scale(99%,1);
+}
+
+#profile-header-container {
+	margin-bottom: 4px;
 }
 
 #inventory-container > inventory > div > assets-explorer > div > div > div.menu-vertical-container.category-tabs > ul > li:first-child {
