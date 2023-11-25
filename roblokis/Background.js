@@ -127,10 +127,43 @@ BROWSER.runtime.onMessage.addListener((request, sender, sendResponse) => {
 			}
 			temp();
 			break;
+
+		case "createContextMenu":
+			BROWSER.contextMenus.removeAll(() => {
+				sendResponse(BROWSER.contextMenus.create(request.info));
+			});
+			break;
+		case "addContextMenu":
+			sendResponse(BROWSER.contextMenus.create(request.info));
+			break;
+		case "clearContextMenu":
+			BROWSER.contextMenus.removeAll(() => {
+				sendResponse(true);
+			});
+			break;
+		case "removeContextMenu":
+			sendResponse(BROWSER.contextMenus.remove(request.id));
+			break;
 	}
 
 	return true;
 });
+
+BROWSER.contextMenus.onClicked.addListener((data) => {
+	if (data.menuItemId != "" && typeof data.menuItemId == "string") {
+		BROWSER.tabs.query({
+			active: true,
+			currentWindow: true
+		}, (tabs) => {
+			BROWSER.tabs.sendMessage(tabs[0].id, {
+				type: "clickedContextmenu",
+				data: {
+					menuItemId: data.menuItemId
+				}
+			})
+		})
+	}
+})
 
 
 

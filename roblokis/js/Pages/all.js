@@ -250,6 +250,16 @@ Rkis.page.all = () => {
 				if (id == null) return;
 				elem.dataset.id = id;
 
+				Rkis.contextMenu.elementContextMenu(elem, "quickplaceid", "Copy Game Place Id", () => {
+					Rkis.CopyText(id);
+				});
+				let universeId = elem.href.toLowerCase().split("universeid=")[1]?.split("&")[0];
+				if (universeId !== "" && typeof universeId == "string") {
+					Rkis.contextMenu.elementContextMenu(elem, "quickuniverseid", "Copy Game Universe Id", () => {
+						Rkis.CopyText(universeId);
+					});
+				}
+
 				//random button angle generator
 				var num = getRndInteger(-5, 5);
 				while (num - 1 == lastnumber || num == lastnumber || num + 1 == lastnumber) num = getRndInteger(-5, 5);

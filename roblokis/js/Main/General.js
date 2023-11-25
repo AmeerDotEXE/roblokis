@@ -95,6 +95,69 @@ var Rkis = {
 				return true;
 			}
 		},
+		contextMenu: {
+			/**
+			 * wrapper for contextmenu api that communicates with backend.
+			 *
+			 * @param {"create" | "add" | "clear" | "remove"} actionType
+			 * @param {string} id
+			 * @param {string} title
+			 * @param {function} callback
+			 * @return {Promise} 
+			 */
+			handleContextMenu(actionType = "create", id, title, callback) {
+				return new Promise(resolve => {
+					BROWSER.runtime.sendMessage({about: actionType+"ContextMenu", info: {
+						id,
+						title,
+						type: "normal",
+						contexts: ["all"],
+					}, id}, 
+					function(data) {
+						if (typeof callback == "function" && (actionType == "add" || actionType == "create")) {
+							BROWSER.runtime.onMessage.addListener(async (request) => {
+								if (request.type == "clickedContextmenu") {
+									const requestData = request.data;
+									if (requestData.menuItemId !== id) return;
+									callback?.(requestData);
+								}
+							});
+						} else callback?.(data);
+						resolve(data)
+					})
+				})
+			},
+			/**
+			 * adds context menu item only when mouse over the element
+			 *
+			 * @param {HTMLElement} element
+			 * @param {string} id
+			 * @param {string} title
+			 * @param {function} callback
+			 */
+			elementContextMenu(element, id, title, callback) {
+				element.addEventListener("mouseenter", () => {
+					Rkis.contextMenu.handleContextMenu("add", id, title, callback);
+				});
+				element.addEventListener("mouseleave", () => {
+					Rkis.contextMenu.handleContextMenu("remove", id);
+				});
+			},
+			/**
+			 * adds context menu item on the entire page.
+			 *
+			 * @param {string} id
+			 * @param {string} title
+			 * @param {function} callback
+			 * @return {Promise} 
+			 */
+			pageContextMenu(id, title, callback) {
+				Rkis.contextMenu.handleContextMenu("add", id, title, callback);
+				window.addEventListener("focus", () => {
+					Rkis.contextMenu.handleContextMenu("add", id, title, callback);
+				});
+			}
+		},
 
 		GetSettingValue(setting) {
 			if (setting == null) return null;
@@ -249,6 +312,12 @@ var Rkis = {
 
 window.ContextScript = true;
 
+//clear context menu items from other tabs
+Rkis.contextMenu.handleContextMenu("clear");
+window.addEventListener("blur", () => {
+	Rkis.contextMenu.handleContextMenu("clear");
+});
+
 Rkis.version = Rkis.manifest.version;
 Rkis.fileLocation = `chrome-extension://${Rkis.id}/`;
 
@@ -258,14 +327,23 @@ Rkis.InjectFile(Rkis.fileLocation + "js/Main/Inject.js");
 if (window.location.href.includes("/games/")) {
 	Rkis.GameId = window.location.href.split("/games/")[1].split("/")[0];
 	Rkis.pageName = "game";
+	Rkis.contextMenu.pageContextMenu("placeid", "Copy Place Id", () => {
+		Rkis.CopyText(Rkis.GameId);
+	});
 }
 else if (window.location.href.includes("/users/")) {
 	Rkis.UserId = window.location.href.split("/users/")[1].split("/")[0];
 	Rkis.pageName = "users";
+	Rkis.contextMenu.pageContextMenu("userid", "Copy User Id", () => {
+		Rkis.CopyText(Rkis.UserId);
+	});
 }
 else if (window.location.href.includes("/groups/")) {
 	Rkis.GroupId = window.location.href.split("/groups/")[1].split("/")[0];
 	Rkis.pageName = "groups";
+	Rkis.contextMenu.pageContextMenu("userid", "Copy User Id", () => {
+		Rkis.CopyText(Rkis.GroupId);
+	});
 }
 else if (window.location.href.includes("/my/avatar")) Rkis.pageName = "avatarpage";
 else if (window.location.href.includes("/home")) Rkis.pageName = "home";
@@ -327,7 +405,11 @@ if (Rkis.ToastHolder == null || Rkis.ToastHolder == {}) {
 		let doc = await document.$watch("#settings-popover-menu").$promise();
 		if (doc == null || doc.querySelector(".roblokis-settings-button") != null) return;
 		doc.insertBefore(rkisbtn, doc.firstElementChild);
-	})
+	});
+
+	Rkis.contextMenu.elementContextMenu(stng, "themetoggle", "Toggle Theme", () => {
+		changeRobloxTheme(document.querySelector("body").classList.contains("light-theme") ? "Dark" : "Light")
+	});
 })();
 
 (async function () {

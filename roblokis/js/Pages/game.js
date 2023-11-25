@@ -330,6 +330,11 @@ Rkis.page.game = () => {
 							Rkis.CopyText(`https://${escapeHTML(Rkis.SubDomain)}.roblox.com/home?placeid=${escapeHTML(e.dataset.placeid)}&gameid=${escapeHTML(e.dataset.serverid)}`);
 						});
 					});
+					smallserverdetails.$find(".game-server-join-btn", (joinButton) => {
+						Rkis.contextMenu.elementContextMenu(joinButton, "jobid", "Copy Job Id", () => {
+							Rkis.CopyText(servers[i].id);
+						});
+					});
 
 					smallserver.append(smallserverdetails);
 					
@@ -794,6 +799,10 @@ Rkis.page.game = () => {
 
 				linkButton.addEventListener("click", () => { Rkis.CopyText(link); });
 				joinButton.parentElement.insertBefore(linkButton, joinButton);
+
+				Rkis.contextMenu.elementContextMenu(joinButton, "jobid", "Copy Job Id", () => {
+					Rkis.CopyText(serverId);
+				});
 			}
 
 			
