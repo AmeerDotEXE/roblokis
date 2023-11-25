@@ -673,6 +673,14 @@ let designerComponents = [
 								<span class="toggle-on"></span>
 								<span class="toggle-off"></span>
 							</span>
+						</div>
+						<div style="width: 100%;margin-top: 0.5rem;">
+							<span class="text-lead">Show "Join" Text</span>
+							<span data-location="showjointext" class="rk-button receiver-destination-type-toggle off">
+								<span class="toggle-flip"></span>
+								<span class="toggle-on"></span>
+								<span class="toggle-off"></span>
+							</span>
 						</div>`,
 					js: null,
 					load: function (theme_object, idCard) {
@@ -716,6 +724,14 @@ let designerComponents = [
 						<div style="width: 100%;margin-top: 0.5rem;">
 							<span class="text-lead">Hide Text</span>
 							<span data-location="hideText" class="rk-button receiver-destination-type-toggle off">
+								<span class="toggle-flip"></span>
+								<span class="toggle-on"></span>
+								<span class="toggle-off"></span>
+							</span>
+						</div>
+						<div style="width: 100%;margin-top: 0.5rem;">
+							<span class="text-lead">Show "Join" Text</span>
+							<span data-location="showjointext" class="rk-button receiver-destination-type-toggle off">
 								<span class="toggle-flip"></span>
 								<span class="toggle-on"></span>
 								<span class="toggle-off"></span>

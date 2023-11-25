@@ -272,15 +272,39 @@ body#rbx-body .avatar .avatar-card-image,
 }
 
 #rbx-body .rk-quickgamejoin {
-	background: var(--rk-quickgamejoin-background);
 	background-size: var(--rk-quickgamejoin-background-image-size);
 	
 	border-radius: var(--rk-quickgamejoin-corners-radius, 8px);
 
-	border-color: var(--rk-quickgamejoin-borders-color);
 	border-style: var(--rk-quickgamejoin-borders-style, solid);
-	border-width: var(--rk-quickgamejoin-borders-size, 1px);
 
 	backdrop-filter: var(--rk-quickgamejoin-backdrop-filter);
 	box-shadow: var(--rk-quickgamejoin-box-shadow);
+}
+#rbx-body.dark-theme .rk-quickgamejoin {
+	background: var(--rk-quickgamejoin-background);
+	border-color: var(--rk-quickgamejoin-borders-color, #bdbebe);
+	border-width: var(--rk-quickgamejoin-borders-size, 1px);
+}
+#rbx-body.light-theme .rk-quickgamejoin {
+	background: var(--rk-quickgamejoin-background, #00b06f);
+	border-color: var(--rk-quickgamejoin-borders-color);
+	border-width: var(--rk-quickgamejoin-borders-size, 0px);
+}
+
+body#rbx-body:not(.gamecards-join-text) .rk-quickgamejoin {
+	position: relative;
+	color: transparent;
+}
+body#rbx-body:not(.gamecards-join-text) .rk-quickgamejoin::after {
+	content: "";
+	background-image: url(https://images.rbxcdn.com/d935c70bed81f91538cca4b19eebd319-common_dark.svg);
+	background-size: 36px;
+    position: absolute;
+    width: 15px;
+    height: 20px;
+    top: 1px;
+    left: 50%;
+    background-repeat: no-repeat;
+    transform: translateX(-50%);
 }

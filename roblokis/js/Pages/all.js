@@ -87,6 +87,9 @@ Rkis.page.all = () => {
 							if (options.hideText == true) {
 								if (body) body.classList.add("gamecards-no-text");
 							}
+							if (options.showjointext == true) {
+								if (body) body.classList.add("gamecards-join-text");
+							}
 						}
 					},
 					'': {
@@ -95,6 +98,9 @@ Rkis.page.all = () => {
 							if (options == null) return;
 							if (options.centerText == true) {
 								if (body) body.classList.add("gamecards-text-center");
+							}
+							if (options.showjointext == true) {
+								if (body) body.classList.add("gamecards-join-text");
 							}
 						}
 					}
