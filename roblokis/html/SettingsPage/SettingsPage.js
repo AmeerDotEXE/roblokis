@@ -856,8 +856,9 @@ page.settingsWaitingForGeneral = function() {
 							<div class="section-content">
 								<h4>Roblokis Data</h4>
 								<div>
-									<button class="btn-control-sm" id="download-roblokis-data">Download</button>
+									<button class="btn-control-sm" id="download-roblokis-data">Export</button>
 									<button class="btn-control-sm" data-translate="btnDelete" id="delete-roblokis-data">Delete</button>
+									<label class="btn-control-sm">Import<input type="file" accept=".json" id="import-roblokis-data" hidden></label>
 								</div>
 							</div>
 						</div>
@@ -1641,6 +1642,22 @@ page.settingsWaitingForGeneral = function() {
 				Rkis.database.clearDatabase(confirmation);
 				location.reload();
 			}
+		});
+		mainplace.querySelector(`#import-roblokis-data`).addEventListener('change', async () => {
+			let fileInput = mainplace.querySelector(`#import-roblokis-data`);
+			let filedata = null;
+			try{
+				if(fileInput.files.length > 0) {
+					filedata = JSON.parse(await fileInput.files[0].text())
+				}
+			}catch{}
+			if (filedata == null) {
+				alert("Corrupt file!!! Couldn't load.")
+				return;
+			}
+			Rkis.wholeData = filedata;
+			await Rkis.database.save();
+			window.location.reload();
 		});
 
 		mainplace.querySelector(`#rk-search-component-list`).addEventListener('input', (e) => {

@@ -23,6 +23,7 @@
 }
 .chat-container .chat-main .chat-header .chat-header-title {
 	height: auto;
+	width: max-content;
 }
 
 .dark-theme .chat-main .chat-body,

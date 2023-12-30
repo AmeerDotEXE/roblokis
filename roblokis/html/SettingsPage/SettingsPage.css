@@ -166,11 +166,13 @@ span.rk-button {
 	border-radius: 0;
 }
 
-.left-navigation > .menu-vertical > .menu-option:first-child {
+.left-navigation > .menu-vertical > .menu-option:first-child,
+.left-navigation > .menu-vertical > .menu-option:first-child > a {
 	border-top-left-radius: 10px;
 }
 
-.left-navigation > .menu-vertical > .menu-option:last-child {
+.left-navigation > .menu-vertical > .menu-option:last-child,
+.left-navigation > .menu-vertical > .menu-option:last-child > a {
 	border-bottom-left-radius: 10px;
 }
 

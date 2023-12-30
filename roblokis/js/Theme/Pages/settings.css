@@ -19,3 +19,12 @@ div.section .section-content:not(.remove-panel) {
 	border-width: 0 1px 1px 0;
     border-radius: 16px;
 }
+
+#vertical-menu > li.menu-option:first-child,
+#vertical-menu > li.menu-option:first-child > a {
+	border-top-left-radius: 16px;
+}
+#vertical-menu > li.menu-option:last-child,
+#vertical-menu > li.menu-option:last-child > a {
+	border-bottom-left-radius: 16px;
+}
