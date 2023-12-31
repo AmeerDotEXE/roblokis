@@ -566,7 +566,27 @@ let designerComponents = [
 			]
 		},
 		element: defaultcomponentElements.styleDropdown
-	},//menu
+	},//
+	{
+		id: "icons",
+		details: {
+			name: "Icons",
+			description: "Changes menu icons pack",
+		},
+		parent: {
+			headId: 'styles',
+			ids: {
+				all: true
+			}
+		},
+		data: {
+			options: [
+				{value: '',details:{name:'Default',description:"Roblox's default icons"}},
+				{value: '2018',details:{name:'2018',description:"Brings back 2018's icons"}},
+			]
+		},
+		element: defaultcomponentElements.styleDropdown
+	},//icons
 	{
 		id: "navbar",
 		details: {

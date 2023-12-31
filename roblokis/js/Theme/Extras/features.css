@@ -18,7 +18,7 @@ li .game-server-details > span:has(> button.game-server-join-btn):has(> .rk-copy
 }
 
 /* Avatar Status Ring */
-.avatar-container:has( .avatar-status:not(.icon-game):not(.icon-online):not(.icon-studio)) {
+.avatar-container:has( a.avatar-status:not(.icon-game):not(.icon-online):not(.icon-studio)) {
 	--friend-status-color: hsl(0, 0%, 0%);
 }
 .avatar-container:has( .avatar-status.icon-game) {

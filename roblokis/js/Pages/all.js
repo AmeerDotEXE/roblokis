@@ -20,6 +20,11 @@ Rkis.page.all = () => {
 						css: ["js/Theme/styles/menuFloat.css"]
 					}
 				},
+				icons: {
+					"2018": {
+						css: ["js/Theme/styles/icons2018.css"]
+					}
+				},
 				videobackground: {
 					videoplayer: {
 						css: [],
