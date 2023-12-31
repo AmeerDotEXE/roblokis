@@ -30,5 +30,5 @@
     height: auto;
 }
 .game-badges-list .badge-row .badge-stats-container, game-badges-list .badge-row .badge-stats-container {
-	display: none;
+	display: none !important;
 }

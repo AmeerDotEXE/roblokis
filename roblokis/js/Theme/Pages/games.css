@@ -53,6 +53,20 @@
 }
 
 
+
+/* fix buttons under playbutton being squished by rogold */
+.favorite-follow-vote-share li.game-pin-button-container,
+.favorite-follow-vote-share li.game-favorite-button-container,
+.favorite-follow-vote-share li.game-follow-button-container {
+	width: auto !important;
+}
+.favorite-follow-vote-share {
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
 /*section tabs*/
 #horizontal-tabs {
 	background-color: rgb(35, 37, 39, 0.3);
