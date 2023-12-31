@@ -10,6 +10,8 @@
 	background-image: url(https://images.rbxcdn.com/f4000b6d03a0df7153556d2514045629-navigation_10022018.svg);
 }
 
+
+/* btroblox addition changes money icon to old robux icon */
 .dark-theme .btr-nav-sidebar_money .icon-nav-trade {
 	background-position: 0 -28px;
 }
