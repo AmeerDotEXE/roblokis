@@ -25,6 +25,6 @@
 	right: 100px !important;
 }
 
-.game-cards .game-card:has(.rk-quickgamejoin) {
-	min-height: 250;
+.game-cards .game-card.rk-has-quickjoinbtn {
+	min-height: 250px;
 }

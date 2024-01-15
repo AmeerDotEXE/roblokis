@@ -60,7 +60,7 @@ html .alert-system-feedback .alert {
 	transform: translate(0, -200%);
 }
 
-.rbx-header .rbx-navbar-header {
+body .rbx-header .rbx-navbar-header {
 	max-width: unset;
 }
 
@@ -106,7 +106,7 @@ html .alert-system-feedback .alert {
 	display: flex;
 	justify-content: center;
 	align-items: flex-start;
-	margin-top: 20px;
+	margin-top: 15px;
 	padding: 3% 4%;
 	flex-wrap: wrap;
 	width: fit-content;

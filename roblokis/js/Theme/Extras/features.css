@@ -1,5 +1,5 @@
 /* Copy Server link */
-li .game-server-details > span:has(> button.game-server-join-btn):has(> .rk-copy-link-btn) {
+li .game-server-details > span.rk-multi-button {
 	display: flex;
 	gap: 4px;
 }
@@ -18,7 +18,7 @@ li .game-server-details > span:has(> button.game-server-join-btn):has(> .rk-copy
 }
 
 /* Avatar Status Ring */
-.avatar-container:has( a.avatar-status:not(.icon-game):not(.icon-online):not(.icon-studio)) {
+/*.avatar-container:has( a.avatar-status:not(.icon-game):not(.icon-online):not(.icon-studio)) {
 	--friend-status-color: hsl(0, 0%, 0%);
 }
 .avatar-container:has( .avatar-status.icon-game) {
@@ -29,7 +29,7 @@ li .game-server-details > span:has(> button.game-server-join-btn):has(> .rk-copy
 }
 .avatar-container:has( .avatar-status.icon-studio) {
 	--friend-status-color: hsl(33, 98%, 49%);
-}
-.rk-status-ring .avatar-container:has( .avatar-status) .avatar thumbnail-2d.avatar-card-image {
+}*/
+.avatar-container.rk-status-ring .avatar thumbnail-2d.avatar-card-image {
 	border: 2px solid var(--friend-status-color) !important;
 }

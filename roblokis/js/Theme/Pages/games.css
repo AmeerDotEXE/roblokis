@@ -3,7 +3,7 @@
 
 
 /* Removes the server count text */
-#game-instances li .game-server-details > div.rbx-game-status {
+#game-instances li .game-server-details > div.rbx-game-status:not(.server-info) {
 	display: none;
 }
 

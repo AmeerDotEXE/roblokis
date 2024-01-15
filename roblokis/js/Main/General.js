@@ -319,7 +319,7 @@ window.addEventListener("blur", () => {
 });
 
 Rkis.version = Rkis.manifest.version;
-Rkis.fileLocation = `chrome-extension://${Rkis.id}/`;
+Rkis.fileLocation = BROWSER.runtime.getURL("");
 
 //Rkis.InjectFile(Rkis.fileLocation + "js/Main/Utility.js");
 Rkis.InjectFile(Rkis.fileLocation + "js/Main/Inject.js");

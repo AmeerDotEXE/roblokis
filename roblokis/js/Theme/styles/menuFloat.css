@@ -44,3 +44,18 @@
 .rbx-left-col .rbx-scrollbar li.rbx-upgrade-now:last-child {
 	margin-bottom: 7px;
 }
+
+@media (max-width: 1750px) {
+	body .no-gutter-ads .rbx-left-col:not(.nav-show), body .rbx-left-col:not(.nav-show) {
+		display: none;
+	}
+	body .no-gutter-ads.logged-in .content {
+		margin: 0 auto;
+	}
+}
+@media (min-width: 1688px) {
+	.menufloat-spacing #container-main > div.content {
+		margin-left: calc(2% + 175px);
+		max-width: calc(97% - 175px);
+	}
+}

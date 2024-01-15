@@ -1,0 +1,85 @@
+{
+	"manifest_version": 2,
+	"version": "4.0.0.27",
+
+	"author": "Ameer!",
+	"name": "Roblokis",
+	"description": "__MSG_extDesc__",
+	"default_locale": "en",
+	"homepage_url": "https://ameerdotexe.github.io/roblokis/",
+	"permissions": [
+		"storage",
+		"contextMenus",
+		"https://*/*.png",
+		"https://*/*.jpg",
+		"https://*/*.jpeg",
+		"https://*/*.gif",
+		"https://*/*.webp",
+		"https://*/*.svg",
+		"https://*/*.bmp"
+	],
+
+	"background": {
+		"scripts": ["Background.js"]
+	},
+	"web_accessible_resources": [
+		"*.*"
+	],
+	"icons": {
+		"300": "/images/icons/icon_300x300.png"
+	},
+	"browser_action": {
+		"default_popup": "html/Popup/Popup.html",
+		"default_icon": {
+			"300": "/images/icons/icon_300x300.png"
+		},
+		"default_title": "Roblokis"
+	},
+	
+	"content_scripts": [
+		{
+			"matches": [
+				"*://*.roblox.com/*"
+			],
+			"js": [
+				"js/Main/Utility.js",
+				"js/Main/General.js",
+				"js/Theme/ThemeLoader.js",
+				"js/Pages/all.js"
+			],
+			"run_at": "document_start"
+		},
+		{
+			"matches": [
+				"*://*.roblox.com/users/*"
+			],
+			"js": [
+				"js/Pages/user.js"
+			],
+			"run_at": "document_start"
+		},
+		{
+			"matches": [
+				"*://*.roblox.com/games/*"
+			],
+			"js": [
+				"js/Pages/game.js"
+			],
+			"run_at": "document_start"
+		},
+		{
+			"matches": [
+				"*://*.roblox.com/roblokis*"
+			],
+			"js": [
+				"html/SettingsPage/SettingsPage.js",
+				"html/SettingsPage/Pages/Main/designer.js",
+				"html/SettingsPage/Pages/GamePage/servers.js"
+			],
+			"css": [
+				"html/SettingsPage/SettingsPage.css"
+			],
+			"run_at": "document_start"
+		}
+	]
+}

@@ -305,7 +305,7 @@ Rkis.page.game = () => {
 					//if(servers[i].ShowSlowGameMessage) smallserverdetails.innerHTML += `<div class="rbx-game-server-alert"><span class="icon-remove"></span>${Rkis.language["slowServer"]}</div>`;
 					if (hasLink) {
 						smallserverdetails.append(
-							HTMLParser(`<span data-placeid="${escapeHTML(PlaceId)}">`,
+							HTMLParser(`<span data-placeid="${escapeHTML(PlaceId)}" class="rk-multi-button">`,
 								HTMLParser(`<a class="btn-control-xs rk-copy-link-btn" data-placeid="${escapeHTML(PlaceId)}" data-serverid="${escapeHTML(servers[i].id)}">`,
 									'🔗'
 								),
@@ -747,7 +747,7 @@ Rkis.page.game = () => {
 				if (Rkis.Scripts.PublicServersLink.isOn == false) return;
 				Rkis.Scripts.PublicServersLink.isOn = false;
 				
-				document.$watch('#rbx-game-server-item-container .rbx-game-server-item *:not(:has(> .rk-copy-link-btn)) > .game-server-join-btn', input => {
+				document.$watch('#rbx-game-server-item-container .rbx-game-server-item *:not(.rk-multi-button) > .game-server-join-btn', input => {
 					Rkis.Scripts.PublicServersLink.setupLinks(placeId);
 				});
 				
@@ -773,7 +773,7 @@ Rkis.page.game = () => {
 			}
 
 			Rkis.Scripts.PublicServersLink.setupLinks = function (placeId) {
-				let noLinkPublicServers = document.querySelectorAll('#rbx-game-server-item-container .rbx-game-server-item *:not(:has(> .rk-copy-link-btn)) > .game-server-join-btn');
+				let noLinkPublicServers = document.querySelectorAll('#rbx-game-server-item-container .rbx-game-server-item *:not(.rk-multi-button) > .game-server-join-btn');
 
 				noLinkPublicServers.forEach((joinButton, index) => {
 					let server = Rkis.Scripts.PublicServersLink.loadedServers[0];
@@ -799,6 +799,7 @@ Rkis.page.game = () => {
 
 				linkButton.addEventListener("click", () => { Rkis.CopyText(link); });
 				joinButton.parentElement.insertBefore(linkButton, joinButton);
+				joinButton.parentElement.classList.add("rk-multi-button");
 
 				Rkis.contextMenu.elementContextMenu(joinButton, "jobid", "Copy Job Id", () => {
 					Rkis.CopyText(serverId);
@@ -1047,20 +1048,21 @@ Rkis.page.game = () => {
 		}
 	})) {
 
-		document.$watchLoop(`#rbx-private-game-server-item-container > li`, (x) => {
-			let serverTitle = x.querySelector(`.game-server-details > div.section-header > span`)?.textContent;
-			let ownerUrl = x.querySelector(`.game-server-details > div.rbx-private-owner > a.owner-avatar[href]`)?.href;
+		//seems that roblox fixed it
+		// document.$watchLoop(`#rbx-private-game-server-item-container > li`, (x) => {
+		// 	let serverTitle = x.querySelector(`.game-server-details > div.section-header > span`)?.textContent;
+		// 	let ownerUrl = x.querySelector(`.game-server-details > div.rbx-private-owner > a.owner-avatar[href]`)?.href;
 
-			let index = -1;
+		// 	let index = -1;
 
-			x.parentElement.querySelectorAll(`.game-server-details:has(div.rbx-private-owner > a.owner-avatar[href="${ownerUrl}"]) > div.section-header > span`)
-			.forEach((z) => {
-				if (z.textContent !== serverTitle) return;
-				index++;
-				if (index == 0) return;
-				x.remove();
-			});
-		});
+		// 	x.parentElement.querySelectorAll(`.game-server-details:has(div.rbx-private-owner > a.owner-avatar[href="${ownerUrl}"]) > div.section-header > span`)
+		// 	.forEach((z, index) => {
+		// 		if (z.textContent !== serverTitle) return;
+		// 		index++;
+		// 		if (index == 0) return;
+		// 		x.remove();
+		// 	});
+		// });
 
 		document.$watchLoop("#rbx-private-running-games > div.rbx-private-running-games-footer > button", async (loadmoreBTN) => {
 			while (document.contains(loadmoreBTN)) {

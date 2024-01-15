@@ -245,6 +245,17 @@ page.start = async function () {
 		});
 	});
 
+	//Accordion
+	document.$watchLoop(`label > .accordion__input`, (inputElement) => {
+		const container = inputElement.parentElement.parentElement;
+		let contentElement = container.querySelector(".accordion__content");
+		if (contentElement == null) return;
+
+		inputElement.addEventListener("change", () => {
+			contentElement.classList.toggle("accordion__show", inputElement.checked);
+		});
+	});
+
 	if (await page.open(decodeURIComponent(window.location.hash.split("#!/")[1]?.split("?")[0]), true) == "404") {
 		if (await page.open(document.querySelector("#vertical-menu > li.menu-option.active").dataset.file, true) == "404") {
 			page.open(document.querySelector("#vertical-menu > li.menu-option").dataset.file, true);
@@ -1051,7 +1062,7 @@ page.settingsWaitingForGeneral = function() {
 							</div>
 
 							<div id="rk-editthemesection" class="rk-popup-holder" style="z-index: 1050;">
-								<div class="rk-popup rk-scroll rk-flex-top rk-flex-row" style="align-items: unset;width: min(100%, 70rem);">
+								<div class="rk-popup rk-scroll rk-flex-top rk-flex-row rk-has-navbar" style="align-items: unset;width: min(100%, 70rem);min-height: 18rem;">
 									<div class="rk-popup-navbar">
 										<!--name & description-->
 
@@ -1071,7 +1082,7 @@ page.settingsWaitingForGeneral = function() {
 
 										</div>
 
-										<div class="rk-gap"></div>
+										<div class="rk-gap" style="min-height: 1rem;"></div>
 
 										<div>
 											<span class="text-lead" data-translate="editorlivepages">Live Pages.</span>
@@ -1360,6 +1371,10 @@ page.settingsWaitingForGeneral = function() {
 													margin: 0 3px 0 3px;
 													border-radius: 8px;
 													width: calc(100% - 10ch);
+													border-style: solid;
+												}
+												[data-editthemetabs] input[type="range"] {
+													border: 0;
 												}
 
 												[data-editthemetabs] div > label.rk-label-input,
@@ -1445,7 +1460,7 @@ page.settingsWaitingForGeneral = function() {
 													margin-top: 10px;
 												}
 
-												label:has(.accordion__input:checked) ~ .accordion__content {
+												.accordion__content.accordion__show {
 													animation: fadein 400ms ease-in;
 													opacity: 1;
 													display: block;
@@ -1473,7 +1488,7 @@ page.settingsWaitingForGeneral = function() {
 										<div data-nav-tab="details" data-editthemetabs="details">
 
 											<div class="section-content" style="width: 100%;">
-												<input class="form-control input-field" style="width: 100%;" placeholder="Name" id="rk-editor-name">
+												<input class="form-control input-field" style="width: 100%;margin-bottom: 0.25rem;" placeholder="Name" id="rk-editor-name">
 												<input class="form-control input-field" style="width: 100%;" placeholder="Description" id="rk-editor-desc">
 												<div class="rbx-divider" style="margin: 12px;"></div>
 												<div>

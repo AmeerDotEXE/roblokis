@@ -37,6 +37,7 @@
 
 //don't redirect when clicked on Quick Join Button
 (function () {
+	return;
 	document.addEventListener("rk-quickgamejoin", (event) => {
 		var id = event.detail.buttonid;
 		if (id == null || id == "") return;

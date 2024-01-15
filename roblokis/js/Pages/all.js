@@ -17,7 +17,21 @@ Rkis.page.all = () => {
 			all: {
 				menu: {
 					float: {
-						css: ["js/Theme/styles/menuFloat.css"]
+						css: ["js/Theme/styles/menuFloat.css"],
+						js: () => {
+							var allMaxWidthPages = [
+								".com/discover",
+								".com/catalog",
+							];
+						
+							for (let index = 0; index < allMaxWidthPages.length; index++) {
+								const matchUrl = allMaxWidthPages[index];
+								if(!window.location.href.toLowerCase().includes(matchUrl)) continue;
+								
+								if (body) body.classList.add("menufloat-spacing");
+								break;
+							}
+						}
 					}
 				},
 				icons: {
@@ -274,6 +288,7 @@ Rkis.page.all = () => {
 				elmnt.className = "btn-full-width btn-control-xs rbx-game-server-join rk-quickgamejoin rk-btn-r" + num;
 				elmnt.dataset.placeid = id;
 				//elmnt.setAttribute("onclick", `Roblox.GameLauncher.joinMultiplayerGame(${elmnt.dataset.placeid})`);
+				elmnt.setAttribute("onclick", `Roblox.GameLauncher.joinMultiplayerGame(${elmnt.dataset.placeid});event.preventDefault();return false;`);
 				// elmnt.setAttribute("style", `margin: 0; display: inline-block;`);
 				elmnt.style.display = "inline-block";
 				// elmnt.dataset.translate = "joinButtons";
@@ -281,7 +296,9 @@ Rkis.page.all = () => {
 
 				var namethingy = elem.$find("div.game-card-name.game-name-title");
 				elem.insertBefore(elmnt, namethingy);
-				document.$event("rk-quickgamejoin", {buttonid: id});
+				// document.$event("rk-quickgamejoin", {buttonid: id});
+				elem.parentElement?.classList.add("rk-has-quickjoinbtn");
+				elem.closest(".game-card")?.classList.add("rk-has-quickjoinbtn");
 			});
 		})();
 	}
@@ -402,8 +419,22 @@ Rkis.page.all = () => {
 		}
 	})) {
 		(function() {
-			document.$watch("body", (body) => {
-				body.classList.add('rk-status-ring');
+			let getStatus = function(avatarStatus) {
+				if (avatarStatus.classList.contains("icon-game")) return "hsl(148, 98%, 36%)";
+				else if (avatarStatus.classList.contains("icon-online")) return "hsl(202, 100%, 50%)";
+				else if (avatarStatus.classList.contains("icon-studio")) return "hsl(33, 98%, 49%)";
+				return "hsl(0, 0%, 0%)";
+			}
+			document.$watchLoop(".avatar-status", (element) => {
+				// console.log("found", getStatus(element), element);
+				element.$watchData((statusElement) => {
+					// console.log("edited", getStatus(statusElement), statusElement);
+					let container = statusElement.closest(".avatar-container")
+					if (container) {
+						container.classList.add("rk-status-ring")
+						container.style.setProperty("--friend-status-color", getStatus(statusElement));
+					}
+				});
 			});
 		})();
 	}

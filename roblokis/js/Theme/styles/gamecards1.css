@@ -1,7 +1,7 @@
 body:not(.btr-profile) *:not(.grid-tile) > .game-card-container:not(.featured-grid-item-container) {
 	min-height: 248px;
 }
-body:not(.btr-profile) *:not(.grid-tile) > .game-card-container:not(.featured-grid-item-container):has( .rk-quickgamejoin) {
+body:not(.btr-profile) *:not(.grid-tile) > .game-card-container:not(.featured-grid-item-container).rk-has-quickjoinbtn {
 	min-height: 270px;
 }
 /* game name */

@@ -65,6 +65,7 @@ const defaultcomponentElements = {
 			});
 
 			//setup component info
+			let hasDetails = false;
 			element.querySelectorAll(`[data-component-get]`).forEach((infoElement) => {
 				let infoType = infoElement.dataset.componentGet;
 				let hasLanguageTag = component.details.translate != null;
@@ -77,15 +78,21 @@ const defaultcomponentElements = {
 					if (hasLanguageTag)
 						infoElement.dataset.translate = translate.name;
 				} else if (infoType == 'description' && detail.description) {
+					hasDetails = true;
 					infoElement.textContent = detail.description;
 					if (hasLanguageTag)
 						infoElement.dataset.translate = translate.description;
 				} else if (infoType == 'note' && detail.note) {
+					hasDetails = true;
 					infoElement.textContent = detail.note;
 					if (hasLanguageTag)
 						infoElement.dataset.translate = translate.note;
 				}
 			});
+
+			if (hasDetails == false) {
+				element.querySelector(".rbx-divider").style.display = "none";
+			}
 
 			let componentPath = element.querySelector(`[data-component-path]`);
 			if (componentPath != null && element.path != null && element.path.join != null) {
@@ -2088,7 +2095,7 @@ let designerComponents = [
 
 					<div style="border-radius: 10px;margin-bottom: 6px;" class="text-lead">
 						<label>
-							<input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
+							<input type="checkbox" class="accordion__input" style="margin: 5px 10px;float: left;width: auto;" name="contentborders">
 							<span class="accordion__label" style="font-weight: 400;" data-translate="themeTBorder">Top Border</span>
 
 							<span data-location="borders.top" class="rk-button receiver-destination-type-toggle off" style="float: right;">
@@ -2133,7 +2140,7 @@ let designerComponents = [
 
 					<div style="border-radius: 10px;margin-bottom: 6px;" class="text-lead">
 						<label>
-							<input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
+							<input type="checkbox" class="accordion__input" style="margin: 5px 10px;float: left;width: auto;" name="contentborders">
 							<span class="accordion__label" style="font-weight: 400;" data-translate="themeLBorder">Left Border</span>
 
 							<span data-location="borders.left" class="rk-button receiver-destination-type-toggle off" style="float: right;">
@@ -2178,7 +2185,7 @@ let designerComponents = [
 
 					<div style="border-radius: 10px;margin-bottom: 6px;" class="text-lead">
 						<label>
-							<input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
+							<input type="checkbox" class="accordion__input" style="margin: 5px 10px;float: left;width: auto;" name="contentborders">
 							<span class="accordion__label" style="font-weight: 400;" data-translate="themeBBorder">Bottom Border</span>
 
 							<span data-location="borders.bottom" class="rk-button receiver-destination-type-toggle off" style="float: right;">
@@ -2223,7 +2230,7 @@ let designerComponents = [
 
 					<div style="border-radius: 10px;margin-bottom: 6px;" class="text-lead">
 						<label>
-							<input type="radio" class="accordion__input" style="margin: 5px 10px;float: left;" name="contentborders">
+							<input type="checkbox" class="accordion__input" style="margin: 5px 10px;float: left;width: auto;" name="contentborders">
 							<span class="accordion__label" style="font-weight: 400;" data-translate="themeRBorder">Right Border</span>
 
 							<span data-location="borders.right" class="rk-button receiver-destination-type-toggle off" style="float: right;">
