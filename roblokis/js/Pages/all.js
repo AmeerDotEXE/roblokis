@@ -11,8 +11,8 @@ Rkis.page.all = () => {
 	}
 
 	//load styles
-	document.$watch('#rk-theme-loaded', () => {
-		let body = document.querySelector("body");
+	document.$watch('#rk-theme-loaded', async () => {
+		let body = await document.$watch("body").$promise();
 		let styles = {
 			all: {
 				menu: {
@@ -83,6 +83,9 @@ Rkis.page.all = () => {
 						js: (style) => {
 							let options = style.options;
 							if (options == null) return;
+							if (options.connectedIslands == true) {
+								if (body) body.classList.add("navbar-no-splitting");
+							}
 							if (options.hideNavBtns == true) {
 								if (body) body.classList.add("navbar-no-nav-buttons");
 							}

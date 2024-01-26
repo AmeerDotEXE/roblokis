@@ -3,7 +3,7 @@
 	max-height: 90%;
 	overflow-y: auto;
 	padding-bottom: 5px;
-	margin: 1%;
+	margin: 10px;
 }
 
 #header,
@@ -45,17 +45,9 @@
 	margin-bottom: 7px;
 }
 
-@media (max-width: 1750px) {
-	body .no-gutter-ads .rbx-left-col:not(.nav-show), body .rbx-left-col:not(.nav-show) {
-		display: none;
-	}
-	body .no-gutter-ads.logged-in .content {
-		margin: 0 auto;
-	}
-}
 @media (min-width: 1688px) {
-	.menufloat-spacing #container-main > div.content {
-		margin-left: calc(2% + 175px);
-		max-width: calc(97% - 175px);
+	.menufloat-spacing .no-gutter-ads.logged-in .content {
+		margin-left: calc(20px + 175px);
+		max-width: calc(100% - 175px - 30px);
 	}
 }

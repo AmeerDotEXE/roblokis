@@ -573,7 +573,7 @@ let designerComponents = [
 			]
 		},
 		element: defaultcomponentElements.styleDropdown
-	},//
+	},//menu
 	{
 		id: "icons",
 		details: {
@@ -613,6 +613,14 @@ let designerComponents = [
 				{value: '',image:'images/themes/styles/navbarDefault.png',details:{name:'Default',description:"Roblox's default design"}},
 				{value: 'float',image:'images/themes/styles/navbarFloat.png',details:{name:'Floating',description:"Floating design"},element:{
 					html: /*html*/`
+						<div style="width: 100%;margin-top: 0.5rem;">
+							<span class="text-lead">dont split design</span>
+							<span data-location="connectedIslands" class="rk-button receiver-destination-type-toggle off">
+								<span class="toggle-flip"></span>
+								<span class="toggle-on"></span>
+								<span class="toggle-off"></span>
+							</span>
+						</div>
 						<div style="width: 100%;margin-top: 0.5rem;">
 							<span class="text-lead">Hide Navigation Buttons</span>
 							<span data-location="hideNavBtns" class="rk-button receiver-destination-type-toggle off">

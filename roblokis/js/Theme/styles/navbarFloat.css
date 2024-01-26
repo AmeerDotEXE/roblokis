@@ -5,6 +5,9 @@
 	backdrop-filter: none;
 	box-shadow: none;
 }
+.navbar-no-splitting #header {
+	margin: 10px;
+}
 
 #navigation {
 	top: 65px;
@@ -25,6 +28,7 @@
 	margin-left: 0;
 	margin-right: auto;
 	flex-shrink: 0;
+	padding: 0;
 }
 
 #header .container-fluid ul.nav.rbx-navbar.hidden-sm {
@@ -51,9 +55,10 @@
 	white-space: nowrap;
 }
 
-#header .container-fluid ul.nav.rbx-navbar,
-#right-navigation-header > div.navbar-search,
-#right-navigation-header .nav.rbx-navbar-icon-group {
+.navbar-no-splitting           #header .container-fluid,
+body:not(.navbar-no-splitting) #header .container-fluid ul.nav.rbx-navbar,
+body:not(.navbar-no-splitting) #right-navigation-header > div.navbar-search,
+body:not(.navbar-no-splitting) #right-navigation-header .nav.rbx-navbar-icon-group {
 	/* background */
 	background: var(--rk-menu-background);
 	background-size: var(--rk-menu-background-image-size);
@@ -79,6 +84,18 @@
     width: fit-content;
     margin-top: 0;
 	transition: max-width 200ms ease;
+	background-color: transparent;
+}
+
+.navbar-no-splitting #right-navigation-header .navbar-search:hover::before {
+	content: ' ';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: calc(100% - 4px);
+    height: 36px;
+    background-color: rgba(128,128,128,0.2);
+    border-radius: 8px;
 }
 
 #right-navigation-header .navbar-right {

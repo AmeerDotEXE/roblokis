@@ -37,7 +37,7 @@ BROWSER.runtime.onInstalled.addListener(({ reason, previousVersion } = {}) => {
 		BROWSER.runtime.reload();
 		return;
 	}
-	console.log(`Extension Updated from ${previousVersion} to ${BROWSER.runtime.getManifest().version}`);
+	console.log(reason, `Extension Updated from ${previousVersion} to ${BROWSER.runtime.getManifest().version}`);
 });
 
 // BROWSER.runtime.onStartup.addListener(() => {
@@ -66,6 +66,12 @@ BROWSER.runtime.onMessage.addListener((request, sender, sendResponse) => {
 			}
 
 			var temp = async function () {
+				let savedData = await BROWSER.storage.session.get("urls");
+				if (typeof savedData[request.url] == "string") {
+					sendResponse(`url(${savedData[request.url]})`);
+					return;
+				}
+
 				var result = await fetch(request.url).then(response => response.blob())
 					.then(blob => new Promise(callback => {
 						let reader = new FileReader();
@@ -77,8 +83,14 @@ BROWSER.runtime.onMessage.addListener((request, sender, sendResponse) => {
 						return (request.url);
 					});
 				
-				if (result.startsWith("data:image")) return sendResponse(`url(${result})`);
+				if (result.startsWith("data:image")) {
+					savedData[request.url] = result;
+					BROWSER.storage.session.set({ urls: savedData }).catch(() => {});
+					return sendResponse(`url(${result})`);
+				}
 				result = request.url.split(')')[0];
+				savedData[request.url] = result;
+				BROWSER.storage.session.set({ urls: savedData }).catch(() => {});
 				sendResponse(`url(${result})`);
 			}
 			temp();

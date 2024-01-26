@@ -1,6 +1,6 @@
 /*content*/
 #container-main > div.content {
-	width: 90%;
+	width: calc(100% - 20px);
 }
 
 #games-carousel-page,
