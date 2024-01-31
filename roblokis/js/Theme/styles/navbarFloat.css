@@ -95,7 +95,7 @@ body:not(.navbar-no-splitting) #right-navigation-header .nav.rbx-navbar-icon-gro
     width: calc(100% - 4px);
     height: 36px;
     background-color: rgba(128,128,128,0.2);
-    border-radius: 8px;
+    border-radius: var(--rk-menu-corners-radius, 8px);
 }
 
 #right-navigation-header .navbar-right {

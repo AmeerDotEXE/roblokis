@@ -124,7 +124,12 @@ page.open = async function (pagetoopen, bypass) {
 	if (document.querySelector(`[data-file="${pagetoopen}"]`) == null) return "404";
 
 	var currentactivetab = document.querySelector("#vertical-menu > li.menu-option.active");
-	if (bypass != true && currentactivetab.dataset.file == pagetoopen) return; //already on the page
+	if (bypass != true && currentactivetab.dataset.file == pagetoopen) {
+		if (pagetoopen === "Experiment Styles") {
+			enableExperimentsPage();
+		}
+		return; //already on the page
+	}
 
 	window.location.replace(window.location.href.split("#")[0] + "#!/" + pagetoopen); //change link
 	currentactivetab.classList.remove("active"); //change tab
@@ -804,6 +809,7 @@ page.settingsWaitingForGeneral = function() {
 					</ul>
 					<ul id="vertical-menu" class="menu-vertical submenus" role="tablist">
 						<li class="menu-option" data-file="Search Features"> <a class="menu-option-content"> <span class="font-caption-header">Search Features</span> </a> </li>
+						<li class="menu-option" data-file="Experiment Styles"> <a class="menu-option-content"> <span class="font-caption-header">Experiments</span> </a> </li>
 					</ul>
 				
 				</div>
@@ -1637,6 +1643,20 @@ page.settingsWaitingForGeneral = function() {
 						<input class="form-control input-field" placeholder="Search" id="rk-search-features">
 						<div class="rbx-divider" style="margin: 12px;"></div>
 					</div>
+					<div class="tabcontent experiment-styles">
+						<div class="experiments-passgame">
+							<span class="text-description">Warning: Enabling experiments might break the site design!<br>To access experiments you must solve the puzzle bellow:</span>
+							<div class="rbx-divider" style="margin: 12px;"></div>
+							<div style="text-align: center;"><h2 id="experiments-puzzle">Puzzle not loaded yet.</h2></div>
+							<input class="form-control input-field" placeholder="Passcode" id="experiments-puzzle-solution">
+							<div class="rbx-divider" style="margin: 12px;"></div>
+						</div>
+						<div class="experiments-page" style="display: none;">
+							<input class="form-control input-field" placeholder="Search" id="rk-search-experiments">
+							<div class="rbx-divider" style="margin: 12px;"></div>
+							<div class="experiments-list"></div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>`;
@@ -1748,6 +1768,19 @@ page.settingsWaitingForGeneral = function() {
 			input.value = text;
 			input.dispatchEvent(new InputEvent('input'), {});
 		});
+
+		let experimentsPasscode = getRndInteger(10001,99999);
+		let puzzleDisplay = mainplace.querySelector(`#experiments-puzzle`);
+		if (puzzleDisplay) puzzleDisplay.textContent = experimentsPasscode.toString(2);
+		mainplace.querySelector(`#experiments-puzzle-solution`).addEventListener('input', (e) => {
+			let input = e.target;
+			let text = input.value;
+			if (text === '') return;
+			if (parseInt(text) !== experimentsPasscode) return;
+			input.remove();
+
+			enableExperimentsPage();
+		});
 	});
 }
 
@@ -1763,4 +1796,86 @@ try {
 	}
 
 	page.settingsWaitingForGeneral();
+}
+
+
+
+async function enableExperimentsPage() {
+	let tabPage = document.querySelector("#container-main > div.content .experiment-styles");
+	let experimentsPassgame = tabPage.querySelector('.experiments-passgame');
+	if (experimentsPassgame.style.display === 'none') return;
+	let experimentsPage = tabPage.querySelector('.experiments-page');
+	if (experimentsPassgame) experimentsPassgame.style.display = 'none';
+	if (experimentsPage) experimentsPage.style.display = '';
+	let experimentslist = tabPage.querySelector('.experiments-list');
+
+	Rkis.wholeData.ExperimentsCSS = Rkis.wholeData.ExperimentsCSS || [];
+	let experimentsCSS = await BROWSER.runtime.sendMessage({about: 'getURLRequest', url: 'https://ameerdotexe.github.io/roblokis/data/experiments/css.json'}).catch(() => null);
+	if (experimentsCSS == null || experimentsCSS.experimentsCSS == null) return;
+	let experimentsList = experimentsCSS.experimentsCSS;
+	let saveTimeout = null;
+	let saveTimeoutFunc = function() {
+		if (saveTimeout !== null) clearTimeout(saveTimeout);
+		saveTimeout = setTimeout(() => {
+			saveTimeout = null;
+			Rkis.database.save();
+		}, 1000);
+	};
+
+	Object.keys(experimentsList).forEach(experimentId => {
+		const experiment = experimentsList[experimentId];
+		let experimentElement = document.createElement('div');
+		experimentElement.classList.add('rk-experiment', 'section-content');
+		experimentElement.dataset.id = experimentId;
+
+		let experimentHTML = `
+			<span class="text-lead">${escapeHTML(experiment.name)}</span>
+			<span class="rk-button receiver-destination-type-toggle off">
+				<span class="toggle-flip"></span>
+				<span class="toggle-on"></span>
+				<span class="toggle-off"></span>
+			</span>
+			<div class="rbx-divider" style="margin: 12px;"></div>
+			<span class="text-description">${escapeHTML(experiment.description || '')}</span>
+		`;
+
+		experimentElement.innerHTML = experimentHTML;
+
+		let experimentSwitch = experimentElement.querySelector('.receiver-destination-type-toggle');
+		page.toggleSwich(experimentSwitch, Rkis.wholeData.ExperimentsCSS.includes(experimentId));
+		experimentSwitch.addEventListener('click', () => {
+			if (page.toggleSwich(experimentSwitch)) {
+				experimentSwitch.classList.remove('on');
+				experimentSwitch.classList.add('off');
+
+				// enabledExperiments = enabledExperiments.filter(x => x !== experimentId);
+				Rkis.wholeData.ExperimentsCSS.push(experimentId);
+			} else {
+				experimentSwitch.classList.remove('off');
+				experimentSwitch.classList.add('on');
+				
+				// enabledExperiments.push(experimentId);
+				Rkis.wholeData.ExperimentsCSS = Rkis.wholeData.ExperimentsCSS.filter(x => x !== experimentId);
+			}
+
+			saveTimeoutFunc();
+		});
+
+		experimentslist.appendChild(experimentElement);
+	});
+
+	experimentsPage.querySelector(`#rk-search-experiments`).addEventListener('input', (e) => {
+		let input = e.target;
+		let text = input.value;
+		// if (text === '') return;
+
+		let experimentsElements = experimentslist.querySelectorAll(`.rk-experiment`);
+		experimentsElements.forEach(experimentElement => {
+			if (experimentElement.textContent.toLowerCase().includes(text.toLowerCase())) {
+				experimentElement.style.display = '';
+			} else {
+				experimentElement.style.display = 'none';
+			}
+		});
+	});
 }

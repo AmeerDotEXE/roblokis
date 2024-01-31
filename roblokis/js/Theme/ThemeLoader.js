@@ -355,7 +355,7 @@ Rkis.Designer.SetupTheme = async function() {
 		return mainStyle.cssRules[ruleIndex];
 	}
 
-	Rkis.Designer.addCSS = (paths) => {
+	Rkis.Designer.addCSS = (paths, isExternal = false) => {
 		if(window.ContextScript != true) return console.error("Not Context Script");
 		if(typeof paths == "string") paths = [paths];
 
@@ -370,7 +370,9 @@ Rkis.Designer.SetupTheme = async function() {
 		}
 		
 		paths.forEach((path) => {
-			addStyle(Rkis.fileLocation + path);
+			let url = Rkis.fileLocation + path;
+			if (isExternal) url = path
+			addStyle(url);
 		})
 	}
 
@@ -392,8 +394,9 @@ Rkis.Designer.SetupTheme = async function() {
 			description: "Adds a shadow effect under or around some elements.",
 		}
 	}
-	}))
+	})) {
 		putCSS(["js/Theme/Pages/shadows.css"]);
+	}
 
 	if(Rkis.IsSettingDisabled("UseThemes", {
 	id: "UseThemes",

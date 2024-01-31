@@ -385,6 +385,7 @@ if (Rkis.ToastHolder == null || Rkis.ToastHolder == {}) {
 	document.firstElementChild.appendChild(Rkis.ToastHolder);
 };
 
+//open=roblokis
 (function () {
 	let weburl = window.location.href;
 	if (weburl.includes("open=roblokis")) {
@@ -392,6 +393,7 @@ if (Rkis.ToastHolder == null || Rkis.ToastHolder == {}) {
 	}
 })();
 
+//settings button
 (async function () {
 	let stng = await document.$watch("#navbar-settings").$promise();
 	if (stng == null) return;
@@ -412,6 +414,7 @@ if (Rkis.ToastHolder == null || Rkis.ToastHolder == {}) {
 	});
 })();
 
+//default features
 (async function () {
 	//Get default settings
 	// let defaultSettings = await fetch(`https://ameerdotexe.github.io/roblokis/data/settings/default.json`)
@@ -673,7 +676,47 @@ databaseLoading.then(() => {
 		l("JoinPublicServer");
 	})();
 
-	document.$watch("body", (e) => { e.classList.add("Roblokis-installed") });
+	document.$watch("body", (e) => {
+		e.classList.add("Roblokis-installed");
+
+
+		//CSS experiments
+		(async function () {
+			//apply external fixes
+			Rkis.Designer.addCSS(["https://ameerdotexe.github.io/roblokis/data/remoteFixes.css"], true);
+
+			//check if Rkis.wholeData.ExperimentsCSS has experiments enabled
+			if (Rkis.wholeData.ExperimentsCSS instanceof Array && Rkis.wholeData.ExperimentsCSS.length > 0) {
+				//get experimentsCSS from server
+				let experimentsCSS = await BROWSER.runtime.sendMessage({about: 'getURLRequest', url: 'https://ameerdotexe.github.io/roblokis/data/experiments/css.json'}).catch(() => null);
+				if (experimentsCSS == null || experimentsCSS.experimentsCSS == null) return;
+				let experimentsList = experimentsCSS.experimentsCSS;
+
+				//clear non-existant css from our list
+				Rkis.wholeData.ExperimentsCSS = Rkis.wholeData.ExperimentsCSS.filter(experimentId => experimentsList[experimentId] != null);
+
+				//apply experiments
+				for (let index = 0; index < Rkis.wholeData.ExperimentsCSS.length; index++) {
+					const experimentId = Rkis.wholeData.ExperimentsCSS[index];
+					const experiment = experimentsList[experimentId];
+					if (experiment == null || typeof experiment.cssUrl != "string") continue;
+					if (experiment.filterUrls != null) {
+						let foundMatch = false;
+						for (let partIndex = 0; partIndex < experiment.filterUrls.length; partIndex++) {
+							const urlPart = experiment.filterUrls[partIndex];
+							if (!window.location.href.toLowerCase().includes(urlPart.toLowerCase())) continue;
+
+							foundMatch = true;
+							break;
+						}
+						if (foundMatch === false) continue;
+					}
+
+					Rkis.Designer.addCSS([experiment.cssUrl], true);
+				}
+			}
+		})();
+	});
 	Rkis.generalLoaded = true;
 	document.$triggerCustom("rk-general-loaded");
 });
