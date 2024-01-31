@@ -32,6 +32,29 @@ Rkis.page.all = () => {
 								break;
 							}
 						}
+					},
+					rod: {
+						css: ["js/Theme/styles/menuFloat.css", "js/Theme/styles/menuRod.css"],
+						js: (style) => {
+							var allMaxWidthPages = [
+								".com/discover",
+								".com/catalog",
+							];
+						
+							for (let index = 0; index < allMaxWidthPages.length; index++) {
+								const matchUrl = allMaxWidthPages[index];
+								if(!window.location.href.toLowerCase().includes(matchUrl)) continue;
+								
+								if (body) body.classList.add("menufloat-spacing");
+								break;
+							}
+
+							let options = style.options;
+							if (options == null) return;
+							if (options.extendedDesign == true) {
+								if (body) body.classList.add("extended-menu-rod");
+							}
+						}
 					}
 				},
 				icons: {
@@ -85,6 +108,9 @@ Rkis.page.all = () => {
 							if (options == null) return;
 							if (options.connectedIslands == true) {
 								if (body) body.classList.add("navbar-no-splitting");
+							}
+							if (options.hideRobloxLogo == true) {
+								if (body) body.classList.add("rk-hide-roblox-logo");
 							}
 							if (options.hideNavBtns == true) {
 								if (body) body.classList.add("navbar-no-nav-buttons");

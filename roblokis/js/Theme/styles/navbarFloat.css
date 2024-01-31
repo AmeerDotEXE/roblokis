@@ -183,3 +183,15 @@ body .rbx-header .rbx-navbar li:hover {
 body:not(.navbar-no-nav-buttons) .rbx-header .navbar-search {
 	max-width: 350px;
 }
+
+.rk-hide-roblox-logo #header.rbx-header .rbx-navbar-header {
+	display: none;
+}
+.rk-hide-roblox-logo #navigation {
+	display: block;
+	visibility: visible;
+	width: 175px;
+}
+.rk-hide-roblox-logo #navigation > div {
+	width: 175px;
+}

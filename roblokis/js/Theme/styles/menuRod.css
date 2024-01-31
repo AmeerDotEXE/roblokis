@@ -1,0 +1,48 @@
+.rbx-left-col .rbx-scrollbar li.rbx-upgrade-now {
+	display: none !important;
+}
+
+#navigation {
+	transition: width 200ms;
+	display: block;
+	visibility: visible;
+	width: 175px;
+}
+body#rbx-body #navigation:not(:hover) {
+	width: 48px;
+}
+#navigation > div {
+	width: 175px;
+}
+.rbx-header .rbx-nav-collapse {
+	margin: 0;
+}
+.rbx-header .rbx-nav-collapse > button.menu-button.btn-navigation-nav-menu-md {
+	display: none;
+}
+
+.text-nav > *:first-child {
+	transition: margin-right 200ms;
+}
+#navigation:not(:hover) .text-nav > *:first-child {
+	margin-right: 8px !important;
+}
+#btr-blogfeed {
+	display: none !important;
+}
+
+
+/* extended rod */
+body.extended-menu-rod #navigation {
+	height: 100%;
+	max-height: -webkit-fill-available;
+}
+body.extended-menu-rod #navigation div.simplebar-wrapper div.simplebar-content {
+	height: 100%;
+}
+body.extended-menu-rod .rbx-left-col .rbx-scrollbar .left-col-list {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
