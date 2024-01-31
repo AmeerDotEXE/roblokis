@@ -1,0 +1,40 @@
+@keyframes rainbow {
+	0% {
+		background-color: #faff00;
+		border-color: #faff00;
+	}
+
+	16.6666666667% {
+		background-color: #f00;
+		border-color: #f00;
+	}
+
+	33.3333333334% {
+		background-color: #ff00e9;
+		border-color: #ff00e9;
+	}
+
+	50.0000000001% {
+		background-color: #0026ff;
+		border-color: #0026ff;
+	}
+
+	66.6666666668% {
+		background-color: #00ffed;
+		border-color: #00ffed;
+	}
+
+	83.3333333335% {
+		background-color: #47ff00;
+		border-color: #47ff00;
+	}
+
+	100% {
+		background-color: #faff00;
+		border-color: #faff00;
+	}
+}
+
+.btn-common-play-game-lg {
+	animation: rainbow 10s infinite;
+}

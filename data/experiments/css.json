@@ -1,3 +1,16 @@
 {
-  "experimentsCSS": []
+	"experimentsCSS": {
+		"hide-recommended-from-homepage": {
+			"name": "Hide Recommended",
+			"description": "Hides recommended section from home page",
+			"cssUrl": "https://ameerdotexe.github.io/roblokis/data/experiments/hideRecommendedFromHomePage.css",
+			"filterUrls": [".com/home"]
+		},
+		"rainbow-play-button": {
+			"name": "Rainbow Play Button",
+			"description": "Animated rainbow colored play button on game pages",
+			"cssUrl": "https://ameerdotexe.github.io/roblokis/data/experiments/rainbowPlayButton.css",
+			"filterUrls": [".com/games/"]
+		}
+	}
 }
