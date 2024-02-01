@@ -54,6 +54,12 @@ Rkis.page.all = () => {
 							if (options.extendedDesign == true) {
 								if (body) body.classList.add("extended-menu-rod");
 							}
+							if (options.centerMenuItems == true) {
+								if (body) body.classList.add("center-menu-list");
+							}
+							if (options.moveAvatarBottom == true) {
+								if (body) body.classList.add("menu-avatar-bottom");
+							}
 						}
 					}
 				},

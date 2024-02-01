@@ -579,6 +579,22 @@ let designerComponents = [
 								<span class="toggle-on"></span>
 								<span class="toggle-off"></span>
 							</span>
+						</div>
+						<div style="width: 100%;margin-top: 0.5rem;">
+							<span class="text-lead">Center Menu Items</span>
+							<span data-location="centerMenuItems" class="rk-button receiver-destination-type-toggle on">
+								<span class="toggle-flip"></span>
+								<span class="toggle-on"></span>
+								<span class="toggle-off"></span>
+							</span>
+						</div>
+						<div style="width: 100%;margin-top: 0.5rem;">
+							<span class="text-lead">Move avatar to bottom</span>
+							<span data-location="moveAvatarBottom" class="rk-button receiver-destination-type-toggle off">
+								<span class="toggle-flip"></span>
+								<span class="toggle-on"></span>
+								<span class="toggle-off"></span>
+							</span>
 						</div>`,
 					js: null,
 					load: function (theme_object, idCard) {
