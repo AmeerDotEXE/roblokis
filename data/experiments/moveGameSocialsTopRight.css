@@ -1,0 +1,37 @@
+#social-links-container > div {
+    margin: 0;
+}
+#social-links-container > div > div.container-header {
+	display: none;
+}
+#social-link-card > div {
+	height: 30px;
+	width: 30px;
+}
+#social-links-container > div > div.section-content {
+	margin: 0;
+	position: fixed;
+	top: 0;
+	right: 0;
+	border-radius: 8px;
+    overflow: hidden;
+}
+#social-link-card .social-link .medallion {
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+}
+#social-link-card .social-link .contents {
+    height: auto;
+    margin: 0;
+}
+#social-link-card .social-link .type-img {
+	position: relative;
+	/* float: none; */
+	transform: scale(0.5) translate(-30px, -30px);
+}
+#social-link-card .social-link .title-wrapper {
+	display: none;
+}

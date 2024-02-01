@@ -11,6 +11,12 @@
 			"description": "Animated rainbow colored play button on game pages",
 			"cssUrl": "https://ameerdotexe.github.io/roblokis/data/experiments/rainbowPlayButton.css",
 			"filterUrls": [".com/games/"]
+		},
+		"move-game-socials": {
+			"name": "Move Game Socials",
+			"description": "Moves socials from about page to the top right of your game page",
+			"cssUrl": "https://ameerdotexe.github.io/roblokis/data/experiments/moveGameSocialsTopRight.css",
+			"filterUrls": [".com/games/"]
 		}
 	}
 }
