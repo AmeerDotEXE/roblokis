@@ -50,7 +50,7 @@
 	border-right: 0;
 }
 
-#navigation > ul > li.rbx-divider { margin-right: 10px; }
+#navigation > ul > li.rbx-divider { width: calc(100% - 10px); }
 #navigation > div {height: calc(100% - 60px);}
 #rk-desktopapp:hover > span {color: #f22;}
 

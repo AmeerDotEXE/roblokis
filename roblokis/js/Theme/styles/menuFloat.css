@@ -45,9 +45,13 @@
 	margin-bottom: 7px;
 }
 
+body {
+	--menufloat-width: 175px;
+}
+
 @media (min-width: 1688px) {
 	.menufloat-spacing .no-gutter-ads.logged-in .content {
-		margin-left: calc(20px + 175px);
-		max-width: calc(100% - 175px - 30px);
+		margin-left: calc(20px + var(--menufloat-width));
+		max-width: calc(100% - var(--menufloat-width) - 30px);
 	}
 }

@@ -99,7 +99,8 @@ div.container-list.games-detail div.game-card-container > a:hover > a {
 
 
 /*  Badges	  */
-#game-badges-container > game-badges-list > div > ul > li.badge-row {
+#game-badges-container > game-badges-list > div > ul > li.badge-row,
+.new-badges-list .new-badges-list-container .badge-container {
 	border-radius: var(--rk-badge-corners-radius, 20px);
 
 	border-color: var(--rk-badge-borders-color);
@@ -111,6 +112,10 @@ div.container-list.games-detail div.game-card-container > a:hover > a {
 
 	backdrop-filter: var(--rk-badge-backdrop-filter);
 	box-shadow: var(--rk-badge-box-shadow);
+}
+/* roseal's badge tab designing */
+.new-badges-list .new-badges-list-container .badge-container {
+	overflow: hidden;
 }
 #game-badges-container > game-badges-list > div > ul > li.badge-row {
 	max-height: unset;
@@ -124,7 +129,8 @@ div.container-list.games-detail div.game-card-container > a:hover > a {
 	z-index: var(--rk-basic-animations, 10);
 }
 
-#game-badges-container > game-badges-list > div > ul > li > div.badge-image > a > thumbnail-2d > span {
+#game-badges-container > game-badges-list > div > ul > li > div.badge-image > a > thumbnail-2d > span,
+body#rbx-body .new-badges-list, #badges-section .badge-sorts-filters-container {
 	background-color: transparent;
 }
 

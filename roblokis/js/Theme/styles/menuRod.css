@@ -2,6 +2,10 @@
 	display: none !important;
 }
 
+body#rbx-body {
+	--menufloat-width: 50px;
+}
+
 #navigation {
 	transition: width 200ms;
 	display: block;

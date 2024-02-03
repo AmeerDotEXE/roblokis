@@ -2577,7 +2577,7 @@ let designerComponents = [
 	},//groups
 	{
 		id: "avatarpage",
-		tags: ["page"],
+		tags: ["page","no-gamecards"],
 		parent: {
 			ids: {
 				pages: true
@@ -2588,6 +2588,19 @@ let designerComponents = [
 		},
 		element: defaultcomponentElements.horizantalGroup
 	},//avatarpage
+	{
+		id: "catalog",
+		tags: ["page","no-gamecards"],
+		parent: {
+			ids: {
+				pages: true
+			}
+		},
+		details: {
+			name: "Catalog Page"
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//catalog
 	{
 		id: "content",
 		tags: ["blockElement"],
@@ -2723,7 +2736,8 @@ let designerComponents = [
 		parent: {
 			headId: 'pages',
 			tags: {
-				page: true
+				page: true,
+				"no-gamecards": false
 			}
 		},
 		details: {

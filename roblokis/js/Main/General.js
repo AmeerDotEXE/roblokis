@@ -324,29 +324,30 @@ Rkis.fileLocation = BROWSER.runtime.getURL("");
 //Rkis.InjectFile(Rkis.fileLocation + "js/Main/Utility.js");
 Rkis.InjectFile(Rkis.fileLocation + "js/Main/Inject.js");
 
-if (window.location.href.includes("/games/")) {
+if (window.location.href.includes(".com/games/")) {
 	Rkis.GameId = window.location.href.split("/games/")[1].split("/")[0];
 	Rkis.pageName = "game";
 	Rkis.contextMenu.pageContextMenu("placeid", "Copy Place Id", () => {
 		Rkis.CopyText(Rkis.GameId);
 	});
 }
-else if (window.location.href.includes("/users/")) {
+else if (window.location.href.includes(".com/users/")) {
 	Rkis.UserId = window.location.href.split("/users/")[1].split("/")[0];
 	Rkis.pageName = "users";
 	Rkis.contextMenu.pageContextMenu("userid", "Copy User Id", () => {
 		Rkis.CopyText(Rkis.UserId);
 	});
 }
-else if (window.location.href.includes("/groups/")) {
+else if (window.location.href.includes(".com/groups/")) {
 	Rkis.GroupId = window.location.href.split("/groups/")[1].split("/")[0];
 	Rkis.pageName = "groups";
 	Rkis.contextMenu.pageContextMenu("userid", "Copy User Id", () => {
 		Rkis.CopyText(Rkis.GroupId);
 	});
 }
-else if (window.location.href.includes("/my/avatar")) Rkis.pageName = "avatarpage";
-else if (window.location.href.includes("/home")) Rkis.pageName = "home";
+else if (window.location.href.includes(".com/my/avatar")) Rkis.pageName = "avatarpage";
+else if (window.location.href.includes(".com/home")) Rkis.pageName = "home";
+else if (window.location.href.includes(".com/catalog")) Rkis.pageName = "catalog";
 else Rkis.pageName = "all";
 
 const databaseLoading = Rkis.database.load();

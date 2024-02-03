@@ -22,6 +22,7 @@ Rkis.page.all = () => {
 							var allMaxWidthPages = [
 								".com/discover",
 								".com/catalog",
+								".com/my/avatar",
 							];
 						
 							for (let index = 0; index < allMaxWidthPages.length; index++) {
@@ -39,6 +40,7 @@ Rkis.page.all = () => {
 							var allMaxWidthPages = [
 								".com/discover",
 								".com/catalog",
+								".com/my/avatar",
 							];
 						
 							for (let index = 0; index < allMaxWidthPages.length; index++) {
