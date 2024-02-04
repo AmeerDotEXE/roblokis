@@ -98,6 +98,333 @@ let featureCustomizations = {
 			return component_object;
 		}
 	},
+	"CustomNavMenuButtons": {
+		html: /*html*/`
+			<div class="menubtns-wrapper" style="width: 100%;">
+				<style>
+					.menubtns-wrapper {
+						display: flex;
+						gap: 0.5rem;
+					}
+					.menubtns-container {
+						/* width: 100%; */
+						flex-grow: 1;
+						max-height: 20rem;
+						overflow: auto;
+					}
+					.menubtn-element {
+						cursor: move;
+						margin-bottom: 0.25rem;
+						margin-right: 0.25rem;
+						padding-left: 2px;
+						background-color: #393b3d;
+						border-radius: 8px 20px 20px 8px;
+						height: 22.4px;
+					}
+					.menubtn-element .receiver-destination-type-toggle {
+						cursor: pointer;
+					}
+					.menubtn-delete-element {
+						float: right;
+						height: 22.4px;
+						width: 22.4px;
+						border-radius: 50%;
+						background-color: rgba(255,0,0,0.3);
+						text-align: center;
+						cursor: pointer;
+					}
+					.menubtns-form {
+						margin-top: 4px;
+						display: flex;
+						flex-direction: column;
+						gap: 4px;
+					}
+					#rk-menubtns-icon-popup > .rk-popup > div > span {
+						cursor: pointer;
+					}
+					.menubtns-form input:invalid {
+						color: red;
+						border: 1px solid red;
+					}
+				</style>
+				<div class="menubtns-container">Loading...</div>
+				<div class="menubtns-form">
+					<span class="text-lead">Create Button</span>
+					<input id="menubtns-icon-selector" class="form-control input-field" type="button" value="Button Icon">
+					<input id="menubtns-button-text" class="form-control input-field" placeholder="Button Text" maxlength="200" required>
+					<input id="menubtns-button-url" class="form-control input-field" placeholder="Button URL" pattern="https://.+\\..+" required>
+					<button id="menubtns-button-add" class="btn-control-sm">Add</button>
+					<div style="flex-grow: 1;"></div>
+					<button id="menubtns-reset-list" class="btn-control-sm">Reset</button>
+					<div id="rk-menubtns-icon-popup" class="rk-popup-holder" style="z-index: 10000;">
+						<div class="rk-popup" style="padding: 1rem;">
+							<input id="menubtns-icon-url" class="form-control input-field" placeholder="Icon URL" pattern="https://.+\\..+">
+							<div id="menubtns-icon-list" style="margin-top: 16px;">
+								<span class="icon-nav-menu"></span>
+								<span class="icon-nav-notification-stream"></span>
+								<span class="icon-nav-blog"></span>
+								<span class="icon-nav-giftcards"></span>
+								<span class="icon-nav-message"></span>
+								<span class="icon-nav-home"></span>
+								<span class="icon-nav-profile"></span>
+								<span class="icon-nav-friends"></span>
+								<span class="icon-nav-group"></span>
+								<span class="icon-nav-charactercustomizer"></span>
+								<span class="icon-nav-inventory"></span>
+								<span class="icon-nav-my-feed"></span>
+								<span class="icon-nav-search-white"></span>
+								<span class="icon-nav-shop"></span>
+								<span class="icon-nav-trade"></span>
+								<span class="icon-nav-robux"></span>
+								<span class="icon-nav-settings"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>`,
+		js: null,
+		load: function (theme_object, idCard) {
+			let element = idCard.element;
+
+			let menubtnsContainer = element.querySelector('.menubtns-container');
+			let iconPopup = element.querySelector('#rk-menubtns-icon-popup');
+			let iconUrlField = element.querySelector('#menubtns-icon-url');
+			let iconList = element.querySelector('#menubtns-icon-list');
+			let btnIconSelector = element.querySelector('#menubtns-icon-selector');
+			let btnTextField = element.querySelector('#menubtns-button-text');
+			let btnUrlField = element.querySelector('#menubtns-button-url');
+			let buttonAdd = element.querySelector('#menubtns-button-add');
+			let btnIcon = null;
+
+			//make draggable & sorable
+			menubtnsContainer.addEventListener('dragover', e => {
+				e.preventDefault();
+				const afterElement = getDragAfterElement(menubtnsContainer, e.clientY);
+				const draggable = document.querySelector('.dragging');
+				if (afterElement == null) {
+					menubtnsContainer.appendChild(draggable);
+				} else {
+					menubtnsContainer.insertBefore(draggable, afterElement);
+				}
+			});
+
+			//get buttons from left menu
+			let allButtonsIds = [];
+			let createButtonElement = (btnData) => {
+				let container = document.createElement('div');
+				let buttonNameElement = document.createElement('span');
+				let buttonToggleElement = document.createElement('span');
+
+				container.btnData = btnData;
+
+				container.classList.add('menubtn-element');
+				container.style.cursor = 'move';
+				container.draggable = true;
+				buttonNameElement.textContent = btnData.text;
+
+				if (btnData.type === 'system') {
+					buttonToggleElement.classList.add("rk-button","receiver-destination-type-toggle");
+					buttonToggleElement.innerHTML = `
+						<span class="toggle-flip"></span>
+						<span class="toggle-on"></span>
+						<span class="toggle-off"></span>
+					`;
+
+					let toggle = "on";
+					if (btnData.hidden === true) toggle = "off";
+					buttonToggleElement.classList.add(toggle);
+					buttonToggleElement.addEventListener('click', () => {
+						if (page.getSwich(buttonToggleElement)) {
+							//switch is now off
+							container.btnData.hidden = true;
+						} else {
+							//switch is now on
+							container.btnData.hidden = false;
+						}
+					});
+				} else {
+					buttonToggleElement.classList.add("menubtn-delete-element");
+					buttonToggleElement.textContent = "-";
+					buttonToggleElement.addEventListener("click", () => {
+						container.remove();
+					});
+				}
+
+				container.appendChild(buttonNameElement);
+				container.appendChild(buttonToggleElement);
+				return container;
+			};
+			let updateList = (resetData) => {
+				//update for a correctly sorted list
+				let availableButtons = [];
+				allButtonsIds = Array.from(document.querySelectorAll(".left-col-list > * > *[id]"));
+				allButtonsIds.forEach(btn => {
+					let text = btn.textContent || "Unknown";
+					if (btn.id === 'btr-blogfeed') text = "Blog Content";
+					else text = text.trim().split(/\d/g)[0];
+					availableButtons.push({type: 'system', id: btn.id, text});
+				});
+				//get button data
+				let allButtons = [];
+				if (resetData !== true) {
+					//get user made buttons...
+					allButtons = theme_object.SortedMenuButtonsList;
+					let newButtons = availableButtons
+					.filter(btnData => allButtons.find(x => x.id === btnData.id) == null)
+					.map(btnData => {
+						btnData.hidden = false;
+						return btnData;
+					});
+					allButtons = allButtons.concat(newButtons);
+				} else {
+					allButtons = availableButtons.map(btnData => {
+						btnData.hidden = false;
+						return btnData;
+					});
+				}
+				//list buttons & hide enable button for unavailable non-custom buttons
+				menubtnsContainer.innerHTML = '';
+				allButtons.forEach(btn => {
+					let buttonElement = createButtonElement(btn);
+					menubtnsContainer.appendChild(buttonElement);
+
+					buttonElement.classList.add('draggable');
+					buttonElement.addEventListener('dragstart', () => {
+						buttonElement.classList.add('dragging');
+					});
+					buttonElement.addEventListener('dragend', () => {
+						buttonElement.classList.remove('dragging');
+					});
+				});
+			};
+			document.$watchLoop(".left-col-list > * > *[id]", (btn) => {
+				if (allButtonsIds.includes(btn)) return;
+				updateList();
+			});
+
+			//listerners
+			btnIconSelector.addEventListener("click", () => {
+				iconPopup.style.display = 'flex';
+			});
+			iconUrlField.addEventListener('keypress', function(event) {
+				if (event.key !== "Enter") return;
+
+				// Cancel the default action, if needed
+				if (event.defaultPrevented !== true) event.preventDefault();
+				// Trigger the button element with a click
+				iconUrlField.dispatchEvent(new Event('change'));
+			});
+			iconUrlField.addEventListener('change', () => {
+				if (iconUrlField.checkValidity() === false) {
+					return alert("Please Enter a valid icon url.");
+				}
+				iconPopup.style.display = '';
+				btnIcon = {
+					type: 'url-icon',
+					value: iconUrlField.value,
+				};
+			});
+			Array.from(iconList.children).forEach(icon => {
+				icon.addEventListener("click", () => {
+					iconPopup.style.display = '';
+					btnIcon = {
+						type: 'navbar-icon',
+						value: icon.className,
+					};
+				});
+			});
+			buttonAdd.addEventListener("click", () => {
+				btnTextField.style.borderColor = "";
+				btnUrlField.style.borderColor = "";
+				btnIconSelector.style.borderColor = "";
+				if (btnIcon === null) {
+					btnIconSelector.style.borderColor = "red";
+					return alert("Please Select an Icon.");
+				}
+				if (btnTextField.value === '') {
+					btnTextField.style.borderColor = "red";
+					return alert("Please Enter Button Text.");
+				}
+				if (btnUrlField.checkValidity() === false) {
+					btnUrlField.style.borderColor = "red";
+					return alert("Please Enter a valid button url.");
+				}
+
+				let createdBtn = {
+					type: 'custom',
+					icon: btnIcon,
+					text: btnTextField.value,
+					url: btnUrlField.value,
+				};
+				// console.log({createdBtn});
+				let buttonElement = createButtonElement(createdBtn);
+				menubtnsContainer.appendChild(buttonElement);
+
+				buttonElement.classList.add('draggable');
+				buttonElement.addEventListener('dragstart', () => {
+					buttonElement.classList.add('dragging');
+				});
+				buttonElement.addEventListener('dragend', () => {
+					buttonElement.classList.remove('dragging');
+				});
+			});
+			element.querySelector('#menubtns-reset-list').addEventListener("click", () => {
+				updateList(true);
+			});
+
+			for (let key in theme_object) {
+				if (theme_object[key] == null) continue;
+				let value = theme_object[key];
+
+				let input = element.querySelector(`[data-location="${key}"]`);
+				if (input == null) return;
+
+				if (input.classList.contains("rk-button")) {
+					page.toggleSwich(input, value);
+				} else if (input.classList.contains("input-field")) {
+					input.value = value;
+				}
+			}
+
+			function getDragAfterElement(container, y) {
+				const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')];
+
+				return draggableElements.reduce((closest, child) => {
+					const box = child.getBoundingClientRect();
+					const offset = y - box.top - box.height / 2;
+					if (offset < 0 && offset > closest.offset) {
+						return { offset: offset, element: child };
+					} else {
+						return closest;
+					}
+				}, { offset: Number.NEGATIVE_INFINITY }).element;
+			}
+		},
+		save: function (idCard) {
+			let element = idCard.element;
+			let component_object = {};
+
+			//when saving, use the html list so you get it sorted
+			let sortedMenuElements = Array.from(element.querySelectorAll('.menubtns-container > .menubtn-element'));
+			let sortedMenu = sortedMenuElements.map(x => x.btnData);
+			// console.log({sortedMenuElements, sortedMenu});
+			component_object.SortedMenuButtonsList = sortedMenu;
+
+			element.querySelectorAll(`[data-location]`).forEach((input) => {
+				let edge = input.dataset.location;
+				let value = null;
+				if (input.classList.contains("rk-button")) {
+					value = page.getSwich(input);
+				} else if (input.classList.contains("input-field")) {
+					value = input.value;
+				}
+
+				component_object[edge] = value;
+			});
+
+			return component_object;
+		}
+	},
 };
 
 
@@ -440,7 +767,7 @@ page.settingsWaitingForGeneral = function() {
 
 					//run save_object
 					let save_component = componentElement.save;
-					console.log({save_component})
+					// console.log({save_component})
 					if (typeof save_component != 'function') return null;
 
 					//put object in page_object with key of component id
@@ -892,6 +1219,7 @@ page.settingsWaitingForGeneral = function() {
 							<loadcode code="settingload" data-id="SiteLanguage"></loadcode>
 							<loadcode code="settingload" data-id="QuickGameJoin"></loadcode>
 							<loadcode code="settingload" data-id="GameNameFilter"></loadcode>
+							<loadcode code="settingload" data-id="CustomNavMenuButtons"></loadcode>
 							<loadcode code="settingload" data-id="DesktopApp"></loadcode>
 
 							<div class="rbx-divider" style="margin: 12px;"></div>

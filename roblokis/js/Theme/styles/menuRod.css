@@ -24,6 +24,9 @@ body#rbx-body #navigation:not(:hover) {
 .rbx-header .rbx-nav-collapse > button.menu-button.btn-navigation-nav-menu-md {
 	display: none;
 }
+.rbx-header .icon-logo {
+	margin-left: 5px;
+}
 
 .text-nav > *:first-child {
 	transition: margin-right 200ms;

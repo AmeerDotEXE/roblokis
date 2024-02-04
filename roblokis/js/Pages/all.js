@@ -462,15 +462,24 @@ Rkis.page.all = () => {
 				else if (avatarStatus.classList.contains("icon-studio")) return "hsl(33, 98%, 49%)";
 				return "hsl(0, 0%, 0%)";
 			}
-			document.$watchLoop(".avatar-status", (element) => {
+			// document.$watchLoop(".avatar-status", (element) => {
+			// 	// console.log("found", getStatus(element), element);
+			// 	element.$watchData((statusElement) => {
+			// 		// console.log("edited", getStatus(statusElement), statusElement);
+			// 		let container = statusElement.closest(".avatar-container")
+			// 		if (container) {
+			// 			container.classList.add("rk-status-ring")
+			// 			container.style.setProperty("--friend-status-color", getStatus(statusElement));
+			// 		}
+			// 	});
+			// });
+			document.$watchLoop(".avatar-container", (container) => {
 				// console.log("found", getStatus(element), element);
+				let element = container.querySelector(".avatar-status");
 				element.$watchData((statusElement) => {
 					// console.log("edited", getStatus(statusElement), statusElement);
-					let container = statusElement.closest(".avatar-container")
-					if (container) {
-						container.classList.add("rk-status-ring")
-						container.style.setProperty("--friend-status-color", getStatus(statusElement));
-					}
+					container.classList.add("rk-status-ring");
+					container.style.setProperty("--friend-status-color", getStatus(statusElement));
 				});
 			});
 		})();
@@ -508,6 +517,111 @@ Rkis.page.all = () => {
 				}
 			});
 		});
+	}
+
+	if (Rkis.IsSettingEnabled("CustomNavMenuButtons", {
+		id: "CustomNavMenuButtons",
+		type: "switch",
+		value: { switch: false },
+		data: {
+			customization: {}
+		},
+		details: {
+			default: "en",
+			"en": {
+				name: "Custom Menu Navigations",
+				description: "Press Customize to edit menu buttons.",
+			}
+		}
+	})) {
+		(function() {
+			function FetchImage(url) {
+				return new Promise(resolve => {
+					BROWSER.runtime.sendMessage({about: "getImageRequest", url: url}, 
+					function(data) {
+						resolve(data)
+					})
+				})
+			}
+
+			let customization = Rkis.GetSettingCustomization("CustomNavMenuButtons");
+			if (typeof customization.SortedMenuButtonsList != "undefined" && customization.SortedMenuButtonsList != null && customization.SortedMenuButtonsList.length > 0) {
+				let sortedMenu = customization.SortedMenuButtonsList;
+				document.$watch('.rbx-left-col .left-col-list', updateMenu);
+				// updateMenu();
+				document.$watchLoop(".left-col-list > * > *[id]", updateMenu);
+
+				function updateMenu() {
+					let currentMenu = document.querySelector('.rbx-left-col .left-col-list');
+					currentMenu.querySelectorAll(`[data-custom-btn="true"]`).forEach(x => x.remove());
+					let currentIndex = 0;
+	
+					for (let btnIndex = 0; btnIndex < sortedMenu.length; btnIndex++) {
+						const btnData = sortedMenu[btnIndex];
+						if (btnData.type == 'system') {
+							let btnElement = currentMenu.querySelector("#"+btnData.id);
+							if (btnElement == null) return;
+	
+							if (btnData.hidden) {
+								btnElement.parentElement.style.display = 'none';
+							}
+							insertChildAtIndex(currentMenu, btnElement.parentElement, currentIndex);
+							currentIndex++;
+						} else if (btnData.type == 'custom') {
+							//create button
+							let btnElement = createCustomButton(btnData);
+	
+							insertChildAtIndex(currentMenu, btnElement, currentIndex);
+							currentIndex++;
+						}
+					}
+				}
+			}
+
+			//https://stackoverflow.com/a/39181175
+			function insertChildAtIndex(parent, child, index) {
+				if (!index) index = 0;
+				if (index === 0) {
+					parent.prepend(child);
+				} else if (index >= parent.children.length) {
+					parent.appendChild(child);
+				} else {
+					parent.insertBefore(child, parent.children[index]);
+				}
+			}
+
+			function createCustomButton(btnData) {
+				let wrapperElement = document.createElement("li");
+				let buttonElement = document.createElement("a");
+				let iconWrapper = document.createElement("div");
+				let iconElement = document.createElement("span");
+				let textElement = document.createElement("span");
+
+				wrapperElement.style.display = "block";
+				wrapperElement.dataset.customBtn = "true";
+				buttonElement.className = "dynamic-overflow-container text-nav";
+				buttonElement.href = btnData.url;
+				buttonElement.target = "_self";
+				textElement.className = "font-header-2 dynamic-ellipsis-item";
+				textElement.textContent = btnData.text;
+
+				if (btnData.icon.type == "navbar-icon") {
+					iconElement.className = btnData.icon.value;
+				} else if (btnData.icon.type == "url-icon") {
+					iconElement.className = "new-menu-icon icon-nav-charactercustomizer";
+					iconElement.style.backgroundPosition = "center";
+					iconElement.style.backgroundSize = "28px";
+					FetchImage(btnData.icon.value).then(imageData => {
+						iconElement.style.backgroundImage = imageData;
+					});
+				}
+
+				iconWrapper.appendChild(iconElement);
+				buttonElement.append(iconWrapper, textElement);
+				wrapperElement.appendChild(buttonElement);
+				return wrapperElement;
+			}
+		})();
 	}
 
 	return {};
