@@ -1,5 +1,5 @@
 #social-links-container > div {
-    margin: 0;
+	margin: 0;
 }
 #social-links-container > div > div.container-header {
 	display: none;
@@ -11,21 +11,21 @@
 #social-links-container > div > div.section-content {
 	margin: 0;
 	position: fixed;
-	top: 0;
-	right: 0;
+	top: 4px;
+	right: 4px;
 	border-radius: 8px;
-    overflow: hidden;
+	overflow: hidden;
 }
 #social-link-card .social-link .medallion {
-    height: auto;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    border-radius: 0;
+	height: auto;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 0;
 }
 #social-link-card .social-link .contents {
-    height: auto;
-    margin: 0;
+	height: auto;
+	margin: 0;
 }
 #social-link-card .social-link .type-img {
 	position: relative;
