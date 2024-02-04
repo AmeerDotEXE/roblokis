@@ -255,6 +255,10 @@ let featureCustomizations = {
 				return container;
 			};
 			let updateList = (resetData) => {
+				let featureSetting = Rkis.wholeData["CustomNavMenuButtons"];
+				if (featureSetting == null || (featureSetting.options && featureSetting.options.disabled == true)) return;
+				if (featureSetting.value[featureSetting.type] === false) resetData = true;
+
 				//update for a correctly sorted list
 				let availableButtons = [];
 				allButtonsIds = Array.from(document.querySelectorAll(".left-col-list > * > *[id]"));
@@ -297,6 +301,7 @@ let featureCustomizations = {
 					});
 				});
 			};
+			document.$watch('.rbx-left-col .left-col-list', updateList);
 			document.$watchLoop(".left-col-list > * > *[id]", (btn) => {
 				if (allButtonsIds.includes(btn)) return;
 				updateList();

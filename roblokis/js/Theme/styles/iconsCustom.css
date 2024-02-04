@@ -1,0 +1,30 @@
+#rbx-body .icon-default-navigation, #rbx-body .icon-nav-blog, #rbx-body .icon-nav-charactercustomizer:not(.new-menu-icon), #rbx-body .icon-nav-friends, #rbx-body .icon-nav-giftcards, #rbx-body .icon-nav-group, #rbx-body .icon-nav-home, #rbx-body .icon-nav-inventory, #rbx-body .icon-nav-menu, #rbx-body .icon-nav-message, #rbx-body .icon-nav-my-feed, #rbx-body .icon-nav-notification-stream, #rbx-body .icon-nav-profile, #rbx-body .icon-nav-robux, #rbx-body .icon-nav-search-white, #rbx-body .icon-nav-settings, #rbx-body .icon-nav-shop, #rbx-body .icon-nav-trade,
+#rbx-body .icon-common-notification-bell, #rbx-body .icon-robux-28x28, #rbx-body .icon-robux-gray, #rbx-body .icon-robux-white {
+	background-image: var(--menubtns-icons-image);
+}
+
+/* fix roblox hover issues */
+#rbx-body .icon-nav-settings:hover, #rbx-body a:hover .icon-nav-settings, #rbx-body button:hover .icon-nav-settings {
+	background-position: -28px -84px;
+}
+#rbx-body .icon-nav-menu:hover, #rbx-body a:hover .icon-nav-menu, #rbx-body button:hover .icon-nav-menu {
+	background-position: -28px 0;
+}
+
+#rbx-body .icon-common-notification-bell {
+	background-position: 0 -56px;
+}
+#rbx-body .icon-common-notification-bell:hover, #rbx-body button:hover .icon-common-notification-bell {
+	background-position: -28px -56px;
+}
+
+#rbx-body .icon-robux-28x28,
+#rbx-body .icon-robux-white,
+#rbx-body .icon-default-economy-28x28,
+#nav-robux-icon .icon-robux-28x28:hover, #nav-robux-icon button:hover .icon-robux-28x28 {
+	background-position: -28px -28px;
+}
+#rbx-body .icon-robux-gray,
+#nav-robux-icon .icon-robux-28x28 {
+	background-position: 0 -28px;
+}

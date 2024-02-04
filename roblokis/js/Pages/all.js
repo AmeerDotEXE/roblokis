@@ -68,6 +68,18 @@ Rkis.page.all = () => {
 				icons: {
 					"2018": {
 						css: ["js/Theme/styles/icons2018.css"]
+					},
+					"custom": {
+						css: ["js/Theme/styles/iconsCustom.css"],
+						js: (style) => {
+							let options = style.options;
+							if (options == null) return;
+							if (options.iconPackLink == null) return;
+
+							FetchImage(options.iconPackLink).then(iconsImage => {
+								if (body) body.style.setProperty("--menubtns-icons-image", iconsImage);
+							});
+						}
 					}
 				},
 				videobackground: {

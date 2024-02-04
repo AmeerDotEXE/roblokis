@@ -653,6 +653,51 @@ let designerComponents = [
 			options: [
 				{value: '',details:{name:'Default',description:"Roblox's default icons"}},
 				{value: '2018',details:{name:'2018',description:"Brings back 2018's icons"}},
+				{value: 'custom',details:{name:'Custom',description:"Upload your own icon pack"},element:{
+					html: /*html*/`
+						<div>Use template from our discord server.</div>
+						<div style="width: 100%;margin-top: 0.5rem;" class="rk-flex rk-space-between rk-center-x">
+							<span style="min-width: fit-content;margin-right: 5px;">Icons URL:</span>
+							<input type="url" value="" placeholder="URL"
+								data-location="iconPackLink" data-type="value" class="form-control input-field">
+						</div>`,
+					js: null,
+					load: function (theme_object, idCard) {
+						let element = idCard.element;
+		
+						for (let key in theme_object) {
+							if (theme_object[key] == null) continue;
+							let value = theme_object[key];
+		
+							let input = element.querySelector(`[data-location="${key}"]`);
+							if (input == null) return;
+
+							if (input.classList.contains("rk-button")) {
+								page.toggleSwich(input, value);
+							} else if (input.classList.contains("input-field")) {
+								input.value = value;
+							}
+						}
+					},
+					save: function (idCard) {
+						let element = idCard.element;
+						let component_object = {};
+		
+						element.querySelectorAll(`[data-location]`).forEach((input) => {
+							let edge = input.dataset.location;
+							let value = null;
+							if (input.classList.contains("rk-button")) {
+								value = page.getSwich(input);
+							} else if (input.classList.contains("input-field")) {
+								value = input.value;
+							}
+		
+							component_object[edge] = value;
+						});
+		
+						return component_object;
+					}
+				}},
 			]
 		},
 		element: defaultcomponentElements.styleDropdown
