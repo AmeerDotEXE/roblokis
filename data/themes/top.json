@@ -1,5 +1,35 @@
 [
 	{
+		"name": "Burple",
+		"link": {
+			"file": "https://ameerdotexe.github.io/roblokis/data/themes/top/Burple/Blurple_3.roblokis.roblokis"
+		},
+		"animated": true,
+		"author": "qin",
+		"images": [
+			"https://cdn.discordapp.com/attachments/1156674191123292171/1205186957991215164/image.png"
+		],
+		"contact": {
+			"discord": "simplyqin"
+		}
+	},
+	{
+		"name": "Rii U",
+		"link": {
+			"dark": "https://ameerdotexe.github.io/roblokis/data/themes/top/RiiU/Rii_U_Dark.roblokis",
+			"light": "https://ameerdotexe.github.io/roblokis/data/themes/top/RiiU/Rii_U_Light.roblokis"
+		},
+		"animated": true,
+		"author": "Dude317",
+		"images": [
+			"https://media.discordapp.net/attachments/1156674191123292171/1205188200235143198/image.png",
+			"https://media.discordapp.net/attachments/1156674191123292171/1205188678587129896/image.png"
+		],
+		"contact": {
+			"discord": "dude317"
+		}
+	},
+	{
 		"name": "Roblox re-imagination",
 		"link": {
 			"dark": "https://ameerdotexe.github.io/roblokis/data/themes/top/reroblox/Dark-edited.roblokis",
@@ -13,6 +43,20 @@
 		],
 		"contact": {
 			"discord": "mquan_317"
+		}
+	},
+	{
+		"name": "PS4",
+		"link": {
+			"file": "https://ameerdotexe.github.io/roblokis/data/themes/top/ps4/PS4.roblokis"
+		},
+		"animated": true,
+		"author": "zablo",
+		"images": [
+			"https://media.discordapp.net/attachments/1156674191123292171/1205189728651968642/image.png"
+		],
+		"contact": {
+			"discord": "zab1oing"
 		}
 	},
 	{
@@ -60,6 +104,20 @@
 		}
 	},
 	{
+		"name": "Purple and Black",
+		"link": {
+			"file": "https://ameerdotexe.github.io/roblokis/data/themes/top/purple_and_black/Purple_and_Black.roblokis"
+		},
+		"animated": false,
+		"author": "Seor",
+		"images": [
+			"https://media.discordapp.net/attachments/1156674191123292171/1205190804126306324/image.png"
+		],
+		"contact": {
+			"discord": ".seor."
+		}
+	},
+	{
 		"name": "Fluent 2",
 		"link": {
 			"dark": "https://ameerdotexe.github.io/roblokis/data/themes/top/Fluent-2/Improved-Dark.roblokis",
@@ -73,6 +131,20 @@
 		],
 		"contact": {
 			"discord": "fantasight"
+		}
+	},
+	{
+		"name": "Lights Out",
+		"link": {
+			"file": "https://ameerdotexe.github.io/roblokis/data/themes/top/lights_out/Lights_out_4.roblokis"
+		},
+		"animated": false,
+		"author": "qin",
+		"images": [
+			"https://media.discordapp.net/attachments/1156674191123292171/1205192125600243722/image.png"
+		],
+		"contact": {
+			"discord": "simplyqin"
 		}
 	}
 ]
