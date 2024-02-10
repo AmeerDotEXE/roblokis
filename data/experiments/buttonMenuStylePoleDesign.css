@@ -1,0 +1,13 @@
+.rbx-left-col li {
+	overflow: hidden;
+	max-width: 200px;
+	transition: all 200ms;
+}
+#navigation,
+#navigation > .rbx-scrollbar {
+	width: auto;
+}
+/* (in the future) make an option to expand one at a time */
+.rbx-left-col:not(:hover) li {
+	max-width: 36px;
+}
