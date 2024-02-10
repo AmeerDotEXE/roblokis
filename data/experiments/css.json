@@ -17,6 +17,11 @@
 			"description": "Perfectly centers navbar items",
 			"cssUrl": "https://ameerdotexe.github.io/roblokis/data/experiments/centerFloatNavbarStyle.css"
 		},
+		"right-padding-rod-menu-style": {
+			"name": "Right padding for pole menu style",
+			"description": "adds a bit of space at the right side of the wide roblox icon",
+			"cssUrl": "https://ameerdotexe.github.io/roblokis/data/experiments/rightPaddingForRodMenuStye.css"
+		},
 		"hide-recommended-from-homepage": {
 			"name": "Hide Recommended",
 			"description": "Hides recommended section from home page",
