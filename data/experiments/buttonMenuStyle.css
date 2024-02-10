@@ -9,8 +9,13 @@
 	display: none;
 }
 
-#navigation .simplebar-mask {
+#navigation .simplebar-mask,
+.rbx-left-col .rbx-scrollbar,
+.rbx-left-col .simplebar-wrapper {
 	overflow: visible;
+}
+.rbx-left-col .simplebar-content-wrapper {
+	overflow: visible !important;
 }
 .rbx-left-col .rbx-scrollbar .left-col-list {
 	padding-top: 0;

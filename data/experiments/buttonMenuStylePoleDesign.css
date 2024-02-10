@@ -4,7 +4,8 @@
 	transition: all 200ms;
 }
 #navigation,
-#navigation > .rbx-scrollbar {
+#navigation > .rbx-scrollbar,
+.rbx-left-col .rbx-scrollbar .left-col-list {
 	width: auto;
 }
 /* (in the future) make an option to expand one at a time */
