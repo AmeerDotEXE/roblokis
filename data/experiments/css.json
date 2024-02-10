@@ -1,11 +1,5 @@
 {
 	"experimentsCSS": {
-		"hide-recommended-from-homepage": {
-			"name": "Hide Recommended",
-			"description": "Hides recommended section from home page",
-			"cssUrl": "https://ameerdotexe.github.io/roblokis/data/experiments/hideRecommendedFromHomePage.css",
-			"filterUrls": [".com/home"]
-		},
 		"rainbow-play-button": {
 			"name": "Rainbow Play Button",
 			"description": "Animated rainbow colored play button on game pages",
@@ -17,6 +11,17 @@
 			"description": "Moves socials from about page to the top right of your game page",
 			"cssUrl": "https://ameerdotexe.github.io/roblokis/data/experiments/moveGameSocialsTopRight.css",
 			"filterUrls": [".com/games/"]
+		},
+		"center-float-navbar-style": {
+			"name": "Center float navbar style",
+			"description": "Perfectly centers navbar items",
+			"cssUrl": "https://ameerdotexe.github.io/roblokis/data/experiments/centerFloatNavbarStyle.css"
+		},
+		"hide-recommended-from-homepage": {
+			"name": "Hide Recommended",
+			"description": "Hides recommended section from home page",
+			"cssUrl": "https://ameerdotexe.github.io/roblokis/data/experiments/hideRecommendedFromHomePage.css",
+			"filterUrls": [".com/home"]
 		}
 	}
 }
