@@ -1,0 +1,26 @@
+#navigation {
+	background: transparent;
+    backdrop-filter: none;
+    box-shadow: none;
+}
+#navigation > ul > li.rbx-divider {
+	display: none;
+}
+
+.rbx-left-col .rbx-scrollbar .left-col-list {
+	padding-top: 0;
+}
+.rbx-left-col li {
+	background: var(--rk-menu-background);
+    background-size: var(--rk-menu-background-image-size);
+    border-radius: var(--rk-menu-corners-radius, 0px);
+    border-color: var(--rk-menu-borders-color);
+    border-style: var(--rk-menu-borders-style);
+    border-width: var(--rk-menu-borders-size);
+    backdrop-filter: var(--rk-menu-backdrop-filter);
+    box-shadow: var(--rk-menu-box-shadow);
+    padding: 4px;
+}
+.rbx-left-col li .dynamic-width-item.align-right {
+	margin-right: 2px;
+}

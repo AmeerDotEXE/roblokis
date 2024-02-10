@@ -22,6 +22,11 @@
 			"description": "adds a bit of space at the right side of the wide roblox icon",
 			"cssUrl": "https://ameerdotexe.github.io/roblokis/data/experiments/rightPaddingForRodMenuStye.css"
 		},
+		"button-menu-style": {
+			"name": "Button menu style",
+			"description": "new style, (doesn't work with other styles) remove menu component from styles tab in all pages before using.",
+			"cssUrl": "https://ameerdotexe.github.io/roblokis/data/experiments/buttonMenuStyle.css"
+		},
 		"hide-recommended-from-homepage": {
 			"name": "Hide Recommended",
 			"description": "Hides recommended section from home page",
