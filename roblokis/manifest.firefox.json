@@ -9,6 +9,7 @@
 	"homepage_url": "https://ameerdotexe.github.io/roblokis/",
 	"permissions": [
 		"storage",
+		"unlimitedStorage",
 		"contextMenus",
 		"https://*/*.png",
 		"https://*/*.jpg",

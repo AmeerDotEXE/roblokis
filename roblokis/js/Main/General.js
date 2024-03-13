@@ -9,24 +9,17 @@ var Rkis = {
 		database: {
 			async save() {
 				let data = Rkis.wholeData;
-				//modify saving structure
-				//  exclude details & element & translation
-
-				// try {
-				// 	let savingData = JSON.parse(JSON.stringify(data));
-
-				// 	for (let settingName in savingData) {
-				// 		let setting = savingData[settingName];
-				// 		if (setting == null || typeof setting != "object" || setting.id == null) continue;
-				// 		setting.details = null;
-				// 	}
-
-				// 	data = savingData;
-				// } catch (err) {console.error(err);}
 
 				//save to new database
 				await BROWSER.storage.local.set({
 					Roblokis: data
+				}).catch(err => {
+					if (err == "Error: QUOTA_BYTES quota exceeded") {
+						Rkis.Toast("ERROR: not enough space to save your data.", 5000);
+						return;
+					}
+					Rkis.Toast("ROBLOKIS SAVING ERROR", 3000);
+					console.error(err);
 				});
 
 				// ? temporary save to old database
@@ -291,9 +284,14 @@ var Rkis = {
 			Rkis.ToastHolder.style.bottom = "30px";
 			setTimeout(() => { Rkis.ToastHolder.style.opacity = "0"; Rkis.ToastHolder.style.bottom = "0px"; }, ms || 4000)
 		},
+		/**
+		 * returns 0 when same
+		 * 1 if first is bigger
+		 * 2 if second is bigger
+		 */
 		versionCompare(a, b) {
-			if (typeof a == "undefined" || typeof b == "undefined") return 0;
-			if (a === null || b === null) return 0;
+			if (typeof a != "string" || typeof b != "string") return 0;
+			if (a === "" || b === "") return 0;
 			if (a.startsWith("v")) a = a.substring(1);
 			if (b.startsWith("v")) b = b.substring(1);
 			if (a == b) return 0;
@@ -303,6 +301,7 @@ var Rkis = {
 			
 			for (let i = 0; i < aParts.length; i++) {
 				if (aParts[i] > bParts[i]) return 1;
+				if (aParts[i] < bParts[i]) return 2;
 			}
 
 			return 2;
@@ -312,17 +311,9 @@ var Rkis = {
 
 window.ContextScript = true;
 
-//clear context menu items from other tabs
-Rkis.contextMenu.handleContextMenu("clear");
-window.addEventListener("blur", () => {
-	Rkis.contextMenu.handleContextMenu("clear");
-});
-
 Rkis.version = Rkis.manifest.version;
 Rkis.fileLocation = BROWSER.runtime.getURL("");
 
-//Rkis.InjectFile(Rkis.fileLocation + "js/Main/Utility.js");
-Rkis.InjectFile(Rkis.fileLocation + "js/Main/Inject.js");
 
 if (window.location.href.includes(".com/games/")) {
 	Rkis.GameId = window.location.href.split("/games/")[1].split("/")[0];
@@ -351,6 +342,15 @@ else if (window.location.href.includes(".com/catalog")) Rkis.pageName = "catalog
 else Rkis.pageName = "all";
 
 const databaseLoading = Rkis.database.load();
+
+//clear context menu items from other tabs
+Rkis.contextMenu.handleContextMenu("clear");
+window.addEventListener("blur", () => {
+	Rkis.contextMenu.handleContextMenu("clear");
+});
+
+//Rkis.InjectFile(Rkis.fileLocation + "js/Main/Utility.js");
+Rkis.InjectFile(Rkis.fileLocation + "js/Main/Inject.js");
 
 
 /*//		Settings Structure
@@ -492,6 +492,8 @@ function changeRobloxTheme(themeType) {
 }
 
 databaseLoading.then(() => {
+	Rkis.generalTriggerTheme = true;
+	document.$triggerCustom("rk-general-trigger-theme");
 	(function () {
 		Rkis.language = Rkis.language || {};
 		Rkis.language.get = (msg, txt1, txt2, txt3, txt4, txt5, txt6, txt7, txt8, txt9) => {

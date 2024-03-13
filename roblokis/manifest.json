@@ -11,6 +11,7 @@
 	"incognito": "split",
 	"permissions": [
 		"storage",
+		"unlimitedStorage",
 		"contextMenus"
 	],
 

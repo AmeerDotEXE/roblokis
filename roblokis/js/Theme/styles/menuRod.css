@@ -28,16 +28,32 @@ body#rbx-body #navigation:not(:hover) {
 	margin-left: 5px;
 }
 
-.text-nav > *:first-child {
+.text-nav > *:first-child,
+#navigation .left-col-list > a .rbx-event-icon {
 	transition: margin-right 200ms;
 }
-#navigation:not(:hover) .text-nav > *:first-child {
+#navigation:not(:hover) .text-nav > *:first-child,
+#navigation:not(:hover) .left-col-list > a .rbx-event-icon {
 	margin-right: 8px !important;
 }
 #btr-blogfeed {
 	display: none !important;
 }
 
+/* roblox events handler */
+.rbx-left-col .rbx-scrollbar .left-col-list > a {
+	margin: 0;
+}
+.rbx-left-col .rbx-scrollbar .left-col-list > a > div:first-child {
+	margin-top: 10px;
+}
+#navigation:not(:hover) .left-col-list > a > div:not(:first-child) {
+	opacity: 0;
+}
+#navigation .left-col-list > a > div:not(:first-child) {
+	opacity: 1;
+	transition: opacity 150ms ease-in-out;
+}
 
 /* extended rod */
 body.extended-menu-rod #navigation {

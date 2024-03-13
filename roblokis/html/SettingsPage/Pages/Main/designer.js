@@ -306,6 +306,120 @@ const defaultcomponentElements = {
 			};
 		}
 	},
+	imageInputPopup: {
+		html: /*html*/`
+		<div class="rk-popup-holder" style="z-index:999;" data-image-popup="">
+			<div class="rk-popup" style="width: min(100%, 55rem);min-height: 25%;max-height: 100%;overflow: hidden;">
+				<div class="rk-page-tab">
+					<div class="rk-tabs">
+						<div class="rk-tab" bg-image-clear>Clear</div>
+						<div class="rk-tab is-active" page="imageupload">Image</div>
+						<div class="rk-tab" page="imagegradient">Gradient</div>
+					</div>
+					<div class="rk-tab-pages">
+						<div class="rk-tab-page is-active" tab="imageupload" style="height: 100%;">
+							<label class="rk-file-input" ondragover="event.preventDefault();">
+								<input type="file" hidden data-image-upload>
+								<span>
+									Upload Image <span style="opacity: 0.6;">or</span><br>
+									Drag and Drop Image <span style="opacity: 0.6;">or</span><br>
+									Paste Image
+								<span>
+							</label>
+						</div>
+						<div class="rk-tab-page" tab="imagegradient">
+							<div class="info" style="font-size: 20px;">Coming Soon!</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		`,
+		js: function(element) {
+			//setup popup
+			let popup = element.querySelector(`.rk-popup-holder`);
+			let popupClose = () => {
+				//apply edits
+				popup.style.display = "none";
+				document.removeEventListener('paste', pasteImageEvent);
+
+				element.update?.();
+			};
+			const triggerFileUpload = (file) => {
+				// console.log("new file", file);
+				element.imageData = file;
+
+				popupClose();
+			};
+			let pasteImageEvent = (e) => {
+				e.preventDefault();
+
+				for (const clipboardItem of e.clipboardData.files) {
+					if (!clipboardItem.type.startsWith('image/')) continue;
+
+					// Do something with the image file.
+					let blob = clipboardItem;
+					let reader = new FileReader();
+					reader.onload = function () { triggerFileUpload(this.result) };
+					reader.readAsDataURL(blob);
+					break;
+				}
+			};
+			
+			element.querySelector(`[data-image-button]`).addEventListener("click", (e) => {
+				if (e.target == popup) return;
+				if (e.target.closest(`.rk-popup-holder`) == popup) return;
+
+				//setup/load edits
+				popup.style.display = "flex";
+				document.addEventListener('paste', pasteImageEvent);
+			});
+
+			popup.addEventListener("click", function (e) {
+				if (e.target != popup) return;
+				popupClose();
+			});
+
+			let imageUploader = element.querySelector("[data-image-upload]");
+			let imageUploaderField = imageUploader.parentElement;
+
+			//clear
+			element.querySelector("[bg-image-clear]").addEventListener("click", () => {
+				triggerFileUpload("");
+			});
+			//image
+			imageUploader.addEventListener("input", () => {
+				for (const file of imageUploader.files) {
+					if (!file.type.startsWith('image/')) continue;
+					let blob = file;
+					let reader = new FileReader();
+					reader.onload = function () { triggerFileUpload(this.result) };
+					reader.readAsDataURL(blob);
+					break;
+				}
+			});
+			imageUploaderField.addEventListener("drop", (ev) => {
+				// Prevent default behavior (Prevent file from being opened)
+				ev.preventDefault();
+
+				let totalItems = [...ev.dataTransfer.items, ...ev.dataTransfer.files];
+				for (const item of totalItems) {
+					if (!item.type?.startsWith('image/')) continue;
+					let blob = null;
+					if (item.kind === "file") {
+						blob = item.getAsFile();
+					} else {
+						blob = item;
+					}
+					if (blob === null) continue;
+					let reader = new FileReader();
+					reader.onload = function () { triggerFileUpload(this.result) };
+					reader.readAsDataURL(blob);
+					break;
+				}
+			});
+		}
+	},
 };
 let designerComponents = [
 
@@ -383,7 +497,7 @@ let designerComponents = [
 							let value = theme_object[key];
 		
 							let input = element.querySelector(`[data-location="${key}"]`);
-							if (input == null) return;
+							if (input == null) continue;
 
 							if (input.classList.contains("rk-button")) {
 								page.toggleSwich(input, value);
@@ -450,7 +564,7 @@ let designerComponents = [
 							let value = theme_object[key];
 		
 							let input = element.querySelector(`[data-location="${key}"]`);
-							if (input == null) return;
+							if (input == null) continue;
 
 							if (input.classList.contains("rk-button")) {
 								page.toggleSwich(input, value);
@@ -497,7 +611,7 @@ let designerComponents = [
 							let value = theme_object[key];
 		
 							let input = element.querySelector(`[data-location="${key}"]`);
-							if (input == null) return;
+							if (input == null) continue;
 
 							if (input.classList.contains("rk-button")) {
 								page.toggleSwich(input, value);
@@ -605,7 +719,7 @@ let designerComponents = [
 							let value = theme_object[key];
 		
 							let input = element.querySelector(`[data-location="${key}"]`);
-							if (input == null) return;
+							if (input == null) continue;
 
 							if (input.classList.contains("rk-button")) {
 								page.toggleSwich(input, value);
@@ -657,10 +771,11 @@ let designerComponents = [
 					html: /*html*/`
 						<div>Use template from our discord server.</div>
 						<div style="width: 100%;margin-top: 0.5rem;" class="rk-flex rk-space-between rk-center-x">
-							<span style="min-width: fit-content;margin-right: 5px;">Icons URL:</span>
-							<input type="url" value="" placeholder="URL"
-								data-location="iconPackLink" data-type="value" class="form-control input-field">
-						</div>`,
+							<span style="min-width: fit-content;margin-right: 5px;">Template:</span>
+							<button class="rk-btn" style="width: calc(100% - 10ch);" data-image-button="">Modify</button>
+							${defaultcomponentElements.imageInputPopup.html}
+						</div>
+						`,
 					js: null,
 					load: function (theme_object, idCard) {
 						let element = idCard.element;
@@ -670,7 +785,7 @@ let designerComponents = [
 							let value = theme_object[key];
 		
 							let input = element.querySelector(`[data-location="${key}"]`);
-							if (input == null) return;
+							if (input == null) continue;
 
 							if (input.classList.contains("rk-button")) {
 								page.toggleSwich(input, value);
@@ -678,6 +793,11 @@ let designerComponents = [
 								input.value = value;
 							}
 						}
+
+						element.imageData = theme_object?.iconPackLink || "";
+
+						defaultcomponentElements.imageInputPopup.js(element);
+						element.querySelector('[page="imagegradient"]').remove();
 					},
 					save: function (idCard) {
 						let element = idCard.element;
@@ -694,7 +814,9 @@ let designerComponents = [
 		
 							component_object[edge] = value;
 						});
-		
+
+						component_object.iconPackLink = element.imageData;
+
 						return component_object;
 					}
 				}},
@@ -767,7 +889,7 @@ let designerComponents = [
 							let value = theme_object[key];
 		
 							let input = element.querySelector(`[data-location="${key}"]`);
-							if (input == null) return;
+							if (input == null) continue;
 
 							if (input.classList.contains("rk-button")) {
 								page.toggleSwich(input, value);
@@ -842,7 +964,7 @@ let designerComponents = [
 							let value = theme_object[key];
 		
 							let input = element.querySelector(`[data-location="${key}"]`);
-							if (input == null) return;
+							if (input == null) continue;
 
 							if (input.classList.contains("rk-button")) {
 								page.toggleSwich(input, value);
@@ -897,7 +1019,7 @@ let designerComponents = [
 							let value = theme_object[key];
 		
 							let input = element.querySelector(`[data-location="${key}"]`);
-							if (input == null) return;
+							if (input == null) continue;
 
 							if (input.classList.contains("rk-button")) {
 								page.toggleSwich(input, value);
@@ -999,9 +1121,9 @@ let designerComponents = [
 
 
 					<div class="rk-flex rk-space-between rk-center-x">
-						<span style="min-width: fit-content;margin-right: 5px;" data-translate="themeLink">File:</span>
-						<input type="url" value=""
-							data-location="image.link" data-type="value" class="form-control input-field">
+						<span style="min-width: fit-content;margin-right: 5px;">Image:</span>
+						<button class="rk-btn" style="width: calc(100% - 10ch);" data-image-button="">Modify</button>
+						${defaultcomponentElements.imageInputPopup.html}
 					</div>
 
 					<div class="rk-flex rk-space-between rk-center-x">
@@ -1044,6 +1166,7 @@ let designerComponents = [
 					parentElement.removeComponent(idCard.component);
 				});
 
+				//TODO remove later
 				function FetchImage(url) {
 					return new Promise(resolve => {
 						BROWSER.runtime.sendMessage({about: "getImageRequest", url: url}, 
@@ -1052,6 +1175,10 @@ let designerComponents = [
 						})
 					})
 				}
+
+				//setup popup
+				defaultcomponentElements.imageInputPopup.js(element);
+
 
 				element.update = function() {
 					let settings = element.save(idCard);
@@ -1067,10 +1194,26 @@ let designerComponents = [
 					element.style.backgroundSize = settings.image.size;
 
 					if (settings.image.link === "") return;
-					FetchImage(settings.image.link).then((encoded) => {
-						previewElement.style.backgroundImage = encoded;
-						element.style.backgroundImage = encoded;
-					});
+					let url = settings.image.link;
+					let fill = null;
+					if (url === "") {
+						fill = "";
+					} else if (url.startsWith("linear-gradient")) {
+						fill = url.split(')')[0]+')';
+					} else if (url.startsWith("data:image/")) {
+						fill = 'url('+url.split(')')[0]+')';
+					} else {
+						FetchImage(url).then((encoded) => {
+							previewElement.style.backgroundImage = encoded;
+							element.style.backgroundImage = encoded;
+							element.imageData = encoded;
+						});
+					}
+
+					if (fill !== null) {
+						previewElement.style.backgroundImage = fill;
+						element.style.backgroundImage = fill;
+					}
 				}
 
 				let previewElement = element.querySelector('[data-preview]');
@@ -1080,8 +1223,8 @@ let designerComponents = [
 						if (input.dataset.location == "image.link") return;
 						input.addEventListener('input', () => element.update());
 					});
-					element.querySelector('[data-location="image.link"]')
-					.addEventListener('change', () => element.update());
+					// element.querySelector('[data-location="image.link"]')
+					// .addEventListener('change', () => element.update());
 				}
 			},
 			load: function (theme_object, idCard) {
@@ -1116,6 +1259,8 @@ let designerComponents = [
 
 					input.value = image[type];
 				});
+
+				element.imageData = theme_object.image.link || "";
 				
 				if (typeof element.update == 'function') element.update();
 			},
@@ -1142,6 +1287,7 @@ let designerComponents = [
 				});
 
 				component_object.image = image;
+				component_object.image.link = element.imageData;
 
 				return component_object;
 			}
@@ -4055,6 +4201,13 @@ Designer.ThemeEditor.UpdateLivePreview = function() {
 }
 
 //END SECTION ThemeEditor
+
+
+
+//SECTION - reused functions
+
+
+//END SECTION reused functions
 
 
 

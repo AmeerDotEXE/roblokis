@@ -87,9 +87,10 @@ Rkis.Designer.CreateThemeElement = async function(theme) {
 	var tamplate3 = "";
 
 
-	tamplate0 = await fetch(Rkis.fileLocation + "js/Theme/DefaultTamplate.css")
-	.then(response => response.text())
-	.catch(err => {return null;})
+	// tamplate0 = await fetch(Rkis.fileLocation + "js/Theme/DefaultTamplate.css")
+	// .then(response => response.text())
+	// .catch(err => {return null;})
+	tamplate0 = await Rkis.Designer.cssTemplateFile;
 	if(tamplate0 == null) return;
 
 	// Format
@@ -323,7 +324,16 @@ Rkis.Designer.CreateThemeElement = async function(theme) {
 		if(codepart.split(")").length < 2) {tamplate3 += codepart; continue;} //no variable detection
 		var url = codepart.split("url(")[1].split(");")[0];
 
-		fill = await FetchImage(url);
+		//skip if not url
+		if (url === "") {
+			fill = "";
+		} else if (url.startsWith("linear-gradient")) {
+			fill = url.split(')')[0]+')';
+		} else if (url.startsWith("data:image/")) {
+			fill = 'url('+url.split(')')[0]+')';
+		} else {
+			fill = await FetchImage(url);
+		}
 
 		//console.log(url, fill);
 
@@ -339,8 +349,8 @@ Rkis.Designer.CreateThemeElement = async function(theme) {
 Rkis.Designer.loadedStyleFile = false;
 Rkis.Designer.SetupTheme = async function() {
 
-	if (Rkis.generalLoaded != true) {
-		document.addEventListener("rk-general-loaded", () => {
+	if (Rkis.generalTriggerTheme != true) {
+		document.addEventListener("rk-general-trigger-theme", () => {
 			Rkis.Designer.SetupTheme();
 		}, {once: true});
 		return;
@@ -497,8 +507,9 @@ Rkis.Designer.SetupTheme = async function() {
 	}
 
 	var theme = Rkis.Designer.currentTheme;
-	
-	if (theme != null && theme.styles != null) {
+
+	//TODO delete in version 4.2
+	if (theme != null && theme.styles != null && Rkis.versionCompare(theme.current_version, "4.0.0.19") === 2) {
 		theme.styles = theme.styles || {};
 
 		let changeOldFormat = function(styleLoc) {
@@ -522,12 +533,51 @@ Rkis.Designer.SetupTheme = async function() {
 		theme.styles = changeOldFormat(theme.styles);
 	}
 
+	//save image links locally
+	if (theme != null && Rkis.versionCompare(theme.current_version, "4.0.1.1") == 2) {
+		theme.current_version = "4.0.1.1";
+
+		let changedTheme = false;
+
+		//save image links locally
+		let changeOldFormat = async function(customizationLocation) {
+			if (typeof customizationLocation != "object") return customizationLocation;
+			if (customizationLocation == null) return null;
+			for (let locationVariable in customizationLocation) {
+				if (locationVariable == "link") {
+					if (customizationLocation[locationVariable] == "") break;
+
+					if (customizationLocation[locationVariable].startsWith("http")) {
+						let localizedData = await FetchImage(customizationLocation[locationVariable]);
+						if (localizedData.startsWith("url(")) localizedData = localizedData.slice(4).slice(0, -1);
+						customizationLocation[locationVariable] = localizedData;
+						changedTheme = true;
+					}
+					break;
+				}
+				customizationLocation[locationVariable] = await changeOldFormat(customizationLocation[locationVariable]);
+			}
+			return customizationLocation;
+		}
+
+		// theme.styles = changeOldFormat(theme.styles);
+		theme.pages = await changeOldFormat(theme.pages);
+		if (changedTheme === true) {
+			Rkis.database.save();
+		}
+	}
+
 	var styl = await Rkis.Designer.CreateThemeElement(theme);
 	if (styl == null) return;
 
-	document.$watch("head", (e) => {
-		e.append(styl);
-	});
+	let earlyHeadElement = document.querySelector("head");
+	if (earlyHeadElement != null) {
+		earlyHeadElement.appendChild(styl);
+	} else {
+		document.$watch("head", (e) => {
+			e.append(styl);
+		});
+	}
 	document.$watch(".light-theme, .dark-theme", (e) => {
 		let isDark = theme.isDark != false;
 		if (pagetheme == null) isDark = !Rkis.wholeData.isUsingLightTheme;
@@ -537,6 +587,10 @@ Rkis.Designer.SetupTheme = async function() {
 
 }
 
+//start loading template to save couple of milliseconds
+Rkis.Designer.cssTemplateFile = fetch(Rkis.fileLocation + "js/Theme/DefaultTamplate.css")
+.then(response => response.text())
+.catch(() => {return null;});
 Rkis.Designer.SetupTheme();
 
 Rkis.Designer.tempTimeout = null;

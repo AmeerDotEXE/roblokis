@@ -76,9 +76,23 @@ Rkis.page.all = () => {
 							if (options == null) return;
 							if (options.iconPackLink == null) return;
 
-							FetchImage(options.iconPackLink).then(iconsImage => {
-								if (body) body.style.setProperty("--menubtns-icons-image", iconsImage);
-							});
+							let url = options.iconPackLink;
+							let fill = null;
+							if (url === "") {
+								fill = "";
+							} else if (url.startsWith("linear-gradient")) {
+								fill = url.split(')')[0]+')';
+							} else if (url.startsWith("data:image/")) {
+								fill = 'url('+url.split(')')[0]+')';
+							} else {
+								FetchImage(url).then((iconsImage) => {
+									body.style.setProperty("--menubtns-icons-image", iconsImage);
+								});
+							}
+
+							if (fill !== null) {
+								body.style.setProperty("--menubtns-icons-image", fill);
+							}
 						}
 					}
 				},
@@ -623,9 +637,24 @@ Rkis.page.all = () => {
 					iconElement.className = "new-menu-icon icon-nav-charactercustomizer";
 					iconElement.style.backgroundPosition = "center";
 					iconElement.style.backgroundSize = "28px";
-					FetchImage(btnData.icon.value).then(imageData => {
-						iconElement.style.backgroundImage = imageData;
-					});
+
+					let url = btnData.icon.value;
+					let fill = null;
+					if (url === "") {
+						fill = "";
+					} else if (url.startsWith("linear-gradient")) {
+						fill = url.split(')')[0]+')';
+					} else if (url.startsWith("data:image/")) {
+						fill = 'url('+url.split(')')[0]+')';
+					} else {
+						FetchImage(url).then((imageData) => {
+							iconElement.style.backgroundImage = imageData;
+						});
+					}
+
+					if (fill !== null) {
+						iconElement.style.backgroundImage = fill;
+					}
 				}
 
 				iconWrapper.appendChild(iconElement);

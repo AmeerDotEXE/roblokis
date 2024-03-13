@@ -339,6 +339,10 @@ span.rk-button {
 	width: 100%;
 	height: 100%;
 }
+.rk-page-tab {
+	display: flex;
+    flex-direction: column;
+}
 .rk-tabs {
 	display: flex;
 	gap: 1ch;
@@ -418,4 +422,21 @@ span.rk-button {
     max-height: 12rem;
     max-width: 100%;
 	cursor: pointer;
+}
+
+label.rk-file-input {
+	height: 100%;
+    width: 100%;
+    border: 2px dashed rgba(128, 128, 128, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background-color: rgba(128, 128, 128, 0.1);
+	cursor: pointer;
+	user-select: none;
+	text-align: center;
+}
+label.rk-file-input:hover {
+    background-color: rgba(128, 128, 128, 0.2);
 }
