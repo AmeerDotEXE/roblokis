@@ -26,6 +26,7 @@ body#rbx-body #navigation:not(:hover) {
 }
 .rbx-header .icon-logo {
 	margin-left: 5px;
+	margin-right: 5px;
 }
 
 .text-nav > *:first-child,

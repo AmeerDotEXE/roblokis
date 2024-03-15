@@ -127,3 +127,6 @@
 	margin: 0;
 }
 
+.profile-container .game-container.shown {
+	width: fit-content;
+}

@@ -998,14 +998,14 @@ page.settingsWaitingForGeneral = function() {
 												<div class="rk-tab" page="defaultthemes">Default</div>
 												<div class="rk-tab is-active" page="browsethemes">Browse</div>
 											</div>
-											<div class="rk-tab-pages">
-												<div class="rk-tab-page" tab="defaultthemes" style="height: 100%;overflow: auto;">
-													<div id="rk-default-theme-list" style="width: 100%;height: 100%;">
+											<div class="rk-tab-pages" style="overflow: auto;">
+												<div class="rk-tab-page" tab="defaultthemes">
+													<div id="rk-default-theme-list" style="width: 100%;">
 														<div style="text-align: center;">Not Loaded</div>
 													</div>
 												</div>
-												<div class="rk-tab-page is-active" tab="browsethemes" style="height: 100%;overflow: auto;">
-													<div id="rk-browse-theme-list" style="width: 100%;height: 100%;">
+												<div class="rk-tab-page is-active" tab="browsethemes">
+													<div id="rk-browse-theme-list" style="width: 100%;">
 														<div style="text-align: center;">Not Loaded</div>
 													</div>
 												</div>

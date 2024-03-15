@@ -14,6 +14,9 @@
 #store {
 	background-color: transparent;
 }
+.btr-hide-ads div.content {
+	max-width: 100% !important;
+}
 
 
 /*game photo & button*/

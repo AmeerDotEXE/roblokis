@@ -2,7 +2,8 @@
 	height: fit-content;
 	max-height: 90%;
 	overflow-y: auto;
-	padding-bottom: 5px;
+	/* padding-bottom: 5px; */
+	padding-bottom: 10px;
 	margin: 10px;
 }
 
@@ -37,12 +38,13 @@
 	border-radius: var(--rk-menu-corners-radius, 20px);
 }
 
-.rbx-left-col .rbx-scrollbar li.rbx-upgrade-now .btn-secondary-md {
+.rbx-left-col .rbx-scrollbar li.rbx-upgrade-now .btn-secondary-md,
+.rbx-left-col .rbx-scrollbar .left-col-list > a > :nth-child(2) {
 	border-radius: calc(var(--rk-menu-corner-radius, 20px) / 2);
 }
 
 .rbx-left-col .rbx-scrollbar li.rbx-upgrade-now:last-child {
-	margin-bottom: 7px;
+	margin-bottom: 0px;
 }
 
 body {
