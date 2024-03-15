@@ -18,3 +18,7 @@ html .alert-system-feedback .alert {
 #mostPlayedContainer .game-card-thumb-container::after {
 	opacity: 0 !important;
 }
+#mostPlayedContainer .game-card-link .game-card-thumb-container .thumbnail-2d-container {
+	width: 100% !important;
+	height: 100% !important;
+}
