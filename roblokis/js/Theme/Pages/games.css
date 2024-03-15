@@ -145,7 +145,7 @@ body#rbx-body .new-badges-list, #badges-section .badge-sorts-filters-container {
 }
 
 #game-badges-container > game-badges-list > div > ul > li > div.badge-content > div > p {
-	color: var(--rk-badge-dark-color);
+	color: var(--rk-badge-dark-color, #bdbebe) !important;
 }
 
 #game-badges-container > game-badges-list > div > ul > li > div.badge-content> ul > li > div.text-label {

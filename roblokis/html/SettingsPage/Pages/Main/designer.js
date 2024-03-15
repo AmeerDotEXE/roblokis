@@ -1383,7 +1383,7 @@ let designerComponents = [
 				});
 
 				component_object.image = image;
-				component_object.image.link = element.imageData;
+				component_object.image.link = element.imageData || "";
 
 				return component_object;
 			}
@@ -3066,7 +3066,8 @@ let designerComponents = [
 		parent: {
 			headId: 'pages',
 			ids: {
-				badge: true
+				badge: true,
+				menu: true,
 			},
 			tags: {
 				hasBrightnDarkColors: true
@@ -3124,6 +3125,73 @@ let designerComponents = [
 			}
 		}
 	},//colors - 2
+	{
+		id: "colors2",
+		parent: {
+			headId: 'pages',
+			ids: {
+				content: true
+			},
+		},
+		details: {
+			name: "Text Color",
+			translate: {
+				name: 'themeTxtColor'
+			}
+		},
+		element: {
+			html: /*html*/`
+			<div class="section-content">
+				<div class="rk-flex rk-space-between rk-center-x">
+					<h4 style="width: fit-content;" data-translate="themeTxtColor">Text Color</h4>
+					<button class="rk-btn" data-remove-component>-</button>
+				</div>
+
+				<div class="text-lead rk-flex rk-space-between rk-center-x">
+					<span style="min-width: fit-content;">Header Color:</span>
+					<input type="color" value="#ffffff"
+						data-location="colors.bright" data-type="value" class="form-control input-field">
+				</div>
+				<div class="text-lead rk-flex rk-space-between rk-center-x">
+					<span style="min-width: fit-content;">Title Color:</span>
+					<input type="color" value="#ffffff"
+						data-location="colors.bright2" data-type="value" class="form-control input-field">
+				</div>
+				
+				<div class="text-lead rk-flex rk-space-between rk-center-x">
+					<span style="min-width: fit-content;">Content Color:</span>
+					<input type="color" value="#bdbebe"
+						data-location="colors.dark" data-type="value" class="form-control input-field">
+				</div>
+
+			</div>`,
+			js: function (idCard, parentElement) {
+				let element = idCard.element;
+
+				//setup remove component btn
+				element.querySelector(`[data-remove-component]`)
+					.addEventListener("click", () => {
+						parentElement.removeComponent(idCard.component);
+					});
+			},
+			load: function (theme_object, idCard) {
+				let element = idCard.element;
+
+				element.querySelector(`[data-location="colors.bright"]`).value = theme_object.primary;
+				element.querySelector(`[data-location="colors.bright2"]`).value = theme_object.primary2;
+				element.querySelector(`[data-location="colors.dark"]`).value = theme_object.secondary;
+			},
+			save: function (idCard) {
+				let element = idCard.element;
+
+				return {
+					primary: element.querySelector(`[data-location="colors.bright"]`).value,
+					primary2: element.querySelector(`[data-location="colors.bright2"]`).value,
+					secondary: element.querySelector(`[data-location="colors.dark"]`).value
+				};
+			}
+		}
+	},//colors2 - 2 primary 1 secondary
 	{
 		id: "pagenav",
 		tags: ["blockElement", "hasColor"],

@@ -309,3 +309,31 @@ body#rbx-body:not(.gamecards-join-text) .rk-quickgamejoin::after {
     background-repeat: no-repeat;
     transform: translateX(-50%);
 }
+
+
+/*   Colored Text   */
+/* content */
+.content {
+	color: var(--rk-content-textcolor-primary, #fff) !important;
+}
+.section-content,
+.people-list .friend .friend-link {
+	color: var(--rk-content-textcolor-primary2, #fff) !important;
+}
+.text, .text-date-hint, .text-default, .text-description, .text-footer, .text-info, .text-label, .text-secondary, p, .game-card-info .info-label {
+	color: var(--rk-content-textcolor-secondary, #bdbebe) !important;
+}
+
+/* nav menu */
+.rbx-left-col li .text-nav:active, .rbx-left-col li .text-nav:link, .rbx-left-col li .text-nav:visited, .text-nav, .text-nav:hover {
+	color: var(--rk-menu-textcolor-primary, #fff) !important;
+}
+
+/* navbar */
+.rbx-header .text-header, .rbx-header .text-header:active, .rbx-header .text-header:focus, .rbx-header .text-header:hover, .rbx-header .text-header:link, .rbx-header .text-header:visited {
+	color: var(--rk-menu-textcolor-primary, #fff) !important;
+}
+#rbx-body #buy-robux-popover-menu li a, #rbx-body #settings-popover-menu li a {
+	color: var(--rk-menu-textcolor-secondary, #bdbebe);
+}
+

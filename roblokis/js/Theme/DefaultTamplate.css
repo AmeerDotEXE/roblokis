@@ -62,6 +62,10 @@
 --loopend: 0;
 
 
+--rk-content-textcolor-primary: $content.colors2.primary#;
+--rk-content-textcolor-primary2: $content.colors2.primary2#;
+--rk-content-textcolor-secondary: $content.colors2.secondary#;
+
 /*  Header Logo	*/
 
 	--rk-icon-background-color: $icon.background.color#;
@@ -74,6 +78,9 @@
 
 
 /*  Menu	*/
+
+	--rk-menu-textcolor-primary: $menu.colors.bright#;
+	--rk-menu-textcolor-secondary: $menu.colors.dark#;
 
 	--rk-menu-corner-radius: $menu.corners.all.radius#;
 
