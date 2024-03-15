@@ -77,11 +77,19 @@ body .rbx-header .rbx-navbar-header {
 }
 :root .icon-logo-r {
 	background-repeat: var(--rk-icon-r-background-image-repeat);
-	background-size: var(--rk-icon-r-background-image-size, 30px 30px);
+	/* background-size: var(--rk-icon-r-background-image-size, 30px 30px); */
 	/* background-size: 30px 30px; */
 	background-position: center;
 
 	margin: 0 5px;
+}
+/* popups logo */
+:root .icon-logo-r-95 {
+	background-repeat: var(--rk-icon-r-background-image-repeat);
+	/* background-size: var(--rk-icon-r-background-image-size, 95px 95px); */
+	background-position: center;
+
+	margin-bottom: 8px;
 }
 
 
@@ -337,3 +345,27 @@ body#rbx-body:not(.gamecards-join-text) .rk-quickgamejoin::after {
 	color: var(--rk-menu-textcolor-secondary, #bdbebe);
 }
 
+
+/* popups */
+#rbx-body .modal-dialog .modal-content,
+#rbx-body .popover {
+	border-radius: var(--rk-popup-corners-radius, 8px);
+
+	border-color: var(--rk-popup-borders-color);
+	border-style: var(--rk-popup-borders-style);
+	border-width: var(--rk-popup-borders-size);
+
+	background: var(--rk-popup-background);
+	background-size: var(--rk-popup-background-image-size);
+
+	backdrop-filter: var(--rk-popup-backdrop-filter);
+	box-shadow: var(--rk-popup-box-shadow);
+
+	box-sizing: content-box;
+}
+#rbx-body .popover.bottom>.arrow, #rbx-body .popover.bottom>.arrow:after {
+	border-bottom-color: var(--rk-popup-background-color);
+}
+.people-info-card-container .interaction-container {
+	background-color: transparent;
+}

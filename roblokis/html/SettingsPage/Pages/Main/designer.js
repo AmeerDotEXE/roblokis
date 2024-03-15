@@ -2961,6 +2961,21 @@ let designerComponents = [
 		element: defaultcomponentElements.horizantalGroup
 	},//iconr
 	{
+		id: "popup",
+		tags: ["blockElement"],
+		parent: {
+			headId: 'pages',
+			tags: {
+				page: true
+			}
+		},
+		details: {
+			name: "Popups",
+			description: "Edits any modal or popup.",
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//popup
+	{
 		id: "group",
 		tags: ["blockElement"],
 		parent: {

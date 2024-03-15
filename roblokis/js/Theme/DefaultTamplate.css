@@ -84,6 +84,10 @@
 
 	--rk-menu-corner-radius: $menu.corners.all.radius#;
 
+/*	Popups	*/
+
+	--rk-popup-background-color: $popup.background.color#;
+
 
 
 /*	Badges		*/
@@ -129,7 +133,8 @@
 :root .icon-logo {
 	background-image: url($icon.background.image.link#);
 }
-:root .icon-logo-r {
+:root .icon-logo-r,
+:root .icon-logo-r-95 {
 	background-image: url($iconr.background.image.link#);
 }
 .avatar .avatar-card-image {
@@ -137,6 +142,10 @@
 }
 #rbx-body .rk-quickgamejoin {
 	background-image: url($quickgamejoin.background.image.link#);
+}
+#rbx-body .modal-dialog .modal-content,
+#rbx-body .popover {
+	background-image: url($popup.background.image.link#);
 }
 
 /*groups.css*/
