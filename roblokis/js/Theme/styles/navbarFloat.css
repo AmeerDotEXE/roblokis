@@ -150,6 +150,15 @@ body .rbx-header .rbx-navbar li:hover {
 	border-radius: var(--rk-menu-corners-radius, 8px);
 }
 
+/* perfectly center search */
+#rbx-body:not(.rk-hide-roblox-logo) #right-navigation-header > div.navbar-right.rbx-navbar-right,
+#rbx-body:not(.rk-hide-roblox-logo) #header.rbx-header .rbx-navbar-header {
+	width: 0px;
+}
+#rbx-body:not(.rk-hide-roblox-logo) #header.rbx-header .rbx-navbar-header {
+	display: flex;
+}
+
 @media (max-width: 991px) {
 	#header .container-fluid {
 		display: block;
