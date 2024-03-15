@@ -1,6 +1,20 @@
 /* this file used to fix css bugs without uploading the extension to google on each problem */
+/* fix notification not showing */
 html .alert-system-feedback .alert {
 	top: -50%;
 	/* transform: translate(0, -200%); */
   transform: none !important;
+}
+/* RoPro fix most played section */
+#mostPlayedContainer > li > div > a.game-card-link {
+	min-height: 145px !important;
+	padding: 0px !important;
+}
+#mostPlayedContainer .game-card-name {
+	height: auto !important;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+#mostPlayedContainer .game-card-thumb-container::after {
+	opacity: 0 !important;
 }
