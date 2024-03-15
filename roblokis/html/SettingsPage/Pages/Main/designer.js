@@ -796,6 +796,53 @@ let designerComponents = [
 						return component_object;
 					}
 				}},
+				{value: 'buttons',details:{name:'Buttons',description:"floating but saparated buttons"},element:{
+					html: /*html*/`
+						<div style="width: 100%;margin-top: 0.5rem;">
+							<span class="text-lead">Icons only</span>
+							<span data-location="iconsOnly" class="rk-button receiver-destination-type-toggle off">
+								<span class="toggle-flip"></span>
+								<span class="toggle-on"></span>
+								<span class="toggle-off"></span>
+							</span>
+						</div>`,
+					js: null,
+					load: function (theme_object, idCard) {
+						let element = idCard.element;
+		
+						for (let key in theme_object) {
+							if (theme_object[key] == null) continue;
+							let value = theme_object[key];
+		
+							let input = element.querySelector(`[data-location="${key}"]`);
+							if (input == null) continue;
+
+							if (input.classList.contains("rk-button")) {
+								page.toggleSwich(input, value);
+							} else if (input.classList.contains("input-field")) {
+								input.value = value;
+							}
+						}
+					},
+					save: function (idCard) {
+						let element = idCard.element;
+						let component_object = {};
+		
+						element.querySelectorAll(`[data-location]`).forEach((input) => {
+							let edge = input.dataset.location;
+							let value = null;
+							if (input.classList.contains("rk-button")) {
+								value = page.getSwich(input);
+							} else if (input.classList.contains("input-field")) {
+								value = input.value;
+							}
+		
+							component_object[edge] = value;
+						});
+		
+						return component_object;
+					}
+				}},
 			]
 		},
 		element: defaultcomponentElements.styleDropdown

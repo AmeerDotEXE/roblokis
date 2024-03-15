@@ -1,0 +1,94 @@
+#navigation {
+	height: auto;
+	overflow: visible;
+	background: transparent;
+    backdrop-filter: none;
+    box-shadow: none;
+}
+#navigation > ul > li.rbx-divider {
+	display: none;
+}
+
+#navigation .simplebar-mask,
+.rbx-left-col .rbx-scrollbar,
+.rbx-left-col .simplebar-wrapper {
+	overflow: visible;
+}
+.rbx-left-col .simplebar-content-wrapper {
+	overflow: visible !important;
+}
+.rbx-left-col .rbx-scrollbar .left-col-list {
+	padding-top: 0;
+}
+.rbx-left-col li {
+	background: var(--rk-menu-background);
+    background-size: var(--rk-menu-background-image-size);
+    border-radius: var(--rk-menu-corners-radius, 8px);
+    border-color: var(--rk-menu-borders-color);
+    border-style: var(--rk-menu-borders-style);
+    border-width: var(--rk-menu-borders-size);
+    backdrop-filter: var(--rk-menu-backdrop-filter);
+    box-shadow: var(--rk-menu-box-shadow);
+	overflow: hidden;
+    padding: 4px;
+}
+.rbx-left-col li .dynamic-width-item.align-right {
+	margin-right: 2px;
+}
+
+.rbx-upgrade-now {
+	display: none !important;
+}
+
+
+
+.menu-icons-only .rbx-left-col li {
+	overflow: hidden;
+	max-width: 200px;
+	transition: all 200ms;
+}
+.menu-icons-only #navigation,
+.menu-icons-only #navigation > .rbx-scrollbar,
+.menu-icons-only .rbx-left-col .rbx-scrollbar .left-col-list {
+	width: auto;
+}
+/* (in the future) make an option to expand one at a time */
+.menu-icons-only .rbx-left-col:not(:hover) li {
+	max-width: 36px;
+}
+
+.menu-icons-only .rbx-left-col .left-col-list > a {
+	display: block;
+	width: fit-content;
+}
+
+.menu-icons-only #navigation {
+	height: 100%;
+	max-height: -webkit-fill-available;
+}
+.menu-icons-only #navigation div.simplebar-wrapper div.simplebar-content {
+	height: 100%;
+}
+.menu-icons-only .rbx-left-col .rbx-scrollbar .left-col-list {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.menu-icons-only .rbx-left-col .left-col-list > a {
+	margin-top: auto;
+}
+.menu-icons-only #nav-shop {
+	width: 100%;
+}
+
+
+body.menu-icons-only {
+	--menufloat-width: 35px;
+}
+
+@media (min-width: 1688px) {
+	.menu-icons-only.menubtns-spacing .no-gutter-ads.logged-in .content {
+		margin-left: calc(20px + var(--menufloat-width));
+		max-width: calc(100% - var(--menufloat-width) - 30px);
+	}
+}

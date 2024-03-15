@@ -63,6 +63,30 @@ Rkis.page.all = () => {
 								if (body) body.classList.add("menu-avatar-bottom");
 							}
 						}
+					},
+					buttons: {
+						css: ["js/Theme/styles/menuButtons.css"],
+						js: (style) => {
+							var allMaxWidthPages = [
+								".com/discover",
+								".com/catalog",
+								".com/my/avatar",
+							];
+						
+							for (let index = 0; index < allMaxWidthPages.length; index++) {
+								const matchUrl = allMaxWidthPages[index];
+								if(!window.location.href.toLowerCase().includes(matchUrl)) continue;
+								
+								if (body) body.classList.add("menubtns-spacing");
+								break;
+							}
+
+							let options = style.options;
+							if (options == null) return;
+							if (options.iconsOnly == true) {
+								if (body) body.classList.add("menu-icons-only");
+							}
+						}
 					}
 				},
 				icons: {
@@ -549,26 +573,27 @@ Rkis.page.all = () => {
 				else if (avatarStatus.classList.contains("icon-studio")) return "hsl(33, 98%, 49%)";
 				return "hsl(0, 0%, 0%)";
 			}
-			// document.$watchLoop(".avatar-status", (element) => {
-			// 	// console.log("found", getStatus(element), element);
-			// 	element.$watchData((statusElement) => {
-			// 		// console.log("edited", getStatus(statusElement), statusElement);
-			// 		let container = statusElement.closest(".avatar-container")
-			// 		if (container) {
-			// 			container.classList.add("rk-status-ring")
-			// 			container.style.setProperty("--friend-status-color", getStatus(statusElement));
-			// 		}
-			// 	});
-			// });
-			document.$watchLoop(".avatar-container", (container) => {
+			document.$watchLoop(".avatar-status", (element) => {
 				// console.log("found", getStatus(element), element);
-				let element = container.querySelector(".avatar-status");
 				element.$watchData((statusElement) => {
 					// console.log("edited", getStatus(statusElement), statusElement);
-					container.classList.add("rk-status-ring");
-					container.style.setProperty("--friend-status-color", getStatus(statusElement));
+					let container = statusElement.closest(".avatar-container")
+					if (container) {
+						container.classList.add("rk-status-ring");
+						container.style.setProperty("--friend-status-color", getStatus(statusElement));
+					}
 				});
 			});
+			// tested but out of sync
+			// document.$watchLoop(".avatar-container", (container) => {
+			// 	// console.log("found", getStatus(element), element);
+			// 	let element = container.querySelector(".avatar-status");
+			// 	element.$watchData((statusElement) => {
+			// 		// console.log("edited", getStatus(statusElement), statusElement);
+			// 		container.classList.add("rk-status-ring");
+			// 		container.style.setProperty("--friend-status-color", getStatus(statusElement));
+			// 	});
+			// });
 		})();
 	}
 
