@@ -473,7 +473,7 @@ let designerComponents = [
 		data: {
 			options: [
 				{value: '',details:{name:'Disabled'}},
-				{value: 'videoplayer',details:{name:'Enabled'},element:{
+				{value: 'videoplayer',details:{name:'Video Link'},element:{
 					html: /*html*/`
 						<div style="width: 100%;margin-top: 0.5rem;" class="rk-flex rk-space-between rk-center-x">
 							<span style="min-width: fit-content;margin-right: 5px;">File:</span>
@@ -487,6 +487,55 @@ let designerComponents = [
 								<span class="toggle-on"></span>
 								<span class="toggle-off"></span>
 							</span>
+						</div>
+						<div class="rk-flex rk-space-between rk-center-x" style="width: 100%;margin-top: 0.5rem;">
+							<span style="flex-shrink: 0;margin-right: 1ch;">Video Volume</span>
+							<input data-location="videoVolume" type="range" class="form-control input-field"
+								min="0" max="100" value="100" step="5">
+						</div>`,
+					js: null,
+					load: function (theme_object, idCard) {
+						let element = idCard.element;
+		
+						for (let key in theme_object) {
+							if (theme_object[key] == null) continue;
+							let value = theme_object[key];
+		
+							let input = element.querySelector(`[data-location="${key}"]`);
+							if (input == null) continue;
+
+							if (input.classList.contains("rk-button")) {
+								page.toggleSwich(input, value);
+							} else if (input.classList.contains("input-field")) {
+								input.value = value;
+							}
+						}
+					},
+					save: function (idCard) {
+						let element = idCard.element;
+						let component_object = {};
+		
+						element.querySelectorAll(`[data-location]`).forEach((input) => {
+							let edge = input.dataset.location;
+							let value = null;
+							if (input.classList.contains("rk-button")) {
+								value = page.getSwich(input);
+							} else if (input.classList.contains("input-field")) {
+								value = input.value;
+							}
+		
+							component_object[edge] = value;
+						});
+		
+						return component_object;
+					}
+				}},
+				{value: 'youtubeplayer',details:{name:'Youtube Link'},element:{
+					html: /*html*/`
+						<div style="width: 100%;margin-top: 0.5rem;" class="rk-flex rk-space-between rk-center-x">
+							<span style="min-width: fit-content;margin-right: 5px;">Link:</span>
+							<input type="url" value="" placeholder="URL"
+								data-location="videolink" data-type="value" class="form-control input-field">
 						</div>`,
 					js: null,
 					load: function (theme_object, idCard) {

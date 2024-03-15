@@ -103,34 +103,95 @@ Rkis.page.all = () => {
 							let options = style.options;
 							if (options == null) return;
 							if (options.videolink == null) return;
+
 							let videoLink = options.videolink;
-							let isMuted = options.mutevideo != false
+							let isMuted = options.mutevideo != false;
+							let videoVolume = parseInt(options.videoVolume || "100") / 100;
+
+							if (!videoLink.startsWith("https://")) return;
+							if (videoLink.includes("youtube.com") || videoLink.includes("youtu.be")) {
+								styles.all.videobackground.youtubeplayer.js(style);
+								return;
+							}
 
 							let backgroundElement = document.createElement('video');
 							backgroundElement.classList.add('rk-page-background-video');
 							backgroundElement.src = videoLink;
 							backgroundElement.autoplay = true;
 							backgroundElement.loop = true;
-							backgroundElement.muted = true;
-							// backgroundElement.muted = isMuted;
+							// backgroundElement.muted = true;
+							backgroundElement.volume = 0;
+							backgroundElement.muted = isMuted;
 							// backgroundElement.style.backgroundImage = `url(${imgElement.src})`;
 							document.body.prepend(backgroundElement);
 
 							let playVideo = () => {
 								try {
 									backgroundElement.play();
-									if (backgroundElement.paused == false) {
-										backgroundElement.muted = isMuted;
-										return;
-									}
+									// if (backgroundElement.paused == false) {
+									// 	backgroundElement.muted = isMuted;
+									// 	backgroundElement.volume = 0.75;
+									// 	return;
+									// }
 								} catch {}
-								setTimeout(playVideo, 1000);
+								// setTimeout(playVideo, 1000);
 							};
-							backgroundElement.onpause = playVideo;
 							backgroundElement.oncanplay = playVideo;
 							backgroundElement.oncanplaythrough = playVideo;
 							backgroundElement.onload = playVideo;
 							playVideo();
+
+							document.addEventListener("click", async () => {
+								backgroundElement.volume = videoVolume;
+							}, {once: true});
+
+							window.addEventListener("blur", () => {
+								backgroundElement.pause();
+								localStorage.setItem("videoBackgroundTime", backgroundElement.currentTime);
+							});
+							window.addEventListener("focus", () => {
+								let sessionVideoTime = parseFloat(localStorage.getItem("videoBackgroundTime") || "0");
+								backgroundElement.currentTime = sessionVideoTime;
+								backgroundElement.play();
+							});
+						}
+					},
+					youtubeplayer: {
+						css: [],
+						js: (style) => {
+							let options = style.options;
+							if (options == null) return;
+							if (options.videolink == null) return;
+
+							let videoLink = options.videolink;
+							if (!videoLink.startsWith("https://")) return;
+							if (!videoLink.includes("youtube.com") && !videoLink.includes("youtu.be")) return;
+
+							let videoId = escapeHTML(getYoutubeId(videoLink));
+							// console.log(videoId, videoLink);
+							let backgroundElement = document.createElement('iframe');
+							backgroundElement.classList.add('rk-page-background-video');
+							backgroundElement.id = 'rk-page-background-video-yt';
+							backgroundElement.src = "https://www.youtube.com/embed/"+videoId+`?controls=0&disablekb=1&fs=0&autoplay=1&mute=1&playsinline=1&playlist=${videoId}&loop=1`;
+							// console.log(backgroundElement.src);
+							backgroundElement.frameBorder = 0;
+							backgroundElement.style.border = "0";
+							backgroundElement.style.pointerEvents = "none";
+							backgroundElement.height = "100%";
+							backgroundElement.width = "100%";
+							document.body.prepend(backgroundElement);
+
+							function getYoutubeId(str) {
+								if (str == null) return str;
+							
+								if (str.includes(`youtu.be/`)) return str.split(`youtu.be/`)[1].split(`/`)[0].split(`?`)[0];
+								else if (str.includes(`youtube.com/`)) {
+									if (str.includes(`youtube.com/v/`)) return str.split(`youtube.com/v/`)[1].split(`/`)[0].split(`?`)[0];
+							
+									return str.split(`v=`)[1].split(`&`)[0];
+								}
+								else return str;
+							}
 						}
 					}
 				},
