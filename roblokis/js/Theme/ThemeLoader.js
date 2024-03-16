@@ -535,7 +535,7 @@ Rkis.Designer.SetupTheme = async function() {
 	}
 
 	//save image links locally
-	if (theme != null && Rkis.versionCompare(theme.current_version, "4.0.1.1") == 2) {
+	if (false && theme != null && Rkis.versionCompare(theme.current_version, "4.0.1.1") == 2) {
 		theme.current_version = "4.0.1.1";
 
 		let changedTheme = false;

@@ -315,6 +315,7 @@ const defaultcomponentElements = {
 						<div class="rk-tab" bg-image-clear>Clear</div>
 						<div class="rk-tab is-active" page="imageupload">Image</div>
 						<div class="rk-tab" page="imagegradient">Gradient</div>
+						<div class="rk-tab" page="imagelink">Link</div>
 					</div>
 					<div class="rk-tab-pages">
 						<div class="rk-tab-page is-active" tab="imageupload" style="height: 100%;">
@@ -329,6 +330,13 @@ const defaultcomponentElements = {
 						</div>
 						<div class="rk-tab-page" tab="imagegradient">
 							<div class="info" style="font-size: 20px;">Coming Soon!</div>
+						</div>
+						<div class="rk-tab-page is-active" tab="imagelink" style="height: 100%;">
+							<div class="rk-flex rk-space-between rk-center-x" style="min-width: 65%;">
+								<span style="min-width: fit-content;margin-right: 5px;" data-translate="themeLink">File:</span>
+								<input type="url" value="" style="width: 100%;"
+									data-image-link class="form-control input-field">
+							</div>
 						</div>
 					</div>
 				</div>
@@ -382,6 +390,7 @@ const defaultcomponentElements = {
 
 			let imageUploader = element.querySelector("[data-image-upload]");
 			let imageUploaderField = imageUploader.parentElement;
+			let imageLinkField = element.querySelector("[data-image-link]");
 
 			//clear
 			element.querySelector("[bg-image-clear]").addEventListener("click", () => {
@@ -418,6 +427,21 @@ const defaultcomponentElements = {
 					break;
 				}
 			});
+			//link
+			imageLinkField.addEventListener("blur", () => {
+				if (imageLinkField.value != "") {
+					triggerFileUpload(imageLinkField.value);
+				}
+			});
+		},
+		load: function(theme_object, idCard) {
+			let element = idCard.element;
+			let imageLinkField = element.querySelector("[data-image-link]");
+
+			if (element.imageData?.startsWith("https://")) {
+				imageLinkField.value = element.imageData || "";
+				// element.linkModificationCheck = element.imageData || "";
+			}
 		}
 	},
 };
@@ -1302,7 +1326,7 @@ let designerComponents = [
 						FetchImage(url).then((encoded) => {
 							previewElement.style.backgroundImage = encoded;
 							element.style.backgroundImage = encoded;
-							element.imageData = encoded;
+							// element.imageData = encoded;
 						});
 					}
 
@@ -1357,7 +1381,8 @@ let designerComponents = [
 				});
 
 				element.imageData = theme_object.image.link || "";
-				
+
+				defaultcomponentElements.imageInputPopup.load(theme_object, idCard);
 				if (typeof element.update == 'function') element.update();
 			},
 			save: function (idCard) {
