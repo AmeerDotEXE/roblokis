@@ -1,10 +1,7 @@
 /* this file used to fix css bugs without uploading the extension to google on each problem */
 /* fix popups no background by default */
-#rbx-body.dark-theme .modal-dialog .modal-content, #rbx-body.dark-theme .popover {
+#rbx-body .modal-dialog .modal-content, #rbx-body .popover {
 	background: var(--rk-popup-background, #393b3d);
-}
-#rbx-body.light-theme .modal-dialog .modal-content, #rbx-body.light-theme .popover {
-	background: var(--rk-popup-background, #fff);
 }
 #rbx-body.dark-theme .popover.bottom>.arrow, #rbx-body.dark-theme .popover.bottom>.arrow:after {
 	border-bottom-color: var(--rk-popup-background-color, #393b3d);
