@@ -12,36 +12,6 @@
 			"cssUrl": "https://ameerdotexe.github.io/roblokis/data/experiments/moveGameSocialsTopRight.css",
 			"filterUrls": [".com/games/"]
 		},
-		"center-float-navbar-style": {
-			"name": "Fix Center float navbar style",
-			"description": "Perfectly centers navbar items",
-			"cssUrl": "https://ameerdotexe.github.io/roblokis/data/experiments/centerFloatNavbarStyle.css",
-			"filterUrls": [
-				".com/home",".com/discover",".com/users/",".com/games/",
-				".com/groups/",".com/catalog",".com/upgrades/",".com/transactions",
-				".com/my/messages",".com/my/avatar",".com/my/account"
-			]
-		},
-		"right-padding-rod-menu-style": {
-			"name": "Fix Right padding for pole menu style",
-			"description": "adds a bit of space at the right side of the wide roblox icon",
-			"cssUrl": "https://ameerdotexe.github.io/roblokis/data/experiments/rightPaddingForRodMenuStye.css",
-			"filterUrls": [
-				".com/home",".com/discover",".com/users/",".com/games/",
-				".com/groups/",".com/catalog",".com/upgrades/",".com/transactions",
-				".com/my/messages",".com/my/avatar",".com/my/account"
-			]
-		},
-		"button-menu-style": {
-			"name": "Button menu style",
-			"description": "new style, (doesn't work with other styles) remove menu component from styles tab in all pages before using.",
-			"cssUrl": "https://ameerdotexe.github.io/roblokis/data/experiments/buttonMenuStyle.css"
-		},
-		"button-menu-style-pole-design": {
-			"name": "Pole design for Button menu style",
-			"description": "needs button menu style experiment.",
-			"cssUrl": "https://ameerdotexe.github.io/roblokis/data/experiments/buttonMenuStylePoleDesign.css"
-		},
 		"hide-recommended-from-homepage": {
 			"name": "Hide Recommended",
 			"description": "Hides recommended section from home page",
