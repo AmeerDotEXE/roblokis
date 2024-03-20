@@ -1,0 +1,21 @@
+#navigation {
+	transform: translateX(0%);
+	transition: transform 200ms;
+}
+#navigation .simplebar-mask,
+.rbx-left-col .rbx-scrollbar,
+.rbx-left-col .simplebar-wrapper {
+	overflow: visible;
+}
+.rbx-left-col .simplebar-content-wrapper {
+	overflow: visible !important;
+}
+
+@media (max-width: 1688px) {
+	#navigation:not(.nav-show) {
+		transform: translateX(-120%);
+		display: block;
+		visibility: visible;
+		width: 175px;
+	}
+}

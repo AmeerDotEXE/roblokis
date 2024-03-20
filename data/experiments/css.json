@@ -17,6 +17,11 @@
 			"description": "Hides recommended section from home page",
 			"cssUrl": "https://ameerdotexe.github.io/roblokis/data/experiments/hideRecommendedFromHomePage.css",
 			"filterUrls": [".com/home"]
+		},
+		"nav-menu-slide": {
+			"name": "Make side menu slide",
+			"description": "only works when you press menu button",
+			"cssUrl": "https://ameerdotexe.github.io/roblokis/data/experiments/nav-menu-slide.css"
 		}
 	}
 }
