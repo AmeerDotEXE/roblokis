@@ -12,3 +12,9 @@
 #badges[role="tabpanel"] {
 	background-color: transparent;
 }
+:root .icon-logo-r {
+	background-size: var(--rk-icon-r-background-image-size, 30px 30px);
+}
+:root .icon-logo-r-95 {
+	background-size: var(--rk-icon-r-background-image-size, 95px 95px);
+}
