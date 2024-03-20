@@ -12,3 +12,6 @@
 #rbx-body.light-theme .popover.bottom>.arrow, #rbx-body.light-theme .popover.bottom>.arrow:after {
 	border-bottom-color: var(--rk-popup-background-color, #fff);
 }
+#badges[role="tabpanel"] {
+	background-color: transparent;
+}
