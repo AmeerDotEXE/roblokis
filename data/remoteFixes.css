@@ -18,3 +18,15 @@
 :root .icon-logo-r-95 {
 	background-size: var(--rk-icon-r-background-image-size, 95px 95px);
 }
+/* remove grey background on account switcher */
+.account-switcher-modal .modal-dialog .modal-content .modal-body .modal-section,
+#rbx-body .account-switcher-list .account-selection-list-item .account-selection {
+	background-color: transparent;
+}
+
+/* gamecard on discover/sortName fix wrong width */
+body:not(.btr-profile) *:not(.grid-tile):not(.event-tile) > .game-card-container:not(.featured-grid-item-container),
+body:not(.btr-profile) *:not(.grid-tile):not(.event-tile) > .game-card-container:not(.featured-grid-item-container)>a.game-card-link {
+	max-width: 150px;
+	width: 150px;
+}
