@@ -30,3 +30,7 @@ body:not(.btr-profile) *:not(.grid-tile):not(.event-tile) > .game-card-container
 	max-width: 150px;
 	width: 150px;
 }
+
+.btn-navigation-nav-robux-md {
+	display: flex;
+}
