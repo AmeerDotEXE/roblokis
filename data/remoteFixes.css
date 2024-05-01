@@ -32,7 +32,7 @@ body:not(.btr-profile) *:not(.grid-tile):not(.event-tile) > .game-card-container
 }
 
 /* makes roblox credit next to robux */
-.btn-navigation-nav-robux-md {
+:root .btn-navigation-nav-robux-md {
 	display: flex;
 }
 /* fixes overflowing friend in game interactivity */
