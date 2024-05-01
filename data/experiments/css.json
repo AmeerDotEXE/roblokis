@@ -6,6 +6,11 @@
 			"cssUrl": "https://ameerdotexe.github.io/roblokis/data/experiments/rainbowPlayButton.css",
 			"filterUrls": [".com/games/"]
 		},
+		"remove-roblox-credit": {
+			"name": "Remove Roblox Credit",
+			"description": "Hides credit from under robux",
+			"cssUrl": "https://ameerdotexe.github.io/roblokis/data/experiments/removeRobloxCredit.css"
+		},
 		"move-game-socials": {
 			"name": "Move Game Socials",
 			"description": "Moves socials from about page to the top right of your game page",
