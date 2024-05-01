@@ -31,6 +31,12 @@ body:not(.btr-profile) *:not(.grid-tile):not(.event-tile) > .game-card-container
 	width: 150px;
 }
 
+/* makes roblox credit next to robux */
 .btn-navigation-nav-robux-md {
 	display: flex;
+}
+/* fixes overflowing friend in game interactivity */
+.interaction-container {
+	position: relative;
+	overflow: hidden auto;
 }
