@@ -480,6 +480,20 @@ let designerComponents = [
 		},
 		element: defaultcomponentElements.horizantalGroup
 	},//game
+	{
+		id: "users",
+		tags: ["page"],
+		parent: {
+			headId: 'styles',
+			ids: {
+				styles: true
+			}
+		},
+		details: {
+			name: "User Page"
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//users
 
 	{
 		id: "videobackground",
@@ -1189,6 +1203,76 @@ let designerComponents = [
 		},
 		element: defaultcomponentElements.styleDropdown
 	},//chat
+	{
+		id: "userbanner",
+		details: {
+			name: "User Banner",
+			description: "this applies to all users."
+		},
+		parent: {
+			headId: 'styles',
+			ids: {
+				users: true
+			}
+		},
+		data: {
+			options: [
+				{value: '',details:{name:'Disabled'}},
+				{value: 'imglink',details:{name:'Custom'},element:{
+					html: /*html*/`
+						<div style="width: 100%;margin-top: 0.5rem;" class="rk-flex rk-space-between rk-center-x">
+							<span style="min-width: fit-content;margin-right: 5px;">Banner Image:</span>
+							<button class="rk-btn" style="width: calc(100% - 10ch);" data-image-button="">Modify</button>
+							${defaultcomponentElements.imageInputPopup.html}
+						</div>
+						`,
+					js: null,
+					load: function (theme_object, idCard) {
+						let element = idCard.element;
+		
+						for (let key in theme_object) {
+							if (theme_object[key] == null) continue;
+							let value = theme_object[key];
+		
+							let input = element.querySelector(`[data-location="${key}"]`);
+							if (input == null) continue;
+
+							if (input.classList.contains("rk-button")) {
+								page.toggleSwich(input, value);
+							} else if (input.classList.contains("input-field")) {
+								input.value = value;
+							}
+						}
+
+						element.imageData = theme_object?.bannerImage || "";
+
+						defaultcomponentElements.imageInputPopup.js(element);
+					},
+					save: function (idCard) {
+						let element = idCard.element;
+						let component_object = {};
+		
+						element.querySelectorAll(`[data-location]`).forEach((input) => {
+							let edge = input.dataset.location;
+							let value = null;
+							if (input.classList.contains("rk-button")) {
+								value = page.getSwich(input);
+							} else if (input.classList.contains("input-field")) {
+								value = input.value;
+							}
+		
+							component_object[edge] = value;
+						});
+
+						component_object.bannerImage = element.imageData;
+
+						return component_object;
+					}
+				}},
+			]
+		},
+		element: defaultcomponentElements.styleDropdown
+	},//userbanner
 
 
 

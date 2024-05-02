@@ -9,6 +9,85 @@ Rkis.page.user = () => {
 		}, { once: true });
 		return;
 	}
+	
+	//load styles
+	document.$watch('#rk-theme-loaded', () => {
+		let styles = {
+			users: {
+				userbanner: {
+					imglink: {
+						js: (style) => {
+							let options = style.options;
+							if (options == null) return;
+							if (options.bannerImage == null) return;
+
+							const bannerGradient = document.createElement("div");
+							bannerGradient.style.height = "300px";
+							bannerGradient.style.width = "100%";
+							bannerGradient.style.marginBottom = "6px";
+							bannerGradient.style.borderRadius = "var(--rk-profile-corners-radius, 8px)";
+							bannerGradient.style.backgroundPosition = "center";
+							bannerGradient.style.backgroundSize = "cover";
+							bannerGradient.style.backgroundAttachment = "local";
+							bannerGradient.style.backgroundRepeat = "no-repeat";
+
+							let url = options.bannerImage;
+							let fill = null;
+							if (url === "") {
+								fill = "";
+								return;
+							} else if (url.startsWith("linear-gradient")) {
+								fill = url.split(')')[0]+')';
+							} else if (url.startsWith("data:image/")) {
+								fill = 'url('+url.split(')')[0]+')';
+							} else {
+								FetchImage(url).then((bannerImg) => {
+									bannerGradient.style.backgroundImage = bannerImg;
+								});
+							}
+
+							bannerGradient.style.backgroundImage = fill;
+
+							document.$watch("#profile-header-container > div.profile-header", (/** @type {HTMLDivElement} */profileHeader) => {
+								profileHeader.parentElement.prepend(bannerGradient);
+							});
+						}
+					}
+				},
+			}
+		};
+		if (Rkis.Designer.currentTheme != null
+			&& Rkis.Designer.currentTheme.styles != null)
+			{
+			let theme = Rkis.Designer.currentTheme;
+			
+			let findFile = function(styleLocation, stylesObj) {
+				for (let stylePath in stylesObj) {
+					let innderStyleLocation = styleLocation[stylePath];
+					if (innderStyleLocation == null) continue;
+
+					let innderStyleObj = stylesObj[stylePath];
+
+					if (innderStyleLocation.type == null) {
+						//run loop on this object
+						findFile(innderStyleLocation, innderStyleObj);
+						continue;
+					}
+
+					let style = innderStyleObj[innderStyleLocation.type];
+					if (style == null) continue;
+					if (style.css != null) {
+						Rkis.Designer.addCSS(style.css);
+					}
+					if (style.js != null) {
+						style.js(innderStyleLocation);
+					}
+				}
+			}
+
+			findFile(theme.styles, styles);
+		}
+	});
 
 	if (Rkis.IsSettingEnabled("QuickRemove", {
 		id: "QuickRemove",
