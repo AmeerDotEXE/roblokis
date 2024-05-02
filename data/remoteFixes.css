@@ -1,4 +1,7 @@
 /* this file used to fix css bugs without uploading the extension to google on each problem */
+
+/* everything moved to new update */
+
 /* fix popups no background by default */
 #rbx-body .modal-dialog .modal-content, #rbx-body .popover {
 	background: var(--rk-popup-background, #393b3d);
@@ -39,4 +42,8 @@ body:not(.btr-profile) *:not(.grid-tile):not(.event-tile) > .game-card-container
 .interaction-container {
 	position: relative;
 	overflow: hidden auto;
+}
+
+#mostPlayedContainer > li > div > a.game-card-link {
+	max-width: 90px !important;
 }
