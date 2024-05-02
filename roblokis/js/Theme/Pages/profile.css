@@ -62,7 +62,7 @@
 }
 
 #profile-header-container {
-	margin-bottom: 4px;
+	margin-bottom: 6px;
 }
 
 #inventory-container > inventory > div > assets-explorer > div > div > div.menu-vertical-container.category-tabs > ul > li:first-child {
@@ -123,7 +123,8 @@
 	width: auto;
 } */
 
-#friends-container > div > div.rbx-tabs-horizontal.rbx-scrollable-tabs-horizontal > ul > li {
+#friends-container > div > div.rbx-tabs-horizontal.rbx-scrollable-tabs-horizontal > ul > li,
+#profile-header-container > div > div {
 	margin: 0;
 }
 

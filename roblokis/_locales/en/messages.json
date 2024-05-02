@@ -23,10 +23,6 @@
 		"message": "Please Reinstall Roblokis.",
 		"description": "Text shows then clicking on Extension icon. text will show then the extension is not up-to-date. this will be under the new update text"
 	},
-	"editorPagesTab": {
-		"message": "Pages",
-		"description": "in theme editor at the tabs."
-	},
 	"editorComponentAdding": {
 		"message": "Add Component",
 		"description": "in theme editor when adding component."

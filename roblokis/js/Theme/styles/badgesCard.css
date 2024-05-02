@@ -3,41 +3,41 @@
 
 
 /* Badges */
-#game-badges-container > game-badges-list > div > ul {
+.rbx-body .game-badges-list > ul.stack-list {
 	display: flex;
 	flex-wrap: wrap;
 }
 
-#game-badges-container > game-badges-list > div > ul > li.badge-row {
+.rbx-body .game-badges-list > ul.stack-list > li.badge-row {
 	flex-direction: column;
 	align-items: center;
 }
-#game-badges-container > game-badges-list > div > ul > li.badge-row {
+.rbx-body .game-badges-list > ul.stack-list > li.badge-row {
 	display: flex;
 	width: calc((100% / 3) - 12px);
 	margin: 6px;
 	transition: all 400ms;
 	transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
 }
-#game-badges-container > game-badges-list > div > ul > li.badge-row:hover {
+.rbx-body .game-badges-list > ul.stack-list > li.badge-row:hover {
 	transform: var(--rk-basic-animations, scale(1.2));
 	opacity: var(--rk-basic-animations, 1);
 	z-index: var(--rk-basic-animations, 10);
 }
 
-#game-badges-container > game-badges-list > div > ul > li > div.badge-content {
+.rbx-body .game-badges-list > ul.stack-list > li > div.badge-content {
 	width: 100%;
 	margin-top: 9px;
 	display: flex;
 	flex-direction: column;
 }
 
-#game-badges-container > game-badges-list > div > ul > li > div.badge-content > ul {
+.rbx-body .game-badges-list > ul.stack-list > li > div.badge-content > ul {
 	display: flex;
 	flex-direction: column;
 }
 
-#game-badges-container > game-badges-list > div > ul > li > div.badge-content > ul > li {
+.rbx-body .game-badges-list > ul.stack-list > li > div.badge-content > ul > li {
 	display: flex;
 	align-items: center;
 	width: 100% !important;
@@ -46,15 +46,15 @@
 	float: none !important;
 }
 
-#game-badges-container > game-badges-list > div > ul > li > div.badge-content > ul > li.thecut {
+.rbx-body .game-badges-list > ul.stack-list > li > div.badge-content > ul > li.thecut {
 	padding: 6px;
 }
 
-#game-badges-container > game-badges-list > div > ul > li > div.badge-content > ul > li > div.text-label {
+.rbx-body .game-badges-list > ul.stack-list > li > div.badge-content > ul > li > div.text-label {
 	padding: 0 10px 0 0;
 }
 
-#game-badges-container > game-badges-list > div > ul > li:not(.badge-row) {
+.rbx-body .game-badges-list > ul.stack-list > li:not(.badge-row) {
 	width: 100%;
 }
 

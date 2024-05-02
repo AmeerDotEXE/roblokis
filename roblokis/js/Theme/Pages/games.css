@@ -105,7 +105,7 @@ div.container-list.games-detail div.game-card-container > a:hover > a {
 
 
 /*  Badges	  */
-#game-badges-container > game-badges-list > div > ul > li.badge-row,
+.rbx-body .game-badges-list > ul.stack-list > li.badge-row,
 .new-badges-list .new-badges-list-container .badge-container {
 	border-radius: var(--rk-badge-corners-radius, 20px);
 
@@ -123,33 +123,38 @@ div.container-list.games-detail div.game-card-container > a:hover > a {
 .new-badges-list .new-badges-list-container .badge-container {
 	overflow: hidden;
 }
-#game-badges-container > game-badges-list > div > ul > li.badge-row {
+.rbx-body .game-badges-list > ul.stack-list > li.badge-row {
 	max-height: unset;
 	
 	transition: all 400ms;
 	transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
 }
-#game-badges-container > game-badges-list > div > ul > li.badge-row:hover {
+.rbx-body .game-badges-list > ul.stack-list > li.badge-row:hover {
 	transform: var(--rk-basic-animations, scale(1.1));
 	opacity: var(--rk-basic-animations, 1);
 	z-index: var(--rk-basic-animations, 10);
 }
 
-#game-badges-container > game-badges-list > div > ul > li > div.badge-image > a > thumbnail-2d > span,
-body#rbx-body .new-badges-list, #badges-section .badge-sorts-filters-container {
+.rbx-body .game-badges-list > ul.stack-list > li > div.badge-image > a > thumbnail-2d > span,
+body#rbx-body .new-badges-list, #badges-section .badge-sorts-filters-container,
+#badges[role="tabpanel"] {
 	background-color: transparent;
 }
 
-#game-badges-container > game-badges-list > div > ul > li > div.badge-content {
+.rbx-body .game-badges-list > ul.stack-list > li > div.badge-content {
 	color: var(--rk-badge-bright-color);
 }
 
-#game-badges-container > game-badges-list > div > ul > li > div.badge-content > div > p {
+.rbx-body .game-badges-list > ul.stack-list > li > div.badge-content > div > p {
 	color: var(--rk-badge-dark-color, #bdbebe) !important;
 }
 
-#game-badges-container > game-badges-list > div > ul > li > div.badge-content> ul > li > div.text-label {
+.rbx-body .game-badges-list > ul.stack-list > li > div.badge-content> ul > li > div.text-label {
 	color: var(--rk-badge-dark-color);
+}
+
+.game-badges-list > li {
+	margin-top: 0.5rem;
 }
 
 .btr-badges-container .badge-row .badge-content > * {

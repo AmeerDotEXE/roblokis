@@ -916,7 +916,7 @@ Rkis.page.game = () => {
 					.then((response) => response.json())
 					.catch(() => { return null; });
 
-				var badgessection = await document.$watch("#game-badges-container > game-badges-list > div > ul").$promise();
+				var badgessection = await document.$watch(".rbx-body .game-badges-list > ul.stack-list").$promise();
 				if (badgessection == null) return console.error("didn't find badge place");
 				badgessection.innerHTML = "";
 				badgessection.classList.add("roblokis-badges-loaded");
@@ -996,6 +996,8 @@ Rkis.page.game = () => {
 					else x = 2;
 
 				}
+
+				document.querySelector(".game-badges-list > li")?.remove?.();
 			}
 
 			document.addEventListener("rkrequested-badge", Rkis.Scripts.BadgesView.firstone);

@@ -4,6 +4,7 @@
 	background: transparent;
     backdrop-filter: none;
     box-shadow: none;
+	border: 0;
 }
 #navigation > ul > li.rbx-divider {
 	display: none;

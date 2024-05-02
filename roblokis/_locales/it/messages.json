@@ -885,10 +885,6 @@
 		"message": "Partecipa al server pubblico",
 		"description": "Text shows on friends servers. text shows when your friend is in a public server"
 	},
-	"editorPagesTab": {
-		"message": "Pagine",
-		"description": "in theme editor at the tabs."
-	},
 	"editorComponentAdding": {
 		"message": "Aggiungi componente",
 		"description": "in theme editor when adding component."

@@ -1,9 +1,9 @@
-#game-badges-container > game-badges-list > div > ul {
+.rbx-body .game-badges-list > ul.stack-list {
 	display: flex;
     flex-wrap: wrap;
     gap: 8px;
 }
-#game-badges-container > game-badges-list > div > ul > li.badge-row {
+.rbx-body .game-badges-list > ul.stack-list > li.badge-row {
 	width: calc(33.3% - 8px);
     margin: 0;
 }
@@ -11,7 +11,7 @@
 	width: 75px;
 	height: 75px;
 }
-.game-badges-list .badge-row .badge-image, game-badges-list .badge-row .badge-image * {
+.game-badges-list .badge-row .badge-image *, game-badges-list .badge-row .badge-image * {
 	width: 75px !important;
 	height: 75px !important;
 }
@@ -21,7 +21,7 @@
 .game-badges-list .badge-row .badge-data-container, game-badges-list .badge-row .badge-data-container {
 	padding-right: 0;
 }
-#game-badges-container > game-badges-list > div > ul > li > div.badge-content > div > p {
+.rbx-body .game-badges-list > ul.stack-list > li > div.badge-content > div > p {
 	/* max-height: 42px; */
     max-height: 62px;
     color: var(--rk-badge-dark-color);

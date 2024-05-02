@@ -885,10 +885,6 @@
 		"message": "Bergabung dengan Server Publik",
 		"description": "Text shows on friends servers. text shows when your friend is in a public server"
 	},
-	"editorPagesTab": {
-		"message": "Halaman",
-		"description": "in theme editor at the tabs."
-	},
 	"editorComponentAdding": {
 		"message": "Tambahkan Komponen",
 		"description": "in theme editor when adding component."

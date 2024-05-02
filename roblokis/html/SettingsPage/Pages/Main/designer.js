@@ -360,10 +360,9 @@ const defaultcomponentElements = {
 				popupClose();
 			};
 			let pasteImageEvent = (e) => {
-				e.preventDefault();
-
 				for (const clipboardItem of e.clipboardData.files) {
 					if (!clipboardItem.type.startsWith('image/')) continue;
+					e.preventDefault();
 
 					// Do something with the image file.
 					let blob = clipboardItem;
@@ -3018,6 +3017,7 @@ let designerComponents = [
 		id: "profile",
 		tags: ["blockElement"],
 		parent: {
+			headId: 'pages',
 			ids: {
 				users: true
 			}
@@ -4612,7 +4612,8 @@ Designer.waitingForGeneral = function() {
 						skipTemplate: true,
 					});
 					if (safetycheck.error != null) {
-						Rkis.Toast("Error D3916: Corrupt file.");
+						Rkis.Toast("Error D3916: "+safetycheck.error);
+						// console.error(safetycheck.error);
 						return;
 					}
 

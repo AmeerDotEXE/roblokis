@@ -182,7 +182,7 @@
 	background-image: url($gameplay.background.image.link#);
 }
 #game-badges-container > game-badges-list > div:not(.btr-badges-container) > ul > li.badge-row,
-#game-badges-container > game-badges-list > div > ul > li.badge-row {
+.rbx-body .game-badges-list > ul.stack-list > li.badge-row {
 	background-image: url($badge.background.image.link#);
 }
 #game-instances #rbx-private-running-games > ul > li {

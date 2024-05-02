@@ -61,6 +61,11 @@ html .alert-system-feedback .alert {
 	/* transform: translate(0, -200%); */
 }
 
+/* makes roblox credit next to robux */
+:root .btn-navigation-nav-robux-md {
+	display: flex;
+}
+
 body .rbx-header .rbx-navbar-header {
 	max-width: unset;
 }
@@ -77,7 +82,7 @@ body .rbx-header .rbx-navbar-header {
 }
 :root .icon-logo-r {
 	background-repeat: var(--rk-icon-r-background-image-repeat);
-	/* background-size: var(--rk-icon-r-background-image-size, 30px 30px); */
+	background-size: var(--rk-icon-r-background-image-size, 30px 30px);
 	/* background-size: 30px 30px; */
 	background-position: center;
 
@@ -86,7 +91,7 @@ body .rbx-header .rbx-navbar-header {
 /* popups logo */
 :root .icon-logo-r-95 {
 	background-repeat: var(--rk-icon-r-background-image-repeat);
-	/* background-size: var(--rk-icon-r-background-image-size, 95px 95px); */
+	background-size: var(--rk-icon-r-background-image-size, 95px 95px);
 	background-position: center;
 
 	margin-bottom: 8px;
@@ -355,7 +360,7 @@ body#rbx-body:not(.gamecards-join-text) .rk-quickgamejoin::after {
 	border-style: var(--rk-popup-borders-style);
 	border-width: var(--rk-popup-borders-size);
 
-	background: var(--rk-popup-background);
+	background: var(--rk-popup-background, #393b3d);
 	background-size: var(--rk-popup-background-image-size);
 
 	backdrop-filter: var(--rk-popup-backdrop-filter);
@@ -368,4 +373,26 @@ body#rbx-body:not(.gamecards-join-text) .rk-quickgamejoin::after {
 }
 .people-info-card-container .interaction-container {
 	background-color: transparent;
+}
+
+#rbx-body.dark-theme .popover.bottom>.arrow, #rbx-body.dark-theme .popover.bottom>.arrow:after {
+	border-bottom-color: var(--rk-popup-background-color, #393b3d);
+}
+#rbx-body.light-theme .popover.bottom>.arrow, #rbx-body.light-theme .popover.bottom>.arrow:after {
+	border-bottom-color: var(--rk-popup-background-color, #fff);
+}
+
+/* remove grey background on account switcher */
+.account-switcher-modal .modal-dialog .modal-content .modal-body .modal-section,
+#rbx-body .account-switcher-list .account-selection-list-item .account-selection {
+	background-color: transparent;
+}
+
+
+
+/* literally roblox bug not roblokis */
+/* fixes overflowing friend in game interactivity */
+.interaction-container {
+	position: relative;
+	overflow: hidden auto;
 }

@@ -159,3 +159,10 @@ body:not(.btr-profile).gamecards-no-text .game-card-thumb-container::after {
 	width: 100% !important;
 	height: 100% !important;
 }
+
+/* gamecard on discover/sortName fix wrong width */
+body:not(.btr-profile) *:not(.grid-tile):not(.event-tile) > .game-card-container:not(.featured-grid-item-container),
+body:not(.btr-profile) *:not(.grid-tile):not(.event-tile) > .game-card-container:not(.featured-grid-item-container)>a.game-card-link {
+	max-width: 150px;
+	width: 150px;
+}

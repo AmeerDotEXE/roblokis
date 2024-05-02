@@ -969,7 +969,7 @@ page.settingsWaitingForGeneral = function() {
 											<button class="designer-btn select" data-theme="Dark Shadow Theme" data-themeid="3" data-isdefaulttheme="true" data-translate="btnSelect">Select</button>
 										</div>
 
-										<button class="default-theme-template" style="border: 0;width: 100%;justify-content: center;" data-designer-func="show-more-themes">View More</button>
+										<button class="default-theme-template" style="border: 0;width: 100%;justify-content: center;" data-designer-func="show-more-themes">View More Themes</button>
 
 										<div class="rbx-divider" style="margin: 12px 0 0 0;"></div>
 								</div>
@@ -1088,7 +1088,7 @@ page.settingsWaitingForGeneral = function() {
 											
 												<li data-nav-page="details" class="designer-btn editortab menu-option" style="border-radius: 10px 0 0 0;"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="editorInfoTab">Info</span> </a> </li>
 
-												<li data-nav-page="pages" class="designer-btn editortab menu-option active" style="border-radius: 0 0 0 0px;"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="editorPagesTab">Pages</span> </a> </li>
+												<li data-nav-page="pages" class="designer-btn editortab menu-option active" style="border-radius: 0 0 0 0px;"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabDesign">Design</span> </a> </li>
 												<li data-nav-page="styles" class="designer-btn editortab menu-option" style="border-radius: 0 0 0 10px;"> <a class="menu-option-content"> <span class="font-caption-header" data-trenslate="editorStylesTab">Styles</span> </a> </li>
 
 											</ul>
