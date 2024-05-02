@@ -233,7 +233,8 @@ span.rk-button {
 }
 
 .default-theme-template > button,
-.theme-template > button {
+.theme-template > button,
+.theme-template-button {
 	font-weight: 500;
 	border: 0;
 	padding: 1% 3%;

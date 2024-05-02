@@ -3600,6 +3600,12 @@ Designer.LoadCustomThemesData = async function() {
 	wholedata.Designer.Theme = wholedata.Designer.Theme || {};
 	wholedata.Designer.Themes = wholedata.Designer.Themes || [];
 
+	const loadedTheme = Rkis.Designer.GetPageTheme();
+	let loadedCustomThemeId = -1;
+	if (loadedTheme && loadedTheme.type == "saved") {
+		loadedCustomThemeId = parseInt(loadedTheme.themeId);
+	}
+
 	var letterNumber = /^[\s0-9a-zA-Z-_]+$/g;
 
 	for(var i = 0; i < Designer.MaxCustomThemes; i++) {
@@ -3628,13 +3634,13 @@ Designer.LoadCustomThemesData = async function() {
 			fileSize = Math.floor(fileSize);
 
 			customthemesholder.innerHTML += `
-				<div class="theme-template">
+				<div class="theme-template" style="${loadedCustomThemeId == i ? "outline: 2px solid rgb(57 184 61);": ""}">
 					<div>
 						<div>${daname ? daname[0] : Rkis.language["error"]}</div>
 						<span>${dadesc ? dadesc[0] : Rkis.language["error"]}</span>
 					</div>
 					<div style="margin-left: auto;"></div>
-				<span style="font-size: 12px;font-weight: 100;margin-right: 1%;">(${fileSize} ${fileSizeText})</span>
+					<span style="font-size: 12px;font-weight: 100;margin-right: 1%;">(${fileSize} ${fileSizeText})</span>
 					<button class="designer-btn export" data-theme="${daname ? daname[0] : Rkis.language["error"]}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(57 59 184);color: rgb(35 37 39);font-size: 20px;">⤓</button>
 					<button class="designer-btn delete" data-theme="${daname ? daname[0] : Rkis.language["error"]}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(184 59 61);color: rgb(35 37 39);font-weight: 600;">X</button>
 					<button class="designer-btn edit" data-theme="${daname ? daname[0] : Rkis.language["error"]}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(57 184 61);color: rgb(35 37 39);" data-translate="btnEdit">Edit</button>
@@ -3642,6 +3648,7 @@ Designer.LoadCustomThemesData = async function() {
 				</div>`;
 		}
 		else {
+			if (i != 0) continue;
 			customthemesholder.innerHTML += `
 				<div class="theme-template">
 					<div>
@@ -3652,6 +3659,11 @@ Designer.LoadCustomThemesData = async function() {
 					<button class="designer-btn create" style="background-color: rgb(57 184 61);color: rgb(35 37 39);" data-translate="btnCreate">Create</button>
 				</div>`;
 		}
+	}
+
+	if (wholedata.Designer.Themes.length < 5) {
+		const createButton = HTMLParser('<button class="theme-template-button" data-designer-func="create" style="background-color: rgb(57 184 61);color: rgb(35 37 39);border-radius: 2rem;position: absolute;top: .5rem;right: 1rem;"  data-translate="btnCreate">', "Create");
+		customthemesholder.prepend(createButton);
 	}
 }
 
@@ -4718,6 +4730,11 @@ Designer.waitingForGeneral = function() {
 					}
 				});
 				break;
+			case "create":
+				e.$on("click", () => {
+					document.querySelector("#rk-createthemesection").style.display = "flex";
+				});
+				break;
 		}
 
 		if(e.classList.contains("export")) {
@@ -4735,10 +4752,6 @@ Designer.waitingForGeneral = function() {
 		} else if(e.classList.contains("select")) {
 			e.$on("click", () => {
 				Designer.SelectThemeButton(e);
-			})
-		} else if(e.classList.contains("create")) {
-			e.$on("click", () => {
-				document.querySelector("#rk-createthemesection").style.display = "flex";
 			})
 		} else if(e.classList.contains("createthetheme")) {
 			e.$on("click", () => {
