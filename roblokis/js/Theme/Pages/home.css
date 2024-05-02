@@ -39,3 +39,9 @@ div.section-content.people-list li.list-item.friend:hover span.avatar-status {
 body .section .people-list {
 	overflow: visible;
 }
+
+
+/* fix narrow body by btroblox */
+#rbx-body.btr-hide-ads .content {
+	max-width: unset;
+}

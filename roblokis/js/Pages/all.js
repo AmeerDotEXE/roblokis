@@ -404,6 +404,7 @@ Rkis.page.all = () => {
 			document.$watchLoop("a.game-card-link", (elem) => {
 				if(elem.href == null || elem.dataset.addedjoin == "true") return;
 				elem.dataset.addedjoin = "true";
+				if (elem.querySelector(".featured-game-icon-container") != null) return;
 
 				/*
 					https://www.roblox.com/games/refer?IsLargeGameTile=false&PageId=4a6d26c8-7d80-4a32-ab3b-9e9365bcad66&PageType=Games&PlaceId=6872265039&Position=7&SortName=PersonalRecommendation&SortPosition=2&LocalTimestamp=2022-01-10T08:07:43.575Z
@@ -567,6 +568,7 @@ Rkis.page.all = () => {
 		}
 	})) {
 		(function() {
+			let customization = Rkis.GetSettingCustomization("StatusRing");
 			let getStatus = function(avatarStatus) {
 				if (avatarStatus.classList.contains("icon-game")) return "hsl(148, 98%, 36%)";
 				else if (avatarStatus.classList.contains("icon-online")) return "hsl(202, 100%, 50%)";
@@ -581,6 +583,10 @@ Rkis.page.all = () => {
 					if (container) {
 						container.classList.add("rk-status-ring");
 						container.style.setProperty("--friend-status-color", getStatus(statusElement));
+
+						if (customization?.shadow && customization.shadow !== "0px 0px 0px 0px") {
+							container.style.setProperty("--friend-status-glow", customization.shadow + " " + getStatus(statusElement));
+						}
 					}
 				});
 			});

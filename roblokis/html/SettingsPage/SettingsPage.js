@@ -430,6 +430,116 @@ let featureCustomizations = {
 			return component_object;
 		}
 	},
+	"StatusRing": {
+		html: /*html*/`
+			<div class="rkis-editable-section section-content" id="status_ring-glow">
+				<div data-preview data-translate="themePreview"
+				style="width: min(10rem, 20%);display: flex;border: 1px solid rgba(128,128,128,0.5);margin-right: 1rem;justify-content: center;align-items: center;border-radius: 20px 0;">
+					Preview
+				</div>
+				<div style="flex-grow: 1;">
+					<div class="rk-flex rk-space-between rk-center-x">
+						<h4 style="width: fit-content;">Glow</h4>
+					</div>
+
+
+					<div class="rk-flex rk-space-between rk-center-x">
+						<span>Type:</span>
+						<select selected="" data-location="type">
+							<option value="" selected>Outset</option>
+							<option value="inset">Inset</option>
+						</select>
+					</div>
+
+
+					<div class="rbx-divider" style="margin: 12px;"></div>
+
+
+					<div class="rk-flex rk-space-between rk-center-x">
+						<span style="min-width: fit-content;margin-right: 5px;">X:</span>
+						<input type="range" value="0" step="1" min="-20" max="20"
+							data-location="x" class="form-control input-field">
+					</div>
+
+					<div class="rk-flex rk-space-between rk-center-x">
+						<span style="min-width: fit-content;margin-right: 5px;">Y:</span>
+						<input type="range" value="0" step="1" min="-20" max="20"
+							data-location="y" class="form-control input-field">
+					</div>
+
+
+					<div class="rbx-divider" style="margin: 12px;"></div>
+
+
+					<div class="rk-flex rk-space-between rk-center-x">
+						<span style="min-width: fit-content;margin-right: 5px;">Blur:</span>
+						<input type="range" value="0" step="1" min="0" max="20"
+							data-location="blur" class="form-control input-field">
+					</div>
+
+					<div class="rk-flex rk-space-between rk-center-x">
+						<span style="min-width: fit-content;margin-right: 5px;">Spread:</span>
+						<input type="range" value="0" step="1" min="0" max="20"
+							data-location="spread" class="form-control input-field">
+					</div>
+				</div>
+			</div>`,
+		js: function (idCard, parentElement) {
+			let element = idCard.element.querySelector("#status_ring-glow");
+
+			element.style.display = 'flex';
+
+			element.update = function() {
+				let settings = element.parentElement.save(idCard).shadow;
+				if (settings == '') return;
+
+				previewElement.style.boxShadow = settings;
+				element.style.boxShadow = settings;
+			}
+
+			let previewElement = element.querySelector('[data-preview]');
+			if (previewElement != null) {
+				element.querySelectorAll('[data-location]')
+				.forEach((input) => {
+					input.addEventListener('input', () => element.update());
+				});
+			}
+		},
+		load: function (theme_object, idCard) {
+			let element = idCard.element.querySelector("#status_ring-glow");
+			
+			if (theme_object && theme_object.shadow != null) {
+				// if (theme_object.startsWith('inset ') != true) theme_object = ' ' + theme_object;
+				let [type, x, y, blur, spread] = theme_object.shadow.split(' ');
+
+				//load rest
+				let inputsValue = {type,x,y,blur,spread};
+				element.querySelectorAll(`[data-location]`).forEach((input) => {
+					let value = inputsValue[input.dataset.location];
+
+					input.value = value.split('px')[0];
+				});
+			}
+			
+			if (typeof element.update == 'function') element.update();
+		},
+		save: function (idCard) {
+			let element = idCard.element.querySelector("#status_ring-glow");
+			let inputsValue = {};
+
+			//save inputs
+			element.querySelectorAll(`[data-location]`).forEach((input) => {
+				let value = input.value;
+				if (input.dataset.location != 'type') value += 'px';
+
+				inputsValue[input.dataset.location] = value;
+			});
+
+			return {
+				shadow: `${inputsValue.type} ${inputsValue.x} ${inputsValue.y} ${inputsValue.blur} ${inputsValue.spread}`
+			};
+		}
+	}
 };
 
 
@@ -1380,38 +1490,49 @@ page.settingsWaitingForGeneral = function() {
 												}
 
 												[data-editthemetabs] input:not([type="radio"]),
-												[data-editthemetabs] select {
+												[data-editthemetabs] select,
+												.rkis-editable-section input:not([type="radio"]),
+												.rkis-editable-section select {
 													margin: 0 3px 0 3px;
 													border-radius: 8px;
 													width: calc(100% - 10ch);
 													border-style: solid;
 												}
-												[data-editthemetabs] input[type="range"] {
+												[data-editthemetabs] input[type="range"],
+												.rkis-editable-section input[type="range"] {
 													border: 0;
 												}
 
 												[data-editthemetabs] div > label.rk-label-input,
-												[data-editthemetabs] button {
+												[data-editthemetabs] button,
+												.rkis-editable-section div > label.rk-label-input,
+												.rkis-editable-section button {
 													border-radius: 8px;
 													border-width: 1px;
 													border-style: solid;
 												}
 
 												[data-editthemetabs] input:not([type="color"]),
-												[data-editthemetabs] select {
+												[data-editthemetabs] select,
+												.rkis-editable-section input:not([type="color"]),
+												.rkis-editable-section select {
 													height: auto;
 												}
 
 												[data-editthemetabs] select,
 												[data-editthemetabs] div > label.rk-label-input,
-												[data-editthemetabs] button {
+												[data-editthemetabs] button,
+												.rkis-editable-section select,
+												.rkis-editable-section div > label.rk-label-input,
+												.rkis-editable-section button {
 													background-color: rgba(0,0,0,.7);
 													border-color: hsla(0,0%,100%,.2);
 													color: #bdbebe;
 													padding: 5px 12px;
 												}
 
-												.light-theme [data-editthemetabs] select {
+												.light-theme [data-editthemetabs] select,
+												.light-theme .rkis-editable-section select {
 													background-color: white;
 													border-color: rgb(96 97 98 / 20%);
 													color: rgb(96 97 98);

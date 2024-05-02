@@ -32,4 +32,5 @@ li .game-server-details > span.rk-multi-button {
 }*/
 .avatar-container.rk-status-ring .avatar thumbnail-2d.avatar-card-image {
 	border: 2px solid var(--friend-status-color) !important;
+	box-shadow: var(--friend-status-glow, var(--rk-avatar-box-shadow)) !important;
 }
