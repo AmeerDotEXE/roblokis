@@ -47,3 +47,31 @@ body:not(.btr-profile) *:not(.grid-tile):not(.event-tile) > .game-card-container
 #mostPlayedContainer > li > div > a.game-card-link {
 	max-width: 90px !important;
 }
+
+/* fix navigation menu placement */
+/* applies css on popover-content instead of popover */
+#rbx-body .rbx-header .rbx-navbar-right .popover {
+	background: transparent;
+	border: 0;
+	box-shadow: none;
+	backdrop-filter: none;
+}
+#rbx-body .rbx-header .rbx-navbar-right .popover-content {
+	border-radius: var(--rk-popup-corners-radius, 8px);
+	border-color: var(--rk-popup-borders-color);
+	border-style: var(--rk-popup-borders-style);
+	border-width: var(--rk-popup-borders-size);
+	background: var(--rk-popup-background, #393b3d);
+	background-size: var(--rk-popup-background-image-size);
+	backdrop-filter: var(--rk-popup-backdrop-filter);
+	box-shadow: var(--rk-popup-box-shadow);
+	box-sizing: content-box;
+}
+/* fix transparency on dropdown options and notification feed */
+.popover-content .dropdown-menu,
+.rbx-body .notification-stream-container .notification-content-view,
+.rbx-body .new-notification-stream-2022 .notification-stream-container .notification-content-view .notification-stream-body,
+.rbx-body .new-notification-stream-2022 .notification-stream-container .notification-content-view .notification-stream-body .container-empty,
+.rbx-body .new-notification-stream-2022 .notification-stream-container .notification-content-view .notification-stream-body .notification-stream-loading {
+	background: transparent;
+}
