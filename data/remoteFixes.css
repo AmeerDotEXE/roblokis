@@ -75,3 +75,13 @@ body:not(.btr-profile) *:not(.grid-tile):not(.event-tile) > .game-card-container
 .rbx-body .new-notification-stream-2022 .notification-stream-container .notification-content-view .notification-stream-body .notification-stream-loading {
 	background: transparent;
 }
+/* fix homepage people overlaping with games */
+body .section .people-list {
+	overflow: hidden;
+}
+/* fix homepage going to the right */
+@media (min-width: 1688px) {
+	.no-gutter-ads.logged-in .content {
+		margin-left: auto;
+	}
+}
