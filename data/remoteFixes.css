@@ -85,3 +85,10 @@ body .section .people-list {
 		margin-left: auto;
 	}
 }
+
+/* force fix page being thin */
+[data-internal-page-name="Home"] #container-main > div.content {
+	max-width: 100%;
+	min-width: unset;
+	width: min(1336px, 100%) !important;
+}
