@@ -92,3 +92,8 @@ body .section .people-list {
 	min-width: unset;
 	width: min(1336px, 100%) !important;
 }
+#HomeContainer {
+	max-width: 100%;
+	min-width: unset;
+	width: min(970px, 100%) !important;
+}
