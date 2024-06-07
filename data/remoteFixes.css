@@ -97,3 +97,7 @@ body .section .people-list {
 	min-width: unset;
 	width: min(970px, 100%) !important;
 }
+/* fixes card overflow for homepage */
+[data-internal-page-name="Home"] .game-carousel.expand-home-content {
+	grid-column-gap: 12px;
+}
