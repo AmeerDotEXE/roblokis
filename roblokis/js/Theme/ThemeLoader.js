@@ -438,18 +438,22 @@ Rkis.Designer.SetupTheme = async function() {
 		{match: ".com/groups/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/groups.css" ]},
 		
 		{match: ".com/catalog", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/catalog.css" ]},
+		{match: ".com/badges/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/itempage.css" ]},
 		{match: ".com/upgrades/", paths: [ "js/Theme/Pages/all.css" ]},
 
 		{match: ".com/transactions", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/transactions.css" ]},
 		// {match: ".com/trades", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/trades.css" ]},
 		{match: ".com/my/messages", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/messages.css" ]},
 		{match: ".com/my/avatar", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/avatar.css" ]},
-		{match: ".com/my/account", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/settings.css" ]}
+		{match: ".com/my/account", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/settings.css" ]},
+		{match: ".com/my/account?roseal=", paths: [ "js/Theme/Pages/roseal.css" ]}
 	];
 
 	Rkis.Designer.loadedStyleFile = false;
+	let pageUrl = window.location.href.toLowerCase();
+	if (!pageUrl.includes(".com/my")) pageUrl = pageUrl.replace(/\.com\/..\//, ".com/");
 	allCssFiles.forEach((e) => {
-		if(!window.location.href.toLowerCase().includes(e.match)) return;
+		if(!pageUrl.includes(e.match)) return;
 
 		putCSS(e.paths);
 		Rkis.Designer.loadedStyleFile = true;

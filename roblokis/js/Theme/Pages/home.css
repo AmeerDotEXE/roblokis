@@ -1,3 +1,18 @@
+#container-main > div.content {
+    margin-left: auto;
+}
+
+/* seems to fix narrow bug from roblox update*/
+#HomeContainer {
+	max-width: 978px;
+    min-width: unset;
+    width: min(970px, 100%) !important;
+}
+/* fix cars going to second row when using expand-home-content by roblox */
+.game-carousel.expand-home-content {
+	grid-column-gap: 12px;
+}
+
 /*shadows*/
 #home-header a.avatar {
 	transition: all 400ms;
@@ -24,6 +39,9 @@ div.section-content.people-list li.list-item.friend:hover span.avatar-status {
 	transform: var(--rk-basic-animations, scale(1.2));
 	z-index: var(--rk-basic-animations, 10);
 }
+div.section-content.people-list li.list-item.friend span.avatar-status {
+	top: 62px;
+}
 
 #holder > div > div {
 	background-color: transparent;
@@ -35,6 +53,9 @@ div.section-content.people-list li.list-item.friend:hover span.avatar-status {
 .game-carousel {
 	padding: 6px;
 	box-sizing: content-box;
+}
+.people-list-container {
+	overflow: hidden;
 }
 body .section .people-list {
 	overflow: visible;

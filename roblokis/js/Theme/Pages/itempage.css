@@ -1,0 +1,16 @@
+/* file used for badges */
+
+.rbx-body .item-thumbnail-container .asset-thumb-container {
+	background-color: transparent;
+}
+
+.related-asset-container {
+	border-radius: 8px;
+}
+.related-asset-container .asset-thumbnail img {
+	border-radius: 2px;
+}
+
+.related-asset-container .asset-info {
+	margin: 12px 0 0 12px;
+}

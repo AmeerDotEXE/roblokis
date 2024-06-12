@@ -49,7 +49,14 @@ Rkis.page.user = () => {
 							bannerGradient.style.backgroundImage = fill;
 
 							document.$watch("#profile-header-container > div.profile-header", (/** @type {HTMLDivElement} */profileHeader) => {
-								profileHeader.parentElement.prepend(bannerGradient);
+								let placingElement = profileHeader.parentElement;
+								if (options.combineprofileheader == true) {
+									placingElement = profileHeader;
+									bannerGradient.style.marginBottom = '';
+									bannerGradient.style.borderBottomLeftRadius = '0px';
+									bannerGradient.style.borderBottomRightRadius = '0px';
+								}
+								placingElement.prepend(bannerGradient);
 							});
 						}
 					}

@@ -87,6 +87,7 @@
 /*	Popups	*/
 
 	--rk-popup-background-color: $popup.background.color#;
+	--rk-popup-arrow-color: $popup.borders.top.color/popup.borders.all.color#;
 
 
 
@@ -140,11 +141,12 @@
 .avatar .avatar-card-image {
 	background-image: url($avatar.background.image.link#);
 }
-#rbx-body .rk-quickgamejoin {
+#rbx-body.rbx-body .rk-quickgamejoin {
 	background-image: url($quickgamejoin.background.image.link#);
 }
 #rbx-body .modal-dialog .modal-content,
-#rbx-body .popover {
+#rbx-body > .popover,
+#rbx-body .rbx-header .rbx-navbar-right .popover-content {
 	background-image: url($popup.background.image.link#);
 }
 

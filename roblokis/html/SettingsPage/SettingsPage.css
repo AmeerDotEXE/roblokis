@@ -37,6 +37,7 @@ body.light-theme .rk-btn.rk-white { background-color: rgb(35, 37, 39); color: wh
 
 
 /* Global */
+#rkmainpage { width: 100%; }
 
 .section-content {
 	border-radius: 20px;
@@ -155,24 +156,24 @@ span.rk-button {
 	border-radius: 20px;
 }
 
-.left-navigation > .menu-vertical {
+.menu-vertical {
 	border-radius: 10px;
 	border-right: 1px solid #b8b8b8;
 	border-bottom: 1px solid #b8b8b8;
 	margin: 0 0 12px 0;
 }
 
-.left-navigation > .menu-vertical > .menu-option {
+.menu-vertical .menu-option {
 	border-radius: 0;
 }
 
-.left-navigation > .menu-vertical > .menu-option:first-child,
-.left-navigation > .menu-vertical > .menu-option:first-child > a {
+.menu-vertical .menu-option:first-child,
+.menu-vertical .menu-option:first-child > a {
 	border-top-left-radius: 10px;
 }
 
-.left-navigation > .menu-vertical > .menu-option:last-child,
-.left-navigation > .menu-vertical > .menu-option:last-child > a {
+.menu-vertical .menu-option:last-child,
+.menu-vertical .menu-option:last-child > a {
 	border-bottom-left-radius: 10px;
 }
 

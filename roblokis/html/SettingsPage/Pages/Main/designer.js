@@ -1225,6 +1225,14 @@ let designerComponents = [
 							<button class="rk-btn" style="width: calc(100% - 10ch);" data-image-button="">Modify</button>
 							${defaultcomponentElements.imageInputPopup.html}
 						</div>
+						<div style="width: 100%;margin-top: 0.5rem;">
+							<span class="text-lead">Combine with profile header</span>
+							<span data-location="combineprofileheader" class="rk-button receiver-destination-type-toggle off">
+								<span class="toggle-flip"></span>
+								<span class="toggle-on"></span>
+								<span class="toggle-off"></span>
+							</span>
+						</div>
 						`,
 					js: null,
 					load: function (theme_object, idCard) {

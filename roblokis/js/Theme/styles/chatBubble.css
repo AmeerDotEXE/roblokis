@@ -3,7 +3,7 @@
 	height: 360px !important;
 }
 
-.chat-container .chat-main,
+.rbx-body .chat-container .chat-main,
 .dialogs .dialog-container {
 	background-color: transparent;
     box-shadow: none;

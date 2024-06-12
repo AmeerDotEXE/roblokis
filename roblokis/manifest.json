@@ -1,6 +1,6 @@
 {
 	"manifest_version": 3,
-	"version": "4.1.0.0",
+	"version": "4.1.0.1",
 
 	"author": "Ameer!",
 	"name": "Roblokis",
@@ -79,7 +79,8 @@
 		},
 		{
 			"matches": [
-				"*://*.roblox.com/roblokis*"
+				"*://*.roblox.com/roblokis*",
+				"*://*.roblox.com/*/roblokis*"
 			],
 			"js": [
 				"html/SettingsPage/SettingsPage.js",

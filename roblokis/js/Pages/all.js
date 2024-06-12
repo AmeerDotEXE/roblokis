@@ -677,8 +677,19 @@ Rkis.page.all = () => {
 					for (let btnIndex = 0; btnIndex < sortedMenu.length; btnIndex++) {
 						const btnData = sortedMenu[btnIndex];
 						if (btnData.type == 'system') {
-							let btnElement = currentMenu.querySelector("#"+btnData.id);
-							if (btnElement == null) return;
+							let btnElements = Array.from(currentMenu.querySelectorAll("#"+btnData.id));
+							if (btnElements.length == 0) continue;
+
+							let btnElement = btnElements[0];
+							if (btnElements.length > 1) {
+								btnElement = btnElements.find(btn => {
+									let text = btn.textContent || "Unknown";
+									if (btn.id === 'btr-blogfeed') text = "Blog Content";
+									else text = text.trim().split(/\d/g)[0];
+									return text == btnData.text;
+								});
+							}
+							if (btnElement == null) continue;
 	
 							if (btnData.hidden) {
 								btnElement.parentElement.style.display = 'none';

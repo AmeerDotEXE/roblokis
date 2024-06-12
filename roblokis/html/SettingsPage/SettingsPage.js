@@ -274,7 +274,7 @@ let featureCustomizations = {
 					//get user made buttons...
 					allButtons = theme_object.SortedMenuButtonsList;
 					let newButtons = availableButtons
-					.filter(btnData => allButtons.find(x => x.id === btnData.id) == null)
+					.filter(btnData => allButtons.find(x => x.id === btnData.id && x.text === btnData.text) == null)
 					.map(btnData => {
 						btnData.hidden = false;
 						return btnData;

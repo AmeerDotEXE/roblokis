@@ -50,7 +50,6 @@
 	border-right: 0;
 }
 
-#navigation > ul > li.rbx-divider { width: calc(100% - 10px); }
 #navigation > div {height: calc(100% - 60px);}
 #rk-desktopapp:hover > span {color: #f22;}
 
@@ -64,6 +63,11 @@ html .alert-system-feedback .alert {
 /* makes roblox credit next to robux */
 :root .btn-navigation-nav-robux-md {
 	display: flex;
+}
+
+/* fix navigation menu being 10 pixel shorter on wide screens */
+.rbx-left-col .rbx-scrollbar .left-col-list {
+	width: 175px;
 }
 
 body .rbx-header .rbx-navbar-header {
@@ -353,7 +357,8 @@ body#rbx-body:not(.gamecards-join-text) .rk-quickgamejoin::after {
 
 /* popups */
 #rbx-body .modal-dialog .modal-content,
-#rbx-body .popover {
+#rbx-body > .popover,
+#rbx-body .rbx-header .rbx-navbar-right .popover-content {
 	border-radius: var(--rk-popup-corners-radius, 8px);
 
 	border-color: var(--rk-popup-borders-color);
@@ -368,18 +373,26 @@ body#rbx-body:not(.gamecards-join-text) .rk-quickgamejoin::after {
 
 	box-sizing: content-box;
 }
-#rbx-body .popover.bottom>.arrow, #rbx-body .popover.bottom>.arrow:after {
-	border-bottom-color: var(--rk-popup-background-color);
+#rbx-body.light-theme > .popover,
+#rbx-body.light-theme .rbx-header .rbx-navbar-right .popover-content {
+	background: var(--rk-popup-background, #fff);
 }
-.people-info-card-container .interaction-container {
+
+.popover-content .dropdown-menu,
+.people-info-card-container .interaction-container,
+.rbx-body .notification-stream-container .notification-content-view,
+.rbx-body .new-notification-stream-2022 .notification-stream-container .notification-content-view .notification-stream-body,
+.rbx-body .new-notification-stream-2022 .notification-stream-container .notification-content-view .notification-stream-body .container-empty,
+.rbx-body .new-notification-stream-2022 .notification-stream-container .notification-content-view .notification-stream-body .notification-stream-loading,
+.rbx-body .new-notification-stream-2022 .notification-stream-container .notification-content-view .notification-stream-body .notification-stream-scrollbar .notification-stream-list {
 	background-color: transparent;
 }
 
-#rbx-body.dark-theme .popover.bottom>.arrow, #rbx-body.dark-theme .popover.bottom>.arrow:after {
-	border-bottom-color: var(--rk-popup-background-color, #393b3d);
+#rbx-body .popover.bottom>.arrow:after {
+	border-bottom-color: var(--rk-popup-arrow-color, transparent);
 }
-#rbx-body.light-theme .popover.bottom>.arrow, #rbx-body.light-theme .popover.bottom>.arrow:after {
-	border-bottom-color: var(--rk-popup-background-color, #fff);
+#rbx-body .popover.bottom>.arrow {
+	border-bottom-color: var(--rk-popup-background-color, #393b3d);
 }
 
 /* remove grey background on account switcher */

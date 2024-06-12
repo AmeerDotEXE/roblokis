@@ -145,6 +145,7 @@ body:not(.btr-profile).gamecards-no-text .game-card-thumb-container::after {
 /* RoPro fix most played section */
 #mostPlayedContainer > li > div > a.game-card-link {
 	min-height: 145px !important;
+	max-width: 90px !important;
 	padding: 0px !important;
 }
 #mostPlayedContainer .game-card-name {
