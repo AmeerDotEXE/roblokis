@@ -5,6 +5,12 @@
 	background-position: 0 0;
 }
 
+
+/* makes roblox credit next to robux */
+:root .btn-navigation-nav-robux-md {
+	display: flex;
+}
+
 /* fix homepage people overlaping with games */
 body .section .people-list {
 	overflow: hidden;
