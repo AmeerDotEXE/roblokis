@@ -101,3 +101,9 @@ body .section .people-list {
 [data-internal-page-name="Home"] .game-carousel.expand-home-content {
 	grid-column-gap: 12px;
 }
+
+
+/* fix for v 4.1.0.1 */
+:root #rbx-body .btn-common-play-game-lg span.icon-common-play {
+	background-position: 0 0;
+}
