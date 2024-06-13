@@ -4,3 +4,20 @@
 :root #rbx-body .btn-common-play-game-lg span.icon-common-play {
 	background-position: 0 0;
 }
+
+/* fix homepage people overlaping with games */
+body .section .people-list {
+	overflow: hidden;
+}
+
+/* force fix page being thin */
+[data-internal-page-name="Home"] #container-main > div.content {
+	max-width: 100%;
+	min-width: unset;
+	width: min(1336px, 100%) !important;
+}
+/* #HomeContainer {
+	max-width: 100%;
+	min-width: unset;
+	width: min(970px, 100%) !important;
+} */
