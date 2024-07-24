@@ -409,3 +409,60 @@ body#rbx-body:not(.gamecards-join-text) .rk-quickgamejoin::after {
 	position: relative;
 	overflow: hidden auto;
 }
+
+
+/* custimize sections for game cards & friends */
+div > .game-carousel, .game-grid, .game-cards {
+	border-radius: var(--rk-gamesection-corners-radius, 8px);
+
+	border-color: var(--rk-gamesection-borders-color);
+	border-style: var(--rk-gamesection-borders-style);
+	border-width: var(--rk-gamesection-borders-size);
+
+	background: var(--rk-gamesection-background);
+	background-size: var(--rk-gamesection-background-image-size);
+
+	backdrop-filter: var(--rk-gamesection-backdrop-filter);
+	box-shadow: var(--rk-gamesection-box-shadow);
+
+	justify-content: space-between;
+	padding: 8px;
+}
+.game-carousel > .grid-item-container:last-child {
+	margin-right: 0;
+}
+.game-carousel > .grid-item-container {
+	margin: 0;
+}
+html .rbx-body .game-carousel.expand-home-content {
+	column-gap: 5px;
+}
+html .rbx-body .game-grid.wide-game-tile-game-grid {
+	grid-column-gap: 5px;
+	grid-row-gap: 12px;
+	padding: 8px;
+}
+.game-cards {
+	display: flex;
+}
+.game-cards > .game-card:last-child {
+	padding: 0;
+	width: 150px;
+}
+/* friends */
+html .rbx-body .section .people-list {
+	border-radius: var(--rk-peoplesection-corners-radius, 8px);
+
+	border-color: var(--rk-peoplesection-borders-color);
+	border-style: var(--rk-peoplesection-borders-style);
+	border-width: var(--rk-peoplesection-borders-size);
+
+	background: var(--rk-peoplesection-background);
+	background-size: var(--rk-peoplesection-background-image-size);
+
+	backdrop-filter: var(--rk-peoplesection-backdrop-filter);
+	box-shadow: var(--rk-peoplesection-box-shadow);
+
+    padding: 8px;
+	box-sizing: content-box;
+}

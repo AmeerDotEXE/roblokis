@@ -149,6 +149,12 @@
 #rbx-body .rbx-header .rbx-navbar-right .popover-content {
 	background-image: url($popup.background.image.link#);
 }
+div > .game-carousel, .game-grid, .game-cards {
+	background-image: url($gamesection.background.image.link#);
+}
+.rbx-body .section .people-list {
+	background-image: url($peoplesection.background.image.link#);
+}
 
 /*groups.css*/
 #group-container > div > div > div.group-details > div > div.section-content,

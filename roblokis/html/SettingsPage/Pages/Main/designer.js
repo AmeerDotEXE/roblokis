@@ -3092,6 +3092,36 @@ let designerComponents = [
 		element: defaultcomponentElements.horizantalGroup
 	},//popup
 	{
+		id: "gamesection",
+		tags: ["blockElement"],
+		parent: {
+			headId: 'pages',
+			tags: {
+				page: true
+			}
+		},
+		details: {
+			name: "Game Section",
+			description: "Edits around a group of game cards.",
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//gamesection
+	{
+		id: "peoplesection",
+		tags: ["blockElement"],
+		parent: {
+			headId: 'pages',
+			tags: {
+				page: true
+			}
+		},
+		details: {
+			name: "Profiles Section",
+			description: "Edits around a group of profile cards.",
+		},
+		element: defaultcomponentElements.horizantalGroup
+	},//peoplesection
+	{
 		id: "group",
 		tags: ["blockElement"],
 		parent: {

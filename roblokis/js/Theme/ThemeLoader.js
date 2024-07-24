@@ -198,7 +198,8 @@ Rkis.Designer.CreateThemeElement = async function(theme) {
 				"menu","profile","group",
 				"avatar","avatareditor",
 				"quickgamejoin", "gameplay",
-				"popup",
+				"popup", "gamesection",
+				"peoplesection",
 			];
 
 			alltheelements.forEach((element, elementnumber) => {
