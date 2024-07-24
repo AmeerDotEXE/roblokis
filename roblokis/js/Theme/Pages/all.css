@@ -329,29 +329,37 @@ body#rbx-body:not(.gamecards-join-text) .rk-quickgamejoin::after {
 
 
 /*   Colored Text   */
+body.dark-theme {
+	--rbx-theme-txt-color: #fff;
+	--rbx-theme-txt-sec-color: #7f7f7f;
+}
+body.light-theme {
+	--rbx-theme-txt-color: #393b3d;
+	--rbx-theme-txt-sec-color: #bdbebe;
+}
 /* content */
 .content {
-	color: var(--rk-content-textcolor-primary, #fff) !important;
+	color: var(--rk-content-textcolor-primary, var(--rbx-theme-txt-color)) !important;
 }
 .section-content,
 .people-list .friend .friend-link {
-	color: var(--rk-content-textcolor-primary2, #fff) !important;
+	color: var(--rk-content-textcolor-primary2, var(--rbx-theme-txt-color)) !important;
 }
 .text, .text-date-hint, .text-default, .text-description, .text-footer, .text-info, .text-label, .text-secondary, p, .game-card-info .info-label {
-	color: var(--rk-content-textcolor-secondary, #bdbebe) !important;
+	color: var(--rk-content-textcolor-secondary, var(--rbx-theme-txt-sec-color)) !important;
 }
 
 /* nav menu */
 .rbx-left-col li .text-nav:active, .rbx-left-col li .text-nav:link, .rbx-left-col li .text-nav:visited, .text-nav, .text-nav:hover {
-	color: var(--rk-menu-textcolor-primary, #fff) !important;
+	color: var(--rk-menu-textcolor-primary, var(--rbx-theme-txt-color)) !important;
 }
 
 /* navbar */
 .rbx-header .text-header, .rbx-header .text-header:active, .rbx-header .text-header:focus, .rbx-header .text-header:hover, .rbx-header .text-header:link, .rbx-header .text-header:visited {
-	color: var(--rk-menu-textcolor-primary, #fff) !important;
+	color: var(--rk-menu-textcolor-primary, var(--rbx-theme-txt-color)) !important;
 }
 #rbx-body #buy-robux-popover-menu li a, #rbx-body #settings-popover-menu li a {
-	color: var(--rk-menu-textcolor-secondary, #bdbebe);
+	color: var(--rk-menu-textcolor-secondary, var(--rbx-theme-txt-sec-color));
 }
 
 
