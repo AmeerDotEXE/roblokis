@@ -55,7 +55,7 @@
 
 
 /* Fix error message peaking under navbar */
-html .alert-system-feedback .alert {
+html .rbx-body .alert-system-feedback .alert {
 	top: -50%;
 	/* transform: translate(0, -200%); */
 }

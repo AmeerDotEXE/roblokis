@@ -11,7 +11,8 @@
 #configure-group > configure-group-page > div > div:nth-child(2) > div > div > configure-group-roles > div > configure-group-role-settings > div > div > div.section-content,
 #configure-group > configure-group-page > div > div:nth-child(2) > div > div > configure-group-allies > div > configure-group-allies-list > div.group-affiliates > ul > configure-group-affiliate-card > li > div,
 #configure-group > configure-group-page > div > div:nth-child(2) > div > div > configure-group-allies > div > configure-group-ally-requests > div.group-affiliates > ul > configure-group-affiliate-request-card > li > div,
-#group-container > div > div > div.group-details > div > group-wall > div > div.section-content.group-wall.group-wall-no-margin {
+#group-container > div > div > div.group-details > div > group-wall > div > div.section-content.group-wall.group-wall-no-margin,
+#group-announcements > div > div > div.section-content {
 	border-radius: var(--rk-group-corners-radius);
 
 	border-color: var(--rk-group-borders-color);
@@ -36,7 +37,8 @@
 #configure-group > configure-group-page > div > div:nth-child(2) > div > div > configure-group-enemies > div > div.group-affiliates > div,
 #configure-group > configure-group-page > div > div:nth-child(2) > div > div > configure-group-allies > div > configure-group-ally-requests > div.group-affiliates > ul > configure-group-affiliate-request-card > li > div > div.avatar-card-btns,
 #configure-group > configure-group-page > div > div:nth-child(2) > div > div > configure-group-members > div > configure-group-members-list > div.section-content-off,
-#group-container > div > div > div.group-details > div > group-wall > div > div.section-content-off {
+#group-container > div > div > div.group-details > div > group-wall > div > div.section-content-off,
+#group-container > div > div > div.group-details > div > div.tab-content.rbx-tab-content.section > group-events .section-content-off {
 	background-color: transparent;
 }
 

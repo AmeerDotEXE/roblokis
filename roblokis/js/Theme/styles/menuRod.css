@@ -80,3 +80,10 @@ body.menu-avatar-bottom .rbx-left-col > ul {
 body.menu-avatar-bottom #navigation {
 	justify-content: space-between;
 }
+
+/* fix btroblox adding space next to rod */
+@media (max-width: 1688px) {
+    html body.btr-no-hamburger .container-main, body.btr-no-hamburger .nav-container .nav-content {
+        margin-left: auto;
+    }
+}

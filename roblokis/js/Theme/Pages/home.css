@@ -3,15 +3,20 @@
 }
 
 /* seems to fix narrow bug from roblox update*/
-#HomeContainer {
+/* #HomeContainer {
 	max-width: 978px;
     min-width: unset;
     width: min(970px, 100%) !important;
-}
+} */
+ /* #container-main > div.content {
+	max-width: 100%;
+	min-width: unset;
+	width: min(1336px, 100%) !important;
+} */
 /* fix cars going to second row when using expand-home-content by roblox */
-.game-carousel.expand-home-content {
+/* .game-carousel.expand-home-content {
 	grid-column-gap: 12px;
-}
+} */
 
 /*shadows*/
 #home-header a.avatar {
@@ -54,15 +59,24 @@ div.section-content.people-list li.list-item.friend span.avatar-status {
 	padding: 6px;
 	box-sizing: content-box;
 }
-.people-list-container {
-	overflow: hidden;
-}
 body .section .people-list {
-	overflow: visible;
+	overflow: hidden;
 }
 
 
 /* fix narrow body by btroblox */
 #rbx-body.btr-hide-ads .content {
 	max-width: unset;
+}
+
+.home-expand-design #container-main > div.content {
+    width: auto;
+	max-width: calc(100% - 20px);
+}
+
+@media (min-width: 1688px) {
+	.home-expand-design #container-main > div.content {
+		margin-left: calc(20px + var(--menufloat-width));
+		max-width: calc(100% - var(--menufloat-width) - 30px);
+	}
 }

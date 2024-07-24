@@ -21,6 +21,7 @@ Rkis.page.all = () => {
 						js: () => {
 							var allMaxWidthPages = [
 								".com/discover",
+								".com/charts",
 								".com/catalog",
 								".com/my/avatar",
 							];
@@ -39,6 +40,7 @@ Rkis.page.all = () => {
 						js: (style) => {
 							var allMaxWidthPages = [
 								".com/discover",
+								".com/charts",
 								".com/catalog",
 								".com/my/avatar",
 							];
@@ -69,6 +71,7 @@ Rkis.page.all = () => {
 						js: (style) => {
 							var allMaxWidthPages = [
 								".com/discover",
+								".com/charts",
 								".com/catalog",
 								".com/my/avatar",
 							];

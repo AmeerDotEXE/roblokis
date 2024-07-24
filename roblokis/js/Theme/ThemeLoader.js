@@ -433,6 +433,7 @@ Rkis.Designer.SetupTheme = async function() {
 	var allCssFiles = [
 		{match: ".com/home", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/home.css" ]},
 		{match: ".com/discover", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/discover.css" ]},
+		{match: ".com/charts", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/discover.css" ]},
 		{match: ".com/users/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/profile.css" ]},
 		{match: ".com/games/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/games.css" ]},
 		{match: ".com/groups/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/groups.css" ]},
@@ -588,6 +589,10 @@ Rkis.Designer.SetupTheme = async function() {
 		if (pagetheme == null) isDark = !Rkis.wholeData.isUsingLightTheme;
 
 		changeRobloxTheme(isDark ? 'Dark' : 'Light');
+
+		document.$watch(".home-container.expand-max-width", () => {
+			document.body?.classList.add("home-expand-design");
+		});
 	});
 
 }
