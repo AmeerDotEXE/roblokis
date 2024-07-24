@@ -3840,17 +3840,19 @@ Designer.CreateNewTheme = async function(button) {
 
 	var safetycheck = await Designer.TestThemeDetails(themename, themedesc, themeimage);
 
-	if (newthemeimage != null) filetheme = {"pages":{"all":{"background":{
-		"color": "rgba(25,27,29,100%)",
-		"image":{
-			"link": themeimage,
-			"attachment": "fixed",
-			"repeat": "round",
-			"size": "contain",
-		}
-	}}}};
-	filetheme = filetheme || {};
-	filetheme.isDark = document.body.classList.contains('dark-theme');
+	if (filetheme == null) {
+		if (newthemeimage != null) filetheme = {"pages":{"all":{"background":{
+			"color": "rgba(25,27,29,100%)",
+			"image":{
+				"link": themeimage,
+				"attachment": "fixed",
+				"repeat": "round",
+				"size": "contain",
+			}
+		}}}};
+		filetheme = filetheme || {};
+		filetheme.isDark = document.body.classList.contains('dark-theme');
+	}
 
 	if (safetycheck.error == null) safetycheck = await Designer.SaveNewTheme(themename, themedesc, filetheme);
 	if (safetycheck.error != null) {
