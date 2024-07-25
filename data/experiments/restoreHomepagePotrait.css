@@ -1,0 +1,5 @@
+.rbx-body #container-main > div.content:has(.expand-max-width) {
+    max-width: 1200px !important;
+    margin-left: auto !important;
+    margin-right: auto;
+}

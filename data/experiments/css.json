@@ -1,5 +1,11 @@
 {
 	"experimentsCSS": {
+		"restore-homepage-potrait": {
+			"name": "Restore homepage potrait",
+			"description": "shrinks roblox's wide homepage, making ti looks like it used to.",
+			"cssUrl": "https://ameerdotexe.github.io/roblokis/data/experiments/restoreHomepagePotrait.css",
+			"filterUrls": [".com/home"]
+		},
 		"rainbow-play-button": {
 			"name": "Rainbow Play Button",
 			"description": "Animated rainbow colored play button on game pages",
