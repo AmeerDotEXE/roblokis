@@ -21,3 +21,8 @@ html body.light-theme {
         margin-left: calc(20px + var(--menufloat-width)) !important;
     }
 }
+
+/* fix rogold pinned servers centered */
+#pinned-container.game-cards {
+    display: block;
+}
