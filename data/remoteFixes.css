@@ -9,8 +9,15 @@ html body.light-theme {
 }
 
 /* forcefix for because class tag isn't applied right */
+/* note: added !important to overwrite ropro */
 #container-main > div.content:has(.expand-max-width) {
     width: auto;
-    max-width: calc(100% - 20px);
+    max-width: calc(100% - 20px) !important;
 	margin-right: 10px;
+}
+
+@media (min-width: 1688px) {
+    .home-expand-design #container-main > div.content {
+        margin-left: calc(20px + var(--menufloat-width)) !important;
+    }
 }
