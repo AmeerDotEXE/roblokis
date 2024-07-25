@@ -12,4 +12,5 @@ html body.light-theme {
 #container-main > div.content:has(.expand-max-width) {
     width: auto;
     max-width: calc(100% - 20px);
+	margin-right: 10px;
 }
