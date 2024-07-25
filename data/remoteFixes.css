@@ -7,3 +7,9 @@ html body.dark-theme {
 html body.light-theme {
 	--rbx-theme-txt-sec-color: #7f7f7f;
 }
+
+/* forcefix for because class tag isn't applied right */
+#container-main > div.content:has(.expand-max-width) {
+    width: auto;
+    max-width: calc(100% - 20px);
+}
