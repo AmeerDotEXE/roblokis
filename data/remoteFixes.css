@@ -18,7 +18,7 @@ html body.light-theme {
 
 @media (min-width: 1688px) {
     .home-expand-design #container-main > div.content {
-        margin-left: calc(20px + var(--menufloat-width)) !important;
+        margin-left: calc(20px + var(--menufloat-width, 170px)) !important;
     }
 }
 
