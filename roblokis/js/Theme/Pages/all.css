@@ -331,11 +331,11 @@ body#rbx-body:not(.gamecards-join-text) .rk-quickgamejoin::after {
 /*   Colored Text   */
 body.dark-theme {
 	--rbx-theme-txt-color: #fff;
-	--rbx-theme-txt-sec-color: #7f7f7f;
+	--rbx-theme-txt-sec-color: #bdbebe;
 }
 body.light-theme {
 	--rbx-theme-txt-color: #393b3d;
-	--rbx-theme-txt-sec-color: #bdbebe;
+	--rbx-theme-txt-sec-color: #7f7f7f;
 }
 /* content */
 .content {
@@ -440,12 +440,13 @@ div > .game-carousel, .game-grid, .game-cards {
 	margin-right: 0;
 }
 .game-carousel > .grid-item-container {
-	margin: 0;
+	margin: 0 !important;
 }
 html .rbx-body .game-carousel.expand-home-content {
 	column-gap: 5px;
 }
-html .rbx-body .game-grid.wide-game-tile-game-grid {
+html .rbx-body .game-grid.wide-game-tile-game-grid,
+html .rbx-body .game-carousel.wide-game-tile-carousel {
 	grid-column-gap: 5px;
 	grid-row-gap: 12px;
 	padding: 8px;

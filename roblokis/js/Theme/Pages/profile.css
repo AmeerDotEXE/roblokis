@@ -15,7 +15,6 @@
 /* for btroblox */
 #container-main > div.content > div.profile-container > div > div.btr-profile-container > div.btr-profile-left > div.btr-profile-about.profile-about > div.section-content,
 #roblox-badges-container > div.section-content,
-#container-main > div.content > div.profile-container > div > div.btr-profile-container > div.btr-profile-right > div.btr-profile-favorites > div.section-content,
 #container-main > div.content > div.profile-container > div > div.btr-profile-container > div.btr-profile-left > div.btr-profile-playerbadges > div.section-content,
 #container-main > div.content > div.profile-container > div > div.btr-profile-container > div.btr-profile-left > div.btr-profile-groups > div.section-content,
 #btr-injected-inventory,
@@ -130,4 +129,11 @@
 
 .profile-container .game-container.shown {
 	width: fit-content;
+}
+
+#container-main > div.content > div.profile-container > div > div.btr-profile-container > div.btr-profile-right > div.btr-profile-favorites > div.section-content {
+	display: contents;
+}
+.btr-profile-favorites .game-cards {
+	flex-wrap: wrap;
 }

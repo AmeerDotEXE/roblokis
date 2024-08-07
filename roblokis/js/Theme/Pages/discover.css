@@ -3,14 +3,26 @@
 	width: calc(100% - 20px);
 }
 
+@media (min-width: 1688px) {
+	#container-main > div.content {
+		max-width: calc(100% - var(--menufloat-width, 155px) - 30px);
+	}
+}
+
 #games-carousel-page,
 #games-search-page {
 	width: 100%;
 }
 
+.horizontally-scrollable {
+	height: auto;
+}
+
 .horizontal-scroller .scroller[role="button"] {
 	border-radius: 8px;
 	opacity: 0.8;
+
+	height: 100%;
 }
 
 .scroller.next[role="button"] {
@@ -27,4 +39,8 @@
 
 .game-cards .game-card.rk-has-quickjoinbtn {
 	min-height: 250px;
+}
+
+.container-header {
+	margin-top: 1rem;
 }

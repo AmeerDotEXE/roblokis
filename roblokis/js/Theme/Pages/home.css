@@ -80,3 +80,10 @@ body .section .people-list {
 		max-width: calc(100% - var(--menufloat-width) - 30px);
 	}
 }
+
+
+/* fix friends peeking at the bottom of the section by btroblox */
+.btr-home-showUsername .people-list-container .people-list .friend,
+.btr-home-secondRow .people-list-container .people-list .friend {
+	margin-bottom: 6px;
+}

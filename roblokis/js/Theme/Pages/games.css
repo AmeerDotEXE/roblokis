@@ -55,7 +55,7 @@
 	transform: var(--rk-basic-animations, scale(1.08) rotate(-2deg));
 }
 /* fix icon being sized wrongly when using custom icons */
-#rbx-body .btn-common-play-game-lg span[class^=icon-] {
+#rbx-body .btn-common-play-game-lg span.icon-robux-white {
 	background-position: 0 -36px;
 }
 

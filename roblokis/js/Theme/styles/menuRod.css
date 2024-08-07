@@ -83,7 +83,7 @@ body.menu-avatar-bottom #navigation {
 
 /* fix btroblox adding space next to rod */
 @media (max-width: 1688px) {
-    html body.btr-no-hamburger .container-main, body.btr-no-hamburger .nav-container .nav-content {
+    html body.rbx-body .container-main {
         margin-left: auto;
     }
 }
