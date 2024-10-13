@@ -475,3 +475,10 @@ html .rbx-body .section .people-list {
     padding: 8px;
 	box-sizing: content-box;
 }
+
+/* fix overlap menu with content */
+@media (min-width: 1688px) {
+    .home-expand-design #container-main > div.content {
+        margin-left: calc(20px + var(--menufloat-width, 170px)) !important;
+    }
+}

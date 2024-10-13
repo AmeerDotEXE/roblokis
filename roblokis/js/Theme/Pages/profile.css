@@ -137,3 +137,20 @@
 .btr-profile-favorites .game-cards {
 	flex-wrap: wrap;
 }
+
+.btr-profile .profile-container .game-container.shown .game-card {
+	width: 150px;
+	padding: 0;
+}
+.btr-profile .profile-container .game-container.shown {
+	width: 33.3%;
+}
+
+.profile-container .profile-game .game-cards {
+	display: block;
+	background: none;
+	border: 0;
+	padding: 0;
+	box-shadow: none;
+	backdrop-filter: none;
+}

@@ -52,6 +52,10 @@ div.section-content.people-list li.list-item.friend span.avatar-status {
 	background-color: transparent;
 }
 
+.game-carousel.expand-home-content-disabled {
+	gap: 8px;
+}
+
 
 
 /* fixes hover cuts */
@@ -86,4 +90,16 @@ body .section .people-list {
 .btr-home-showUsername .people-list-container .people-list .friend,
 .btr-home-secondRow .people-list-container .people-list .friend {
 	margin-bottom: 6px;
+}
+
+/* forcefix for ropro's narrow menu */
+#container-main > div.content:has(.expand-max-width) {
+    width: auto;
+    max-width: calc(100% - 20px) !important;
+    margin-right: 10px;
+}
+
+/* fix rogold pinned servers centered */
+#pinned-container.game-cards {
+    display: block;
 }

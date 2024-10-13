@@ -44,3 +44,7 @@
 .container-header {
 	margin-top: 1rem;
 }
+
+.rbx-body .game-grid.home-game-grid.expand-home-content {
+	padding: 8px;
+}

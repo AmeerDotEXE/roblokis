@@ -347,7 +347,7 @@ $r = (() => {
 						observer.listeners = [];
 						observer.target = target;
 
-						observer.observe(target, { characterData: true, attributes: true, subtree: true });
+						observer.observe(target, { characterData: true, attributes: true, subtree: true, childList: true });
 					}
 
 					observer.listeners.push(item);

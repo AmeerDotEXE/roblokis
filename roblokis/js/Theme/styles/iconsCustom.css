@@ -25,6 +25,6 @@
 	background-position: -28px -28px;
 }
 #rbx-body .icon-robux-gray,
-#nav-robux-icon .icon-robux-28x28 {
+.rbx-body #nav-robux-icon .icon-robux-28x28 {
 	background-position: 0 -28px;
 }

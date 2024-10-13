@@ -30,7 +30,7 @@ li .game-server-details > span.rk-multi-button {
 .avatar-container:has( .avatar-status.icon-studio) {
 	--friend-status-color: hsl(33, 98%, 49%);
 }*/
-.avatar-container.rk-status-ring .avatar thumbnail-2d.avatar-card-image {
+.avatar.rk-status-ring .avatar-card-image {
 	border: 2px solid var(--friend-status-color) !important;
 	box-shadow: var(--friend-status-glow, var(--rk-avatar-box-shadow)) !important;
 }

@@ -920,6 +920,7 @@ page.settingsWaitingForGeneral = function() {
 
 					<div data-translate="categoryProfiles">Profiles</div>
 					<ul id="vertical-menu" class="menu-vertical submenus" role="tablist">
+						<!-- <li class="menu-option" data-file="Profiles/HomePage"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabHome">Home Page</span> </a> </li> -->
 						<li class="menu-option" data-file="Profiles/ProfilePage"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabProfilePage">Profile Page</span> </a> </li>
 						<li class="menu-option" data-file="Profiles/FriendsPage"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabFriendsPage">Friends Page</span> </a> </li>
 					</ul>
@@ -1744,6 +1745,15 @@ page.settingsWaitingForGeneral = function() {
 						</div>
 					</div>
 					<div class="profiles">
+						<!-- <div class="tabcontent homepage">
+							<h3><span data-translate="categoryProfiles">Profiles</span> &gt; <span data-translate="tabHome">Home Page</span></h3>
+							<button class="main-save-button" data-translate="btnSave">Save</button>
+
+							<span class="text-description" data-translate="NoSettingReason">No Settings? Visit the page mentioned in this Tab's name</span>
+							<div class="rbx-divider" style="margin: 12px;"></div>
+							
+							<loadcode code="settingload" data-id="CustomHomeSections"></loadcode>
+						</div> -->
 						<div class="tabcontent profilepage">
 							<h3><span data-translate="categoryProfiles">Profiles</span> &gt; <span data-translate="tabProfilePage">Profile Page</span></h3>
 							<button class="main-save-button" data-translate="btnSave">Save</button>

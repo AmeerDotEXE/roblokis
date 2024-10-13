@@ -483,7 +483,7 @@ Rkis.page.all = () => {
 				removeEmojis = customization.removeEmojis;
 			}
 
-			document.$watchLoop(".game-card-name, .game-name-title, .place-name", updateElementName);
+			document.$watchLoop(".game-card-name, .game-name-title, .place-name, .friends-carousel-tile-experience", updateElementName);
 
 			function updateElementName(elem, tries = 10) {
 				if (elem.textContent === "") {
@@ -573,16 +573,17 @@ Rkis.page.all = () => {
 		(function() {
 			let customization = Rkis.GetSettingCustomization("StatusRing");
 			let getStatus = function(avatarStatus) {
-				if (avatarStatus.classList.contains("icon-game")) return "hsl(148, 98%, 36%)";
-				else if (avatarStatus.classList.contains("icon-online")) return "hsl(202, 100%, 50%)";
-				else if (avatarStatus.classList.contains("icon-studio")) return "hsl(33, 98%, 49%)";
+				if (avatarStatus.classList.contains("game")) return "hsl(148, 98%, 36%)";
+				else if (avatarStatus.classList.contains("online")) return "hsl(202, 100%, 50%)";
+				else if (avatarStatus.classList.contains("studio")) return "hsl(33, 98%, 49%)";
 				return "hsl(0, 0%, 0%)";
 			}
 			document.$watchLoop(".avatar-status", (element) => {
 				// console.log("found", getStatus(element), element);
 				element.$watchData((statusElement) => {
 					// console.log("edited", getStatus(statusElement), statusElement);
-					let container = statusElement.closest(".avatar-container")
+					if (statusElement.firstElementChild != null) statusElement = statusElement.firstElementChild;
+					let container = statusElement.closest(".avatar")
 					if (container) {
 						container.classList.add("rk-status-ring");
 						container.style.setProperty("--friend-status-color", getStatus(statusElement));
@@ -770,6 +771,31 @@ Rkis.page.all = () => {
 			}
 		})();
 	}
+
+	//for homepage - coming soon
+	// if (Rkis.pageName == "home") {
+	// 	if (Rkis.IsSettingEnabled("CustomHomeSections", {
+	// 		id: "CustomHomeSections",
+	// 		type: "switch",
+	// 		value: { switch: false },
+	// 		data: {
+	// 			customization: {}
+	// 		},
+	// 		details: {
+	// 			default: "en",
+	// 			"en": {
+	// 				name: "Custom Home Sections",
+	// 				description: "Press Customize to edit sections in homepage.",
+	// 			}
+	// 		}
+	// 	})) {
+	// 		(function() {
+
+	// 			console.log("LOADED] homepage custom sections");
+
+	// 		})();
+	// 	}
+	// }
 
 	return {};
 	
