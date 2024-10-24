@@ -48,3 +48,9 @@
 .rbx-body .game-grid.home-game-grid.expand-home-content {
 	padding: 8px;
 }
+
+.rbx-body .game-grid.expand-home-content {
+	grid-column-gap: 4px;
+	grid-row-gap: 0px;
+	justify-content: space-evenly;
+}

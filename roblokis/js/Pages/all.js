@@ -772,7 +772,7 @@ Rkis.page.all = () => {
 		})();
 	}
 
-	//for homepage - coming soon
+	// left out, might return to it later when i have time
 	// if (Rkis.pageName == "home") {
 	// 	if (Rkis.IsSettingEnabled("CustomHomeSections", {
 	// 		id: "CustomHomeSections",
@@ -791,7 +791,83 @@ Rkis.page.all = () => {
 	// 	})) {
 	// 		(function() {
 
-	// 			console.log("LOADED] homepage custom sections");
+	// 			document.$watch(`#place-list .game-home-page-container > div`, (homeContainer) => {
+	// 				homeContainer.$watchLoop('[data-testid="home-page-game-grid"]', (ads) => {
+	// 					if (ads.dataset.testid != null) {
+	// 						ads.remove();
+	// 					}
+
+	// 					let sortedMenu = Array.from(homeContainer.children).sort((a,b) => {
+	// 						if (a.classList.contains('game-sort-carousel-wrapper')) return -1;
+	// 						return 1;
+	// 					});
+	
+	// 					for (let rowIndex = 0; rowIndex < sortedMenu.length; rowIndex++) {
+	// 						const element = sortedMenu[rowIndex];
+	// 						insertChildAtIndex(homeContainer, element, rowIndex);
+	// 					}
+	// 				});
+	// 			});
+
+
+	// 			function createGameCard() {
+	// 				return /*html*/`
+	// 					<div class="grid-item-container game-card-container" data-testid="game-tile">
+	// 						<a class="game-card-link" tabindex="0" aria-hidden="false" id="6035872082" data-id="17625359962"
+	// 							href="https://www.roblox.com/games/17625359962/GAMEMODES-RIVALS?gameSetTypeId=100000003&amp;homePageSessionInfo=ad303b7b-1c62-4f12-a7c6-e25cfb89eb9c&amp;isAd=false&amp;numberOfLoadedTiles=6&amp;page=homePage&amp;placeId=17625359962&amp;playContext=homePage&amp;position=0&amp;sortPos=2&amp;universeId=6035872082">
+	// 							<span class="thumbnail-2d-container game-card-thumb-container">
+	// 								<img class="" alt="[🕹️GAMEMODES] RIVALS" title="[🕹️GAMEMODES] RIVALS"
+	// 									src="https://tr.rbxcdn.com/180DAY-014e7039b194ee303fd204e0be26d3cb/256/256/Image/Webp/noFilter">
+	// 							</span>
+	// 							<div class="game-card-name game-name-title" title="[🕹️GAMEMODES] RIVALS">RIVALS</div>
+	// 							<div class="game-card-info" data-testid="game-tile-stats">
+	// 								<span class="info-label icon-votes-gray"></span>
+	// 								<span class="info-label vote-percentage-label">95%</span>
+	// 								<span class="info-label icon-playing-counts-gray"></span>
+	// 								<span class="info-label playing-counts-label">54.1K</span>
+	// 							</div>
+	// 						</a>
+	// 					</div>
+	// 				`;
+	// 			}
+	// 			function createGamesRow() {
+	// 				return /*html*/`
+	// 					<div class="game-sort-carousel-wrapper">
+	// 						<div class="game-sort-header-container">
+	// 							<div class="container-header">
+	// 								<h2 class="sort-header">
+	// 									<a class=""
+	// 										href="https://www.roblox.com/discover#/sortName/v2/Continue?homePageSessionInfo=ad303b7b-1c62-4f12-a7c6-e25cfb89eb9c&amp;page=homePage&amp;position=2&amp;sortId=100000003&amp;treatmentType=Carousel">Continue</a>
+	// 								</h2>
+	// 								<a class="btn-secondary-xs see-all-link-icon btn-more"
+	// 									href="https://www.roblox.com/discover#/sortName/v2/Continue?homePageSessionInfo=ad303b7b-1c62-4f12-a7c6-e25cfb89eb9c&amp;page=homePage&amp;position=2&amp;sortId=100000003&amp;treatmentType=Carousel">See
+	// 									All</a>
+	// 							</div>
+	// 						</div>
+	// 						<div data-testid="game-carousel" class="game-carousel expand-home-content-disabled">
+	// 							${createGameCard()}
+	// 							${createGameCard()}
+	// 							${createGameCard()}
+	// 							${createGameCard()}
+	// 							${createGameCard()}
+	// 							${createGameCard()}
+	// 						</div>
+	// 					</div>
+	// 				`;
+	// 			}
+
+				
+	// 			//https://stackoverflow.com/a/39181175
+	// 			function insertChildAtIndex(parent, child, index) {
+	// 				if (!index) index = 0;
+	// 				if (index === 0) {
+	// 					parent.prepend(child);
+	// 				} else if (index >= parent.children.length) {
+	// 					parent.appendChild(child);
+	// 				} else {
+	// 					parent.insertBefore(child, parent.children[index]);
+	// 				}
+	// 			}
 
 	// 		})();
 	// 	}
