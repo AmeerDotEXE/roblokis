@@ -2,14 +2,14 @@ body {
 	margin: 0px;
 	padding: 2rem;
 
-	background-color: #151a30;
-	background: -webkit-linear-gradient(45deg, #151a30 0%, #222b45 90%);
-	background: linear-gradient(45deg, #151a30 0%, #222b45 90%);
+	background-color: hsl(222.2 84% 4.9%);
+	background: -webkit-linear-gradient(45deg, hsl(222.2 84% 4.9%) 0%, hsl(222.2 47.4% 11.2%) 90%);
+	background: linear-gradient(45deg, hsl(222.2 84% 4.9%) 0%, hsl(222.2 47.4% 11.2%) 90%);
 
-	--light: #8f9bb3;
-	--dark: #151a30;
+	--light: hsl(215 20.2% 65.1%);
+	--dark: hsl(222.2 84% 4.9%);
 
-	--gap: 1rem;
+	--gap: 16px;
 }
 
 a, span, div {
@@ -22,9 +22,9 @@ a, span, div {
 }
 a.big, span.big, div.big { font-size: 2rem; }
 a.small, span.small, div.small { font-size: 1rem; }
-.red { --light: #FF0000;text }
+.red { --light: #FF0000; }
 .green { --light: #6FBF2A; }
-.orange { --light: #F95822; }
+.orange { --light: hsl(24.6 95% 53.1%); }
 .discord-color { --light: #5865F2;}
 
 .box {
@@ -32,7 +32,7 @@ a.small, span.small, div.small { font-size: 1rem; }
 	margin-bottom: 2.5rem;
 	padding: .75rem;
 	border-radius: 1rem;
-	border: .25rem solid var(--light);
+	/* border: .25rem solid var(--light); */
 }
 
 .flex, .button, .media { display: flex; gap: var(--gap, 1rem); }
@@ -43,7 +43,7 @@ a.small, span.small, div.small { font-size: 1rem; }
 .flex.fill > * { width: 100%; }
 
 .button {
-	border-radius: 1rem;
+	border-radius: 10px;
 	padding: .1rem .3rem;
 	justify-content: center;
 	color: var(--dark);
@@ -59,15 +59,16 @@ a.small, span.small, div.small { font-size: 1rem; }
 .button.narrow { width: -moz-fit-content; width: fit-content; }
 
 .card {
+	background-color: hsl(222.2 84% 4.9%);
 	width: calc(50% - (var(--gap, 1rem) * 2) - .5rem);
-	padding: 0 var(--gap, 1rem);
+	padding: 0 .5rem;
 	border-radius: 1rem;
 	overflow: hidden;
 	box-shadow: 0 0 4px black, inset 0 0 2px black;
 	height: fit-content;
 }
 .card:hover { box-shadow: 0 0 6px black, inset 0 0 2px black; }
-.card > img { width: calc(100% + (var(--gap, 1rem) * 2)); margin: 0 -1rem; }
+.card > img { width: calc(100% + (var(--gap, 1rem) * 2)); margin: 0 -1rem; aspect-ratio: 16 / 9; }
 .card > .header { margin: .5rem 0; }
 .card > .lower-third { margin: -2rem 0 .5rem; }
 .card > .footer { margin: 1rem 0 .5rem; }
