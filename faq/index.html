@@ -5,9 +5,9 @@
 
 		<style type="text/css">
 			body {
-				background-color: lightblue;
-				background: -webkit-linear-gradient(45deg, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 90%);
-				background: linear-gradient(45deg, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 90%);
+				background-color: hsl(0 74.7% 15.5%);
+				background: -webkit-linear-gradient(45deg, hsl(0 74.7% 15.5%) 0%, hsl(0 62.8% 30.6%) 90%);
+				background: linear-gradient(45deg, hsl(0 74.7% 15.5%) 0%, hsl(0 62.8% 30.6%) 90%);
 			}
 
 			div {
@@ -20,7 +20,7 @@
 
 			a {
 				text-decoration: none;
-				color: grey;
+				color: hsl(213.1 93.9% 67.8%);
 			}
 
 
@@ -44,7 +44,7 @@
 			}
 
 			.downloadbtn {
-				background-color: rgba(255,255,255,0.3);
+				background-color: hsl(0 0% 14.9%);
 				width: fit-content;
 				height: 40px;
 				padding: 8px;
@@ -52,7 +52,6 @@
 				display: flex;
 				align-items: center;
 				box-shadow: 0px 4px 16px 0px black;
-				color: rgb(222, 0, 0);
 			}
 
 			.downloadbtn * {
@@ -75,13 +74,19 @@
 			}
 
 			#content .panel {
-				background-color: rgba(0,0,0,0.3);
+				background-color: hsl(0 0% 9%);
 				border-radius: 20px;
 				padding: 20px;
 				margin-top: 3%;
 				width: calc(60% + 20px);
 				box-shadow: 0px 4px 16px 0px black;
-				color: white;
+				color: hsl(0 0% 63.9%);
+			}
+
+			#content .panel > div:first-child {
+				font-size: 140%;
+				margin-bottom: 0.25rem;
+				color: hsl(0 0% 98%);
 			}
 		</style>
 	</head>
@@ -89,12 +94,12 @@
 		<div id="content">
 			<div class="downloadbtn">
 				<div class="gap"></div>
-				<a class="header" style="color: black;pointer-events: visible;" href="../">Go Home</a>
+				<a class="header" style="color: white;pointer-events: visible;" href="../">Go Home</a>
 				<div class="gap"></div>
 			</div>
 
 			<div class="panel">
-				<div style="font-size: 140%;text-decoration: underline;">
+				<div>
 					My question is not listed here.
 				</div>
 				<div>
@@ -103,7 +108,7 @@
 			</div>
 
 			<div class="panel">
-				<div style="font-size: 140%;text-decoration: underline;">
+				<div>
 					I convert my picture to .ROBLOKIS file but it didn't work?
 				</div>
 				<div>
@@ -112,7 +117,7 @@
 			</div>
 
 			<div class="panel">
-				<div style="font-size: 140%;text-decoration: underline;">
+				<div>
 					How to put a gif/image from internet in roblokis theme?
 				</div>
 				<div>
@@ -128,7 +133,7 @@
 			</div>
 
 			<div class="panel">
-				<div style="font-size: 140%;text-decoration: underline;">
+				<div>
 					How to get gif/image link from internet?
 				</div>
 				<div>
@@ -139,7 +144,7 @@
 			</div>
 
 			<div class="panel">
-				<div style="font-size: 140%;text-decoration: underline;">
+				<div>
 					How to use Pre-made Roblokis Themes?
 				</div>
 				<div>
