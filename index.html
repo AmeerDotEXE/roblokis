@@ -30,9 +30,9 @@
 
 		<style type="text/css">
 			body {
-				background-color: lightblue;
-				background: -webkit-linear-gradient(45deg, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 90%);
-				background: linear-gradient(45deg, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 90%);
+				background-color: hsl(0 74.7% 15.5%);
+				background: -webkit-linear-gradient(45deg, hsl(0 74.7% 15.5%) 0%, hsl(0 62.8% 30.6%) 90%);
+				background: linear-gradient(45deg, hsl(0 74.7% 15.5%) 0%, hsl(0 62.8% 30.6%) 90%);
 			}
 
 			div {
@@ -45,7 +45,7 @@
 
 			a {
 				text-decoration: none;
-				color: grey;
+				color: hsl(213.1 93.9% 67.8%);
 			}
 
 
@@ -69,7 +69,7 @@
 			}
 
 			.downloadbtn {
-				background-color: rgba(255,255,255,0.3);
+				background-color: hsl(0 0% 14.9%);
 				width: fit-content;
 				height: 40px;
 				padding: 8px;
@@ -99,13 +99,19 @@
 			}
 
 			#content .panel {
-				background-color: rgba(0,0,0,0.3);
+				background-color: hsl(0 0% 9%);
 				border-radius: 20px;
 				padding: 20px;
 				margin-top: 3%;
 				width: calc(60% + 20px);
 				box-shadow: 0px 4px 16px 0px black;
-				color: white;
+				color: hsl(0 0% 63.9%);
+			}
+
+			#content .panel > div:first-child {
+				font-size: 140%;
+				margin-bottom: 0.25rem;
+				color: hsl(0 0% 98%);
 			}
 		</style>
 	</head>
@@ -114,12 +120,12 @@
 			<div class="downloadbtn">
 				<img class="logo" src="images/icons/icon_300x300.png" alt="Roblokis Logo">
 				<div class="gap"></div>
-				<a href="./get/" style="color: rgb(222, 0, 0); pointer-events: visible;" class="header">Get Roblokis</a>
+				<a href="./get/" style="color: hsl(0 84.2% 60.2%); pointer-events: visible;" class="header">Get Roblokis</a>
 				<div class="gap"></div>
 			</div>
 
 			<div class="panel">
-				<div style="font-size: 140%;text-decoration: underline;">
+				<div>
 					What is Roblokis?
 				</div>
 				<div>
@@ -128,7 +134,7 @@
 			</div>
 
 			<div class="panel">
-				<div style="font-size: 140%;text-decoration: underline;">
+				<div>
 					Is it Safe?
 				</div>
 				<div>
@@ -137,7 +143,7 @@
 			</div>
 
 			<div class="panel">
-				<div style="font-size: 140%;text-decoration: underline;">
+				<div>
 					Frequently Asked Questions
 				</div>
 				<div>
@@ -146,7 +152,7 @@
 			</div>
 			
 			<div class="panel">
-				<div style="font-size: 140%;text-decoration: underline;">
+				<div>
 					Want themes created by people?
 				</div>
 				<div>
@@ -155,7 +161,7 @@
 			</div>
 
 			<div class="panel">
-				<div style="font-size: 140%;text-decoration: underline;">
+				<div>
 					Is it Open Source
 				</div>
 				<div>
@@ -164,7 +170,7 @@
 			</div>
 
 			<div class="panel">
-				<div style="font-size: 140%;text-decoration: underline;">
+				<div>
 					I need Help! (Contact)
 				</div>
 				<div>
