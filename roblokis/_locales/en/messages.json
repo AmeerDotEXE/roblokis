@@ -60,7 +60,7 @@
 		"description": "Text shows on Roblokis settings page. text for a section"
 	},
 	"sectionMPN1": {
-		"message": "Shows Maximum players number next to the available players number.",
+		"message": "Shows maximum players number next to the available players number.",
 		"description": "Text shows on Roblokis settings page. text for a section"
 	},
 	"serversFiltered": {
@@ -84,7 +84,7 @@
 		"description": "Text shows on Roblokis settings page. text for a section"
 	},
 	"sectionLSite1": {
-		"message": "Limits Roblokis Language to Roblox Site Language.",
+		"message": "Limits Roblokis language to Roblox site language.",
 		"description": "Text shows on Roblokis settings page. text for a section"
 	},
 	"sectionExtraS": {
@@ -292,7 +292,7 @@
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionWhatRkis1": {
-		"message": "Roblokis is a broswer extenstion made by Ameer! to make roblox easier to use and more accessable.",
+		"message": "Roblokis is a broswer extenstion made by Ameer! to make roblox easier to use and more accessible.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionWhatRkis2": {
@@ -304,11 +304,11 @@
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionHelpNeed1": {
-		"message": "if the extension have problems you can contact me on discord:",
+		"message": "If the extension has problems, you can contact me on discord:",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionHelpNeed2": {
-		"message": "or message me on Roblox (Ameer_Khalid):",
+		"message": "Or message me on Roblox (Ameer_Khalid):",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionFeatures": {
@@ -336,7 +336,7 @@
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionLS1": {
-		"message": "Shows Player's Last Activity on his Profile Page.",
+		"message": "Shows player's last activity on their profile page.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionCP": {
@@ -352,7 +352,7 @@
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionCBV1": {
-		"message": "Shows the new Style design by Ameer! loads first 100 badges automatically.",
+		"message": "Shows the new style design by Ameer! Loads first 100 badges automatically.",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionCBH": {
@@ -424,7 +424,7 @@
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionUThemes1": {
-		"message": "Disabling this will disable Styles and Themes!",
+		"message": "Disabling this will disable styles and themes!",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionAAnim": {
@@ -432,7 +432,7 @@
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionAAnim1": {
-		"message": "Some pages might have some animation effects. (Requires Themes Option)",
+		"message": "Some pages might have some animation effects. (Requires themes option)",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionQJB": {
