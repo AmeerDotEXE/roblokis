@@ -304,11 +304,11 @@
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionHelpNeed1": {
-		"message": "if the extension have problems you can contact me on discord:",
+		"message": "If the extension has problems, you can contact me on discord:",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionHelpNeed2": {
-		"message": "or message me on Roblox (Ameer_Khalid):",
+		"message": "Or message me on Roblox (Ameer_Khalid):",
 		"description": "Text shows in roblokis settings. text for a Section"
 	},
 	"sectionFeatures": {

@@ -2,12 +2,9 @@
 if you want a static version of Roblokis then follow below!  
 this might allow you to have early access to features before releasing.
 
-**NOTE:** the extension only works on chromium based browsers
-so browsers like firefox isn't supported
-
-Side Notes:
+**NOTE:**
 - using it like that won't get you updates, you will have to redo this every time the extension gets updated
-- you might get an annoy popup every time you open the browser
+- you might get an annoying popup every time you open the browser
 
 ### Steps:
 1. Download this repository by pressing on "Code" (at top right)  
