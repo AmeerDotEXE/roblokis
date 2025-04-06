@@ -909,7 +909,7 @@ page.settingsWaitingForGeneral = function() {
 						<li class="menu-option" data-file="Main/Changelog"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabChangelog">Changelog</span> </a> </li>
 						<li class="menu-option" data-file="Main/All"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabAll">All</span> </a> </li>
 						<li class="menu-option" data-file="Main/Design"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabDesign">Design</span> </a> </li>
-						<li class="menu-option" data-file="Main/Themes"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabThemes">Themes</span> </a> </li>
+						<!-- <li class="menu-option" data-file="Main/Themes"> <a class="menu-option-content"> <span class="font-caption-header" data-translate="tabThemes">Themes</span> </a> </li> -->
 					</ul>
 
 					<div data-translate="categoryGamePage">Game Page</div>
@@ -1581,6 +1581,12 @@ page.settingsWaitingForGeneral = function() {
 												}
 
 												/*Section Selection*/
+												.accordion__button {
+													background-color: rgb(35, 37, 39);
+													border-radius: 10px;
+													padding: 10px;
+												}
+
 												.accordion__input:checked ~ .accordion__label {
 													color: rgba(255, 255, 255, 0.8);
 												}
@@ -1594,9 +1600,12 @@ page.settingsWaitingForGeneral = function() {
 													padding: 10px;
 													margin-top: 10px;
 												}
+												.accordion__button > .accordion__content {
+													background-color: #393b3d;
+												}
 
 												.accordion__content.accordion__show {
-													animation: fadein 400ms ease-in;
+													animation: fadein 150ms ease-in;
 													opacity: 1;
 													display: block;
 												}

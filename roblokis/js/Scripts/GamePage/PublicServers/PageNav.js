@@ -12,12 +12,12 @@ if(Rkis.wholeData.PageNav != false && false) {
 		var result = await Rkis.fetch("GET", `https://${Rkis.SubDomain}.roblox.com/games/getgameinstancesjson?placeId=${Rkis.GameId}&startIndex=1`, true);
 		if(result == null) return;
 
-		var buttonplace = await document.$watch("#rbx-running-games > div.rbx-running-games-footer").$promise();
+		var buttonplace = await document.$watch("#rbx-public-running-games > div.rbx-public-running-games-footer").$promise();
 		if(buttonplace == null) return;
 		buttonplace.remove();
 		
-		document.$find("#rbx-running-games").innerHTML += `<div class="rbx-running-games-footer"><button type="button" class="btn-control-sm btn-full-width rbx-running-games-load-more">${Rkis.language["loadMore"]}</button></div>`;
-		buttonplace = document.$find("#rbx-running-games > div.rbx-running-games-footer");
+		document.$find("#rbx-public-running-games").innerHTML += `<div class="rbx-running-games-footer"><button type="button" class="btn-control-sm btn-full-width rbx-running-games-load-more">${Rkis.language["loadMore"]}</button></div>`;
+		buttonplace = document.$find("#rbx-public-running-games > div.rbx-public-running-games-footer");
 
 
 		buttonplace.innerHTML += `
@@ -31,16 +31,16 @@ if(Rkis.wholeData.PageNav != false && false) {
 			<button type="button" class="btn-control-sm btn-full-width rbx-running-games-load-more" style="margin: 0 4px;" onclick="Rkis.Scripts.PageNav.last()">&gt;|</button>
 		</div>`;
 
-		document.$watch("#rbx-running-games > div.rbx-running-games-footer > button", (mainbtn) => {
+		document.$watch("#rbx-public-running-games > div.rbx-public-running-games-footer > button", (mainbtn) => {
 			mainbtn.addEventListener("click", () => {Rkis.Scripts.PageNav.next(true);})
 		})
 
-		document.$watch("#rbx-game-server-item-container", (publicsection) => {
+		document.$watch("#rbx-public-game-server-item-container", (publicsection) => {
 			publicsection.classList.add("pagenav");
 			Rkis.Scripts.PageNav.getpage(1);
 		})
 
-		document.$watch("#rbx-game-server-item-container > li", () => {
+		document.$watch("#rbx-public-game-server-item-container > li", () => {
 			Rkis.Scripts.PageNav.getpage(1);
 		})
 
@@ -105,7 +105,7 @@ if(Rkis.wholeData.PageNav != false && false) {
 
 
 	Rkis.Scripts.PageNav.setpage = function(data, more) {
-		var holder = document.$find("#rbx-game-server-item-container");
+		var holder = document.$find("#rbx-public-game-server-item-container");
 		if(holder == null || data == null) return;
 
 		if(more != true) holder.innerHTML = "";

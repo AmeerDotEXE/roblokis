@@ -7,18 +7,18 @@
 	width: calc(33.3% - 8px);
     margin: 0;
 }
-.game-badges-list .badge-row .badge-image, game-badges-list .badge-row .badge-image {
+.rbx-body .game-badges-list .badge-row .badge-image, game-badges-list .badge-row .badge-image {
 	width: 75px;
 	height: 75px;
 }
-.game-badges-list .badge-row .badge-image *, game-badges-list .badge-row .badge-image * {
+.rbx-body .game-badges-list .badge-row .badge-image *, game-badges-list .badge-row .badge-image * {
 	width: 75px !important;
 	height: 75px !important;
 }
-.game-badges-list .badge-row .badge-content, game-badges-list .badge-row .badge-content {
+.rbx-body .game-badges-list .badge-row .badge-content, game-badges-list .badge-row .badge-content {
 	width: calc(100% - 75px);
 }
-.game-badges-list .badge-row .badge-data-container, game-badges-list .badge-row .badge-data-container {
+.rbx-body .game-badges-list .badge-row .badge-data-container, game-badges-list .badge-row .badge-data-container {
 	padding-right: 0;
 }
 .rbx-body .game-badges-list > ul.stack-list > li > div.badge-content > div > p {
@@ -29,6 +29,6 @@
     font-size: 14px;
     height: auto;
 }
-.game-badges-list .badge-row .badge-stats-container, game-badges-list .badge-row .badge-stats-container {
+.rbx-body .game-badges-list .badge-row .badge-stats-container, game-badges-list .badge-row .badge-stats-container {
 	display: none !important;
 }

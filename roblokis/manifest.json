@@ -1,6 +1,6 @@
 {
 	"manifest_version": 3,
-	"version": "4.1.0.3",
+	"version": "4.2.0.0",
 
 	"author": "Ameer!",
 	"name": "Roblokis",
@@ -54,6 +54,7 @@
 			"js": [
 				"js/Main/Utility.js",
 				"js/Main/General.js",
+				"js/Theme/ThemeEditor.js",
 				"js/Theme/ThemeLoader.js",
 				"js/Pages/all.js"
 			],

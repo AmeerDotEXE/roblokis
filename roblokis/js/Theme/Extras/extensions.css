@@ -1,7 +1,7 @@
-#rbx-game-server-item-container > li > div.section-left.rbx-game-server-details > div.ropro-server-info.text-info {
+#rbx-public-game-server-item-container > li > div.section-left.rbx-game-server-details > div.ropro-server-info.text-info {
 	display: inline;
 }
-#rbx-game-server-item-container > li > div.section-left.rbx-game-server-details > a.create-server-link {
+#rbx-public-game-server-item-container > li > div.section-left.rbx-game-server-details > a.create-server-link {
 	margin: 0;
 }
 

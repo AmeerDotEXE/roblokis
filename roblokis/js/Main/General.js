@@ -332,7 +332,14 @@ else if (window.location.href.includes(".com/users/")) {
 else if (window.location.href.includes(".com/groups/")) {
 	Rkis.GroupId = window.location.href.split("/groups/")[1].split("/")[0];
 	Rkis.pageName = "groups";
-	Rkis.contextMenu.pageContextMenu("userid", "Copy User Id", () => {
+	Rkis.contextMenu.pageContextMenu("groupid", "Copy Group Id", () => {
+		Rkis.CopyText(Rkis.GroupId);
+	});
+}
+else if (window.location.href.includes(".com/communities/")) {
+	Rkis.GroupId = window.location.href.split("/communities/")[1].split("/")[0];
+	Rkis.pageName = "groups";
+	Rkis.contextMenu.pageContextMenu("groupid", "Copy Group Id", () => {
 		Rkis.CopyText(Rkis.GroupId);
 	});
 }

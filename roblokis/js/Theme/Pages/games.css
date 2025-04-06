@@ -294,7 +294,7 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
 	box-shadow: var(--rk-publicserver-box-shadow);
 }
 
-#rbx-game-server-item-container li div.rbx-game-server-details div.ropro-server-info.text-info {
+#rbx-public-game-server-item-container li div.rbx-game-server-details div.ropro-server-info.text-info {
 	display: inline;
 }
 
@@ -419,7 +419,7 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
 
 
 /* Public Servers  */
-#game-instances #rbx-game-server-item-container > li {
+#game-instances #rbx-public-game-server-item-container > li {
 	transition: all 400ms;
 	transition-timing-function: cubic-bezier(0.21, 1.46, 0.99, 0.99);
 
@@ -440,14 +440,14 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
 	backdrop-filter: var(--rk-publicserver-backdrop-filter);
 	box-shadow: var(--rk-publicserver-box-shadow);
 }
-#rbx-game-server-item-container > li:hover {
+#rbx-public-game-server-item-container > li:hover {
 	transform: var(--rk-basic-animations, scale(1.2));
 	opacity: var(--rk-basic-animations, 1);
 	z-index: var(--rk-basic-animations, 10);
 }
 
-#rbx-game-server-item-container li div.game-server-details a,
-#rbx-game-server-item-container li div.game-server-details button {
+#rbx-public-game-server-item-container li div.game-server-details a,
+#rbx-public-game-server-item-container li div.game-server-details button {
 	margin-top: 0 !important;
 	color: var(--rk-publicserver-button-color);
 
@@ -465,7 +465,7 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
 	box-shadow: var(--rk-publicserver-button-box-shadow);
 }
 
-#rbx-game-server-item-container.pagenav > li:not(.pagenav) {
+#rbx-public-game-server-item-container.pagenav > li:not(.pagenav) {
 	display: none;
 }
 
@@ -474,9 +474,9 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
 
 
 /* Page Nav  */
-#rbx-running-games > div.rbx-running-games-footer > button,
-#rbx-running-games > div.ropro-running-games-footer > button,
-#rbx-running-games > div.btr-server-pager > ul.btr-pager > li > button,
+#rbx-public-running-games > div.rbx-public-running-games-footer > button,
+#rbx-public-running-games > div.ropro-running-games-footer > button,
+#rbx-public-running-games > div.btr-server-pager > ul.btr-pager > li > button,
 #rbx-small-running-games > button,
 #rbx-private-running-games > div > button,
 #rkpagenav > * {
@@ -493,10 +493,10 @@ html:not([data-btr-loaded="true"]) #rbx-private-running-games > ul > li > div.ca
 	box-shadow: var(--rk-pagenav-box-shadow);
 }
 
-#rbx-running-games > div.rbx-running-games-footer > button,
-#rbx-running-games > div.ropro-running-games-footer > button,
-#rbx-running-games > div.btr-server-pager > ul.btr-pager > li > span,
-#rbx-running-games > div.btr-server-pager > ul.btr-pager > li > span > span,
+#rbx-public-running-games > div.rbx-public-running-games-footer > button,
+#rbx-public-running-games > div.ropro-running-games-footer > button,
+#rbx-public-running-games > div.btr-server-pager > ul.btr-pager > li > span,
+#rbx-public-running-games > div.btr-server-pager > ul.btr-pager > li > span > span,
 #rbx-small-running-games > button,
 #rbx-private-running-games > div > button,
 #rkpagenav > *, #rkpagenav > * > * {

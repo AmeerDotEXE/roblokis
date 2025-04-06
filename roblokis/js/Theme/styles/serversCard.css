@@ -61,7 +61,7 @@
 
 /* Small Servers  */
 #game-instances #rbx-small-game-server-item-container > li {
-	width: calc(calc(100% / var(--rk-publicserver-column, 5)) - calc(var(--rk-publicserver-gap, 0.3%) * 2));
+	width: calc(calc(100% / var(--rk-smallserver-column, 5)) - calc(var(--rk-smallserver-gap, 0.3%) * 2));
 }
 #game-instances #rbx-small-game-server-item-container li > div.card-item {
 	flex-direction: column-reverse;
@@ -82,22 +82,18 @@
 
 
 /* Public Servers  */
-#rbx-running-games > div.container-header > div.server-list-options {
-	display: none;
-}
-
-#game-instances #rbx-game-server-item-container > li {
+#game-instances #rbx-public-game-server-item-container > li {
 	width: calc(calc(100% / var(--rk-publicserver-column, 5)) - calc(var(--rk-publicserver-gap, 0.3%) * 2));
 }
-#game-instances #rbx-game-server-item-container li > div.card-item {
+#game-instances #rbx-public-game-server-item-container li > div.card-item {
 	flex-direction: column-reverse;
 }
 
-#rbx-game-server-item-container li div.player-thumbnails-container {
+#rbx-public-game-server-item-container li div.player-thumbnails-container {
 	align-self: flex-start;
 }
 
-#rbx-game-server-item-container li div.player-thumbnails-container > span {
+#rbx-public-game-server-item-container li div.player-thumbnails-container > span {
 	margin: 0px -10px 6px 0px;
 	top: 8px;
 	width: 34px;

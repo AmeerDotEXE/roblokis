@@ -2,14 +2,14 @@
 	width: 90%;
 }
 
-#avatar-container {
+#avatar-web-app {
 	width: 100%;
 }
 
 #horizontal-tabs,
-#avatar-container > div > div > div.right-panel.six-column > div.right-wrapper-placeholder.right-wrapper-placeholder-six-column > div:before,
+#avatar-web-app > div > div > div.right-panel.six-column > div.right-wrapper-placeholder.right-wrapper-placeholder-six-column > div:before,
 
-#avatar-container div.rbx-tabs-horizontal.rbx-tabs-horizontal-six-column > ul#horizontal-tabs > li.rbx-tab.six-tab > a,
+#avatar-web-app div.rbx-tabs-horizontal.rbx-tabs-horizontal-six-column > ul#horizontal-tabs > li.rbx-tab.six-tab > a,
 #clothing > recommendations > div > div > div.recommendations-container,
 
 #avatar-items-container > div.section-content-off {
@@ -20,7 +20,7 @@
 	width: fit-content;
 }
 
-#avatar-container div[avatar-back] > div.avatar-back {
+#avatar-web-app div[avatar-back] > div.avatar-back {
 	/* background */
 	background: var(--rk-avatareditor-background);
 	background-size: var(--rk-avatareditor-background-image-size);

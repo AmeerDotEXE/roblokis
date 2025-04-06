@@ -23,7 +23,7 @@ if (Rkis.wholeData.FilteredServer != false && Rkis.wholeData.FilteredPageNav != 
 		if (buttonplace == null) return;
 
 		buttonplace.innerHTML += `<div class="rbx-running-games-footer"><button type="button" class="btn-control-sm btn-full-width rbx-running-games-load-more" data-translate="loadMore">Load More</button></div>`;
-		buttonplace = buttonplace.$find("div.rbx-running-games-footer");
+		buttonplace = buttonplace.$find("div.rbx-public-running-games-footer");
 
 		var pagecount = (await getserverscount() || 0);
 		pagecount = Math.floor(pagecount / 10) + 1;

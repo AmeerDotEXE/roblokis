@@ -1,0 +1,436 @@
+#rkis-editor {
+	position: fixed;
+	bottom: 1rem;
+	left: 1rem;
+	z-index: 1000000;
+	color: white;
+}
+
+.rkis-editor-buttons {
+	display: flex;
+	gap: 0.25rem;
+}
+
+button.rk-button {
+	border-radius: 36px;
+	border: 1px solid #555;
+	background-color: #333;
+	padding: 0.1rem 0.6rem;
+}
+button.rk-button:hover {
+	background-color: #555;
+}
+
+#rkis-editor input[type="color"] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	overflow: hidden;
+	cursor: pointer;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+}
+#rkis-editor input[type="color"]::-moz-color-swatch-wrapper,
+#rkis-editor input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+}
+#rkis-editor input[type="color"]::-moz-color-swatch,
+#rkis-editor input[type="color"]::-webkit-color-swatch {
+	border: none;
+}
+
+#rkis-editor .rk-flex-grow {
+	flex-grow: 1;
+}
+
+#rkis-editor button.rk-green {
+	border-color: #5a5;
+	background-color: #383;
+}
+
+.rkis-box-1 {
+	border: 1px solid #555;
+	background-color: #333;
+	border-radius: 12px;
+	margin-top: 0.5rem;
+	scrollbar-color: #555 transparent;
+}
+#rkis-editor-content-container {
+	min-width: 15rem;
+	height: 16.5rem;
+	overflow: auto;
+	display: flex;
+	flex-direction: column;
+}
+
+#rkis-editor-content-container .rbx-divider[style="margin: 12px;"] {
+	width: calc(100% - 24px);
+}
+
+.rk-highlight-editable {
+	outline: 6px solid green;
+	outline-offset: -3px;
+	box-shadow: inset 0 0 8px 100vw rgba(0,255,0,0.25) !important;
+	border-radius: 8px;
+}
+
+.rk-dynamic-popup {
+	height: 100%;
+	animation: rkFadeInLeft 250ms;
+}
+
+.rk-dynamic-popup>h5,
+.rk-dynamic-popup>h3 {
+	text-align: center;
+	padding-bottom: 0;
+	margin: 4px 1.5rem 0;
+}
+
+.rk-dynamic-popup>.rk-description {
+	padding: 0 0.75rem;
+	margin-top: 2px;
+	display: block;
+	color: #ccc;
+	font-size: 0.8em;
+	line-height: normal;
+	width: min-content;
+	min-width: 100%;
+}
+
+.rk-dynamic-popup input[type="color"] {
+	padding: 0;
+	border: 1px solid #222;
+}
+.rk-dynamic-popup input[type="range"] {
+	border: 0;
+	height: auto;
+	/* margin: 0.25rem 0.75rem 1rem; */
+	margin: 0.25rem 0;
+	padding: 0.5rem 0;
+	/* width: calc(100% - 1.5rem); */
+	display: block;
+}
+
+label.rk-side-option,
+label.rk-line-option {
+	margin: 0.3rem;
+	/* padding: 0.5rem; */
+	padding: 0 0.25rem;
+	display: block;
+}
+label.rk-line-option {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+label.rk-side-option > .rk-option-select {
+	width: 100%;
+	margin: 0;
+	outline: none;
+}
+label.rk-line-option > .rk-option-select {
+	min-width: 8rem;
+	margin: 0;
+	padding: 0.4rem 0.6rem;
+	outline: none;
+}
+#rkis-editor label.rk-line-option > .rk-option-select[type="color"],
+#rbx-body .rkis-centerpage-popup label.rk-line-option > .rk-option-select[type="color"] {
+	padding: 0;
+	background: transparent;
+	border: 0;
+	border-radius: 2rem;
+}
+
+.rk-extra-nav-button {
+	position: absolute;
+	top: 0;
+	right: 6rem;
+}
+
+.rk-extra-nav-button > div {
+	width: 1.4em;
+	height: 1.4em;
+	background-size: 2.8em;
+	transform: scale(0.7);
+	margin: 0 -8px;
+}
+
+.rk-option-select {
+	margin: 0.3rem;
+	border: 1px solid #444;
+	background-color: #222;
+	border-radius: 8px;
+	padding: 0.5rem 0.75rem;
+}
+.rk-option-select:not(.no-hover) {
+	cursor: pointer;
+}
+.rk-option-select.rk-red {
+	border-color: rgba(255,0,0,0.5);
+	background-color: rgba(255,0,0,0.25);
+}
+.rk-option-select.rk-cyan {
+	border-color: rgba(0,255,255,0.5);
+	background-color: rgba(0,255,255,0.25);
+}
+
+.rk-option-select.disabled {
+	opacity: 0.4;
+	cursor: default;
+}
+
+.rk-option-select:not(.disabled):not(.no-hover):hover {
+	background-color: #2c2c2c;
+}
+
+.rk-component-select>h5 {
+	text-align: center;
+	padding: 0;
+}
+.rk-option-select.rk-component-select>span {
+	width: min-content;
+	min-width: 100%;
+	font-size: 0.8em;
+	line-height: normal;
+}
+.rk-option-select.rk-customize-select>span:nth-child(2) {
+	width: min-content;
+	min-width: 100%;
+	font-size: 0.75em;
+	line-height: normal;
+	color: #aaa;
+}
+.rk-page-select {
+	padding: 1rem 0.75rem;
+}
+
+.rk-page-select>h3 {
+	padding: 0;
+	text-align: center;
+	margin-bottom: 0.25rem;
+}
+
+.rk-option-select>span {
+	color: #ddd;
+	font-size: 0.9em;
+	text-align: center;
+	display: block;
+}
+
+label.rk-option-select {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-shadow: 0 0 3px black, 0 0 3px black;
+}
+label.rk-option-select > input {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	opacity: 0;
+}
+label.rk-file-input {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(128, 128, 128, 0.1);
+	cursor: pointer;
+	user-select: none;
+	text-align: center;
+	border: 2px dashed rgba(128, 128, 128, 0.7);
+	border-radius: 8px;
+}
+
+.rb-reload-icon {
+	background-image: url(https://images.rbxcdn.com/44acd0c6195597cdc307a3f60efab0e3-common_sm_dark_12032018.svg);
+}
+
+
+.rkis-centerpage-popup {
+	z-index: 1000000;
+	display: flex;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	width: 100%;
+	height: 100%;
+	padding: 4%;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	flex-wrap: wrap;
+	pointer-events: all;
+}
+
+.rkis-centerpage-popup .rk-tabbed-window {
+	display: flex;
+	flex-direction: column;
+	width: fit-content;
+	height: fit-content;
+	pointer-events: all;
+	position: relative;
+	align-items: center;
+	justify-content: center;
+	overscroll-behavior: contain;
+	box-shadow: black 0px 0px 20px 2px;
+	padding: 1rem 2rem 1.5rem;
+}
+
+.rk-tabbed-window > .rk-tabs {
+	display: flex;
+	margin-bottom: 2rem;
+	justify-content: center;
+	align-items: center;
+	gap: 2ch;
+}
+.rk-tabbed-window > .rk-tabs > .rk-tab {
+	color: grey;
+	cursor: pointer;
+	box-shadow: 0px 1px;
+}
+.rk-tabbed-window > .rk-tabs > .rk-tab.is-active {
+	color: white;
+}
+.rk-tabbed-window > .rk-tab-pages,
+.rk-tabbed-window > .rk-tab-pages > .rk-tab-page {
+	height: 100%;
+	width: 100%;
+}
+.rk-tabbed-window > .rk-tab-pages > .rk-tab-page:not(.is-active) {
+	display: none;
+}
+
+
+
+
+
+.rk-gradient-preview {
+	width: 100%;
+	height: 6rem;
+	margin-bottom: 1rem;
+	border-radius: 8px;
+}
+.rk-gradient-picker {
+	position: relative;
+	width: 100%;
+	padding: 1px;
+	border-radius: 6px;
+	background-color: white;
+	border: 2px solid black;
+	margin-bottom: 3rem;
+}
+.rk-gradient-line {
+	border-radius: 4px;
+	height: 1.5rem;
+	background-image: linear-gradient(90deg, black, white);
+}
+.rk-gradient-points {
+	position: absolute;
+	cursor: copy;
+	top: -5px;
+	bottom: -5px;
+
+	/* must be same as padding */
+	left: 1px;
+	right: 1px;
+}
+.rk-gradient-point-area {
+	transform: translateX(-50%);
+	height: 100%;
+	border: 2px solid black;
+	padding: 2px;
+	background-color: white;
+	border-radius: 6px;
+	position: absolute;
+	cursor: e-resize;
+	user-select: none;
+}
+.rk-gradient-point-area.selected {
+	outline: 2px solid rgb(255,192,0);
+}
+.rk-gradient-point-color {
+	height: 100%;
+	width: 6px;
+	border-radius: 3px;
+}
+.rk-gradient-point-label,
+input.rk-gradient-point-label.rk-gradient-point-input {
+	position: absolute;
+	width: 2.5rem;
+	height: 1.75rem;
+	left: calc(-1rem + 50%);
+	top: calc(100% + 0.5rem);
+	background-color: rgba(128, 128, 128, 0.3);
+	border-radius: 4px;
+}
+input.rk-gradient-point-input {
+	border: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	text-align: center;
+}
+.rk-gradient-direction {
+	height: 6rem;
+	width: 6rem;
+	margin: auto;
+	background-color: rgba(128, 128, 128, 0.3);
+	border-radius: 50%;
+	position: relative;
+	user-select: none;
+}
+.rk-gradient-direction-pointer {
+	transform: rotate(90deg);
+	transform-origin: 50% 100%;
+	height: 50%;
+	width: 1px;
+	background-color: white;
+	left: 50%;
+	position: absolute;
+	pointer-events: none;
+}
+
+
+
+[data-rk-preview] {
+	position: absolute;
+	top: 2.25rem;
+	left: 100%;
+	height: calc(100% - 2.2rem);
+	width: 80%;
+	margin-left: 0.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 8px;
+	text-shadow: 0 0 3px black, 0 0 3px black;
+}
+
+
+
+@keyframes rkFadeInLeft {
+	0% {
+		opacity: 0;
+		margin-left: -10px;
+		margin-right: 10px;
+	}
+	30% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+		margin-left: 0;
+		margin-right: 0;
+	}
+}

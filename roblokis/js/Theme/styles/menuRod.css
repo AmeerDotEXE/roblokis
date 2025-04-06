@@ -48,10 +48,10 @@ body#rbx-body #navigation:not(:hover) {
 .rbx-left-col .rbx-scrollbar .left-col-list > a > div:first-child {
 	margin-top: 10px;
 }
-#navigation:not(:hover) .left-col-list > a > div:not(:first-child) {
+#navigation:not(:hover) .left-col-list > a > *:not(:first-child) {
 	opacity: 0;
 }
-#navigation .left-col-list > a > div:not(:first-child) {
+#navigation .left-col-list > a > *:not(:first-child) {
 	opacity: 1;
 	transition: opacity 150ms ease-in-out;
 }

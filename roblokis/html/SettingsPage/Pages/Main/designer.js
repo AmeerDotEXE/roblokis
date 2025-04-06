@@ -4825,4 +4825,4 @@ Designer.waitingForGeneral = function() {
 	});
 }
 
-Designer.waitingForGeneral();
+//Designer.waitingForGeneral();

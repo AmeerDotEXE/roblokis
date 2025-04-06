@@ -1,6 +1,325 @@
 "use strict";
 var Rkis = Rkis || {};
 Rkis.page = Rkis.page || {};
+Rkis.StylesList = Rkis.StylesList || {};
+
+Rkis.StylesList.all = {
+	menu: {
+		float: {
+			css: ["js/Theme/styles/menuFloat.css"],
+			load: () => {
+				var allMaxWidthPages = [
+					".com/discover",
+					".com/charts",
+					".com/catalog",
+					".com/my/avatar",
+				];
+			
+				for (let index = 0; index < allMaxWidthPages.length; index++) {
+					const matchUrl = allMaxWidthPages[index];
+					if(!window.location.href.toLowerCase().includes(matchUrl)) continue;
+					
+					document.body.classList.add("menufloat-spacing");
+					break;
+				}
+			},
+			unload: () => {
+				document.body.classList.remove("menufloat-spacing");
+			}
+		},
+		rod: {
+			css: ["js/Theme/styles/menuFloat.css", "js/Theme/styles/menuRod.css"],
+			load: function (style) {
+				var allMaxWidthPages = [
+					".com/discover",
+					".com/charts",
+					".com/catalog",
+					".com/my/avatar",
+				];
+			
+				for (let index = 0; index < allMaxWidthPages.length; index++) {
+					const matchUrl = allMaxWidthPages[index];
+					if(!window.location.href.toLowerCase().includes(matchUrl)) continue;
+					
+					document.body.classList.add("menufloat-spacing");
+					break;
+				}
+
+				this.update(style);
+			},
+			update: (style) => {
+				let options = style?.options;
+				if (options == null) return;
+				document.body.classList.toggle("extended-menu-rod", options.extendedDesign == true);
+				document.body.classList.toggle("center-menu-list", options.centerMenuItems == true);
+				document.body.classList.toggle("menu-avatar-bottom", options.moveAvatarBottom == true);
+			},
+			unload: () => {
+				document.body.classList.remove("menufloat-spacing");
+				document.body.classList.remove("extended-menu-rod");
+				document.body.classList.remove("center-menu-list");
+				document.body.classList.remove("menu-avatar-bottom");
+			}
+		},
+		buttons: {
+			css: ["js/Theme/styles/menuButtons.css"],
+			load: function (style) {
+				var allMaxWidthPages = [
+					".com/discover",
+					".com/charts",
+					".com/catalog",
+					".com/my/avatar",
+				];
+			
+				for (let index = 0; index < allMaxWidthPages.length; index++) {
+					const matchUrl = allMaxWidthPages[index];
+					if(!window.location.href.toLowerCase().includes(matchUrl)) continue;
+					
+					document.body.classList.add("menubtns-spacing");
+					break;
+				}
+
+				this.update(style);
+			},
+			update: (style) => {
+				let options = style?.options;
+				if (options == null) return;
+				document.body.classList.toggle("menu-icons-only", options.iconsOnly == true);
+			},
+			unload: () => {
+				document.body.classList.remove("menubtns-spacing");
+				document.body.classList.remove("menu-icons-only");
+			}
+		}
+	},
+	icons: {
+		"2018": {
+			css: ["js/Theme/styles/icons2018.css"]
+		},
+		"custom": {
+			css: ["js/Theme/styles/iconsCustom.css"],
+			load: function(style) {
+				this.update(style);
+			},
+			update: (style) => {
+				let options = style.options;
+				if (options == null) return;
+				if (options.iconPackLink == null) return;
+
+				let url = options.iconPackLink;
+				let fill = null;
+				if (url === "") {
+					fill = "";
+				} else if (url.startsWith("linear-gradient")) {
+					fill = url.split(')')[0]+')';
+				} else if (url.startsWith("data:image/")) {
+					fill = 'url('+url.split(')')[0]+')';
+				} else {
+					FetchImage(url).then((iconsImage) => {
+						document.body.parentElement.style.setProperty("--menubtns-icons-image", iconsImage);
+					});
+				}
+
+				if (fill !== null) {
+					document.body.parentElement.style.setProperty("--menubtns-icons-image", fill);
+				}
+			},
+			unload: () => {
+				document.body.parentElement.style.removeProperty("--menubtns-icons-image");
+			}
+		}
+	},
+	videobackground: {
+		videoplayer: {
+			load: function(style) {
+				this.update(style);
+			},
+			update: function(style) {
+				let options = style.options;
+				if (options == null) return;
+				if (options.videolink == null) return;
+
+				let videoLink = options.videolink;
+				let isMuted = options.mutevideo != false;
+				let videoVolume = parseInt(options.videoVolume || "100") / 100;
+
+				if (!videoLink.startsWith("https://")) return;
+				if (videoLink.includes("youtube.com") || videoLink.includes("youtu.be")) {
+					styles.all.videobackground.youtubeplayer.js(style);
+					return;
+				}
+
+				let backgroundElement = null;
+				if (this.backgroundElement != null) {
+					backgroundElement = this.backgroundElement;
+				} else backgroundElement = document.createElement('video');
+				backgroundElement.classList.add('rk-page-background-video');
+				backgroundElement.src = videoLink;
+				backgroundElement.autoplay = true;
+				backgroundElement.loop = true;
+				// backgroundElement.muted = true;
+				backgroundElement.volume = 0;
+				backgroundElement.muted = isMuted;
+				// backgroundElement.style.backgroundImage = `url(${imgElement.src})`;
+				this.backgroundElement = backgroundElement;
+				document.body.prepend(backgroundElement);
+
+				let playVideo = () => {
+					try {
+						backgroundElement.play();
+						// if (backgroundElement.paused == false) {
+						// 	backgroundElement.muted = isMuted;
+						// 	backgroundElement.volume = 0.75;
+						// 	return;
+						// }
+					} catch {}
+					// setTimeout(playVideo, 1000);
+				};
+				backgroundElement.oncanplay = playVideo;
+				backgroundElement.oncanplaythrough = playVideo;
+				backgroundElement.onload = playVideo;
+				playVideo();
+
+				document.addEventListener("click", async () => {
+					backgroundElement.volume = videoVolume;
+				}, {once: true});
+
+				window.addEventListener("blur", () => {
+					backgroundElement.pause();
+					localStorage.setItem("videoBackgroundTime", backgroundElement.currentTime);
+				});
+				window.addEventListener("focus", () => {
+					let sessionVideoTime = parseFloat(localStorage.getItem("videoBackgroundTime") || "0");
+					backgroundElement.currentTime = sessionVideoTime;
+					backgroundElement.play();
+				});
+			},
+			unload: function() {
+				if (this.backgroundElement == null) return;
+				document.body.removeChild(this.backgroundElement);
+				this.backgroundElement.remove();
+				this.backgroundElement = null;
+			},
+		},
+		youtubeplayer: {
+			load: function(style) {
+				this.update(style);
+			},
+			update: function(style) {
+				let options = style?.options;
+				if (options == null) return;
+				if (options.videolink == null) return;
+
+				let videoLink = options.videolink;
+				if (!videoLink.startsWith("https://")) return;
+				if (!videoLink.includes("youtube.com") && !videoLink.includes("youtu.be")) return;
+
+				let videoId = escapeHTML(this.getYoutubeId(videoLink));
+				// console.log(videoId, videoLink);
+				let backgroundElement = null;
+				if (this.backgroundElement != null) {
+					backgroundElement = this.backgroundElement;
+				} else backgroundElement = document.createElement('iframe');
+				backgroundElement.classList.add('rk-page-background-video');
+				backgroundElement.id = 'rk-page-background-video-yt';
+				backgroundElement.src = "https://www.youtube.com/embed/"+videoId+`?controls=0&disablekb=1&fs=0&autoplay=1&mute=1&playsinline=1&playlist=${videoId}&loop=1`;
+				// console.log(backgroundElement.src);
+				backgroundElement.frameBorder = 0;
+				backgroundElement.style.border = "0";
+				backgroundElement.style.pointerEvents = "none";
+				backgroundElement.height = "100%";
+				backgroundElement.width = "100%";
+				this.backgroundElement = backgroundElement;
+				document.body.prepend(backgroundElement);
+			},
+			unload: function() {
+				if (this.backgroundElement == null) return;
+				document.body.removeChild(this.backgroundElement);
+				this.backgroundElement.remove();
+				this.backgroundElement = null;
+			},
+			getYoutubeId: (str) => {
+				if (str == null) return str;
+
+				if (str.includes(`youtu.be/`)) return str.split(`youtu.be/`)[1].split(`/`)[0].split(`?`)[0];
+				else if (str.includes(`youtube.com/`)) {
+					if (str.includes(`youtube.com/v/`)) return str.split(`youtube.com/v/`)[1].split(`/`)[0].split(`?`)[0];
+
+					return str.split(`v=`)[1].split(`&`)[0];
+				}
+				else return str;
+			}
+		}
+	},
+	navbar: {
+		float: {
+			css: ["js/Theme/styles/navbarFloat.css"],
+			load: function(style) {
+				this.update(style);
+			},
+			update: (style) => {
+				let options = style?.options;
+				if (options == null) return;
+				document.body.classList.toggle("navbar-no-splitting", options.connectedIslands == true);
+				document.body.classList.toggle("rk-hide-roblox-logo", options.hideRobloxLogo == true);
+				document.body.classList.toggle("navbar-no-nav-buttons", options.hideNavBtns == true);
+				document.body.classList.toggle("navbar-search-button", options.makeSearchBtn == true);
+				if (typeof options.searchbarLength == "string" && options.searchbarLength != '') {
+					document.$watch("#right-navigation-header > div.navbar-search", (searchbar) => {
+						searchbar.style.width = options.searchbarLength + "%";
+					});
+				}
+			},
+			unload: () => {
+				document.body.classList.remove("navbar-no-splitting");
+				document.body.classList.remove("rk-hide-roblox-logo");
+				document.body.classList.remove("navbar-no-nav-buttons");
+				document.body.classList.remove("navbar-search-button");
+				document.$watch("#right-navigation-header > div.navbar-search", (searchbar) => {
+					searchbar.style.width = "";
+				});
+			}
+		}
+	},
+	gamecards: {
+		'1': {
+			css: ["js/Theme/styles/gamecards1.css"],
+			load: function(style) {
+				this.update(style);
+			},
+			update: (style) => {
+				let options = style?.options;
+				if (options == null) return;
+				document.body.classList.toggle("gamecards-no-text", options.hideText == true);
+				document.body.classList.toggle("gamecards-join-text", options.showjointext == true);
+			},
+			unload: () => {
+				document.body.classList.remove("gamecards-no-text");
+				document.body.classList.remove("gamecards-join-text");
+			}
+		},
+		'': {
+			load: function(style) {
+				this.update(style);
+			},
+			update: (style) => {
+				let options = style?.options;
+				if (options == null) return;
+				document.body.classList.toggle("gamecards-text-center", options.centerText == true);
+				document.body.classList.toggle("gamecards-join-text", options.showjointext == true);
+			},
+			unload: () => {
+				document.body.classList.remove("gamecards-text-center");
+				document.body.classList.remove("gamecards-join-text");
+			}
+		}
+	},
+	chat: {
+		bubble: {
+			css: ["js/Theme/styles/chatBubble.css"]
+		}
+	},
+};
 
 Rkis.page.all = () => {
 	if (Rkis.generalLoaded != true) {
@@ -11,277 +330,8 @@ Rkis.page.all = () => {
 	}
 
 	//load styles
-	document.$watch('#rk-theme-loaded', async () => {
-		let body = await document.$watch("body").$promise();
-		let styles = {
-			all: {
-				menu: {
-					float: {
-						css: ["js/Theme/styles/menuFloat.css"],
-						js: () => {
-							var allMaxWidthPages = [
-								".com/discover",
-								".com/charts",
-								".com/catalog",
-								".com/my/avatar",
-							];
-						
-							for (let index = 0; index < allMaxWidthPages.length; index++) {
-								const matchUrl = allMaxWidthPages[index];
-								if(!window.location.href.toLowerCase().includes(matchUrl)) continue;
-								
-								if (body) body.classList.add("menufloat-spacing");
-								break;
-							}
-						}
-					},
-					rod: {
-						css: ["js/Theme/styles/menuFloat.css", "js/Theme/styles/menuRod.css"],
-						js: (style) => {
-							var allMaxWidthPages = [
-								".com/discover",
-								".com/charts",
-								".com/catalog",
-								".com/my/avatar",
-							];
-						
-							for (let index = 0; index < allMaxWidthPages.length; index++) {
-								const matchUrl = allMaxWidthPages[index];
-								if(!window.location.href.toLowerCase().includes(matchUrl)) continue;
-								
-								if (body) body.classList.add("menufloat-spacing");
-								break;
-							}
-
-							let options = style.options;
-							if (options == null) return;
-							if (options.extendedDesign == true) {
-								if (body) body.classList.add("extended-menu-rod");
-							}
-							if (options.centerMenuItems == true) {
-								if (body) body.classList.add("center-menu-list");
-							}
-							if (options.moveAvatarBottom == true) {
-								if (body) body.classList.add("menu-avatar-bottom");
-							}
-						}
-					},
-					buttons: {
-						css: ["js/Theme/styles/menuButtons.css"],
-						js: (style) => {
-							var allMaxWidthPages = [
-								".com/discover",
-								".com/charts",
-								".com/catalog",
-								".com/my/avatar",
-							];
-						
-							for (let index = 0; index < allMaxWidthPages.length; index++) {
-								const matchUrl = allMaxWidthPages[index];
-								if(!window.location.href.toLowerCase().includes(matchUrl)) continue;
-								
-								if (body) body.classList.add("menubtns-spacing");
-								break;
-							}
-
-							let options = style.options;
-							if (options == null) return;
-							if (options.iconsOnly == true) {
-								if (body) body.classList.add("menu-icons-only");
-							}
-						}
-					}
-				},
-				icons: {
-					"2018": {
-						css: ["js/Theme/styles/icons2018.css"]
-					},
-					"custom": {
-						css: ["js/Theme/styles/iconsCustom.css"],
-						js: (style) => {
-							let options = style.options;
-							if (options == null) return;
-							if (options.iconPackLink == null) return;
-
-							let url = options.iconPackLink;
-							let fill = null;
-							if (url === "") {
-								fill = "";
-							} else if (url.startsWith("linear-gradient")) {
-								fill = url.split(')')[0]+')';
-							} else if (url.startsWith("data:image/")) {
-								fill = 'url('+url.split(')')[0]+')';
-							} else {
-								FetchImage(url).then((iconsImage) => {
-									body.style.setProperty("--menubtns-icons-image", iconsImage);
-								});
-							}
-
-							if (fill !== null) {
-								body.style.setProperty("--menubtns-icons-image", fill);
-							}
-						}
-					}
-				},
-				videobackground: {
-					videoplayer: {
-						css: [],
-						js: (style) => {
-							let options = style.options;
-							if (options == null) return;
-							if (options.videolink == null) return;
-
-							let videoLink = options.videolink;
-							let isMuted = options.mutevideo != false;
-							let videoVolume = parseInt(options.videoVolume || "100") / 100;
-
-							if (!videoLink.startsWith("https://")) return;
-							if (videoLink.includes("youtube.com") || videoLink.includes("youtu.be")) {
-								styles.all.videobackground.youtubeplayer.js(style);
-								return;
-							}
-
-							let backgroundElement = document.createElement('video');
-							backgroundElement.classList.add('rk-page-background-video');
-							backgroundElement.src = videoLink;
-							backgroundElement.autoplay = true;
-							backgroundElement.loop = true;
-							// backgroundElement.muted = true;
-							backgroundElement.volume = 0;
-							backgroundElement.muted = isMuted;
-							// backgroundElement.style.backgroundImage = `url(${imgElement.src})`;
-							document.body.prepend(backgroundElement);
-
-							let playVideo = () => {
-								try {
-									backgroundElement.play();
-									// if (backgroundElement.paused == false) {
-									// 	backgroundElement.muted = isMuted;
-									// 	backgroundElement.volume = 0.75;
-									// 	return;
-									// }
-								} catch {}
-								// setTimeout(playVideo, 1000);
-							};
-							backgroundElement.oncanplay = playVideo;
-							backgroundElement.oncanplaythrough = playVideo;
-							backgroundElement.onload = playVideo;
-							playVideo();
-
-							document.addEventListener("click", async () => {
-								backgroundElement.volume = videoVolume;
-							}, {once: true});
-
-							window.addEventListener("blur", () => {
-								backgroundElement.pause();
-								localStorage.setItem("videoBackgroundTime", backgroundElement.currentTime);
-							});
-							window.addEventListener("focus", () => {
-								let sessionVideoTime = parseFloat(localStorage.getItem("videoBackgroundTime") || "0");
-								backgroundElement.currentTime = sessionVideoTime;
-								backgroundElement.play();
-							});
-						}
-					},
-					youtubeplayer: {
-						css: [],
-						js: (style) => {
-							let options = style.options;
-							if (options == null) return;
-							if (options.videolink == null) return;
-
-							let videoLink = options.videolink;
-							if (!videoLink.startsWith("https://")) return;
-							if (!videoLink.includes("youtube.com") && !videoLink.includes("youtu.be")) return;
-
-							let videoId = escapeHTML(getYoutubeId(videoLink));
-							// console.log(videoId, videoLink);
-							let backgroundElement = document.createElement('iframe');
-							backgroundElement.classList.add('rk-page-background-video');
-							backgroundElement.id = 'rk-page-background-video-yt';
-							backgroundElement.src = "https://www.youtube.com/embed/"+videoId+`?controls=0&disablekb=1&fs=0&autoplay=1&mute=1&playsinline=1&playlist=${videoId}&loop=1`;
-							// console.log(backgroundElement.src);
-							backgroundElement.frameBorder = 0;
-							backgroundElement.style.border = "0";
-							backgroundElement.style.pointerEvents = "none";
-							backgroundElement.height = "100%";
-							backgroundElement.width = "100%";
-							document.body.prepend(backgroundElement);
-
-							function getYoutubeId(str) {
-								if (str == null) return str;
-							
-								if (str.includes(`youtu.be/`)) return str.split(`youtu.be/`)[1].split(`/`)[0].split(`?`)[0];
-								else if (str.includes(`youtube.com/`)) {
-									if (str.includes(`youtube.com/v/`)) return str.split(`youtube.com/v/`)[1].split(`/`)[0].split(`?`)[0];
-							
-									return str.split(`v=`)[1].split(`&`)[0];
-								}
-								else return str;
-							}
-						}
-					}
-				},
-				navbar: {
-					float: {
-						css: ["js/Theme/styles/navbarFloat.css"],
-						js: (style) => {
-							let options = style.options;
-							if (options == null) return;
-							if (options.connectedIslands == true) {
-								if (body) body.classList.add("navbar-no-splitting");
-							}
-							if (options.hideRobloxLogo == true) {
-								if (body) body.classList.add("rk-hide-roblox-logo");
-							}
-							if (options.hideNavBtns == true) {
-								if (body) body.classList.add("navbar-no-nav-buttons");
-							}
-							if (options.makeSearchBtn == true) {
-								if (body) body.classList.add("navbar-search-button");
-							}
-							if (typeof options.searchbarLength == "string" && options.searchbarLength != '') {
-								document.$watch("#right-navigation-header > div.navbar-search", (searchbar) => {
-									searchbar.style.width = options.searchbarLength + "%";
-								});
-							}
-						}
-					}
-				},
-				gamecards: {
-					'1': {
-						css: ["js/Theme/styles/gamecards1.css"],
-						js: (style) => {
-							let options = style.options;
-							if (options == null) return;
-							if (options.hideText == true) {
-								if (body) body.classList.add("gamecards-no-text");
-							}
-							if (options.showjointext == true) {
-								if (body) body.classList.add("gamecards-join-text");
-							}
-						}
-					},
-					'': {
-						js: (style) => {
-							let options = style.options;
-							if (options == null) return;
-							if (options.centerText == true) {
-								if (body) body.classList.add("gamecards-text-center");
-							}
-							if (options.showjointext == true) {
-								if (body) body.classList.add("gamecards-join-text");
-							}
-						}
-					}
-				},
-				chat: {
-					bubble: {
-						css: ["js/Theme/styles/chatBubble.css"]
-					}
-				},
-			}
-		};
+	/*document.$watch('#rk-theme-loaded', async () => {
+		let styleCodeToRun = [];
 		if (Rkis.Designer.currentTheme != null
 			&& Rkis.Designer.currentTheme.styles != null)
 			{
@@ -302,18 +352,28 @@ Rkis.page.all = () => {
 
 					let style = innderStyleObj[innderStyleLocation.type];
 					if (style == null) continue;
+					innderStyleObj["Current Active"] = innderStyleLocation.type;
 					if (style.css != null) {
 						Rkis.Designer.addCSS(style.css);
 					}
 					if (style.js != null) {
-						style.js(innderStyleLocation);
+						styleCodeToRun.push(() => {
+							style.js(innderStyleLocation);
+						});
+					}
+					if (style.load != null) {
+						styleCodeToRun.push(() => {
+							style.load(innderStyleLocation);
+						});
 					}
 				}
 			}
 
-			findFile(theme.styles, styles);
+			findFile(theme.styles, Rkis.StylesList);
 		}
-	});
+		await document.$watch("body").$promise();
+		styleCodeToRun.forEach(f => f());
+	});*/
 
 	//Custom Name
 	if(Rkis.IsSettingEnabled("CustomName", {

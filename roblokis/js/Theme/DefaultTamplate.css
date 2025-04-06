@@ -131,11 +131,11 @@
 #container-main > div.content {
 	background-image: url($content.background.image.link#);
 }
-:root .icon-logo {
+:root .rbx-body .icon-logo {
 	background-image: url($icon.background.image.link#);
 }
-:root .icon-logo-r,
-:root .icon-logo-r-95 {
+:root .rbx-body .icon-logo-r,
+:root .rbx-body .icon-logo-r-95 {
 	background-image: url($iconr.background.image.link#);
 }
 .avatar .avatar-card-image {
@@ -152,7 +152,7 @@
 div > .game-carousel, .game-grid, .game-cards {
 	background-image: url($gamesection.background.image.link#);
 }
-.rbx-body .section .people-list {
+.rbx-body .content .friends-carousel-list-container {
 	background-image: url($peoplesection.background.image.link#);
 }
 
@@ -212,15 +212,15 @@ div > .game-carousel, .game-grid, .game-cards {
 	background-image: url($smallserver.button.background.image.link#);
 }
 #game-instances #rbx-recent-server-box > li,
-#game-instances #rbx-game-server-item-container > li {
+#game-instances #rbx-public-game-server-item-container > li {
 	background-image: url($publicserver.background.image.link#);
 }
-#rbx-game-server-item-container li div.game-server-details > span > * {
+#rbx-public-game-server-item-container li div.game-server-details > span > * {
 	background-image: url($publicserver.button.background.image.link#);
 }
-#rbx-running-games > div.rbx-running-games-footer > button,
-#rbx-running-games > div.ropro-running-games-footer > button,
-#rbx-running-games > div.btr-server-pager > ul.btr-pager > li > button,
+#rbx-public-running-games > div.rbx-public-running-games-footer > button,
+#rbx-public-running-games > div.ropro-running-games-footer > button,
+#rbx-public-running-games > div.btr-server-pager > ul.btr-pager > li > button,
 #rbx-small-running-games > button,
 #rbx-private-running-games > div > button,
 #rkpagenav > * {
@@ -228,6 +228,6 @@ div > .game-carousel, .game-grid, .game-cards {
 }
 
 /* avatar.css */
-#avatar-container div[avatar-back] > div.avatar-back {
+#avatar-web-app div[avatar-back] > div.avatar-back {
 	background-image: url($avatareditor.background.image.link#);
 }

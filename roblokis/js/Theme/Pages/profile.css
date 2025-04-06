@@ -114,7 +114,8 @@
 }
 
 
-#inventory-container {
+#inventory-container,
+#friends-web-app {
 	width: 100%;
 }
 

@@ -1,6 +1,47 @@
 "use strict";
 var Rkis = Rkis || {};
 Rkis.page = Rkis.page || {};
+Rkis.StylesList = Rkis.StylesList || {};
+
+Rkis.StylesList.game = {
+	servers: {
+		'': {
+			load: function(style) {
+				this.update(style);
+			},
+			update: (style) => {
+				let options = style?.options;
+				if (options == null) return;
+				document.body.classList.toggle("servers-no-players", options.hidePlayers == true);
+			},
+			unload: () => {
+				document.body.classList.remove("servers-no-players");
+			}
+		},
+		card: {
+			css: ["js/Theme/styles/serversCard.css"],
+			load: function(style) {
+				this.update(style);
+			},
+			update: (style) => {
+				let options = style?.options;
+				if (options == null) return;
+				document.body.classList.toggle("servers-no-players", options.hidePlayers == true);
+			},
+			unload: () => {
+				document.body.classList.remove("servers-no-players");
+			}
+		}
+	},
+	badges: {
+		card: {
+			css: ["js/Theme/styles/badgesCard.css"]
+		},
+		simple: {
+			css: ["js/Theme/styles/badgesSimple.css"]
+		}
+	},
+};
 
 Rkis.page.game = () => {
 	if (Rkis.generalLoaded != true) {
@@ -23,66 +64,6 @@ Rkis.page.game = () => {
 
 		e.classList.remove(broken_class);
 		e.classList.add(fixed_class);
-	});
-
-	//load styles
-	document.$watch('#rk-theme-loaded', () => {
-		let styles = {
-			game: {
-				servers: {
-					card: {
-						css: ["js/Theme/styles/serversCard.css"],
-						js: (style) => {
-							let options = style.options;
-							if (options == null) return;
-							if (options.hidePlayers == true) {
-								let body = document.querySelector("body");
-								if (body) body.classList.add("servers-no-players");
-							}
-						}
-					}
-				},
-				badges: {
-					card: {
-						css: ["js/Theme/styles/badgesCard.css"]
-					},
-					simple: {
-						css: ["js/Theme/styles/badgesSimple.css"]
-					}
-				},
-			}
-		};
-		if (Rkis.Designer.currentTheme != null
-			&& Rkis.Designer.currentTheme.styles != null)
-			{
-			let theme = Rkis.Designer.currentTheme;
-			
-			let findFile = function(styleLocation, stylesObj) {
-				for (let stylePath in stylesObj) {
-					let innderStyleLocation = styleLocation[stylePath];
-					if (innderStyleLocation == null) continue;
-
-					let innderStyleObj = stylesObj[stylePath];
-
-					if (innderStyleLocation.type == null) {
-						//run loop on this object
-						findFile(innderStyleLocation, innderStyleObj);
-						continue;
-					}
-
-					let style = innderStyleObj[innderStyleLocation.type];
-					if (style == null) continue;
-					if (style.css != null) {
-						Rkis.Designer.addCSS(style.css);
-					}
-					if (style.js != null) {
-						style.js(innderStyleLocation);
-					}
-				}
-			}
-
-			findFile(theme.styles, styles);
-		}
 	});
 	
 	if (Rkis.IsSettingEnabled("GameBannerToBackground", {
@@ -165,7 +146,7 @@ Rkis.page.game = () => {
 						})
 					})
 					document.querySelector("#running-game-instances-container")
-					.insertBefore(smallrunninggames, document.querySelector("#rbx-running-games"));
+					.insertBefore(smallrunninggames, document.querySelector("#rbx-public-running-games"));
 				}
 
 				smallrunninggames.$findAll("button", (e) => {
@@ -371,7 +352,7 @@ Rkis.page.game = () => {
 						});
 						event.target.remove();
 					});
-					smallrunninggames.querySelector('.rbx-running-games-footer').append(loadmorebutton);
+					smallrunninggames.querySelector('.rbx-public-running-games-footer')?.append(loadmorebutton);
 
 					serversToAdd.forEach((e) => {
 						e.dataset.loadmore = i / ROBLOX_SERVERS_LIMIT;
@@ -448,12 +429,12 @@ Rkis.page.game = () => {
 				Rkis.Scripts.PageNav.totalServers = result.data;
 				Rkis.Scripts.PageNav.nextPage = result.nextPageCursor;
 
-				var buttonplace = await document.$watch("#rbx-running-games > div.rbx-running-games-footer").$promise();
+				var buttonplace = await document.$watch("#rbx-public-running-games > div.rbx-public-running-games-footer").$promise();
 				if (buttonplace == null) return;
 				buttonplace.style.display = "none";
 
-				document.$find("#rbx-running-games").innerHTML += `<div class="rbx-running-games-footer roblokis-footer"><button type="button" class="btn-control-sm btn-full-width rbx-running-games-load-more">${Rkis.language["loadMore"]}</button></div>`;
-				buttonplace = document.$find("#rbx-running-games > div.rbx-running-games-footer.roblokis-footer");
+				document.$find("#rbx-public-running-games").innerHTML += `<div class="rbx-running-games-footer roblokis-footer"><button type="button" class="btn-control-sm btn-full-width rbx-running-games-load-more">${Rkis.language["loadMore"]}</button></div>`;
+				buttonplace = document.$find("#rbx-public-running-games > div.rbx-public-running-games-footer.roblokis-footer");
 
 				var pagecount = Math.floor((Rkis.Scripts.PageNav.totalServers.length || 0) / 10) + 1;
 
@@ -469,7 +450,7 @@ Rkis.page.game = () => {
 				</div>`;
 
 				buttonplace.$find("button").addEventListener("click", () => { Rkis.Scripts.PageNav.next(true) });
-				document.$find("#rbx-game-server-item-container", (e) => { e.classList.add("pagenav"); });
+				document.$find("#rbx-public-game-server-item-container", (e) => { e.classList.add("pagenav"); });
 
 				$r("#rkpagenav > button:nth-child(1)").addEventListener("click", () => { Rkis.Scripts.PageNav.getpage(1) })
 				$r("#rkpagenav > button:nth-child(2)").addEventListener("click", () => { Rkis.Scripts.PageNav.back() })
@@ -481,7 +462,7 @@ Rkis.page.game = () => {
 
 				Rkis.Scripts.PageNav.getpage(1);
 
-				document.$find("#rbx-running-games > div.btr-pager-holder.btr-server-pager", (e) => { e.remove(); })
+				document.$find("#rbx-public-running-games > div.btr-pager-holder.btr-server-pager", (e) => { e.remove(); })
 			}
 
 
@@ -572,7 +553,7 @@ Rkis.page.game = () => {
 
 
 			Rkis.Scripts.PageNav.setpage = function (data, more) {
-				var holder = document.$find("#rbx-game-server-item-container");
+				var holder = document.$find("#rbx-public-game-server-item-container");
 				if (holder == null || data == null) return;
 
 				if (more != true) holder.innerHTML = "";
@@ -688,7 +669,7 @@ Rkis.page.game = () => {
 			Rkis.Scripts.PublicServersLink.cursor = '';
 			Rkis.Scripts.PublicServersLink.loadedServers = [];
 
-			// document.$watchLoop("li.rbx-game-server-item[data-gameid]", (server) => {
+			// document.$watchLoop("li.rbx-public-game-server-item[data-gameid]", (server) => {
 			// 	var serverid = server.dataset.gameid;
 			// 	if (serverid != '' && serverid != null) {
 			// 		var joinbtn = server.querySelector('.rbx-game-server-join');
@@ -701,7 +682,7 @@ Rkis.page.game = () => {
 			// 	}
 			// });
 
-			document.$watch("#rbx-running-games", (publicServerContainer) => {
+			document.$watch("#rbx-public-running-games", (publicServerContainer) => {
 				let excludeFullGames = false;
 				let sortOrder = 'Desc';
 
@@ -733,21 +714,23 @@ Rkis.page.game = () => {
 				
 				publicServerContainer.$watch('select.rbx-select', input => {
 					input.addEventListener('change', (e) => {
-						excludeFullGames = e.target.value
+						sortOrder = e.target.value
 					})
 				});
 
-				Rkis.Scripts.PublicServersLink.loadMore(Rkis.GameId, {
-					excludeFullGames,
-					sortOrder
-				});
+				setTimeout(() => {
+					Rkis.Scripts.PublicServersLink.loadMore(Rkis.GameId, {
+						excludeFullGames,
+						sortOrder
+					});
+				}, 150);
 			});
 
 			Rkis.Scripts.PublicServersLink.loadMore = async function (placeId, options) {
 				if (Rkis.Scripts.PublicServersLink.isOn == false) return;
 				Rkis.Scripts.PublicServersLink.isOn = false;
 				
-				document.$watch('#rbx-game-server-item-container .rbx-game-server-item *:not(.rk-multi-button) > .game-server-join-btn', input => {
+				document.$watch('#rbx-public-game-server-item-container .rbx-public-game-server-item *:not(.rk-multi-button) > .game-server-join-btn', input => {
 					Rkis.Scripts.PublicServersLink.setupLinks(placeId);
 				});
 				
@@ -773,7 +756,7 @@ Rkis.page.game = () => {
 			}
 
 			Rkis.Scripts.PublicServersLink.setupLinks = function (placeId) {
-				let noLinkPublicServers = document.querySelectorAll('#rbx-game-server-item-container .rbx-game-server-item *:not(.rk-multi-button) > .game-server-join-btn');
+				let noLinkPublicServers = document.querySelectorAll('#rbx-public-game-server-item-container .rbx-public-game-server-item *:not(.rk-multi-button) > .game-server-join-btn');
 
 				noLinkPublicServers.forEach((joinButton, index) => {
 					let server = Rkis.Scripts.PublicServersLink.loadedServers[0];
@@ -1184,8 +1167,8 @@ Rkis.page.game = () => {
 		Rkis.Scripts.PublicServersView = Rkis.Scripts.PublicServersView || {};
 
 
-		document.$watch("#rbx-game-server-item-container", () => {
-			document.$watchLoop("#rbx-game-server-item-container > li", (serverslist) => {
+		document.$watch("#rbx-public-game-server-item-container", () => {
+			document.$watchLoop("#rbx-public-game-server-item-container > li", (serverslist) => {
 				Rkis.Scripts.PublicServersView.secondone(serverslist);
 			})
 		})

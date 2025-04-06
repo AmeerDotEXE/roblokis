@@ -459,7 +459,10 @@ html .rbx-body .game-carousel.wide-game-tile-carousel {
 	width: 150px;
 }
 /* friends */
-html .rbx-body .section .people-list {
+.rbx-body .content .friends-carousel-container {
+	padding: 0;
+}
+.rbx-body .content .friends-carousel-list-container {
 	border-radius: var(--rk-peoplesection-corners-radius, 8px);
 
 	border-color: var(--rk-peoplesection-borders-color);

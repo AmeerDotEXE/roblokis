@@ -21,7 +21,7 @@ if (Rkis.wholeData.FilteredServer == true) {
 			filteredrunninggames.setAttribute("class", "stack");
 			filteredrunninggames.dataset.filter = "normal";
 			filteredrunninggames.innerHTML = `<div class="container-header"><h3 data-translate="serversFiltered">Filtered Servers</h3><button id="rk-refreshfilteredservers" class="filtered-servers-buttons" data-translate="refresh">Refresh</button><button id="rk-smallfilteredservers" class="filtered-servers-buttons" data-translate="serversSmall">Small Servers</button><button id="rk-lowpingfilteredservers" class="filtered-servers-buttons" data-translate="LowPingSvrs">Low Ping Servers</button></div><ul id="rbx-filtered-game-server-item-container" class="section stack-list"><span class="spinner spinner-default"></span></ul>`;
-			document.$watch("#rbx-running-games", (e) => {
+			document.$watch("#rbx-public-running-games", (e) => {
 				e.parentElement.append(filteredrunninggames);
 
 				chrome.runtime.sendMessage({ about: "getPublicServerPageCache", GameId: Rkis.GameId }, (svrs) => {
