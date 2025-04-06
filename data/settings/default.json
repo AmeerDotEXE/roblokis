@@ -218,7 +218,7 @@
 			},
 			"en": {
 				"name": "Last Status",
-				"description": "Shows Player's Last Activity on his Profile Page."
+				"description": "Shows player's last activity on their profile page."
 			}
 		}
 	},
@@ -324,7 +324,7 @@
 			},
 			"en": {
 				"name": "New Badges Look & Load all",
-				"description": "Shows the new Style design by Ameer!\nloads first 100 badges automatically."
+				"description": "Shows the new style design by Ameer! Loads first 100 badges automatically."
 			}
 		}
 	},
@@ -409,7 +409,7 @@
 			},
 			"en": {
 				"name": "Show Hidden Badges",
-				"description": "Shows the Hidden/Disabled Badges! (Load All Option is Required)"
+				"description": "Shows the Hidden/Disabled badges! (Load All option is required)"
 			}
 		}
 	},
