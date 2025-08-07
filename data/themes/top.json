@@ -144,5 +144,19 @@
 		"contact": {
 			"discord": "simplyqin"
 		}
+	},
+	{
+		"name": "Blue Forest",
+		"link": {
+			"file": "https://ameerdotexe.github.io/roblokis/data/themes/top/blue_forest/blue_forest.roblokis"
+		},
+		"animated": true,
+		"author": "sanctuaryangels",
+		"images": [
+			"https://ameerdotexe.github.io/roblokis/data/themes/top/blue_forest/blue_forest.png"
+		],
+		"contact": {
+			"discord": "spbm"
+		}
 	}
 ]
