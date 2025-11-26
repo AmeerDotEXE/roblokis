@@ -26,3 +26,8 @@ html body.light-theme {
 #pinned-container.game-cards {
     display: block;
 }
+
+/* fix for wide profiles due to new 3d viewer */
+#content.content div.profile-platform-container[data-profile-type="User"][data-profile-id] {
+    width: 100%;
+}
