@@ -1,4 +1,8 @@
 "use strict";
+
+/* globals BROWSER, escapeHTML, HTMLParser, changeRobloxTheme */
+
+// eslint-disable-next-line no-var, no-use-before-define
 var Rkis = Rkis || {};
 Rkis.Designer = Rkis.Designer || {};
 Rkis.StylesList = Rkis.StylesList || {};
@@ -32,27 +36,28 @@ Rkis.Designer.DefaultThemes = [
 ];
 
 function FetchImage(url) {
-	return new Promise(resolve => {
-		BROWSER.runtime.sendMessage({about: "getImageRequest", url: url}, 
-		function(data) {
-			resolve(data)
-		})
-	})
+	return new Promise((resolve) => {
+		BROWSER.runtime.sendMessage({ about: "getImageRequest", url }, (data) => {
+			resolve(data);
+		});
+	});
 }
 
-Rkis.Designer.GetPageTheme = function() {
-
-	var wholedata = Rkis.wholeData || {};
+Rkis.Designer.GetPageTheme = function () {
+	const wholedata = Rkis.wholeData || {};
 	wholedata.Designer = wholedata.Designer || {};
 	wholedata.Designer.Theme = wholedata.Designer.Theme || {};
 	wholedata.Designer.Themes = wholedata.Designer.Themes || [];
 
-	if (wholedata.Designer.Theme.id == null) return null;
+	if (wholedata.Designer.Theme.id == null)
+		return null;
 
 	let type = wholedata.Designer.Theme.type;
-	if (type == null) type = wholedata.Designer.Theme.isDefaultTheme ? "default" : "saved";
+	if (type == null)
+		type = wholedata.Designer.Theme.isDefaultTheme ? "default" : "saved";
 
-	if (type == "saved" && wholedata.Designer.Themes.length - 1 < wholedata.Designer.Theme.id) return null;
+	if (type === "saved" && wholedata.Designer.Themes.length - 1 < wholedata.Designer.Theme.id)
+		return null;
 
 	return {
 		type,
@@ -61,106 +66,118 @@ Rkis.Designer.GetPageTheme = function() {
 		name: wholedata.Designer.Theme.name,
 		extra: wholedata.Designer.Theme.extra,
 	};
-}
+};
 
-Rkis.Designer.CreateThemeElement = async function(theme) {
-	
-	if (typeof theme == 'undefined' || theme == null) theme = Rkis.Designer.currentTheme;
-	if(theme == null) return;
+Rkis.Designer.CreateThemeElement = async function (theme) {
+	if (typeof theme == "undefined" || theme == null)
+		theme = Rkis.Designer.currentTheme;
+	if (theme == null)
+		return;
 
 	if (theme.pages == null) {
 		theme.pages = theme.pages || {};
 
-		for (let page in theme) {
-			if (theme[page].css == null) continue;
-			
+		for (const page in theme) {
+			if (theme[page].css == null)
+				continue;
+
 			theme.pages[page] = theme[page].css;
 			delete theme[page];
 		}
 	}
-	
-	if(theme.pages == null) return;
 
-	var tamplate0 = null;
-	var tamplate05 = "";
-	var tamplate1 = "";
-	var tamplate2 = "";
-	var tamplate3 = "";
+	if (theme.pages == null)
+		return;
 
+	let tamplate0 = null;
+	let tamplate05 = "";
+	let tamplate1 = "";
+	let tamplate2 = "";
+	let tamplate3 = "";
 
 	// tamplate0 = await fetch(Rkis.fileLocation + "js/Theme/DefaultTamplate.css")
 	// .then(response => response.text())
 	// .catch(err => {return null;})
 	tamplate0 = await Rkis.Designer.cssTemplateFile;
-	if(tamplate0 == null) return;
+	if (tamplate0 == null)
+		return;
 
 	// Format
-		/*>|REPLACE WITH STUFF|.value<*/
+	/* >|REPLACE WITH STUFF|.value< */
 	/* Result
 		stuff1.value
 		stuff2.value
 		...
 	*/
-	
-	//auto complete
+
+	// auto complete
 	tamplate0.split("/*>").forEach((e, i) => {
-		if(i == 0) return tamplate05 += e;
+		if (i === 0)
+			return tamplate05 += e;
 
-		var n = e.split("<*/");
-		if(n.length < 2) return tamplate05 += e;
+		const n = e.split("<*/");
+		if (n.length < 2)
+			return tamplate05 += e;
 
-		var completecode = "";
+		let completecode = "";
 
-		if(n[0].includes("|CORNERS|")) {
-			var alltheelements = ["all","top-left","top-right","bottom-right","bottom-left"];
+		if (n[0].includes("|CORNERS|")) {
+			const alltheelements = ["all", "top-left", "top-right", "bottom-right", "bottom-left"];
 
 			alltheelements.forEach((element, elementnumber) => {
 				completecode += n[0].split("|CORNERS|").join(element);
-				if(elementnumber != alltheelements.length - 1) completecode += "\n"; //make them look good
-			})
+				if (elementnumber !== alltheelements.length - 1)
+					completecode += "\n"; // make them look good
+			});
 		}
-		if(n[0].includes("|CORNER|")) {
-			var alltheelements = ["top-left","top-right","bottom-right","bottom-left"];
+		if (n[0].includes("|CORNER|")) {
+			const alltheelements = ["top-left", "top-right", "bottom-right", "bottom-left"];
 
 			alltheelements.forEach((element, elementnumber) => {
 				completecode += n[0].split("|CORNER|").join(element);
-				if(elementnumber != alltheelements.length - 1) completecode += "\n"; //make them look good
-			})
+				if (elementnumber !== alltheelements.length - 1)
+					completecode += "\n"; // make them look good
+			});
 		}
-		if(n[0].includes("|SIDES|")) {
-			var alltheelements = ["all","top","left","bottom","right"];
+		if (n[0].includes("|SIDES|")) {
+			const alltheelements = ["all", "top", "left", "bottom", "right"];
 
 			alltheelements.forEach((element, elementnumber) => {
 				completecode += n[0].split("|SIDES|").join(element);
-				if(elementnumber != alltheelements.length - 1) completecode += "\n"; //make them look good
-			})
+				if (elementnumber !== alltheelements.length - 1)
+					completecode += "\n"; // make them look good
+			});
 		}
-		if(n[0].includes("|SIDE|")) {
-			var alltheelements = ["top","right","bottom","left"];
+		if (n[0].includes("|SIDE|")) {
+			const alltheelements = ["top", "right", "bottom", "left"];
 
 			alltheelements.forEach((element, elementnumber) => {
 				completecode += n[0].split("|SIDE|").join(element);
-				if(elementnumber != alltheelements.length - 1) completecode += "\n"; //make them look good
-			})
+				if (elementnumber !== alltheelements.length - 1)
+					completecode += "\n"; // make them look good
+			});
 		}
-		if(n[0].includes("|IMAGE|")) {
-			var alltheelements = ["size","repeat","position","attachment"];
+		if (n[0].includes("|IMAGE|")) {
+			const alltheelements = ["size", "repeat", "position", "attachment"];
 
 			alltheelements.forEach((element, elementnumber) => {
 				completecode += n[0].split("|IMAGE|").join(element);
-				if(elementnumber != alltheelements.length - 1) completecode += "\n"; //make them look good
-			})
+				if (elementnumber !== alltheelements.length - 1)
+					completecode += "\n"; // make them look good
+			});
 		}
-		if(n[0].includes("|IMG|")) {
-			var alltheelements = ["repeat","position","attachment"];
+		if (n[0].includes("|IMG|")) {
+			const alltheelements = ["repeat", "position", "attachment"];
 
 			alltheelements.forEach((element, elementnumber) => {
 				completecode += n[0].split("|IMG|").join(element);
-				if(elementnumber != alltheelements.length - 1) completecode += " "; //make them look good
-			})
+				if (elementnumber !== alltheelements.length - 1)
+					completecode += " "; // make them look good
+			});
 		}
 
-		if(completecode == "") return tamplate05 += n[1];
+		if (completecode === "")
+			return tamplate05 += n[1];
 
 		tamplate05 += completecode + n[1];
 	});
@@ -178,121 +195,148 @@ Rkis.Designer.CreateThemeElement = async function(theme) {
 		...
 	*/
 	tamplate05.split("--loopstart: 0;").forEach((e, i) => {
-		if(i == 0) return tamplate1 += e;
+		if (i === 0)
+			return tamplate1 += e;
 
-		var n = e.split("--loopend: 0;");
-		if(n.length < 2) return tamplate1 += e;
+		const n = e.split("--loopend: 0;");
+		if (n.length < 2)
+			return tamplate1 += e;
 
-		var completecode = "";
+		let completecode = "";
 
-		if(n[0].includes("|server|")) {
-			var alltheelements = ["publicserver","smallserver","friendsserver","privateserver"];
+		if (n[0].includes("|server|")) {
+			const alltheelements = ["publicserver", "smallserver", "friendsserver", "privateserver"];
 
 			alltheelements.forEach((element, elementnumber) => {
 				completecode += n[0].split("|server|").join(element);
-				if(elementnumber != alltheelements.length - 1) completecode += "\n"; //make them look good
-			})
+				if (elementnumber !== alltheelements.length - 1)
+					completecode += "\n"; // make them look good
+			});
 		}
-		if(n[0].includes("|fullpack|")) {
-			var alltheelements = [
-				"pagenav","badge","content",
-				"menu","profile","group",
-				"avatar","avatareditor",
-				"quickgamejoin", "gameplay",
-				"popup", "gamesection",
+		if (n[0].includes("|fullpack|")) {
+			const alltheelements = [
+				"pagenav",
+				"badge",
+				"content",
+				"menu",
+				"profile",
+				"group",
+				"avatar",
+				"avatareditor",
+				"quickgamejoin",
+				"gameplay",
+				"popup",
+				"gamesection",
 				"peoplesection",
 			];
 
 			alltheelements.forEach((element, elementnumber) => {
 				completecode += n[0].split("|fullpack|").join(element);
-				if(elementnumber != alltheelements.length - 1) completecode += "\n"; //make them look good
-			})
+				if (elementnumber !== alltheelements.length - 1)
+					completecode += "\n"; // make them look good
+			});
 		}
 
-		if(completecode == "") return tamplate1 += n[1];
+		if (completecode === "")
+			return tamplate1 += n[1];
 
 		tamplate1 += completecode + n[1];
 	});
 
-	//--rk-something: %variable%;
-	//--rk-something: $value&default#;
+	// --rk-something: %variable%;
+	// --rk-something: $value&default#;
 
-	//auto variable
+	// auto variable
 	tamplate1.split("{").forEach((selector, selectorIndex) => {
-		if(selectorIndex == 0) return tamplate2 += selector; //don't change start
+		if (selectorIndex === 0)
+			return tamplate2 += selector; // don't change start
 
-		let afterit = "}" + selector.split('}').slice(1).join("}");
-		let beforeit = "{";
-		let propertiesPart = selector.split("}")[0];
+		const afterit = `}${selector.split("}").slice(1).join("}")}`;
+		const beforeit = "{";
+		const propertiesPart = selector.split("}")[0];
 
 		tamplate2 += beforeit;
 
 		propertiesPart.split(":").forEach((codepart, i) => {
-			if(i == 0) return tamplate2 += codepart; //don't change start
-			let afterit = ";" + codepart.split(';').slice(1).join(";");
-			let beforeit = ":";
-			codepart = codepart.split(';')[0]; //keep the cutted part
+			if (i === 0)
+				return tamplate2 += codepart; // don't change start
+			const afterit = `;${codepart.split(";").slice(1).join(";")}`;
+			const beforeit = ":";
+			codepart = codepart.split(";")[0]; // keep the cutted part
 
-			var fill = ""; //values
-			var filled = false; //check if css used
+			let fill = ""; // values
+			let filled = false; // check if css used
 
-			if(!codepart.includes("$") && !codepart.includes("%")) return tamplate2 += codepart; //no variable detection
-			var all_values = codepart.split("$"); //collect variables
+			if (!codepart.includes("$") && !codepart.includes("%"))
+				return tamplate2 += codepart; // no variable detection
+			const all_values = codepart.split("$"); // collect variables
 
-			for (var dollar_num = 0; dollar_num < all_values.length; dollar_num++) {
-				if(dollar_num == 0) {fill += all_values[0]; continue;} //don't change start
-				
-				//no end detection
-				var raw_value = all_values[dollar_num].split("#");
-				if(raw_value.length < 2) {fill += "$" + all_values[dollar_num]; continue;}
+			for (let dollar_num = 0; dollar_num < all_values.length; dollar_num++) {
+				if (dollar_num === 0) {
+					fill += all_values[0];
+					continue;
+				} // don't change start
 
-				var raw_multiple_value = raw_value[0].split("&")[0].split("/"); //multiple value detection
+				// no end detection
+				const raw_value = all_values[dollar_num].split("#");
+				if (raw_value.length < 2) {
+					fill += `$${all_values[dollar_num]}`;
+					continue;
+				}
 
-				var val = null; //value
+				const raw_multiple_value = raw_value[0].split("&")[0].split("/"); // multiple value detection
 
-				var checkvalue = function(check_value, allcheck) {
-					var tryval = theme.pages[Rkis.pageName];
-					if (allcheck == true) tryval = theme.pages.all;
-					if (tryval == null) return null;
+				let val = null; // value
 
-					var value_dots = check_value.split(".");
+				const checkvalue = function (check_value, allcheck) {
+					let tryval = theme.pages[Rkis.pageName];
+					if (allcheck === true)
+						tryval = theme.pages.all;
+					if (tryval == null)
+						return null;
 
-					for(var doti = 0; doti < value_dots.length && tryval != null; doti++) {
-						var dot = value_dots[doti];
+					const value_dots = check_value.split(".");
+
+					for (let doti = 0; doti < value_dots.length && tryval != null; doti++) {
+						const dot = value_dots[doti];
 						tryval = tryval[dot];
 					}
 
 					return tryval;
-				}
+				};
 
-				for(var checking_num = 0; checking_num < raw_multiple_value.length && val == null; checking_num++) {
-					var to_check_value = raw_multiple_value[checking_num];
+				for (let checking_num = 0; checking_num < raw_multiple_value.length && val == null; checking_num++) {
+					const to_check_value = raw_multiple_value[checking_num];
 
 					val = checkvalue(to_check_value);
 
-					if(val != null) continue;
+					if (val != null)
+						continue;
 
 					val = checkvalue(to_check_value, true);
 				}
 
-				if(val == null && raw_value[0].split("&").length > 1) {
+				if (val == null && raw_value[0].split("&").length > 1) {
 					val = raw_value[0].split("&")[1];
 				}
 
-				if(val == null) {fill += raw_value[1]; continue;}
+				if (val == null) {
+					fill += raw_value[1];
+					continue;
+				}
 
 				fill += val.split("<").join("").split(">").join("") + raw_value[1];
 				filled = true;
-
 			}
 
-			if(codepart.includes("%") && codepart.split("%").length > 2) {
-				var prts = codepart.split("%");
+			if (codepart.includes("%") && codepart.split("%").length > 2) {
+				const prts = codepart.split("%");
 
-				var val = null;
-				if(Rkis.wholeData[prts[1]] != true) val = "disabled";
+				let val = null;
+				if (Rkis.wholeData[prts[1]] !== true)
+					val = "disabled";
 
-				if(val != null) {
+				if (val != null) {
 					fill += prts[0];
 
 					fill += val;
@@ -303,95 +347,106 @@ Rkis.Designer.CreateThemeElement = async function(theme) {
 				}
 			}
 
-			if (filled == false) {
-				let variableKey = propertiesPart.split(":")[i-1].split("\n").slice(-1)[0];
+			if (filled === false) {
+				const variableKey = propertiesPart.split(":")[i - 1].split("\n").slice(-1)[0];
 				tamplate2 = tamplate2.slice(0, -1 * variableKey.length) + afterit.slice(1);
 				return;
 			}
 
 			return tamplate2 += beforeit + fill + afterit;
 		});
-		
+
 		tamplate2 += afterit;
 	});
 
-	//url replacer
-	var splittenTemplate2 = tamplate2.split("url(");
-	for (var i = 0; i < splittenTemplate2.length; i++) {
-		var codepart = splittenTemplate2[i];
-		if(i == 0){tamplate3 += codepart; continue;} //don't change start
-		codepart = "url(" + codepart; //keep the cutted part
+	// url replacer
+	const splittenTemplate2 = tamplate2.split("url(");
+	for (let i = 0; i < splittenTemplate2.length; i++) {
+		let codepart = splittenTemplate2[i];
+		if (i === 0) {
+			tamplate3 += codepart;
+			continue;
+		} // don't change start
+		codepart = `url(${codepart}`; // keep the cutted part
 
-		var fill = ""; //values
+		let fill = ""; // values
 
-		if(codepart.includes(")") == false) {tamplate3 += codepart; continue;} //no variable detection
-		var url = codepart.split("url(")[1];
-		let openParanCount = url.split(")")[0].split("(").length - 1;
-		url = url.split(")").slice(0, openParanCount+1).join(")");
+		if (codepart.includes(")") === false) {
+			tamplate3 += codepart;
+			continue;
+		} // no variable detection
+		let url = codepart.split("url(")[1];
+		const openParanCount = url.split(")")[0].split("(").length - 1;
+		url = url.split(")").slice(0, openParanCount + 1).join(")");
 
-		//skip if not url
+		// skip if not url
 		if (url === "") {
 			fill = "";
-		} else if (url.startsWith("linear-gradient")) {
-			fill = url.split(')')[0]+')';
-		} else if (url.startsWith("data:image/")) {
-			fill = 'url('+url.split(')')[0]+')';
-		} else {
+		}
+		else if (url.startsWith("linear-gradient")) {
+			fill = `${url.split(")")[0]})`;
+		}
+		else if (url.startsWith("data:image/")) {
+			fill = `url(${url.split(")")[0]})`;
+		}
+		else {
 			fill = await FetchImage(url);
 		}
 
-		//console.log(url, fill);
+		// console.log(url, fill);
 
-		tamplate3 += fill + codepart.split(")").slice(openParanCount+1).join(')');
-	};
+		tamplate3 += fill + codepart.split(")").slice(openParanCount + 1).join(")");
+	}
 
-	var styl = document.createElement("style");
+	const styl = document.createElement("style");
 	styl.id = "rk-theme-loaded";
 	styl.innerHTML = tamplate3;
 	return styl;
-}
+};
 
 Rkis.Designer.loadedStyleFile = false;
-Rkis.Designer.SetupTheme = async function() {
-
-	if (Rkis.generalTriggerTheme != true) {
+Rkis.Designer.SetupTheme = async function () {
+	if (Rkis.generalTriggerTheme !== true) {
 		document.addEventListener("rk-general-trigger-theme", () => {
 			Rkis.Designer.SetupTheme();
-		}, {once: true});
+		}, { once: true });
 		return;
 	}
 
 	let mainStyle = null;
 
-	const addStyle = url => {
+	const addStyle = (url) => {
 		const cssRule = `@import url("${url}")`;
 		const ruleIndex = mainStyle.insertRule(cssRule, mainStyle.cssRules.length);
-		
+
 		return mainStyle.cssRules[ruleIndex];
-	}
-	const removeStyle = url => {
-		//const cssRule = `@import url("${url}")`;
+	};
+	const removeStyle = (url) => {
+		// const cssRule = `@import url("${url}")`;
 
 		let ruleIndx = -1;
-		let rulesfilter = [];
+		const rulesfilter = [];
 		for (const r of mainStyle.rules) {
 			ruleIndx++;
-			if (r.href == url)
+			if (r.href === url)
 				rulesfilter.push(ruleIndx);
 		}
-		
-		//return mainStyle.cssRules[ruleIndex];
-		if (rulesfilter.length == 0) return;
-		rulesfilter.reverse().forEach(r => {
+
+		// return mainStyle.cssRules[ruleIndex];
+		if (rulesfilter.length === 0)
+			return;
+		rulesfilter.reverse().forEach((r) => {
 			mainStyle.deleteRule(r);
 		});
-	}
+	};
 
 	Rkis.Designer.addCSS = (paths, isExternal = false) => {
-		if(window.ContextScript != true) return console.error("Not Context Script");
-		if(typeof paths == "string") paths = [paths];
+		if (window.ContextScript !== true)
+			return console.error("Not Context Script");
+		if (typeof paths == "string")
+			paths = [paths];
 
-		if(!mainStyle) {
+		if (!mainStyle) {
 			const style = document.createElement("style");
 			style.id = "rk-css-loaded";
 
@@ -400,120 +455,130 @@ Rkis.Designer.SetupTheme = async function() {
 
 			mainStyle = style.sheet;
 		}
-		
+
 		paths.forEach((path) => {
 			let url = Rkis.fileLocation + path;
-			if (isExternal) url = path
+			if (isExternal)
+				url = path;
 			addStyle(url);
-		})
-	}
+		});
+	};
 	Rkis.Designer.removeCSS = (paths, isExternal = false) => {
-		if(window.ContextScript != true) return console.error("Not Context Script");
-		if(typeof paths == "string") paths = [paths];
+		if (window.ContextScript !== true)
+			return console.error("Not Context Script");
+		if (typeof paths == "string")
+			paths = [paths];
 
-		if(!mainStyle) return;
-		
+		if (!mainStyle)
+			return;
+
 		paths.forEach((path) => {
 			let url = Rkis.fileLocation + path;
-			if (isExternal) url = path
+			if (isExternal)
+				url = path;
 			removeStyle(url);
-		})
-	}
+		});
+	};
 
-	var putCSS = Rkis.Designer.addCSS; //shorter form
+	const putCSS = Rkis.Designer.addCSS; // shorter form
 	putCSS(["js/Theme/Extras/features.css"]);
 
-	if(Rkis.IsSettingEnabled("ExtraShadows", {
-	id: "ExtraShadows",
-	type: "switch",
-	value: { switch: false },
-	details: {
-		default: "en",
-		translate: {
-			name: "sectionExtraS",
-			description: "sectionExtraS1"
+	if (Rkis.IsSettingEnabled("ExtraShadows", {
+		id: "ExtraShadows",
+		type: "switch",
+		value: { switch: false },
+		details: {
+			default: "en",
+			translate: {
+				name: "sectionExtraS",
+				description: "sectionExtraS1",
+			},
+			en: {
+				name: "Extra Shadows",
+				description: "Adds a shadow effect under or around some elements.",
+			},
 		},
-		"en": {
-			name: "Extra Shadows",
-			description: "Adds a shadow effect under or around some elements.",
-		}
-	}
 	})) {
 		putCSS(["js/Theme/Pages/shadows.css"]);
 	}
 
-	if(Rkis.IsSettingDisabled("UseThemes", {
-	id: "UseThemes",
-	type: "switch",
-	value: { switch: true },
-	details: {
-		default: "en",
-		translate: {
-			name: "sectionUThemes",
-			description: "sectionUThemes1"
+	if (Rkis.IsSettingDisabled("UseThemes", {
+		id: "UseThemes",
+		type: "switch",
+		value: { switch: true },
+		details: {
+			default: "en",
+			translate: {
+				name: "sectionUThemes",
+				description: "sectionUThemes1",
+			},
+			en: {
+				name: "Use Themes",
+				description: "Disabling this will disable Styles and Themes!",
+			},
 		},
-		"en": {
-			name: "Use Themes",
-			description: "Disabling this will disable Styles and Themes!",
-		}
-	}
 	})) {
 		putCSS(["js/Theme/Extras/extensions.css"]);
-		document.$watch("body", (e) => {e.classList.add("Roblokis-no-themes")});
+		document.$watch("body", e => e.classList.add("Roblokis-no-themes"));
 		return;
 	}
 
-	var allCssFiles = [
-		{match: ".com/home", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/home.css" ]},
-		{match: ".com/discover", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/discover.css" ]},
-		{match: ".com/charts", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/discover.css" ]},
-		{match: ".com/users/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/profile.css" ]},
-		{match: ".com/games/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/games.css" ]},
-		{match: ".com/groups/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/groups.css" ]},
-		{match: ".com/communities/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/groups.css" ]},
-		
-		{match: ".com/catalog", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/catalog.css" ]},
-		{match: ".com/badges/", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/itempage.css" ]},
-		{match: ".com/upgrades/", paths: [ "js/Theme/Pages/all.css" ]},
+	const allCssFiles = [
+		{ match: ".com/home", paths: ["js/Theme/Pages/all.css", "js/Theme/Pages/home.css"] },
+		{ match: ".com/discover", paths: ["js/Theme/Pages/all.css", "js/Theme/Pages/discover.css"] },
+		{ match: ".com/charts", paths: ["js/Theme/Pages/all.css", "js/Theme/Pages/discover.css"] },
+		{ match: ".com/users/", paths: ["js/Theme/Pages/all.css", "js/Theme/Pages/profile.css"] },
+		{ match: ".com/games/", paths: ["js/Theme/Pages/all.css", "js/Theme/Pages/games.css"] },
+		{ match: ".com/groups/", paths: ["js/Theme/Pages/all.css", "js/Theme/Pages/groups.css"] },
+		{ match: ".com/communities/", paths: ["js/Theme/Pages/all.css", "js/Theme/Pages/groups.css"] },
 
-		{match: ".com/transactions", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/transactions.css" ]},
+		{ match: ".com/catalog", paths: ["js/Theme/Pages/all.css", "js/Theme/Pages/catalog.css"] },
+		{ match: ".com/badges/", paths: ["js/Theme/Pages/all.css", "js/Theme/Pages/itempage.css"] },
+		{ match: ".com/upgrades/", paths: ["js/Theme/Pages/all.css"] },
+
+		{ match: ".com/transactions", paths: ["js/Theme/Pages/all.css", "js/Theme/Pages/transactions.css"] },
 		// {match: ".com/trades", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/trades.css" ]},
-		{match: ".com/my/messages", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/messages.css" ]},
-		{match: ".com/my/avatar", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/avatar.css" ]},
-		{match: ".com/my/account", paths: [ "js/Theme/Pages/all.css", "js/Theme/Pages/settings.css" ]},
-		{match: ".com/my/account?roseal=", paths: [ "js/Theme/Pages/roseal.css" ]}
+		{ match: ".com/my/messages", paths: ["js/Theme/Pages/all.css", "js/Theme/Pages/messages.css"] },
+		{ match: ".com/my/avatar", paths: ["js/Theme/Pages/all.css", "js/Theme/Pages/avatar.css"] },
+		{ match: ".com/my/account", paths: ["js/Theme/Pages/all.css", "js/Theme/Pages/settings.css"] },
+		{ match: ".com/my/account?roseal=", paths: ["js/Theme/Pages/roseal.css"] },
 	];
 
 	let isSupportedPage = false;
 	Rkis.Designer.loadedStyleFile = false;
 	let pageUrl = window.location.href.toLowerCase();
-	if (!pageUrl.includes(".com/my")) pageUrl = pageUrl.replace(/\.com\/..\//, ".com/");
+	if (!pageUrl.includes(".com/my"))
+		pageUrl = pageUrl.replace(/\.com\/..\//, ".com/");
 	allCssFiles.forEach((e) => {
-		if(!pageUrl.includes(e.match)) return;
+		if (!pageUrl.includes(e.match))
+			return;
 
 		putCSS(e.paths);
 		Rkis.Designer.loadedStyleFile = true;
-		if (!isSupportedPage) isSupportedPage = e.paths.includes("js/Theme/Pages/all.css");
+		if (!isSupportedPage)
+			isSupportedPage = e.paths.includes("js/Theme/Pages/all.css");
 	});
 
-	if (Rkis.Designer.loadedStyleFile == false) {
+	if (Rkis.Designer.loadedStyleFile === false) {
 		return;
 	}
 
 	if (isSupportedPage) {
-		
-		//settings button
+		// settings button
 		(async function () {
-			let stng = await document.$watch("#navbar-settings").$promise();
-			if (stng == null) return;
+			const stng = await document.$watch("#navbar-settings").$promise();
+			if (stng == null)
+				return;
 
 			stng.addEventListener("click", async () => {
-				if (stng.getAttribute("aria-describedby") != null) return;
+				if (stng.getAttribute("aria-describedby") != null)
+					return;
 
-				let doc = await document.$watch("#settings-popover-menu").$promise();
-				if (doc == null || doc.querySelector(".roblokis-stng-themes-button") != null) return;
-				
-				let rkisbtn = document.createElement("li");
+				const doc = await document.$watch("#settings-popover-menu").$promise();
+				if (doc == null || doc.querySelector(".roblokis-stng-themes-button") != null)
+					return;
+
+				const rkisbtn = document.createElement("li");
 				rkisbtn.innerHTML = `<a class="rbx-menu-item roblokis-stng-themes-button">Themes</a>`;
 				doc.insertBefore(rkisbtn, doc.firstElementChild);
 
@@ -525,111 +590,122 @@ Rkis.Designer.SetupTheme = async function() {
 	}
 
 	await Rkis.Designer.ReloadCurrentThemeElement();
-	//await Rkis.StylesList.LoadCurrentStyles();
-}
+	// await Rkis.StylesList.LoadCurrentStyles();
+};
 
-Rkis.Designer.ReloadCurrentThemeElement = async function() {
-	if (Rkis.Designer.loadedStyleFile == false) return;
+Rkis.Designer.ReloadCurrentThemeElement = async function () {
+	if (Rkis.Designer.loadedStyleFile === false)
+		return;
 
 	let isFirstLoad = true;
-	let existingTheme = document.querySelector("#rk-theme-loaded");
+	const existingTheme = document.querySelector("#rk-theme-loaded");
 	if (existingTheme) {
 		existingTheme.remove();
 		isFirstLoad = false;
 	}
 
-	var pagetheme = Rkis.Designer.GetPageTheme();
+	const pagetheme = Rkis.Designer.GetPageTheme();
 
-	if(pagetheme == null) {
-		var continueloading = true;
+	if (pagetheme == null) {
+		let continueloading = true;
 		document.$watch("body", (bodyElement) => {
-			if(bodyElement.classList.contains("light-theme") == Rkis.wholeData.isUsingLightTheme) return;
+			if (bodyElement.classList.contains("light-theme") === Rkis.wholeData.isUsingLightTheme)
+				return;
 
 			Rkis.wholeData.isUsingLightTheme = bodyElement.classList.contains("light-theme");
-			Rkis.database.save()
+			Rkis.database.save();
 			Rkis.Designer.ReloadCurrentTheme();
 			continueloading = false;
 		});
 
-		if (continueloading == false) return;
+		if (continueloading === false)
+			return;
 
-		if(Rkis.wholeData.isUsingLightTheme == true) {
-			await fetch(Rkis.fileLocation + "js/Theme/DefaultLight.Roblokis")
-			.then(response => response.json())
-			.then(theme => {Rkis.Designer.currentTheme = theme;})
-			.catch(err => {console.error(err);})
+		if (Rkis.wholeData.isUsingLightTheme === true) {
+			await fetch(`${Rkis.fileLocation}js/Theme/DefaultLight.Roblokis`)
+				.then(response => response.json())
+				.then((theme) => { Rkis.Designer.currentTheme = theme; })
+				.catch((err) => { console.error(err); });
 		}
 		else {
-			await fetch(Rkis.fileLocation + "js/Theme/DefaultDark.Roblokis")
-			.then(response => response.json())
-			.then(theme => {Rkis.Designer.currentTheme = theme;})
-			.catch(err => {console.error(err);})
+			await fetch(`${Rkis.fileLocation}js/Theme/DefaultDark.Roblokis`)
+				.then(response => response.json())
+				.then((theme) => { Rkis.Designer.currentTheme = theme; })
+				.catch((err) => { console.error(err); });
 		}
 	}
-	else if(pagetheme.type == "remote") {
+	else if (pagetheme.type === "remote") {
 		await fetch(pagetheme.extra)
-		.then(response => response.json())
-		.then(theme => {Rkis.Designer.currentTheme = theme;})
-		.catch(err => {console.error(err);})
+			.then(response => response.json())
+			.then((theme) => { Rkis.Designer.currentTheme = theme; })
+			.catch((err) => { console.error(err); });
 	}
-	else if(pagetheme.type == "saved") {
-		//load custom theme
+	else if (pagetheme.type === "saved") {
+		// load custom theme
 		Rkis.Designer.currentTheme = Rkis.wholeData.Designer.Themes[pagetheme.themeId];
 	}
 	else { // considered a default theme
-		let themeInfo = Rkis.Designer.DefaultThemes.find(x => x.themeId == pagetheme.themeId);
-		if (themeInfo == null) themeInfo = Rkis.Designer.DefaultThemes.find(x => x.isDefault);
+		let themeInfo = Rkis.Designer.DefaultThemes.find(x => x.themeId === pagetheme.themeId);
+		if (themeInfo == null)
+			themeInfo = Rkis.Designer.DefaultThemes.find(x => x.isDefault);
 
 		await fetch(Rkis.fileLocation + themeInfo.location)
-		.then(response => response.json())
-		.then(theme => {Rkis.Designer.currentTheme = theme;})
-		.catch(err => {console.error(err);})
+			.then(response => response.json())
+			.then((theme) => { Rkis.Designer.currentTheme = theme; })
+			.catch((err) => { console.error(err); });
 	}
 
-	var theme = Rkis.Designer.currentTheme;
+	const theme = Rkis.Designer.currentTheme;
 
-	//TODO delete in version 4.2
-	if (theme != null && theme.styles != null && Rkis.versionCompare(theme.current_version, "4.0.0.19") === 2) {
+	// TODO delete in version 4.2
+	if (theme != null && theme.styles != null && Rkis.versionCompare("4.0.0.19", theme.current_version) < 0) {
 		theme.styles = theme.styles || {};
 
-		let changeOldFormat = function(styleLoc) {
-			if (styleLoc == null) return null;
-			if (typeof styleLoc.type != "undefined") return styleLoc;
-			for (let style in styleLoc) {
-				if (style == "type") return styleLoc;
+		const changeOldFormat = function (styleLoc) {
+			if (styleLoc == null)
+				return null;
+			if (typeof styleLoc.type != "undefined")
+				return styleLoc;
+			for (const style in styleLoc) {
+				if (style === "type")
+					return styleLoc;
 				if (typeof styleLoc[style] == "string") {
 					styleLoc[style] = {
 						type: styleLoc[style],
-						options: null
+						options: null,
 					};
 					continue;
 				}
-				
+
 				styleLoc[style] = changeOldFormat(styleLoc[style]);
 			}
-			return styleLoc
-		}
+			return styleLoc;
+		};
 
 		theme.styles = changeOldFormat(theme.styles);
 	}
 
-	//save image links locally
-	if (false && theme != null && Rkis.versionCompare(theme.current_version, "4.0.1.1") == 2) {
+	// save image links locally
+	if (false && theme != null && Rkis.versionCompare("4.0.1.1", theme.current_version) < 0) {
 		theme.current_version = "4.0.1.1";
 
 		let changedTheme = false;
 
-		//save image links locally
-		let changeOldFormat = async function(customizationLocation) {
-			if (typeof customizationLocation != "object") return customizationLocation;
-			if (customizationLocation == null) return null;
-			for (let locationVariable in customizationLocation) {
-				if (locationVariable == "link") {
-					if (customizationLocation[locationVariable] == "") break;
+		// save image links locally
+		const changeOldFormat = async function (customizationLocation) {
+			if (typeof customizationLocation != "object")
+				return customizationLocation;
+			if (customizationLocation == null)
+				return null;
+			for (const locationVariable in customizationLocation) {
+				if (locationVariable === "link") {
+					if (customizationLocation[locationVariable] === "")
+						break;
 
 					if (customizationLocation[locationVariable].startsWith("http")) {
 						let localizedData = await FetchImage(customizationLocation[locationVariable]);
-						if (localizedData.startsWith("url(")) localizedData = localizedData.slice(4).slice(0, -1);
+						if (localizedData.startsWith("url("))
+							localizedData = localizedData.slice(4).slice(0, -1);
 						customizationLocation[locationVariable] = localizedData;
 						changedTheme = true;
 					}
@@ -638,7 +714,7 @@ Rkis.Designer.ReloadCurrentThemeElement = async function() {
 				customizationLocation[locationVariable] = await changeOldFormat(customizationLocation[locationVariable]);
 			}
 			return customizationLocation;
-		}
+		};
 
 		// theme.styles = changeOldFormat(theme.styles);
 		theme.pages = await changeOldFormat(theme.pages);
@@ -647,83 +723,95 @@ Rkis.Designer.ReloadCurrentThemeElement = async function() {
 		}
 	}
 
-	if (isFirstLoad) Rkis.StylesList.LoadCurrentStyles();
-	else Rkis.StylesList.ReloadCurrentStyles();
-	var styl = await Rkis.Designer.CreateThemeElement(theme);
-	if (styl == null) return;
+	if (isFirstLoad)
+		Rkis.StylesList.LoadCurrentStyles();
+	else
+		Rkis.StylesList.ReloadCurrentStyles();
+	const styl = await Rkis.Designer.CreateThemeElement(theme);
+	if (styl == null)
+		return;
 
-	let earlyHeadElement = document.querySelector("head");
+	const earlyHeadElement = document.querySelector("head");
 	if (earlyHeadElement != null) {
 		earlyHeadElement.appendChild(styl);
-	} else {
+	}
+	else {
 		document.$watch("head", (e) => {
 			e.append(styl);
 		});
 	}
-	document.$watch(".light-theme, .dark-theme", (e) => {
-		let isDark = theme.isDark != false;
-		if (pagetheme == null) isDark = !Rkis.wholeData.isUsingLightTheme;
+	document.$watch(".light-theme, .dark-theme", () => {
+		let isDark = theme.isDark !== false;
+		if (pagetheme == null)
+			isDark = !Rkis.wholeData.isUsingLightTheme;
 
-		changeRobloxTheme(isDark ? 'Dark' : 'Light');
+		changeRobloxTheme(isDark ? "Dark" : "Light");
 
 		document.$watch(".home-container.expand-max-width", () => {
 			document.body?.classList.add("home-expand-design");
 		});
 	});
-}
-Rkis.StylesList.ReloadCurrentStyles = async function() {
+};
+Rkis.StylesList.ReloadCurrentStyles = async function () {
 	// disable all styles
 	for (const pageName in Rkis.StylesList) {
-		if (!Object.prototype.hasOwnProperty.call(Rkis.StylesList, pageName)) continue;
+		if (!Object.prototype.hasOwnProperty.call(Rkis.StylesList, pageName))
+			continue;
 		const pageStyles = Rkis.StylesList[pageName];
 
 		for (const styleObjName in pageStyles) {
-			if (!Object.prototype.hasOwnProperty.call(pageStyles, styleObjName)) continue;
+			if (!Object.prototype.hasOwnProperty.call(pageStyles, styleObjName))
+				continue;
 			const styleObj = pageStyles[styleObjName];
 
 			for (const styleOptionName in styleObj) {
-				if (styleOptionName == "Current Active") continue;
-				if (!Object.prototype.hasOwnProperty.call(styleObj, styleOptionName)) continue;
+				if (styleOptionName === "Current Active")
+					continue;
+				if (!Object.prototype.hasOwnProperty.call(styleObj, styleOptionName))
+					continue;
 				const styleOption = styleObj[styleOptionName];
-				//console.log("disabling style:", styleObjName, styleOptionName);
-	
-				if (styleOption.css) Rkis.Designer.removeCSS(styleOption.css);
+				// console.log("disabling style:", styleObjName, styleOptionName);
+
+				if (styleOption.css)
+					Rkis.Designer.removeCSS(styleOption.css);
 				styleOption.unload?.();
 			}
-			
+
 			styleObj["Current Active"] = null;
 		}
 	}
-	
+
 	await Rkis.StylesList.LoadCurrentStyles();
 	setTimeout(() => {
 		window.dispatchEvent(new Event("resize"));
 	}, 450);
-}
-Rkis.StylesList.LoadCurrentStyles = async function() {
-	if (Rkis.Designer.currentTheme == null ||
-		Rkis.Designer.currentTheme.styles == null) {
+};
+Rkis.StylesList.LoadCurrentStyles = async function () {
+	if (Rkis.Designer.currentTheme == null
+		|| Rkis.Designer.currentTheme.styles == null) {
 		return;
 	}
 
-	let styleCodeToRun = [];
-	let theme = Rkis.Designer.currentTheme;
-	
-	let findFile = function(styleLocation, stylesObj) {
-		for (let stylePath in stylesObj) {
-			let innderStyleLocation = styleLocation[stylePath];
-			if (innderStyleLocation == null) continue;
+	const styleCodeToRun = [];
+	const theme = Rkis.Designer.currentTheme;
 
-			let innderStyleObj = stylesObj[stylePath];
+	const findFile = function (styleLocation, stylesObj) {
+		for (const stylePath in stylesObj) {
+			const innderStyleLocation = styleLocation[stylePath];
+			if (innderStyleLocation == null)
+				continue;
+
+			const innderStyleObj = stylesObj[stylePath];
 
 			if (innderStyleLocation.type == null) {
-				//run loop on this object
+				// run loop on this object
 				findFile(innderStyleLocation, innderStyleObj);
 				continue;
 			}
 
-			let style = innderStyleObj[innderStyleLocation.type];
-			if (style == null) continue;
+			const style = innderStyleObj[innderStyleLocation.type];
+			if (style == null)
+				continue;
 			innderStyleObj["Current Active"] = innderStyleLocation.type;
 			if (style.css != null) {
 				Rkis.Designer.addCSS(style.css);
@@ -739,18 +827,18 @@ Rkis.StylesList.LoadCurrentStyles = async function() {
 				});
 			}
 		}
-	}
+	};
 
 	findFile(theme.styles, Rkis.StylesList);
 	await document.$watch("body").$promise();
 	styleCodeToRun.forEach(f => f());
-}
-Rkis.StylesList.updateStyle = function(fullpath, newStyle) {
-	if (Rkis.Designer.currentTheme == null ||
-		Rkis.Designer.currentTheme.styles == null) {
+};
+Rkis.StylesList.updateStyle = function (fullpath, newStyle) {
+	if (Rkis.Designer.currentTheme == null
+		|| Rkis.Designer.currentTheme.styles == null) {
 		return;
 	}
-	
+
 	let styleLoader = Rkis.StylesList;
 	if (styleLoader != null) {
 		for (let pathIndex = 0; pathIndex < fullpath.length; pathIndex++) {
@@ -758,45 +846,49 @@ Rkis.StylesList.updateStyle = function(fullpath, newStyle) {
 			styleLoader = styleLoader?.[path];
 		}
 	}
-	if (!styleLoader) return;
+	if (!styleLoader)
+		return;
 	// could probably handle options updates here, but won't be needed for the time being.
-	if (styleLoader["Current Active"] == newStyle.type) return;
+	if (styleLoader["Current Active"] === newStyle.type)
+		return;
 	if (styleLoader["Current Active"] != null) {
-		let activeStyle = styleLoader[styleLoader["Current Active"]];
+		const activeStyle = styleLoader[styleLoader["Current Active"]];
 		if (activeStyle != null) {
-			if (activeStyle.css) Rkis.Designer.removeCSS(activeStyle.css);
+			if (activeStyle.css)
+				Rkis.Designer.removeCSS(activeStyle.css);
 			activeStyle.unload?.();
-			//console.log("unloaded style:", styleLoader["Current Active"], activeStyle);
+			// console.log("unloaded style:", styleLoader["Current Active"], activeStyle);
 		}
 		styleLoader["Current Active"] = null;
 	}
-	let selectedStyle = styleLoader[newStyle.type];
+	const selectedStyle = styleLoader[newStyle.type];
 	if (selectedStyle != null) {
-		if (selectedStyle.css) Rkis.Designer.addCSS(selectedStyle.css);
+		if (selectedStyle.css)
+			Rkis.Designer.addCSS(selectedStyle.css);
 		selectedStyle.load?.(newStyle);
-		//console.log("loaded style:", newStyle.type, selectedStyle);
+		// console.log("loaded style:", newStyle.type, selectedStyle);
 		styleLoader["Current Active"] = newStyle.type;
 	}
 	setTimeout(() => {
 		window.dispatchEvent(new Event("resize"));
 	}, 450);
-}
+};
 
-//start loading template to save couple of milliseconds
-Rkis.Designer.cssTemplateFile = fetch(Rkis.fileLocation + "js/Theme/DefaultTamplate.css")
-.then(response => response.text())
-.catch(() => {return null;});
+// start loading template to save couple of milliseconds
+Rkis.Designer.cssTemplateFile = fetch(`${Rkis.fileLocation}js/Theme/DefaultTamplate.css`)
+	.then(response => response.text())
+	.catch(() => { return null; });
 Rkis.Designer.SetupTheme();
 
 Rkis.Designer.tempTimeout = null;
 Rkis.Designer.tempOriginalTheme = null;
 Rkis.Designer.tempPreviewTheme = null;
-Rkis.Designer.SetupTempTheme = async function() {
-	if (Rkis.Designer.loadedStyleFile == false) {
+Rkis.Designer.SetupTempTheme = async function () {
+	if (Rkis.Designer.loadedStyleFile === false) {
 		return;
 	}
 
-	if(Rkis.IsSettingDisabled("UseThemes", {
+	if (Rkis.IsSettingDisabled("UseThemes", {
 		id: "UseThemes",
 		type: "switch",
 		value: { switch: true },
@@ -804,51 +896,58 @@ Rkis.Designer.SetupTempTheme = async function() {
 			default: "en",
 			translate: {
 				name: "sectionUThemes",
-				description: "sectionUThemes1"
+				description: "sectionUThemes1",
 			},
-			"en": {
+			en: {
 				name: "Use Themes",
 				description: "Disabling this will disable Styles and Themes!",
-			}
-		}
+			},
+		},
 	})) {
 		return;
 	}
 
-
 	let isTempTheme = false;
-	let rawTheme = localStorage.getItem('rkis-temp-theme');
+	const rawTheme = localStorage.getItem("rkis-temp-theme");
 	let theme = null;
 
 	try {
-		if (rawTheme !== null) theme = JSON.parse(rawTheme);
-	} catch {}
-	if (theme !== null) isTempTheme = true;
+		if (rawTheme !== null)
+			theme = JSON.parse(rawTheme);
+	}
+	catch {}
+	if (theme !== null)
+		isTempTheme = true;
 
 	if (isTempTheme === false) {
-		let tempTheme = document.getElementById('rk-temp-theme-loaded');
-		if (tempTheme) tempTheme.remove();
+		const tempTheme = document.getElementById("rk-temp-theme-loaded");
+		if (tempTheme)
+			tempTheme.remove();
 
 		// let defaultTheme = document.getElementById('rk-theme-loaded');
 		// if (defaultTheme) defaultTheme.setAttribute('type', 'text/css');
 
-		if (Rkis.Designer.tempOriginalTheme) document.head.appendChild(Rkis.Designer.tempOriginalTheme);
+		if (Rkis.Designer.tempOriginalTheme)
+			document.head.appendChild(Rkis.Designer.tempOriginalTheme);
 
 		// Rkis.Designer.SetupTheme();
 
-		localStorage.removeItem('rkis-temp-theme');
+		localStorage.removeItem("rkis-temp-theme");
 
 		return;
 	}
-	if (Rkis.Designer.tempPreviewTheme === rawTheme) return;
+	if (Rkis.Designer.tempPreviewTheme === rawTheme)
+		return;
 	Rkis.Designer.tempPreviewTheme = rawTheme;
 
-	let tempTheme = document.getElementById('rk-temp-theme-loaded');
-	if (tempTheme) tempTheme.remove();
+	const tempTheme = document.getElementById("rk-temp-theme-loaded");
+	if (tempTheme)
+		tempTheme.remove();
 
-	let defaultTheme = document.getElementById('rk-theme-loaded');
+	const defaultTheme = document.getElementById("rk-theme-loaded");
 	// if (defaultTheme) defaultTheme.remove();
-	if (defaultTheme) Rkis.Designer.tempOriginalTheme = defaultTheme.parentElement.removeChild(defaultTheme);
+	if (defaultTheme)
+		Rkis.Designer.tempOriginalTheme = defaultTheme.parentElement.removeChild(defaultTheme);
 
 	if (Rkis.Designer.tempTimeout !== null) {
 		clearTimeout(Rkis.Designer.tempTimeout);
@@ -856,45 +955,42 @@ Rkis.Designer.SetupTempTheme = async function() {
 	}
 	if (Rkis.Designer.tempTimeout === null) {
 		Rkis.Designer.tempTimeout = setTimeout(() => {
-			localStorage.removeItem('rkis-temp-theme');
+			localStorage.removeItem("rkis-temp-theme");
 			Rkis.Designer.tempTimeout = null;
 			Rkis.Designer.SetupTempTheme();
 		}, 60e3);
 	}
 
-	var pagetheme = Rkis.Designer.GetPageTheme();
+	const pagetheme = Rkis.Designer.GetPageTheme();
 
-	if(pagetheme.isDefaultTheme == false) {
-		//load custom theme
+	if (pagetheme.isDefaultTheme === false) {
+		// load custom theme
 		Rkis.Designer.currentTheme = Rkis.wholeData.Designer.Themes[pagetheme.themeId];
-	} else {
-		localStorage.removeItem('rkis-temp-theme');
+	}
+	else {
+		localStorage.removeItem("rkis-temp-theme");
 		Rkis.Designer.SetupTempTheme();
 		return;
 	}
 
-	var styl = await Rkis.Designer.CreateThemeElement(theme);
-	if (styl == null) return;
-	styl.id = 'rk-temp-theme-loaded';
+	const styl = await Rkis.Designer.CreateThemeElement(theme);
+	if (styl == null)
+		return;
+	styl.id = "rk-temp-theme-loaded";
 
 	document.$watch("head", (e) => {
 		e.append(styl);
 	});
+};
 
-}
-
-document.addEventListener("visibilitychange", function() {
-    if (document.hidden){
-        return;
-    } else {
-        Rkis.Designer.SetupTempTheme();
-    }
+document.addEventListener("visibilitychange", () => {
+	if (!document.hidden) {
+		Rkis.Designer.SetupTempTheme(); // ? abandoned feature
+	}
 });
 
-
-
 Rkis.ThemesMenu = {
-	popupHTML: /*html*/`
+	popupHTML: /* html */`
 	<div data-themes-popup="" class="rkis-centerpage-popup">
 		<div class="rk-popup" style="width: min(100%, 50rem);min-height: 40%;max-height: 90%;">
 			<div id="rk-themesection">
@@ -1276,28 +1372,32 @@ Rkis.ThemesMenu = {
 	</style>
 	`,
 
-	OpenThemes: function() {
+	OpenThemes() {
 		// add element
-		let holder = document.createElement('div');
+		const holder = document.createElement("div");
 		holder.innerHTML = this.popupHTML;
 		document.body.appendChild(holder);
 
-		//setup popup
-		let mainPopup = holder.querySelector("[data-themes-popup]");
+		// setup popup
+		const mainPopup = holder.querySelector("[data-themes-popup]");
 		mainPopup.addEventListener("pointerdown", (e) => {
-			if (e.target != mainPopup) return;
+			if (e.target !== mainPopup)
+				return;
 			document.addEventListener("pointerup", (e) => {
-				if (e.target != mainPopup) return;
-				//this.unload();
+				if (e.target !== mainPopup)
+					return;
+				// this.unload();
 				holder.remove();
 			}, { once: true });
 		});
 		holder.querySelectorAll(".rkis-centerpage-popup").forEach((popup) => {
 			popup.addEventListener("pointerdown", (e) => {
-				if (e.target != popup) return;
+				if (e.target !== popup)
+					return;
 				document.addEventListener("pointerup", (e) => {
-					if (e.target != popup) return;
-					//this.unload();
+					if (e.target !== popup)
+						return;
+					// this.unload();
 					popup.classList.add("hidden");
 				}, { once: true });
 			});
@@ -1313,73 +1413,75 @@ Rkis.ThemesMenu = {
 		/** @type {HTMLDivElement} */
 		documentPopup: null,
 
-		LoadThemesData: async function() {
+		async LoadThemesData() {
 			// update selected theme text
 			document.querySelector("#currentthemeplace").textContent = Rkis.Designer.GetPageTheme()?.name || "Default Theme";
-		
+
 			this.LoadCustomThemesData();
 			this.LoadDefaultThemesData();
 			this.LoadBrowseThemesData();
 		},
-	
-		LoadCustomThemesData: async function() {
-			var customthemesholder = await document.$watch("#customthemesholder").$promise();
+
+		async LoadCustomThemesData() {
+			const customthemesholder = await document.$watch("#customthemesholder").$promise();
 			customthemesholder.innerHTML = "";
-		
-			var wholedata = Rkis.wholeData || {};
+
+			const wholedata = Rkis.wholeData || {};
 			wholedata.Designer = wholedata.Designer || {};
 			wholedata.Designer.Theme = wholedata.Designer.Theme || {};
 			wholedata.Designer.Themes = wholedata.Designer.Themes || [];
-		
+
 			const loadedTheme = Rkis.Designer.GetPageTheme();
 			let loadedCustomThemeId = -1;
-			if (loadedTheme && loadedTheme.type == "saved") {
-				loadedCustomThemeId = parseInt(loadedTheme.themeId);
+			if (loadedTheme && loadedTheme.type === "saved") {
+				loadedCustomThemeId = Number.parseInt(loadedTheme.themeId);
 			}
-		
-			var letterNumber = /^[\s0-9a-zA-Z-_]+$/g;
-		
-			for(var i = 0; i < this.MaxCustomThemes; i++) {
-				var theme = wholedata.Designer.Themes[i];
-				//name.match(letterNumber), desc.match(letterNumber)
-				if(theme != null) {
-					var daname = theme.name.match(letterNumber);
-					var dadesc = theme.description.match(letterNumber);
-					if(theme.description == "") dadesc = [""];
-		
-					var fileSize = JSON.stringify(theme).length;
-					var fileSizeText = 'b';
-		
-					if(fileSize > 1024) {
+
+			const letterNumber = /^[\s\w-]+$/g;
+
+			for (let i = 0; i < this.MaxCustomThemes; i++) {
+				const theme = wholedata.Designer.Themes[i];
+				// name.match(letterNumber), desc.match(letterNumber)
+				if (theme != null) {
+					const daname = theme.name.match(letterNumber);
+					let dadesc = theme.description.match(letterNumber);
+					if (theme.description === "")
+						dadesc = [""];
+
+					let fileSize = JSON.stringify(theme).length;
+					let fileSizeText = "b";
+
+					if (fileSize > 1024) {
 						fileSize /= 1024;
-						fileSizeText = 'Kb';
+						fileSizeText = "Kb";
 					}
-					if(fileSize > 1024) {
+					if (fileSize > 1024) {
 						fileSize /= 1024;
-						fileSizeText = 'Mb';
+						fileSizeText = "Mb";
 					}
-					if(fileSize > 1024) {
+					if (fileSize > 1024) {
 						fileSize /= 1024;
-						fileSizeText = 'Gb';
+						fileSizeText = "Gb";
 					}
 					fileSize = Math.floor(fileSize);
-		
+
 					customthemesholder.innerHTML += `
-						<div class="theme-template" style="${loadedCustomThemeId == i ? "outline: 2px solid rgb(57 184 61);": ""}">
+						<div class="theme-template" style="${loadedCustomThemeId === i ? "outline: 2px solid rgb(57 184 61);" : ""}">
 							<div>
-								<div>${daname ? daname[0] : Rkis.language["error"]}</div>
-								<span>${dadesc ? dadesc[0] : Rkis.language["error"]}</span>
+								<div>${daname ? daname[0] : Rkis.language.error}</div>
+								<span>${dadesc ? dadesc[0] : Rkis.language.error}</span>
 							</div>
 							<div style="margin-left: auto;"></div>
 							<span style="font-size: 12px;font-weight: 100;margin-right: 1%;">(${fileSize} ${fileSizeText})</span>
-							<button data-designer-func="export" data-theme="${daname ? daname[0] : Rkis.language["error"]}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(57 59 184);color: rgb(35 37 39);font-size: 20px;">⤓</button>
-							<button data-designer-func="delete" data-theme="${daname ? daname[0] : Rkis.language["error"]}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(184 59 61);color: rgb(35 37 39);font-weight: 600;">X</button>
-							<button data-designer-func="edit" data-theme="${daname ? daname[0] : Rkis.language["error"]}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(57 184 61);color: rgb(35 37 39);" data-translate="btnEdit">Edit</button>
-							<button data-designer-func="select" data-theme="${daname ? daname[0] : Rkis.language["error"]}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(57 59 61);color: white;${theme.all == null && theme.pages?.all == null ? "display: none;" : ""}" data-translate="btnSelect">Select</button>
+							<button data-designer-func="export" data-theme="${daname ? daname[0] : Rkis.language.error}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(57 59 184);color: rgb(35 37 39);font-size: 20px;">⤓</button>
+							<button data-designer-func="delete" data-theme="${daname ? daname[0] : Rkis.language.error}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(184 59 61);color: rgb(35 37 39);font-weight: 600;">X</button>
+							<button data-designer-func="edit" data-theme="${daname ? daname[0] : Rkis.language.error}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(57 184 61);color: rgb(35 37 39);" data-translate="btnEdit">Edit</button>
+							<button data-designer-func="select" data-theme="${daname ? daname[0] : Rkis.language.error}" data-themeid="${i}" data-isdefaulttheme="false" style="background-color: rgb(57 59 61);color: white;${theme.all == null && theme.pages?.all == null ? "display: none;" : ""}" data-translate="btnSelect">Select</button>
 						</div>`;
 				}
 				else {
-					if (i != 0) continue;
+					if (i !== 0)
+						continue;
 					customthemesholder.innerHTML += `
 						<div class="theme-template">
 							<div>
@@ -1391,136 +1493,138 @@ Rkis.ThemesMenu = {
 						</div>`;
 				}
 			}
-		
+
 			if (wholedata.Designer.Themes.length < 5) {
-				const createButton = HTMLParser('<button class="theme-template-button" data-designer-func="create" style="background-color: rgb(57 184 61);color: rgb(35 37 39);border-radius: 2rem;position: absolute;top: .5rem;right: 1rem;"  data-translate="btnCreate">', "Create");
+				const createButton = HTMLParser("<button class=\"theme-template-button\" data-designer-func=\"create\" style=\"background-color: rgb(57 184 61);color: rgb(35 37 39);border-radius: 2rem;position: absolute;top: .5rem;right: 1rem;\"  data-translate=\"btnCreate\">", "Create");
 				customthemesholder.prepend(createButton);
 			}
 		},
-		
-		LoadDefaultThemesData: async function() {
-			var defaultthemesholder = await document.$watch("#rk-default-theme-list").$promise();
+
+		async LoadDefaultThemesData() {
+			const defaultthemesholder = await document.$watch("#rk-default-theme-list").$promise();
 			defaultthemesholder.innerHTML = "";
-		
-			for(var i = 0; i < Rkis.Designer.DefaultThemes.length; i++) {
-				var theme = Rkis.Designer.DefaultThemes[i];
-		
-				var daname = escapeHTML(theme.name);
-				var dadesc = escapeHTML(theme.description);
-		
+
+			for (let i = 0; i < Rkis.Designer.DefaultThemes.length; i++) {
+				const theme = Rkis.Designer.DefaultThemes[i];
+
+				const daname = escapeHTML(theme.name);
+				const dadesc = escapeHTML(theme.description);
+
 				defaultthemesholder.innerHTML += `
 					<div class="default-theme-template">
 						<div>
-							<div>${daname ? daname : Rkis.language["error"]}</div>
-							<span>${dadesc ? dadesc : ""}</span>
+							<div>${daname || Rkis.language.error}</div>
+							<span>${dadesc || ""}</span>
 						</div>
 						<div style="margin-left: auto;"></div>
-						<button data-designer-func="select" data-theme="${daname ? daname : Rkis.language["error"]}" data-themeid="${i}" data-isdefaulttheme="true" data-translate="btnSelect">Select</button>
+						<button data-designer-func="select" data-theme="${daname || Rkis.language.error}" data-themeid="${i}" data-isdefaulttheme="true" data-translate="btnSelect">Select</button>
 					</div>`;
 			}
 		},
-		
-		BrowseThemeList: [],
-		LoadBrowseThemesData: async function() {
-			var browsethemesholder = await document.$watch("#rk-browse-theme-list").$promise();
-			if (this.BrowseThemeList.length == 0) {
-		
-				let themes = await fetch("https://ameerdotexe.github.io/roblokis/data/themes/top.json")
-				.then(res => res.json())
-				.catch(() => []);
 
-				if (themes == null || themes.length == 0) return;
+		BrowseThemeList: [],
+		async LoadBrowseThemesData() {
+			const browsethemesholder = await document.$watch("#rk-browse-theme-list").$promise();
+			if (this.BrowseThemeList.length === 0) {
+				const themes = await fetch("https://ameerdotexe.github.io/roblokis/data/themes/top.json")
+					.then(res => res.json())
+					.catch(() => []);
+
+				if (themes == null || themes.length === 0)
+					return;
 				this.BrowseThemeList = themes;
 			}
-		
-			if (this.BrowseThemeList.length == 0) return;
+
+			if (this.BrowseThemeList.length === 0)
+				return;
 			browsethemesholder.innerHTML = "";
-		
-			for(var i = 0; i < this.BrowseThemeList.length; i++) {
-				var theme = this.BrowseThemeList[i];
-		
-				let themeUrl = theme.link.file || theme.link.dark;
-				if (themeUrl == null) continue;
-		
-				var daname = escapeHTML(theme.name);
-				var dadesc = escapeHTML(`Author: ${theme.author}`);
-		
+
+			for (let i = 0; i < this.BrowseThemeList.length; i++) {
+				const theme = this.BrowseThemeList[i];
+
+				const themeUrl = theme.link.file || theme.link.dark;
+				if (themeUrl == null)
+					continue;
+
+				const daname = escapeHTML(theme.name);
+				const dadesc = escapeHTML(`Author: ${theme.author}`);
+
 				browsethemesholder.innerHTML += `
 					<div class="default-theme-template">
 						<div>
-							<div>${daname ? daname : Rkis.language["error"]}${theme.animated ? ` <span style="border: 1px solid;border-radius: 4px;padding: 1px 3px;color: cornflowerblue;">Animated</span>` : ''}</div>
-							<span>${dadesc ? dadesc : Rkis.language["error"]}</span>
+							<div>${daname || Rkis.language.error}${theme.animated ? ` <span style="border: 1px solid;border-radius: 4px;padding: 1px 3px;color: cornflowerblue;">Animated</span>` : ""}</div>
+							<span>${dadesc || Rkis.language.error}</span>
 						</div>
 						<div style="margin-left: auto;"></div>
-						<button data-designer-func="select" data-theme="${daname ? daname : Rkis.language["error"]}" data-themeid="${i}" data-isdefaulttheme="false" data-type="remote" data-extra="${escapeHTML(themeUrl)}">Try</button>
+						<button data-designer-func="select" data-theme="${daname || Rkis.language.error}" data-themeid="${i}" data-isdefaulttheme="false" data-type="remote" data-extra="${escapeHTML(themeUrl)}">Try</button>
 						<button data-designer-func="add-remote-theme" data-themenum="${i}">Import</button>
 					</div>`;
 			}
 		},
 
-
 		/** @param {HTMLDivElement} doc */
-		SetupListeners: function(doc) {
+		SetupListeners(doc) {
 			doc.$watchLoop("[data-designer-func]", (e) => {
-				var i = e.dataset.themeid;
-				if(isNaN(Number(i)) == false) i = Number(i);
-				var daname = e.dataset.theme;
-		
+				let i = e.dataset.themeid;
+				if (Number.isNaN(Number(i)) === false)
+					i = Number(i);
+				const daname = e.dataset.theme;
+
 				switch (e.dataset.designerFunc.toLowerCase()) {
-					default: return console.error("D618");
 					case "show-more-themes":
 						e.$on("click", () => {
 							doc.querySelector("#rk-viewmore-themesection").classList.remove("hidden");
-						})
+						});
 						break;
 					case "add-remote-theme":
 						e.$on("click", async () => {
 							e.disabled = true;
 							e.style.opacity = "0.5";
-		
-							let themeInfo = this.BrowseThemeList[e.dataset.themenum];
+
+							const themeInfo = this.BrowseThemeList[e.dataset.themenum];
 							if (themeInfo == null) {
 								Rkis.Toast("Error D3887: 404 not found.");
 								return;
 							}
-		
-							
-							let themeUrl = themeInfo.link.file || themeInfo.link.dark;
+
+							const themeUrl = themeInfo.link.file || themeInfo.link.dark;
 							if (themeUrl == null) {
 								Rkis.Toast("Error D3894: 404 not found.");
 								return;
 							}
-		
-							let themeFile = await fetch(themeUrl)
-							.then(response => response.json())
-							.catch(err => {console.error(err);return null;});
+
+							const themeFile = await fetch(themeUrl)
+								.then(response => response.json())
+								.catch((err) => {
+									console.error(err);
+									return null;
+								});
 							if (themeFile == null) {
 								Rkis.Toast("Error D3902: 404 not found.");
 								e.disabled = false;
 								e.style.opacity = "1";
 								return;
 							}
-		
-							
-							var antiLetterNumber = /[^\s0-9a-zA-Z-_]/g;
-							var daname = themeInfo.name.replaceAll(antiLetterNumber, "");
-							var dadesc = `By ${themeInfo.author}`.replaceAll(antiLetterNumber, "");
-		
-							let safetycheck = await this.SaveNewTheme(daname, dadesc, themeFile, {
+
+							const antiLetterNumber = /[^\s\w-]/g;
+							const daname = themeInfo.name.replaceAll(antiLetterNumber, "");
+							const dadesc = `By ${themeInfo.author}`.replaceAll(antiLetterNumber, "");
+
+							const safetycheck = await this.SaveNewTheme(daname, dadesc, themeFile, {
 								skipTemplate: true,
 							});
 							if (safetycheck.error != null) {
-								Rkis.Toast("Error D3916: "+safetycheck.error);
+								Rkis.Toast(`Error D3916: ${safetycheck.error}`);
 								// console.error(safetycheck.error);
 								return;
 							}
-		
+
 							this.LoadThemesData();
 							document.querySelector("#rk-viewmore-themesection").classList.add("hidden");
-		
+
 							e.disabled = false;
 							e.style.opacity = "1";
-						})
+						});
 						break;
 					case "create":
 						e.$on("click", () => {
@@ -1530,297 +1634,316 @@ Rkis.ThemesMenu = {
 					case "export":
 						e.$on("click", () => {
 							this.ExportTheme(e, daname, i);
-						})
+						});
 						break;
 					case "delete":
 						e.$on("click", () => {
 							this.DeleteTheme(daname, i);
-						})
+						});
 						break;
 					case "edit":
 						e.$on("click", () => {
 							this.EditTheme(i);
-						})
+						});
 						break;
 					case "select":
 						e.$on("click", () => {
 							this.SelectThemeButton(e);
-						})
+						});
 						break;
 					case "createthetheme":
 						e.$on("click", () => {
 							this.CreateNewTheme(e);
-						})
+						});
 						break;
 					case "deletethetheme":
 						e.$on("click", () => {
 							this.DeleteTheTheme(e);
-						})
+						});
 						break;
+					default: return console.error("D618");
 				}
 			});
 		},
 
-		
-		SaveNewTheme: async function(name, desc, themedata, options = {}) {
-			var wholedata = Rkis.wholeData || {};
+		async SaveNewTheme(name, desc, themedata, options = {}) {
+			const wholedata = Rkis.wholeData || {};
 			wholedata.Designer = wholedata.Designer || {};
 			wholedata.Designer.Themes = wholedata.Designer.Themes || [];
-		
-			if(wholedata.Designer.Themes.length >= this.MaxCustomThemes) return {error: Rkis.language["errorMaxSlots"]};
-		
-			var existingtheme = wholedata.Designer.Themes.find(x => x.name == name);
-			if(existingtheme != null) return {error: Rkis.language["errorNameExist"]};
-		
-			var themetemplate = await fetch(Rkis.fileLocation + "js/Theme/Tamplate.Roblokis")
-			.then(response => response.json())
-			.catch(err => {console.error(err); return {};})
-		
-			var thenewtheme = {
-				name: name,
+
+			if (wholedata.Designer.Themes.length >= this.MaxCustomThemes)
+				return { error: Rkis.language.errorMaxSlots };
+
+			const existingtheme = wholedata.Designer.Themes.find(x => x.name === name);
+			if (existingtheme != null)
+				return { error: Rkis.language.errorNameExist };
+
+			const themetemplate = await fetch(`${Rkis.fileLocation}js/Theme/Tamplate.Roblokis`)
+				.then(response => response.json())
+				.catch((err) => {
+					console.error(err);
+					return {};
+				});
+
+			let thenewtheme = {
+				name,
 				description: desc,
 				start_version: Rkis.version,
-				current_version: Rkis.version
+				current_version: Rkis.version,
 			};
-		
-			let isOlderThenTemplate = Rkis.versionCompare("4.0.0.23", themedata.current_version) === 1;
+
+			const isOlderThenTemplate = Rkis.versionCompare("4.0.0.23", themedata.current_version) < 0;
 			themedata.pages = themedata.pages || {};
-			for (let page in themedata) {
-				if (themedata[page].css == null) continue;
-		
+			for (const page in themedata) {
+				if (themedata[page].css == null)
+					continue;
+
 				themedata.pages[page] = themedata[page].css;
 				delete themedata[page];
 			}
-		
-			if(themedata != null) thenewtheme = Rkis.ThemesMenu.jsonConcat(themedata, thenewtheme);
-			let finalFile = thenewtheme; //compare with latest template edit version
-			if (options.skipTemplate !== true || isOlderThenTemplate === true) finalFile = Rkis.ThemesMenu.jsonConcat(themetemplate, thenewtheme);
-		
+
+			if (themedata != null)
+				thenewtheme = Rkis.ThemesMenu.jsonConcat(themedata, thenewtheme);
+			let finalFile = thenewtheme; // compare with latest template edit version
+			if (options.skipTemplate !== true || isOlderThenTemplate === true)
+				finalFile = Rkis.ThemesMenu.jsonConcat(themetemplate, thenewtheme);
+
 			wholedata.Designer.Themes.push(finalFile);
-		
+
 			Rkis.wholeData = wholedata;
 			Rkis.database.save();
-		
+
 			return {};
-			
 		},
-		
-		SelectThemeButton: function(button) {
-			if(button == null) return;
-		
-			let SelectedTheme = {};
+
+		SelectThemeButton(button) {
+			if (button == null)
+				return;
+
+			const SelectedTheme = {};
 			SelectedTheme.name = button.dataset.theme;
 			SelectedTheme.id = button.dataset.themeid;
 			SelectedTheme.type = button.dataset.type;
 			SelectedTheme.extra = button.dataset.extra;
-			SelectedTheme.isDefaultTheme = button.dataset.isdefaulttheme != "false";
-		
+			SelectedTheme.isDefaultTheme = button.dataset.isdefaulttheme !== "false";
+
 			Rkis.wholeData.Designer = Rkis.wholeData.Designer || {};
-			Rkis.wholeData.Designer.Theme = {...SelectedTheme};
-		
+			Rkis.wholeData.Designer.Theme = { ...SelectedTheme };
+
 			Rkis.database.save();
-		
-			//this.LoadThemesData();
+
+			// this.LoadThemesData();
 			this.documentPopup.remove();
 			Rkis.Designer.ReloadCurrentThemeElement();
-		
+
 			// TODO: remove live preview stuff
-			localStorage.removeItem('rkis-temp-theme');
-			//Designer.ThemeEditor.liveThemeAutoReset = null;
-			//Designer.ThemeEditor.isLivePreview = false;
-			//page.toggleSwich(document.querySelector('#rkpage .main .themes [data-designer-func="livepreview"]'), false);
+			localStorage.removeItem("rkis-temp-theme");
+			// Designer.ThemeEditor.liveThemeAutoReset = null;
+			// Designer.ThemeEditor.isLivePreview = false;
+			// page.toggleSwich(document.querySelector('#rkpage .main .themes [data-designer-func="livepreview"]'), false);
 		},
-		
-		CreateNewTheme: async function(button) {
+
+		async CreateNewTheme(button) {
 			button.disabled = true;
 			button.style.opacity = "0.5";
-		
-			var tabPage = button.closest(".rk-tab-page");
-		
-			var newthemename = tabPage.querySelector("#newtheme-name");
-			var newthemedesc = tabPage.querySelector("#newtheme-desc");
-			var newthemeimage = tabPage.querySelector("#newtheme-image");
-			var newthemefile = tabPage.querySelector("#newtheme-file");
-			var errorplace = tabPage.querySelector("#newtheme-error");
-			
-			var themename = "";
-			var	themedesc = "";
-			var filetheme = null;
-			var themeimage = null;
-		
-			//if has name/description then just put them
-			if (newthemename != null) themename = newthemename.value;
-			if (newthemedesc != null) themedesc = newthemedesc.value;
-			//if (newthemeimage != null) themeimage = newthemeimage.value;
-		
+
+			const tabPage = button.closest(".rk-tab-page");
+
+			const newthemename = tabPage.querySelector("#newtheme-name");
+			const newthemedesc = tabPage.querySelector("#newtheme-desc");
+			const newthemeimage = tabPage.querySelector("#newtheme-image");
+			const newthemefile = tabPage.querySelector("#newtheme-file");
+			const errorplace = tabPage.querySelector("#newtheme-error");
+
+			let themename = "";
+			let	themedesc = "";
+			let filetheme = null;
+			let themeimage = null;
+
+			// if has name/description then just put them
+			if (newthemename != null)
+				themename = newthemename.value;
+			if (newthemedesc != null)
+				themedesc = newthemedesc.value;
+			// if (newthemeimage != null) themeimage = newthemeimage.value;
+
 			if (newthemefile != null && newthemefile.files.length > 0) {
-				try{
-					filetheme = JSON.parse(await newthemefile.files[0].text())
-				}catch{}
-			} else if (newthemeimage != null && newthemeimage.files.length > 0) {
-				await (new Promise(callback => {
-					let reader = new FileReader();
-					reader.onload = function () { callback(this.result) };
-					reader.readAsDataURL(newthemeimage.files[0]);
-				}))
-				.then((imageUri) => {
-					themeimage = imageUri;
-				})
-				.catch(()=>{});
+				try {
+					filetheme = JSON.parse(await newthemefile.files[0].text());
+				}
+				catch {}
 			}
-		
-			if(filetheme != null) {
-				if(themename == "") {
+			else if (newthemeimage != null && newthemeimage.files.length > 0) {
+				await new Promise((callback) => {
+					const reader = new FileReader();
+					reader.onload = function () {
+						callback(this.result);
+					};
+					reader.readAsDataURL(newthemeimage.files[0]);
+				})
+					.then((imageUri) => {
+						themeimage = imageUri;
+					})
+					.catch(() => {});
+			}
+
+			if (filetheme != null) {
+				if (themename === "") {
 					themename = filetheme.name;
 				}
-		
-				if(themedesc == "") {
+
+				if (themedesc === "") {
 					themedesc = filetheme.description;
 				}
 			}
-		
-			var safetycheck = await this.TestThemeDetails(themename, themedesc);
-		
+
+			let safetycheck = await this.TestThemeDetails(themename, themedesc);
+
 			if (filetheme == null) {
-				if (newthemeimage != null) filetheme = {"pages":{"all":{"background":{
-					"color": "rgba(25,27,29,100%)",
-					"image":{
-						"link": themeimage,
-						"attachment": "fixed",
-						"repeat": "round",
-						"size": "contain",
-					}
-				}}}};
+				if (newthemeimage != null) {
+					filetheme = { pages: { all: { background: {
+						color: "rgba(25,27,29,100%)",
+						image: {
+							link: themeimage,
+							attachment: "fixed",
+							repeat: "round",
+							size: "contain",
+						},
+					} } } };
+				}
 				filetheme = filetheme || {};
-				filetheme.isDark = document.body.classList.contains('dark-theme');
+				filetheme.isDark = document.body.classList.contains("dark-theme");
 			}
-		
-			if (safetycheck.error == null) safetycheck = await this.SaveNewTheme(themename, themedesc, filetheme);
+
+			if (safetycheck.error == null)
+				safetycheck = await this.SaveNewTheme(themename, themedesc, filetheme);
 			if (safetycheck.error != null) {
 				errorplace.textContent = safetycheck.error;
-		
+
 				button.disabled = false;
 				button.style.opacity = "1";
-		
+
 				return;
 			}
-		
+
 			this.LoadThemesData();
-		
+
 			document.querySelector("#rk-createthemesection").classList.add("hidden");
 			errorplace.textContent = "";
-		
+
 			button.disabled = false;
 			button.style.opacity = "1";
 		},
-		
-		TestThemeDetails: async function(name, desc) {
-			if(name == null) name = "";
-			if(desc == null) desc = "";
-		
-			if(
-				name.length > 24 ||
-				name.length < 3
+
+		async TestThemeDetails(name, desc) {
+			if (name == null)
+				name = "";
+			if (desc == null)
+				desc = "";
+
+			if (
+				name.length > 24
+				|| name.length < 3
 			) {
-				return {error: Rkis.language["errorNameLength"]};
+				return { error: Rkis.language.errorNameLength };
 			}
-			if( desc.length > 36 ) {
-				return {error: Rkis.language["errorDescLength"]};
+			if (desc.length > 36) {
+				return { error: Rkis.language.errorDescLength };
 			}
-		
-			var letterNumber = /^[\s0-9a-zA-Z-_]+$/;
-			//console.log(!letterNumber.test(name), (desc != "" ? !letterNumber.test(desc) : false));
-			if(!letterNumber.test(name) || (desc != "" ? !letterNumber.test(desc) : false)) {
-				return {error: Rkis.language["errorAtoZ"]};
+
+			const letterNumber = /^[\s\w-]+$/;
+			// console.log(!letterNumber.test(name), (desc != "" ? !letterNumber.test(desc) : false));
+			if (!letterNumber.test(name) || (desc !== "" ? !letterNumber.test(desc) : false)) {
+				return { error: Rkis.language.errorAtoZ };
 			}
-		
-			/*if (imageUrl != null) {
-				if (imageUrl == "" || imageUrl.toLowerCase().startsWith("https") == false) return {error: Rkis.language["errorNoImage"]};
-		
+
+			/* if (imageUrl != null) {
+				if (imageUrl == "" || imageUrl.toLowerCase().startsWith("https") === false) return {error: Rkis.language["errorNoImage"]};
+
 				var result = await FetchImage(imageUrl, true);
 				if (result == null || result == imageUrl) return {error: Rkis.language["cantImage"]};
-		
+
 				return {image: result};
-			}*/
-			
+			} */
+
 			return {};
 		},
-		
-		ExportTheme: function(button, themename, themeId) {
+
+		ExportTheme(button, themename, themeId) {
 			button.disabled = true;
 			button.style.opacity = "0.5";
-		
-			if(isNaN(themeId)) {
+
+			if (Number.isNaN(themeId)) {
 				button.disabled = false;
 				button.style.opacity = "1";
 				return;
 			}
-		
-			var wholedata = Rkis.wholeData || {};
+
+			const wholedata = Rkis.wholeData || {};
 			wholedata.Designer = wholedata.Designer || {};
 			wholedata.Designer.Themes = wholedata.Designer.Themes || [];
-		
-			var theme = wholedata.Designer.Themes[themeId];
-		
-			if(theme == null) {
+
+			const theme = wholedata.Designer.Themes[themeId];
+
+			if (theme == null) {
 				button.disabled = false;
 				button.style.opacity = "1";
 				return;
 			}
-		
-			Rkis.ThemesMenu.makeTextFile(JSON.stringify(theme), themename + ".roblokis");
-		
+
+			Rkis.ThemesMenu.makeTextFile(JSON.stringify(theme), `${themename}.roblokis`);
+
 			button.disabled = false;
 			button.style.opacity = "1";
 		},
-		
-		DeleteTheme: function(themename, themeId) {
+
+		DeleteTheme(themename, themeId) {
 			document.querySelector("#deletetheme-button").dataset.themeid = themeId;
 			document.querySelector("#deletetheme-themename").textContent = themename;
 			document.querySelector("#rk-deletethemesection").classList.remove("hidden");
 		},
-		
-		DeleteTheTheme: function(button) {
+
+		DeleteTheTheme(button) {
 			button.disabled = true;
 			button.style.opacity = "0.5";
-		
-			if(button.dataset.themeid == null || button.dataset.themeid == "") {
+
+			if (button.dataset.themeid == null || button.dataset.themeid === "") {
 				document.querySelector("#rk-deletethemesection").classList.add("hidden");
 				button.disabled = false;
 				button.style.opacity = "1";
 				return;
 			}
-		
-			var themeId = Number(button.dataset.themeid);
-			if(isNaN(themeId)) {
+
+			const themeId = Number(button.dataset.themeid);
+			if (Number.isNaN(themeId)) {
 				document.querySelector("#rk-deletethemesection").classList.add("hidden");
 				button.disabled = false;
 				button.style.opacity = "1";
 				return;
 			}
-		
-			var wholedata = Rkis.wholeData || {};
+
+			const wholedata = Rkis.wholeData || {};
 			wholedata.Designer = wholedata.Designer || {};
 			wholedata.Designer.Themes = wholedata.Designer.Themes || [];
-		
-			if(wholedata.Designer.Themes[themeId] != null)
+
+			if (wholedata.Designer.Themes[themeId] != null)
 				wholedata.Designer.Themes.splice(themeId, 1);
-		
+
 			Rkis.wholeData = wholedata;
 			Rkis.database.save();
-		
+
 			this.LoadThemesData();
-		
+
 			document.querySelector("#rk-deletethemesection").classList.add("hidden");
 			button.disabled = false;
 			button.style.opacity = "1";
 		},
-		
-		EditTheme: function(themeId) {
-			//Designer.ThemeEditor.themeId = themeId;
-			//Designer.ThemeEditor.Load();
-		
-			//document.querySelector('#rk-editthemesection').classList.remove('hidden');
+
+		EditTheme(themeId) {
+			// Designer.ThemeEditor.themeId = themeId;
+			// Designer.ThemeEditor.Load();
+
+			// document.querySelector('#rk-editthemesection').classList.remove('hidden');
 
 			this.SelectCustomTheme(themeId);
 			this.documentPopup.remove();
@@ -1830,55 +1953,58 @@ Rkis.ThemesMenu = {
 			Rkis.ThemeEdtior.initilize(themeId);
 		},
 
-		SelectCustomTheme: function(themeId) {
-			let savedTheme = Rkis.wholeData.Designer.Themes?.[themeId];
-			if (!savedTheme) return;
+		SelectCustomTheme(themeId) {
+			const savedTheme = Rkis.wholeData.Designer.Themes?.[themeId];
+			if (!savedTheme)
+				return;
 
-			let SelectedTheme = {};
+			const SelectedTheme = {};
 			SelectedTheme.name = savedTheme.name;
 			SelectedTheme.id = themeId;
 			SelectedTheme.type = null;
 			SelectedTheme.extra = null;
 			SelectedTheme.isDefaultTheme = false;
-		
+
 			Rkis.wholeData.Designer = Rkis.wholeData.Designer || {};
-			Rkis.wholeData.Designer.Theme = {...SelectedTheme};
-		
+			Rkis.wholeData.Designer.Theme = { ...SelectedTheme };
+
 			Rkis.database.save();
 		},
 	},
 
-	jsonConcat: function(o1, o2) {
-		for (var key in o2) {
-			 if(o1[key] == null) o1[key] = o2[key];
-			 else {
-				 if(o1[key].toString() == "[object Object]" && o2[key] != null && o2[key].toString() == "[object Object]")
-					 Rkis.ThemesMenu.jsonConcat(o1[key], o2[key]);
-				 else o1[key] = o2[key];
-			 }
+	jsonConcat(o1, o2) {
+		for (const key in o2) {
+			if (o1[key] == null) {
+				o1[key] = o2[key];
+			}
+			else {
+				if (o1[key].toString() === "[object Object]" && o2[key] != null && o2[key].toString() === "[object Object]")
+					Rkis.ThemesMenu.jsonConcat(o1[key], o2[key]);
+				else o1[key] = o2[key];
+			}
 		}
 		return o1;
 	},
-	
-	makeTextFile: function(text, filename) {
-		var textFile = null;
-		var data = new Blob([text], {type: 'text/plain'});
+
+	makeTextFile(text, filename) {
+		let textFile = null;
+		const data = new Blob([text], { type: "text/plain" });
 
 		textFile = window.URL.createObjectURL(data);
 
-		var link = document.createElement('a');
-		link.setAttribute('download', filename);
+		const link = document.createElement("a");
+		link.setAttribute("download", filename);
 		link.href = textFile;
 		document.body.appendChild(link);
 
-		window.requestAnimationFrame(function () {
-			var event = new MouseEvent('click');
+		window.requestAnimationFrame(() => {
+			const event = new MouseEvent("click");
 			link.dispatchEvent(event);
 			document.body.removeChild(link);
 
-			if(textFile !== null) {
+			if (textFile !== null) {
 				window.URL.revokeObjectURL(textFile);
 			}
 		});
 	},
-}
+};

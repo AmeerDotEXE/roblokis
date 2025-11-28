@@ -6,7 +6,7 @@
 function name() {
 	return new Promise(resolve => {
 		BROWSER.runtime.sendMessage(
-			{about: ""}, 
+			{about: ""},
 			function(data) {
 				resolve(data)
 			}
@@ -15,28 +15,26 @@ function name() {
 }
 */
 
-
-
-
+/* globals chrome */
 
 //    Varables    //
+// eslint-disable-next-line no-var, no-use-before-define, no-restricted-globals
 var globalThis = typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this;
 const IS_CHROME_API = typeof globalThis.browser === "undefined" || Object.getPrototypeOf(globalThis.browser) !== Object.prototype;
 const BROWSER = IS_CHROME_API ? chrome : globalThis.browser;
 
-
-
-
 //    Listeners    //
 
 BROWSER.runtime.onInstalled.addListener(({ reason, previousVersion } = {}) => {
-	if (reason == "chrome_update" || reason == "shared_module_update") return; //console.log('Browser Updated');
+	if (reason === "chrome_update" || reason === "shared_module_update")
+		return;
 
-	if (reason == "install") {
-		console.log('Extension Installed');
+	if (reason === "install") {
+		console.log("Extension Installed");
 		BROWSER.runtime.reload();
 		return;
 	}
+
 	console.log(reason, `Extension Updated from ${previousVersion} to ${BROWSER.runtime.getManifest().version}`);
 });
 
@@ -44,56 +42,54 @@ BROWSER.runtime.onInstalled.addListener(({ reason, previousVersion } = {}) => {
 // 	console.log('Extension Started'); //isn't Fired in Incognito Mode
 // });
 
-//Not available on MacOS
-BROWSER.runtime.onUpdateAvailable?.addListener(({version = ''} = {}) => {
-	console.log('Extension Update Available!', version);
+// Not available on MacOS
+BROWSER.runtime.onUpdateAvailable?.addListener(({ version = "" } = {}) => {
+	console.log("Extension Update Available!", version);
 	BROWSER.runtime.reload();
 });
 
 BROWSER.runtime.onMessage.addListener((request, sender, sendResponse) => {
-
 	switch (request.about) {
-
 		case "getImageRequest":
 			if (request.url == null) {
 				sendResponse(null);
 				break;
 			}
-			
+
 			if (request.url.startsWith("linear-gradient")) {
-				sendResponse(request.url.split(')')[0]+')');
+				sendResponse(`${request.url.split(")")[0]})`);
 				break;
 			}
 
-			var temp = async function () {
-				let savedData = await BROWSER.storage.session.get("urls");
+			(async function () {
+				const savedData = await BROWSER.storage.session.get("urls");
 				if (typeof savedData[request.url] == "string") {
 					sendResponse(`url(${savedData[request.url]})`);
 					return;
 				}
 
-				var result = await fetch(request.url).then(response => response.blob())
-					.then(blob => new Promise(callback => {
-						let reader = new FileReader();
-						reader.onload = function () { callback(this.result) };
-						reader.readAsDataURL(blob);
-					}))
-					.catch(async (err) => {
-						console.error(err);
-						return (request.url);
-					});
-				
+				let result = await fetch(request.url).then(response => response.blob()).then(blob => new Promise((callback) => {
+					const reader = new FileReader();
+					reader.onload = function () {
+						callback(this.result);
+					};
+					reader.readAsDataURL(blob);
+				})).catch(async (err) => {
+					console.error(err);
+					return request.url;
+				});
+
 				if (result.startsWith("data:image")) {
 					savedData[request.url] = result;
 					BROWSER.storage.session.set({ urls: savedData }).catch(() => {});
 					return sendResponse(`url(${result})`);
 				}
-				result = request.url.split(')')[0];
+
+				result = request.url.split(")")[0];
 				savedData[request.url] = result;
 				BROWSER.storage.session.set({ urls: savedData }).catch(() => {});
 				sendResponse(`url(${result})`);
-			}
-			temp();
+			})();
 			break;
 
 		case "getURLRequest":
@@ -102,17 +98,15 @@ BROWSER.runtime.onMessage.addListener((request, sender, sendResponse) => {
 				break;
 			}
 
-			var temp = async function () {
-				var result = await fetch(request.url).then(res => res.json())
-					.catch(err => {
-						var errorObj = { error: "Bg80", message: err };
-						console.log(request.url, errorObj)
-						return errorObj;
-					})
+			(async function () {
+				const result = await fetch(request.url).then(res => res.json()).catch((err) => {
+					const errorObj = { error: "Bg80", message: err };
+					console.log(request.url, errorObj);
+					return errorObj;
+				});
 
 				sendResponse(result);
-			}
-			temp();
+			})();
 			break;
 
 		case "postURLRequest":
@@ -121,23 +115,21 @@ BROWSER.runtime.onMessage.addListener((request, sender, sendResponse) => {
 				break;
 			}
 
-			var temp = async function () {
-				var result = await fetch(request.url, {
+			(async function () {
+				const result = await fetch(request.url, {
 					method: "POST",
 					headers: {
-						"Content-Type": "application/json"
+						"Content-Type": "application/json",
 					},
-					body: JSON.stringify(request.jsonData)
-				}).then(res => res.json())
-					.catch(err => {
-						var errorObj = { error: "Bg80", message: err };
-						console.log(request.url, errorObj)
-						return errorObj;
-					})
+					body: JSON.stringify(request.jsonData),
+				}).then(res => res.json()).catch((err) => {
+					const errorObj = { error: "Bg80", message: err };
+					console.log(request.url, errorObj);
+					return errorObj;
+				});
 
 				sendResponse(result);
-			}
-			temp();
+			})();
 			break;
 
 		case "createContextMenu":
@@ -162,23 +154,18 @@ BROWSER.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 BROWSER.contextMenus.onClicked.addListener((data) => {
-	if (data.menuItemId != "" && typeof data.menuItemId == "string") {
-		BROWSER.tabs.query({
-			active: true,
-			currentWindow: true
-		}, (tabs) => {
-			BROWSER.tabs.sendMessage(tabs[0].id, {
-				type: "clickedContextmenu",
-				data: {
-					menuItemId: data.menuItemId
-				}
-			})
-		})
-	}
-})
+	if (typeof data.menuItemId != "string" || data.menuItemId === "")
+		return;
 
-
-
-//SECTION - Functions
-
-//END SECTION
+	BROWSER.tabs.query({
+		active: true,
+		currentWindow: true,
+	}, (tabs) => {
+		BROWSER.tabs.sendMessage(tabs[0].id, {
+			type: "clickedContextmenu",
+			data: {
+				menuItemId: data.menuItemId,
+			},
+		});
+	});
+});

@@ -30,8 +30,8 @@
 	},
 	"web_accessible_resources": [
 		{
-			"resources": [ "*.*" ],
-			"matches": [ "*://*.roblox.com/*" ],
+			"resources": ["*.*"],
+			"matches": ["*://*.roblox.com/*"],
 			"extension_ids": []
 		}
 	],
@@ -45,7 +45,7 @@
 		},
 		"default_title": "Roblokis"
 	},
-	
+
 	"content_scripts": [
 		{
 			"matches": [
@@ -85,7 +85,6 @@
 			],
 			"js": [
 				"html/SettingsPage/SettingsPage.js",
-				"html/SettingsPage/Pages/Main/designer.js",
 				"html/SettingsPage/Pages/GamePage/servers.js"
 			],
 			"css": [

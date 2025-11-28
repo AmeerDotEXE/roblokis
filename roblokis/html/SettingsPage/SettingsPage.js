@@ -1,11 +1,19 @@
+// TODO(Ameer): remove global linting
+/* eslint-disable no-alert */
 "use strict";
+
+/* globals BROWSER, $r, escapeHTML, escapeJSON, getRndInteger, makeTextFile */
+
+// eslint-disable-next-line no-var, no-use-before-define
 var Rkis = Rkis || {};
+
+// eslint-disable-next-line no-var, no-use-before-define
 var page = page || {};
 
-//would you look at that, its very similar to the designer code :O
-let featureCustomizations = {
-	"Badges": {
-		html: /*html*/`
+// would you look at that, its very similar to the designer code :O
+const featureCustomizations = {
+	Badges: {
+		html: /* html */`
 			<div style="width: 100%;">
 				<span class="text-lead" translate="sectionCBH">Show Hidden Badges</span>
 				<span data-location="showHiddenBadges" class="rk-button receiver-destination-type-toggle on">
@@ -15,33 +23,37 @@ let featureCustomizations = {
 				</span>
 			</div>`,
 		js: null,
-		load: function (theme_object, idCard) {
-			let element = idCard.element;
+		load(theme_object, idCard) {
+			const element = idCard.element;
 
-			for (let key in theme_object) {
-				if (theme_object[key] == null) continue;
-				let value = theme_object[key];
+			for (const key in theme_object) {
+				if (theme_object[key] == null)
+					continue;
+				const value = theme_object[key];
 
-				let input = element.querySelector(`[data-location="${key}"]`);
-				if (input == null) return;
+				const input = element.querySelector(`[data-location="${key}"]`);
+				if (input == null)
+					return;
 
 				if (input.classList.contains("rk-button")) {
 					page.toggleSwich(input, value);
-				} else if (input.classList.contains("input-field")) {
+				}
+				else if (input.classList.contains("input-field")) {
 					input.value = value;
 				}
 			}
 		},
-		save: function (idCard) {
-			let element = idCard.element;
-			let component_object = {};
+		save(idCard) {
+			const element = idCard.element;
+			const component_object = {};
 
 			element.querySelectorAll(`[data-location]`).forEach((input) => {
-				let edge = input.dataset.location;
+				const edge = input.dataset.location;
 				let value = null;
 				if (input.classList.contains("rk-button")) {
 					value = page.getSwich(input);
-				} else if (input.classList.contains("input-field")) {
+				}
+				else if (input.classList.contains("input-field")) {
 					value = input.value;
 				}
 
@@ -49,10 +61,10 @@ let featureCustomizations = {
 			});
 
 			return component_object;
-		}
+		},
 	},
-	"GameNameFilter": {
-		html: /*html*/`
+	GameNameFilter: {
+		html: /* html */`
 			<div style="width: 100%;">
 				<span class="text-lead">Remove Emojis</span>
 				<span data-location="removeEmojis" class="rk-button receiver-destination-type-toggle off">
@@ -62,33 +74,37 @@ let featureCustomizations = {
 				</span>
 			</div>`,
 		js: null,
-		load: function (theme_object, idCard) {
-			let element = idCard.element;
+		load(theme_object, idCard) {
+			const element = idCard.element;
 
-			for (let key in theme_object) {
-				if (theme_object[key] == null) continue;
-				let value = theme_object[key];
+			for (const key in theme_object) {
+				if (theme_object[key] == null)
+					continue;
+				const value = theme_object[key];
 
-				let input = element.querySelector(`[data-location="${key}"]`);
-				if (input == null) return;
+				const input = element.querySelector(`[data-location="${key}"]`);
+				if (input == null)
+					return;
 
 				if (input.classList.contains("rk-button")) {
 					page.toggleSwich(input, value);
-				} else if (input.classList.contains("input-field")) {
+				}
+				else if (input.classList.contains("input-field")) {
 					input.value = value;
 				}
 			}
 		},
-		save: function (idCard) {
-			let element = idCard.element;
-			let component_object = {};
+		save(idCard) {
+			const element = idCard.element;
+			const component_object = {};
 
 			element.querySelectorAll(`[data-location]`).forEach((input) => {
-				let edge = input.dataset.location;
+				const edge = input.dataset.location;
 				let value = null;
 				if (input.classList.contains("rk-button")) {
 					value = page.getSwich(input);
-				} else if (input.classList.contains("input-field")) {
+				}
+				else if (input.classList.contains("input-field")) {
 					value = input.value;
 				}
 
@@ -96,10 +112,10 @@ let featureCustomizations = {
 			});
 
 			return component_object;
-		}
+		},
 	},
-	"CustomNavMenuButtons": {
-		html: /*html*/`
+	CustomNavMenuButtons: {
+		html: /* html */`
 			<div class="menubtns-wrapper" style="width: 100%;">
 				<style>
 					.menubtns-wrapper {
@@ -183,47 +199,48 @@ let featureCustomizations = {
 				</div>
 			</div>`,
 		js: null,
-		load: function (theme_object, idCard) {
-			let element = idCard.element;
+		load(theme_object, idCard) {
+			const element = idCard.element;
 
-			let menubtnsContainer = element.querySelector('.menubtns-container');
-			let iconPopup = element.querySelector('#rk-menubtns-icon-popup');
-			let iconUrlField = element.querySelector('#menubtns-icon-url');
-			let iconList = element.querySelector('#menubtns-icon-list');
-			let btnIconSelector = element.querySelector('#menubtns-icon-selector');
-			let btnTextField = element.querySelector('#menubtns-button-text');
-			let btnUrlField = element.querySelector('#menubtns-button-url');
-			let buttonAdd = element.querySelector('#menubtns-button-add');
+			const menubtnsContainer = element.querySelector(".menubtns-container");
+			const iconPopup = element.querySelector("#rk-menubtns-icon-popup");
+			const iconUrlField = element.querySelector("#menubtns-icon-url");
+			const iconList = element.querySelector("#menubtns-icon-list");
+			const btnIconSelector = element.querySelector("#menubtns-icon-selector");
+			const btnTextField = element.querySelector("#menubtns-button-text");
+			const btnUrlField = element.querySelector("#menubtns-button-url");
+			const buttonAdd = element.querySelector("#menubtns-button-add");
 			let btnIcon = null;
 
-			//make draggable & sorable
-			menubtnsContainer.addEventListener('dragover', e => {
+			// make draggable & sorable
+			menubtnsContainer.addEventListener("dragover", (e) => {
 				e.preventDefault();
 				const afterElement = getDragAfterElement(menubtnsContainer, e.clientY);
-				const draggable = document.querySelector('.dragging');
+				const draggable = document.querySelector(".dragging");
 				if (afterElement == null) {
 					menubtnsContainer.appendChild(draggable);
-				} else {
+				}
+				else {
 					menubtnsContainer.insertBefore(draggable, afterElement);
 				}
 			});
 
-			//get buttons from left menu
+			// get buttons from left menu
 			let allButtonsIds = [];
-			let createButtonElement = (btnData) => {
-				let container = document.createElement('div');
-				let buttonNameElement = document.createElement('span');
-				let buttonToggleElement = document.createElement('span');
+			const createButtonElement = (btnData) => {
+				const container = document.createElement("div");
+				const buttonNameElement = document.createElement("span");
+				const buttonToggleElement = document.createElement("span");
 
 				container.btnData = btnData;
 
-				container.classList.add('menubtn-element');
-				container.style.cursor = 'move';
+				container.classList.add("menubtn-element");
+				container.style.cursor = "move";
 				container.draggable = true;
 				buttonNameElement.textContent = btnData.text;
 
-				if (btnData.type === 'system') {
-					buttonToggleElement.classList.add("rk-button","receiver-destination-type-toggle");
+				if (btnData.type === "system") {
+					buttonToggleElement.classList.add("rk-button", "receiver-destination-type-toggle");
 					buttonToggleElement.innerHTML = `
 						<span class="toggle-flip"></span>
 						<span class="toggle-on"></span>
@@ -231,18 +248,21 @@ let featureCustomizations = {
 					`;
 
 					let toggle = "on";
-					if (btnData.hidden === true) toggle = "off";
+					if (btnData.hidden === true)
+						toggle = "off";
 					buttonToggleElement.classList.add(toggle);
-					buttonToggleElement.addEventListener('click', () => {
+					buttonToggleElement.addEventListener("click", () => {
 						if (page.getSwich(buttonToggleElement)) {
-							//switch is now off
+							// switch is now off
 							container.btnData.hidden = true;
-						} else {
-							//switch is now on
+						}
+						else {
+							// switch is now on
 							container.btnData.hidden = false;
 						}
 					});
-				} else {
+				}
+				else {
 					buttonToggleElement.classList.add("menubtn-delete-element");
 					buttonToggleElement.textContent = "-";
 					buttonToggleElement.addEventListener("click", () => {
@@ -254,86 +274,95 @@ let featureCustomizations = {
 				container.appendChild(buttonToggleElement);
 				return container;
 			};
-			let updateList = (resetData) => {
-				let featureSetting = Rkis.wholeData["CustomNavMenuButtons"];
-				if (featureSetting == null || (featureSetting.options && featureSetting.options.disabled == true)) return;
-				if (featureSetting.value[featureSetting.type] === false) resetData = true;
+			const updateList = (resetData) => {
+				const featureSetting = Rkis.wholeData.CustomNavMenuButtons;
+				if (featureSetting == null)
+					return;
+				if (featureSetting.options && featureSetting.options.disabled === true)
+					return;
+				if (featureSetting.value[featureSetting.type] === false)
+					resetData = true;
 
-				//update for a correctly sorted list
-				let availableButtons = [];
+				// update for a correctly sorted list
+				const availableButtons = [];
 				allButtonsIds = Array.from(document.querySelectorAll(".left-col-list > * > *[id]"));
-				allButtonsIds.forEach(btn => {
+				allButtonsIds.forEach((btn) => {
 					let text = btn.textContent || "Unknown";
-					if (btn.id === 'btr-blogfeed') text = "Blog Content";
+					if (btn.id === "btr-blogfeed")
+						text = "Blog Content";
 					else text = text.trim().split(/\d/g)[0];
-					availableButtons.push({type: 'system', id: btn.id, text});
+					availableButtons.push({ type: "system", id: btn.id, text });
 				});
-				//get button data
+				// get button data
 				let allButtons = [];
 				if (resetData !== true) {
-					//get user made buttons...
+					// get user made buttons...
 					allButtons = theme_object.SortedMenuButtonsList;
-					let newButtons = availableButtons
-					.filter(btnData => allButtons.find(x => x.id === btnData.id && x.text === btnData.text) == null)
-					.map(btnData => {
-						btnData.hidden = false;
-						return btnData;
-					});
+					const newButtons = availableButtons
+						.filter(btnData => allButtons.find(x => x.id === btnData.id && x.text === btnData.text) == null)
+						.map((btnData) => {
+							btnData.hidden = false;
+							return btnData;
+						});
 					allButtons = allButtons.concat(newButtons);
-				} else {
-					allButtons = availableButtons.map(btnData => {
+				}
+				else {
+					allButtons = availableButtons.map((btnData) => {
 						btnData.hidden = false;
 						return btnData;
 					});
 				}
-				//list buttons & hide enable button for unavailable non-custom buttons
-				menubtnsContainer.innerHTML = '';
-				allButtons.forEach(btn => {
-					let buttonElement = createButtonElement(btn);
+				// list buttons & hide enable button for unavailable non-custom buttons
+				menubtnsContainer.innerHTML = "";
+				allButtons.forEach((btn) => {
+					const buttonElement = createButtonElement(btn);
 					menubtnsContainer.appendChild(buttonElement);
 
-					buttonElement.classList.add('draggable');
-					buttonElement.addEventListener('dragstart', () => {
-						buttonElement.classList.add('dragging');
+					buttonElement.classList.add("draggable");
+					buttonElement.addEventListener("dragstart", () => {
+						buttonElement.classList.add("dragging");
 					});
-					buttonElement.addEventListener('dragend', () => {
-						buttonElement.classList.remove('dragging');
+					buttonElement.addEventListener("dragend", () => {
+						buttonElement.classList.remove("dragging");
 					});
 				});
 			};
-			document.$watch('.rbx-left-col .left-col-list', updateList);
+			document.$watch(".rbx-left-col .left-col-list", updateList);
 			document.$watchLoop(".left-col-list > * > *[id]", (btn) => {
-				if (allButtonsIds.includes(btn)) return;
+				if (allButtonsIds.includes(btn))
+					return;
 				updateList();
 			});
 
-			//listerners
+			// listerners
 			btnIconSelector.addEventListener("click", () => {
-				iconPopup.style.display = 'flex';
+				iconPopup.style.display = "flex";
 			});
-			iconUrlField.addEventListener('keypress', function(event) {
-				if (event.key !== "Enter") return;
+			iconUrlField.addEventListener("keypress", (event) => {
+				if (event.key !== "Enter")
+					return;
 
 				// Cancel the default action, if needed
-				if (event.defaultPrevented !== true) event.preventDefault();
+				if (event.defaultPrevented !== true)
+					event.preventDefault();
 				// Trigger the button element with a click
-				iconUrlField.dispatchEvent(new Event('change'));
+				iconUrlField.dispatchEvent(new Event("change"));
 			});
-			iconUrlField.addEventListener('change', () => {
+			iconUrlField.addEventListener("change", () => {
 				if (iconUrlField.checkValidity() === false) {
 					return alert("Please Enter a valid icon url.");
 				}
-				iconPopup.style.display = '';
+				iconPopup.style.display = "";
 				btnIcon = {
-					type: 'url-icon',
+					type: "url-icon",
 					value: iconUrlField.value,
 				};
 			});
-			Array.from(iconList.children).forEach(icon => {
+			Array.from(iconList.children).forEach((icon) => {
 				icon.addEventListener("click", () => {
-					iconPopup.style.display = '';
+					iconPopup.style.display = "";
 					btnIcon = {
-						type: 'navbar-icon',
+						type: "navbar-icon",
 						value: icon.className,
 					};
 				});
@@ -346,7 +375,7 @@ let featureCustomizations = {
 					btnIconSelector.style.borderColor = "red";
 					return alert("Please Select an Icon.");
 				}
-				if (btnTextField.value === '') {
+				if (btnTextField.value === "") {
 					btnTextField.style.borderColor = "red";
 					return alert("Please Enter Button Text.");
 				}
@@ -355,72 +384,77 @@ let featureCustomizations = {
 					return alert("Please Enter a valid button url.");
 				}
 
-				let createdBtn = {
-					type: 'custom',
+				const createdBtn = {
+					type: "custom",
 					icon: btnIcon,
 					text: btnTextField.value,
 					url: btnUrlField.value,
 				};
 				// console.log({createdBtn});
-				let buttonElement = createButtonElement(createdBtn);
+				const buttonElement = createButtonElement(createdBtn);
 				menubtnsContainer.appendChild(buttonElement);
 
-				buttonElement.classList.add('draggable');
-				buttonElement.addEventListener('dragstart', () => {
-					buttonElement.classList.add('dragging');
+				buttonElement.classList.add("draggable");
+				buttonElement.addEventListener("dragstart", () => {
+					buttonElement.classList.add("dragging");
 				});
-				buttonElement.addEventListener('dragend', () => {
-					buttonElement.classList.remove('dragging');
+				buttonElement.addEventListener("dragend", () => {
+					buttonElement.classList.remove("dragging");
 				});
 			});
-			element.querySelector('#menubtns-reset-list').addEventListener("click", () => {
+			element.querySelector("#menubtns-reset-list").addEventListener("click", () => {
 				updateList(true);
 			});
 
-			for (let key in theme_object) {
-				if (theme_object[key] == null) continue;
-				let value = theme_object[key];
+			for (const key in theme_object) {
+				if (theme_object[key] == null)
+					continue;
+				const value = theme_object[key];
 
-				let input = element.querySelector(`[data-location="${key}"]`);
-				if (input == null) return;
+				const input = element.querySelector(`[data-location="${key}"]`);
+				if (input == null)
+					return;
 
 				if (input.classList.contains("rk-button")) {
 					page.toggleSwich(input, value);
-				} else if (input.classList.contains("input-field")) {
+				}
+				else if (input.classList.contains("input-field")) {
 					input.value = value;
 				}
 			}
 
 			function getDragAfterElement(container, y) {
-				const draggableElements = [...container.querySelectorAll('.draggable:not(.dragging)')];
+				const draggableElements = [...container.querySelectorAll(".draggable:not(.dragging)")];
 
 				return draggableElements.reduce((closest, child) => {
 					const box = child.getBoundingClientRect();
 					const offset = y - box.top - box.height / 2;
 					if (offset < 0 && offset > closest.offset) {
-						return { offset: offset, element: child };
-					} else {
+						return { offset, element: child };
+					}
+					else {
 						return closest;
 					}
 				}, { offset: Number.NEGATIVE_INFINITY }).element;
 			}
 		},
-		save: function (idCard) {
-			let element = idCard.element;
-			let component_object = {};
+		save(idCard) {
+			const element = idCard.element;
+			const component_object = {};
 
-			//when saving, use the html list so you get it sorted
-			let sortedMenuElements = Array.from(element.querySelectorAll('.menubtns-container > .menubtn-element'));
-			let sortedMenu = sortedMenuElements.map(x => x.btnData);
+			// when saving, use the html list so you get it sorted
+			const sortedMenuElements = Array.from(element.querySelectorAll(".menubtns-container > .menubtn-element"));
+			const sortedMenu = sortedMenuElements.map(x => x.btnData);
 			// console.log({sortedMenuElements, sortedMenu});
 			component_object.SortedMenuButtonsList = sortedMenu;
 
 			element.querySelectorAll(`[data-location]`).forEach((input) => {
-				let edge = input.dataset.location;
+				const edge = input.dataset.location;
 				let value = null;
 				if (input.classList.contains("rk-button")) {
 					value = page.getSwich(input);
-				} else if (input.classList.contains("input-field")) {
+				}
+				else if (input.classList.contains("input-field")) {
 					value = input.value;
 				}
 
@@ -428,10 +462,10 @@ let featureCustomizations = {
 			});
 
 			return component_object;
-		}
+		},
 	},
-	"StatusRing": {
-		html: /*html*/`
+	StatusRing: {
+		html: /* html */`
 			<div class="rkis-editable-section section-content" id="status_ring-glow">
 				<div data-preview data-translate="themePreview"
 				style="width: min(10rem, 20%);display: flex;border: 1px solid rgba(128,128,128,0.5);margin-right: 1rem;justify-content: center;align-items: center;border-radius: 20px 0;">
@@ -484,113 +518,119 @@ let featureCustomizations = {
 					</div>
 				</div>
 			</div>`,
-		js: function (idCard, parentElement) {
-			let element = idCard.element.querySelector("#status_ring-glow");
+		js(idCard) {
+			const element = idCard.element.querySelector("#status_ring-glow");
 
-			element.style.display = 'flex';
+			element.style.display = "flex";
 
-			element.update = function() {
-				let settings = element.parentElement.save(idCard).shadow;
-				if (settings == '') return;
+			const previewElement = element.querySelector("[data-preview]");
+			element.update = function () {
+				const settings = element.parentElement.save(idCard).shadow;
+				if (settings === "")
+					return;
 
 				previewElement.style.boxShadow = settings;
 				element.style.boxShadow = settings;
-			}
+			};
 
-			let previewElement = element.querySelector('[data-preview]');
 			if (previewElement != null) {
-				element.querySelectorAll('[data-location]')
-				.forEach((input) => {
-					input.addEventListener('input', () => element.update());
-				});
+				element.querySelectorAll("[data-location]")
+					.forEach((input) => {
+						input.addEventListener("input", () => element.update());
+					});
 			}
 		},
-		load: function (theme_object, idCard) {
-			let element = idCard.element.querySelector("#status_ring-glow");
-			
+		load(theme_object, idCard) {
+			const element = idCard.element.querySelector("#status_ring-glow");
+
 			if (theme_object && theme_object.shadow != null) {
-				// if (theme_object.startsWith('inset ') != true) theme_object = ' ' + theme_object;
-				let [type, x, y, blur, spread] = theme_object.shadow.split(' ');
+				// if (theme_object.startsWith('inset ') !== true) theme_object = ' ' + theme_object;
+				const [type, x, y, blur, spread] = theme_object.shadow.split(" ");
 
-				//load rest
-				let inputsValue = {type,x,y,blur,spread};
+				// load rest
+				const inputsValue = { type, x, y, blur, spread };
 				element.querySelectorAll(`[data-location]`).forEach((input) => {
-					let value = inputsValue[input.dataset.location];
+					const value = inputsValue[input.dataset.location];
 
-					input.value = value.split('px')[0];
+					input.value = value.split("px")[0];
 				});
 			}
-			
-			if (typeof element.update == 'function') element.update();
-		},
-		save: function (idCard) {
-			let element = idCard.element.querySelector("#status_ring-glow");
-			let inputsValue = {};
 
-			//save inputs
+			if (typeof element.update == "function")
+				element.update();
+		},
+		save(idCard) {
+			const element = idCard.element.querySelector("#status_ring-glow");
+			const inputsValue = {};
+
+			// save inputs
 			element.querySelectorAll(`[data-location]`).forEach((input) => {
 				let value = input.value;
-				if (input.dataset.location != 'type') value += 'px';
+				if (input.dataset.location !== "type")
+					value += "px";
 
 				inputsValue[input.dataset.location] = value;
 			});
 
 			return {
-				shadow: `${inputsValue.type} ${inputsValue.x} ${inputsValue.y} ${inputsValue.blur} ${inputsValue.spread}`
+				shadow: `${inputsValue.type} ${inputsValue.x} ${inputsValue.y} ${inputsValue.blur} ${inputsValue.spread}`,
 			};
-		}
-	}
+		},
+	},
 };
-
-
 
 page.setup = function () {
 	document.querySelectorAll("button.main-save-button").forEach((e) => {
-		if (e.dataset.listening != null) return;
+		if (e.dataset.listening != null)
+			return;
 		e.dataset.listening = "true";
 
-		e.addEventListener("click", () => { page.save(e); });
+		e.addEventListener("click", () => page.save(e));
 	});
-}
+};
 
 page.open = async function (pagetoopen, bypass) {
-	if (document.querySelector(`[data-file="${pagetoopen}"]`) == null) return "404";
+	if (document.querySelector(`[data-file="${pagetoopen}"]`) == null)
+		return "404";
 
-	var currentactivetab = document.querySelector("#vertical-menu > li.menu-option.active");
-	if (bypass != true && currentactivetab.dataset.file == pagetoopen) {
+	const currentactivetab = document.querySelector("#vertical-menu > li.menu-option.active");
+	if (bypass !== true && currentactivetab.dataset.file === pagetoopen) {
 		if (pagetoopen === "Experiment Styles") {
 			enableExperimentsPage();
 		}
-		return; //already on the page
+		return; // already on the page
 	}
 
-	window.location.replace(window.location.href.split("#")[0] + "#!/" + pagetoopen); //change link
-	currentactivetab.classList.remove("active"); //change tab
+	window.location.replace(`${window.location.href.split("#")[0]}#!/${pagetoopen}`); // change link
+	currentactivetab.classList.remove("active"); // change tab
 
-	document.querySelector(`[data-file="${pagetoopen}"]`).classList.add("active"); //make tab active
+	document.querySelector(`[data-file="${pagetoopen}"]`).classList.add("active"); // make tab active
 
-	var daplacetoload = $r("#rkpage ." + pagetoopen.toLowerCase().split(" ").join("-").split("/").join(" ."));
-	if (daplacetoload == null) return console.error("SP42");
+	const daplacetoload = $r(`#rkpage .${pagetoopen.toLowerCase().split(" ").join("-").split("/").join(" .")}`);
+	if (daplacetoload == null)
+		return console.error("SP42");
 	try {
 		document.$findAll(".tabcontent").forEach((e) => {
-			e.classList.remove("active")
-		})
+			e.classList.remove("active");
+		});
 		daplacetoload.classList.add("active");
 		daplacetoload.$triggerCustom("script");
-		//daplacetoload.inner HTML = await Rkis.GetTextFromLocalFile(`html/SettingsPage/Pages/${pagetoopen}.html`);
-		//var scrpt0 = document.createElement("script");
-		//scrpt0.src = Rkis.fileLocation + `html/SettingsPage/Pages/${pagetoopen}.js`;
-		//daplacetoload.append(scrpt0);
-		//eval(`(function() {`+await Rkis.GetTextFromLocalFile(`html/SettingsPage/Pages/${pagetoopen}.js`)+`})()`);
-	} catch { }
+		// daplacetoload.inner HTML = await Rkis.GetTextFromLocalFile(`html/SettingsPage/Pages/${pagetoopen}.html`);
+		// var scrpt0 = document.createElement("script");
+		// scrpt0.src = Rkis.fileLocation + `html/SettingsPage/Pages/${pagetoopen}.js`;
+		// daplacetoload.append(scrpt0);
+		// eval(`(function() {`+await Rkis.GetTextFromLocalFile(`html/SettingsPage/Pages/${pagetoopen}.js`)+`})()`);
+	}
+	catch { }
 	page.setup();
-}
+};
 
 page.toggleSwich = function (swich, stat) {
-	if (!swich) return null;
+	if (!swich)
+		return null;
 
 	if (stat == null) {
-		stat = page.getSwich(swich) == false;
+		stat = page.getSwich(swich) === false;
 	}
 
 	if (stat != null) {
@@ -598,60 +638,71 @@ page.toggleSwich = function (swich, stat) {
 		swich.classList.remove("off");
 		swich.classList.add(stat ? "on" : "off");
 
-		swich.dispatchEvent(new Event('switched'));
+		swich.dispatchEvent(new Event("switched"));
 		return stat;
 	}
 
 	return null;
-}
+};
 
 page.getSwich = function (swich) {
-	if (!swich) return null;
+	if (!swich)
+		return null;
 
-	if (swich.classList.contains("on")) return true;
-	else if (swich.classList.contains("off")) return false;
+	if (swich.classList.contains("on"))
+		return true;
+	else if (swich.classList.contains("off"))
+		return false;
 
 	return null;
-}
+};
 
 page.save = function (button) {
 	document.dispatchEvent(new Event("rk-page-save"));
 
 	document.querySelectorAll(".rk-button:not(.rk-input-bool)")
-	.forEach((e) => {
-		if (e.dataset.file == null) return;
-		Rkis.wholeData[e.dataset.file] = page.getSwich(e);
-	});
+		.forEach((e) => {
+			if (e.dataset.file == null)
+				return;
+			Rkis.wholeData[e.dataset.file] = page.getSwich(e);
+		});
 
 	document.querySelectorAll(".rk-textfield:not(.rk-input-string)")
-	.forEach((e) => {
-		if (e.dataset.file == null) return;
-		Rkis.wholeData[e.dataset.file] = e.value.slice(0, 500);
-	});
-	
-	document.querySelectorAll(".rk-input-string[data-file]")
-	.forEach((e) => {
-		if (e.dataset.file == '') return;
+		.forEach((e) => {
+			if (e.dataset.file == null)
+				return;
+			Rkis.wholeData[e.dataset.file] = e.value.slice(0, 500);
+		});
 
-		var setting = Rkis.wholeData[e.dataset.file];
-		if (setting && setting.options && setting.options.disabled == true) return;
-		Rkis.wholeData[e.dataset.file].value[setting.type] = e.value.slice(0, 500);
-	});
+	document.querySelectorAll(".rk-input-string[data-file]")
+		.forEach((e) => {
+			if (e.dataset.file === "")
+				return;
+
+			const setting = Rkis.wholeData[e.dataset.file];
+			if (setting && setting.options && setting.options.disabled === true)
+				return;
+			Rkis.wholeData[e.dataset.file].value[setting.type] = e.value.slice(0, 500);
+		});
 
 	document.querySelectorAll(".rk-input-bool[data-file]")
-	.forEach((e) => {
-		if (e.dataset.file == '') return;
+		.forEach((e) => {
+			if (e.dataset.file === "")
+				return;
 
-		var setting = Rkis.wholeData[e.dataset.file];
-		if (setting && setting.options && setting.options.disabled == true) return;
-		Rkis.wholeData[e.dataset.file].value[setting.type] = page.getSwich(e);
-	});
+			const setting = Rkis.wholeData[e.dataset.file];
+			if (setting && setting.options && setting.options.disabled === true)
+				return;
+			Rkis.wholeData[e.dataset.file].value[setting.type] = page.getSwich(e);
+		});
 
 	Rkis.database.save().then(() => {
-		button.textContent = Rkis.language["btnSaved"];
-		setTimeout((btn) => { btn.textContent = Rkis.language["btnSave"]; }, 1000, button);
+		button.textContent = Rkis.language.btnSaved;
+		setTimeout((btn) => {
+			btn.textContent = Rkis.language.btnSave;
+		}, 1000, button);
 	});
-}
+};
 
 page.E = "A";
 page.Sports = "It's in the Game";
@@ -659,140 +710,162 @@ page.Sports = "It's in the Game";
 page.start = async function () {
 	await document.$watch("#rkmainpage").$promise();
 
-	//slider value
+	// slider value
 	document.$watchLoop(`input[type="range"]`, (inputElement) => {
 		const parentElement = inputElement.parentElement;
-		let isContainer = parentElement.classList.contains("text-lead") || parentElement.children.length == 2;
-		let textElement = parentElement.querySelector("span,div");
-		if (textElement == null) isContainer = false;
-		if (isContainer == false) return;
+		let isContainer = parentElement.classList.contains("text-lead") || parentElement.children.length === 2;
+		const textElement = parentElement.querySelector("span,div");
+		if (textElement == null)
+			isContainer = false;
+		if (isContainer === false)
+			return;
 
 		let originalText = textElement.textContent;
 		let textTimeout = null;
-		let maxValue = inputElement.max || "100";
+		const maxValue = inputElement.max || "100";
 		inputElement.addEventListener("input", () => {
 			if (textTimeout !== null) {
 				clearTimeout(textTimeout);
-			} else originalText = textElement.textContent;
+			}
+			else {
+				originalText = textElement.textContent;
+			}
 			textTimeout = setTimeout(() => {
 				textElement.textContent = originalText;
 				textTimeout = null;
 			}, 3000);
 
-			textElement.textContent = inputElement.value+" / "+maxValue;
+			textElement.textContent = `${inputElement.value} / ${maxValue}`;
 		});
 	});
 
-	//Accordion
+	// Accordion
 	document.$watchLoop(`label > .accordion__input`, (inputElement) => {
 		const container = inputElement.parentElement.parentElement;
-		let contentElement = container.querySelector(".accordion__content");
-		if (contentElement == null) return;
+		const contentElement = container.querySelector(".accordion__content");
+		if (contentElement == null)
+			return;
 
 		inputElement.addEventListener("change", () => {
 			contentElement.classList.toggle("accordion__show", inputElement.checked);
 		});
 	});
 
-	if (await page.open(decodeURIComponent(window.location.hash.split("#!/")[1]?.split("?")[0]), true) == "404") {
-		if (await page.open(document.querySelector("#vertical-menu > li.menu-option.active").dataset.file, true) == "404") {
+	if (await page.open(decodeURIComponent(window.location.hash.split("#!/")[1]?.split("?")[0]), true) === "404") {
+		if (await page.open(document.querySelector("#vertical-menu > li.menu-option.active").dataset.file, true) === "404") {
 			page.open(document.querySelector("#vertical-menu > li.menu-option").dataset.file, true);
 		}
 	}
 
 	document.querySelectorAll("#vertical-menu > li.menu-option").forEach((e) => {
-		e.addEventListener("click", () => { page.open(e.dataset.file); });
+		e.addEventListener("click", () => page.open(e.dataset.file));
 	});
-	
-	var wholedata = Rkis.wholeData || {};
+
+	const wholedata = Rkis.wholeData || {};
 
 	document.$watchLoop(".rk-button:not(.rk-input-bool)", (e) => {
-		if (e.dataset.listening != null) return;
+		if (e.dataset.listening != null)
+			return;
 		e.dataset.listening = "true";
 
-		e.addEventListener("click", () => { page.toggleSwich(e); });
-		if (e.dataset.file == null || wholedata[e.dataset.file] == null) return;
-		//console.error(e.dataset.file+"is still using old load");
+		e.addEventListener("click", () => page.toggleSwich(e));
+		if (e.dataset.file == null || wholedata[e.dataset.file] == null)
+			return;
+		// console.error(e.dataset.file+"is still using old load");
 		page.toggleSwich(e, wholedata[e.dataset.file]);
 	});
 
 	document.$watchLoop(".rk-textfield:not(.rk-input-string)", (e) => {
-		if (e.dataset.listening != null) return;
+		if (e.dataset.listening != null)
+			return;
 		e.dataset.listening = "true";
 
-		if (e.dataset.file == null || wholedata[e.dataset.file] == null) return;
-		//console.error(e.dataset.file+"is still using old load");
+		if (e.dataset.file == null || wholedata[e.dataset.file] == null)
+			return;
+		// console.error(e.dataset.file+"is still using old load");
 		e.value = wholedata[e.dataset.file];
 	});
 
 	document.$watchLoop(".rk-input-string", (e) => {
-		if (e.dataset.listening != null) return;
+		if (e.dataset.listening != null)
+			return;
+
 		e.dataset.listening = "true";
 
-		var setting = wholedata[e.dataset.file];
+		const setting = wholedata[e.dataset.file];
 
-		if (e.dataset.file == null || setting == null || (setting.options && setting.options.disabled == true)) return;
+		if (e.dataset.file == null || setting == null)
+			return;
+		if (setting.options && setting.options.disabled === true)
+			return;
+
 		e.value = setting.value[setting.type];
 	});
 
 	document.$watchLoop(".rk-input-bool", (e) => {
-		if (e.dataset.listening != null) return;
+		if (e.dataset.listening != null)
+			return;
 		e.dataset.listening = "true";
-		
-		var setting = wholedata[e.dataset.file];
 
-		e.addEventListener("click", () => { page.toggleSwich(e); });
-		if (e.dataset.file == null || setting == null || (setting.options && setting.options.disabled == true)) return;
+		const setting = wholedata[e.dataset.file];
+
+		e.addEventListener("click", () => page.toggleSwich(e));
+		if (e.dataset.file == null || setting == null)
+			return;
+		if (setting.options && setting.options.disabled === true)
+			return;
 		page.toggleSwich(e, setting.value[setting.type]);
 	});
 };
 
-page.settingsWaitingForGeneral = function() {
-	if (Rkis == null || Rkis.generalLoaded != true) {
+page.settingsWaitingForGeneral = function () {
+	if (Rkis == null || Rkis.generalLoaded !== true) {
 		document.addEventListener("rk-general-loaded", () => {
 			page.settingsWaitingForGeneral();
-		}, {once: true});
+		}, { once: true });
 		return;
 	}
-	
-	//auto load feature names and description in about tab
+
+	// auto load feature names and description in about tab
 	document.$watchLoop("loadcode", (element) => {
-		var name = element.getAttribute("code");
-		if (name == null || name == "") return console.error("SP127");
+		const name = element.getAttribute("code");
+		if (name == null || name === "")
+			return console.error("SP127");
 
 		switch (name.toLowerCase()) {
-			default:
-				return console.error(`Rkis | loadcode error` + name);
-			case "settingload":
-				var settingId = element.dataset.id;
+			case "settingload": {
+				const settingId = element.dataset.id;
 
-				//get settings
-				var settingRaw = Rkis.wholeData[settingId];
-				var setting = escapeJSON(settingRaw);
-				if (setting == null || typeof setting.type != "string") return;
+				// get settings
+				const settingRaw = Rkis.wholeData[settingId];
+				const setting = escapeJSON(settingRaw);
+				if (setting == null || typeof setting.type != "string")
+					return;
 
 				let canEdit = true;
 				if (setting.options) {
-					if (setting.options.hidden == true) return;
-					setting.options.disabled == true && (canEdit = false);
+					if (setting.options.hidden === true)
+						return;
+					if (setting.options.disabled === true)
+						canEdit = false;
 				}
 
-				var details = Rkis.GetSettingDetails(setting.details) || {};
-				var trDetails = setting.details?.translate || {};
+				const details = Rkis.GetSettingDetails(setting.details) || {};
+				const trDetails = setting.details?.translate || {};
 
-				let featureCustomization = featureCustomizations[settingId];
+				const featureCustomization = featureCustomizations[settingId];
 
-				//get structer depending on type
-				var getStructureByType = {
-					"text": 
-						`<div class="section-content">
+				// get structer depending on type
+				const getStructureByType = {
+					text:
+						`<div class="section-content" ${canEdit === false ? `style="opacity: 0.5;"` : ""}>
 							<span class="text-lead" data-translate="${trDetails.name || ""}">${details.name || "Error: SP146"}</span>
-							<input class="rk-input-string rk-textfield form-control input-field" placeholder="Leave empty for default" data-file="${setting.id}"${setting.options && setting.options.disabled == true ? " hidden" : ""}>
+							<input class="rk-input-string rk-textfield form-control input-field" placeholder="Leave empty for default" data-file="${setting.id}"${setting.options && setting.options.disabled === true ? " hidden" : ""}>
 							<div class="rbx-divider" style="margin: 12px;"></div>
 							<span class="text-description" data-translate="${trDetails.description || ""}">${details.description || "Error: SP149"}</span>
 							<div style="color: red;" class="text-description" data-translate="${trDetails.note || ""}">${details.note || ""}</div>
-							${featureCustomization != null ?
-								`<div class="rbx-divider" style="margin: 12px;"></div>
+							${featureCustomization != null
+									? `<div class="rbx-divider" style="margin: 12px;"></div>
 								<div class="text-lead">
 									<label>
 										<input type="checkbox" class="accordion__input" hidden>
@@ -801,13 +874,14 @@ page.settingsWaitingForGeneral = function() {
 									<div class="accordion__content">
 										<div data-feature-options class="component-holder"></div>
 									</div>
-								</div>` : ''
+								</div>`
+									: ""
 							}
 						</div>`,
-					"switch": 
-						`<div class="section-content">
+					switch:
+						`<div class="section-content" ${canEdit === false ? `style="opacity: 0.5;"` : ""}>
 							<span class="text-lead" data-translate="${trDetails.name || ""}">${details.name || "Error: SP154"}</span>
-							<span class="rk-input-bool rk-button receiver-destination-type-toggle on" data-file="${setting.id}"${setting.options && setting.options.disabled == true ? " hidden" : ""}>
+							<span class="rk-input-bool rk-button receiver-destination-type-toggle on" data-file="${setting.id}"${setting.options && setting.options.disabled === true ? " hidden" : ""}>
 								<span class="toggle-flip"></span>
 								<span class="toggle-on"></span>
 								<span class="toggle-off"></span>
@@ -815,8 +889,8 @@ page.settingsWaitingForGeneral = function() {
 							<div class="rbx-divider" style="margin: 12px;"></div>
 							<span class="text-description" data-translate="${trDetails.description || ""}">${details.description || "Error: SP161"}</span>
 							<div style="color: red;" class="text-description" data-translate="${trDetails.note || ""}">${details.note || ""}</div>
-							${featureCustomization != null ?
-								`<div class="rbx-divider" style="margin: 12px;"></div>
+							${featureCustomization != null
+									? `<div class="rbx-divider" style="margin: 12px;"></div>
 								<div class="text-lead">
 									<label>
 										<input type="checkbox" class="accordion__input" hidden>
@@ -825,19 +899,21 @@ page.settingsWaitingForGeneral = function() {
 									<div class="accordion__content">
 										<div data-feature-options class="component-holder"></div>
 									</div>
-								</div>` : ''
+								</div>`
+									: ""
 							}
-						</div>`
+						</div>`,
 				};
 
-				//console.log(setting, getStructureByType);
+				// console.log(setting, getStructureByType);
 
-				//apply structer info from setting
+				// apply structer info from setting
 				element.innerHTML = getStructureByType[setting.type];
 
-				if (featureCustomization == null) return;
-				
-				let componentElement = element.querySelector("[data-feature-options]");
+				if (featureCustomization == null)
+					return;
+
+				const componentElement = element.querySelector("[data-feature-options]");
 				element.selectedOption = null;
 
 				element.loadOptionComponent = (component, featureOptions) => {
@@ -847,57 +923,67 @@ page.settingsWaitingForGeneral = function() {
 					}
 					componentElement.innerHTML = component.element.html;
 
-					//setup element
-					for (let key in component.element) {
-						if (key == "html" || key == "js") continue;
-
+					// setup element
+					for (const key in component.element) {
+						if (key === "html" || key === "js")
+							continue;
 
 						componentElement[key] = component.element[key];
 					}
 
-					let idCard = {
+					const idCard = {
 						id: component.id,
 						element: componentElement,
 						component,
 					};
 					element.selectedOption = idCard;
 
-					let run = component.element.js;
-					if (typeof run == 'function') run(idCard, element);
+					const run = component.element.js;
+					if (typeof run == "function")
+						run(idCard, element);
 
-					if (typeof componentElement.load == 'function') componentElement.load(featureOptions, idCard);
+					if (typeof componentElement.load == "function")
+						componentElement.load(featureOptions, idCard);
 				};
 				element.saveOptionComponent = (component) => {
-					if (component == null) component = element.selectedOption;
-					if (component == null) return null;
+					if (component == null)
+						component = element.selectedOption;
+					if (component == null)
+						return null;
 
-					//run save_object
-					let save_component = componentElement.save;
+					// run save_object
+					const save_component = componentElement.save;
 					// console.log({save_component})
-					if (typeof save_component != 'function') return null;
+					if (typeof save_component != "function")
+						return null;
 
-					//put object in page_object with key of component id
+					// put object in page_object with key of component id
 					return save_component(component);
 				};
 
+				let customizationData = settingRaw.data && settingRaw.data.customization;
+				customizationData = customizationData || null;
 				element.loadOptionComponent({
 					id: settingId,
 					element: featureCustomization,
 					feature: settingRaw,
-				}, (settingRaw.data && settingRaw.data.customization) || null);
+				}, customizationData);
 				document.addEventListener("rk-page-save", () => {
-					if (settingRaw.data == null) settingRaw.data = {};
+					if (settingRaw.data == null)
+						settingRaw.data = {};
 					settingRaw.data.customization = element.saveOptionComponent();
 				});
 				break;
+			}
+			default:
+				return console.error(`Rkis | loadcode error${name}`);
 		}
 	});
 
-	document.$watch("#container-main > div.content > div.request-error-page-content", (err404) => err404.remove());
+	document.$watch("#container-main > div.content > div.request-error-page-content", err404 => err404.remove());
 
 	document.$watch("#container-main > div.content", async (mainplace) => {
-
-		mainplace.innerHTML = /*html*/`
+		mainplace.innerHTML = /* html */`
 		<div id="rkmainpage">
 			<div id="rkmaintitle" style="text-align: center;font-weight: 800;font-size: 32px;margin: 1%;" data-translate="settingsPageTitle">Roblokis Settings Page</div>
 			<div style="display: flex;justify-content: center;">
@@ -974,14 +1060,15 @@ page.settingsWaitingForGeneral = function() {
 									</thead>
 									<tbody>
 										${Object.values(Rkis.wholeData)
-										.filter((setting) => setting != null && typeof setting == "object" && setting.id != null)
-										.filter((setting) => setting.options && !setting.options.disabled && !setting.options.hidden && setting.options.main == true)
-										.map((setting) => (`
+											.filter(setting => setting != null && typeof setting == "object" && setting.id != null)
+											.filter(setting => setting.options && !setting.options.disabled && !setting.options.hidden && setting.options.main === true)
+											.map(setting => `
 										<tr>
 											<td></td>
 											<td class="text-lead" data-translate="${escapeHTML(setting.details?.translate?.name || "")}">${escapeHTML(setting.details?.[setting.details?.default]?.name || "")}</td>
 											<td class="text-description" data-translate="${escapeHTML(setting.details?.translate?.description || "")}">${escapeHTML(setting.details?.[setting.details?.default]?.description || "")}</td>
-										</tr>`)).join("")}
+										</tr>`)
+											.join("")}
 									</tbody>
 								</table>
 								<div class="rbx-divider" style="margin: 12px 0 0 0;"></div>
@@ -1157,7 +1244,7 @@ page.settingsWaitingForGeneral = function() {
 													</div>
 												</div>
 												<div class="rk-tab-page" tab="importtheme">
-													<input type="file" id="newtheme-file" accept=".roblokis" oninput="if(this.files.length > 0) this.parentElement.querySelector('label').textContent = this.files[0].name; else this.parentElement.querySelector('label').textContent = '${Rkis.language['themeImport']}'" hidden>
+													<input type="file" id="newtheme-file" accept=".roblokis" oninput="if(this.files.length > 0) this.parentElement.querySelector('label').textContent = this.files[0].name; else this.parentElement.querySelector('label').textContent = '${Rkis.language.themeImport}'" hidden>
 													<label id="newtheme-filename" for="newtheme-file" data-translate="themeImport">Import Theme</label>
 													<div id="newtheme-error" class="info" style="font-size: 12px;">NOTE: Only "Pre-made" Roblokis themes are accepted.<br>For Images: Upload image online and use it's link instead!</div>
 													<div>
@@ -1807,34 +1894,35 @@ page.settingsWaitingForGeneral = function() {
 				</div>
 			</div>
 		</div>`;
-		var ttle = document.createElement("title");
-		ttle.textContent = Rkis.language["settingsPageTitle"];
+		const ttle = document.createElement("title");
+		ttle.textContent = Rkis.language.settingsPageTitle;
 
 		document.firstElementChild.insertBefore(ttle, document.firstElementChild.firstElementChild);
 
 		page.start();
 
-		mainplace.querySelector(`#download-roblokis-data`).addEventListener('click', () => {
-			let rawText = JSON.stringify(Rkis.wholeData);
-			makeTextFile(rawText, 'Raw Roblokis Data.json');
+		mainplace.querySelector(`#download-roblokis-data`).addEventListener("click", () => {
+			const rawText = JSON.stringify(Rkis.wholeData);
+			makeTextFile(rawText, "Raw Roblokis Data.json");
 		});
-		mainplace.querySelector(`#delete-roblokis-data`).addEventListener('click', () => {
-			let confirmation = confirm("WARNING: This can not be undone!\nContinuing will remove all your Roblokis information;\n-settings\n-themes\nare included, Continue?");
+		mainplace.querySelector(`#delete-roblokis-data`).addEventListener("click", () => {
+			const confirmation = confirm("WARNING: This can not be undone!\nContinuing will remove all your Roblokis information;\n-settings\n-themes\nare included, Continue?");
 			if (confirmation === true) {
 				Rkis.database.clearDatabase(confirmation);
 				location.reload();
 			}
 		});
-		mainplace.querySelector(`#import-roblokis-data`).addEventListener('change', async () => {
-			let fileInput = mainplace.querySelector(`#import-roblokis-data`);
+		mainplace.querySelector(`#import-roblokis-data`).addEventListener("change", async () => {
+			const fileInput = mainplace.querySelector(`#import-roblokis-data`);
 			let filedata = null;
-			try{
-				if(fileInput.files.length > 0) {
-					filedata = JSON.parse(await fileInput.files[0].text())
+			try {
+				if (fileInput.files.length > 0) {
+					filedata = JSON.parse(await fileInput.files[0].text());
 				}
-			}catch{}
+			}
+			catch {}
 			if (filedata == null) {
-				alert("Corrupt file!!! Couldn't load.")
+				alert("Corrupt file!!! Couldn't load.");
 				return;
 			}
 			Rkis.wholeData = filedata;
@@ -1842,140 +1930,158 @@ page.settingsWaitingForGeneral = function() {
 			window.location.reload();
 		});
 
-		mainplace.querySelector(`#rk-search-component-list`).addEventListener('input', (e) => {
-			let componentList = mainplace.querySelectorAll(`#rk-add-edits-list > .add-components-card`);
+		mainplace.querySelector(`#rk-search-component-list`).addEventListener("input", (e) => {
+			const componentList = mainplace.querySelectorAll(`#rk-add-edits-list > .add-components-card`);
 
-			let input = e.target;
-			let text = input.value.toLowerCase();
+			const input = e.target;
+			const text = input.value.toLowerCase();
 
-			componentList.forEach(x => {
-				let title = x.querySelector(`div > div`).textContent.toLowerCase();
-				let description = x.querySelector(`div > span`).textContent.toLowerCase();
+			componentList.forEach((x) => {
+				const title = x.querySelector(`div > div`).textContent.toLowerCase();
+				const description = x.querySelector(`div > span`).textContent.toLowerCase();
 
 				if (!(title.includes(text) || description.includes(text))) {
-					x.style.display = 'none';
+					x.style.display = "none";
 					return;
 				}
-				
-				x.style.display = '';
+
+				x.style.display = "";
 			});
 		});
-		
-		mainplace.querySelector(`#rk-search-features`).addEventListener('input', (e) => {
-			let page = mainplace.querySelector(`.search-features`);
+
+		mainplace.querySelector(`#rk-search-features`).addEventListener("input", (e) => {
+			const page = mainplace.querySelector(`.search-features`);
 			page.querySelectorAll(`loadcode`).forEach(x => x.remove());
 
-			let input = e.target;
+			const input = e.target;
 			let text = input.value;
-			if (text === '') return;
+			if (text === "")
+				return;
 
-			let spesificFeature = Rkis.wholeData[text];
+			const spesificFeature = Rkis.wholeData[text];
 			if (spesificFeature != null && spesificFeature.id != null) {
-				let featureElement = document.createElement('loadcode');
-				featureElement.setAttribute('code', 'settingload');
+				const featureElement = document.createElement("loadcode");
+				featureElement.setAttribute("code", "settingload");
 				featureElement.dataset.id = spesificFeature.id;
 				page.appendChild(featureElement);
 				return;
 			}
-			
+
 			text = text.toLowerCase();
 
-			let featuresList = Object.values(Rkis.wholeData)
-			.filter(setting => {
-				if (setting == null || typeof setting != "object" || setting.id == null) return false;
+			const featuresList = Object.values(Rkis.wholeData)
+				.filter((setting) => {
+					if (setting == null || typeof setting != "object" || setting.id == null)
+						return false;
 
-				return true;
-			})
-			.filter((setting, i, all) => {
-				if (setting.details == null) return false;
-				if (setting.details.default == null) return false;
-				let detail = setting.details[setting.details.default];
-				if (detail == null) return false;
-				if (detail.name == null) return false;
-				if (all.filter(x => x.details[x.details.default].name.toLowerCase().includes(detail.name.toLowerCase())).length > 1) return false;
-				if (detail.name?.toLowerCase().includes(text)) return true;
-				if (detail.description?.toLowerCase().includes(text)) return true;
+					return true;
+				})
+				.filter((setting, i, all) => {
+					if (setting.details == null)
+						return false;
+					if (setting.details.default == null)
+						return false;
+					const detail = setting.details[setting.details.default];
+					if (detail == null)
+						return false;
+					if (detail.name == null)
+						return false;
+					if (all.filter(x => x.details[x.details.default].name.toLowerCase().includes(detail.name.toLowerCase())).length > 1)
+						return false;
+					if (detail.name?.toLowerCase().includes(text))
+						return true;
+					if (detail.description?.toLowerCase().includes(text))
+						return true;
 
-				return false;
-			});
+					return false;
+				});
 
-			featuresList.forEach(feature => {
-				let featureElement = document.createElement('loadcode');
-				featureElement.setAttribute('code', 'settingload');
+			featuresList.forEach((feature) => {
+				const featureElement = document.createElement("loadcode");
+				featureElement.setAttribute("code", "settingload");
 				featureElement.dataset.id = feature.id;
 				page.appendChild(featureElement);
 			});
 		});
 
 		window.location.href.split("search=").forEach((query, i) => {
-			if (i !== 1) return;
+			if (i !== 1)
+				return;
 
-			let text = decodeURIComponent(query.split("&")[0]);
-			let input = mainplace.querySelector(`#rk-search-features`);
+			const text = decodeURIComponent(query.split("&")[0]);
+			const input = mainplace.querySelector(`#rk-search-features`);
 			input.value = text;
-			input.dispatchEvent(new InputEvent('input'), {});
+			input.dispatchEvent(new InputEvent("input"), {});
 		});
 
-		let experimentsPasscode = getRndInteger(10001,99999);
-		let puzzleDisplay = mainplace.querySelector(`#experiments-puzzle`);
-		if (puzzleDisplay) puzzleDisplay.textContent = experimentsPasscode.toString(2);
-		mainplace.querySelector(`#experiments-puzzle-solution`).addEventListener('input', (e) => {
-			let input = e.target;
-			let text = input.value;
-			if (text === '') return;
-			if (parseInt(text) !== experimentsPasscode) return;
+		const experimentsPasscode = getRndInteger(10001, 99999);
+		const puzzleDisplay = mainplace.querySelector(`#experiments-puzzle`);
+		if (puzzleDisplay)
+			puzzleDisplay.textContent = experimentsPasscode.toString(2);
+		mainplace.querySelector(`#experiments-puzzle-solution`).addEventListener("input", (e) => {
+			const input = e.target;
+			const text = input.value;
+			if (text === "")
+				return;
+			if (Number.parseInt(text) !== experimentsPasscode)
+				return;
 			input.remove();
 
 			enableExperimentsPage();
 		});
 	});
-}
+};
 
 try {
 	page.settingsWaitingForGeneral();
-} catch (err) {
+}
+catch (err) {
 	if (err != null) {
 		if (Rkis != null && Rkis.Toast != null) {
-			Rkis.Toast('Error: '+ new String(err));
-		} else {
-			prompt(`A problem occured with Roblokis, Please report to the developers\nError Code:`, err.stack || new String(err));
+			Rkis.Toast(`Error: ${String(err)}`);
+		}
+		else {
+			prompt(`A problem occured with Roblokis, Please report to the developers\nError Code:`, err.stack || String(err));
 		}
 	}
 
 	page.settingsWaitingForGeneral();
 }
 
-
-
 async function enableExperimentsPage() {
-	let tabPage = document.querySelector("#container-main > div.content .experiment-styles");
-	let experimentsPassgame = tabPage.querySelector('.experiments-passgame');
-	if (experimentsPassgame.style.display === 'none') return;
-	let experimentsPage = tabPage.querySelector('.experiments-page');
-	if (experimentsPassgame) experimentsPassgame.style.display = 'none';
-	if (experimentsPage) experimentsPage.style.display = '';
-	let experimentslist = tabPage.querySelector('.experiments-list');
+	const tabPage = document.querySelector("#container-main > div.content .experiment-styles");
+	const experimentsPassgame = tabPage.querySelector(".experiments-passgame");
+	if (experimentsPassgame.style.display === "none")
+		return;
+	const experimentsPage = tabPage.querySelector(".experiments-page");
+	if (experimentsPassgame)
+		experimentsPassgame.style.display = "none";
+	if (experimentsPage)
+		experimentsPage.style.display = "";
+	const experimentslist = tabPage.querySelector(".experiments-list");
 
 	Rkis.wholeData.ExperimentsCSS = Rkis.wholeData.ExperimentsCSS || [];
-	let experimentsCSS = await BROWSER.runtime.sendMessage({about: 'getURLRequest', url: 'https://ameerdotexe.github.io/roblokis/data/experiments/css.json'}).catch(() => null);
-	if (experimentsCSS == null || experimentsCSS.experimentsCSS == null) return;
-	let experimentsList = experimentsCSS.experimentsCSS;
+	const experimentsCSS = await BROWSER.runtime.sendMessage({ about: "getURLRequest", url: "https://ameerdotexe.github.io/roblokis/data/experiments/css.json" }).catch(() => null);
+	if (experimentsCSS == null || experimentsCSS.experimentsCSS == null)
+		return;
+	const experimentsList = experimentsCSS.experimentsCSS;
 	let saveTimeout = null;
-	let saveTimeoutFunc = function() {
-		if (saveTimeout !== null) clearTimeout(saveTimeout);
+	const saveTimeoutFunc = function () {
+		if (saveTimeout !== null)
+			clearTimeout(saveTimeout);
 		saveTimeout = setTimeout(() => {
 			saveTimeout = null;
 			Rkis.database.save();
 		}, 1000);
 	};
 
-	Object.keys(experimentsList).forEach(experimentId => {
+	Object.keys(experimentsList).forEach((experimentId) => {
 		const experiment = experimentsList[experimentId];
-		let experimentElement = document.createElement('div');
-		experimentElement.classList.add('rk-experiment', 'section-content');
+		const experimentElement = document.createElement("div");
+		experimentElement.classList.add("rk-experiment", "section-content");
 		experimentElement.dataset.id = experimentId;
 
-		let experimentHTML = `
+		const experimentHTML = `
 			<span class="text-lead">${escapeHTML(experiment.name)}</span>
 			<span class="rk-button receiver-destination-type-toggle off">
 				<span class="toggle-flip"></span>
@@ -1983,24 +2089,25 @@ async function enableExperimentsPage() {
 				<span class="toggle-off"></span>
 			</span>
 			<div class="rbx-divider" style="margin: 12px;"></div>
-			<span class="text-description">${escapeHTML(experiment.description || '')}</span>
+			<span class="text-description">${escapeHTML(experiment.description || "")}</span>
 		`;
 
 		experimentElement.innerHTML = experimentHTML;
 
-		let experimentSwitch = experimentElement.querySelector('.receiver-destination-type-toggle');
+		const experimentSwitch = experimentElement.querySelector(".receiver-destination-type-toggle");
 		page.toggleSwich(experimentSwitch, Rkis.wholeData.ExperimentsCSS.includes(experimentId));
-		experimentSwitch.addEventListener('click', () => {
+		experimentSwitch.addEventListener("click", () => {
 			if (page.toggleSwich(experimentSwitch)) {
-				experimentSwitch.classList.remove('on');
-				experimentSwitch.classList.add('off');
+				experimentSwitch.classList.remove("on");
+				experimentSwitch.classList.add("off");
 
 				// enabledExperiments = enabledExperiments.filter(x => x !== experimentId);
 				Rkis.wholeData.ExperimentsCSS.push(experimentId);
-			} else {
-				experimentSwitch.classList.remove('off');
-				experimentSwitch.classList.add('on');
-				
+			}
+			else {
+				experimentSwitch.classList.remove("off");
+				experimentSwitch.classList.add("on");
+
 				// enabledExperiments.push(experimentId);
 				Rkis.wholeData.ExperimentsCSS = Rkis.wholeData.ExperimentsCSS.filter(x => x !== experimentId);
 			}
@@ -2011,17 +2118,18 @@ async function enableExperimentsPage() {
 		experimentslist.appendChild(experimentElement);
 	});
 
-	experimentsPage.querySelector(`#rk-search-experiments`).addEventListener('input', (e) => {
-		let input = e.target;
-		let text = input.value;
+	experimentsPage.querySelector(`#rk-search-experiments`).addEventListener("input", (e) => {
+		const input = e.target;
+		const text = input.value;
 		// if (text === '') return;
 
-		let experimentsElements = experimentslist.querySelectorAll(`.rk-experiment`);
-		experimentsElements.forEach(experimentElement => {
+		const experimentsElements = experimentslist.querySelectorAll(`.rk-experiment`);
+		experimentsElements.forEach((experimentElement) => {
 			if (experimentElement.textContent.toLowerCase().includes(text.toLowerCase())) {
-				experimentElement.style.display = '';
-			} else {
-				experimentElement.style.display = 'none';
+				experimentElement.style.display = "";
+			}
+			else {
+				experimentElement.style.display = "none";
 			}
 		});
 	});
