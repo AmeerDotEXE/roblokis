@@ -3,10 +3,10 @@
 	width: 90%;
 }
 
-#transactions-page-container {
+#transactions-web-app {
 	width: 100%;
 }
 
-#transactions-page-container > div > div.summary > table {
+#transactions-web-app > div > div.summary > table {
 	background-color: transparent;
 }
