@@ -642,7 +642,7 @@ const DefaultThemeEditorComponents = (() => {
 				element.addEventListener("click", () => {
 					const componentPage = new componentInfo.Element(this.mainComponent, componentInfo.id);
 					this.themeEditorPopup.updatePopupContent(componentPage);
-					this.themeEditorPopup.removePageFromHistory(this);
+					// this.themeEditorPopup.removePageFromHistory(this);
 				});
 			};
 
@@ -675,7 +675,7 @@ const DefaultThemeEditorComponents = (() => {
 				element.addEventListener("click", () => {
 					const componentPage = new DefaultThemeEditorComponents.ComponentPage(this.mainComponent, componentInfo.id);
 					this.themeEditorPopup.updatePopupContent(componentPage);
-					this.themeEditorPopup.removePageFromHistory(this);
+					// this.themeEditorPopup.removePageFromHistory(this);
 				});
 			};
 

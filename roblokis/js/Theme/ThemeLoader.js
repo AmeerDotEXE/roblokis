@@ -7,6 +7,8 @@ var Rkis = Rkis || {};
 Rkis.Designer = Rkis.Designer || {};
 Rkis.StylesList = Rkis.StylesList || {};
 
+const ALLOW_THEME_STYLES = true;
+
 Rkis.Designer.DefaultThemes = [
 	{
 		themeId: "0",
@@ -788,7 +790,8 @@ Rkis.StylesList.ReloadCurrentStyles = async function () {
 };
 Rkis.StylesList.LoadCurrentStyles = async function () {
 	if (Rkis.Designer.currentTheme == null
-		|| Rkis.Designer.currentTheme.styles == null) {
+		|| Rkis.Designer.currentTheme.styles == null
+		|| !ALLOW_THEME_STYLES) {
 		return;
 	}
 
@@ -835,7 +838,8 @@ Rkis.StylesList.LoadCurrentStyles = async function () {
 };
 Rkis.StylesList.updateStyle = function (fullpath, newStyle) {
 	if (Rkis.Designer.currentTheme == null
-		|| Rkis.Designer.currentTheme.styles == null) {
+		|| Rkis.Designer.currentTheme.styles == null
+		|| !ALLOW_THEME_STYLES) {
 		return;
 	}
 
@@ -1142,7 +1146,7 @@ Rkis.ThemesMenu = {
 			bottom: 0px;
 			width: 100%;
 			height: 100%;
-			padding: 4%;
+			/*padding: 4%;*/
 			justify-content: center;
 			align-items: center;
 			flex-direction: column;
@@ -1253,6 +1257,7 @@ Rkis.ThemesMenu = {
 			background-color: rgb(35, 37, 42);
 			padding: 1rem 1.5rem;
 			box-shadow: 0 0 16px black;
+			overflow: auto;
 		}
 		
 		.rk-popup.mini {
