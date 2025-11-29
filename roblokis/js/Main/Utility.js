@@ -1,10 +1,10 @@
 "use strict";
 
-/* eslint-disable unused-imports/no-unused-vars */
+/* eslint-disable no-restricted-globals, unused-imports/no-unused-vars */
 
 /* globals chrome */
 
-// eslint-disable-next-line no-var, no-use-before-define, no-restricted-globals
+// eslint-disable-next-line no-var, no-use-before-define
 var globalThis = typeof globalThis !== "undefined" ? globalThis : typeof self !== "undefined" ? self : this;
 const IS_CHROME_API = typeof globalThis.browser === "undefined" || Object.getPrototypeOf(globalThis.browser) !== Object.prototype;
 const BROWSER = IS_CHROME_API ? chrome : globalThis.browser;
@@ -92,7 +92,7 @@ var $r = (() => {
 
 	let DTF; /* for time format (PM, AM) */
 
-	if (globalThis.document) {
+	if (self.document) {
 		/* $(selector) == $.find(document, selector) */
 		$ = function (selector) {
 			return $.find(document, selector);
@@ -481,13 +481,13 @@ var $r = (() => {
 			},
 		});
 
-		Assign([globalThis.EventTarget, EventTarget], {
+		Assign([self.EventTarget, EventTarget], {
 			$on(...args) { return $.on(this, ...args); },
 			$triggerCustom(...args) { return $.triggerCustom(this, ...args); },
 			$event(...args) { return $.triggerCustom(this, ...args); },
 		});
 
-		Assign([globalThis.Element, Element, globalThis.Document, Document, globalThis.DocumentFragment, DocumentFragment], {
+		Assign([self.Element, Element, self.Document, Document, self.DocumentFragment, DocumentFragment], {
 			$each(...args) { return $.each(this.children, ...args); },
 			$find(...args) { return $.find(this, ...args); },
 			$findAll(...args) { return $.findAll(this, ...args); },
@@ -497,7 +497,7 @@ var $r = (() => {
 			$watchData(...args) { return $.watchData(this, ...args); },
 		});
 
-		Assign([globalThis.NodeList, NodeList], {
+		Assign([self.NodeList, NodeList], {
 			$each(...args) { return $.each(this, ...args); },
 		});
 	}
@@ -598,7 +598,7 @@ var $r = (() => {
 		},
 	});
 
-	Assign([globalThis.Date, Date], {
+	Assign([self.Date, Date], {
 		$format(...args) { return $.dateFormat(this, ...args); },
 		$since(...args) { return $.dateSince(this, ...args); },
 	});
@@ -1063,7 +1063,7 @@ var popup = (() => {
 		},
 	});
 
-	Assign([globalThis.Element, Element, globalThis.Document, Document, globalThis.DocumentFragment, DocumentFragment], {
+	Assign([self.Element, Element, self.Document, Document, self.DocumentFragment, DocumentFragment], {
 		popupcreate(...args) { return popup.create(this, ...args); },
 	});
 

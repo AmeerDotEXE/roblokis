@@ -76,7 +76,6 @@
 			],
 			"js": [
 				"html/SettingsPage/SettingsPage.js",
-				"html/SettingsPage/Pages/Main/designer.js",
 				"html/SettingsPage/Pages/GamePage/servers.js"
 			],
 			"css": [
