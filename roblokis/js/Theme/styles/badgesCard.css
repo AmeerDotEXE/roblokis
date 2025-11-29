@@ -52,6 +52,7 @@
 
 .rbx-body .game-badges-list > ul.stack-list > li > div.badge-content > ul > li > div.text-label {
 	padding: 0 10px 0 0;
+	margin-top: 6px;
 }
 
 .rbx-body .game-badges-list > ul.stack-list > li:not(.badge-row) {

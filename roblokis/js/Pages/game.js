@@ -940,7 +940,7 @@ Rkis.page.game = () => {
 						if (badge.enabled === false)
 							mainelement.style.opacity = "0.6";
 
-						const badgeimg = badgeImg.data.find(x => x.targetId === badge.id);
+						const badgeimg = badgeImg?.data?.find(x => x.targetId === badge.id);
 						let thecut = false;
 
 						let badgeawr;
