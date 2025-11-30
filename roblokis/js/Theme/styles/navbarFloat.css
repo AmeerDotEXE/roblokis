@@ -1,4 +1,4 @@
-#header {
+body #header {
 	margin: 5px;
 	border: 0;
 	background: transparent;
@@ -9,10 +9,11 @@
 	margin: 10px;
 }
 
+body {
+	--rbx-navbar-height: 50px;
+}
 #navigation {
-	top: 65px;
-	border-width: var(--rk-menu-borders-size);
-	margin-top: 0;
+	top: 50px;
 }
 #container-main {
 	margin-top: 50px;

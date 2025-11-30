@@ -5,6 +5,7 @@
     backdrop-filter: none;
     box-shadow: none;
 	border: 0;
+	margin-top: 0.5rem;
 }
 #navigation > ul > li.rbx-divider {
 	display: none;
@@ -55,7 +56,7 @@
 }
 /* (in the future) make an option to expand one at a time */
 .menu-icons-only .rbx-left-col:not(:hover) li {
-	max-width: 36px;
+	max-width: 40px;
 }
 
 .menu-icons-only .rbx-left-col .left-col-list > a {
@@ -84,12 +85,13 @@
 
 
 body.menu-icons-only {
-	--menufloat-width: 35px;
+	/* menu-width(40px) + padding-left(10px) */
+	--rbx-menu-width: 50px;
 }
 
 @media (min-width: 1688px) {
 	.menu-icons-only.menubtns-spacing .no-gutter-ads.logged-in .content {
-		margin-left: calc(20px + var(--menufloat-width));
-		max-width: calc(100% - var(--menufloat-width) - 30px);
+		margin-left: calc(20px + var(--rbx-menu-width));
+		max-width: calc(100% - var(--rbx-menu-width) - 30px);
 	}
 }

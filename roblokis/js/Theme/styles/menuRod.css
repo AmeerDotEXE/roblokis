@@ -3,7 +3,8 @@
 }
 
 body#rbx-body {
-	--menufloat-width: 50px;
+	/* menu-width(48px) + margin-left(10px) */
+	--rbx-menu-width: 58px;
 }
 
 #navigation {

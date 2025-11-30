@@ -1,18 +1,21 @@
-#group-container > div > div > div.group-details > div > div.section-content,
-#horizontal-tabs > li > a,
-#configure-group > configure-group-page > div > div:nth-child(2) > div > configure-group-menu > div.menu-vertical-container > ul,
-#group-shout > div.section-content.shout-container,
-#group-container > div > div > div.group-details > div > div[group-about] > div > group-wall > div > div.section-content.group-wall.group-wall-no-margin,
-#group-container > div > div > div.group-details > div > div[group-about] > div > group-members-list > div > div.section-content.group-members-list,
-#group-container > div > div > groups-list > div.menu-vertical-container > ul.menu-vertical,
-#configure-group > configure-group-page > div > div:nth-child(2) > div > div > configure-group-settings > div > div > div.section-content,
-#configure-group > configure-group-page > div > div:nth-child(2) > div > div > revenue-summary > div.section > table,
-#configure-group > configure-group-page > div > div:nth-child(2) > div > div > configure-group-members > div > configure-group-members-list > ul > configure-group-member-card > li > div,
-#configure-group > configure-group-page > div > div:nth-child(2) > div > div > configure-group-roles > div > configure-group-role-settings > div > div > div.section-content,
-#configure-group > configure-group-page > div > div:nth-child(2) > div > div > configure-group-allies > div > configure-group-allies-list > div.group-affiliates > ul > configure-group-affiliate-card > li > div,
-#configure-group > configure-group-page > div > div:nth-child(2) > div > div > configure-group-allies > div > configure-group-ally-requests > div.group-affiliates > ul > configure-group-affiliate-request-card > li > div,
-#group-container > div > div > div.group-details > div > group-wall > div > div.section-content.group-wall.group-wall-no-margin,
-#group-announcements > div > div > div.section-content {
+#group-container .group-profile-header .group-profile-header-info,
+/* tab buttons */ #horizontal-tabs > li > a,
+
+#group-container .group-section-content,
+
+/* ? what about announcements */
+#group-container .group-details .group-members-list,
+/* #group-container group-wall .group-wall.group-wall-no-margin, */
+
+/* old groups list */ #group-container > div > div > groups-list > div.menu-vertical-container > ul.menu-vertical,
+
+#configure-group-web-app configure-group-page > div > div:nth-child(2) > div > configure-group-menu > div.menu-vertical-container > ul,
+#configure-group-web-app configure-group-page > div > div:nth-child(2) > div > div > configure-group-settings > div > div > div.section-content,
+#configure-group-web-app configure-group-page > div > div:nth-child(2) > div > div > revenue-summary > div.section > table,
+#configure-group-web-app configure-group-page > div > div:nth-child(2) > div > div > configure-group-members > div > configure-group-members-list > ul > configure-group-member-card > li > div,
+#configure-group-web-app configure-group-page > div > div:nth-child(2) > div > div > configure-group-roles > div > configure-group-role-settings > div > div > div.section-content,
+#configure-group-web-app configure-group-page > div > div:nth-child(2) > div > div > configure-group-allies > div > configure-group-allies-list > div.group-affiliates > ul > configure-group-affiliate-card > li > div,
+#configure-group-web-app configure-group-page > div > div:nth-child(2) > div > div > configure-group-allies > div > configure-group-ally-requests > div.group-affiliates > ul > configure-group-affiliate-request-card > li > div {
 	border-radius: var(--rk-group-corners-radius);
 
 	border-color: var(--rk-group-borders-color);
@@ -26,20 +29,23 @@
 	box-shadow: var(--rk-group-box-shadow);
 }
 
-#horizontal-tabs,
-#group-container > div > div > div.group-details > div > div.tab-content.rbx-tab-content.section > group-affiliates > div.group-affiliates > div.section-content-off,
-#group-container > div > div > div.group-details > div > group-store > div > div.section-content-off,
-#group-container > div > div > div.group-details > div > div[group-about] > div > group-wall > div > div.section-content-off,
-#group-container > div > div > div.group-details > div > group-store > div > div.section-content,
-#group-container > div > div > groups-list > div.menu-vertical-container > div,
-#group-container > div > div > div.group-details > div > div[group-about] > div > group-games > div > div.group-games > div.section-content-off,
-#configure-group > configure-group-page > div > div:nth-child(2) > div > div > configure-group-members > div > configure-group-members-list > ul > configure-group-member-card > li > div > div,
-#configure-group > configure-group-page > div > div:nth-child(2) > div > div > configure-group-enemies > div > div.group-affiliates > div,
-#configure-group > configure-group-page > div > div:nth-child(2) > div > div > configure-group-allies > div > configure-group-ally-requests > div.group-affiliates > ul > configure-group-affiliate-request-card > li > div > div.avatar-card-btns,
-#configure-group > configure-group-page > div > div:nth-child(2) > div > div > configure-group-members > div > configure-group-members-list > div.section-content-off,
-#group-container > div > div > div.group-details > div > group-wall > div > div.section-content-off,
-#group-container > div > div > div.group-details > div > div.tab-content.rbx-tab-content.section > group-events .section-content-off {
+/* tab buttons */ #horizontal-tabs,
+#group-container .section-content-off,
+#group-container group-store .section-content,
+/* old groups list */ #group-container > div > div > groups-list > div.menu-vertical-container > div,
+
+#configure-group-web-app configure-group-page > div > div:nth-child(2) > div > div > configure-group-members > div > configure-group-members-list > ul > configure-group-member-card > li > div > div,
+#configure-group-web-app configure-group-page > div > div:nth-child(2) > div > div > configure-group-enemies > div > div.group-affiliates > div,
+#configure-group-web-app configure-group-page > div > div:nth-child(2) > div > div > configure-group-allies > div > configure-group-ally-requests > div.group-affiliates > ul > configure-group-affiliate-request-card > li > div > div.avatar-card-btns {
 	background-color: transparent;
+}
+
+.group-details .group-members-list {
+	padding: 8px;
+}
+
+/* header button */ .group-profile-header .group-profile-header-info .actions-container {
+	margin-right: 1.5rem;
 }
 
 
@@ -47,20 +53,52 @@
 	transform: scale(99%,1);
 }
 
+#container-main {
+	margin-right: 1rem;
+	margin-left: 1rem;
+}
 #container-main > div.content {
+	padding: 1rem;
+    margin-top: 1rem;
+
 	width: auto;
 }
-
-#group-container > div > div > div.group-details > div > div.section-content > div.group-header > div.group-image > thumbnail-2d,
-.groups-list .group-cards .list-item .group-card .group-card-thumbnail .thumbnail-2d-container,
-#social-link-icon > a > span {
-	border-radius: 8px;
-}
-
-#group-container > div > div > groups-list > div.menu-vertical-container > ul.menu-vertical > li {
-	border-radius: var(--rk-group-corners-radius);
-}
-
-#configure-group {
+#group-container,
+#configure-group-web-app {
 	width: 100%;
+}
+
+#group-container .groups-list-sidebar {
+
+	border-radius: var(--rk-content-corners-radius, 20px);
+
+	border-color: var(--rk-content-borders-color);
+	border-style: var(--rk-content-borders-style);
+	border-width: var(--rk-content-borders-size);
+
+	background: var(--rk-content-background);
+	background-size: var(--rk-content-background-image-size);
+
+	backdrop-filter: var(--rk-content-backdrop-filter);
+	box-shadow: var(--rk-content-box-shadow);
+
+
+	margin-top: 1rem;
+
+	position: absolute;
+    right: calc(100% + 1.5rem);
+    /* width: calc(327px - 1.5rem); */
+    padding: 1rem;
+	padding-top: 0.5rem;
+    display: block;
+
+    left: unset !important;
+    top: -2rem !important;
+    height: calc(100vh - var(--rbx-navbar-height, 40px) - 2rem) !important;
+}
+
+@media (min-width: 1688px) {
+    body .wrap.has-groups-list-sidebar .container-main:not(.in-app) .content {
+        margin-left: calc(0.5rem + var(--rbx-group-list-width, 327px) + var(--rbx-menu-width, 175px));
+    }
 }

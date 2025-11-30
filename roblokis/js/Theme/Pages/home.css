@@ -80,8 +80,8 @@ body .section .people-list {
 
 @media (min-width: 1688px) {
 	.home-expand-design #container-main > div.content {
-		margin-left: calc(20px + var(--menufloat-width));
-		max-width: calc(100% - var(--menufloat-width) - 30px);
+		margin-left: calc(20px + var(--rbx-menu-width));
+		max-width: calc(100% - var(--rbx-menu-width) - 30px);
 	}
 }
 

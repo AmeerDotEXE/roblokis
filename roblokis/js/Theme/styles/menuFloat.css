@@ -5,6 +5,7 @@
 	/* padding-bottom: 5px; */
 	padding-bottom: 10px;
 	margin: 10px;
+	margin-top: 1rem;
 }
 
 #header,
@@ -48,12 +49,13 @@
 }
 
 body {
-	--menufloat-width: 175px;
+	/* default(175px) + margin-left(10px) */
+	--rbx-menu-width: 185px;
 }
 
 @media (min-width: 1688px) {
 	.menufloat-spacing .no-gutter-ads.logged-in .content {
-		margin-left: calc(20px + var(--menufloat-width));
-		max-width: calc(100% - var(--menufloat-width) - 30px);
+		margin-left: calc(20px + var(--rbx-menu-width));
+		max-width: calc(100% - var(--rbx-menu-width) - 30px);
 	}
 }

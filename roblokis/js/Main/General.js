@@ -797,7 +797,9 @@ databaseLoading.then(() => {
 		// CSS experiments
 		(async function () {
 			// apply external fixes
-			Rkis.Designer.addCSS(["https://ameerdotexe.github.io/roblokis/data/remoteFixes.css"], true);
+			if (Rkis.IS_DEV !== true) {
+				Rkis.Designer.addCSS(["https://ameerdotexe.github.io/roblokis/data/remoteFixes.css"], true);
+			}
 
 			// check if Rkis.wholeData.ExperimentsCSS has experiments enabled
 			if (Array.isArray(Rkis.wholeData.ExperimentsCSS) && Rkis.wholeData.ExperimentsCSS.length > 0) {

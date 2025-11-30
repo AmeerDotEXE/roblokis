@@ -482,6 +482,6 @@ html .rbx-body .game-carousel.wide-game-tile-carousel {
 /* fix overlap menu with content */
 @media (min-width: 1688px) {
     .home-expand-design #container-main > div.content {
-        margin-left: calc(20px + var(--menufloat-width, 170px)) !important;
+        margin-left: calc(20px + var(--rbx-menu-width, 170px)) !important;
     }
 }

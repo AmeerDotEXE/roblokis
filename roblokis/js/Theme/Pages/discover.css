@@ -5,7 +5,7 @@
 
 @media (min-width: 1688px) {
 	#container-main > div.content {
-		max-width: calc(100% - var(--menufloat-width, 155px) - 30px);
+		max-width: calc(100% - var(--rbx-menu-width, 155px) - 30px);
 	}
 }
 
