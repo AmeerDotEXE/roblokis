@@ -1,6 +1,6 @@
 "use strict";
 
-/* globals BROWSER, escapeHTML, HTMLParser, changeRobloxTheme */
+/* globals BROWSER, escapeHTML, HTMLParser, changeRobloxTheme, ThemeEditorPopup */
 
 // eslint-disable-next-line no-var, no-use-before-define
 var Rkis = Rkis || {};
@@ -585,6 +585,9 @@ Rkis.Designer.SetupTheme = async function () {
 				doc.insertBefore(rkisbtn, doc.firstElementChild);
 
 				rkisbtn.addEventListener("click", () => {
+					if (ThemeEditorPopup?.instance != null)
+						return;
+
 					Rkis.ThemesMenu.OpenThemes();
 				});
 			});
