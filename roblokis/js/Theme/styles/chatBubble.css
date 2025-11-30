@@ -8,6 +8,15 @@
 	background-color: transparent;
     box-shadow: none;
 }
+
+/* ? is this a bug? */
+.dialogs .dialog-container {
+	overflow: unset;
+}
+.dialog-container .chat-dialog-alert {
+	background-color: transparent;
+}
+
 .chat-container .chat-main .chat-header {
 	bottom: 6px;
     margin-bottom: 6px;
@@ -36,7 +45,8 @@
 }
 .chat-main .chat-body,
 .dialogs .dialog-container .dialog-body {
-    border-radius: 8px 8px 0 0;
+    /* border-radius: 8px 8px 0 0; */
+    border-radius: 8px;
 }
 
 .dialogs .dialog-container .dialog-header {
@@ -51,12 +61,12 @@
 }
 
 .dialogs .dialog-container .dialog-body {
-	padding-bottom: 8px;
-    margin-bottom: -8px;
+	padding-bottom: 34px;
+    margin-bottom: -34px;
     box-sizing: content-box;
 }
 .dialog-container .dialog-body .mCustomScrollBox.dialog-visible {
-	padding-bottom: 8px;
+	padding-bottom: 34px;
 	box-sizing: content-box;
 }
 
