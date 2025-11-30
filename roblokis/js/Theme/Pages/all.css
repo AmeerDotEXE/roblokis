@@ -420,7 +420,7 @@ body.light-theme {
 
 
 /* custimize sections for game cards & friends */
-div > .game-carousel, .game-grid, .game-cards {
+div > .game-carousel, .game-grid, *:not(.game-grid) > .game-cards {
 	border-radius: var(--rk-gamesection-corners-radius, 8px);
 
 	border-color: var(--rk-gamesection-borders-color);

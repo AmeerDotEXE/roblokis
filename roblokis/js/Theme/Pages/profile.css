@@ -1,6 +1,6 @@
 #container-main > div.content > div.profile-container > div > div.section.profile-header > div,
 #horizontal-tabs > li > a,
-#profile-statistics-container > div > div.section-content,
+#profile-statistics-container > div,
 #about > div.section.layer.profile-collections,
 #groups-switcher,
 #games-switcher,
@@ -154,4 +154,16 @@
 	padding: 0;
 	box-shadow: none;
 	backdrop-filter: none;
+}
+
+/* fix for wide profiles due to new 3d viewer */
+#content.content div.profile-platform-container[data-profile-type="User"][data-profile-id] {
+    width: 100%;
+}
+
+.profile-avatar-gradient {
+	margin-left: 0;
+	width: 100%;
+	border-radius: 16px;
+	overflow: hidden;
 }

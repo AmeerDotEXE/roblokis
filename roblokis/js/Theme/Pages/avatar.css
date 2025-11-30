@@ -2,17 +2,25 @@
 	width: 90%;
 }
 
+#header .container-fluid ul.nav.rbx-navbar li a {
+	width: auto;
+}
+.rbx-header .navbar-brand {
+	height: auto;
+}
+
 #avatar-web-app {
 	width: 100%;
 }
 
 #horizontal-tabs,
+#avatar-react-container button.rbx-tab-heading,
 #avatar-web-app > div > div > div.right-panel.six-column > div.right-wrapper-placeholder.right-wrapper-placeholder-six-column > div:before,
 
 #avatar-web-app div.rbx-tabs-horizontal.rbx-tabs-horizontal-six-column > ul#horizontal-tabs > li.rbx-tab.six-tab > a,
-#clothing > recommendations > div > div > div.recommendations-container,
+#avatar-react-container .recommendations-container,
 
-#avatar-items-container > div.section-content-off {
+#avatar-items-container .section-content-off {
 	background-color: transparent;
 }
 

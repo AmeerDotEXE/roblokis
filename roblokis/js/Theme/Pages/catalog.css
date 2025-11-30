@@ -1,7 +1,8 @@
 #container-main > div.content {
 	width: auto;
 }
-#catalog-react-container {
+#catalog-react-container,
+#item-details-container {
 	width: 100%;
 }
 
@@ -17,7 +18,13 @@
 #rbx-body #catalog-react-container .sticky .search-bars {
 	padding-top: 8px;
 }
+
+/* catalog */
 #rbx-body #catalog-react-container .sticky .search-bars,
-#rbx-body #catalog-react-container .sticky .topic-container {
+#rbx-body #catalog-react-container .sticky .topic-container,
+
+/* item page */
+#item-details-container item-details > .content,
+#populated-item-list {
 	background-color: transparent;
 }
