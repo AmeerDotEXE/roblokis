@@ -31,3 +31,8 @@ html body.light-theme {
 #content.content div.profile-platform-container[data-profile-type="User"][data-profile-id] {
     width: 100%;
 }
+
+/* fix .hidden not applied correctly on popups */
+.rkis-centerpage-popup.hidden {
+    display: none;
+}
