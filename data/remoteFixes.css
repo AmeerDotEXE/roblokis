@@ -32,6 +32,13 @@ html body.light-theme {
     width: 100%;
 }
 
+.profile-avatar-gradient {
+	margin-left: 0;
+	width: 100%;
+	border-radius: 16px;
+	overflow: hidden;
+}
+
 /* fix .hidden not applied correctly on popups */
 .rkis-centerpage-popup.hidden {
     display: none;
