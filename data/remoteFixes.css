@@ -43,3 +43,8 @@ html body.light-theme {
 .rkis-centerpage-popup.hidden {
     display: none;
 }
+
+/* fix wide charts due to roblox renaming their root content element again */
+#game-carousel-web-app {
+    width: 100%;
+}
