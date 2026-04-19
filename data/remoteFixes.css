@@ -48,3 +48,8 @@ html body.light-theme {
 #game-carousel-web-app {
     width: 100%;
 }
+
+/* fix narrow content caused by roblox's new web-app migration */
+#game-search-web-app {
+    width: 100%;
+}
