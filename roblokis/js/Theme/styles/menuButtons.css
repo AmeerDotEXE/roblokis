@@ -1,4 +1,4 @@
-#navigation {
+#left-navigation-container > .left-nav {
 	height: auto;
 	overflow: visible;
 	background: transparent;
@@ -7,22 +7,19 @@
 	border: 0;
 	margin-top: 0.5rem;
 }
-#navigation > ul > li.rbx-divider {
-	display: none;
-}
 
-#navigation .simplebar-mask,
-.rbx-left-col .rbx-scrollbar,
-.rbx-left-col .simplebar-wrapper {
+#left-navigation-container > .left-nav .simplebar-mask,
+.left-nav nav > ul .rbx-scrollbar,
+.left-nav nav > ul .simplebar-wrapper {
 	overflow: visible;
 }
-.rbx-left-col .simplebar-content-wrapper {
+.left-nav nav > ul .simplebar-content-wrapper {
 	overflow: visible !important;
 }
-.rbx-left-col .rbx-scrollbar .left-col-list {
+.left-nav nav > ul .rbx-scrollbar .left-col-list {
 	padding-top: 0;
 }
-.rbx-left-col li {
+.left-nav nav > ul li {
 	background: var(--rk-menu-background);
     background-size: var(--rk-menu-background-image-size);
     border-radius: var(--rk-menu-corners-radius, 8px);
@@ -34,49 +31,49 @@
 	overflow: hidden;
     padding: 4px;
 }
-.rbx-left-col li .dynamic-width-item.align-right {
+.left-nav nav > ul li .dynamic-width-item.align-right {
 	margin-right: 2px;
 }
 
-.rbx-upgrade-now {
+#left-navigation-container > .left-nav li:has(a[href="/plus"]) {
 	display: none !important;
 }
 
 
 
-.menu-icons-only .rbx-left-col li {
+.menu-icons-only .left-nav nav > ul li {
 	overflow: hidden;
 	max-width: 200px;
 	transition: all 200ms;
 }
-.menu-icons-only #navigation,
-.menu-icons-only #navigation > .rbx-scrollbar,
-.menu-icons-only .rbx-left-col .rbx-scrollbar .left-col-list {
+.menu-icons-only #left-navigation-container > .left-nav,
+.menu-icons-only #left-navigation-container > .left-nav > .rbx-scrollbar,
+.menu-icons-only .left-nav nav > ul .rbx-scrollbar .left-col-list {
 	width: auto;
 }
 /* (in the future) make an option to expand one at a time */
-.menu-icons-only .rbx-left-col:not(:hover) li {
+.menu-icons-only .left-nav nav > ul:not(:hover) li {
 	max-width: 40px;
 }
 
-.menu-icons-only .rbx-left-col .left-col-list > a {
+.menu-icons-only .left-nav nav > ul .left-col-list > a {
 	display: block;
 	width: fit-content;
 }
 
-.menu-icons-only #navigation {
+.menu-icons-only #left-navigation-container > .left-nav {
 	height: 100%;
 	max-height: -webkit-fill-available;
 }
-.menu-icons-only #navigation div.simplebar-wrapper div.simplebar-content {
+.menu-icons-only #left-navigation-container > .left-nav div.simplebar-wrapper div.simplebar-content {
 	height: 100%;
 }
-.menu-icons-only .rbx-left-col .rbx-scrollbar .left-col-list {
+.menu-icons-only .left-nav nav > ul .rbx-scrollbar .left-col-list {
 	height: 100%;
 	display: flex;
 	flex-direction: column;
 }
-.menu-icons-only .rbx-left-col .left-col-list > a {
+.menu-icons-only .left-nav nav > ul .left-col-list > a {
 	margin-top: auto;
 }
 .menu-icons-only #nav-shop {

@@ -1,4 +1,4 @@
-#navigation {
+#left-navigation-container > .left-nav {
 	height: fit-content;
 	max-height: 90%;
 	overflow-y: auto;
@@ -9,7 +9,7 @@
 }
 
 #header,
-#navigation,
+#left-navigation-container > .left-nav,
 #footer-container {
 	border-color: var(--rk-menu-borders-color);
 	border-style: var(--rk-menu-borders-style);
@@ -35,22 +35,22 @@
 	border-right: 0;
 }
 
-#navigation {
+#left-navigation-container > .left-nav {
 	border-radius: var(--rk-menu-corners-radius, 20px);
 }
 
-.rbx-left-col .rbx-scrollbar li.rbx-upgrade-now .btn-secondary-md,
-.rbx-left-col .rbx-scrollbar .left-col-list > a > :nth-child(2) {
+#left-navigation-container nav > ul li a[href="/plus"]
+/* .rbx-left-col .rbx-scrollbar .left-col-list > a > :nth-child(2) */ {
 	border-radius: calc(var(--rk-menu-corner-radius, 20px) / 2);
 }
 
-.rbx-left-col .rbx-scrollbar li.rbx-upgrade-now:last-child {
+#left-navigation-container > .left-nav li:has(a[href="/plus"]):last-child {
 	margin-bottom: 0px;
 }
 
 body {
-	/* default(175px) + margin-left(10px) */
-	--rbx-menu-width: 185px;
+	/* default(289px) + margin-left(10px) */
+	--rbx-menu-width: 299px;
 }
 
 @media (min-width: 1688px) {

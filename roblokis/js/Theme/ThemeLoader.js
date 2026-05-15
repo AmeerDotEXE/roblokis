@@ -1157,6 +1157,11 @@ Rkis.ThemesMenu = {
 			pointer-events: all;
 		}
 
+		/* fix .hidden not applied correctly on popups */
+		.rkis-centerpage-popup.hidden {
+			display: none;
+		}
+
 		.rkis-centerpage-popup .rk-tabbed-window {
 			display: flex;
 			flex-direction: column;

@@ -99,6 +99,6 @@
 
 @media (min-width: 1688px) {
     body .wrap.has-groups-list-sidebar .container-main:not(.in-app) .content {
-        margin-left: calc(0.5rem + var(--rbx-group-list-width, 327px) + var(--rbx-menu-width, 175px));
+        margin-left: calc(0.5rem + var(--rbx-group-list-width, 327px) + var(--rbx-menu-width, 289px));
     }
 }

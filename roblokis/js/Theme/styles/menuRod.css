@@ -1,4 +1,4 @@
-.rbx-left-col .rbx-scrollbar li.rbx-upgrade-now {
+#left-navigation-container > .left-nav li:has(a[href="/plus"]) {
 	display: none !important;
 }
 
@@ -7,17 +7,23 @@ body#rbx-body {
 	--rbx-menu-width: 58px;
 }
 
-#navigation {
+#left-navigation-container > .left-nav {
 	transition: width 200ms;
 	display: block;
 	visibility: visible;
-	width: 175px;
+	overflow: hidden;
+	width: 208px;
+	transform: none;
 }
-body#rbx-body #navigation:not(:hover) {
+body#rbx-body #left-navigation-container > .left-nav:not(:hover) {
 	width: 48px;
 }
-#navigation > div {
-	width: 175px;
+#left-navigation-container > .left-nav > div > div > div {
+	padding: 4px;
+	height: 100%;
+}
+#left-navigation-container > .left-nav nav {
+	height: 100%;
 }
 .rbx-header .rbx-nav-collapse {
 	margin: 0;
@@ -30,42 +36,44 @@ body#rbx-body #navigation:not(:hover) {
 	margin-right: 5px;
 }
 
-.text-nav > *:first-child,
-#navigation .left-col-list > a .rbx-event-icon {
-	transition: margin-right 200ms;
+#left-navigation-container nav > ul {
+	width: 200px;
 }
-#navigation:not(:hover) .text-nav > *:first-child,
-#navigation:not(:hover) .left-col-list > a .rbx-event-icon {
+
+#left-navigation-container nav > ul > li > * > *:nth-child(2),
+#left-navigation-container > .left-nav li .rbx-event-icon {
+	transition: margin-right 200ms, width 200ms;
+}
+#left-navigation-container > .left-nav:not(:hover) nav > ul > li > * > *:nth-child(2),
+#left-navigation-container > .left-nav:not(:hover) nav > ul > li .rbx-event-icon {
 	margin-right: 8px !important;
+	width: 32px;
 }
 #btr-blogfeed {
 	display: none !important;
 }
 
 /* roblox events handler */
-.rbx-left-col .rbx-scrollbar .left-col-list > a {
+#left-navigation-container nav > ul > li > * {
 	margin: 0;
 }
-.rbx-left-col .rbx-scrollbar .left-col-list > a > div:first-child {
-	margin-top: 10px;
-}
-#navigation:not(:hover) .left-col-list > a > *:not(:first-child) {
+#left-navigation-container > .left-nav:not(:hover) nav > ul > li > * > *:last-child {
 	opacity: 0;
 }
-#navigation .left-col-list > a > *:not(:first-child) {
+#left-navigation-container > .left-nav nav > ul > li > * > *:last-child {
 	opacity: 1;
 	transition: opacity 150ms ease-in-out;
 }
 
 /* extended rod */
-body.extended-menu-rod #navigation {
+body.extended-menu-rod #left-navigation-container > .left-nav {
 	height: 100%;
 	max-height: -webkit-fill-available;
 }
-body.extended-menu-rod.center-menu-list #navigation div.simplebar-wrapper div.simplebar-content {
+body.extended-menu-rod.center-menu-list #left-navigation-container > .left-nav div.simplebar-wrapper div.simplebar-content {
 	height: 100%;
 }
-body.extended-menu-rod.center-menu-list .rbx-left-col .rbx-scrollbar .left-col-list {
+body.extended-menu-rod.center-menu-list .left-nav nav > ul {
 	height: 100%;
 	display: flex;
 	flex-direction: column;
@@ -73,13 +81,9 @@ body.extended-menu-rod.center-menu-list .rbx-left-col .rbx-scrollbar .left-col-l
 }
 
 /* move avatar to bottom */
-body.menu-avatar-bottom #navigation,
-body.menu-avatar-bottom .rbx-left-col > ul {
+body.menu-avatar-bottom .left-nav nav > ul {
 	display: flex;
 	flex-direction: column-reverse;
-}
-body.menu-avatar-bottom #navigation {
-	justify-content: space-between;
 }
 
 /* fix btroblox adding space next to rod */

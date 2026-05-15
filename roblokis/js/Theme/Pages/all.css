@@ -7,7 +7,7 @@
 
 /*menus*/
 #header,
-#navigation,
+#left-navigation-container > .left-nav,
 #footer-container {
 	background: var(--rk-menu-background);
 	background-size: var(--rk-menu-background-image-size);
@@ -32,7 +32,7 @@
 	border-right: 0;
 	box-sizing: content-box;
 }
-#navigation {
+#left-navigation-container > .left-nav {
 	border-top-left-radius: 0;
 	border-bottom-left-radius: 0;
 	border-left: 0;
@@ -50,7 +50,7 @@
 	border-right: 0;
 }
 
-#navigation > div {height: calc(100% - 60px);}
+#left-navigation-container > .left-nav > div {height: calc(100% - 60px);}
 #rk-desktopapp:hover > span {color: #f22;}
 
 
@@ -105,6 +105,7 @@ body .rbx-header .rbx-navbar-header {
 /*content*/
 #container-main {
 	outline: none;
+	margin-left: 0;
 }
 #container-main > div.content {
 
@@ -219,7 +220,7 @@ body.gamecards-text-center .game-card-friend-info .info-avatar {
 	background-color: transparent;
 }
 
-#navigation::-webkit-scrollbar {
+#left-navigation-container > .left-nav::-webkit-scrollbar {
   width: 8px;
 }
 
@@ -482,6 +483,11 @@ html .rbx-body .game-carousel.wide-game-tile-carousel {
 /* fix overlap menu with content */
 @media (min-width: 1688px) {
     .home-expand-design #container-main > div.content {
-        margin-left: calc(20px + var(--rbx-menu-width, 170px)) !important;
+        margin-left: calc(20px + var(--rbx-menu-width, 289px)) !important;
     }
+}
+
+/* fix narrow content caused by roblox's new web-app migration */
+#game-search-web-app {
+    width: 100%;
 }

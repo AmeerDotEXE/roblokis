@@ -1,6 +1,6 @@
 "use strict";
 
-/* globals BROWSER, $r, escapeHTML, getRndInteger, FetchImage */
+/* globals $r, escapeHTML, getRndInteger, FetchImage */
 
 // eslint-disable-next-line no-var, no-use-before-define
 var Rkis = Rkis || {};
@@ -637,13 +637,13 @@ Rkis.page.all = () => {
 		(function () {
 			Rkis.InjectFile(`${Rkis.fileLocation}js/Scripts/RobloxScriptCopy.js`);
 
-			document.$watch("#navigation > div > div.simplebar-wrapper > div.simplebar-mask > div > div > div > ul", (leftpanel) => {
+			document.$watch("#left-navigation-container > .left-nav > div > div > div > nav > ul", (leftpanel) => {
 				const newbtn = document.createElement("li");
 				const newbutton = document.createElement("a");
 
-				newbutton.className = "dynamic-overflow-container text-nav";
+				newbutton.className = "content-emphasis text-title-large flex items-center gap-small padding-left-xsmall padding-right-xxsmall radius-medium relative clip group/interactable focus-visible:outline-focus disabled:outline-none";
 				newbutton.id = "rk-desktopapp";
-				newbutton.innerHTML = `<div><span class="icon-nav-giftcards" style="background-image: url(${escapeHTML(Rkis.fileLocation)}images/icons/icon_300x300.png);background-position: center;background-size: 30px;"></span></div><span class="font-header-2 dynamic-ellipsis-item">${Rkis.language.sectionDApp}</span>`;
+				newbutton.innerHTML = `<div role="presentation" class="absolute inset-[0] transition-colors group-hover/interactable:bg-[var(--color-state-hover)] group-active/interactable:bg-[var(--color-state-press)] group-disabled/interactable:bg-none"></div><span class="size-1000 grow-0 shrink-0 basis-auto flex justify-center items-center"><span role="presentation" class="grow-0 shrink-0 basis-auto icon size-[var(--icon-size-large)]" style="background-color: transparent;background-image: url(${escapeHTML(Rkis.fileLocation)}images/icons/icon_300x300.png);background-position: center;background-size: 30px;"></span></span><span class="min-width-0 text-truncate-end text-no-wrap">${Rkis.language.sectionDApp}</span>`;
 				newbutton.addEventListener("click", () => {
 					document.$event("rk-desktopapp");
 				});
@@ -753,146 +753,7 @@ Rkis.page.all = () => {
 		});
 	}
 
-	if (Rkis.IsSettingEnabled("CustomNavMenuButtons", {
-		id: "CustomNavMenuButtons",
-		type: "switch",
-		value: { switch: false },
-		data: {
-			customization: {},
-		},
-		details: {
-			default: "en",
-			en: {
-				name: "Custom Menu Navigations",
-				description: "Press Customize to edit menu buttons.",
-			},
-		},
-	})) {
-		(function () {
-			function FetchImage(url) {
-				return new Promise((resolve) => {
-					BROWSER.runtime.sendMessage({ about: "getImageRequest", url }, (data) => {
-						resolve(data);
-					});
-				});
-			}
-
-			const customization = Rkis.GetSettingCustomization("CustomNavMenuButtons");
-			if (typeof customization.SortedMenuButtonsList != "undefined" && customization.SortedMenuButtonsList != null && customization.SortedMenuButtonsList.length > 0) {
-				const sortedMenu = customization.SortedMenuButtonsList;
-				document.$watch(".rbx-left-col .left-col-list", updateMenu);
-				// updateMenu();
-				document.$watchLoop(".left-col-list > * > *[id]", updateMenu);
-
-				function updateMenu() {
-					const currentMenu = document.querySelector(".rbx-left-col .left-col-list");
-					currentMenu.querySelectorAll(`[data-custom-btn="true"]`).forEach(x => x.remove());
-					let currentIndex = 0;
-
-					for (let btnIndex = 0; btnIndex < sortedMenu.length; btnIndex++) {
-						const btnData = sortedMenu[btnIndex];
-						if (btnData.type === "system") {
-							const btnElements = Array.from(currentMenu.querySelectorAll(`#${btnData.id}`));
-							if (btnElements.length === 0)
-								continue;
-
-							let btnElement = btnElements[0];
-							if (btnElements.length > 1) {
-								btnElement = btnElements.find((btn) => {
-									let text = btn.textContent || "Unknown";
-									if (btn.id === "btr-blogfeed")
-										text = "Blog Content";
-									else text = text.trim().split(/\d/g)[0];
-									return text === btnData.text;
-								});
-							}
-							if (btnElement == null)
-								continue;
-
-							if (btnData.hidden) {
-								btnElement.parentElement.style.display = "none";
-							}
-							insertChildAtIndex(currentMenu, btnElement.parentElement, currentIndex);
-							currentIndex++;
-						}
-						else if (btnData.type === "custom") {
-							// create button
-							const btnElement = createCustomButton(btnData);
-
-							insertChildAtIndex(currentMenu, btnElement, currentIndex);
-							currentIndex++;
-						}
-					}
-				}
-			}
-
-			// https://stackoverflow.com/a/39181175
-			function insertChildAtIndex(parent, child, index) {
-				if (!index)
-					index = 0;
-				if (index === 0) {
-					parent.prepend(child);
-				}
-				else if (index >= parent.children.length) {
-					parent.appendChild(child);
-				}
-				else {
-					parent.insertBefore(child, parent.children[index]);
-				}
-			}
-
-			function createCustomButton(btnData) {
-				const wrapperElement = document.createElement("li");
-				const buttonElement = document.createElement("a");
-				const iconWrapper = document.createElement("div");
-				const iconElement = document.createElement("span");
-				const textElement = document.createElement("span");
-
-				wrapperElement.style.display = "block";
-				wrapperElement.dataset.customBtn = "true";
-				buttonElement.className = "dynamic-overflow-container text-nav";
-				buttonElement.href = btnData.url;
-				buttonElement.target = "_self";
-				textElement.className = "font-header-2 dynamic-ellipsis-item";
-				textElement.textContent = btnData.text;
-
-				if (btnData.icon.type === "navbar-icon") {
-					iconElement.className = btnData.icon.value;
-				}
-				else if (btnData.icon.type === "url-icon") {
-					iconElement.className = "new-menu-icon icon-nav-charactercustomizer";
-					iconElement.style.backgroundPosition = "center";
-					iconElement.style.backgroundSize = "28px";
-
-					const url = btnData.icon.value;
-					let fill = null;
-					if (url === "") {
-						fill = "";
-					}
-					else if (url.startsWith("linear-gradient")) {
-						fill = `${url.split(")")[0]})`;
-					}
-					else if (url.startsWith("data:image/")) {
-						fill = `url(${url.split(")")[0]})`;
-					}
-					else {
-						FetchImage(url).then((imageData) => {
-							iconElement.style.backgroundImage = imageData;
-						});
-					}
-
-					if (fill !== null) {
-						iconElement.style.backgroundImage = fill;
-					}
-				}
-
-				iconWrapper.appendChild(iconElement);
-				buttonElement.append(iconWrapper, textElement);
-				wrapperElement.appendChild(buttonElement);
-				return wrapperElement;
-			}
-		})();
-	}
+	// removed CustomNavMenuButtons feature
 
 	// left out, might return to it later when i have time
 	// if (Rkis.pageName === "home") {

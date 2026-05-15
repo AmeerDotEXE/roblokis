@@ -125,7 +125,7 @@
 #rbx-body {
 	background-image: url($background.image.link#);
 }
-#header,#navigation,#footer-container {
+#header,#left-navigation-container > .left-nav,#footer-container {
 	background-image: url($menu.background.image.link#);
 }
 #container-main > div.content {

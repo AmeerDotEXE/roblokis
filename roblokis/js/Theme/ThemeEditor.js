@@ -10,7 +10,7 @@ Rkis.ThemeEdtior = Rkis.ThemeEdtior || {};
 const BackgroundImageToElements = {
 	/* all.css */
 	"": "#rbx-body",
-	"menu": "#header,#navigation,#footer-container",
+	"menu": "#header,#left-navigation-container > .left-nav,#footer-container",
 	"content": "#container-main > div.content",
 	"icon": ":root .rbx-body .icon-logo",
 	"iconr": ":root .rbx-body .icon-logo-r, :root .rbx-body .icon-logo-r-95",
@@ -3980,7 +3980,7 @@ const ListOfThemeEditorComponents = [
 		id: "menu",
 		tags: ["blockElement"],
 		highlightSelectors: [
-			{ highlight: "#header,#navigation,#footer-container" },
+			{ highlight: "#header,#left-navigation-container > .left-nav,#footer-container" },
 		],
 		parent: {
 			headId: "pages",
